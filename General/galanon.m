@@ -35,7 +35,7 @@ while eidx <= length(eFiles)
     figure(1); clf; 
     figure(2); clf;
     
-    %clear EODonly
+    clear EODonly
     
     %Load the EOD data
     eval(['load ' eFiles(eidx).name]); 
