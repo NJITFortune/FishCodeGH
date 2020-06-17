@@ -107,8 +107,8 @@ while eidx <= length(eFiles)
         fprintf('Our frame started at %i.\n', round(minVartim(framNo)));
 %         out(eidx).Ch1 = tmpsigA(tim > minVartim(framNo) & minVartim(framNo)+winwidth);
 %         out(eidx).Ch2 = tmpsigB(tim > minVartim(framNo) & minVartim(framNo)+winwidth);            
-        out.(eidx).Ch1 = [eidx, framNo];
-        out.(eidx).Ch2 = [eidx, framNo];
+        out(eidx).Ch1 = [eidx, framNo];
+        out(eidx).Ch2 = [eidx, framNo];
         tmpEODdat.(eidx).Ch1 = tmpsigA(tim > minVartim(framNo) & minVartim(framNo)+winwidth);
         tmpEODdat.(eidx).Ch2 = tmpsigB(tim > minVartim(framNo) & minVartim(framNo)+winwidth);
     end
