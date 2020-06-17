@@ -102,8 +102,7 @@ ismail(j).shuttle_pos = shuttle_pos;
 ismail(j).shuttle_vel = shuttle_vel;
 ismail(j).shuttle_acc = shuttle_acc; 
 
-
-% save filename.mat ismail
+save filename.mat ismail
 
 % figure(1); clf; hold on; 
 % OLD VERSION: plot(time,shuttle_pos); plot(time, fish_pos); plot(spikes.times, spikes.fish_pos, 'k.');
