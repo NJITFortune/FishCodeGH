@@ -167,7 +167,7 @@ Fs = out(1).Fs;
 
 for j=length(out):-1:1
     
-    if sum(out(j).Ch1) ~= 0
+    if sum(tmpEODdat(j).Ch1) ~= 0
         
         tmp = fftmachine(tmpEODdat(j).Ch1, Fs);
         out(j).fftCh1data = tmp.fftdata; out(j).fftCh1freq = tmp.fftfreq;
