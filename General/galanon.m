@@ -109,8 +109,8 @@ while eidx <= length(eFiles)
 %         out(eidx).Ch2 = tmpsigB(tim > minVartim(framNo) & minVartim(framNo)+winwidth);            
         out(eidx).Ch1 = [eidx, framNo];
         out(eidx).Ch2 = [eidx, framNo];
-        tmpEODdat.(eidx).Ch1 = tmpsigA(tim > minVartim(framNo) & minVartim(framNo)+winwidth);
-        tmpEODdat.(eidx).Ch2 = tmpsigB(tim > minVartim(framNo) & minVartim(framNo)+winwidth);
+        tmpEODdat(eidx).Ch1 = tmpsigA(tim > minVartim(framNo) & minVartim(framNo)+winwidth);
+        tmpEODdat(eidx).Ch2 = tmpsigB(tim > minVartim(framNo) & minVartim(framNo)+winwidth);
     end
 
 % % % Click frame - NEW VERSION
