@@ -8,6 +8,8 @@
     
 %% Setup once per directory
 
+clear out;
+
 iFiles = dir('GallmanImage*.mat');
 eFiles = dir('GallmanElectro*.mat');
 
