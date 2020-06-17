@@ -79,8 +79,7 @@ ismail(j).shuttle_acc = shuttle_acc;
 
 %% 9_25_2019_part2
 j=4;
-load /Volumes/Cgate/Data2019/4_12_2019/brown2019_04_12_merged_wEric_ID123.mat
-
+load /Volumes/Cgate/Data2019/9_25_2019/Brown2018_09_25_merged_part2_ID1476.mat
 ismail(j).date=04122019;
 ismail(j).filename='4_12_2019/brown2019_04_12_merged_wEric_ID123.mat';
 
