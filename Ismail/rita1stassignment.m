@@ -56,6 +56,7 @@ j=3;
 load /Volumes/Cgate/Data2019/9_25_2019/Brown2018_09_25_merged_part1_ID2513.mat
 ismail(j).date=09252019;
 ismail(j).filename='9_25_2019/Brown2018_09_25_merged_part1_ID2513.mat';
+
 ismail(j).Fs = fs;
 ismail(j).time = time;         
 
