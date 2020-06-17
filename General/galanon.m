@@ -8,8 +8,6 @@
     
 %% Setup once per directory
 
-clear out;
-
 iFiles = dir('GallmanImage*.mat');
 eFiles = dir('GallmanElectro*.mat');
 
@@ -23,6 +21,8 @@ if (length(iFiles) / 6) ~= length(eFiles)
     fprintf('Fuck off motherfucker\n');
 end
 
+clear out;
+
 %% Cycle through the files and build the structure "out"
 
 winwidth = 2; % Duration of the window for analysis
@@ -32,17 +32,18 @@ eidx = 1;
 
 while eidx <= length(eFiles)
 
-    figure(1); clf; figure(2); clf;
+    figure(1); clf; 
+    figure(2); clf;
     
-     %clear EODonly
+    %clear EODonly
     
     %Load the EOD data
     eval(['load ' eFiles(eidx).name]); 
 
-    %if ~exist('EODonly', 'var'); EODonly = data; end
-    
+    %if ~exist('EODonly', 'var'); EODonly = data; end    
     
     eval(['load ' eFiles(eidx).name]); % Load the EOD data
+    
     tmpsigA = filtfilt(b,a,EODonly(:,1)); % Filter both channels
         tmpsigA = filtfilt(d,c,tmpsigA);
     tmpsigB = filtfilt(b,a,EODonly(:,2));
