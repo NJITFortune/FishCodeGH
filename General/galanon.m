@@ -165,23 +165,23 @@ out(1).Fs = Fs;
 
 Fs = out(1).Fs;
 
-for j=length(out):-1:11
+for j=length(out):-1:1
     
     if sum(out(j).Ch1) ~= 0
         
-        tmp = fftmachine(out(j).Ch1, Fs);
+        tmp = fftmachine(tmpEODdat(j).Ch1, Fs);
         out(j).fftCh1data = tmp.fftdata; out(j).fftCh1freq = tmp.fftfreq;
             [famp, fidx] = max(smooth(out(j).fftCh1data, 10));
         out(j).fftCh1peakfreq = out(j).fftCh1freq(fidx);
         out(j).fftCh1peakamp = famp; 
-        out(j).rmsCh1 = rms(out(j).Ch1);
+        out(j).rmsCh1 = rms(tmpEODdat(j).Ch1);
         
-        tmp = fftmachine(out(j).Ch2, Fs);
+        tmp = fftmachine(tmpEODdat(j).Ch2, Fs);
         out(j).fftCh2data = tmp.fftdata; out(j).fftCh2freq = tmp.fftfreq;
             [famp, fidx] = max(smooth(out(j).fftCh2data,10));
         out(j).fftCh2peakfreq = out(j).fftCh2freq(fidx);
         out(j).fftCh2peakamp = famp; 
-        out(j).rmsCh2 = rms(out(j).Ch2);
+        out(j).rmsCh2 = rms(tmpEODdat(j).Ch2);
 
         lightlevels(j) = out(j).light;
         temps(j) = out(j).temp;
@@ -190,7 +190,7 @@ for j=length(out):-1:11
         
     end    
     
-    if sum(out(j).Ch1) == 0
+    if sum(tmpEODdat(j).Ch1) == 0
         
         out(j).Ch1 = []; % Empty out the 0'ed data 
         out(j).Ch2 = [];
