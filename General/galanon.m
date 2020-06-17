@@ -40,7 +40,7 @@ while eidx <= length(eFiles)
     %Load the EOD data
     eval(['load ' eFiles(eidx).name]); 
 
-    %if ~exist('EODonly', 'var'); EODonly = data; end    
+    if ~exist('EODonly', 'var'); EODonly = data; end    
     
     eval(['load ' eFiles(eidx).name]); % Load the EOD data
     
