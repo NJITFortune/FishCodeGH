@@ -110,8 +110,8 @@ end
 %     botstd = mean(rmmissing(meany.fft))-std(rmmissing(meany.fft));    
 %     fill([xxx(1:length(topstd)), xxx(length(topstd):-1:1)], [topstd(1:end), botstd(end:-1:1)], [1 1 0]);
 
-meany.fft(meany.fft == 0) = NaN;
-meany.rms(meany.rms == 0) = NaN;
+%meany.fft(meany.fft == 0) = NaN;
+%meany.rms(meany.rms == 0) = NaN;
 
 subplot(211); plot((1-preidx:postidx)*interv, nanmean(meany.fft), 'r*-', 'LineWidth', 2);
 subplot(212); plot((1-preidx:postidx)*interv, nanmean(meany.rms), 'b*-', 'LineWidth', 2);
