@@ -10,11 +10,11 @@ function asdf = iu_PlotSTA(data, entry, tims)
 % Load data first! Relies on iu_sta.m
 
 entry=1;
-startim = 0;
+strtim = 0;
 endtim = 30;
 
-spks = data(entry).spikes.times(data(entry).spikes.times > tims(startim) & data(entry).spikes.times < tims(endtim));
-rspks = data(entry).spikes_rand.times(data(entry).spikes_rand.times > tims(startim) & data(entry).spikes_rand.times < tims(endtim));
+spks = data(entry).spikes.times(data(entry).spikes.times > tims(strtim) & data(entry).spikes.times < tims(endtim));
+rspks = data(entry).spikes_rand.times(data(entry).spikes_rand.times > tims(strtim) & data(entry).spikes_rand.times < tims(endtim));
 
 
 asdf  = 0;
