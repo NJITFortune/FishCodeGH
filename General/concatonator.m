@@ -90,6 +90,11 @@ darkidxs = find(dls == -1);
 
 meany.fft = zeros(length(darkidxs), preidx+postidx);
 meany.rms = zeros(length(darkidxs), preidx+postidx);
+subplot(211);     
+    xxx = (1-preidx:postidx) * interv;
+    topstd = rmmissing(nanmean(meany.fft)+nanstd(meany.fft));
+    botstd = rmmissing(nanmean(meany.fft)-nanstd(meany.fft));    
+fill([xxx(1:length(topstd)), xxx(length(botstd):-1:1)], [topstd(1:end), botstd(end:-1:1)], [1 1 0]);
 
 for j=1:length(darkidxs)
     
@@ -110,12 +115,6 @@ meany.fft(meany.fft == 0) = NaN;
 meany.rms(meany.rms == 0) = NaN;
 
 subplot(211); plot((1-preidx:postidx)*interv, nanmean(meany.fft), 'r-', 'LineWidth', 2);
-    xxx = (1-preidx:postidx) * interv;
-    topstd = rmmissing(nanmean(meany.fft)+nanstd(meany.fft));
-    botstd = rmmissing(nanmean(meany.fft)-nanstd(meany.fft));
-    
-    
-fill([xxx(1:length(topstd)), xxx(length(botstd):-1:1)], [topstd(1:end), botstd(end:-1:1)], [1 1 0]);
 
 subplot(212); plot((1-preidx:postidx)*interv, nanmean(meany.rms), 'b-', 'LineWidth', 2);
 
