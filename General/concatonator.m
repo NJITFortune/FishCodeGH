@@ -90,18 +90,18 @@ darkidxs = find(dls == -1);
 
 meany.fft = zeros(length(darkidxs), preidx+postidx);
 meany.rms = zeros(length(darkidxs), preidx+postidx);
-subplot(211);     
+subplot(211);  hold on;   
     xxx = (1-preidx:postidx) * interv;
     topstd = rmmissing(nanmean(meany.fft)+nanstd(meany.fft));
     botstd = rmmissing(nanmean(meany.fft)-nanstd(meany.fft));    
-fill([xxx(1:length(topstd)), xxx(length(botstd):-1:1)], [topstd(1:end), botstd(end:-1:1)], [1 1 0]);
+    fill([xxx(1:length(topstd)), xxx(length(botstd):-1:1)], [topstd(1:end), botstd(end:-1:1)], [1 1 0]);
 
 for j=1:length(darkidxs)
     
         tt = find(c.idx > darkidxs(j)-preidx & c.idx < darkidxs(j)+postidx);
         interv = 10; % Interval in minutes
         
-    subplot(211); hold on;
+    subplot(211); 
         plot((c.idx(tt)-darkidxs(j))*interv, c.fftCh1amp(tt), 'k.', 'MarkerSize', 8);
     subplot(212); hold on;
         plot((c.idx(tt)-darkidxs(j))*interv, c.rmsCh1(tt), 'k.', 'MarkerSize', 8);
