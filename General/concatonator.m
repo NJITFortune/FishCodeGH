@@ -104,16 +104,16 @@ for j=1:length(darkidxs)
         meany.rms(j,c.idx(tt)-darkidxs(j)+preidx) = c.rmsCh1(tt);
 end
 
-subplot(211);  hold on;   
-    xxx = (1-preidx:postidx) * interv;
-    topstd = mean(rmmissing(meany.fft))+std(rmmissing(meany.fft));
-    botstd = mean(rmmissing(meany.fft))-std(rmmissing(meany.fft));    
-    fill([xxx(1:length(topstd)), xxx(length(topstd):-1:1)], [topstd(1:end), botstd(end:-1:1)], [1 1 0]);
+% subplot(211);  hold on;   
+%     xxx = (1-preidx:postidx) * interv;
+%     topstd = mean(rmmissing(meany.fft))+std(rmmissing(meany.fft));
+%     botstd = mean(rmmissing(meany.fft))-std(rmmissing(meany.fft));    
+%     fill([xxx(1:length(topstd)), xxx(length(topstd):-1:1)], [topstd(1:end), botstd(end:-1:1)], [1 1 0]);
 
 meany.fft(meany.fft == 0) = NaN;
 meany.rms(meany.rms == 0) = NaN;
 
-subplot(211); plot((1-preidx:postidx)*interv, nanmean(meany.fft), 'r-', 'LineWidth', 2);
-subplot(212); plot((1-preidx:postidx)*interv, nanmean(meany.rms), 'b-', 'LineWidth', 2);
+subplot(211); plot((1-preidx:postidx)*interv, nanmean(meany.fft), 'r*-', 'LineWidth', 2);
+subplot(212); plot((1-preidx:postidx)*interv, nanmean(meany.rms), 'b*-', 'LineWidth', 2);
 
 % save 6789May2020.mat c meany
