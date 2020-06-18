@@ -1,4 +1,5 @@
 function asdf = iu_PlotSTA(data, entry, tims)
+
 % function asdf = iu_PlotSTA(data, entry, tims)
 % Plots spike triggered averages
 % asdf is our output structure (not set at the moment)
