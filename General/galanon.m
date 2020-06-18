@@ -165,7 +165,8 @@ out(1).Fs = Fs;
 
 Fs = out(1).Fs;
 
-for j=length(out):-1:1
+for j=length(tmpEODdat):-1:1
+%for j=length(out):-1:1
     
     if sum(tmpEODdat(j).Ch1) ~= 0
         
