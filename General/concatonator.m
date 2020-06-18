@@ -61,7 +61,7 @@ c.timmy = [c.timmy [out.filetime]];
 
 figure(4); clf;
 
-[b,a] = butter(5,0.5/(8/2),'low'); % A low-pass filter
+[b,a] = butter(5,0.1/(8/2),'low'); % A low-pass filter
 
 newtim = 24 * (c.timmy - (c.timmy(1)-(c.timmy(2)-c.timmy(1)))); % Set start at 0 and plot in minutes
 
