@@ -90,6 +90,7 @@ darkidxs = find(dls == -1);
 
 meany.fft = zeros(length(darkidxs), preidx+postidx);
 meany.rms = zeros(length(darkidxs), preidx+postidx);
+
 subplot(211);  hold on;   
     xxx = (1-preidx:postidx) * interv;
     topstd = rmmissing(nanmean(meany.fft)+nanstd(meany.fft));
@@ -101,7 +102,7 @@ for j=1:length(darkidxs)
         tt = find(c.idx > darkidxs(j)-preidx & c.idx < darkidxs(j)+postidx);
         interv = 10; % Interval in minutes
         
-    subplot(211); 
+    subplot(211); hold on;
         plot((c.idx(tt)-darkidxs(j))*interv, c.fftCh1amp(tt), 'k.', 'MarkerSize', 8);
     subplot(212); hold on;
         plot((c.idx(tt)-darkidxs(j))*interv, c.rmsCh1(tt), 'k.', 'MarkerSize', 8);
@@ -115,7 +116,6 @@ meany.fft(meany.fft == 0) = NaN;
 meany.rms(meany.rms == 0) = NaN;
 
 subplot(211); plot((1-preidx:postidx)*interv, nanmean(meany.fft), 'r-', 'LineWidth', 2);
-
 subplot(212); plot((1-preidx:postidx)*interv, nanmean(meany.rms), 'b-', 'LineWidth', 2);
 
 % save 6789May2020.mat c meany
