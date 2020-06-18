@@ -96,9 +96,9 @@ for j=1:length(darkidxs)
         tt = find(c.idx > darkidxs(j)-preidx & c.idx < darkidxs(j)+postidx);
 
     subplot(211); hold on;
-        plot(c.idx(tt)-darkidxs(j), c.fftCh1amp(tt), 'k*');
+        plot(c.idx(tt)-darkidxs(j), c.fftCh1amp(tt), 'k-*');
     subplot(212); hold on;
-        plot(c.idx(tt)-darkidxs(j), c.rmsCh1(tt), 'k*');
+        plot(c.idx(tt)-darkidxs(j), c.rmsCh1(tt), 'k-*');
         
         meany.fft(j,c.idx(tt)-darkidxs(j)+preidx) = c.fftCh1amp(tt);        
         meany.rms(j,c.idx(tt)-darkidxs(j)+preidx) = c.rmsCh1(tt);
