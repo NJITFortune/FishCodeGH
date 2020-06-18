@@ -94,7 +94,8 @@ meany.rms = zeros(length(darkidxs), preidx+postidx);
 for j=1:length(darkidxs)
     
         tt = find(c.idx > darkidxs(j)-preidx & c.idx < darkidxs(j)+postidx);
-
+        interv = 10; % Interval in minutes
+        xx = -20*interv:interv:50*interv;
     subplot(211); hold on;
         plot(c.idx(tt)-darkidxs(j), c.fftCh1amp(tt), 'k.', 'MarkerSize', 8);
     subplot(212); hold on;
