@@ -95,11 +95,11 @@ for j=1:length(darkidxs)
     
         tt = find(c.idx > darkidxs(j)-preidx & c.idx < darkidxs(j)+postidx);
         interv = 10; % Interval in minutes
-        xx = -20*interv:interv:50*interv;
+        
     subplot(211); hold on;
-        plot(c.idx(tt)-darkidxs(j), c.fftCh1amp(tt), 'k.', 'MarkerSize', 8);
+        plot((c.idx(tt)-darkidxs(j))*interv, c.fftCh1amp(tt), 'k.', 'MarkerSize', 8);
     subplot(212); hold on;
-        plot(c.idx(tt)-darkidxs(j), c.rmsCh1(tt), 'k.', 'MarkerSize', 8);
+        plot((c.idx(tt)-darkidxs(j))*interv, c.rmsCh1(tt), 'k.', 'MarkerSize', 8);
         
         meany.fft(j,c.idx(tt)-darkidxs(j)+preidx) = c.fftCh1amp(tt);        
         meany.rms(j,c.idx(tt)-darkidxs(j)+preidx) = c.rmsCh1(tt);
