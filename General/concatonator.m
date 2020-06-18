@@ -61,7 +61,7 @@ c.timmy = [c.timmy [out.filetime]];
 
 figure(4); clf;
 
-newtim = 1440 * (c.timmy - (c.timmy(1)-(c.timmy(2)-c.timmy(1)))); % Set start at 0 and plot in minutes
+newtim = 24 * (c.timmy - (c.timmy(1)-(c.timmy(2)-c.timmy(1)))); % Set start at 0 and plot in minutes
 
 ax(1)=subplot(311); 
     plot(newtim(c.idx), c.fftCh1amp, 'LineWidth', 4); 
