@@ -114,7 +114,7 @@ xxx = (1-preidx:postidx) * interv;
 topstd = nanmean(meany.fft)+nanstd(meany.fft);
 botstd = nanmean(meany.fft)-nanstd(meany.fft);
 
-fill([xxx(1:end), xxx(end:-1:1)], [topstd(1:end), botstd(end:-1:1)], [0.6, 0.9, 0.9], 'LineStyle', '-');
+fill([xxx(1:end), xxx(end:-1:1)], [topstd(1:end), botstd(end:-1:1)], 'g', 'LineStyle', '-');
 
 subplot(212); plot((1-preidx:postidx)*interv, nanmean(meany.rms), 'b-', 'LineWidth', 2);
 
