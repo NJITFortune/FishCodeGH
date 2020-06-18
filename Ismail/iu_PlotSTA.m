@@ -1,4 +1,10 @@
 function asdf = iu_PlotSTA(data, entry, tims)
+% function asdf = iu_PlotSTA(data, entry, tims)
+% Plots spike triggered averages
+% asdf is our output structure (not set at the moment)
+% data is ismail
+% entry is the index for ismail, e.g. 3 for ismail(3)
+% tims are the start and end times, e.g. [30 60] would be between 30 and 60 seconds
 
 % Plot spike triggered averages for error_pos, error_vel, error_acc, and error_jerk
 % Load data first! Relies on iu_sta.m
@@ -7,7 +13,7 @@ spks = data(entry).spikes.times(data(entry).spikes.times > tims(1) & data(entry)
 rspks = data(entry).spikes_rand.times(data(entry).spikes_rand.times > tims(1) & data(entry).spikes_rand.times < tims(2));
 
 
-asdf  = 0 ;
+asdf  = 0;
 % k=1; % Entry number
 % startim = 0;
 % endtim = 90;
@@ -82,4 +88,9 @@ figure(2); clf;
     plot(ejerk.time, ejerk.STD, 'b-', 'LineWidth', 3);
     plot(ejerk.time, ejerk.randSTD, 'r-', 'LineWidth', 3);
 
+    %% Plot the raw data
+    
+    figure(3); clf;
+    
+    plot(data(entry).time, data(entry).shuttlevel, 'b-'); 
     
