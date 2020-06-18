@@ -232,8 +232,8 @@ end
 
 
 f3 = figure(3); clf; %ploty4.m in file exchange may be the answer to adding a 3rd y-axis
-    bb = [0 0 1]; mm = [1 0 1]; gg = [0 1 0];
-    set(f3, 'defaultAxesColorOrder', [bb; mm; gg]);
+    %bb = [0 0 1]; mm = [1 0 1]; gg = [0 1 0];
+    %set(f3, 'defaultAxesColorOrder', [bb; mm; gg]);
     ax(1) = subplot(411); hold on; 
         plot([out.idx], [out.fftCh1peakamp], 'b.-', 'MarkerSize', 8); title('FFT amplitude');
         plot([out.idx], [out.fftCh2peakamp], 'm.-', 'MarkerSize', 8);  
@@ -244,7 +244,7 @@ f3 = figure(3); clf; %ploty4.m in file exchange may be the answer to adding a 3r
         plot([out.idx], [out.rmsCh3], 'g.-', 'MarkerSize', 8);
         title('RMS amplitude'); hold on;
      ax(3) = subplot(413); hold on;
-        plot([out.idx], [out.fftCh1peakfreq], '.-', 'MarkerSize', 8); ylim([200 700]); title('EOD Frequency');
+        plot([out.idx], [out.fftCh1peakfreq], '.-', 'MarkerSize', 8); ylim([300 600]); title('EOD Frequency');
         plot([out.idx], [out.fftCh2peakfreq], '.-', 'MarkerSize', 8); ylim([300 600]);
         plot([out.idx], [out.fftCh3peakfreq], '.-', 'MarkerSize', 8); ylim([300 600]);
      ax(4) = subplot(414); 
