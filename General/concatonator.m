@@ -69,13 +69,15 @@ ax(1)=subplot(311);
     plot(newtim(c.idx), c.fftCh1amp, 'LineWidth', 4); 
     hold on; 
     %plot(newtim(c.idx), c.fftCh2amp, 'LineWidth', 4);
+    dd = filtfilt(b,a,c.fftCh1amp);
+    plot(newtim(c.idx),dd, 'LineWidth', 3)
 
 ax(2)=subplot(312); 
     plot(newtim(c.idx), c.rmsCh1, 'LineWidth', 4); 
     hold on; 
     %plot(newtim(c.idx), c.rmsCh2, 'LineWidth', 4);
-    dd = filtfilt(b,a,c.fftCh1amp);
-    
+    dd = filtfilt(b,a,c.rmsCh1);
+    plot(newtim(c.idx),dd, 'LineWidth', 3)
     
 ax(3)=subplot(313); plot(newtim, c.lightlevel, 'LineWidth', 4);
 
