@@ -106,8 +106,8 @@ end
 
 subplot(211);  hold on;   
     xxx = (1-preidx:postidx) * interv;
-    topstd = mean(rmmisss meany.fft)+nanstd(meany.fft));
-    botstd = mean(meany.fft)-nanstd(meany.fft));    
+    topstd = mean(rmmissing(meany.fft))+std(rmmissing(meany.fft));
+    botstd = mean(rmmissing(meany.fft))-std(rmmissing(meany.fft));    
     fill([xxx(1:length(topstd)), xxx(length(topstd):-1:1)], [topstd(1:end), botstd(end:-1:1)], [1 1 0]);
 
 meany.fft(meany.fft == 0) = NaN;
