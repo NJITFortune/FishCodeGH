@@ -65,15 +65,20 @@ newtim = 24 * (c.timmy - (c.timmy(1)-(c.timmy(2)-c.timmy(1)))); % Set start at 0
 
 ax(1)=subplot(311); 
     plot(newtim(c.idx), c.fftCh1amp, 'LineWidth', 4); 
-    hold on; plot(newtim(c.idx), c.fftCh2amp, 'LineWidth', 4);
+    hold on; 
+    %plot(newtim(c.idx), c.fftCh2amp, 'LineWidth', 4);
 
 ax(2)=subplot(312); 
     plot(newtim(c.idx), c.rmsCh1, 'LineWidth', 4); 
-    hold on; plot(newtim(c.idx), c.rmsCh2, 'LineWidth', 4);
+    hold on; 
+    %plot(newtim(c.idx), c.rmsCh2, 'LineWidth', 4);
 
 ax(3)=subplot(313); plot(newtim, c.lightlevel, 'LineWidth', 4);
 
 linkaxes(ax, 'x');
+
+
+
 
 
 
