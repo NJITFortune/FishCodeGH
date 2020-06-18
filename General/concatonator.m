@@ -111,8 +111,10 @@ meany.rms(meany.rms == 0) = NaN;
 
 subplot(211); plot((1-preidx:postidx)*interv, nanmean(meany.fft), 'r-', 'LineWidth', 2);
 xxx = (1-preidx:postidx) * interv;
+topstd = nanmean(meany.fft)+nanstd(meany.fft);
+botstd = nanmean(meany.fft)-nanstd(meany.fft);
 
-fill([(1-preidx:postidx)*interv (postidx:-1:1-preidx)*interv], [nanmean(meany.fft)+nanstd(meany.fft) nanmean(meany.fft(end:-1:1))-nanstd(meany.fft(end:-1:1))], [0.6, 0.9, 0.9], 'LineStyle', 'none');
+fill([xxx(1:end), xxx(end:-1:1)], [topstd(1:end), botstd(end:-1:1)], [0.6, 0.9, 0.9], 'LineStyle', 'none');
 
 subplot(212); plot((1-preidx:postidx)*interv, nanmean(meany.rms), 'b-', 'LineWidth', 2);
 
