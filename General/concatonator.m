@@ -113,7 +113,7 @@ end
 meany.fft(meany.fft == 0) = NaN;
 meany.rms(meany.rms == 0) = NaN;
 
-subplot(211); plot((1-preidx:postidx)*interv, nanmean(meany.fft(:,2)), 'r*-', 'LineWidth', 2);
-subplot(212); plot((1-preidx:postidx)*interv, nanmean(meany.rms(:,2)), 'b*-', 'LineWidth', 2);
+subplot(211); plot((1-preidx:postidx)*interv, nanmean(meany.fft(1,:)), 'r*-', 'LineWidth', 2);
+subplot(212); plot((1-preidx:postidx)*interv, nanmean(meany.rms(1,:)), 'b*-', 'LineWidth', 2);
 
 % save 6789May2020.mat c meany
