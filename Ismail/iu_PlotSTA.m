@@ -1,4 +1,10 @@
 function asdf = iu_PlotSTA(data, entry, tims)
+data is ismail
+entry=1;
+strtim = 0;
+endtim = 30;
+spks = data(entry).spikes.times(data(entry).spikes.times > tims(strtim) & data(entry).spikes.times < tims(endtim));
+rspks = data(entry).spikes_rand.times(data(entry).spikes_rand.times > tims(strtim) & data(entry).spikes_rand.times < tims(endtim));
 
 % function asdf = iu_PlotSTA(data, entry, tims)
 % Plots spike triggered averages
@@ -6,16 +12,15 @@ function asdf = iu_PlotSTA(data, entry, tims)
 % data is ismail
 % entry is the index for ismail, e.g. 3 for ismail(3)
 % tims are the start and end times, e.g. [30 60] would be between 30 and 60 seconds
-
 % Plot spike triggered averages for error_pos, error_vel, error_acc, and error_jerk
 % Load data first! Relies on iu_sta.m
 
-entry=1;
-strtim = 0;
-endtim = 30;
+%entry=1;
+%strtim = 0;
+%endtim = 30;
 
-spks = data(entry).spikes.times(data(entry).spikes.times > tims(strtim) & data(entry).spikes.times < tims(endtim));
-rspks = data(entry).spikes_rand.times(data(entry).spikes_rand.times > tims(strtim) & data(entry).spikes_rand.times < tims(endtim));
+%spks = data(entry).spikes.times(data(entry).spikes.times > tims(strtim) & data(entry).spikes.times < tims(endtim));
+%rspks = data(entry).spikes_rand.times(data(entry).spikes_rand.times > tims(strtim) & data(entry).spikes_rand.times < tims(endtim));
 
 
 asdf  = 0;
