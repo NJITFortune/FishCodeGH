@@ -232,8 +232,8 @@ end
 
 
 f3 = figure(3); clf; %ploty4.m in file exchange may be the answer to adding a 3rd y-axis
-    %bb = [0 0 1]; mm = [1 0 1]; gg = [0 1 0];
-    %set(f3, 'defaultAxesColorOrder', [bb; mm; gg]);
+    bb = [0 0 1]; mm = [1 0 1]; gg = [0 1 0];
+    set(f3, 'defaultAxesColorOrder', [bb; mm; gg]);
     ax(1) = subplot(411); hold on; 
         plot([out.idx], [out.fftCh1peakamp], 'b.-', 'MarkerSize', 8); title('FFT amplitude');
         plot([out.idx], [out.fftCh2peakamp], 'm.-', 'MarkerSize', 8);  
