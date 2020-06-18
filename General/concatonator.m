@@ -110,7 +110,7 @@ meany.fft(meany.fft == 0) = NaN;
 meany.rms(meany.rms == 0) = NaN;
 
 subplot(211); plot((1-preidx:postidx)*interv, nanmean(meany.fft), 'r-', 'LineWidth', 2);
-fill([(1-preidx:postidx)*interv (postidx:-1:preidx-1)*interv], [nanmean(meany.fft)+nanstd(meany.fft) nanmean(meany.fft(end:-1:1))-nanstd(meany.fft(end:-1:1))]);
+fill([(1-preidx:postidx)*interv (postidx:-1:preidx-1)*interv], [nanmean(meany.fft)+nanstd(meany.fft) nanmean(meany.fft(end:-1:1))-nanstd(meany.fft(end:-1:1))], );
 
 subplot(212); plot((1-preidx:postidx)*interv, nanmean(meany.rms), 'b-', 'LineWidth', 2);
 
