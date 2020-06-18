@@ -25,7 +25,7 @@ asdf  = 0;
 % 
 
 
-% spks = spikes.times(spikes.times > startim & spikes.times < endtim);
+% spks = spikes.times(spikes.times > strtim & spikes.times < endtim);
 % rspks = spikes_rand.times(spikes_rand.times > endtim & spikes_rand.times < startim);
 
 % spks = ismail(k).spikes.times;
