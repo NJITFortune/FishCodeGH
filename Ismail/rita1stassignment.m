@@ -111,7 +111,7 @@ save filename.mat ismail
 % figure(1); clf; hold on; 
 % OLD VERSION: plot(time,shuttle_pos); plot(time, fish_pos); plot(spikes.times, spikes.fish_pos, 'k.');
 
-% NEW VERSION: plot(ismail(j).time,ismail(j).shuttle_pos); 
+% NEW VERSION: plot(ismail(j).time, ismail(j).shuttle_pos); 
 % NEW VERSION: plot(ismail(j).time, ismail(j).fish_pos); 
 % plot(ismail(j).spikes.times, ismail(j).spikes.fish_pos, 'k.');
 
