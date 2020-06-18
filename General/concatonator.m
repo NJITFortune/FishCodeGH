@@ -61,6 +61,8 @@ c.timmy = [c.timmy [out.filetime]];
 
 figure(4); clf;
 
+newtim = c.timmy - (c.timmy(1)-(c.timmy(2)-c.timmy(1))); % Set 
+
 ax(1)=subplot(311); 
     plot(c.timmy(c.idx), c.fftCh1amp, 'LineWidth', 4); 
     hold on; plot(c.timmy(c.idx), c.fftCh2amp, 'LineWidth', 4);
