@@ -74,7 +74,9 @@ ax(2)=subplot(312);
     plot(newtim(c.idx), c.rmsCh1, 'LineWidth', 4); 
     hold on; 
     %plot(newtim(c.idx), c.rmsCh2, 'LineWidth', 4);
-
+    dd = filtfilt(b,a,c.fftCh1amp);
+    
+    
 ax(3)=subplot(313); plot(newtim, c.lightlevel, 'LineWidth', 4);
 
 linkaxes(ax, 'x');
