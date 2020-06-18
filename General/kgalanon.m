@@ -196,12 +196,12 @@ for j=length(tmpEODdat):-1:1
         out(j).fftCh2peakamp = famp; 
         out(j).rmsCh2 = rms(tmpEODdat(j).Ch2);
         
-        tmp = fftmachine(out(j).Ch3, Fs);
+        tmp = fftmachine(tmpEODdat(j).Ch3, Fs);
         out(j).fftCh3data = tmp.fftdata; out(j).fftCh3freq = tmp.fftfreq;
             [famp, fidx] = max(smooth(out(j).fftCh3data,10));
         out(j).fftCh3peakfreq = out(j).fftCh3freq(fidx);
         out(j).fftCh3peakamp = famp; 
-        out(j).rmsCh3 = rms(out(j).Ch3);
+        out(j).rmsCh3 = rms(tmpEODdat(j).Ch3);
 
         lightlevels(j) = out(j).light;
         temps(j) = out(j).temp;
