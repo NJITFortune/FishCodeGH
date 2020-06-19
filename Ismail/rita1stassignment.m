@@ -1,4 +1,4 @@
-%% 04_14_2019
+%% 04_14_2019 
 j=1;
 load /Volumes/Cgate/Data2019/4_14_2019/downsampled_data.mat
 %load /Users/winds/OneDrive/Desktop/Merged_Data/downsampled_data.mat
