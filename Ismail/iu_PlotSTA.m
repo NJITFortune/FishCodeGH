@@ -105,16 +105,16 @@ figure(2); clf;
     ax(1) = subplot(311); hold on; title('Position');
         plot(data(entry).time(tt), data(entry).shuttle_pos(tt), 'b-'); 
         plot(data(entry).time(tt), data(entry).fish_pos(tt), 'm-'); 
-        plot(spks, ismail(entry).spikes.fish_pos(ss), 'k.', 'MarkerSize',6);
+        plot(spks, data(entry).spikes.fish_pos(ss), 'k.', 'MarkerSize',6);
     
     ax(2) = subplot(312); hold on; title('Velocity');
         plot(data(entry).time(tt), data(entry).shuttle_vel(tt), 'b-'); 
         plot(data(entry).time(tt), data(entry).fish_vel(tt), 'm-'); 
-        plot(spks, ismail(entry).spikes.fish_vel(ss), 'k.', 'MarkerSize',6);
+        plot(spks, data(entry).spikes.fish_vel(ss), 'k.', 'MarkerSize',6);
 
     ax(3) = subplot(313); hold on; title('Acceleration');
         plot(data(entry).time(tt), data(entry).shuttle_acc(tt), 'b-'); 
         plot(data(entry).time(tt), data(entry).fish_acc(tt), 'm-'); 
-        plot(spks, ismail(entry).spikes.fish_acc(ss), 'k.', 'MarkerSize',6);
+        plot(spks, data(entry).spikes.fish_acc(ss), 'k.', 'MarkerSize',6);
         
         
