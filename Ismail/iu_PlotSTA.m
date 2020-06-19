@@ -1,11 +1,9 @@
 function asdf = iu_PlotSTA(data, entry, tims)
-data is ismail
-entry=1;
-strtim = 0;
-endtim = 30;
-spks = data(entry).spikes.times(data(entry).spikes.times > tims(strtim) & data(entry).spikes.times < tims(endtim));
-rspks = data(entry).spikes_rand.times(data(entry).spikes_rand.times > tims(strtim) & data(entry).spikes_rand.times < tims(endtim));
-
+strtim = tims(1);
+endtim = tims(2);
+spks = data(entry).spikes.times(data(entry).spikes.times > strtim & data(entry).spikes.times < endtim);
+rspks = data(entry).spikes_rand.times(data(entry).spikes_rand.times > strtim & data(entry).spikes_rand.times < endtim);
+tt = find(data(entry).time>tims(1) & data(entry).time<tims(2));
 % function asdf = iu_PlotSTA(data, entry, tims)
 % Plots spike triggered averages
 % asdf is our output structure (not set at the moment)
@@ -102,5 +100,7 @@ figure(2); clf;
     
     figure(3); clf;
     
-    plot(data(entry).time, data(entry).shuttlevel, 'b-'); 
-    
+    plot(data(entry).time(tt), data(entry).shuttle_vel(tt), 'b-'); 
+    hold on; 
+    z=zeros(1,length(spks));
+    plot(spks,z,'.','MarkerSize',6);
