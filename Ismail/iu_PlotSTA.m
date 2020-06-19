@@ -117,4 +117,4 @@ figure(2); clf;
         plot(data(entry).time(tt), data(entry).fish_acc(tt), 'm-'); 
         plot(spks, data(entry).spikes.fish_acc(ss), 'k.', 'MarkerSize',6);
         
-        
+    linkaxes(ax, 'x');
