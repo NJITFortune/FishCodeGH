@@ -1,27 +1,29 @@
 function asdf = iu_PlotSTA(data, entry, tims)
-strtim = tims(1);
-endtim = tims(2);
-spks = data(entry).spikes.times(data(entry).spikes.times > strtim & data(entry).spikes.times < endtim);
-rspks = data(entry).spikes_rand.times(data(entry).spikes_rand.times > strtim & data(entry).spikes_rand.times < endtim);
-tt = find(data(entry).time>tims(1) & data(entry).time<tims(2));
-% function asdf = iu_PlotSTA(data, entry, tims)
+% asdf = iu_PlotSTA(data, entry, tims)
 % Plots spike triggered averages
 % asdf is our output structure (not set at the moment)
-% data is ismail
-% entry is the index for ismail, e.g. 3 for ismail(3)
+% data should be the variable 'ismail' loaded from merged_data.mat (rita1assignment)
+% entry is the index number
 % tims are the start and end times, e.g. [30 60] would be between 30 and 60 seconds
-% Plot spike triggered averages for error_pos, error_vel, error_acc, and error_jerk
 % Load data first! Relies on iu_sta.m
 
-%entry=1;
-%strtim = 0;
-%endtim = 30;
+%% Setup
+    strtim = tims(1); % Start time 
+    endtim = tims(2); % End time
 
-%spks = data(entry).spikes.times(data(entry).spikes.times > tims(strtim) & data(entry).spikes.times < tims(endtim));
-%rspks = data(entry).spikes_rand.times(data(entry).spikes_rand.times > tims(strtim) & data(entry).spikes_rand.times < tims(endtim));
+    % Get the spikes within the time window defined by the user in tims
+    spks = data(entry).spikes.times(data(entry).spikes.times > strtim & data(entry).spikes.times < endtim);
+    rspks = data(entry).spikes_rand.times(data(entry).spikes_rand.times > strtim & data(entry).spikes_rand.times < endtim);
 
+    % tt is a list of indices for the tracking data in the time window of interest
+    tt = find(data(entry).time > tims(1) & data(entry).time < tims(2));
+    % ss is a list of indices for spike data in the time window of interest
+    ss = find(data(entry).spikes.times > strtim & data(entry).spikes.times < endtim);
 
 asdf  = 0;
+
+
+
 % k=1% Entry number
 % startim = 0;
 % endtim = 90;
