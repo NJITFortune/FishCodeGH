@@ -105,4 +105,6 @@ figure(2); clf;
     plot(data(entry).time(tt), data(entry).shuttle_vel(tt), 'b-'); 
     hold on; 
     z=zeros(1,length(spks));
-    plot(spks,z,'.','MarkerSize',6);
+    plot(spks, ismail(entry)., '.', 'MarkerSize',6);
+    
+    
