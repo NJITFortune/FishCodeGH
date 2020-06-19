@@ -102,9 +102,8 @@ figure(2); clf;
     
     figure(3); clf;
     
-    plot(data(entry).time(tt), data(entry).shuttle_vel(tt), 'b-'); 
-    hold on; 
-    z=zeros(1,length(spks));
-    plot(spks, ismail(entry)., '.', 'MarkerSize',6);
+    ax(1) = subplot(311); hold on;
+        plot(data(entry).time(tt), data(entry).shuttle_vel(tt), 'b-'); 
+        plot(spks, ismail(entry).spikes.fish_pos(ss), '.', 'MarkerSize',6);
     
     
