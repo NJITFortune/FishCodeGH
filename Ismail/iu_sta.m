@@ -17,7 +17,7 @@ for idx = length(spikes):-1:1
     end
 end
 
-% For every randome spike (starting at the end) get the time "wid" before and after
+% For every random spike (starting at the end) get the time "wid" before and after
 % the time of the spike.
 for idx = length(randspikes):-1:1
     if randspikes(idx) > wid && randspikes(idx) < tim(end)-wid % Make sure that the window does not go before or after the signal.
