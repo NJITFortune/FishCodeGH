@@ -10,7 +10,6 @@ windw = 20;
     
     fprintf('Checking fish data. \n');     
     figure(2); clf;
-    drawnow;
 
     [out.fishx, out.fishy] = fixmaster(out.fishx, out.fishy, windw);
     figure(2); subplot(211); plot(out.fishx, '-k');
@@ -76,7 +75,7 @@ function [outX, outY] = fixmaster(X,Y, win)
     
         subplot(211); hold on; plot(X, 'c-', 'LineWidth', 4);
         subplot(212); hold on; plot(Y, 'c-', 'LineWidth', 4);
-drawnow;
+
         outX = X; outY = Y;
         
         tx = isoutlier(X, 'movmedian', win);
@@ -91,6 +90,8 @@ drawnow;
         if sum(ty) > 0
             subplot(212); plot(find(ty), Y(ty), 'k.', 'MarkerSize', 8);
         end
+        
+        drawnow;
 
         fixidxs = union(find(tx), find(ty));
         
