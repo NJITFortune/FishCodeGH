@@ -10,6 +10,8 @@ windw = 20;
     
     fprintf('Checking fish data. \n');     
     figure(2); clf;
+    drawnow;
+
     [out.fishx, out.fishy] = fixmaster(out.fishx, out.fishy, windw);
     figure(2); subplot(211); plot(out.fishx, '-k');
     figure(2); subplot(212); plot(out.fishy, '-k');
@@ -74,6 +76,7 @@ function [outX, outY] = fixmaster(X,Y, win)
     
         subplot(211); hold on; plot(X, 'c-', 'LineWidth', 4);
         subplot(212); hold on; plot(Y, 'c-', 'LineWidth', 4);
+drawnow;
         outX = X; outY = Y;
         
         tx = isoutlier(X, 'movmedian', win);
@@ -114,11 +117,11 @@ function [outX, outY] = fixmaster(X,Y, win)
                     plot(fixidxs(var), outY(fixidxs(var)), '.c', 'MarkerSize', 20);
                     plot(max([1,fixidxs(var)-1]), outY(max([1,fixidxs(var)-1])), '.g', 'MarkerSize', 16);
                     plot(min([fixidxs(var)+1, length(outX)]), outY(min([fixidxs(var)+1, length(outX)])), '.m', 'MarkerSize', 16);
-
+drawnow;
                 fprintf('Click replacement point %i out of %i. \n', var, length(fixidxs));
-                subplot(211);
+                figure(4); subplot(211);
                 [~, outX(fixidxs(var))] = ginput(1);
-                subplot(212);
+                figure(4); subplot(212);
                 [~, outY(fixidxs(var))] = ginput(1);
 
             end
