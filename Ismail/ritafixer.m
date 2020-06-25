@@ -1,4 +1,4 @@
-function out = ritafixer(in)
+editfunction out = ritafixer(in)
 
 out = in;
 
