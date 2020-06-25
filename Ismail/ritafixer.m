@@ -65,7 +65,7 @@ end
         plot(out.fishx, out.fishy, 'm-', 'LineWidth', 3);
         plot(out.shutx, out.shuty, 'b-', 'LineWidth', 3);
     
-end
+
 
 
 
@@ -132,4 +132,5 @@ drawnow;
 
         end
                     
+end
 end
