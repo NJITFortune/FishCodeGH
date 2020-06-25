@@ -66,7 +66,7 @@ end
         plot(out.shutx, out.shuty, 'b-', 'LineWidth', 3);
     
 
-
+end
 
 
 function [outX, outY] = fixmaster(X,Y, win)
