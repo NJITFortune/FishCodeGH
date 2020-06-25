@@ -1,4 +1,4 @@
-editfunction out = ritafixer(in)
+function out = ritafixer(in)
 
 out = in;
 
@@ -132,5 +132,4 @@ drawnow;
 
         end
                     
-end
 end
