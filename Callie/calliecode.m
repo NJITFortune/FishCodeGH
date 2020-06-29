@@ -108,9 +108,9 @@ for kk = 1:length(out.fCrad)
 
 end
 
-for kk = 1:20:length(foo)
+for kk = 1:50:length(foo)
     
-   figure(3); clf; hold on;
+   figure(4); clf; hold on;
         plot(foo(kk).centroidrotate(:,1), foo(kk).centroidrotate(:,2), 'b.', 'MarkerSize', 8); 
         plot(0, 0, 'k.', 'MarkerSize', 16);
    axis([-150, 150, -150, 150]);
