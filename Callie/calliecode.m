@@ -95,7 +95,6 @@ for kk = 1:20:length(foo)
 end
 
 
-
 %% Rotate the fish for each frame
 
 
