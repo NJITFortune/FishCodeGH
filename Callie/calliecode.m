@@ -113,7 +113,7 @@ for kk = 1:50:length(foo)
    figure(4); clf; hold on;
         plot(foo(kk).centroidrotate(:,1), foo(kk).centroidrotate(:,2), 'b.', 'MarkerSize', 8); 
         plot(out.xC(kk), out.yC(kk), 'k.', 'MarkerSize', 16);
-   %axis([-150, 150, -150, 150]);
+   axis([out.xC(kk)-200, out.xC(kk)+200, out.yC(kk)-200, out.yC(kk)+200]);
    drawnow;
    pause(0.1);
     
