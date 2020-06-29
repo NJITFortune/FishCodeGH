@@ -108,16 +108,16 @@ for kk = 1:length(out)
 
 end
 
-for kk = 1:20:length(out)
-    
-   figure(3); clf; hold on;
-        plot(out(kk).centroidrotate(:,1), out(kk).centroidrotate(:,2), 'b.', 'MarkerSize', 8); 
-        plot(0, 0, 'k.', 'MarkerSize', 16);
-   axis([-150, 150, -150, 150]);
-   drawnow;
-   pause(0.1);
-    
-end
+% for kk = 1:20:length(out)
+%     
+%    figure(3); clf; hold on;
+%         plot(out(kk).centroidrotate(:,1), out(kk).centroidrotate(:,2), 'b.', 'MarkerSize', 8); 
+%         plot(0, 0, 'k.', 'MarkerSize', 16);
+%    axis([-150, 150, -150, 150]);
+%    drawnow;
+%    pause(0.1);
+%     
+% end
 
 function rot = rotatorcuff(data, cent, degR)
 % data is the x,y values
@@ -127,6 +127,7 @@ function rot = rotatorcuff(data, cent, degR)
     centermatrix = repmat([cent(1); cent(2)], 1, length(data(:,1))); % Make a matrix for the center of rotation
 
     R = [cos(degR) -sin(degR); sin(degR) cos(degR)]; % Create rotation matrix
+    
     
     rot = (R * (data' - centermatrix)) + centermatrix; % Rotate points
     rot = rot'; % Because I am lousy at coding
