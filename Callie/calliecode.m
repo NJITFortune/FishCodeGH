@@ -65,6 +65,36 @@ cutoffFreq = 2;
     out.fCrad = filtfilt(b,a,out.Crad);
     
 figure(2); hold on; plot(out.fCrad, 'c');    
+
+%% Move the fish to the center
+
+for kk = 1:length(in) % For each frame (you gave me 2500 frames)
     
+    % Get the centroid of ALL points.
+    % If you wanted to get the centroid of a subset of points, use
+    % something like:     
+    
+    for j=2:3:86 % This is for each feature you tracked
+        idx = (j+1)/3; % Making for a convenient indexing
+        foo(kk).dat(idx,:) = [in(kk,j) - out.xC(kk), in(kk,j+1 - out.yC(kk))]; % Get the X and Y points for each feature        
+    end
+    
+end
+
+% And plot every 20th frame
+
+for kk = 1:20:length(foo)
+    
+   figure(3); clf; plot(foo(kk).dat(:,1), foo(kk).dat(:,2), 'b.', 'MarkerSize', 8); 
+   drawnow;
+   pause(0.1);
+    
+end
+
+
+
 %% Rotate the fish for each frame
+
+
+
 
