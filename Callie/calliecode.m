@@ -133,4 +133,5 @@ function rot = rotatorcuff(data, cent, degR)
 
 end
 
+end
 
