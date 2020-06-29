@@ -59,7 +59,9 @@ figure(2); clf; hold on;
     
 %% Filter the angle change to smooth things out
 
-    [b,a] = butter(3, 1/(Fs/2), 'low');
+cutoffFreq = 2;
+
+    [b,a] = butter(3, cutoffFreq/(Fs/2), 'low');
     out.fCrad = filtfilt(b,a,out.Crad);
     
 figure(2); hold on; plot(out.fCrad, 'c');    
