@@ -97,14 +97,14 @@ end
 
 %% Rotate the fish for each frame
 
-for kk = 1:length(out)
+for kk = 1:length(out.fCrad)
     
         for j=2:3:86 % This is for each feature you tracked
             idx = (j+1)/3; % Making for a convenient indexing
             dat(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature
         end
-    out(kk).fCrad
-    out(kk).centroidrotate = rotatorcuff(dat, [0,0], out(kk).fCrad); % Rotation around centroid 
+        
+    out(kk).centroidrotate = rotatorcuff(dat, [0,0], out.fCrad(kk)); % Rotation around centroid 
 
 end
 
