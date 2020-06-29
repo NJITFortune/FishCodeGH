@@ -110,6 +110,11 @@ end
 
 for kk = 500:10:1600
     
+   figure(3); clf; hold on;
+        plot(foo(kk).dat(:,1), foo(kk).dat(:,2), 'b.', 'MarkerSize', 8); 
+        plot(0, 0, 'k.', 'MarkerSize', 16);
+   axis([-150, 150, -150, 150]);
+
    figure(4); clf; hold on;
         plot(foo(kk).centroidrotate(:,1), foo(kk).centroidrotate(:,2), 'b.', 'MarkerSize', 8); 
         plot(out.xT(kk), out.yT(kk), 'k.', 'MarkerSize', 16);
