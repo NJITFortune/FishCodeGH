@@ -86,6 +86,7 @@ end
 for kk = 1:20:length(foo)
     
    figure(3); clf; plot(foo(kk).dat(:,1), foo(kk).dat(:,2), 'b.', 'MarkerSize', 8); 
+   axis([-150, 150, -150, 150]);
    drawnow;
    pause(0.1);
     
