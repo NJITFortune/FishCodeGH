@@ -1,4 +1,4 @@
-function out = calliecode(in)
+function [out, foo] = calliecode(in)
 
 Fs = 500;
 
@@ -127,9 +127,6 @@ function rot = rotatorcuff(data, cent, degR)
     centermatrix = repmat([cent(1); cent(2)], 1, length(data(:,1))); % Make a matrix for the center of rotation
 
     R = [cos(degR), -sin(degR); sin(degR), cos(degR)]; % Create rotation matrix
-    length(centermatrix)
-    length(R)
-    length(data')
     
     rot = (R * (data' - centermatrix)) + centermatrix; % Rotate points
     rot = rot'; % Because I am lousy at coding
