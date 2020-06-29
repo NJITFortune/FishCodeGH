@@ -103,8 +103,8 @@ for kk = 1:length(out)
             idx = (j+1)/3; % Making for a convenient indexing
             dat(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature
         end
-
-    out.centroidrotate = rotatorcuff(dat, [0,0], out(kk).fCrad); % Rotation around centroid 
+    out(kk).fCrad
+    out(kk).centroidrotate = rotatorcuff(dat, [0,0], out(kk).fCrad); % Rotation around centroid 
 
 end
 
@@ -126,7 +126,7 @@ function rot = rotatorcuff(data, cent, degR)
 
     centermatrix = repmat([cent(1); cent(2)], 1, length(data(:,1))); % Make a matrix for the center of rotation
 
-    R = [cos(degR) -sin(degR); sin(degR) cos(degR)]; % Create rotation matrix
+    R = [cos(degR), -sin(degR); sin(degR), cos(degR)]; % Create rotation matrix
     length(centermatrix)
     length(R)
     length(data')
