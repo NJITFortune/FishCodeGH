@@ -104,14 +104,14 @@ for kk = 1:length(out.fCrad)
             dat(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature
         end
         
-    out.centroidrotate = rotatorcuff(dat, [0,0], out.fCrad(kk)); % Rotation around centroid 
+    foo(kk).centroidrotate = rotatorcuff(dat, [0,0], out.fCrad(kk)); % Rotation around centroid 
 
 end
 
-for kk = 1:20:length(out)
+for kk = 1:20:length(foo)
     
    figure(3); clf; hold on;
-        plot(out(kk).centroidrotate(:,1), out(kk).centroidrotate(:,2), 'b.', 'MarkerSize', 8); 
+        plot(foo(kk).centroidrotate(:,1), foo(kk).centroidrotate(:,2), 'b.', 'MarkerSize', 8); 
         plot(0, 0, 'k.', 'MarkerSize', 16);
    axis([-150, 150, -150, 150]);
    drawnow;
