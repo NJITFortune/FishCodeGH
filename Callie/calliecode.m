@@ -104,7 +104,7 @@ for kk = 1:length(out.fCrad)
             dat(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature
         end
         
-    foo(kk).centroidrotate = rotatorcuff(dat, [out.xC(kk), out.yC(kk)], out.fCrad(kk)-(out.fCrad(kk)-(pi/4))); % Rotation around centroid 
+    foo(kk).centroidrotate = rotatorcuff(dat, [out.xC(kk), out.yC(kk)], out.fCrad(kk)-(out.fCrad(kk)-(pi/2))); % Rotation around centroid 
 
 end
 
