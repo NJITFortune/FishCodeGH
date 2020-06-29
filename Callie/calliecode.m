@@ -62,7 +62,7 @@ figure(2); clf; hold on;
     [b,a] = butter(3, 1/(Fs/2), 'low');
     out.fCrad = filtfilt(b,a,out.Crad);
     
-hold on; plot(out.fCrad, 'c');    
+figure(2); hold on; plot(out.fCrad, 'c');    
     
 %% Rotate the fish for each frame
 
