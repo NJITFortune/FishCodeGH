@@ -76,7 +76,7 @@ for kk = 1:length(in) % For each frame (you gave me 2500 frames)
     
     for j=2:3:86 % This is for each feature you tracked
         idx = (j+1)/3; % Making for a convenient indexing
-        foo(kk).dat(idx,:) = [in(kk,j) - out.xC(kk), in(kk,j+1 - out.yC(kk))]; % Get the X and Y points for each feature        
+        foo(kk).dat(idx,:) = [in(kk,j) - out.xC(kk), in(kk,j+1) - out.yC(kk)]; % Get the X and Y points for each feature        
     end
     
 end
