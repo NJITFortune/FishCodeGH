@@ -128,7 +128,7 @@ function rot = rotatorcuff(data, cent, degR)
 
     R = [cos(degR) -sin(degR); sin(degR) cos(degR)]; % Create rotation matrix
     
-    rot = (R * (data - centermatrix)) + centermatrix; % Rotate points
+    rot = (R * (data' - centermatrix)) + centermatrix; % Rotate points
     rot = rot'; % Because I am lousy at coding
 
 end
