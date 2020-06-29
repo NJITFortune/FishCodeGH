@@ -99,4 +99,18 @@ end
 
 
 
+function rot = rotatorcuff(data, cent, degR)
+% data is the x,y values
+% cent is the rotation center [x,y]
+% degR is the rotation angle in radians
+
+    centermatrix = repmat([cent(1); cent(2)], 1, length(data(:,1))); % Make a matrix for the center of rotation
+
+    R = [cos(degR) -sin(degR); sin(degR) cos(degR)]; % Create rotation matrix
+    
+    rot = (R * (data' - centermatrix)) + centermatrix; % Rotate points
+    rot = rot'; % Because I am lousy at coding
+
+end
+
 
