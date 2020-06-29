@@ -1,5 +1,7 @@
 function out = calliecode(in)
 
+Fs = 500;
+
 %% Get centroid for every frame
 
 for kk = 1:length(in) % For each frame (you gave me 2500 frames)
@@ -51,10 +53,16 @@ figure(2); clf; hold on;
     plot(out.Rrad, 'm');
     plot(out.Prad, 'g');
 
+
+    
+    
     
 %% Filter the angle change to smooth things out
 
+    [b,a] = butter(3, 1/(Fs/2), 'low');
+    out.fCrad = filtfilt(b,a,out.Crad);
     
+hold on; plot(out.fCrad, 'c');    
     
 %% Rotate the fish for each frame
 
