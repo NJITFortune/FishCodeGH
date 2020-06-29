@@ -83,16 +83,16 @@ end
 
 % And plot every 20th frame
 
-for kk = 1:20:length(foo)
-    
-   figure(3); clf; hold on;
-        plot(foo(kk).dat(:,1), foo(kk).dat(:,2), 'b.', 'MarkerSize', 8); 
-        plot(0, 0, 'k.', 'MarkerSize', 16);
-   axis([-150, 150, -150, 150]);
-   drawnow;
-   pause(0.1);
-    
-end
+% for kk = 1:20:length(foo)
+%     
+%    figure(3); clf; hold on;
+%         plot(foo(kk).dat(:,1), foo(kk).dat(:,2), 'b.', 'MarkerSize', 8); 
+%         plot(0, 0, 'k.', 'MarkerSize', 16);
+%    axis([-150, 150, -150, 150]);
+%    drawnow;
+%    pause(0.1);
+%     
+% end
 
 
 %% Rotate the fish for each frame
@@ -108,16 +108,16 @@ for kk = 1:length(out)
 
 end
 
-% for kk = 1:20:length(out)
-%     
-%    figure(3); clf; hold on;
-%         plot(out(kk).centroidrotate(:,1), out(kk).centroidrotate(:,2), 'b.', 'MarkerSize', 8); 
-%         plot(0, 0, 'k.', 'MarkerSize', 16);
-%    axis([-150, 150, -150, 150]);
-%    drawnow;
-%    pause(0.1);
-%     
-% end
+for kk = 1:20:length(out)
+    
+   figure(3); clf; hold on;
+        plot(out(kk).centroidrotate(:,1), out(kk).centroidrotate(:,2), 'b.', 'MarkerSize', 8); 
+        plot(0, 0, 'k.', 'MarkerSize', 16);
+   axis([-150, 150, -150, 150]);
+   drawnow;
+   pause(0.1);
+    
+end
 
 function rot = rotatorcuff(data, cent, degR)
 % data is the x,y values
