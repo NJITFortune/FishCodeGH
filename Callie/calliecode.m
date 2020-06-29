@@ -76,7 +76,7 @@ for kk = 1:length(in) % For each frame (you gave me 2500 frames)
     
     for j=2:3:86 % This is for each feature you tracked
         idx = (j+1)/3; % Making for a convenient indexing
-        foo(kk).dat(idx,:) = [in(kk,j) - out.xC(kk), in(kk,j+1) - out.yC(kk)]; % Get the X and Y points for each feature        
+        foo(kk).dat(idx,:) = [in(kk,j) - out.xT(kk), in(kk,j+1) - out.yT(kk)]; % Get the X and Y points for each feature        
     end
     
 end
@@ -112,14 +112,15 @@ for kk = 500:10:1600
     
    figure(3); clf; 
         subplot(121); hold on;
-        plot(foo(kk).dat(:,1), foo(kk).dat(:,2), 'b.', 'MarkerSize', 8); 
+        plot(foo(kk).dat(:,1), foo(kk).dat(:,2), 'b.', 'MarkerSize', 16); 
         plot(0, 0, 'k.', 'MarkerSize', 16);
-        axis([-150, 150, -150, 150]);
+        axis([-200, 200, -200, 200]);
 
         subplot(122); hold on;
-        plot(foo(kk).centroidrotate(:,1), foo(kk).centroidrotate(:,2), 'b.', 'MarkerSize', 8); 
+        plot(foo(kk).centroidrotate(:,1), foo(kk).centroidrotate(:,2), 'b.', 'MarkerSize', 16); 
         plot(out.xT(kk), out.yT(kk), 'k.', 'MarkerSize', 16);
         axis([out.xT(kk)-200, out.xT(kk)+200, out.yT(kk)-200, out.yT(kk)+200]);
+        
    drawnow;
    pause(0.1);
     
