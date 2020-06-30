@@ -4,7 +4,17 @@ Fs = 500; % This is the sample rate you used
 cmp = jet(30); % This is a colormap in Matlab... 30 different colors
 tim = 1/Fs:1/Fs:length(in)/Fs;
 
+
+out.pointname{1} = 'Rostrum';
+out.pointname{2} = '
+out.pointname{3} =
+out.pointname{4} =
+out.pointname{5} =
+
+
+
 %% STEP 1: Get centroid for every frame 
+
 
 for kk = 1:length(in) % For each frame (there were 2500 frames)
     
