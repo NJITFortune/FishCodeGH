@@ -33,7 +33,7 @@ for kk = 1:length(in) % For each frame (there were 2500 frames)
         convx = convhull(foo(kk).orig(:,1),foo(kk).orig(:,2)); % Get the convex hull (only border of the object)
         poly = polyshape(foo(kk).orig(convx,:)); % Change the data into a Matlab object known as a polyshape for use with 'centroid'
         [out.xC(kk), out.yC(kk)] = centroid(poly); % centroid calculates the centroid X and Y values
-        foo(kk).Centroid(:) = centroid(poly);
+        [foo(kk).Centroid(1), foo(kk).Centroid(2)] = centroid(poly);
         
         % Copy some useful points for fun (alternatives to the centroid for the center of your body rotation.
         out.xT(kk) = in(kk,62); % Trunk idx = 21
