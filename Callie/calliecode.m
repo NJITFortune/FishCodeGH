@@ -4,7 +4,7 @@ Fs = 500; % This is the sample rate you used
 cmp = jet(30); % This is a colormap in Matlab... 30 different colors
 
 
-%% STEP 1: Get centroid for every frame
+%% STEP 1: Get centroid for every frame 
 
 for kk = 1:length(in) % For each frame (there were 2500 frames)
     
@@ -12,16 +12,14 @@ for kk = 1:length(in) % For each frame (there were 2500 frames)
     
     for j=2:3:86 % This is for each feature you tracked (there are three columns: x,y,confidence. 
         idx = (j+1)/3; % Make for convenient indexing. This starts and 1 and goes up by one for each tracked point
-        
-        dat(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature. dat is indexed by frame.
-        
-        foo(kk).dat(idx,:) = [in(kk,j) - out.xT(kk), in(kk,j+1) - out.yT(kk)]; % Move the X and Y points around zero        
+                
         foo(kk).orig(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature        
+        foo(kk).dat(idx,:) = [in(kk,j) - out.xT(kk), in(kk,j+1) - out.yT(kk)]; % Move the X and Y points around zero        
 
     end
     
-        convx = convhull(dat(:,1),dat(:,2)); % Get the convex hull (only border of the object)
-        poly = polyshape(dat(convx,:)); % Change the data into a Matlab object known as a polyshape for use with 'centroid'
+        convx = convhull(foo(kk).orig(:,1),foo(kk).orig(:,2)); % Get the convex hull (only border of the object)
+        poly = polyshape(foo(kk).orig(convx,:)); % Change the data into a Matlab object known as a polyshape for use with 'centroid'
         [out.xC(kk),out.yC(kk)] = centroid(poly); % centroid calculates the centroid X and Y values
         
         % Copy some useful points for fun (alternatives to the centroid for the center of your body rotation.
@@ -50,9 +48,6 @@ figure(1); clf; hold on;
     out.Prad = atan2(out.yP, out.xP); % Pelvis
     
     % out.rad = unwrap(out.rad); % You may need to "unwrap" the data depending on the angle of the fish in the video
-
-% This gives the distance each point for each frame
-
         
 % Plotting is fun!  
 figure(2); clf; hold on;
