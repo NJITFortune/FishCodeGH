@@ -57,7 +57,7 @@ figure(1); clf;
 
     subplot(122); hold on; % Plotting same thing, but using foo
 
-    for jj=1:2500
+    for jj=1:length(foo)
        plot(foo(jj).Centroid(1), foo(jj).Centroid(2), '.k', 'MarkerSize', 16);        
        plot(foo(jj).orig(21,1), foo(jj).orig(21,2), '.b', 'MarkerSize', 8);
        plot(foo(jj).orig(23,1), foo(jj).orig(23,2), '.g', 'MarkerSize', 8);
@@ -67,11 +67,18 @@ figure(1); clf;
     
 %% STEP 2: Calculate the angle of movement and distance (speed) for each frame
 
-% This gives the angle of movement for each point listed below for each frame
+% This gives the angle of movement for each point listed below for each
+% frame using OUT
     out.Crad = atan2(out.yC, out.xC); % Centroid
     out.Trad = atan2(out.yT, out.xT); % Trunk
     out.Rrad = atan2(out.yR, out.xR); % Rostrum
     out.Prad = atan2(out.yP, out.xP); % Pelvis
+    
+% This gives the angle of movement for each point listed below for each
+% frame using FOO
+    for jj=2:length(foo)
+        foo(jj).CentroidRadians = atan2(foo(jj-1:jj).Centroid(2), foo(jj-1:jj).Centroid(1));    
+    end
     
     % out.rad = unwrap(out.rad); % You may need to "unwrap" the data depending on the angle of the fish in the video
         
