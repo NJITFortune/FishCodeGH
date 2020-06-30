@@ -14,7 +14,6 @@ for kk = 1:length(in) % For each frame (there were 2500 frames)
         idx = (j+1)/3; % Make for convenient indexing. This starts and 1 and goes up by one for each tracked point
                 
         foo(kk).orig(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature        
-        foo(kk).dat(idx,:) = [in(kk,j) - out.xT(kk), in(kk,j+1) - out.yT(kk)]; % Move the X and Y points around zero        
 
     end
     
@@ -29,6 +28,9 @@ for kk = 1:length(in) % For each frame (there were 2500 frames)
         out.yR(kk) = in(kk,3);
         out.xP(kk) = in(kk,68); % Pelvis
         out.yP(kk) = in(kk,69); 
+        
+        foo(kk).dat(idx,:) = [in(kk,j) - out.xT(kk), in(kk,j+1) - out.yT(kk)]; % Move the X and Y points around zero        
+
 end
 
 % Plot the trajectories of the points that I chose, for amusement purposes only
