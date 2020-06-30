@@ -4,6 +4,8 @@ function out = ritavideoreview(filena, dlc)
 % dlc is from loading the appropriate corrected position file - load that before running this script!
 
 v = VideoReader(filena); % Read the filename
+Fs = v.FrameRate;
+tim = 1/Fs:1/Fs:length(dlc.fishx)/Fs;
 
 % Cycle through the video, plotting every jumptim seconds
 
@@ -28,7 +30,12 @@ for j = jumptim:jumptim:(v.Duration-0.1)
         drawnow;
 
         figure(2); clf;
-        subplot(211); p
+        subplot(211); hold on;
+            plot(tim, dlc.fishx); 
+            plot([j, j], [500, 1000], 'k-');
+        subplot(212); hold on;
+            plot(tim,dlc.fishy);
+            plot([j, j], [0, 300], 'k-');
 
 end
 
