@@ -1,7 +1,7 @@
 function [out, foo] = calliecode(in)
 
 Fs = 500; % This is the sample rate you used
-cmp = parula(30); % This is a colormap in Matlab... 30 different colors
+cmp = jet(30); % This is a colormap in Matlab... 30 different colors
 
 
 %% STEP 1: Get centroid for every frame
