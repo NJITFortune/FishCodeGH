@@ -105,7 +105,9 @@ for kk = 500:10:1600
         axis([-200, 200, -200, 200]);
 
         subplot(122); hold on;
-        plot(foo(kk).centroidrotate(:,1), foo(kk).centroidrotate(:,2), 'b.', 'MarkerSize', 16); 
+        for j=1:29
+            plot(foo(kk).centroidrotate(j,1), foo(kk).centroidrotate(j,2), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
+        end
         plot(out.xT(kk), out.yT(kk), 'k.', 'MarkerSize', 16);
         axis([out.xT(kk)-200, out.xT(kk)+200, out.yT(kk)-200, out.yT(kk)+200]);
         
