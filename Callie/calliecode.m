@@ -72,22 +72,14 @@ figure(1); clf;
 
 % This gives the angle of movement for each point listed below for each
 % frame using OUT
-    byPart.Crad = atan2(byPart.yC, byPart.xC); % Centroid
-    byPart.Trad = atan2(byPart.yT, byPart.xT); % Trunk
-    byPart.Rrad = atan2(byPart.yR, byPart.xR); % Rostrum
-    byPart.Prad = atan2(byPart.yP, byPart.xP); % Pelvis
-    
-% This gives the angle of movement for each point listed below for each
-% frame using FOO
-    for jj=length(byFrame):-1:1
-            centroid(jj,1) = byFrame(jj).Centroid(1); centroid(jj,2) = byFrame(jj).Centroid(2); 
-    end
+    byPart.Trad = atan2(byPart.Y(21,:), byPart.X(21,:)); % Trunk
+    byPart.Rrad = atan2(byPart.Y(1,:), byPart.X(1,:)); % Rostrum
+    byPart.Prad = atan2(byPart.Y(23,:), byPart.X(23,:)); % Pelvis
     
     % out.rad = unwrap(out.rad); % You may need to "unwrap" the data depending on the angle of the fish in the video
         
 % Plotting is fun!  
 figure(2); clf; hold on;
-    plot(tim, byPart.Crad, 'k'); % Centroid
     plot(tim, byPart.Trad, 'b'); % Trunk
     plot(tim, byPart.Rrad, 'm'); % Rostrum
     plot(tim, byPart.Prad, 'g'); % Pelvis
