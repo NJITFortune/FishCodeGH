@@ -38,7 +38,7 @@ figure(1); clf; hold on;
 
 %% STEP 2: Calculate the angle of movement and distance (speed) for each frame
 
-% This gives the angle of movement for each point for each frame
+% This gives the angle of movement for each point listed below for each frame
     out.Crad = atan2(out.yC, out.xC); % Centroid
     out.Trad = atan2(out.yT, out.xT); % Trunk
     out.Rrad = atan2(out.yR, out.xR); % Rostrum
