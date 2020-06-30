@@ -36,9 +36,9 @@ figure(1); clf; hold on;
     plot(out.xR, out.yR, '.m', 'MarkerSize', 8); % Rostrum
     plot(out.xP, out.yP, '.g', 'MarkerSize', 8); % Pelvis
 
-%% STEP 2: Calculate the angle of movement for each frame
+%% STEP 2: Calculate the angle of movement and distance (speed) for each frame
 
-    % This gives the angle for each frame
+% This gives the angle of movement for each point for each frame
     out.Crad = atan2(out.yC, out.xC); % Centroid
     out.Trad = atan2(out.yT, out.xT); % Trunk
     out.Rrad = atan2(out.yR, out.xR); % Rostrum
@@ -46,13 +46,17 @@ figure(1); clf; hold on;
     
     % out.rad = unwrap(out.rad); % You may need to "unwrap" the data depending on the angle of the fish in the video
 
+% This gives the distance each point for each frame
+
+    
+    
 % Plotting is fun!  
 figure(2); clf; hold on;
     plot(out.Crad, 'k'); % Centroid
     plot(out.Trad, 'b'); % Trunk
     plot(out.Rrad, 'm'); % Rostrum
     plot(out.Prad, 'g'); % Pelvis
-
+    
        
     
 %% STEP 3: Filter the angle change to smooth things out
@@ -87,7 +91,7 @@ for kk = 1:length(out.fCrad) % For each frame
 
 end
 
-for kk = 400:10:2000
+for kk = 400:10:1700
     
    figure(3); clf; 
         subplot(121); hold on;  
