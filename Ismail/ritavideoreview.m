@@ -7,7 +7,7 @@ v = VideoReader(filena); % Read the filename
 
 % Cycle through the video, plotting every jumptim seconds
 
-jumptim = 0.2;
+jumptim = 0.25;
 
 for j = jumptim:jumptim:(v.Duration-0.1)
 
