@@ -11,8 +11,8 @@ for kk = 1:length(in) % For each frame (there were 2500 frames)
     % Get the centroid of ALL points. (If you wanted to get the centroid of a subset of points, you could set up a list)  
     
     for j=2:3:86 % This is for each feature you tracked (there are three columns: x,y,confidence. 
-        idx = (j+1)/3; % Make for convenient indexing. This starts and 1 and goes up by one for each tracked point
-                
+        idx = (j+1)/3; % Make for convenient indexing. This starts and 1 and goes up by one for each tracked point                
+        
         foo(kk).orig(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature        
 
     end
@@ -29,8 +29,6 @@ for kk = 1:length(in) % For each frame (there were 2500 frames)
         out.xP(kk) = in(kk,68); % Pelvis
         out.yP(kk) = in(kk,69); 
         
-        foo(kk).dat(idx,:) = [in(kk,j) - out.xT(kk), in(kk,j+1) - out.yT(kk)]; % Move the X and Y points around zero        
-
 end
 
 % Plot the trajectories of the points that I chose, for amusement purposes only
@@ -95,7 +93,7 @@ for kk = 400:10:1700
    figure(3); clf; 
         subplot(121); hold on;  
         for j=1:29
-            plot(foo(kk).dat(j,1), foo(kk).dat(j,2), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
+            plot(foo(kk).orig(j,1)-out.xT(kk), foo(kk).org(j,2)-out.yT(kk), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
         end
         plot(0,0, 'k.', 'MarkerSize', 32);
         plot([-100, 100], [0, 0], 'k-', 'LineWidth', 0.5);
