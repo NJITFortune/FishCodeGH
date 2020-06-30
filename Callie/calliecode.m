@@ -7,11 +7,11 @@ tim = 1/Fs:1/Fs:length(in)/Fs;
 % side is 'c' center, 'r' right, 'l' left
 % part is 'tr' trunk, 'fl' forelimb, 'hl' hindlimb, 'ta' tail, 'he' head
 
-byPart.pointname{1} = 'Rostrum'; byPart.side(1) = 'c'; byPart.part{1} = 'he';
-byPart.pointname{2} = 'MedRosForelimb'; byPart.side(2) = 'l'; byPart.part{2} = 'fl'; 
-byPart.pointname{3} = 'MidRosForelimb'; byPart.side(3) = 'l'; byPart.part{3} = 'fl'; 
-byPart.pointname{4} = 'DistalForelimb'; byPart.side(4) = 'l'; byPart.part{4} = 'fl';
-byPart.pointname{5} = 'CaudalForelimb'; byPart.side(5) = 'l'; byPart.part{5} = 'fl';
+% byPart.pointname{1} = 'Rostrum'; byPart.side(1) = 'c'; byPart.part{1} = 'he';
+% byPart.pointname{2} = 'MedRosForelimb'; byPart.side(2) = 'l'; byPart.part{2} = 'fl'; 
+% byPart.pointname{3} = 'MidRosForelimb'; byPart.side(3) = 'l'; byPart.part{3} = 'fl'; 
+% byPart.pointname{4} = 'DistalForelimb'; byPart.side(4) = 'l'; byPart.part{4} = 'fl';
+% byPart.pointname{5} = 'CaudalForelimb'; byPart.side(5) = 'l'; byPart.part{5} = 'fl';
 
 
 %% STEP 1: Generate the byFrame structure 
@@ -30,7 +30,9 @@ for kk = length(in):-1:1 % For each frame (there were 2500 frames)
 % Compute the centroid of all of the points
     
         convx = convhull(byFrame(kk).orig(:,1),byFrame(kk).orig(:,2)); % Get the convex hull (only border of the object)
+        
         poly = polyshape(byFrame(kk).orig(convx,:)); % Change the data into a Matlab object known as a polyshape for use with 'centroid'
+        [xxx, yyy] = centroid(poly);
         
         [byFrame(kk).Centroid(1), byFrame(kk).Centroid(2)] = centroid(poly);
         [byPart.CentroidX(kk), byPart.CentroidY(kk)] = centroid(poly); % centroid calculates the centroid X and Y values
