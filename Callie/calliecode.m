@@ -66,7 +66,7 @@ ord = 3; % This is the 'order' of the filter
     [b,a] = butter(ord, cutoffFreq/(Fs/2), 'low'); 
     out.fCrad = filtfilt(b,a,out.Crad);
     
-figure(2); hold on; plot(tim, out.fCrad, 'c');    
+figure(2); hold on; plot(tim, out.fCrad, 'c', ');    
 
 %% STEP 4: Perhaps you might want to move the fish to the 'origin'
 
