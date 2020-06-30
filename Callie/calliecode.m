@@ -88,7 +88,7 @@ for kk = 1:length(out.fCrad) % For each frame
 
 end
 
-for kk = 400:10:1700
+for kk = 500:10:1700
     
    figure(3); clf; 
         subplot(121); hold on;  
