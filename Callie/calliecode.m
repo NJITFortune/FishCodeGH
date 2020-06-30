@@ -94,7 +94,7 @@ for kk = 500:10:1600
         for j=1:29
             plot(foo(kk).dat(j,1), foo(kk).dat(j,2), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
         end
-        plot(0, 0, 'k.', 'MarkerSize', 16);
+        plot(out.xT(kk), out.yT(kk), 'k.', 'MarkerSize', 16);
         axis([-200, 200, -200, 200]);
 
         subplot(122); hold on;
