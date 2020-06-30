@@ -1,6 +1,11 @@
-function out = ritafixer(in)
+function out = ritafixer(in, asdf)
+
+Fs = 10; % Assuming 10 Hz sample rate
+tim = 1/Fs:1/Fs:length(in.fishx)/Fs;
 
 out = in;
+
+if nargin == 1
 
 windw = 20;
 
@@ -22,8 +27,14 @@ windw = 20;
     [out.shutx, out.shuty] = fixmaster(out.shutx, out.shuty, windw);
     figure(3); subplot(211); plot(out.shutx, '-m');
     figure(3); subplot(212); plot(out.shuty, '-m');
-    
-    figure(1); plot(out.shutx, out.shuty, 'm.', 'LineWidth', 2);
+
+end
+
+
+
+figure(1); plot(out.shutx, out.shuty, 'm.', 'LineWidth', 2);
+figure(3); subplot(211); plot(tim, out.fishx, '-k');
+figure(3); subplot(212); plot(tim, out.fishy, '-k');
     
     yn = 1;
     ny = input('Fix another range? 99 is no. \n');
