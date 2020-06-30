@@ -108,10 +108,10 @@ for kk = 400:10:1700
         % Plot the trajectory
             plot(out.xC(kk-10:kk+10), out.yC(kk-10:kk+10), 'k-', 'LineWidth', 0.5);
         
-        plot(out.xT(kk), out.yT(kk), 'k.', 'MarkerSize', 32);
-        plot([out.xT(kk)-100, out.xT(kk)+100], [out.yT(kk), out.yT(kk)], 'k-', 'LineWidth', 0.5);
-        plot([out.xT(kk), out.xT(kk)], [out.yT(kk)-100, out.yT(kk)+100], 'k-', 'LineWidth', 0.5);
-        axis([out.xT(kk)-200, out.xT(kk)+200, out.yT(kk)-200, out.yT(kk)+200]);
+        plot(out.xC(kk), out.yC(kk), 'k.', 'MarkerSize', 32);
+        plot([out.xC(kk)-100, out.xC(kk)+100], [out.yC(kk), out.yC(kk)], 'k-', 'LineWidth', 0.5);
+        plot([out.xC(kk), out.xC(kk)], [out.yC(kk)-100, out.yC(kk)+100], 'k-', 'LineWidth', 0.5);
+        axis([out.xC(kk)-200, out.xC(kk)+200, out.yC(kk)-200, out.yC(kk)+200]);
         
    drawnow;
    pause(0.1);
