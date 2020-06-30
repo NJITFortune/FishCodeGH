@@ -10,6 +10,15 @@ tim = 1/Fs:1/Fs:length(dlc.fishx)/Fs;
 % Cycle through the video, plotting every jumptim seconds
 
 jumptim = 0.5;
+        figure(2); clf;
+        subplot(211); hold on;
+            plot(tim, dlc.fishx); 
+        subplot(212); hold on;
+            plot(tim,dlc.fishy);
+            
+        drawnow;
+
+
 
 for j = jumptim:jumptim:(v.Duration-0.1)
 
