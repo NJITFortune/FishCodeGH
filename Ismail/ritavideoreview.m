@@ -27,6 +27,9 @@ for j = jumptim:jumptim:(v.Duration-0.1)
         
         drawnow;
 
+        figure(2); clf;
+        subplot(211); p
+
 end
 
 out = 0;
