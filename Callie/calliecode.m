@@ -102,34 +102,34 @@ end
 
 
 %% AND FINALLY, ANIMATE A PLOT
-for kk = 500:10:1700
-    
-   figure(3); clf; 
-        subplot(121); hold on;  
-        for j=1:29
-            plot(foo(kk).orig(j,1)-out.xC(kk), foo(kk).orig(j,2)-out.yC(kk), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
-        end
-        
-        % Plot the trajectory
-            plot(out.xC(kk-400:20:kk+400)-out.xC(kk), out.yC(kk-400:20:kk+400)-out.yC(kk), 'k-', 'LineWidth', 0.5);
-        
-        plot(0,0, 'k.', 'MarkerSize', 32);
-        plot([-100, 100], [0, 0], 'k-', 'LineWidth', 0.5);
-        plot([0, 0], [-100, 100], 'k-', 'LineWidth', 0.5);
-        axis([-200, 200, -200, 200]);
-
-        subplot(122); hold on;
-        for j=1:29
-            plot(foo(kk).centroidrotate(j,1), foo(kk).centroidrotate(j,2), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
-        end
-                
-        plot(out.xC(kk), out.yC(kk), 'k.', 'MarkerSize', 32);
-        plot([out.xC(kk)-100, out.xC(kk)+100], [out.yC(kk), out.yC(kk)], 'k-', 'LineWidth', 0.5);
-        plot([out.xC(kk), out.xC(kk)], [out.yC(kk)-100, out.yC(kk)+100], 'k-', 'LineWidth', 0.5);
-        axis([out.xC(kk)-200, out.xC(kk)+200, out.yC(kk)-200, out.yC(kk)+200]);
-        
-   drawnow;
-   pause(0.01);
+% for kk = 500:10:1700
+%     
+%    figure(3); clf; 
+%         subplot(121); hold on;  
+%         for j=1:29
+%             plot(foo(kk).orig(j,1)-out.xC(kk), foo(kk).orig(j,2)-out.yC(kk), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
+%         end
+%         
+%         % Plot the trajectory
+%             plot(out.xC(kk-400:20:kk+400)-out.xC(kk), out.yC(kk-400:20:kk+400)-out.yC(kk), 'k-', 'LineWidth', 0.5);
+%         
+%         plot(0,0, 'k.', 'MarkerSize', 32);
+%         plot([-100, 100], [0, 0], 'k-', 'LineWidth', 0.5);
+%         plot([0, 0], [-100, 100], 'k-', 'LineWidth', 0.5);
+%         axis([-200, 200, -200, 200]);
+% 
+%         subplot(122); hold on;
+%         for j=1:29
+%             plot(foo(kk).centroidrotate(j,1), foo(kk).centroidrotate(j,2), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
+%         end
+%                 
+%         plot(out.xC(kk), out.yC(kk), 'k.', 'MarkerSize', 32);
+%         plot([out.xC(kk)-100, out.xC(kk)+100], [out.yC(kk), out.yC(kk)], 'k-', 'LineWidth', 0.5);
+%         plot([out.xC(kk), out.xC(kk)], [out.yC(kk)-100, out.yC(kk)+100], 'k-', 'LineWidth', 0.5);
+%         axis([out.xC(kk)-200, out.xC(kk)+200, out.yC(kk)-200, out.yC(kk)+200]);
+%         
+%    drawnow;
+%    pause(0.01);
     
 end
 
