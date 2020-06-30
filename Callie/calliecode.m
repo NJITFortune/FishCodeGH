@@ -7,11 +7,11 @@ tim = 1/Fs:1/Fs:length(in)/Fs;
 % side is 'c' center, 'r' right, 'l' left
 % part is 'tr' trunk, 'fl' forelimb, 'hl' hindlimb, 'ta' tail, 'he' head
 
-out.pointname{1} = 'Rostrum'; out.side(1) = 'c'; out.part(1) = 'he';
-out.pointname{2} = 'MedRosForelimb'; out.side(2) = 'l'; out.part(2) = 'fl'; 
-out.pointname{3} = 'MidRosForelimb'; out.side(3) = 'l'; out.part(3) = 'fl'; 
-out.pointname{4} = 'DistalForelimb'; out.side(4) = 'l'; out.part(4) = 'fl';
-out.pointname{5} = 'CaudalForelimb'; out.side(5) = 'l'; out.part(5) = 'fl';
+out.pointname{1} = 'Rostrum'; out.side(1) = 'c'; out.part{1} = 'he';
+out.pointname{2} = 'MedRosForelimb'; out.side(2) = 'l'; out.part{2} = 'fl'; 
+out.pointname{3} = 'MidRosForelimb'; out.side(3) = 'l'; out.part{3} = 'fl'; 
+out.pointname{4} = 'DistalForelimb'; out.side(4) = 'l'; out.part{4} = 'fl';
+out.pointname{5} = 'CaudalForelimb'; out.side(5) = 'l'; out.part{5} = 'fl';
 
 
 %% STEP 1: Get centroid for every frame 
