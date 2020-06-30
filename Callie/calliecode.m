@@ -57,7 +57,7 @@ figure(1); clf;
 
     subplot(122); hold on; % Plotting same thing, but using foo
 
-    plot([foo.Centroid(:,1)], [foo.Centroid(:,2)], '.k', 'MarkerSize', 16);
+    plot(foo.Centroid(:,1), foo.Centroid(:,2), '.k', 'MarkerSize', 16);
     
 %% STEP 2: Calculate the angle of movement and distance (speed) for each frame
 
