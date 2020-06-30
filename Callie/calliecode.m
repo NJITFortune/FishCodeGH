@@ -69,10 +69,12 @@ figure(2); hold on; plot(out.fCrad, 'c');
 
 for kk = 1:length(in) % For each frame (you gave me 2500 frames)    
     
-% This is a repeat of what was done above, but now put into a Matlab 'structure' I called foo
+% This is a repeat of what was done above, but now put into two Matlab 'structures' 
+% foo has the data centered around the origin, out has the original data.
     for j=2:3:86 % This is for each feature you tracked
         idx = (j+1)/3; % Making for a convenient indexing
-        foo(kk).dat(idx,:) = [in(kk,j) - out.xT(kk), in(kk,j+1) - out.yT(kk)]; % Get the X and Y points for each feature        
+        foo(kk).dat(idx,:) = [in(kk,j) - out.xT(kk), in(kk,j+1) - out.yT(kk)]; % Move the X and Y points around zero        
+        out(kk).dat(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature        
     end
     
 end
@@ -81,7 +83,7 @@ end
 
 for kk = 1:length(out.fCrad) % For each frame
     
-    foo(kk).centroidrotate = rotatorcuff(foo(kk).dat, [out.xT(kk), out.yT(kk)], out.fCrad(kk)-(pi-out.fCrad(kk))); % Rotation around centroid 
+    foo(kk).centroidrotate = rotatorcuff(out(kk).dat, [out.xT(kk), out.yT(kk)], out.fCrad(kk)-(pi-out.fCrad(kk))); % Rotation around centroid 
 
 end
 
@@ -100,8 +102,7 @@ for kk = 500:10:1600
             plot(foo(kk).centroidrotate(j,1), foo(kk).centroidrotate(j,2), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
         end
         plot(0,0, 'k.', 'MarkerSize', 16);
-        %axis([out.xT(kk)-200, out.xT(kk)+200, out.yT(kk)-200, out.yT(kk)+200]);
-        axis([-200, 200, -200, 200]);
+        axis([out.xT(kk)-200, out.xT(kk)+200, out.yT(kk)-200, out.yT(kk)+200]);
         
    drawnow;
    pause(0.1);
