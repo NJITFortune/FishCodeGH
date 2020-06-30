@@ -72,23 +72,23 @@ figure(1); clf;
 
 % This gives the angle of movement for each point listed below for each
 % frame using OUT
-    byPart.Trad = atan2(byPart.Y(21,:), byPart.X(21,:)); % Trunk
-    byPart.Rrad = atan2(byPart.Y(1,:), byPart.X(1,:)); % Rostrum
-    byPart.Prad = atan2(byPart.Y(23,:), byPart.X(23,:)); % Pelvis
-    
+ for zz = 29:-1:1
+    byPart.R(zz,:) = atan2(byPart.Y(zz,:), byPart.X(zz,:)); % Trunk
+ end
+ 
     % out.rad = unwrap(out.rad); % You may need to "unwrap" the data depending on the angle of the fish in the video
         
 % Plotting is fun!  
 figure(2); clf; hold on;
-    plot(tim, byPart.Trad, 'b'); % Trunk
-    plot(tim, byPart.Rrad, 'm'); % Rostrum
-    plot(tim, byPart.Prad, 'g'); % Pelvis
+    plot(tim, byPart.R(21,:), 'b'); % Trunk
+    plot(tim, byPart.R(1,:), 'm'); % Rostrum
+    plot(tim, byPart.R(23,:), 'g'); % Pelvis
     
     
 %% STEP 3: Filter the angle change to smooth things out
 
 % Pick your angle data
-    ang = byPart.Crad; XX = byPart.xC; YY = byPart.yC;
+    ang = byPart.Trad; XX = byPart.X(21,:); YY = byPart.Y(21,:);
     % ang = out.Trad; XX = out.xT; YY = out.yT; % As an example other choice
 
 cutoffFreq = 2; % This is the cutoff frequency of the filter in Hz
