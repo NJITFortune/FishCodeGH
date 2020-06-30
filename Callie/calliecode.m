@@ -56,38 +56,32 @@ figure(2); clf; hold on;
     plot(tim, out.Rrad, 'm'); % Rostrum
     plot(tim, out.Prad, 'g'); % Pelvis
     
-       
     
 %% STEP 3: Filter the angle change to smooth things out
+
+% Pick your angle data
+    ang = out.Crad; XX = out.xC; YY = out.yC;
+    % ang = out.Trad; XX = out.xT; YY = out.yT; % As an example other choice
 
 cutoffFreq = 2; % This is the cutoff frequency of the filter in Hz
 ord = 3; % This is the 'order' of the filter
 
     [b,a] = butter(ord, cutoffFreq/(Fs/2), 'low'); 
-    out.fCrad = filtfilt(b,a,out.Crad);
+    out.filteredAngle = filtfilt(b,a,ang);
     
-figure(2); hold on; plot(tim, out.fCrad, 'c', ');    
+figure(2); hold on; plot(tim, out.filteredAngle, 'c', 'LineWidth', 2);    
 
-%% STEP 4: Perhaps you might want to move the fish to the 'origin'
 
-for kk = 1:length(in) % For each frame (you gave me 2500 frames)    
+%% STEP 4: Rotate the fish for each frame
+
+for kk = 1:length(out.filteredAngle) % For each frame
     
-% This is a repeat of what was done above, but now put into two Matlab 'structures' 
-% foo has the data centered around the origin, out has the original data.
-    for j=2:3:86 % This is for each feature you tracked
-        idx = (j+1)/3; % Making for a convenient indexing
-    end
-    
-end
-
-%% Rotate the fish for each frame
-
-for kk = 1:length(out.fCrad) % For each frame
-    
-    foo(kk).centroidrotate = rotatorcuff(foo(kk).orig, [out.xC(kk), out.yC(kk)], out.fCrad(kk)-(pi-out.fCrad(kk))); % Rotation around centroid 
+foo(kk).centroidrotate = rotatorcuff(foo(kk).orig, [XX(kk), YY(kk)], out.filteredAngle(kk)-(pi-out.filteredAngle(kk))); % Rotation around centroid 
 
 end
 
+
+%% AND FINALLY, ANIMATE A PLOT
 for kk = 500:10:1700
     
    figure(3); clf; 
@@ -118,6 +112,7 @@ for kk = 500:10:1700
    pause(0.01);
     
 end
+
 
 function rot = rotatorcuff(data, cent, degR)
 % data is the x,y values
