@@ -1,43 +1,42 @@
 function [out, foo] = calliecode(in)
 
-Fs = 500;
-cmp = parula(30);
+Fs = 500; % This is the sample rate you used
+cmp = parula(30); % This is a colormap in Matlab... 30 different colors
 
-%% Get centroid for every frame
 
-for kk = 1:length(in) % For each frame (you gave me 2500 frames)
+%% STEP 1: Get centroid for every frame
+
+for kk = 1:length(in) % For each frame (there were 2500 frames)
     
-    % Get the centroid of ALL points.
-    % If you wanted to get the centroid of a subset of points, use
-    % something like:     
+    % Get the centroid of ALL points. (If you wanted to get the centroid of a subset of points, you could set up a list)  
     
-    for j=2:3:86 % This is for each feature you tracked
-        idx = (j+1)/3; % Making for a convenient indexing
-        dat(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature
+    for j=2:3:86 % This is for each feature you tracked (there are three columns: x,y,confidence. 
+        idx = (j+1)/3; % Make for convenient indexing. This starts and 1 and goes up by one for each tracked point
+        dat(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature. dat is indexed by frame.
     end
     
         convx = convhull(dat(:,1),dat(:,2)); % Get the convex hull (only border of the object)
         poly = polyshape(dat(convx,:)); % Change the data into a Matlab object known as a polyshape for use with 'centroid'
         [out.xC(kk),out.yC(kk)] = centroid(poly); % centroid calculates the centroid X and Y values
         
-        % Copy some useful points for fun
+        % Copy some useful points for fun (alternatives to the centroid for the center of your body rotation.
         out.xT(kk) = in(kk,62); % Trunk
         out.yT(kk) = in(kk,63);
         out.xR(kk) = in(kk,2); % Rostrum
         out.yR(kk) = in(kk,3);
-        out.xP(kk) = in(kk,68); % Pelvius
+        out.xP(kk) = in(kk,68); % Pelvis
         out.yP(kk) = in(kk,69); 
 end
 
-% Plot for amusement purposes only
+% Plot the trajectories of the points that I chose, for amusement purposes only
 figure(1); clf; hold on;
 
-    plot(out.xC, out.yC, '.k', 'MarkerSize', 8);
-    plot(out.xT, out.yT, '.b', 'MarkerSize', 8);
-    plot(out.xR, out.yR, '.m', 'MarkerSize', 8);
-    plot(out.xP, out.yP, '.g', 'MarkerSize', 8);
+    plot(out.xC, out.yC, '.k', 'MarkerSize', 16); % Centroid
+    plot(out.xT, out.yT, '.b', 'MarkerSize', 8); % Trunk
+    plot(out.xR, out.yR, '.m', 'MarkerSize', 8); % Rostrum
+    plot(out.xP, out.yP, '.g', 'MarkerSize', 8); % Pelvis
 
-%% Calculate the angle of movement for each frame
+%% STEP 2: Calculate the angle of movement for each frame
 
     % This gives the angle for each frame
     out.Crad = atan2(out.yC, out.xC); % Centroid
@@ -49,31 +48,28 @@ figure(1); clf; hold on;
 
 % Plotting is fun!  
 figure(2); clf; hold on;
-    plot(out.Crad, 'k');
-    plot(out.Trad, 'b');
-    plot(out.Rrad, 'm');
-    plot(out.Prad, 'g');
-
+    plot(out.Crad, 'k'); % Centroid
+    plot(out.Trad, 'b'); % Trunk
+    plot(out.Rrad, 'm'); % Rostrum
+    plot(out.Prad, 'g'); % Pelvis
 
        
     
-%% Filter the angle change to smooth things out
+%% STEP 3: Filter the angle change to smooth things out
 
-cutoffFreq = 2;
+cutoffFreq = 2; % This is the cutoff frequency of the filter in Hz
+ord = 3; % This is the 'order' of the filter
 
-    [b,a] = butter(3, cutoffFreq/(Fs/2), 'low');
+    [b,a] = butter(ord, cutoffFreq/(Fs/2), 'low'); 
     out.fCrad = filtfilt(b,a,out.Crad);
     
 figure(2); hold on; plot(out.fCrad, 'c');    
 
-%% Move the fish to the center
+%% STEP 4: Perhaps you might want to move the fish to the 'origin'
 
-for kk = 1:length(in) % For each frame (you gave me 2500 frames)
+for kk = 1:length(in) % For each frame (you gave me 2500 frames)    
     
-    % Get the centroid of ALL points.
-    % If you wanted to get the centroid of a subset of points, use
-    % something like:     
-    
+% This is a repeat of what was done above, but now put into a Matlab 'structure' I called foo
     for j=2:3:86 % This is for each feature you tracked
         idx = (j+1)/3; % Making for a convenient indexing
         foo(kk).dat(idx,:) = [in(kk,j) - out.xT(kk), in(kk,j+1) - out.yT(kk)]; % Get the X and Y points for each feature        
@@ -83,14 +79,9 @@ end
 
 %% Rotate the fish for each frame
 
-for kk = 1:length(out.fCrad)
+for kk = 1:length(out.fCrad) % For each frame
     
-        for j=2:3:86 % This is for each feature you tracked
-            idx = (j+1)/3; % Making for a convenient indexing
-            dat(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature
-        end
-        
-    foo(kk).centroidrotate = rotatorcuff(dat, [out.xT(kk), out.yT(kk)], out.fCrad(kk)-(pi-out.fCrad(kk))); % Rotation around centroid 
+    foo(kk).centroidrotate = rotatorcuff(foo(kk).dat, [out.xT(kk), out.yT(kk)], out.fCrad(kk)-(pi-out.fCrad(kk))); % Rotation around centroid 
 
 end
 
