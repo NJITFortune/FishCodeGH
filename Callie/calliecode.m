@@ -84,7 +84,7 @@ end
 
 for kk = 1:length(out.fCrad) % For each frame
     
-    foo(kk).centroidrotate = rotatorcuff(foo(kk).orig, [out.xT(kk), out.yT(kk)], out.Rrad(kk)-(pi-out.Rrad(kk))-0.1); % Rotation around centroid 
+    foo(kk).centroidrotate = rotatorcuff(foo(kk).orig, [out.xT(kk), out.yT(kk)], out.Rrad(kk)-(pi-out.Rrad(kk))+0.1); % Rotation around centroid 
 
 end
 
