@@ -98,8 +98,9 @@ for kk = 500:10:1600
     
    figure(3); clf; 
         subplot(121); hold on;  
-        for j=1:
-        plot(foo(kk).dat(:,1), foo(kk).dat(:,2), '.', 'MarkerSize', 16); 
+        for j=1:29
+            plot(foo(kk).dat(j,1), foo(kk).dat(j,2), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
+        end
         plot(0, 0, 'k.', 'MarkerSize', 16);
         axis([-200, 200, -200, 200]);
 
