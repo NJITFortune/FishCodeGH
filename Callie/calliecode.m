@@ -19,8 +19,8 @@ out.pointname{5} = 'CaudalForelimb'; out.side(5) = 'l'; out.part(5) = 'fl';
 
 for kk = 1:length(in) % For each frame (there were 2500 frames)
     
-    % Get the centroid of ALL points. (If you wanted to get the centroid of a subset of points, you could set up a list)  
-    
+% Extract all of the 29 points from the CSV file and put into structure 'foo'
+
     for j=2:3:86 % This is for each feature you tracked (there are three columns: x,y,confidence. 
         idx = (j+1)/3; % Make for convenient indexing. This starts and 1 and goes up by one for each tracked point.                
         
@@ -28,28 +28,37 @@ for kk = 1:length(in) % For each frame (there were 2500 frames)
         
     end
     
+% Compute the centroid of all of the points
+    
         convx = convhull(foo(kk).orig(:,1),foo(kk).orig(:,2)); % Get the convex hull (only border of the object)
         poly = polyshape(foo(kk).orig(convx,:)); % Change the data into a Matlab object known as a polyshape for use with 'centroid'
-        [out.xC(kk),out.yC(kk)] = centroid(poly); % centroid calculates the centroid X and Y values
+        [out.xC(kk), out.yC(kk)] = centroid(poly); % centroid calculates the centroid X and Y values
+        foo(kk).Centroid = centroid(poly);
         
         % Copy some useful points for fun (alternatives to the centroid for the center of your body rotation.
-        out.xT(kk) = in(kk,62); % Trunk
-        out.yT(kk) = in(kk,63);
-        out.xR(kk) = in(kk,2); % Rostrum
+        out.xT(kk) = in(kk,62); % Trunk idx = 21
+        out.yT(kk) = in(kk,63); 
+        out.xR(kk) = in(kk,2); % Rostrum idx = 1
         out.yR(kk) = in(kk,3);
-        out.xP(kk) = in(kk,68); % Pelvis
+        out.xP(kk) = in(kk,68); % Pelvis idx = 23 (in foo.orig - 'foo(kk).orig(23,:)' )
         out.yP(kk) = in(kk,69); 
         
 end
 
 % Plot the trajectories of the points that I chose, for amusement purposes only
-figure(1); clf; hold on;
+figure(1); clf; 
+
+    subplot(121); hold on; % Plotting using 'out'
 
     plot(out.xC, out.yC, '.k', 'MarkerSize', 16); % Centroid
     plot(out.xT, out.yT, '.b', 'MarkerSize', 8); % Trunk
     plot(out.xR, out.yR, '.m', 'MarkerSize', 8); % Rostrum
     plot(out.xP, out.yP, '.g', 'MarkerSize', 8); % Pelvis
 
+    subplot(122); hold on; % Plotting same thing, but using foo
+
+    plot([foo.Centroid(:,1)], [foo.Centroid(:,2)], '.k', 'MarkerSize', 16);
+    
 %% STEP 2: Calculate the angle of movement and distance (speed) for each frame
 
 % This gives the angle of movement for each point listed below for each frame
