@@ -84,7 +84,7 @@ end
 
 for kk = 1:length(out.fCrad) % For each frame
     
-    foo(kk).centroidrotate = rotatorcuff(foo(kk).orig, [out.xT(kk), out.yT(kk)], out.Rrad(kk)-(pi-out.Rrad(kk))); % Rotation around centroid 
+    foo(kk).centroidrotate = rotatorcuff(foo(kk).orig, [out.xT(kk), out.yT(kk)], out.Rrad(kk)-(pi-out.Rrad(kk))-0.1); % Rotation around centroid 
 
 end
 
@@ -93,7 +93,7 @@ for kk = 400:10:1700
    figure(3); clf; 
         subplot(121); hold on;  
         for j=1:29
-            plot(foo(kk).orig(j,1)-out.xT(kk), foo(kk).org(j,2)-out.yT(kk), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
+            plot(foo(kk).orig(j,1)-out.xT(kk), foo(kk).orig(j,2)-out.yT(kk), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
         end
         plot(0,0, 'k.', 'MarkerSize', 32);
         plot([-100, 100], [0, 0], 'k-', 'LineWidth', 0.5);
