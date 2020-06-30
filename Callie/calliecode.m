@@ -7,12 +7,11 @@ tim = 1/Fs:1/Fs:length(in)/Fs;
 % side is 'c' center, 'r' right, 'l' left
 % part is 'tr' trunk, 'fl' forelimb, 'hl' hindlimb, 'ta' tail, 'he' head
 
-out.pointname{1} = 'Rostrum'; out.side(1) = 'c'; out.part = 'he'
-out.pointname{2} = '
-out.pointname{3} =
-out.pointname{4} =
-out.pointname{5} =
-
+out.pointname{1} = 'Rostrum'; out.side(1) = 'c'; out.part(1) = 'he';
+out.pointname{2} = 'MedRosForelimb'; out.side(2) = 'l'; out.part(2) = 'fl'; 
+out.pointname{3} = 'MidRosForelimb'; out.side(3) = 'l'; out.part(3) = 'fl'; 
+out.pointname{4} = 'DistalForelimb'; out.side(4) = 'l'; out.part(4) = 'fl';
+out.pointname{5} = 'CaudalForelimb'; out.side(5) = 'l'; out.part(5) = 'fl';
 
 
 %% STEP 1: Get centroid for every frame 
@@ -26,7 +25,7 @@ for kk = 1:length(in) % For each frame (there were 2500 frames)
         idx = (j+1)/3; % Make for convenient indexing. This starts and 1 and goes up by one for each tracked point                
         
         foo(kk).orig(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature        
-
+        
     end
     
         convx = convhull(foo(kk).orig(:,1),foo(kk).orig(:,2)); % Get the convex hull (only border of the object)
