@@ -75,8 +75,8 @@ figure(2); hold on; plot(tim, out.filteredAngle, 'c', 'LineWidth', 2);
 %% STEP 4: Rotate the fish for each frame
 
 for kk = 1:length(out.filteredAngle) % For each frame
-    
-foo(kk).centroidrotate = rotatorcuff(foo(kk).orig, [XX(kk), YY(kk)], out.filteredAngle(kk)-(2*pi-out.filteredAngle(kk))); % Rotation around centroid 
+    % Rotate to face towards top of plot for this case: angle - (pi-angle)
+foo(kk).centroidrotate = rotatorcuff(foo(kk).orig, [XX(kk), YY(kk)], out.filteredAngle(kk)-(out.filteredAngle(kk)-pi)); % Rotation around centroid 
 
 end
 
