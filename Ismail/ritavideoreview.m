@@ -27,17 +27,17 @@ for j = jumptim:jumptim:(v.Duration-0.1)
     plot(dlc.shutx(idx), dlc.shuty(idx), 'g.', 'MarkerSize', 48);
         plot(dlc.shutx(idx), dlc.shuty(idx), 'w.', 'MarkerSize', 8);
         
-        %drawnow;
-
-        figure(2); clf;
-        subplot(211); hold on;
-            plot(tim, dlc.fishx); 
-            plot([j, j], [500, 1000], 'k-');
-        subplot(212); hold on;
-            plot(tim,dlc.fishy);
-            plot([j, j], [0, 300], 'k-');
-            
         drawnow;
+
+%         figure(2); clf;
+%         subplot(211); hold on;
+%             plot(tim, dlc.fishx); 
+%             plot([j, j], [500, 1000], 'k-');
+%         subplot(212); hold on;
+%             plot(tim,dlc.fishy);
+%             plot([j, j], [0, 300], 'k-');
+%             
+%         drawnow;
 
 end
 
