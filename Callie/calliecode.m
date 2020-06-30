@@ -97,7 +97,7 @@ for kk = 400:10:1700
         end
         
         % Plot the trajectory
-            plot(out.xC(kk-100:10:kk+100), out.yC(kk-100:10:kk+100), 'k-', 'LineWidth', 0.5);
+            plot(out.xC(kk-100:10:kk+100)-out.xC(kk), out.yC(kk-100:10:kk+100)-out.yC(kk), 'k-', 'LineWidth', 0.5);
         
         plot(0,0, 'k.', 'MarkerSize', 32);
         plot([-100, 100], [0, 0], 'k-', 'LineWidth', 0.5);
