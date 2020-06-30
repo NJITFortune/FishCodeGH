@@ -32,7 +32,7 @@ for kk = length(in):-1:1 % For each frame (there were 2500 frames)
         convx = convhull(byFrame(kk).orig(:,1),byFrame(kk).orig(:,2)); % Get the convex hull (only border of the object)
         
         poly = polyshape(byFrame(kk).orig(convx,:)); % Change the data into a Matlab object known as a polyshape for use with 'centroid'
-        [xxx, yyy] = centroid(poly);
+        asdf = centroid(poly);
         
         [byFrame(kk).Centroid(1), byFrame(kk).Centroid(2)] = centroid(poly);
         [byPart.CentroidX(kk), byPart.CentroidY(kk)] = centroid(poly); % centroid calculates the centroid X and Y values
