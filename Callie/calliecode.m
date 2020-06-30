@@ -76,7 +76,7 @@ figure(2); hold on; plot(tim, out.filteredAngle, 'c', 'LineWidth', 2);
 
 for kk = 1:length(out.filteredAngle) % For each frame
     % Rotate to face towards top of plot for this case: angle - (pi-angle)
-foo(kk).centroidrotate = rotatorcuff(foo(kk).orig, [XX(kk), YY(kk)], out.filteredAngle(kk)-(out.filteredAngle(kk)-pi)); % Rotation around centroid 
+foo(kk).centroidrotate = rotatorcuff(foo(kk).orig, [XX(kk), YY(kk)], unwrap(out.filteredAngle(kk)-(pi-out.filteredAngle(kk)))); % Rotation around centroid 
 
 end
 
