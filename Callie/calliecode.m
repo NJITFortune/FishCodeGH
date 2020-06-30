@@ -12,7 +12,12 @@ for kk = 1:length(in) % For each frame (there were 2500 frames)
     
     for j=2:3:86 % This is for each feature you tracked (there are three columns: x,y,confidence. 
         idx = (j+1)/3; % Make for convenient indexing. This starts and 1 and goes up by one for each tracked point
+        
         dat(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature. dat is indexed by frame.
+        
+        foo(kk).dat(idx,:) = [in(kk,j) - out.xT(kk), in(kk,j+1) - out.yT(kk)]; % Move the X and Y points around zero        
+        foo(kk).orig(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature        
+
     end
     
         convx = convhull(dat(:,1),dat(:,2)); % Get the convex hull (only border of the object)
@@ -48,8 +53,7 @@ figure(1); clf; hold on;
 
 % This gives the distance each point for each frame
 
-    
-    
+        
 % Plotting is fun!  
 figure(2); clf; hold on;
     plot(out.Crad, 'k'); % Centroid
@@ -77,8 +81,6 @@ for kk = 1:length(in) % For each frame (you gave me 2500 frames)
 % foo has the data centered around the origin, out has the original data.
     for j=2:3:86 % This is for each feature you tracked
         idx = (j+1)/3; % Making for a convenient indexing
-        foo(kk).dat(idx,:) = [in(kk,j) - out.xT(kk), in(kk,j+1) - out.yT(kk)]; % Move the X and Y points around zero        
-        foo(kk).orig(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature        
     end
     
 end
