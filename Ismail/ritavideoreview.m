@@ -27,7 +27,7 @@ for j = jumptim:jumptim:(v.Duration-0.1)
     plot(dlc.shutx(idx), dlc.shuty(idx), 'g.', 'MarkerSize', 48);
         plot(dlc.shutx(idx), dlc.shuty(idx), 'w.', 'MarkerSize', 8);
         
-        drawnow;
+        %drawnow;
 
         figure(2); clf;
         subplot(211); hold on;
