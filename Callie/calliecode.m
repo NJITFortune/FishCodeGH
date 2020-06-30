@@ -27,24 +27,15 @@ for kk = length(in):-1:1 % For each frame (there were 2500 frames)
         
     end
     
-% Compute the centroid of all of the points
-    
-        convx = convhull(byFrame(kk).orig(:,1),byFrame(kk).orig(:,2)); % Get the convex hull (only border of the object)
-        
-        poly = polyshape(byFrame(kk).orig(convx,:)); % Change the data into a Matlab object known as a polyshape for use with 'centroid'
-        [sdfg, asdf] = centroid(poly);
-        
-        [byFrame(kk).Centroid(1), byFrame(kk).Centroid(2)] = centroid(poly);
-        [byPart.CentroidX(kk), byPart.CentroidY(kk)] = centroid(poly); % centroid calculates the centroid X and Y values
-        
-        % Copy some useful points for fun (alternatives to the centroid for the center of your body rotation.
-        byPart.xT(kk) = in(kk,62); % Trunk idx = 21
-        byPart.yT(kk) = in(kk,63); 
-        byPart.xR(kk) = in(kk,2); % Rostrum idx = 1
-        byPart.yR(kk) = in(kk,3);
-        byPart.xP(kk) = in(kk,68); % Pelvis idx = 23 (in foo.orig - 'foo(kk).orig(23,:)' )
-        byPart.yP(kk) = in(kk,69); 
-        
+% % % % Compute the centroid of all of the points
+% % %     
+% % %         convx = convhull(byFrame(kk).orig(:,1),byFrame(kk).orig(:,2)); % Get the convex hull (only border of the object)
+% % %         
+% % %         poly = polyshape(byFrame(kk).orig(convx,:)); % Change the data into a Matlab object known as a polyshape for use with 'centroid'
+% % %         
+% % %         [byFrame(kk).Centroid(1), byFrame(kk).Centroid(2)] = centroid(poly);
+% % %         [byPart.CentroidX(kk), byPart.CentroidY(kk)] = centroid(poly); % centroid calculates the centroid X and Y values
+                
 end
 
 %% STEP 2: Generate the byPart structure 
@@ -62,17 +53,15 @@ end
 % Plot the trajectories of the points that I chose, for amusement purposes only
 figure(1); clf; 
 
-    subplot(121); hold on; % Plotting using 'out'
+    subplot(121); hold on; % Plotting using 'byPart'
 
-%    plot(byPart.xC, byPart.yC, '.k', 'MarkerSize', 16); % Centroid
-    plot(byPart.xT, byPart.yT, '.b', 'MarkerSize', 8); % Trunk
-    plot(byPart.xR, byPart.yR, '.m', 'MarkerSize', 8); % Rostrum
-    plot(byPart.xP, byPart.yP, '.g', 'MarkerSize', 8); % Pelvis
-
+    plot(byPart.X(21,:), byPart.Y(21,:), '.b', 'MarkerSize', 8); % Trunk
+    plot(byPart.X(1,:), byPart.Y(1,:), '.m', 'MarkerSize', 8); % Rostrum
+    plot(byPart.X(23,:), byPart.Y(23,:), '.g', 'MarkerSize', 8); % Pelvis
+    
     subplot(122); hold on; % Plotting same thing, but using foo
 
     for jj=1:length(byFrame)
-       plot(byFrame(jj).Centroid(1), byFrame(jj).Centroid(2), '.k', 'MarkerSize', 16);        
        plot(byFrame(jj).orig(21,1), byFrame(jj).orig(21,2), '.b', 'MarkerSize', 8);
        plot(byFrame(jj).orig(23,1), byFrame(jj).orig(23,2), '.g', 'MarkerSize', 8);
        plot(byFrame(jj).orig(1,1), byFrame(jj).orig(1,2), '.m', 'MarkerSize', 8);
