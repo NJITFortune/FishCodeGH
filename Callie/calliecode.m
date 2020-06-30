@@ -115,7 +115,7 @@ for kk = 500:10:1700
         axis([out.xC(kk)-200, out.xC(kk)+200, out.yC(kk)-200, out.yC(kk)+200]);
         
    drawnow;
-   pause(0.1);
+   pause(0.01);
     
 end
 
