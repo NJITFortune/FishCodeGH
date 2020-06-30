@@ -35,6 +35,10 @@ end
 figure(1); plot(out.shutx, out.shuty, 'm.', 'LineWidth', 2);
 figure(3); subplot(211); plot(tim, out.fishx, '-k');
 figure(3); subplot(212); plot(tim, out.fishy, '-k');
+
+    figure(2); clf;
+    figure(2); subplot(211); plot(out.fishx, '-k');
+    figure(2); subplot(212); plot(out.fishy, '-k');
     
     yn = 1;
     ny = input('Fix another range? 99 is no. \n');
