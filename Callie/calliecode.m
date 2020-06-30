@@ -88,7 +88,7 @@ figure(2); clf; hold on;
 %% STEP 3: Filter the angle change to smooth things out
 
 % Pick your angle data
-    ang = byPart.Trad; XX = byPart.X(21,:); YY = byPart.Y(21,:);
+    ang = byPart.R(21,:); XX = byPart.X(21,:); YY = byPart.Y(21,:);
     % ang = out.Trad; XX = out.xT; YY = out.yT; % As an example other choice
 
 cutoffFreq = 2; % This is the cutoff frequency of the filter in Hz
