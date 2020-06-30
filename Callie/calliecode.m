@@ -95,6 +95,8 @@ for kk = 500:10:1600
             plot(foo(kk).dat(j,1), foo(kk).dat(j,2), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
         end
         plot(0,0, 'k.', 'MarkerSize', 32);
+        plot([-100, 100], [0, 0], 'k-', 'LineWidth', 0.5);
+        plot([0, 0], [-100, 100], 'k-', 'LineWidth', 0.5);
         axis([-200, 200, -200, 200]);
 
         subplot(122); hold on;
@@ -102,6 +104,8 @@ for kk = 500:10:1600
             plot(foo(kk).centroidrotate(j,1), foo(kk).centroidrotate(j,2), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
         end
         plot(out.xT(kk), out.yT(kk), 'k.', 'MarkerSize', 32);
+        plot([out.xT(kk)-100, out.xT(kk)+100], [out.yT(kk), out.yT(kk)], 'k-', 'LineWidth', 0.5);
+        plot([out.xT(kk), out.xT(kk)], [out.yT(kk)-100, out.yT(kk)+100], 'k-', 'LineWidth', 0.5);
         axis([out.xT(kk)-200, out.xT(kk)+200, out.yT(kk)-200, out.yT(kk)+200]);
         
    drawnow;
