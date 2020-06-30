@@ -16,7 +16,7 @@ byPart.pointname{5} = 'CaudalForelimb'; byPart.side(5) = 'l'; byPart.part{5} = '
 
 %% STEP 1: Generate the byFrame structure 
 
-for kk = 1:length(in) % For each frame (there were 2500 frames)
+for kk = length(in):-1:1 % For each frame (there were 2500 frames)
     
 % Extract all of the 29 points from the CSV file and put into structure 'foo'
 
