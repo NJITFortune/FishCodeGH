@@ -2,7 +2,7 @@ function [out, foo] = calliecode(in)
 
 Fs = 500; % This is the sample rate you used
 cmp = jet(30); % This is a colormap in Matlab... 30 different colors
-
+tim = 1/Fs:1/Fs:length(in)/Fs;
 
 %% STEP 1: Get centroid for every frame 
 
@@ -51,10 +51,10 @@ figure(1); clf; hold on;
         
 % Plotting is fun!  
 figure(2); clf; hold on;
-    plot(out.Crad, 'k'); % Centroid
-    plot(out.Trad, 'b'); % Trunk
-    plot(out.Rrad, 'm'); % Rostrum
-    plot(out.Prad, 'g'); % Pelvis
+    plot(tim, out.Crad, 'k'); % Centroid
+    plot(tim, out.Trad, 'b'); % Trunk
+    plot(tim, out.Rrad, 'm'); % Rostrum
+    plot(tim, out.Prad, 'g'); % Pelvis
     
        
     
