@@ -36,6 +36,8 @@ for j = jumptim:jumptim:(v.Duration-0.1)
         subplot(212); hold on;
             plot(tim,dlc.fishy);
             plot([j, j], [0, 300], 'k-');
+            
+        drawnow;
 
 end
 
