@@ -17,7 +17,7 @@ for j = jumptim:jumptim:(v.Duration-0.1)
     figure(1); clf;
     imshow(a);
     hold on;
-    text(200, 200, num2str(j), 'FontSize', 56);
+    text(200, 200, num2str(j), 'FontSize', 36, 'Color', 'r');
     idx = v.CurrentTime*v.FrameRate;
     
     plot(dlc.fishx(idx), dlc.fishy(idx), 'm.', 'MarkerSize', 48);
