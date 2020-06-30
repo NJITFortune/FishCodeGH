@@ -77,7 +77,7 @@ figure(1); clf;
 % This gives the angle of movement for each point listed below for each
 % frame using FOO
     for jj=2:length(foo)
-        foo(jj).CentroidRadians = atan2(foo(jj-1:jj).Centroid(2), foo(jj-1:jj).Centroid(1));    
+        foo(jj).CentroidRadians = atan2(foo(jj-1).Centroid(2)-foo(jj).Centroid(2), foo(jj-1).Centroid(1)-foo(jj).Centroid(1));    
     end
     
     % out.rad = unwrap(out.rad); % You may need to "unwrap" the data depending on the angle of the fish in the video
