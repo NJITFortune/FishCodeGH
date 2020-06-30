@@ -55,8 +55,7 @@ figure(2); clf; hold on;
     plot(out.Prad, 'g');
 
 
-    
-    
+       
     
 %% Filter the angle change to smooth things out
 
@@ -82,20 +81,6 @@ for kk = 1:length(in) % For each frame (you gave me 2500 frames)
     
 end
 
-% And plot every 20th frame
-
-% for kk = 1:20:length(foo)
-%     
-%    figure(3); clf; hold on;
-%         plot(foo(kk).dat(:,1), foo(kk).dat(:,2), 'b.', 'MarkerSize', 8); 
-%         plot(0, 0, 'k.', 'MarkerSize', 16);
-%    axis([-150, 150, -150, 150]);
-%    drawnow;
-%    pause(0.1);
-%     
-% end
-
-
 %% Rotate the fish for each frame
 
 for kk = 1:length(out.fCrad)
@@ -113,7 +98,7 @@ for kk = 500:10:1600
     
    figure(3); clf; 
         subplot(121); hold on;
-        plot(foo(kk).dat(:,1), foo(kk).dat(:,2), 'b.', 'MarkerSize', 16); 
+        plot(foo(kk).dat(:,1), foo(kk).dat(:,2), '.', 'MarkerSize', 16, 'Color', cmp(); 
         plot(0, 0, 'k.', 'MarkerSize', 16);
         axis([-200, 200, -200, 200]);
 
