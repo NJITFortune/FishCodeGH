@@ -9,7 +9,7 @@ tim = 1/Fs:1/Fs:length(dlc.fishx)/Fs;
 
 % Cycle through the video, plotting every jumptim seconds
 
-jumptim = 0.25;
+jumptim = 0.5;
 
 for j = jumptim:jumptim:(v.Duration-0.1)
 
