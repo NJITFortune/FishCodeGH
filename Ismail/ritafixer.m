@@ -1,4 +1,8 @@
 function out = ritafixer(in, asdf)
+% Usage: out = ritafixer(in, asdf)
+% in should be DLC from deep lab cut video tracking
+% asdf is a number which forces the program to skip the outlier analysis -
+% use only if re-fixing a dlc file.
 
 Fs = 10; % Assuming 10 Hz sample rate
 tim = 1/Fs:1/Fs:length(in.fishx)/Fs;
