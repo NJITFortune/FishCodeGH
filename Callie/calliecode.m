@@ -57,7 +57,13 @@ figure(1); clf;
 
     subplot(122); hold on; % Plotting same thing, but using foo
 
-    plot(foo.Centroid(1), foo.Centroid(2), '.k', 'MarkerSize', 16);
+    for jj=1:2500
+       plot(foo(jj).Centroid(1), foo(jj).Centroid(2), '.k', 'MarkerSize', 16);        
+       plot(foo(jj).orig(21,1), foo(jj).orig(21,2), '.b', 'MarkerSize', 8);
+       plot(foo(jj).orig(23,1), foo(jj).orig(23,2), '.g', 'MarkerSize', 8);
+       plot(foo(jj).orig(1,1), foo(jj).orig(1,2), '.m', 'MarkerSize', 8);
+    end
+    
     
 %% STEP 2: Calculate the angle of movement and distance (speed) for each frame
 
