@@ -84,6 +84,8 @@ figure(2); clf; hold on;
     plot(tim, byPart.R(1,:), 'm'); % Rostrum
     plot(tim, byPart.R(23,:), 'g'); % Pelvis
     
+
+    
     
 %% STEP 3: Filter the angle change to smooth things out
 
@@ -108,6 +110,7 @@ byFrame(kk).centroidrotate = rotatorcuff(byFrame(kk).orig, [XX(kk), YY(kk)], unw
 
 end
 
+%% PROBABLY WORKS TO HERE
 
 %% AND FINALLY, ANIMATE A PLOT
 % for kk = 500:10:1700
