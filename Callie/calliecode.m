@@ -22,7 +22,7 @@ for kk = 1:length(in) % For each frame (there were 2500 frames)
     % Get the centroid of ALL points. (If you wanted to get the centroid of a subset of points, you could set up a list)  
     
     for j=2:3:86 % This is for each feature you tracked (there are three columns: x,y,confidence. 
-        idx = (j+1)/3; % Make for convenient indexing. This starts and 1 and goes up by one for each tracked point                
+        idx = (j+1)/3; % Make for convenient indexing. This starts and 1 and goes up by one for each tracked point.                
         
         foo(kk).orig(idx,:) = [in(kk,j), in(kk,j+1)]; % Get the X and Y points for each feature        
         
