@@ -1,6 +1,7 @@
 function [out, foo] = calliecode(in)
 
 Fs = 500;
+cmp = spring(30);
 
 %% Get centroid for every frame
 
