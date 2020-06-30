@@ -104,6 +104,10 @@ for kk = 400:10:1700
         for j=1:29
             plot(foo(kk).centroidrotate(j,1), foo(kk).centroidrotate(j,2), '.', 'MarkerSize', 16, 'Color', cmp(j,:)); 
         end
+        
+        % Plot the trajectory
+            plot(out.xC(kk-10:kk+10), out.yC(kk-10:kk+10), 'k-', 'LineWidth', 0.5);
+        
         plot(out.xT(kk), out.yT(kk), 'k.', 'MarkerSize', 32);
         plot([out.xT(kk)-100, out.xT(kk)+100], [out.yT(kk), out.yT(kk)], 'k-', 'LineWidth', 0.5);
         plot([out.xT(kk), out.xT(kk)], [out.yT(kk)-100, out.yT(kk)+100], 'k-', 'LineWidth', 0.5);
