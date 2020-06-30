@@ -4,8 +4,10 @@ Fs = 500; % This is the sample rate you used
 cmp = jet(30); % This is a colormap in Matlab... 30 different colors
 tim = 1/Fs:1/Fs:length(in)/Fs;
 
+% side is 'c' center, 'r' right, 'l' left
+% part is 'tr' trunk, 'fl' forelimb, 'hl' hindlimb, 'ta' tail, 'he' head
 
-out.pointname{1} = 'Rostrum';
+out.pointname{1} = 'Rostrum'; out.side(1) = 'c'; out.part = 'he'
 out.pointname{2} = '
 out.pointname{3} =
 out.pointname{4} =
