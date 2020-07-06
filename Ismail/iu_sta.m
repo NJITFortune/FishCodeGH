@@ -34,12 +34,12 @@ end
 
     out.time = -wid:1/Fs:wid; % Give the user a time base for plotting.
 
-% figure,
-% hold on,
-% box on,
-%     plot([0, 0], [min(out.MEAN), max(out.MEAN)], 'k-', 'LineWidth',1);
-%     plot(out.time, out.MEAN, 'b-', 'LineWidth', 3);
-%     plot(out.time, out.randMEAN,'r-','LineWidth',3);
-%     xlabel('Time (s)')
+figure,
+hold on,
+box on,
+    plot([0, 0], [min(out.MEAN), max(out.MEAN)], 'k-', 'LineWidth',1);
+    plot(out.time, out.MEAN, 'b-', 'LineWidth', 3);
+    plot(out.time, out.randMEAN,'r-','LineWidth',3);
+    xlabel('Time (s)')
 
  
