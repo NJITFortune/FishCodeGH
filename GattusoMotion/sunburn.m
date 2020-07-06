@@ -26,6 +26,7 @@ for jj = 1:length(neuron(kk).s)               %% this cycles through all of the 
 end
 end
 out.spikes = spikes;
+figure(1); clf; plot(spikes, '*');
 out.Fs = Fs;
 
 buff = 0.100;
