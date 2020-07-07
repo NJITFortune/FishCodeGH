@@ -77,7 +77,7 @@ for j=2:length(dat)
             end
             if v == 1
                 pos = [pos, dat(j).pos(100:end)'];
-                spiketimes = [spiketimes dat(j).st+tim(end)'];
+                spiketimes = [spiketimes dat(j).st'+tim(end)];
             end
             
         end
