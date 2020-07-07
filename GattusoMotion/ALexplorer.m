@@ -68,7 +68,6 @@ for j=2:length(dat)
             end
 
             ff = filtfilt(b,a,samp); 
-            length(ff)
             
             pos(end-99:end+100) = ff;
             
