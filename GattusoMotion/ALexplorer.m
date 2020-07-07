@@ -95,8 +95,13 @@ end % For every stimulus
     
 %% Get the STAs
 
-    asdf = iu_sta(spiketimes, randspikes, pos(1:10:end), 100, 4);
-    figure(3); clf; hold on; plot(asdf.time, asdf.MEAN, 'b-'); plot(asdf.time, asdf.randMEAN, 'r-');
+    pSTA = iu_sta(spiketimes, randspikes, pos, 100, 4);
+    vSTA = iu_sta(spiketimes, randspikes, vel, 100, 4);
+    aSTA = iu_sta(spiketimes, randspikes, acc, 100, 4);
+    figure(3); clf; 
+        subplot(311); hold on; plot(pSTA.time, pSTA.MEAN, 'b-'); plot(pSTA.time, pSTA.randMEAN, 'r-');
+        subplot(312); hold on; plot(vSTA.time, vSTA.MEAN, 'b-'); plot(vSTA.time, vSTA.randMEAN, 'r-');
+        subplot(313); hold on; plot(aSTA.time, aSTA.MEAN, 'b-'); plot(aSTA.time, aSTA.randMEAN, 'r-');
 
 
 %% Get     
