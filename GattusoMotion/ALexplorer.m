@@ -1,5 +1,7 @@
 dat = AL(16).s;
 
+Fs = dat(1).pFs;
+
 fprintf('There were %i S1 entries. \n', length(find([dat.sizeDX] == 1)));
 fprintf('There were %i S2 entries. \n', length(find([dat.sizeDX] == 2)));
 fprintf('There were %i S3 entries. \n', length(find([dat.sizeDX] == 3)));
@@ -52,6 +54,8 @@ for j=2:length(dat)
         % problems
         
         if dat(j).pos(1) ~= pos(end)
+            
+        end
         
         if v == 0 
             pos = [pos, dat(j).pos]; 
