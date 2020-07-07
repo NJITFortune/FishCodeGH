@@ -36,11 +36,15 @@ figure(2);
     
 %% Concatonate all
 
-spiketimes = dat(1).st;
-pos = dat(1).pos;
-
+    if length(pos(1,:)) > 1
+        spiketimes = dat(1).st;
+        pos = dat(1).pos;
+        vel = smooth(diff(pos)); vel(end+1) = vel(end);
+        acc = smooth(diff(vel)); acc(end+1) = acc(end);       
+        v = 0;
+    end
 % Is the data vertical (1) or not (0)?
-    v=0;
+
     if length(pos(1,:)) == 1
         pos = pos';
         vel = smooth(diff(pos)); vel(end+1) = vel(end);
