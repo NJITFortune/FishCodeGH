@@ -59,11 +59,11 @@ for j=2:length(dat)
         if dat(j).pos(1) ~= pos(end) % The position data has a jump between trials
             % Take 100 samples (1/10 second) before and and after the jump.
             if v == 0
-                samp = pos(end-100:end); 
+                samp = pos(end-99:end); 
                 samp = [samp, dat(j).pos(1:100)];
             end
             if v == 1
-            	samp = pos(end-100:end); 
+            	samp = pos(end-99:end); 
                 samp = [samp, dat(j).pos(1:100)'];
             end
 
