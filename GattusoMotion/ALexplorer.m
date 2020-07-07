@@ -49,8 +49,8 @@ figure(2);
     end
     
     vel = smooth(diff(pos)); vel(end+1) = vel(end);
-    acc = smooth(diff(vel)); acc(end+1) = acc(end);       
-    
+    acc = smooth(diff(vel)); acc(end+1) = acc(end);
+    vel = vel'; acc = acc';
     tim = 1/dat(1).pFs:1/dat(1).pFs:length(dat(1).pos)/dat(1).pFs;
 
 for j=2:length(dat)
@@ -73,7 +73,6 @@ for j=2:length(dat)
                     vtmp(end+1) = vtmp(end);
                     atmp = smooth(diff(vtmp));
                     atmp(end+1) = atmp(end);
-                    plot(vtmp)
                 vel = [vel, vtmp];
                 acc = [acc, atmp];
                 spiketimes = [spiketimes dat(j).st'+tim(end)];
