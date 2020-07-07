@@ -36,22 +36,20 @@ figure(2);
     
 %% Concatonate all
 
-    if length(pos(1,:)) > 1
         spiketimes = dat(1).st;
         pos = dat(1).pos;
-        vel = smooth(diff(pos)); vel(end+1) = vel(end);
-        acc = smooth(diff(vel)); acc(end+1) = acc(end);       
+        
         v = 0;
-    end
 % Is the data vertical (1) or not (0)?
 
     if length(pos(1,:)) == 1
         pos = pos';
-        vel = smooth(diff(pos)); vel(end+1) = vel(end);
-        acc = smooth(diff(vel)); acc(end+1) = acc(end);       
         spiketimes = spiketimes';
         v = 1;
     end
+    
+    vel = smooth(diff(pos)); vel(end+1) = vel(end);
+    acc = smooth(diff(vel)); acc(end+1) = acc(end);       
     
     tim = 1/dat(1).pFs:1/dat(1).pFs:length(dat(1).pos)/dat(1).pFs;
 
