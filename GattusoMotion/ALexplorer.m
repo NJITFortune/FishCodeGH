@@ -1,7 +1,9 @@
 dat = AL(13).s;
 
+subsample = 10;
+
 Fs = dat(1).pFs;
-[b,a] = butter(3, 1 / (Fs/2), 'low');
+sFs = Fs/subsample;
 
 fprintf('There were %i S1 entries. \n', length(find([dat.sizeDX] == 1)));
 fprintf('There were %i S2 entries. \n', length(find([dat.sizeDX] == 2)));
@@ -37,7 +39,7 @@ figure(2);
 %% Concatonate all
 
         spiketimes = dat(1).st;
-        pos = dat(1).pos;
+        pos = dat(1).pos(1:subsample:end);
         
         v = 0;
 % Is the data vertical (1) or not (0)?
@@ -51,15 +53,15 @@ figure(2);
     vel = smooth(diff(pos)); vel(end+1) = vel(end);
     acc = smooth(diff(vel)); acc(end+1) = acc(end);
     vel = vel'; acc = acc';
-    tim = 1/dat(1).pFs:1/dat(1).pFs:length(dat(1).pos)/dat(1).pFs;
+    tim = 1/sFs:1/sFs:length(dat(1).pos)/sFs;
 
 for j=2:length(dat)
 
     if ~isempty(dat(j).pFs)
         
             if v == 0 
-                pos = [pos, dat(j).pos];
-                    vtmp = smooth(diff(dat(j).pos));
+                pos = [pos, dat(j).pos(1:subsample:end)];
+                    vtmp = smooth(diff(dat(j).pos(1:subsample:end)));
                     vtmp(end+1) = vtmp(end);
                     atmp = smooth(diff(vtmp));
                     atmp(end+1) = atmp(end);
@@ -68,8 +70,8 @@ for j=2:length(dat)
                 spiketimes = [spiketimes dat(j).st+tim(end)];
             end
             if v == 1
-                pos = [pos, dat(j).pos']; 
-                    vtmp = smooth(diff(dat(j).pos'));
+                pos = [pos, dat(j).pos(1:subsample:end)']; 
+                    vtmp = smooth(diff(dat(j).pos(1:subsample:end)'));
                     vtmp(end+1) = vtmp(end);
                     atmp = smooth(diff(vtmp));
                     atmp(end+1) = atmp(end);
@@ -78,7 +80,7 @@ for j=2:length(dat)
                 spiketimes = [spiketimes dat(j).st'+tim(end)];
             end
                                     
-        tim = [tim tim(end)+(1/dat(j).pFs:1/dat(j).pFs:length(dat(j).pos)/dat(j).pFs)];
+        tim = [tim tim(end)+(1/sFs:1/sFs:length(dat(j).pos)/sFs)];
         length(pos)-length(tim)
         
     end % We had data
