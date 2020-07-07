@@ -80,7 +80,7 @@ for j=2:length(dat)
                 spiketimes = [spiketimes dat(j).st'+tim(end)];
             end
                                     
-        tim = [tim tim(end)+(1/sFs:1/sFs:length(dat(j).pos)/sFs)];
+        tim = [tim tim(end)+(1/sFs:1/sFs:length(dat(j).pos(1:subsample:end))/sFs)];
         length(pos)-length(tim)
         
     end % We had data
