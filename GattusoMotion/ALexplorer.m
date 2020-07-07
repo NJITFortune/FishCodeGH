@@ -94,6 +94,7 @@ for j=2:length(dat)
         end    
     
         tim = [tim tim(end)+(1/dat(j).pFs:1/dat(j).pFs:length(dat(j).pos)/dat(j).pFs)];
+        length(pos) - length(tim)
         
     end % We had data
 end % For every stimulus
