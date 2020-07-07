@@ -67,7 +67,7 @@ for j=2:length(dat)
             end
             if v == 1
                 pos = [pos, dat(j).pos']; 
-                    vtmp = smooth(diff(dat(j).pos)');
+                    vtmp = smooth(diff(dat(j).pos'));
                     vtmp(end+1) = vtmp(end);
                     atmp = smooth(diff(vtmp));
                     atmp(end+1) = atmp(end);
