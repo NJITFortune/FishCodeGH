@@ -69,14 +69,14 @@ for j=2:length(dat)
 
             ff = filtfilt(b,a,samp); 
             
-            pos(end-99:end+99) = ff;
+            pos(end-99:end+100) = ff;
             
             if v == 0
-                pos = [pos, dat(j).pos(100:end)];
+                pos = [pos, dat(j).pos(101:end)];
                 spiketimes = [spiketimes dat(j).st+tim(end)];
             end
             if v == 1
-                pos = [pos, dat(j).pos(100:end)'];
+                pos = [pos, dat(j).pos(101:end)'];
                 spiketimes = [spiketimes dat(j).st'+tim(end)];
             end
             
