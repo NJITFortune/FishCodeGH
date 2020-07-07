@@ -92,7 +92,7 @@ for j=2:length(dat)
                 spiketimes = [spiketimes dat(j).st'+tim(end)];
             end
         end    
-    
+        j
         tim = [tim tim(end)+(1/dat(j).pFs:1/dat(j).pFs:length(dat(j).pos)/dat(j).pFs)];
         length(pos)-length(tim)
         
