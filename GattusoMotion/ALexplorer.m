@@ -1,4 +1,4 @@
-dat = AL(end).s;
+dat = AL(40).s;
 
 subsample = 20;
 
