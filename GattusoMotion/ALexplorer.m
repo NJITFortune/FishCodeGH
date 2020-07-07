@@ -70,7 +70,7 @@ for j=2:length(dat)
             ff = filtfilt(b,a,samp); 
             length(ff)
             
-            pos(end-100:end+100) = ff;
+            pos(end-99:end+100) = ff;
             
             if v == 0
                 pos = [pos, dat(j).pos(100:end)];
