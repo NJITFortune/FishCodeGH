@@ -1,4 +1,4 @@
-dat = AL(16).s;
+dat = AL(13).s;
 
 Fs = dat(1).pFs;
 [b,a] = butter(3, 1 / (Fs/2), 'low');
