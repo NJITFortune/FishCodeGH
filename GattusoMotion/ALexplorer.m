@@ -73,8 +73,8 @@ for j=2:length(dat)
                     vtmp(end+1) = vtmp(end);
                     atmp = smooth(diff(vtmp));
                     atmp(end+1) = atmp(end);
-                vel = [vel, vtmp];
-                acc = [acc, atmp];
+                vel = [vel, vtmp'];
+                acc = [acc, atmp'];
                 spiketimes = [spiketimes dat(j).st'+tim(end)];
             end
                                     
