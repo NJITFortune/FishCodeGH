@@ -53,7 +53,7 @@ figure(2);
     vel = smooth(diff(pos)); vel(end+1) = vel(end);
     acc = smooth(diff(vel)); acc(end+1) = acc(end);
     vel = vel'; acc = acc';
-    tim = 1/sFs:1/sFs:length(dat(1).pos)/sFs;
+    tim = 1/sFs:1/sFs:length(dat(1).pos(1:subsample:end))/sFs;
 
 for j=2:length(dat)
 
@@ -81,7 +81,7 @@ for j=2:length(dat)
             end
                                     
         tim = [tim tim(end)+(1/sFs:1/sFs:length(dat(j).pos(1:subsample:end))/sFs)];
-        length(pos)-length(tim)
+        %length(pos)-length(tim)
         
     end % We had data
 end % For every stimulus
