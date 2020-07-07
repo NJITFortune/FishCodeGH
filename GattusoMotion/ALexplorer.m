@@ -41,10 +41,15 @@ pos = dat(1).pos;
         spiketimes = spiketimes';
         v = 1;
     end
-tim = 1/dat(1).pFs:1/dat(1).pFs:length(dat(1).pos)/dat(1).pFs;
+    
+    tim = 1/dat(1).pFs:1/dat(1).pFs:length(dat(1).pos)/dat(1).pFs;
 
 for j=2:length(dat)
-    if ~isempty(dat(j).pFs)
+    
+    if ~isempty(dat(j).pFs) % Make sure that we have data first
+        
+        % Make the edges of the stimuli meet up
+        
         if v == 0 
             pos = [pos, dat(j).pos]; 
             spiketimes = [spiketimes dat(j).st+tim(end)];
