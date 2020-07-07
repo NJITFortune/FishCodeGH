@@ -63,7 +63,7 @@ for j=2:length(dat)
                 samp = [samp, dat(j).pos(1:100)];
             end
             if v == 1
-            	samp = pos(end-100:end)'; 
+            	samp = pos(end-100:end); 
                 samp = [samp, dat(j).pos(1:100)'];
             end
 
