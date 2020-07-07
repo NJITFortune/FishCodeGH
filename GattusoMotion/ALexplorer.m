@@ -84,10 +84,6 @@ for j=2:length(dat)
     end % We had data
 end % For every stimulus
 
-
-    vel = smooth(diff(pos)); vel(end+1) = vel(end);
-    acc = smooth(diff(vel)); acc(end+1) = acc(end);
-
 % Make random spike train    
     ISIs = diff(spiketimes);
     randspikes(1) = spiketimes(1);
