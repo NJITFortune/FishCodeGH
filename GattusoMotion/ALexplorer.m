@@ -67,9 +67,12 @@ end
         randspikes(end+1) = randspikes(end) + ISIs(k);
     end
     
-%% Get the ISIs
+%% Get the STAs
 
-asdf = iu_sta(spiketimes, randspikes, pos(1:10:end), 100, 4);
-figure(3); clf; hold on; plot(asdf.time, asdf.MEAN, 'b-'); plot(asdf.time, asdf.randMEAN, 'r-');
+    asdf = iu_sta(spiketimes, randspikes, pos(1:10:end), 100, 4);
+    figure(3); clf; hold on; plot(asdf.time, asdf.MEAN, 'b-'); plot(asdf.time, asdf.randMEAN, 'r-');
 
+
+%% Get     
+    
     
