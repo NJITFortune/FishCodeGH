@@ -1,6 +1,6 @@
 dat = AL(13).s;
 
-subsample = 10;
+subsample = 20;
 
 Fs = dat(1).pFs;
 sFs = Fs/subsample;
