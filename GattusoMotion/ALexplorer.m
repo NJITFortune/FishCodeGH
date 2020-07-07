@@ -69,7 +69,7 @@ for j=2:length(dat)
 
             ff = filtfilt(b,a,samp); 
             
-            pos(end-99:end+100) = ff;
+            pos(end-99:end+99) = ff;
             
             if v == 0
                 pos = [pos, dat(j).pos(100:end)];
@@ -94,7 +94,7 @@ for j=2:length(dat)
         end    
     
         tim = [tim tim(end)+(1/dat(j).pFs:1/dat(j).pFs:length(dat(j).pos)/dat(j).pFs)];
-        length(pos) - length(tim)
+        
         
     end % We had data
 end % For every stimulus
