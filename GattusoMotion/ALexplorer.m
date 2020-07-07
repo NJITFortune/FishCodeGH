@@ -48,7 +48,10 @@ for j=2:length(dat)
     
     if ~isempty(dat(j).pFs) % Make sure that we have data first
         
-        % Make the edges of the stimuli meet up
+        % Make the edges of the stimuli meet up so that we don't have
+        % problems
+        
+        if dat(j).pos(1) ~= pos(end)
         
         if v == 0 
             pos = [pos, dat(j).pos]; 
