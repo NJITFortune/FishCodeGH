@@ -8,7 +8,9 @@ Fs = neuron(1).s(1).pFs;
 position =[];
 tim = [];
 spikes = [];
+
 for kk = 1:length(neuron)
+    
 for jj = 1:length(neuron(kk).s)               %% this cycles through all of the stimuli
     if neuron(kk).s(jj).sizeDX == size
         position = [position neuron(kk).s(jj).pos']; %change the "prime"
@@ -24,6 +26,7 @@ for jj = 1:length(neuron(kk).s)               %% this cycles through all of the 
         spikes = [spikes (neuron(kk).s(jj).st + nextim)'];
     end
 end
+
 end
 out.spikes = spikes;
 figure(1); clf; plot(spikes, '*');
