@@ -50,8 +50,8 @@ subplot(313); title('Acceleration'); hold on;
 figure(28); clf;
 
 subplot(311); title('Position'); hold on;
-    histogram('BinEdges', out.Prand.edges, 'BinCounts', out.Prand.OccHist);
-    histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.OccHist);
+    histogram('BinEdges', out.Prand.edges, 'BinCounts', out.Prand.OccHist, 'FaceColor', 'r');
+    histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.OccHist, 'FaceColor', 'b');
 subplot(312); title('Velocity'); hold on;
     histogram('BinEdges', out.Vrand.edges, 'BinCounts', out.Vrand.OccHist);
     histogram('BinEdges', out.Vresponse.edges, 'BinCounts', out.Aresponse.OccHist);
