@@ -20,48 +20,51 @@ tim = 1/Fs:1/Fs:length(pos)/Fs; % Time stamps for the duration of the signal.
     RspikeVEL = interp1(tim, vel, randspiketimes);
     RspikeACC = interp1(tim, acc, randspiketimes);
 
-
+    out.Presponse = OccHist(pos, spikePOS);
+    out.Prand = OccHist(pos, RspikePOS);
     
-allSpikes_rand    = N2_rand;     allSpikes_rand(~isfinite(allSpikes_rand)) = 0;
-OccCorrected_rand = N2_rand./N1; OccCorrected_rand(~isfinite(OccCorrected_rand)) = 0;
-
+    out.Vresponse = OccHist(vel, spikeVEL);
+    out.Vrand = OccHist(vel, RspikeVEL);
+    
+    out.Aresponse = OccHist(acc, spikeACC);
+    out.Arand = OccHist(acc, RspikeACC);
+    
 figure,
 
-subplot 311
-histogram('BinEdges',edges,'BinCounts',occMap)
-title('Occupancy Map - All Spikes as Isolated')
+subplot(311); title('Position'); hold on;
+    plot(out.Prand.edges, out.Prand.stimulusHist, 'r-*');
+    plot(out.Presponse.edges, out.Presponse.stimulusHist, 'b-*');
 
-subplot 312
-histogram('BinEdges',edges,'BinCounts',allSpikes)
-title('Uncorrected Spike Distribution')
+subplot(312); title('Velocity'); hold on;
+    plot(out.Vrand.edges, out.Vrand.stimulusHist, 'r-*');
+    plot(out.Vresponse.edges, out.Vresponse.stimulusHist, 'b-*');
 
-subplot 313
-hold on
-histogram('BinEdges',edges,'BinCounts',OccCorrected)
-histogram('BinEdges',edges,'BinCounts',OccCorrected_rand,'DisplayStyle','stairs','LineWidth',2)
-legend('Actual', 'Randomized')
-title('Occupancy Corrected Spike Rate')
+subplot(313); title('Acceleration'); hold on;
+    plot(out.Arand.edges, out.Arand.stimulusHist, 'r-*');
+    plot(out.Aresponse.edges, out.Aresponse.stimulusHist, 'b-*');
 
+    
     function foo = OccHist(sig, spks)
         
     % Determine edge boundaries
     meanFeature = mean(spks);
-    histBound   = abs((meanFeature >= 0) * (meanFeature + std_coeff*std(spks)) + (meanFeature < 0) * (meanFeature - std_coeff*std(spks)));
-    cvrg    = 100 * sum(spks > -histBound & spks < histBound) / length(spks);
-    edgs  = linspace(-histBound, histBound, numOfBins+1);
+    histBound = abs((meanFeature >= 0) * (meanFeature + std_coeff*std(spks)) + (meanFeature < 0) * (meanFeature - std_coeff*std(spks)));
+    cvrg = 100 * sum(spks > -histBound & spks < histBound) / length(spks);
+    edgs = linspace(-histBound, histBound, numOfBins+1);
 
-    hc      = histcounts(sig, edgs);
+    foo.stimulusHist      = histcounts(sig, edgs);
     % hc      = hc / 25;
     
-    N2      = histcounts(spks, edgs);
+    foo.responseHist      = histcounts(spks, edgs);
+    foo.randHist      = histcounts(spks, edgs);
 
-    occMap       = N1;     
-        occMap(~isfinite(occMap)) = 0;
-    allSpikes    = N2;     
-        allSpikes(~isfinite(allSpikes)) = 0;
-    OccCorrected = N2./N1; 
-        OccCorrected(~isfinite(OccCorrected)) = 0;
+        foo.stimulusHist(~isfinite(foo.stimulusHist)) = 0;
+        foo.responseHist(~isfinite(foo.responseHist)) = 0;
+        foo.OccHist = foo.responseHist ./ foo.stimulusHist; 
+            foo.OccHist(~isfinite(foo.OccHist)) = 0;
     
+        foo.edges = edgs;
+            
     end
 
 
