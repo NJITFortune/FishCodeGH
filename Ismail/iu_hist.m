@@ -34,7 +34,7 @@ figure(27); clf;
 subplot(311); title('Position'); hold on;
 length(out.Prand.edges)
 length(out.Prand.stimulusHist)
-    histogram(out.Prand.edges, out.Prand.stimulusHist, 'r-*');
+    histogram(out.Prand.stimulusHist, out.Prand.edges);
     plot(out.Presponse.edges, out.Presponse.stimulusHist, 'b-*');
 
 subplot(312); title('Velocity'); hold on;
