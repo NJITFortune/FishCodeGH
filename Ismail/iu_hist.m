@@ -33,8 +33,9 @@ figure(27); clf;
 
 subplot(311); title('Position'); hold on;
 
-    histogram('BinEdges', out.Prand.stimulusHist, out.Prand.edges);
-    histogram(out.Presponse.stimulusHist, out.Presponse.edges);
+    histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.stimulusHist);
+    histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.responseHist);
+    histogram('BinEdges', out.Prand.edges, 'BinCounts', out.Prand.responseHist);
     %plot(out.Presponse.edges, out.Presponse.stimulusHist, 'b-*');
 
 subplot(312); title('Velocity'); hold on;
