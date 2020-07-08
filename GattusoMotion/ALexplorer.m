@@ -104,6 +104,8 @@ end % For every stimulus
         subplot(313); hold on; plot(aSTA.time, aSTA.MEAN, 'b-'); plot(aSTA.time, aSTA.randMEAN, 'r-');
 
 
-%% Get     
+%% Histogram
+
+asdf = iu_hist(
     
     
