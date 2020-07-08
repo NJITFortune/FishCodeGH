@@ -1,4 +1,4 @@
-dat = AL(32).s;
+function zz = ALexplorer(dat)
 
 subsample = 20;
 
@@ -116,7 +116,7 @@ end
 
 %% Histogram
 
-    asdf = iu_hist(spiketimes, randspikes, pos, vel, acc, sFs);
+    zz = iu_hist(spiketimes, randspikes, pos, vel, acc, sFs);
 
 
     
