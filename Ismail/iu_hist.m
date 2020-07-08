@@ -48,7 +48,7 @@ subplot(313); title('Acceleration'); hold on;
 
     
     function foo = OccHist(sig, spks)
-        
+        std_coeff   = 3;
     % Determine edge boundaries
     meanFeature = mean(spks);
     histBound = abs((meanFeature >= 0) * (meanFeature + std_coeff*std(spks)) + (meanFeature < 0) * (meanFeature - std_coeff*std(spks)));
