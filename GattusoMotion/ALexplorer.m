@@ -60,13 +60,13 @@ sizeDX = [];
 % If the user specified more than one stimulus, we have to concatenate
 if length(sizeDX) > 1
     
-    for j=2:length(dat)
+    for j=2:length(sizeDX)
 
-        if ~isempty(dat(j).pFs)
+        if ~isempty(dat(sizeDX(j)).pFs)
 
                 if v == 0 
-                    pos = [pos, dat(j).pos(1:subsample:end)];
-                        vtmp = smooth(diff(dat(j).pos(1:subsample:end)));
+                    pos = [pos, dat(sizeDX(j)).pos(1:subsample:end)];
+                        vtmp = smooth(diff(dat(sizeDX(j)).pos(1:subsample:end)));
                         vtmp(end+1) = vtmp(end);
                         atmp = smooth(diff(vtmp));
                         atmp(end+1) = atmp(end);
@@ -75,17 +75,17 @@ if length(sizeDX) > 1
                     spiketimes = [spiketimes dat(j).st+tim(end)];
                 end
                 if v == 1
-                    pos = [pos, dat(j).pos(1:subsample:end)']; 
-                        vtmp = smooth(diff(dat(j).pos(1:subsample:end)'));
+                    pos = [pos, dat(sizeDX(j)).pos(1:subsample:end)']; 
+                        vtmp = smooth(diff(dat(sizeDX(j)).pos(1:subsample:end)'));
                         vtmp(end+1) = vtmp(end);
                         atmp = smooth(diff(vtmp));
                         atmp(end+1) = atmp(end);
                     vel = [vel, vtmp'];
                     acc = [acc, atmp'];
-                    spiketimes = [spiketimes dat(j).st'+tim(end)];
+                    spiketimes = [spiketimes dat(sizeDX(j)).st'+tim(end)];
                 end
 
-            tim = [tim tim(end)+(1/sFs:1/sFs:length(dat(j).pos(1:subsample:end))/sFs)];
+            tim = [tim tim(end)+(1/sFs:1/sFs:length(dat(sizeDX(j)).pos(1:subsample:end))/sFs)];
             %length(pos)-length(tim)
 
         end % We had data
