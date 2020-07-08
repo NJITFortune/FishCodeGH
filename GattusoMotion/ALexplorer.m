@@ -17,24 +17,20 @@ fprintf('There were %i L entries. \n', length(find([dat.sizeDX] == 8)));
 %fprintf('There were %i S1 entries. \n', length(find([dat.sizeDX] == 1)));
 
 % Show the data from this neuron
-figure(1); 
-    clf;
-    hold on; 
-    for j=1:length(dat)
-        yy = ones(length(dat(j).st));
-        plot(dat(j).st, yy*j, 'k.', 'MarkerSize', 2);        
-    end
-    
-figure(2); 
-    clf;
-    hold on; 
-    for j=1:length(dat)
-        if dat(j).pFs ~=0
+figure(1); clf; hold on; 
+
+    for j=1:length(dat) % For each stimulus entry
+        if dat(j).pFs ~=0 % If there is data
+            
+        % Plot the data at y value *10 of entry number (to separate them)
         tim = 1/dat(j).pFs:1/dat(j).pFs:length(dat(j).pos)/dat(j).pFs;
         plot(tim, dat(j).pos + 10*j, 'k-');
+
+        ySpikes = interp1(tim, dat(j).pos, dat(j).st);
+        plot(dat(j).st, ySpikes + 10*j, 'b.', 'MarkerSize', 1);    
         end
     end
-   
+       
     
 %% Concatonate all
 
