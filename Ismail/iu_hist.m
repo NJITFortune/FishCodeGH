@@ -51,7 +51,8 @@ subplot(313); title('Acceleration'); hold on;
         numOfBins = 10;
         std_coeff   = 3;
     % Determine edge boundaries
-    meanFeature = mean(spks);
+    
+    meanFeature = mean(sig);
     histBound = abs((meanFeature >= 0) * (meanFeature + std_coeff*std(spks)) + (meanFeature < 0) * (meanFeature - std_coeff*std(spks)));
     cvrg = 100 * sum(spks > -histBound & spks < histBound) / length(spks);
     edgs = linspace(-histBound, histBound, numOfBins+1);
