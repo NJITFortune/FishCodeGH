@@ -25,6 +25,7 @@ figure(1); clf; hold on;
         % Plot the data at y value *10 of entry number (to separate them)
         tim = 1/dat(j).pFs:1/dat(j).pFs:length(dat(j).pos)/dat(j).pFs;
         plot(tim, dat(j).pos + 10*j, 'k-');
+        text(10, 10*j, dat(j).size);
 
         ySpikes = interp1(tim, dat(j).pos, dat(j).st);
         plot(dat(j).st, ySpikes + 10*j, 'b.', 'MarkerSize', 8);    
