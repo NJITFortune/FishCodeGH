@@ -27,7 +27,7 @@ figure(1); clf; hold on;
         plot(tim, dat(j).pos + 10*j, 'k-');
 
         ySpikes = interp1(tim, dat(j).pos, dat(j).st);
-        plot(dat(j).st, ySpikes + 10*j, 'b.', 'MarkerSize', 2);    
+        plot(dat(j).st, ySpikes + 10*j, 'b.', 'MarkerSize', 8);    
         end
     end
        
