@@ -10,27 +10,17 @@ tim = 1/Fs:1/Fs:length(pos)/Fs; % Time stamps for the duration of the signal.
 
 
 
-% Get the signal values
+% Get the signal values at spike times
 
-spikePOS = interp1(tim, pos, spiketimes);
+    spikePOS = interp1(tim, pos, spiketimes);
+    spikeVEL = interp1(tim, vel, spiketimes);
+    spikeACC = interp1(tim, acc, spiketimes);
+
+    RspikePOS = interp1(tim, pos, randspiketimes);
+    RspikeVEL = interp1(tim, vel, randspiketimes);
+    RspikeACC = interp1(tim, acc, randspiketimes);
 
 
-% Determine edge boundaries
-    meanFeature = mean(spike_features);
-    histBound   = abs((meanFeature >= 0) * (meanFeature + std_coeff*std(spike_features)) + (meanFeature < 0) * (meanFeature - std_coeff*std(spike_features)));
-    coverage    = 100 * sum(spike_features > -histBound & spike_features < histBound) / length(spike_features);
-    edges  = linspace(-histBound, histBound, numOfBins+1);
-
-    N1      = histcounts(occupancy, edges);
-    N1      = N1 / 25;
-    
-    N2      = histcounts(spike_features, edges);
-    N2_rand = histcounts(spike_features_rand, edges); 
-
-    occMap       = N1;     occMap(~isfinite(occMap)) = 0;
-    allSpikes    = N2;     allSpikes(~isfinite(allSpikes)) = 0;
-    OccCorrected = N2./N1; 
-    OccCorrected(~isfinite(OccCorrected)) = 0;
     
 allSpikes_rand    = N2_rand;     allSpikes_rand(~isfinite(allSpikes_rand)) = 0;
 OccCorrected_rand = N2_rand./N1; OccCorrected_rand(~isfinite(OccCorrected_rand)) = 0;
@@ -51,6 +41,28 @@ histogram('BinEdges',edges,'BinCounts',OccCorrected)
 histogram('BinEdges',edges,'BinCounts',OccCorrected_rand,'DisplayStyle','stairs','LineWidth',2)
 legend('Actual', 'Randomized')
 title('Occupancy Corrected Spike Rate')
+
+    function foo = OccHist(sig, spks)
+        
+    % Determine edge boundaries
+    meanFeature = mean(spks);
+    histBound   = abs((meanFeature >= 0) * (meanFeature + std_coeff*std(spks)) + (meanFeature < 0) * (meanFeature - std_coeff*std(spks)));
+    cvrg    = 100 * sum(spks > -histBound & spks < histBound) / length(spks);
+    edgs  = linspace(-histBound, histBound, numOfBins+1);
+
+    hc      = histcounts(sig, edgs);
+    % hc      = hc / 25;
+    
+    N2      = histcounts(spks, edgs);
+
+    occMap       = N1;     
+        occMap(~isfinite(occMap)) = 0;
+    allSpikes    = N2;     
+        allSpikes(~isfinite(allSpikes)) = 0;
+    OccCorrected = N2./N1; 
+        OccCorrected(~isfinite(OccCorrected)) = 0;
+    
+    end
 
 
 end
