@@ -11,13 +11,9 @@ tim = 1/Fs:1/Fs:length(sig)/Fs; % Time stamps for the duration of the signal.
 
 
 % Get the signal values
-for j=length(spiketimes):-1:1
-    
-    
-    
-    
-    
-end
+
+spikePOS = interp1(tim, pos, spiketimes);
+
 
 % Determine edge boundaries
     meanFeature = mean(spike_features);
