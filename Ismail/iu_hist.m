@@ -69,16 +69,15 @@ subplot(313); title('Acceleration'); hold on;
     histBound = std_coeff * std(sig);    
     edgs = linspace(mean(sig)-histBound, mean(sig)+histBound, numOfBins+1);
     
-    foo.stimulusHist      = histcounts(sig, edgs);
+    foo.stimulusHist = histcounts(sig, edgs);
+        foo.stimulusHist(~isfinite(foo.stimulusHist)) = 0;
     % hc      = hc / 25;
     
-    foo.responseHist      = histcounts(spks, edgs);
-    foo.randHist      = histcounts(spks, edgs);
-
-        foo.stimulusHist(~isfinite(foo.stimulusHist)) = 0;
+    foo.responseHist = histcounts(spks, edgs);
         foo.responseHist(~isfinite(foo.responseHist)) = 0;
-        foo.OccHist = foo.responseHist ./ foo.stimulusHist; 
-            foo.OccHist(~isfinite(foo.OccHist)) = 0;
+        
+    foo.OccHist = foo.responseHist ./ foo.stimulusHist; 
+        foo.OccHist(~isfinite(foo.OccHist)) = 0;
     
         foo.edges = edgs;
             
