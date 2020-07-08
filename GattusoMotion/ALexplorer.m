@@ -1,4 +1,4 @@
-function zz = ALexplorer(dat)
+function out = ALexplorer(dat)
 
 subsample = 20;
 
@@ -105,7 +105,8 @@ end
     pSTA = iu_sta(spiketimes, randspikes, pos, sFs, 2);
     vSTA = iu_sta(spiketimes, randspikes, vel, sFs, 2);
     aSTA = iu_sta(spiketimes, randspikes, acc, sFs, 2);
-    figure(3); clf; 
+    
+    figure; clf; 
         subplot(311); hold on; plot(pSTA.time, pSTA.MEAN, 'b-'); 
             plot(pSTA.time, pSTA.randMEAN, 'r-');
         subplot(312); hold on; plot(vSTA.time, vSTA.MEAN, 'b-'); 
@@ -116,8 +117,19 @@ end
 
 %% Histogram
 
-    zz = iu_hist(spiketimes, randspikes, pos, vel, acc, sFs);
+    out = iu_hist(spiketimes, randspikes, pos, vel, acc, sFs);
 
+figure; clf;
+
+subplot(311); title('Position'); hold on;
+    histogram('BinEdges', out.Prand.edges, 'BinCounts', out.Prand.OccHist, 'FaceColor', 'r');
+    histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.OccHist, 'FaceColor', 'b');
+subplot(312); title('Velocity'); hold on;
+    histogram('BinEdges', out.Vrand.edges, 'BinCounts', out.Vrand.OccHist, 'FaceColor', 'r');
+    histogram('BinEdges', out.Vresponse.edges, 'BinCounts', out.Aresponse.OccHist, 'FaceColor', 'b');
+subplot(313); title('Acceleration'); hold on;
+    histogram('BinEdges', out.Arand.edges, 'BinCounts', out.Arand.OccHist, 'FaceColor', 'r');
+    histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.OccHist, 'FaceColor', 'b');
 
     
     
