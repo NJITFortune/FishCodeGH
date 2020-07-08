@@ -33,7 +33,7 @@ figure(27); clf;
 
 subplot(311); title('Position'); hold on;
 
-    histogram(out.Prand.stimulusHist, out.Prand.edges);
+    histogram('BinEdges', out.Prand.stimulusHist, out.Prand.edges);
     histogram(out.Presponse.stimulusHist, out.Presponse.edges);
     %plot(out.Presponse.edges, out.Presponse.stimulusHist, 'b-*');
 
