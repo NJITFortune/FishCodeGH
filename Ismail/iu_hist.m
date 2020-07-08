@@ -38,12 +38,12 @@ subplot(311); title('Position'); hold on;
     %plot(out.Presponse.edges, out.Presponse.stimulusHist, 'b-*');
 
 subplot(312); title('Velocity'); hold on;
-    plot(out.Vrand.edges, out.Vrand.stimulusHist, 'r-*');
-    plot(out.Vresponse.edges, out.Vresponse.stimulusHist, 'b-*');
+%     plot(out.Vrand.edges, out.Vrand.stimulusHist, 'r-*');
+%     plot(out.Vresponse.edges, out.Vresponse.stimulusHist, 'b-*');
 
 subplot(313); title('Acceleration'); hold on;
-    plot(out.Arand.edges, out.Arand.stimulusHist, 'r-*');
-    plot(out.Aresponse.edges, out.Aresponse.stimulusHist, 'b-*');
+%     plot(out.Arand.edges, out.Arand.stimulusHist, 'r-*');
+%     plot(out.Aresponse.edges, out.Aresponse.stimulusHist, 'b-*');
 
     
     function foo = OccHist(sig, spks)
