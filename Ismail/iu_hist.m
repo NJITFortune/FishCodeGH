@@ -52,9 +52,7 @@ subplot(313); title('Acceleration'); hold on;
         std_coeff   = 3;
     % Determine edge boundaries
     
-    meanFeature = mean(sig);
-    histBound = abs(meanFeature + std_coeff*std(sig));
-    
+    histBound = abs(mean(sig) + std_coeff*std(sig));    
     edgs = linspace(-histBound, histBound, numOfBins+1);
     
     foo.stimulusHist      = histcounts(sig, edgs);
