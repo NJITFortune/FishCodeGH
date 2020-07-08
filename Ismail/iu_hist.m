@@ -6,7 +6,7 @@ function out = iu_hist(spiketimes, randspiketimes, pos, vel, acc, Fs)
 % Fs is the sample rate (usually 25 for these data, fs = 25
 % wid is the width of the spike triggered average in seconds (1 or 2 seconds is good)%% Histogram of All Spikes as Isolated Spikes
 
-tim = 1/Fs:1/Fs:length(sig)/Fs; % Time stamps for the duration of the signal.
+tim = 1/Fs:1/Fs:length(pos)/Fs; % Time stamps for the duration of the signal.
 
 
 
