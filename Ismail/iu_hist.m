@@ -53,11 +53,11 @@ subplot(311); title('Position'); hold on;
     histogram('BinEdges', out.Prand.edges, 'BinCounts', out.Prand.OccHist, 'FaceColor', 'r');
     histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.OccHist, 'FaceColor', 'b');
 subplot(312); title('Velocity'); hold on;
-    histogram('BinEdges', out.Vrand.edges, 'BinCounts', out.Vrand.OccHist);
-    histogram('BinEdges', out.Vresponse.edges, 'BinCounts', out.Aresponse.OccHist);
+    histogram('BinEdges', out.Vrand.edges, 'BinCounts', out.Vrand.OccHist, 'FaceColor', 'r');
+    histogram('BinEdges', out.Vresponse.edges, 'BinCounts', out.Aresponse.OccHist, 'FaceColor', 'b');
 subplot(313); title('Acceleration'); hold on;
-    histogram('BinEdges', out.Arand.edges, 'BinCounts', out.Arand.OccHist);
-    histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.OccHist);
+    histogram('BinEdges', out.Arand.edges, 'BinCounts', out.Arand.OccHist, 'FaceColor', 'r');
+    histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.OccHist, 'FaceColor', 'b');
 
     
     function foo = OccHist(sig, spks)
