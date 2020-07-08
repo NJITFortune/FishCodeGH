@@ -13,9 +13,6 @@ tim = 1/Fs:1/Fs:length(pos)/Fs; % Time stamps for the duration of the signal.
 % Get the signal values at spike times
 
     spikePOS = interp1(tim, pos, spiketimes);
-        length(pos)
-        length(vel)
-        length(tim)
     spikeVEL = interp1(tim, vel, spiketimes);
     spikeACC = interp1(tim, acc, spiketimes);
 
@@ -35,6 +32,8 @@ tim = 1/Fs:1/Fs:length(pos)/Fs; % Time stamps for the duration of the signal.
 figure(27); clf;
 
 subplot(311); title('Position'); hold on;
+length(out.Prand.edges)
+length(out.Prand.stimulusHist)
     plot(out.Prand.edges, out.Prand.stimulusHist, 'r-*');
     plot(out.Presponse.edges, out.Presponse.stimulusHist, 'b-*');
 
