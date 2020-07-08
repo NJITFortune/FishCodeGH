@@ -1,4 +1,4 @@
-function out = iu_hist(spiketimes, randspiketimes, sig, Fs, wid)
+function out = iu_hist(spiketimes, randspiketimes, sig, Fs)
 % Function out = iu_hist(spikes, randspikes, sig, Fs, wid)
 % spikes are the spike times
 % randspikes are shuffled spike times
@@ -8,10 +8,16 @@ function out = iu_hist(spiketimes, randspiketimes, sig, Fs, wid)
 
 tim = 1/Fs:1/Fs:length(sig)/Fs; % Time stamps for the duration of the signal.
 
-    tt = find(tim > wid(1) & tim < wid(2));
-    st = find(spiketimes > wid(1) & spiketimes < wid(2));
-    rt = find(randspiketimes > wid(1) & randspiketimes < wid(2));
+
+
+% Get the signal values
+for j=length(spiketimes):-1:1
     
+    
+    
+    
+    
+end
 
 % Determine edge boundaries
     meanFeature = mean(spike_features);
@@ -21,13 +27,15 @@ tim = 1/Fs:1/Fs:length(sig)/Fs; % Time stamps for the duration of the signal.
 
     N1      = histcounts(occupancy, edges);
     N1      = N1 / 25;
+    
     N2      = histcounts(spike_features, edges);
     N2_rand = histcounts(spike_features_rand, edges); 
 
-occMap       = N1;     occMap(~isfinite(occMap)) = 0;
-allSpikes    = N2;     allSpikes(~isfinite(allSpikes)) = 0;
+    occMap       = N1;     occMap(~isfinite(occMap)) = 0;
+    allSpikes    = N2;     allSpikes(~isfinite(allSpikes)) = 0;
     OccCorrected = N2./N1; 
     OccCorrected(~isfinite(OccCorrected)) = 0;
+    
 allSpikes_rand    = N2_rand;     allSpikes_rand(~isfinite(allSpikes_rand)) = 0;
 OccCorrected_rand = N2_rand./N1; OccCorrected_rand(~isfinite(OccCorrected_rand)) = 0;
 
