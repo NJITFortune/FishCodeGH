@@ -76,7 +76,7 @@ subplot(313); title('Acceleration'); hold on;
     foo.responseHist = histcounts(spks, edgs);
         foo.responseHist(~isfinite(foo.responseHist)) = 0;
         
-    foo.OccHist = foo.responseHist ./ foo.stimulusHist; 
+    foo.OccHist = (foo.responseHist / max(foo.responseHist)) ./ (foo.stimulusHist / max(foo.stimulusHist)); 
         foo.OccHist(~isfinite(foo.OccHist)) = 0;
     
         foo.edges = edgs;
