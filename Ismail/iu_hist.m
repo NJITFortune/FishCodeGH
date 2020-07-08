@@ -32,10 +32,10 @@ tim = 1/Fs:1/Fs:length(pos)/Fs; % Time stamps for the duration of the signal.
 figure(27); clf;
 
 subplot(311); title('Position'); hold on;
-length(out.Prand.edges)
-length(out.Prand.stimulusHist)
+
     histogram(out.Prand.stimulusHist, out.Prand.edges);
-    plot(out.Presponse.edges, out.Presponse.stimulusHist, 'b-*');
+    histogram(out.Presponse.stimulusHist, out.Presponse.edges);
+    %plot(out.Presponse.edges, out.Presponse.stimulusHist, 'b-*');
 
 subplot(312); title('Velocity'); hold on;
     plot(out.Vrand.edges, out.Vrand.stimulusHist, 'r-*');
@@ -56,7 +56,7 @@ subplot(313); title('Acceleration'); hold on;
     histBound = abs((meanFeature >= 0) * (meanFeature + std_coeff*std(sig)) + (meanFeature < 0) * (meanFeature - std_coeff*std(sig)));
     cvrg = 100 * sum(sig > -histBound & sig < histBound) / length(sig);
     edgs = linspace(-histBound, histBound, numOfBins+1);
-
+    
     foo.stimulusHist      = histcounts(sig, edgs);
     % hc      = hc / 25;
     
