@@ -62,7 +62,7 @@ subplot(313); title('Acceleration'); hold on;
     
     function foo = OccHist(sig, spks)
         
-        numOfBins = 5;
+        numOfBins = 8;
         std_coeff   = 3;
     % Determine edge boundaries
     
