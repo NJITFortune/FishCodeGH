@@ -1,4 +1,4 @@
-function out = iu_hist(spiketimes, spikeYs, randspiketimes, randspikeYs, sig, Fs, wid)
+function out = iu_hist(spiketimes, randspiketimes, sig, Fs, wid)
 % Function out = iu_hist(spikes, randspikes, sig, Fs, wid)
 % spikes are the spike times
 % randspikes are shuffled spike times
