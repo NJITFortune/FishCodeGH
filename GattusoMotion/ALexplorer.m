@@ -1,4 +1,4 @@
-dat = AL(40).s;
+dat = AL(32).s;
 
 subsample = 20;
 
@@ -107,6 +107,7 @@ end % For every stimulus
 %% Histogram
 
 asdf = iu_hist(spiketimes, randspikes, pos, vel, acc, sFs);
+
 
     
     
