@@ -106,6 +106,7 @@ end % For every stimulus
 
 %% Histogram
 
-asdf = iu_hist(
+asdf = iu_hist(spiketimes, randspikes, pos, vel, acc, sFs);
+
     
     
