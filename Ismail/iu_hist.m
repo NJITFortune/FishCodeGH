@@ -29,25 +29,25 @@ tim = 1/Fs:1/Fs:length(pos)/Fs; % Time stamps for the duration of the signal.
     out.Aresponse = OccHist(acc, spikeACC);
     out.Arand = OccHist(acc, RspikeACC);
     
-figure(27); clf;
+% figure(27); clf;
+% 
+% subplot(311); title('Position'); hold on;
+% 
+%     histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.stimulusHist);
+%     histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.responseHist);
+%     histogram('BinEdges', out.Prand.edges, 'BinCounts', out.Prand.responseHist);
+% 
+% subplot(312); title('Velocity'); hold on;
+%     histogram('BinEdges', out.Vresponse.edges, 'BinCounts', out.Vresponse.stimulusHist);
+%     histogram('BinEdges', out.Vresponse.edges, 'BinCounts', out.Vresponse.responseHist);
+%     histogram('BinEdges', out.Vrand.edges, 'BinCounts', out.Vrand.responseHist);
+% 
+% subplot(313); title('Acceleration'); hold on;
+%     histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.stimulusHist);
+%     histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.responseHist);
+%     histogram('BinEdges', out.Arand.edges, 'BinCounts', out.Arand.responseHist);
 
-subplot(311); title('Position'); hold on;
-
-    histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.stimulusHist);
-    histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.responseHist);
-    histogram('BinEdges', out.Prand.edges, 'BinCounts', out.Prand.responseHist);
-
-subplot(312); title('Velocity'); hold on;
-    histogram('BinEdges', out.Vresponse.edges, 'BinCounts', out.Vresponse.stimulusHist);
-    histogram('BinEdges', out.Vresponse.edges, 'BinCounts', out.Vresponse.responseHist);
-    histogram('BinEdges', out.Vrand.edges, 'BinCounts', out.Vrand.responseHist);
-
-subplot(313); title('Acceleration'); hold on;
-    histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.stimulusHist);
-    histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.responseHist);
-    histogram('BinEdges', out.Arand.edges, 'BinCounts', out.Arand.responseHist);
-
-figure(28); clf;
+figure; clf;
 
 subplot(311); title('Position'); hold on;
     histogram('BinEdges', out.Prand.edges, 'BinCounts', out.Prand.OccHist, 'FaceColor', 'r');
