@@ -11,7 +11,7 @@
 
 
 realCorrs = []; shuffCorrs = []; shiftCorrs = [];
-idxPs = []; idxKs = []; timStarts = []; meandF = [];
+idxPs = []; idxKs = []; timStarts = []; meandF = []; meanDistance = [];
 Fs = 4.8828; % This is the sample rate that emerged from the grid analysis.
 
 CorrWindow = 300; % Time in seconds for correlation analysis
@@ -71,6 +71,7 @@ for j = 1:length(data(kk).pair) % For each pair of fish
         timStarts(end+1) = StepSz * (z-1);
         
         meandF(end+1) = mean(data(kk).pair(j).dF(tt));
+        meanDistance(end+1) = mean(data(kk).pair(j).descartes(tt));
         
     end    
     
@@ -100,7 +101,7 @@ pltbins = -0.9:0.2:0.9;
         hold on; 
     histogram(realCorrs, cenbins, 'FaceColor', 'blue');
     
-% TESTING significance.  We have 3908 samples for CAVE.
+% TESTING significance. 
 
 % MORE STRONG POSITIVE CORRELATIONS than expected?
 posthresh = 0.6;
