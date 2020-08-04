@@ -3,17 +3,20 @@ function [out, alldFs] = dFanalysis(data)
 % load SurfaceDataRev2018a.mat and/or CaveDataRev2018a.mat
 % This cycles through each entry in the data and extracts pairwise dFs
 
-minimuminteraction = 50; % The minimum number of shared sample times to be considered for dF analysis
-alldFs = [];
-goodidxs = [];
+    minimuminteraction = 50; % The minimum number of shared sample times to be considered for dF analysis
+    alldFs = [];
+    goodidxs = [];
 
-for kk=1:length(data)
-    if length(data(kk).fish) > 1
-        goodidxs = [goodidxs kk];
+% Get indices for recordings that have more than 1 fish    
+    for kk=1:length(data)
+        if length(data(kk).fish) > 1
+            goodidxs = [goodidxs kk];
+        end
     end
-end
 
 %for kk = 3:3 % for testing - I happen to know cave(3) is a good sample
+
+%% Cycle through each recording
 for kk = goodidxs(end:-1:1)    
     
     numfish = length(data(kk).fish); % How many fish in this recording
