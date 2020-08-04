@@ -14,8 +14,8 @@ realCorrs = []; shuffCorrs = []; shiftCorrs = [];
 idxPs = []; idxKs = []; timStarts = []; meandF = [];
 Fs = 4.8828; % This is the sample rate that emerged from the grid analysis.
 
-CorrWindow = 200; % Time in seconds for correlation analysis
-StepSz = 100; % Time in seconds for the step
+CorrWindow = 600; % Time in seconds for correlation analysis
+StepSz = 300; % Time in seconds for the step
 
 %for kk = 3 % Placeholder for our data
 for kk = 1:length(data)
