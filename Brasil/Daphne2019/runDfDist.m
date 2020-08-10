@@ -146,7 +146,10 @@ clear stepnum tt tf ts fakies z tim makethemthesamelength numbins j kk cenbins
 
 % CALCULATE DIFFERENCE BETWEEN CAVE AND SURFACE MEAN dFs
 
+srfMEANdF = meandF;
+data = caveDF;
 
+runDfDist
 caveMEANdF = meandF;
 [aa,ss,dd,ff] = ttest2(caveMEANdF,srfMEANdF)
 
