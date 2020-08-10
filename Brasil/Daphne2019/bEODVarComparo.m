@@ -4,6 +4,7 @@ StepSize = 600;
 %% Immobilized (in tubes) Surface Fish in the grid
 
 SurfImmobileSTDs = [];
+nSurfSolo = 13;
 
 % Surface recording #1
 for fishidx = [7 9 11] 
@@ -49,12 +50,12 @@ end
 SurfImmobileSTDs = SurfImmobileSTDs(~isnan(SurfImmobileSTDs));
 SurfImmobileSTDs = SurfImmobileSTDs(SurfImmobileSTDs ~= 0);
 
-fprintf('Surface Immobile STDs: Mean = %2.8f, STD %2.8f, N=%i \n', mean(SurfImmobileSTDs), std(SurfImmobileSTDs), length(SurfImmobileSTDs));
+fprintf('Surface Immobile STDs: Mean = %2.8f, STD %2.8f, Nsamples=%i, Nfish=%i \n', mean(SurfImmobileSTDs), std(SurfImmobileSTDs), length(SurfImmobileSTDs), nSurfSolo);
 
 %% Moving Surface Fish in the grid
 
 SurfGroupSTDs = [];
-
+nSurfGroup = 97;
 idx = 1;
 for fishidx = [1 2 3 4 5 6  8  10  12]
     %for j = 1:2 % 0 to 600
@@ -103,7 +104,7 @@ end
 SurfGroupSTDs = SurfGroupSTDs(~isnan(SurfGroupSTDs));
 SurfGroupSTDs = SurfGroupSTDs(SurfGroupSTDs ~= 0);
 
-fprintf('Surface Swimming STDs: Mean = %2.8f, STD %2.8f, N=%i \n', mean(SurfGroupSTDs), std(SurfGroupSTDs), length(SurfGroupSTDs));
+fprintf('Surface Swimming STDs: Mean = %2.8f, STD %2.8f, Nsample=%i, Nfish=%i \n', mean(SurfGroupSTDs), std(SurfGroupSTDs), length(SurfGroupSTDs), nSurfGroup);
  
 %% Freely moving solitary fish in the cave
 
