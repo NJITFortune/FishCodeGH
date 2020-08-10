@@ -144,14 +144,17 @@ fprintf('Mean dF=%3.4f and std=%3.4f and N=%i\n', mean(meandF), std(meandF), len
 
 clear stepnum tt tf ts fakies z tim makethemthesamelength numbins j kk cenbins
 
-% CALCULATE DIFFERENCE BETWEEN CAVE AND SURFACE MEAN dFs
+%% CALCULATE DIFFERENCE BETWEEN CAVE AND SURFACE MEAN dFs
 
-srfMEANdF = meandF;
-data = caveDF;
-
-runDfDist
-caveMEANdF = meandF;
-[aa,ss,dd,ff] = ttest2(caveMEANdF,srfMEANdF)
+% data = srfDF;
+% runDfDist
+% srfMEANdF = meandF;
+% 
+% data = caveDF;
+% runDfDist
+% caveMEANdF = meandF;
+% 
+% [aa,ss,dd,ff] = ttest2(caveMEANdF,srfMEANdF)
 
 
 
