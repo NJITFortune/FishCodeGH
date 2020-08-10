@@ -108,6 +108,7 @@ fprintf('Surface Swimming STDs: Mean = %2.8f, STD %2.8f, N=%i \n', mean(SurfGrou
 %% Freely moving solitary fish in the cave
 
 CaveSoloSTDs = [];
+nCaveSolo = 3;
 
 % Cave recording #1 - 1 fish
     %for j = 1:3 % 0 to 900
@@ -131,15 +132,18 @@ CaveSoloSTDs = [];
 CaveSoloSTDs = CaveSoloSTDs(~isnan(CaveSoloSTDs));
 CaveSoloSTDs = CaveSoloSTDs(CaveSoloSTDs ~=0);
 
-fprintf('Cave Solitary STDs: Mean = %2.8f, STD %2.8f, N=%i \n', mean(CaveSoloSTDs), std(CaveSoloSTDs), length(CaveSoloSTDs));
+fprintf('Cave Solitary STDs: Mean = %2.8f, STD %2.8f, Nsample=%i, Nfish=%i \n', mean(CaveSoloSTDs), std(CaveSoloSTDs), length(CaveSoloSTDs), nCaveSolo);
 
 %% Freely moving group fish in the cave
 
 CaveGroupSTDs = [];
+nCaveGroup = 0;
 
 for k = [3, 4, 5, 6, 7, 8, 10, 12, 13, 14] % Cave group recordings 
+    
+    nCaveGroup = nCaveGroup + length(cave(k).fish);
+            
     for nFish = 1:length(cave(k).fish) % For each fish in those recordings
-        %for j = 1:4 % 0 to 1200 
         for j = 1:floor(cave(k).fish(nFish).freq(end,1)/StepSize)
             tt = cave(k).fish(nFish).freq(:,1) > StepSize*(j-1) & cave(k).fish(nFish).freq(:,1) < StepSize*j;
             CaveGroupSTDs(end+1) = nanstd(cave(k).fish(nFish).freq(tt,2));
@@ -147,7 +151,7 @@ for k = [3, 4, 5, 6, 7, 8, 10, 12, 13, 14] % Cave group recordings
     end
 end
 
-fprintf('Cave Group STDs: Mean = %2.8f, STD %2.8f, N=%i \n', nanmean(CaveGroupSTDs), nanstd(CaveGroupSTDs), sum(~isnan(CaveGroupSTDs)));
+fprintf('Cave Group STDs: Mean = %2.8f, STD %2.8f, Nsamples=%i, Nfish=%i\n', nanmean(CaveGroupSTDs), nanstd(CaveGroupSTDs), sum(~isnan(CaveGroupSTDs)), nCaveGroup);
 
 
 fprintf('###### Differences in STDs ##### \n');
