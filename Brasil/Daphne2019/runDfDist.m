@@ -147,6 +147,10 @@ clear stepnum tt tf ts fakies z tim makethemthesamelength numbins j kk cenbins
 % CALCULATE DIFFERENCE BETWEEN CAVE AND SURFACE MEAN dFs
 
 
+caveMEANdF = meandF;
+[aa,ss,dd,ff] = ttest2(caveMEANdF,srfMEANdF)
+
+
 
 %% What is the phase lag between movement and dF for highly correlated epochs
 % posShift = []; negShift = [];
