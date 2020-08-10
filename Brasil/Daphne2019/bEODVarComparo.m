@@ -1,5 +1,5 @@
 
-StepSize = 600;
+StepSize = 1200;
 
 %% Immobilized (in tubes) Surface Fish in the grid
 
