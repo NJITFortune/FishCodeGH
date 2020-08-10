@@ -19,7 +19,7 @@ for fishidx = [11 18 19]
 %         tt = srf(2).fish(fishidx).freq(:,1) > StepSize*(j-1) & srf(2).fish(fishidx).freq(:,1) < StepSize*j;
 %         SurfImmobileSTDs(end+1) = nanstd(srf(2).fish(fishidx).freq(tt,2));
 %     end
-        SurfImmobileSTDs(end+1) = nanstd(srf(2).fish(fishidx).freq(;,2));
+        SurfImmobileSTDs(end+1) = nanstd(srf(2).fish(fishidx).freq(:,2));
 end
 % Surface recording #3
 for fishidx = [22 28] 
@@ -157,11 +157,11 @@ for k = [3, 4, 5, 6, 7, 8, 10, 12, 13, 14] % Cave group recordings
     nCaveGroup = nCaveGroup + length(cave(k).fish);
             
     for nFish = 1:length(cave(k).fish) % For each fish in those recordings
-         for j = 1:floor(cave(k).fish(nFish).freq(end,1)/StepSize)
+%         for j = 1:floor(cave(k).fish(nFish).freq(end,1)/StepSize)
 %             tt = cave(k).fish(nFish).freq(:,1) > StepSize*(j-1) & cave(k).fish(nFish).freq(:,1) < StepSize*j;
 %             CaveGroupSTDs(end+1) = nanstd(cave(k).fish(nFish).freq(tt,2));
+%         end
             CaveGroupSTDs(end+1) = nanstd(cave(k).fish(nFish).freq(:,2));
-         end
     end
 end
 
