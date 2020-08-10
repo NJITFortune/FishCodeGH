@@ -147,7 +147,7 @@ for k = [3, 4, 5, 6, 7, 8, 10, 12, 13, 14] % Cave group recordings
     end
 end
 
-fprintf('Cave Group STDs: Mean = %2.8f, STD %2.8f, N=%i \n', nanmean(CaveGroupSTDs), nanstd(CaveGroupSTDs), length(~isnan(CaveGroupSTDs)));
+fprintf('Cave Group STDs: Mean = %2.8f, STD %2.8f, N=%i \n', nanmean(CaveGroupSTDs), nanstd(CaveGroupSTDs), sum(~isnan(CaveGroupSTDs)));
 
 
 fprintf('###### Differences in STDs ##### \n');
