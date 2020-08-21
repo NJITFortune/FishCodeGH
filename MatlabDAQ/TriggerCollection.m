@@ -8,7 +8,7 @@ s.addAnalogInputChannel('Dev2', 1, 'voltage'); % EOD data
 s.addAnalogInputChannel('Dev2', 2, 'voltage'); % EOD data
 s.addAnalogInputChannel('Dev2', 3, 'voltage'); % Temp data
     s.Rate = 20000;
-    s.DurationInSeconds = 60;
+    s.DurationInSeconds = 180;
     s.NotifyWhenDataAvailableExceeds = s.Rate * s.DurationInSeconds;
 
 % Add and configure Trigger    
