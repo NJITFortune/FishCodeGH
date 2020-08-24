@@ -21,8 +21,10 @@ addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
 lh = s.addlistener('DataAvailable', @listentothis);
 
     fprintf('Collection is starting.\n');
-% Collect data
 
-[tmpData, tmpTime, tmpTriggerTimess] = s.startForeground();
+%% Start collection
+
+%[tmpData, tmpTime, tmpTriggerTimess] = s.startForeground();
+s.startBackground();
 
 
