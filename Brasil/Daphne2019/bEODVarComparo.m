@@ -169,6 +169,10 @@ fprintf('###### Differences in STDs ##### \n');
 [~,b,~,d] = ttest2(CaveGroupSTDs, SurfGroupSTDs);
 fprintf('STDS: Cave group vs Surface group: p=%2.6f, df=%i, tstat=%2.4f \n', b, d.df, d.tstat);
 
+[~,b,~,d] = ranksum(CaveGroupSTDs, SurfGroupSTDs);
+fprintf('STDS: Cave group vs Surface group: p=%2.6f, df=%i, tstat=%2.4f \n', b, d.df, d.tstat);
+
+
 [~,b,~,d] = ttest2(SurfImmobileSTDs, SurfGroupSTDs);
 fprintf('STDS: Surface tube vs Surface group: p=%2.6f, df=%i, tstat=%2.4f \n', b, d.df, d.tstat);
 
