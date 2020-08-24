@@ -173,9 +173,11 @@ fprintf('STDS: Cave group vs Surface group: p=%2.6f, df=%i, tstat=%2.4f \n', b, 
 fprintf('RANKSUM: Cave group vs Surface group: p=%2.6f, h=%i, zval=%2.6f \n', p, h, stats.zval);
 
 
-
 [~,b,~,d] = ttest2(SurfImmobileSTDs, SurfGroupSTDs);
 fprintf('STDS: Surface tube vs Surface group: p=%2.6f, df=%i, tstat=%2.4f \n', b, d.df, d.tstat);
+
+[p,h,stats] = ranksum(SurfImmobileSTDs, SurfGroupSTDs);
+fprintf('RANKSUM: Surface tube vs Surface group: p=%2.6f, h=%i, zval=%2.6f \n', p, h, stats.zval);
 
 [~,b,~,d] = ttest2(CaveGroupSTDs, CaveSoloSTDs);
 fprintf('STDS: Cave group vs Cave solo: p=%2.6f, df=%i, tstat=%2.4f \n', b, d.df, d.tstat);
