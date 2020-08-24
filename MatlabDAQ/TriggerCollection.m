@@ -33,11 +33,14 @@ lh = s.addlistener('DataAvailable', @listentothis);
     LightONirOFF.TimerFcn = 's.outputSingleScan([5, 0])';
     LightOFFirON.TimerFcn = 's.outputSingleScan([0, 5])';
 
-    LightONirOFF.startat(2020,8,24,11,51,0); % When you want lights on
-    LightOFFirON.startat(2020,8,24,11,51,30); % when you want lights off
-
-
+    
 % Collect data
 
 [tmpData, tmpTime, tmpTriggerTimess] = s.startForeground();
+
+    
+    
+    LightONirOFF.startat(2020,8,24,11,56,0); % When you want lights on
+    LightOFFirON.startat(2020,8,24,11,56,30); % when you want lights off
+
 
