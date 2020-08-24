@@ -31,7 +31,7 @@ a = 0;
 
     while a < 20
         
-    s.startForeground();
+    zz = s.startForeground();
     pause(10);
     a = a+1;
     fprintf('Entry %i. \n', a);
