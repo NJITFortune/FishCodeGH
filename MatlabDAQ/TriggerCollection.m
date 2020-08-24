@@ -22,9 +22,10 @@ lh = s.addlistener('DataAvailable', @listentothis);
 
 % Set up the light control
 
-%     s.addAnalogOutputChannel('Dev2', 0, 'voltage'); % Regular light
-%     s.addAnalogOutputChannel('Dev2', 1, 'voltage'); % IR light
+    s.addAnalogOutputChannel('Dev2', 0, 'voltage'); % Regular light
+    s.addAnalogOutputChannel('Dev2', 1, 'voltage'); % IR light
 
+    s.outputSingleScan([0, 5])
 %
 % White light plugs into AO0 (analogue output zero) and 
 % IR light plugs into AO1 (analogue output one).
