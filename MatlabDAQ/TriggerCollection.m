@@ -1,4 +1,4 @@
- %% Set up the DAQ
+%% Set up the DAQ
 
 s = daq.createSession('ni');
 
@@ -20,7 +20,29 @@ addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
 % Add the listener which can handle the data 
 lh = s.addlistener('DataAvailable', @listentothis);
 
+% Set up the light control
+
+    s.addAnalogOutputChannel('Dev2', 0, 'voltage'); % Regular light
+    s.addAnalogOutputChannel('Dev2', 1, 'voltage'); % IR light
+
+%
+% White light plugs into AO0 (analogue output zero) and 
+% IR light plugs into AO1 (analogue output one).
+    LightONirOFF = timer;
+    LightOFFirON = timer;
+    LightONirOFF.TimerFcn = 's.outputSingleScan([5, 0])';
+    LightOFFirON.TimerFcn = 's.outputSingleScan([0, 5])';
+
+    LightONirOFF.startat(2020,8,24,11,46,0); % When you want lights on
+    LightOFFirON.startat(2020,8,24,11,46,30); % when you want lights off
+    LightONirOFF.startat(2020,8,24,11,47,0); % When you want lights on
+    LightOFFirON.startat(2020,8,24,11,47,30); % when you want lights off
+    LightONirOFF.startat(2020,8,24,11,48,0); % When you want lights on
+    LightOFFirON.startat(2020,8,24,11,48,30); % when you want lights off
+
+
+
 % Collect data
 
-[tmpData, tmpTime, tmpTriggerTimess] = s.startForeground();
+% [tmpData, tmpTime, tmpTriggerTimess] = s.startForeground();
 
