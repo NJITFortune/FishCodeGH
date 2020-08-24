@@ -44,9 +44,4 @@ lh = s.addlistener('DataAvailable', @listentothis);
 
 [tmpData, tmpTime, tmpTriggerTimess] = s.startForeground();
 
-    
-%     
-%     LightONirOFF.startat(2020,8,24,11,56,0); % When you want lights on
-%     LightOFFirON.startat(2020,8,24,11,56,30); % when you want lights off
-
 
