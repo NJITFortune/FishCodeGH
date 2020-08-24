@@ -28,10 +28,10 @@ lh = s.addlistener('DataAvailable', @listentothis);
 %
 % White light plugs into AO0 (analogue output zero) and 
 % IR light plugs into AO1 (analogue output one).
-    LightONirOFF = timer;
-    LightOFFirON = timer;
-    LightONirOFF.TimerFcn = 's.outputSingleScan([5, 0])';
-    LightOFFirON.TimerFcn = 's.outputSingleScan([0, 5])';
+%     LightONirOFF = timer;
+%     LightOFFirON = timer;
+%     LightONirOFF.TimerFcn = 's.outputSingleScan([5, 0])';
+%     LightOFFirON.TimerFcn = 's.outputSingleScan([0, 5])';
 
     
 % Collect data
@@ -39,8 +39,8 @@ lh = s.addlistener('DataAvailable', @listentothis);
 [tmpData, tmpTime, tmpTriggerTimess] = s.startForeground();
 
     
-    
-    LightONirOFF.startat(2020,8,24,11,56,0); % When you want lights on
-    LightOFFirON.startat(2020,8,24,11,56,30); % when you want lights off
+%     
+%     LightONirOFF.startat(2020,8,24,11,56,0); % When you want lights on
+%     LightOFFirON.startat(2020,8,24,11,56,30); % when you want lights off
 
 
