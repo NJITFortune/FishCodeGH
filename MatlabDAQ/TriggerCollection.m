@@ -20,14 +20,6 @@ addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
 % Add the listener which can handle the data 
 lh = s.addlistener('DataAvailable', @listentothis);
 
-% Set up the light control
-
-    s.addAnalogOutputChannel('Dev2', 0, 'voltage'); % Regular light
-    s.addAnalogOutputChannel('Dev2', 1, 'voltage'); % IR light
-
-    s.outputSingleScan([0, 5])
-%
-
     
 % Collect data
 
