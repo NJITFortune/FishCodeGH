@@ -20,7 +20,6 @@ addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
 % Add the listener which can handle the data 
 lh = s.addlistener('DataAvailable', @listentothis);
 
-    fprintf('Collection is starting.\n');
 
 %% Start collection
 
@@ -31,8 +30,10 @@ a = 0;
 
     while a < 20
         
+    fprintf('Collection is possible.\n');
     s.startForeground();
-    pause(60);
+    fprintf('PAUSED.\n');
+    pause(20);
     a = a+1;
     fprintf('Entry %i. \n', a);
     
