@@ -22,8 +22,8 @@ lh = s.addlistener('DataAvailable', @listentothis);
 
 % Set up the light control
 
-    s.addAnalogOutputChannel('Dev2', 0, 'voltage'); % Regular light
-    s.addAnalogOutputChannel('Dev2', 1, 'voltage'); % IR light
+%     s.addAnalogOutputChannel('Dev2', 0, 'voltage'); % Regular light
+%     s.addAnalogOutputChannel('Dev2', 1, 'voltage'); % IR light
 
 %
 % White light plugs into AO0 (analogue output zero) and 
