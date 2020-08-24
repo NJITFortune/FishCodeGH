@@ -33,6 +33,8 @@ a = 0;
         
     s.startForeground();
     pause(30);
+    a = a+1;
+    fprintf('Entry %i. \n', a);
     
     end
 
