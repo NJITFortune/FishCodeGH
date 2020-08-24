@@ -14,8 +14,8 @@ s.addAnalogInputChannel('Dev2', 3, 'voltage'); % Temp data
 % Add and configure Trigger    
 addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
     s.Connections.TriggerCondition = 'FallingEdge';
-    s.ExternalTriggerTimeout = 600;
-    s.TriggersPerRun = 30;
+    s.ExternalTriggerTimeout = 300;
+    s.TriggersPerRun = 1;
     
 % Add the listener which can handle the data 
 lh = s.addlistener('DataAvailable', @listentothis);
@@ -25,6 +25,15 @@ lh = s.addlistener('DataAvailable', @listentothis);
 %% Start collection
 
 %[tmpData, tmpTime, tmpTriggerTimess] = s.startForeground();
-s.startBackground();
+%s.startBackground();
+
+a = 0;
+
+    while a < 20
+        
+    s.startForeground();
+    pause(30);
+    
+    end
 
 
