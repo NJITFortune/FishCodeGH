@@ -142,9 +142,12 @@ fprintf('Mean %2.4f and STD %2.4f and N %i for SURFACE overlap percentages \n', 
 
 % [aa,bb,cc,dd] = ttest2(Coverlaps, Soverlaps) % Just the size of the overlap areas
 % [aa,bb,cc,dd] = ttest2(Coverlaps ./ CpairAreas, Soverlaps ./ SpairAreas) % The percentage of overlap
- 
+[aa,~,cc] = ranksum(Coverlaps ./ CpairAreas, Soverlaps ./ SpairAreas);
+fprintf('Ranksum overlap percent cave versus surface, p=%2.7f, z=%2.4f \n', aa, cc.zval);
+
 fprintf('Mean %2.4f and STD %2.4f and N %i for CAVE convex areas \n', mean(CfishArea), std(CfishArea), length(CfishArea));
 fprintf('Mean %2.4f and STD %2.4f and N %i for SURFACE convex areas \n', mean(SfishArea), std(SfishArea), length(SfishArea));
 
 % [aa,bb,cc,dd] = ttest2(CfishArea, SfishArea) %  size of the  areas
-
+[aa,~,cc] = ranksum(CfishArea, SfishArea);
+fprintf('Ranksum size of territory cave versus surface, p=%2.7f, z=%2.4f \n', aa, cc.zval);
