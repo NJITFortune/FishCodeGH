@@ -170,8 +170,8 @@ fprintf('###### Differences in STDs ##### \n');
 fprintf('STDS: Cave group vs Surface group: p=%2.6f, df=%i, tstat=%2.4f \n', b, d.df, d.tstat);
 
 [p,h,stats] = ranksum(CaveGroupSTDs, SurfGroupSTDs);
-fprintf('STDS: Cave group vs Surface group: p=%2.6f, h=%2.6f \n', p, h);
-stats
+fprintf('RANKSUM: Cave group vs Surface group: p=%2.6f, h=%i, zval=%2.6f \n', p, h, stats.zval);
+
 
 
 [~,b,~,d] = ttest2(SurfImmobileSTDs, SurfGroupSTDs);
