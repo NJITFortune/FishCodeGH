@@ -32,7 +32,7 @@ a = 0;
     while a < 20
         
     [tmpData, tmpTime, tmpTriggerTimess] = s.startForeground();
-    pause(10);
+    pause(60);
     a = a+1;
     fprintf('Entry %i. \n', a);
     
