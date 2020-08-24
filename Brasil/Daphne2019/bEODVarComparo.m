@@ -1,6 +1,7 @@
 %% Immobilized (in tubes) Surface Fish in the grid
 
-SurfImmobileSTDs = [];
+SurfImmobileSTDs = []; SurfImmobileSEMs = [];
+
 nSurfSolo = 13;
 
 % Surface recording #1
@@ -11,6 +12,8 @@ for fishidx = [7 9 11]
 %         SurfImmobileSTDs(end+1) = nanstd(srf(1).fish(fishidx).freq(tt,2));
 %     end
         SurfImmobileSTDs(end+1) = nanstd(srf(1).fish(fishidx).freq(:,2));
+        SurfImmobileSEMs(end+1) = SurfImmobileSTDs(end) / ;
+
 end
 % Surface recording #2
 for fishidx = [11 18 19] 
