@@ -29,10 +29,15 @@ lh = s.addlistener('DataAvailable', @listentothis);
 %
 % White light plugs into AO0 (analogue output zero) and 
 % IR light plugs into AO1 (analogue output one).
-%     LightONirOFF = timer;
-%     LightOFFirON = timer;
-%     LightONirOFF.TimerFcn = 's.outputSingleScan([5, 0])';
-%     LightOFFirON.TimerFcn = 's.outputSingleScan([0, 5])';
+%     A_LightONirOFF = timer;
+%     B_LightOFFirON = timer;
+%     C_LightONirOFF = timer;
+%     D_LightOFFirON = timer;
+
+%     A_LightONirOFF.TimerFcn = 's.outputSingleScan([5, 0])';
+%     B_LightOFFirON.TimerFcn = 's.outputSingleScan([0, 5])';
+%     C_LightONirOFF.TimerFcn = 's.outputSingleScan([5, 0])';
+%     D_LightOFFirON.TimerFcn = 's.outputSingleScan([0, 5])';
 
     
 % Collect data
