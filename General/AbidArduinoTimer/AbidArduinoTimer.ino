@@ -27,20 +27,21 @@ void setup() {
   // Start with 12 on and 13 off (state is 0)
   digitalWrite(12, LOW);
   digitalWrite(13, LOW);
-  state = 0;
+  state = 2;
 
   // Get the starting time for the current state, init_time
   rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
   DateTime now = rtc.now();
   init_time = now.unixtime();
-}
 
-void loop() {
-
-  // Initialize with 12 on and 13 off (state is 1)
+ // Initialize with 12 on and 13 off (state is 1)
   digitalWrite(12, LOW);
   digitalWrite(13, HIGH);
   state = 0;
+  
+}
+
+void loop() {
 
   // Get the current time, nowtime
     DateTime now = rtc.now();
