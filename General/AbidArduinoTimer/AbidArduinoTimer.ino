@@ -25,7 +25,7 @@ void setup() {
   Serial.begin(9600);
 
   // Start with 12 on and 13 off (state is 0)
-  digitalWrite(12, HIGH);
+  digitalWrite(12, LOW);
   digitalWrite(13, LOW);
   state = 0;
 
@@ -37,9 +37,18 @@ void setup() {
 
 void loop() {
 
+  // Initialize with 12 on and 13 off (state is 1)
+  digitalWrite(12, LOW);
+  digitalWrite(13, HIGH);
+  state = 0;
+
   // Get the current time, nowtime
     DateTime now = rtc.now();
     nowtime = now.unixtime();
+
+// Quick initialization
+
+    
 
   // If enough time has passed, switch  from state 0 to state 1    
     if (nowtime - init_time > interval and state == 0) {
