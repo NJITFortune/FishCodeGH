@@ -7,7 +7,8 @@ s.addAnalogInputChannel('Dev2', 0, 'voltage'); % EOD data
 s.addAnalogInputChannel('Dev2', 1, 'voltage'); % EOD data
 s.addAnalogInputChannel('Dev2', 2, 'voltage'); % EOD data
 s.addAnalogInputChannel('Dev2', 3, 'voltage'); % Temp data
-s.
+s.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
+
     s.Rate = 20000;
     s.DurationInSeconds = 1;
     s.NotifyWhenDataAvailableExceeds = s.Rate * s.DurationInSeconds;
