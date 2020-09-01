@@ -16,8 +16,8 @@ s.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
 % Add and configure Trigger    
 addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
     s.Connections.TriggerCondition = 'FallingEdge';
-    s.ExternalTriggerTimeout = 300;
-    s.TriggersPerRun = 1;
+    s.ExternalTriggerTimeout = 144000;
+    s.TriggersPerRun = 1000;
     
 % Add the listener which can handle the data 
 lh = s.addlistener('DataAvailable', @listentothis);
