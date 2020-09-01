@@ -26,19 +26,21 @@ lh = s.addlistener('DataAvailable', @listentothis);
 %% Start collection
 
 %[tmpData, tmpTime, tmpTriggerTimess] = s.startForeground();
-%s.startBackground();
+s.startBackground();
 
-a = 0;
 
-    while a < 20
-        
-    fprintf('Collection is possible.\n');
-    s.startForeground();
-    fprintf('PAUSED.\n');
-    pause(20);
-    a = a+1;
-    fprintf('Entry %i. \n', a);
-    
-    end
+%% Test loop
+%     a = 0;
+% 
+%     while a < 20
+%         
+%     fprintf('Collection is possible.\n');
+%     s.startForeground();
+%     fprintf('PAUSED.\n');
+%     pause(20);
+%     a = a+1;
+%     fprintf('Entry %i. \n', a);
+%     
+%     end
 
 
