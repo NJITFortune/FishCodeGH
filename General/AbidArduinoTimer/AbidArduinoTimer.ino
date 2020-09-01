@@ -9,11 +9,12 @@ int state = 0;
 int init_time;
 int nowtime;
 //int interval = 6*60*60;
-int hours = 13;
-int minutes = 40;
-int seconds = 0;
-int interval = hours*60*60 + minutes*60 + seconds;
 
+// Set the interval you want
+int hours = 0; 
+int minutes = 0;
+int seconds = 2;
+int interval = hours*60*60 + minutes*60 + seconds;
 
 
 void setup() {
