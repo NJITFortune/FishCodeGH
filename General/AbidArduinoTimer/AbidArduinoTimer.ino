@@ -1,6 +1,6 @@
 #include <Time.h>
 //#include <TimeAlarms.h>
-#include <CurieTime.h>
+//#include <CurieTime.h>
 #include <RTClib.h>
 
 RTC_Millis rtc;
