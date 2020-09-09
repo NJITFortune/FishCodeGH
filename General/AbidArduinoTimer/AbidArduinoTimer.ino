@@ -1,9 +1,9 @@
 #include <Time.h>
-//#include <TimeAlarms.h>
+#include <TimeAlarms.h>
 //#include <CurieTime.h>
 #include <RTClib.h>
-
-RTC_Millis rtc;
+#include <Wire.h>
+RTC_DS1307 rtc;
 
 int state = 0;
 int init_time;
@@ -25,9 +25,9 @@ void setup() {
   Serial.begin(9600);
 
   // Start with 12 on and 13 off (state is 0)
-  digitalWrite(12, LOW);
+  digitalWrite(12, HIGH);
   digitalWrite(13, LOW);
-  state = 2;
+  state = 0;
 
   // Get the starting time for the current state, init_time
   rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
@@ -37,7 +37,7 @@ void setup() {
  // Initialize with 12 on and 13 off (state is 1)
   digitalWrite(12, LOW);
   digitalWrite(13, HIGH);
-  state = 0;
+  state = 1;
   
 }
 
@@ -54,8 +54,8 @@ void loop() {
   // If enough time has passed, switch  from state 0 to state 1    
     if (nowtime - init_time > interval and state == 0) {
       state = 1;
-      digitalWrite(12, HIGH);
-      digitalWrite(13, LOW);
+      digitalWrite(12, LOW);
+      digitalWrite(13, HIGH);
 //      Serial.println(state);
       // RESET start time to current time
       init_time = nowtime;
@@ -64,8 +64,8 @@ void loop() {
   // If enough time has passed, switch  from state 1 to state 0    
     if (nowtime - init_time > interval and state == 1) {
       state = 0;
-      digitalWrite(12, LOW);
-      digitalWrite(13, HIGH);
+      digitalWrite(12, HIGH);
+      digitalWrite(13, LOW);
 //      Serial.println(state);
       // RESET start time to current time
       init_time = nowtime;
