@@ -69,6 +69,6 @@ void loop() {
       // RESET start time to current time
       init_time = nowtime;
     }
-    Serial.println(now.month());
+    Serial.println(now.month(), DEC);
     Serial.println(state);
     }
