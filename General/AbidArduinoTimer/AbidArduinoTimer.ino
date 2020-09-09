@@ -35,9 +35,9 @@ void setup() {
   init_time = now.unixtime();
 
  // Initialize with 12 on and 13 off (state is 1)
-  digitalWrite(12, LOW);
-  digitalWrite(13, HIGH);
-  state = 1;
+ // digitalWrite(12, LOW);
+ // digitalWrite(13, HIGH);
+ // state = 1;
   
 }
 
@@ -56,7 +56,7 @@ void loop() {
       state = 1;
       digitalWrite(12, LOW);
       digitalWrite(13, HIGH);
-//      Serial.println(state);
+      Serial.println(state);
       // RESET start time to current time
       init_time = nowtime;
     }
@@ -66,7 +66,7 @@ void loop() {
       state = 0;
       digitalWrite(12, HIGH);
       digitalWrite(13, LOW);
-//      Serial.println(state);
+      Serial.println(state);
       // RESET start time to current time
       init_time = nowtime;
     }
