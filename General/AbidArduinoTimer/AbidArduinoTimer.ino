@@ -15,11 +15,7 @@ int hours = 0;
 int minutes = 0;
 int seconds = 10;
 int interval = hours*60*60 + minutes*60 + seconds;
-if (! rtc.begin()) {
-  Serial.println("No RTC");
-  while(1);
-}
-}
+
 
 void setup() {
 
@@ -27,7 +23,10 @@ void setup() {
   pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
   Serial.begin(9600);
-
+if (! rtc.begin()) {
+  Serial.println("No RTC");
+  while(1);
+}
   // Start with 12 on and 13 off (state is 0)
   digitalWrite(12, HIGH);
   digitalWrite(13, LOW);
