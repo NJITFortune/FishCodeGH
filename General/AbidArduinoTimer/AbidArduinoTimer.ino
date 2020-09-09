@@ -12,8 +12,8 @@ int nowtime;
 
 // Set the interval you want
 int hours = 0; 
-int minutes = 1;
-int seconds = 0;
+int minutes = 0;
+int seconds = 5;
 int interval = hours*60*60 + minutes*60 + seconds;
 
 
@@ -55,7 +55,7 @@ void loop() {
 
 
   // If enough time has passed, switch  from state 0 to state 1    
-    if (nowtime - init_time > interval and state == 0) {
+    if (nowtime - init_time >= interval and state == 0) {
       state = 1;
       digitalWrite(12, LOW);
       digitalWrite(13, HIGH);
@@ -65,7 +65,7 @@ void loop() {
     }
 
   // If enough time has passed, switch  from state 1 to state 0    
-    if (nowtime - init_time > interval and state == 1) {
+    if (nowtime - init_time >= interval and state == 1) {
       state = 0;
       digitalWrite(12, HIGH);
       digitalWrite(13, LOW);
@@ -73,6 +73,6 @@ void loop() {
       // RESET start time to current time
       init_time = nowtime;
     }
-    Serial.println(now.unixtime(), DEC);
+    //Serial.println(now.unixtime(), DEC);
     //Serial.println(state);
     }
