@@ -72,6 +72,6 @@ void loop() {
       // RESET start time to current time
       init_time = nowtime;
     }
-    Serial.println(now.day(), DEC);
+    Serial.println(now.second(), DEC);
     Serial.println(state);
     }
