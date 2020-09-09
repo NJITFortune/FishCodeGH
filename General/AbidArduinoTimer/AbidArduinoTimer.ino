@@ -49,7 +49,7 @@ void loop() {
 
 // Quick initialization
 
-    
+    Serial.println("STARTLOOP");
 
   // If enough time has passed, switch  from state 0 to state 1    
     if (nowtime - init_time > interval and state == 0) {
