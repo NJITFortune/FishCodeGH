@@ -49,7 +49,6 @@ void loop() {
 
 // Quick initialization
 
-    Serial.println("STARTLOOP");
 
   // If enough time has passed, switch  from state 0 to state 1    
     if (nowtime - init_time > interval and state == 0) {
@@ -70,5 +69,6 @@ void loop() {
       // RESET start time to current time
       init_time = nowtime;
     }
+    Serial.println(nowtime);
     Serial.println(state);
     }
