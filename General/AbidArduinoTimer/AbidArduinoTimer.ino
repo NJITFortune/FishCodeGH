@@ -22,6 +22,7 @@ void setup() {
   // We are using pins 12 and 13
   pinMode(12, OUTPUT);
   pinMode(13, OUTPUT);
+  
   Serial.begin(9600);
 if (! rtc.begin()) {
   Serial.println("No RTC");
@@ -73,5 +74,5 @@ void loop() {
       init_time = nowtime;
     }
     Serial.println(now.second(), DEC);
-    Serial.println(state);
+    //Serial.println(state);
     }
