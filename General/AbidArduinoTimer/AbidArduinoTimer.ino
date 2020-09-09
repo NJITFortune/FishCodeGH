@@ -15,7 +15,11 @@ int hours = 0;
 int minutes = 0;
 int seconds = 10;
 int interval = hours*60*60 + minutes*60 + seconds;
-
+if (! rtc.begin()) {
+  Serial.println("No RTC");
+  while(1);
+}
+}
 
 void setup() {
 
