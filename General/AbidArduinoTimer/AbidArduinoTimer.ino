@@ -59,6 +59,7 @@ void loop() {
       state = 1;
       digitalWrite(12, LOW);
       digitalWrite(13, HIGH);
+      Serial.println(nowtime);
       Serial.println(state);
       // RESET start time to current time
       init_time = nowtime;
@@ -69,6 +70,7 @@ void loop() {
       state = 0;
       digitalWrite(12, HIGH);
       digitalWrite(13, LOW);
+      Serial.println(nowtime);
       Serial.println(state);
       // RESET start time to current time
       init_time = nowtime;
