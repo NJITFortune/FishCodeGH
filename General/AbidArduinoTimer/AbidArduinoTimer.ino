@@ -30,7 +30,7 @@ void setup() {
   state = 0;
 
   // Get the starting time for the current state, init_time
-  rtc.begin(DateTime(F(__DATE__), F(__TIME__)));
+  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   DateTime now = rtc.now();
   init_time = now.unixtime();
 
