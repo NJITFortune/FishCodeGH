@@ -20,15 +20,15 @@ int interval = hours*60*60 + minutes*60 + seconds;
 void setup() {
 
   // We are using pins 12 and 13
-  pinMode(12, OUTPUT);
-  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT); // Typically IR
+  pinMode(13, OUTPUT); // Typically light
   
   Serial.begin(9600);
 if (! rtc.begin()) {
   Serial.println("No RTC");
   while(1);
 }
-  // Start with 12 on and 13 off (state is 0)
+  // Start with 12 on and 13 off (state is 0 - NIGHT)
   digitalWrite(12, HIGH);
   digitalWrite(13, LOW);
   state = 0;
