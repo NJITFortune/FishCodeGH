@@ -36,9 +36,8 @@ if (! rtc.begin()) {
   // Get the starting time for the current state, init_time
   //rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   rtc.adjust(DateTime(2010, 1, 1, 1 , 1, 0));
-//  DateTime now = rtc.now();
-//  init_time = now.unixtime();
-  init_time = rtc.now();
+  DateTime now = rtc.now();
+  init_time = now.unixtime()+1000000;
 
 
  // Initialize with 12 on and 13 off (state is 1)
@@ -51,9 +50,8 @@ if (! rtc.begin()) {
 void loop() {
 
   // Get the current time, nowtime
-    //DateTime now = rtc.now();
-    //nowtime = now.unixtime();
-    nowtime = rtc.now();
+    DateTime now = rtc.now();
+    nowtime = now.unixtime()+1000000;
 // Quick initialization
 
 
