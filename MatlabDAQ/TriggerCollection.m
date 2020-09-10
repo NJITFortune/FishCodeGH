@@ -17,7 +17,7 @@ s.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
 addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
     s.Connections.TriggerCondition = 'FallingEdge';
     s.ExternalTriggerTimeout = 144000;
-    s.TriggersPerRun = 1000;
+    s.TriggersPerRun = 1;
     
 % Add the listener which can handle the data 
 lh = s.addlistener('DataAvailable', @listentothis);
@@ -26,8 +26,14 @@ lh = s.addlistener('DataAvailable', @listentothis);
 %% Start collection
 
 %[tmpData, tmpTime, tmpTriggerTimess] = s.startForeground();
-s.startBackground();
+numSamples = 0;
 
+while numSamples < 10000
+    
+    
+    s.startBackground();
+
+end
 
 %% Test loop
 %     a = 0;
