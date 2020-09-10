@@ -55,11 +55,11 @@ void loop() {
 
 
   // If enough time has passed, switch  from state 0 to state 1    
-    if (abs(nowtime) - abs(init_time) >= interval and state == 0) {
+    if (nowtime - init_time >= interval and state == 0) {
       state = 1;
       digitalWrite(12, LOW);
       digitalWrite(13, HIGH);
-      Serial.println(nowtime);
+      Serial.println(abs(nowtime));
       Serial.println(state);
       // RESET start time to current time
       init_time = nowtime;
