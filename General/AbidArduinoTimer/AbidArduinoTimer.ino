@@ -38,7 +38,6 @@ if (! rtc.begin()) {
   rtc.adjust(DateTime(2030, 1, 1, 1, 1, 0));
   DateTime now = rtc.now();
   init_time = now.unixtime();
-  init_time = init_time + 1000000;
 
  // Initialize with 12 on and 13 off (state is 1)
  // digitalWrite(12, LOW);
@@ -52,12 +51,11 @@ void loop() {
   // Get the current time, nowtime
     DateTime now = rtc.now();
     nowtime = now.unixtime();
-    nowtime = nowtime+1000000;
 // Quick initialization
 
 
   // If enough time has passed, switch  from state 0 to state 1    
-    if (nowtime - init_time >= interval and state == 0) {
+    if (abs(nowtime) - abs(init_time) >= interval and state == 0) {
       state = 1;
       digitalWrite(12, LOW);
       digitalWrite(13, HIGH);
