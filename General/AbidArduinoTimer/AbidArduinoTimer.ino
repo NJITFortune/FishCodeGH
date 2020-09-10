@@ -53,7 +53,7 @@ void loop() {
   // Get the current time, nowtime
     //DateTime now = rtc.now();
     //nowtime = now.unixtime();
-    nowtime = rtc.unixtime();
+    nowtime = rtc.now();
 // Quick initialization
 
 
