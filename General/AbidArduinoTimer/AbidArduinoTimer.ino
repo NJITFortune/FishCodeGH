@@ -52,9 +52,7 @@ void loop() {
   // Get the current time, nowtime
     DateTime now = rtc.now();
     nowtime = now.unixtime();
-    Serial.println(nowtime);
-    nowtime = nowtime + 1000000;
-    Serial.println(nowtime);
+    nowtime = nowtime+1000000;
 // Quick initialization
 
 
