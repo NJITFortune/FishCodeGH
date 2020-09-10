@@ -35,7 +35,7 @@ if (! rtc.begin()) {
 
   // Get the starting time for the current state, init_time
   //rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-  rtc.adjust(DateTime(2005, 1, 1, 1 , 1, 0));
+  rtc.adjust(DateTime(1985, 1, 1, 1 , 1, 0));
   DateTime now = rtc.now();
   init_time = now.unixtime();
 
