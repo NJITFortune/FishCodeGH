@@ -11,7 +11,7 @@ int nowtime;
 //int interval = 6*60*60;
 
 // Set the interval you want
-int hours = 24; 
+int hours = 12; 
 int minutes = 0;
 int seconds = 0;
 int interval = hours*60*60 + minutes*60 + seconds;
