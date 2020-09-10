@@ -38,7 +38,7 @@ if (! rtc.begin()) {
   rtc.adjust(DateTime(2010, 1, 1, 1 , 1, 0));
 //  DateTime now = rtc.now();
 //  init_time = now.unixtime();
-init_time = rtc.now();
+  init_time = rtc.now();
 
 
  // Initialize with 12 on and 13 off (state is 1)
