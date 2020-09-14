@@ -32,11 +32,7 @@ numSamples = 0;
 while numSamples < 10000
        
     fprintf('We are %i steps.\n', numSamples);
-        s.startBackground();
-    pause(1); % Give DAQ some time to breath
-
-    tmp = read(s);        
-    clear tmp;
+        s.startForeground();
     fprintf('We are are done waiting\n');
         pause(10) % After detection, pause for this long
     s.stop;
