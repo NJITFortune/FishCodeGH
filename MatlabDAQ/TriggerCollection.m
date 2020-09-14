@@ -36,6 +36,7 @@ while numSamples < 10000
     pause(1); % Give DAQ some time to breath
 
     while ~s.IsWaitingForExternalTrigger
+        fprintf('We are are done waiting\n');
         pause(10) % After detection, pause for this long
     end
     
