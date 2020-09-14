@@ -10,7 +10,7 @@ s = daq.createSession('ni');
     s.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
 
     s.Rate = 20000;
-    s.DurationInSeconds = 1;
+    s.DurationInSeconds = 2;
     s.NotifyWhenDataAvailableExceeds = s.Rate * s.DurationInSeconds;
 
 % Add and configure Trigger    
@@ -30,9 +30,15 @@ s = daq.createSession('ni');
 numSamples = 0;
 
 while numSamples < 10000
-    
-    
+       
     s.startBackground();
+    pause(1); % Give DAQ some time to breath
+
+    while ~s.WaitingForDigitalTrigger
+        pause(10) % After detection, pause for this long
+    end
+    
+    numSamples = numSamples+1;
 
 end
 
