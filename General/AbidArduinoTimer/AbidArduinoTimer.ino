@@ -6,15 +6,15 @@
 RTC_DS1307 rtc;
 
 int state = 0;
-int init_time;
-int nowtime;
+long init_time;
+long nowtime;
 //int interval = 6*60*60;
 
 // Set the interval you want
 int hours = 0; 
 int minutes = 0;
 int seconds = 10;
-int interval = hours*60*60 + minutes*60 + seconds;
+long interval = hours*60*60 + minutes*60 + seconds;
 
 
 void setup() {
