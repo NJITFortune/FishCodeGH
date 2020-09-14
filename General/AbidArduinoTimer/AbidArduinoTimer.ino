@@ -11,7 +11,7 @@ long nowtime;
 //int interval = 6*60*60;
 
 // Set the interval you want
-long hours = 10; 
+long hours = 0; 
 long minutes = 0;
 long seconds = 10;
 long interval = hours*60*60 + minutes*60 + seconds;
@@ -38,8 +38,8 @@ if (! rtc.begin()) {
   state = 0;
 
   // Get the starting time for the current state, init_time
-  //rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-  rtc.adjust(DateTime(2030, 1, 1, 1, 1, 0));
+  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+  //rtc.adjust(DateTime(2030, 1, 1, 1, 1, 0));
   DateTime now = rtc.now();
   init_time = now.unixtime();
 
