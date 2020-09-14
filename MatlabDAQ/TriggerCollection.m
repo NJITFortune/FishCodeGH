@@ -35,9 +35,11 @@ while numSamples < 10000
         s.startBackground();
     pause(1); % Give DAQ some time to breath
 
-    wait(s.IsDone, 1);
-        fprintf('We are are done waiting\n');
+    tmp = read(s);        
+    clear tmp;
+    fprintf('We are are done waiting\n');
         pause(10) % After detection, pause for this long
+    s.stop;
     
     numSamples = numSamples+1;
 
