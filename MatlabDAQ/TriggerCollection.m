@@ -31,8 +31,8 @@ numSamples = 0;
 
 while numSamples < 10000
        
-    s.startBackground();
     fprintf('We are %i steps.\n', numSamples);
+    s.startBackground();
     pause(1); % Give DAQ some time to breath
 
     while s.IsWaitingForExternalTrigger
