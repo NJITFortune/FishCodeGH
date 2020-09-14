@@ -35,7 +35,7 @@ while numSamples < 10000
     fprintf('We are %i steps.\n', numSamples);
     pause(1); % Give DAQ some time to breath
 
-    while ~s.IsWaitingForExternalTrigger
+    while s.IsWaitingForExternalTrigger
         fprintf('We are are done waiting\n');
         pause(10) % After detection, pause for this long
     end
