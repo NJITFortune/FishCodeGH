@@ -24,6 +24,10 @@ void setup() {
   pinMode(13, OUTPUT); // Typically light
   
   Serial.begin(9600);
+
+  #ifndef ESP8266
+  while (!Serial); // wait for serial port to connect. Needed for native USB
+#endif
 if (! rtc.begin()) {
   Serial.println("No RTC");
   while(1);
