@@ -34,8 +34,9 @@ while numSamples < 10000
     fprintf('We are %i steps.\n', numSamples);
         s.startForeground();
     fprintf('We are are done waiting\n');
-        pause(10) % After detection, pause for this long
-    s.stop;
+        pause(60) % After detection, pause for this long
+        
+        s.stop;
     
     numSamples = numSamples+1;
 
