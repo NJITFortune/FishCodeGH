@@ -23,7 +23,7 @@ s = daq.createSession('ni');
 % Add the listener which can handle the data 
     lh = s.addlistener('DataAvailable', @listentothis);
 
-
+pause(2);
 %% Start collection
 
 %[tmpData, tmpTime, tmpTriggerTimess] = s.startForeground();
