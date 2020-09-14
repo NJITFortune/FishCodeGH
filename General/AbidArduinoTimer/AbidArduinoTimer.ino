@@ -70,7 +70,7 @@ void loop() {
     }
 
   // If enough time has passed, switch  from state 1 to state 0    
-    if (nowtime - init_time)) >= interval and state == 1) {
+    if (nowtime - init_time >= interval and state == 1) {
       state = 0;
       digitalWrite(12, HIGH);
       digitalWrite(13, LOW);
