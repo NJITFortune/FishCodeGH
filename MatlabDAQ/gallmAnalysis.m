@@ -69,9 +69,9 @@ subplot(311); hold on;
 subplot(312); hold on;
     yyaxis right; plot([out.tim]/(60*60), -[out.temp], '.');
     yyaxis left; 
-        plot([out.tim]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 16);
-        plot([out.tim]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 16);
-        plot([out.tim]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 16);
+        plot([out.tim]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 12);
+        plot([out.tim]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 12);
+        plot([out.tim]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 12);
     
 subplot(313); hold on;
     plot([out.tim]/(60*60), [out.light], '.', 'Markersize', 4);
