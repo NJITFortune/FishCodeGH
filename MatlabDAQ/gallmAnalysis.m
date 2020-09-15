@@ -75,6 +75,6 @@ subplot(312); hold on;
     
 subplot(313); hold on;
     plot([out.tim]/(60*60), [out.light], '.', 'Markersize', 4);
-    
+    ylim([-1, 6]);
     
 
