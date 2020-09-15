@@ -32,16 +32,20 @@ for j = length(dataChans):-1:1
 end
 
 % Crappy coding... but why not!
-out(k).Ch1peakAmp = peakAmp(1);
-out(k).Ch1peakFreq = peakFreq(1);
-out(k).Ch1sumAmp = sumAmp(1);
-out(k).Ch2peakAmp = peakAmp(2);
-out(k).Ch2peakFreq = peakFreq(2);
-out(k).Ch2sumAmp = sumAmp(2);
-out(k).Ch3peakAmp = peakAmp(3);
-out(k).Ch3peakFreq = peakFreq(3);
-out(k).Ch3sumAmp = sumAmp(3);
+    out(k).Ch1peakAmp = peakAmp(1);
+    out(k).Ch1peakFreq = peakFreq(1);
+    out(k).Ch1sumAmp = sumAmp(1);
+    out(k).Ch2peakAmp = peakAmp(2);
+    out(k).Ch2peakFreq = peakFreq(2);
+    out(k).Ch2sumAmp = sumAmp(2);
+    out(k).Ch3peakAmp = peakAmp(3);
+    out(k).Ch3peakFreq = peakFreq(3);
+    out(k).Ch3sumAmp = sumAmp(3);
 
+    out(k).light = mean(data(:,5));
+    out(k).temp = mean(data(:,4));
+
+% Add time stamps (in seconds) relative to computer midnight
     hour = str2num(iFiles(k).name(numstart:numstart+1));
     minute = str2num(iFiles(k).name(numstart+3:numstart+4));
     second = str2num(iFiles(k).name(numstart+6:numstart+7));
@@ -51,3 +55,7 @@ out(k).Ch3sumAmp = sumAmp(3);
     k = k+1;
 
 end
+
+%% Plot the data for fun
+
+
