@@ -74,7 +74,7 @@ subplot(312); hold on;
         plot([out.tim]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
     
 subplot(313); hold on;
-    plot([out.tim]/(60*60), [out.light], '.', 'Markersize', 4);
+    plot([out.tim]/(60*60), [out.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     
 
