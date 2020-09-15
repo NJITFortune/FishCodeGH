@@ -58,4 +58,23 @@ end
 
 %% Plot the data for fun
 
+figure(1); clf; 
+    set(gcf, 'Position', [200 900 2*560 420]);
+
+subplot(311); hold on;
+    plot([out.tim]/(60*60), [out.Ch1sumAmp]);
+    plot([out.tim]/(60*60), [out.Ch2sumAmp]);
+    plot([out.tim]/(60*60), [out.Ch3sumAmp]);
+
+subplot(312); hold on;
+    yyaxis right; plot([out.tim]/(60*60), [out.temp]);
+    yyaxis left; 
+        plot([out.tim]/(60*60), [out.Ch1peakFreq]);
+        plot([out.tim]/(60*60), [out.Ch2peakFreq]);
+        plot([out.tim]/(60*60), [out.Ch3peakFreq]);
+    
+subplot(313); hold on;
+    plot([out.tim]/(60*60), [out.light], 'LineWidth', 3);
+    
+    
 
