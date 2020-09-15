@@ -11,7 +11,7 @@ long nowtime;
 //int interval = 6*60*60;
 
 // Set the interval you want
-long hours = 10; 
+long hours = 12; 
 long minutes = 0;
 long seconds = 10;
 long interval = hours*60*60 + minutes*60 + seconds;
