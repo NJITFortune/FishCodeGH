@@ -42,18 +42,5 @@ while numSamples < 10000
 
 end
 
-%% Test loop
-%     a = 0;
-% 
-%     while a < 20
-%         
-%     fprintf('Collection is possible.\n');
-%     s.startForeground();
-%     fprintf('PAUSED.\n');
-%     pause(20);
-%     a = a+1;
-%     fprintf('Entry %i. \n', a);
-%     
-%     end
 
 
