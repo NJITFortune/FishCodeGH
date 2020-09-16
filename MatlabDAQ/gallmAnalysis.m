@@ -68,7 +68,7 @@ subplot(311); hold on;
 
 subplot(312); hold on;
     yyaxis right; plot([out.tim]/(60*60), -[out.temp], '.');
-    yyaxis left; 
+    yyaxis left; ylim([200 800]);
         plot([out.tim]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
         plot([out.tim]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
         plot([out.tim]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
