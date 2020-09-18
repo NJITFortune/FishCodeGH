@@ -6,15 +6,15 @@
 RTC_DS1307 rtc;
 
 int state = 0;
-int init_time;
-int nowtime;
+long init_time;
+long nowtime;
 //int interval = 6*60*60;
 
 // Set the interval you want
-int hours = 0; 
-int minutes = 0;
-int seconds = 60;
-int interval = hours*60*60 + minutes*60 + seconds;
+long hours = 12; 
+long minutes = 0;
+long seconds = 10;
+long interval = hours*60*60 + minutes*60 + seconds;
 
 
 void setup() {
@@ -24,6 +24,10 @@ void setup() {
   pinMode(13, OUTPUT); // Typically light
   
   Serial.begin(9600);
+
+  #ifndef ESP8266
+  while (!Serial); // wait for serial port to connect. Needed for native USB
+#endif
 if (! rtc.begin()) {
   Serial.println("No RTC");
   while(1);
@@ -34,8 +38,8 @@ if (! rtc.begin()) {
   state = 0;
 
   // Get the starting time for the current state, init_time
-  //rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-  rtc.adjust(DateTime(2030, 1, 1, 1, 1, 0));
+  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+  //rtc.adjust(DateTime(2030, 1, 1, 1, 1, 0));
   DateTime now = rtc.now();
   init_time = now.unixtime();
 
@@ -55,7 +59,7 @@ void loop() {
 
 
   // If enough time has passed, switch  from state 0 to state 1    
-    if (abs(abs(nowtime) - abs(init_time)) >= interval and state == 0) {
+    if (nowtime - init_time >= interval and state == 0) {
       state = 1;
       digitalWrite(12, LOW);
       digitalWrite(13, HIGH);
@@ -66,11 +70,11 @@ void loop() {
     }
 
   // If enough time has passed, switch  from state 1 to state 0    
-    if (abs(abs(nowtime) - abs(init_time)) >= interval and state == 1) {
+    if (nowtime - init_time >= interval and state == 1) {
       state = 0;
       digitalWrite(12, HIGH);
       digitalWrite(13, LOW);
-      Serial.println(nowtime);
+      Serial.println(nowtime - init_time);
       Serial.println(state);
       // RESET start time to current time
       init_time = nowtime;
