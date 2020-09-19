@@ -59,7 +59,7 @@ end
 %% Plot the data for fun
 
 figure(1); clf; 
-    set(gcf, 'Position', [200 300 2*560 2*420]);
+    set(gcf, 'Position', [200 400 2*560 2*420]);
 
 subplot(311); hold on;
     plot([out.tim]/(60*60), [out.Ch1sumAmp], '.');
