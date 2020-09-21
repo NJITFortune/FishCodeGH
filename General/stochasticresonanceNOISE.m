@@ -12,6 +12,9 @@ figure(2); clf; imshow(im);
 
     lvl = randi([-rango, rango], x, y) + thresh;
 
+    length(sr)
+    length(im)
+    length(lvl)
 sr(im > lvl) =  255;
     
 %     
