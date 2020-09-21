@@ -55,8 +55,8 @@ end
     if k > 1 && (hour*60*60) + (minute*60) + second < out(k-1).tim
         daycount = daycount + 1;
     end
-        
-    out(k).tim = (hour*60*60) + (minute*60) + second + (daycount*) ;
+        % There are 86400 seconds in a day.
+    out(k).tim = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
     
     k = k+1;
     
