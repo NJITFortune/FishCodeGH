@@ -10,7 +10,7 @@ sr = zeros(x, y, 'uint8');
 
 figure(2); clf; imshow(im);
 
-    lvl =  + thresh;
+    lvl =  sr + thresh;
     lvl = lvl + randi([-rango, rango], x, y);
 
 sr(im > lvl) =  255;
