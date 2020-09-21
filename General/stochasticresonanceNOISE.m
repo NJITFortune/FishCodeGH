@@ -1,12 +1,10 @@
-function [im, sr] = stochasticresonance(in, thresh)
-
-im = in;
+function [im, sr] = stochasticresonanceNOISE(im, thresh)
 
 x = length(im(:,1));
 y = length(im(1,:));
 
-im(in > thresh) = 255;
-im(in < thresh) = 0;
+im(im > thresh) = 255;
+im(im < thresh) = 0;
 
 figure(2); clf; imshow(im);
 
