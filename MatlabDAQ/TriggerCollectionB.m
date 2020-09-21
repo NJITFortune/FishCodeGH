@@ -5,12 +5,12 @@ s = daq.createSession('ni');
 % Add and configure Analogue Channels
     s.addAnalogInputChannel('Dev2', 0, 'voltage'); % EOD data
     s.addAnalogInputChannel('Dev2', 1, 'voltage'); % EOD data
-    s.addAnalogInputChannel('Dev2', 2, 'voltage'); % EOD data
+%    s.addAnalogInputChannel('Dev2', 2, 'voltage'); % EOD data
     s.addAnalogInputChannel('Dev2', 3, 'voltage'); % Temp data
     s.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
 
     s.Rate = 20000;
-    s.DurationInSeconds = 2;
+    s.DurationInSeconds = 1; % Started with 2, now 1 to try to reduce variability
     s.NotifyWhenDataAvailableExceeds = s.Rate * s.DurationInSeconds;
 
 % Add and configure Trigger    
