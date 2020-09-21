@@ -52,11 +52,12 @@ end
     minute = str2num(iFiles(k).name(numstart+3:numstart+4));
     second = str2num(iFiles(k).name(numstart+6:numstart+7));
 
-    if k > 1 && (hour*60*60) + (minute*60) + second < out(k-1).tim
+    if k > 1 && ((hour*60*60) + (minute*60) + second) < out(k-1).tim
         daycount = daycount + 1;
     end
         % There are 86400 seconds in a day.
-    out(k).tim = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
+    out(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
+    out(k).tim24 = (hour*60*60) + (minute*60) + second;
     
     k = k+1;
     
@@ -69,19 +70,37 @@ figure(1); clf;
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
 subplot(311); hold on;
-    plot([out.tim]/(60*60), [out.Ch1sumAmp], '.');
-    plot([out.tim]/(60*60), [out.Ch2sumAmp], '.');
-    plot([out.tim]/(60*60), [out.Ch3sumAmp], '.');
+    plot([out.timcont]/(60*60), [out.Ch1sumAmp], '.');
+    plot([out.timcont]/(60*60), [out.Ch2sumAmp], '.');
+    plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
 
 subplot(312); hold on;
     yyaxis right; plot([out.tim]/(60*60), -[out.temp], '.');
     yyaxis left; ylim([200 800]);
-        plot([out.tim]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
-        plot([out.tim]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
-        plot([out.tim]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
+        plot([out.timcont]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
+        plot([out.timcont]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
+        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
     
 subplot(313); hold on;
-    plot([out.tim]/(60*60), [out.light], '.', 'Markersize', 8);
+    plot([out.timcont]/(60*60), [out.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     
+figure(2); clf; 
+    set(gcf, 'Position', [400 100 2*560 2*420]);
+
+subplot(311); hold on;
+    plot([out.tim24]/(60*60), [out.Ch1sumAmp], '.');
+    plot([out.tim24]/(60*60), [out.Ch2sumAmp], '.');
+    plot([out.tim24]/(60*60), [out.Ch3sumAmp], '.');
+
+subplot(312); hold on;
+    yyaxis right; plot([out.tim]/(60*60), -[out.temp], '.');
+    yyaxis left; ylim([200 800]);
+        plot([out.tim24]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
+        plot([out.tim24]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
+        plot([out.tim24]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
+    
+subplot(313); hold on;
+    plot([out.tim24]/(60*60), [out.light], '.', 'Markersize', 8);
+    ylim([-1, 6]);
 
