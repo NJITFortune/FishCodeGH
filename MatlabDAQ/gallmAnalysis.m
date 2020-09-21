@@ -75,7 +75,7 @@ subplot(311); hold on;
     plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
 
 subplot(312); hold on;
-    yyaxis right; plot([out.tim]/(60*60), -[out.temp], '.');
+    yyaxis right; plot([out.timcont]/(60*60), -[out.temp], '.');
     yyaxis left; ylim([200 800]);
         plot([out.timcont]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
         plot([out.timcont]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
@@ -94,7 +94,7 @@ subplot(311); hold on;
     plot([out.tim24]/(60*60), [out.Ch3sumAmp], '.');
 
 subplot(312); hold on;
-    yyaxis right; plot([out.tim]/(60*60), -[out.temp], '.');
+    yyaxis right; plot([out.tim24]/(60*60), -[out.temp], '.');
     yyaxis left; ylim([200 800]);
         plot([out.tim24]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
         plot([out.tim24]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
