@@ -13,6 +13,8 @@ rango = 5; % Hz around peak frequency over which to sum amplitude.
 
 iFiles = dir(userfilespec);
 
+daycount = 0;
+
 %% Cycle through every file in the directory
 
 k = 1; % Our counter.
@@ -44,15 +46,20 @@ end
 
     out(k).light = mean(data(:,5));
     out(k).temp = mean(data(:,4));
-
+    
 % Add time stamps (in seconds) relative to computer midnight
     hour = str2num(iFiles(k).name(numstart:numstart+1));
     minute = str2num(iFiles(k).name(numstart+3:numstart+4));
     second = str2num(iFiles(k).name(numstart+6:numstart+7));
-    
-    out(k).tim = (hour*60*60) + (minute*60) + second;
+
+    if k > 1 && (hour*60*60) + (minute*60) + second < out(k-1).tim
+        daycount = daycount + 1;
+    end
+        
+    out(k).tim = (hour*60*60) + (minute*60) + second + (daycount*) ;
     
     k = k+1;
+    
 
 end
 
