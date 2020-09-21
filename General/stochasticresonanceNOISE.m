@@ -1,4 +1,4 @@
-function [im, sr] = stochasticresonanceNOISE(im, thresh, rango)
+function sr = stochasticresonanceNOISE(im, thresh, rango)
 
 x = length(im(:,1));
 y = length(im(1,:));
