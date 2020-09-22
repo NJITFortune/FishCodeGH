@@ -26,7 +26,7 @@ eval(['load ' iFiles(k).name]);
 % Get EOD amplitudes for each channel
 for j = length(dataChans):-1:1
     
-    tmp = fftmachine(filtfilt(b,a,data(1:1000,dataChans(j))), Fs);
+    tmp = fftmachine(filtfilt(b,a,data(1:2000,dataChans(j))), Fs);
     [peakAmp(j), peakIDX] = max(tmp.fftdata);
     peakFreq(j) = tmp.fftfreq(peakIDX);
     sumAmp(j) = sum(tmp.fftdata(tmp.fftfreq > (peakFreq(j) - rango) & tmp.fftfreq < (peakFreq(j) + rango)));
