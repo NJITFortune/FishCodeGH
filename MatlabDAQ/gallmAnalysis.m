@@ -12,7 +12,7 @@ rango = 10; % Hz around peak frequency over which to sum amplitude.
 tempchan = 3; % Either 4 or 3
 lightchan = 4; % Either 5 or 4
 
-sampidx = 1:Fs*0.100;
+sampidx = 1:Fs*0.200;
 
 [b,a] = butter(5, 200/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
 
