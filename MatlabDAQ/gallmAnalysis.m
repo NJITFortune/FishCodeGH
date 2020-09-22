@@ -9,6 +9,9 @@ function out = gallmAnalysis(userfilespec, Fs, numstart)
 dataChans = [1 2]; % EOD recording channels in recorded files
 rango = 5; % Hz around peak frequency over which to sum amplitude.
 
+tempchan = 4;
+lightchan = 5;
+
 [b,a] = butter(5, 250/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
 
 iFiles = dir(userfilespec);
@@ -44,8 +47,8 @@ end
 %    out(k).Ch3peakFreq = peakFreq(3);
 %    out(k).Ch3sumAmp = sumAmp(3);
 
-    out(k).light = mean(data(:,4));
-    out(k).temp = mean(data(:,3));
+    out(k).light = mean(data(:,lightchan));
+    out(k).temp = mean(data(:,tempchan));
     
 % Add time stamps (in seconds) relative to computer midnight
     hour = str2num(iFiles(k).name(numstart:numstart+1));
