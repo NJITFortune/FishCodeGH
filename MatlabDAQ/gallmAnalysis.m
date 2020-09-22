@@ -9,8 +9,8 @@ function out = gallmAnalysis(userfilespec, Fs, numstart)
 dataChans = [1 2]; % EOD recording channels in recorded files
 rango = 20; % Hz around peak frequency over which to sum amplitude.
 
-tempchan = 4;
-lightchan = 5;
+tempchan = 3; % Either 4 or 3
+lightchan = 4; % Either 5 or 4
 
 sampidx = 1:Fs*0.050;
 
