@@ -44,8 +44,8 @@ end
 %    out(k).Ch3peakFreq = peakFreq(3);
 %    out(k).Ch3sumAmp = sumAmp(3);
 
-    out(k).light = mean(data(:,5));
-    out(k).temp = mean(data(:,4));
+    out(k).light = mean(data(:,4));
+    out(k).temp = mean(data(:,3));
     
 % Add time stamps (in seconds) relative to computer midnight
     hour = str2num(iFiles(k).name(numstart:numstart+1));
