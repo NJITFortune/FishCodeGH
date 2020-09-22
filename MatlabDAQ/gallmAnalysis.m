@@ -40,9 +40,9 @@ end
     out(k).Ch2peakAmp = peakAmp(2);
     out(k).Ch2peakFreq = peakFreq(2);
     out(k).Ch2sumAmp = sumAmp(2);
-    out(k).Ch3peakAmp = peakAmp(3);
-    out(k).Ch3peakFreq = peakFreq(3);
-    out(k).Ch3sumAmp = sumAmp(3);
+%    out(k).Ch3peakAmp = peakAmp(3);
+%    out(k).Ch3peakFreq = peakFreq(3);
+%    out(k).Ch3sumAmp = sumAmp(3);
 
     out(k).light = mean(data(:,5));
     out(k).temp = mean(data(:,4));
@@ -72,14 +72,14 @@ figure(1); clf;
 subplot(311); hold on;
     plot([out.timcont]/(60*60), [out.Ch1sumAmp], '.');
     plot([out.timcont]/(60*60), [out.Ch2sumAmp], '.');
-    plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
+%    plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
 
 subplot(312); hold on;
     yyaxis right; plot([out.timcont]/(60*60), -[out.temp], '.');
     yyaxis left; ylim([200 800]);
         plot([out.timcont]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
         plot([out.timcont]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
-        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
+%        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
     
 subplot(313); hold on;
     plot([out.timcont]/(60*60), [out.light], '.', 'Markersize', 8);
@@ -91,14 +91,14 @@ figure(2); clf;
 subplot(311); hold on;
     plot([out.tim24]/(60*60), [out.Ch1sumAmp], '.');
     plot([out.tim24]/(60*60), [out.Ch2sumAmp], '.');
-    plot([out.tim24]/(60*60), [out.Ch3sumAmp], '.');
+%    plot([out.tim24]/(60*60), [out.Ch3sumAmp], '.');
 
 subplot(312); hold on;
     yyaxis right; plot([out.tim24]/(60*60), -[out.temp], '.');
     yyaxis left; ylim([200 800]);
         plot([out.tim24]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
         plot([out.tim24]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
-        plot([out.tim24]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
+%        plot([out.tim24]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
     
 subplot(313); hold on;
     plot([out.tim24]/(60*60), [out.light], '.', 'Markersize', 8);
