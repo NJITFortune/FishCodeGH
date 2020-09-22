@@ -14,7 +14,7 @@ lightchan = 5;
 
 sampidx = 1:Fs*0.050;
 
-[b,a] = butter(5, 250/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
+[b,a] = butter(5, 200/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
 
 iFiles = dir(userfilespec);
 
@@ -31,10 +31,22 @@ eval(['load ' iFiles(k).name]);
 % Get EOD amplitudes for each channel
 for j = length(dataChans):-1:1
     
-    tmp = fftmachine(filtfilt(b,a,data(sampidx,dataChans(j))), Fs);
+    tmpsig = filtfilt(b,a,data(sampidx,dataChans(j)));
+    tmp = fftmachine(tmpsig, Fs);
     [peakAmp(j), peakIDX] = max(tmp.fftdata);
     peakFreq(j) = tmp.fftfreq(peakIDX);
     sumAmp(j) = sum(tmp.fftdata(tmp.fftfreq > (peakFreq(j) - rango) & tmp.fftfreq < (peakFreq(j) + rango)));
+
+    
+    z = zeros(1,length(sampidx));
+    z(tmpsig > 0) = 1;
+    z = diff(z);
+    posZs = find(z == 1);
+    for kk = 2:length(posZs)
+       amp(kk-1) = max(tmpsig(posZs(kk-1):posZs(kk))) + abs(min(tmpsig(posZs(kk-1):posZs(kk))));
+    end
+    
+    zAmp(j) = mean(amp);
     
 end
 
@@ -48,6 +60,8 @@ end
 %    out(k).Ch3peakAmp = peakAmp(3);
 %    out(k).Ch3peakFreq = peakFreq(3);
 %    out(k).Ch3sumAmp = sumAmp(3);
+    out(k).Ch1zamp = zAmp(1);
+    out(k).Ch2zamp = zAmp(2);
 
     out(k).light = mean(data(:,lightchan));
     out(k).temp = mean(data(:,tempchan));
