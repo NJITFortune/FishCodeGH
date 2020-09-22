@@ -7,12 +7,12 @@ function out = gallmAnalysis(userfilespec, Fs, numstart)
 %% Setup
 
 dataChans = [1 2]; % EOD recording channels in recorded files
-rango = 5; % Hz around peak frequency over which to sum amplitude.
+rango = 20; % Hz around peak frequency over which to sum amplitude.
 
 tempchan = 4;
 lightchan = 5;
 
-sampidx = 1:Fs*0.200;
+sampidx = 1:Fs*0.050;
 
 [b,a] = butter(5, 250/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
 
