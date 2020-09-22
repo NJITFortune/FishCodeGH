@@ -60,8 +60,8 @@ end
 %    out(k).Ch3peakAmp = peakAmp(3);
 %    out(k).Ch3peakFreq = peakFreq(3);
 %    out(k).Ch3sumAmp = sumAmp(3);
-    out(k).Ch1zamp = zAmp(1);
-    out(k).Ch2zamp = zAmp(2);
+    out(k).Ch1zAmp = zAmp(1);
+    out(k).Ch2zAmp = zAmp(2);
 
     out(k).light = mean(data(:,lightchan));
     out(k).temp = mean(data(:,tempchan));
@@ -88,38 +88,46 @@ end
 figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
-subplot(311); hold on;
+subplot(411); hold on;
     plot([out.timcont]/(60*60), [out.Ch1sumAmp], '.');
     plot([out.timcont]/(60*60), [out.Ch2sumAmp], '.');
 %    plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
 
-subplot(312); hold on;
+subplot(412); hold on;
+    plot([out.timcont]/(60*60), [out.Ch1zAmp], '.');
+    plot([out.timcont]/(60*60), [out.Ch2zAmp], '.');
+
+subplot(413); hold on;
     yyaxis right; plot([out.timcont]/(60*60), -[out.temp], '.');
     yyaxis left; ylim([200 800]);
         plot([out.timcont]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
         plot([out.timcont]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
 %        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
     
-subplot(313); hold on;
+subplot(414); hold on;
     plot([out.timcont]/(60*60), [out.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     
 figure(2); clf; 
     set(gcf, 'Position', [400 100 2*560 2*420]);
 
-subplot(311); hold on;
+subplot(411); hold on;
     plot([out.tim24]/(60*60), [out.Ch1sumAmp], '.');
     plot([out.tim24]/(60*60), [out.Ch2sumAmp], '.');
 %    plot([out.tim24]/(60*60), [out.Ch3sumAmp], '.');
 
-subplot(312); hold on;
+subplot(412); hold on;
+    plot([out.tim24]/(60*60), [out.Ch1zAmp], '.');
+    plot([out.tim24]/(60*60), [out.Ch2zAmp], '.');
+
+subplot(413); hold on;
     yyaxis right; plot([out.tim24]/(60*60), -[out.temp], '.');
     yyaxis left; ylim([200 800]);
         plot([out.tim24]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
         plot([out.tim24]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
 %        plot([out.tim24]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
     
-subplot(313); hold on;
+subplot(414); hold on;
     plot([out.tim24]/(60*60), [out.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
 
