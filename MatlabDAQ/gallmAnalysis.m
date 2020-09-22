@@ -107,6 +107,7 @@ subplot(413); hold on;
 subplot(414); hold on;
     plot([out.timcont]/(60*60), [out.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
+    xlabel('Continuous');
     
 figure(2); clf; 
     set(gcf, 'Position', [400 100 2*560 2*420]);
@@ -129,5 +130,6 @@ subplot(413); hold on;
     
 subplot(414); hold on;
     plot([out.tim24]/(60*60), [out.light], '.', 'Markersize', 8);
+    xlabel('24 Hour');
     ylim([-1, 6]);
 
