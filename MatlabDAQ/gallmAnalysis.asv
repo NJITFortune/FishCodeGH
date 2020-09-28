@@ -120,9 +120,13 @@ xa(1) = subplot(411); hold on;
     plot([out.tim24]/(60*60), [out.Ch2sumAmp], '.');
 %    plot([out.tim24]/(60*60), [out.Ch3sumAmp], '.');
 
-for ttk = 10:10:720
+for ttk = 1:72
    
-    tt = find([out.tim24] > ttk(
+    tt = find([out.tim24] > ((ttk-1)*10*60) & [out.tim24] < (ttk*10*60));
+    meanCh1sumAmp(ttk) = mean([out(tt).Ch1sumAmp]);
+    meanCh2sumAmp(ttk) = mean([out(tt).Ch2sumAmp]);
+    meanCh1sumAmp(ttk) = mean([out(tt).Ch1sumAmp]);
+    meanCh1sumAmp(ttk) = mean([out(tt).Ch1sumAmp]);
     
 end
 
