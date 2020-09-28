@@ -115,13 +115,13 @@ linkaxes(ax, 'x');
 figure(2); clf; 
     set(gcf, 'Position', [400 100 2*560 2*420]);
 
-for ttk = 1:144   
-    tt = find([out.tim24] > ((ttk-1)*10*60) & [out.tim24] < (ttk*10*60));
+for ttk = 1:72   
+    tt = find([out.tim24] > ((ttk-1)*20*60) & [out.tim24] < (ttk*20*60));
     meanCh1sumAmp(ttk) = mean([out(tt).Ch1sumAmp]);
     meanCh2sumAmp(ttk) = mean([out(tt).Ch2sumAmp]);
     meanCh1zAmp(ttk) = mean([out(tt).Ch1zAmp]);
     meanCh2zAmp(ttk) = mean([out(tt).Ch2zAmp]);
-    meantims(ttk) = (ttk*10*60) - (5*60);
+    meantims(ttk) = (ttk*20*60) - (10*60);
 end
 
 xa(1) = subplot(411); hold on;
