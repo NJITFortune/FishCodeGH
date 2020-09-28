@@ -128,14 +128,14 @@ xa(1) = subplot(411); hold on;
     plot([out.tim24]/(60*60), [out.Ch1sumAmp], 'b.');
     plot([out.tim24]/(60*60), [out.Ch2sumAmp], 'm.');
 %    plot([out.tim24]/(60*60), [out.Ch3sumAmp], '.');
-    plot(meantims, meanCh1sumAmp, 'b-');
-    plot(meantims, meanCh2sumAmp, 'm-');
+    plot(meantims/(60*60), meanCh1sumAmp, 'b-');
+    plot(meantims/(60*60), meanCh2sumAmp, 'm-');
 
 xa(2) = subplot(412); hold on;
     plot([out.tim24]/(60*60), [out.Ch1zAmp], 'b.');
     plot([out.tim24]/(60*60), [out.Ch2zAmp], 'm.');
-    plot(meantims, meanCh1zAmp, 'b-');
-    plot(meantims, meanCh2zAmp, 'm-');
+    plot(meantims/(60*60), meanCh1zAmp, 'b-');
+    plot(meantims/(60*60), meanCh2zAmp, 'm-');
 
 xa(3) = subplot(413); hold on;
     yyaxis right; plot([out.tim24]/(60*60), -[out.temp], '.');
