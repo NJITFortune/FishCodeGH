@@ -120,6 +120,10 @@ xa(1) = subplot(411); hold on;
     plot([out.tim24]/(60*60), [out.Ch2sumAmp], '.');
 %    plot([out.tim24]/(60*60), [out.Ch3sumAmp], '.');
 
+for ttk = 10
+
+
+
 xa(2) = subplot(412); hold on;
     plot([out.tim24]/(60*60), [out.Ch1zAmp], '.');
     plot([out.tim24]/(60*60), [out.Ch2zAmp], '.');
