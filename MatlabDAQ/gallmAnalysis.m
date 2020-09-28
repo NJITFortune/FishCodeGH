@@ -115,18 +115,27 @@ linkaxes(ax, 'x');
 figure(2); clf; 
     set(gcf, 'Position', [400 100 2*560 2*420]);
 
+for ttk = 1:72   
+    tt = find([out.tim24] > ((ttk-1)*10*60) & [out.tim24] < (ttk*10*60));
+    meanCh1sumAmp(ttk) = mean([out(tt).Ch1sumAmp]);
+    meanCh2sumAmp(ttk) = mean([out(tt).Ch2sumAmp]);
+    meanCh1zAmp(ttk) = mean([out(tt).Ch1zAmp]);
+    meanCh2zAmp(ttk) = mean([out(tt).Ch2zAmp]);
+    meantims(ttk) = (ttk*10*60) - (5*60);
+end
+
 xa(1) = subplot(411); hold on;
-    plot([out.tim24]/(60*60), [out.Ch1sumAmp], '.');
-    plot([out.tim24]/(60*60), [out.Ch2sumAmp], '.');
+    plot([out.tim24]/(60*60), [out.Ch1sumAmp], 'b.');
+    plot([out.tim24]/(60*60), [out.Ch2sumAmp], 'm.');
 %    plot([out.tim24]/(60*60), [out.Ch3sumAmp], '.');
-
-for ttk = 10
-
-
+    plot(meantims, meanCh1sumAmp, 'b-');
+    plot(meantims, meanCh2sumAmp, 'm-');
 
 xa(2) = subplot(412); hold on;
-    plot([out.tim24]/(60*60), [out.Ch1zAmp], '.');
-    plot([out.tim24]/(60*60), [out.Ch2zAmp], '.');
+    plot([out.tim24]/(60*60), [out.Ch1zAmp], 'b.');
+    plot([out.tim24]/(60*60), [out.Ch2zAmp], 'm.');
+    plot(meantims, meanCh1zAmp, 'b-');
+    plot(meantims, meanCh2zAmp, 'm-');
 
 xa(3) = subplot(413); hold on;
     yyaxis right; plot([out.tim24]/(60*60), -[out.temp], '.');
