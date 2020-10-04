@@ -14,7 +14,7 @@ s = daq.createSession('ni');
     s.NotifyWhenDataAvailableExceeds = s.Rate * s.DurationInSeconds;
 
 % Add and configure Trigger    
-    addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
+    addTriggerConnection(s,'External','Dev1/PFI0','StartTrigger');
     
     s.Connections.TriggerCondition = 'FallingEdge';
     s.ExternalTriggerTimeout = 144000;
