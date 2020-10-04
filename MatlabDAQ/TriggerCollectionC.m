@@ -21,7 +21,7 @@ s = daq.createSession('ni');
     s.TriggersPerRun = 1;
     
 % Add the listener which can handle the data 
-    lh = s.addlistener('DataAvailable', @listentothisB);
+    lh = s.addlistener('DataAvailable', @listentothisC);
 
 pause(2);
 %% Start collection
