@@ -33,9 +33,9 @@ if (! rtc.begin()) {
   while(1);
 }
   // Start with 12 on and 13 off (state is 0 - NIGHT)
-  digitalWrite(12, HIGH);
-  digitalWrite(13, LOW);
-  state = 0;
+  //digitalWrite(12, HIGH);
+  //digitalWrite(13, LOW);
+  //state = 0;
 
   // Get the starting time for the current state, init_time
   rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
@@ -43,10 +43,10 @@ if (! rtc.begin()) {
   DateTime now = rtc.now();
   init_time = now.unixtime();
 
- // Initialize with 12 on and 13 off (state is 1)
- // digitalWrite(12, LOW);
- // digitalWrite(13, HIGH);
- // state = 1;
+  //Initialize with 12 on and 13 off (state is 1)
+  digitalWrite(12, LOW);
+ digitalWrite(13, HIGH);
+ state = 1;
   
 }
 
