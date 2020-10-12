@@ -89,6 +89,7 @@ end
 
 %% Plot the data for fun
 
+% Continuous data plot
 figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
@@ -115,9 +116,11 @@ ax(4) = subplot(414); hold on;
 
 linkaxes(ax, 'x');
     
+% 24-hour data plot
 figure(2); clf; 
     set(gcf, 'Position', [400 100 2*560 2*420]);
 
+% Smoothed trend line (20 minute duration window with 10 minute overlap)
 for ttk = 1:143   
     tt = find([out.tim24] > ((ttk-1)*10*60) & [out.tim24] < (((ttk-1)*10*60) + (20*60)) );
     meanCh1sumAmp(ttk) = mean([out(tt).Ch1sumAmp]);
@@ -153,4 +156,12 @@ xa(4) = subplot(414); hold on;
     ylim([-1, 6]);
 
 linkaxes(xa, 'x');
+
+
+% Light / Dark plot
+
+
+ldOnOff = diff([out.light]);
+
+
 
