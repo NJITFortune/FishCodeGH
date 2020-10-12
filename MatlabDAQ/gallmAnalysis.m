@@ -160,8 +160,17 @@ linkaxes(xa, 'x');
 
 % Light / Dark plot
 
+figure(3); clf;
 
-ldOnOff = diff([out.light]);
-Ons = find(ldOnOff >
+    ldOnOff = diff([out.light]);
+    tim = [out.timcont];
+    dat1 = [out.
+    Ons = find(ldOnOff > 1); % lights turned on
+    Offs = find(ldOnOff < -1); % lights turned on
 
+subplot(411);     
+    for j = 1:length(Ons) % Synchronize at light on
 
+        plot(
+
+    end
