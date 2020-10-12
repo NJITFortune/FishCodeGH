@@ -162,7 +162,8 @@ linkaxes(xa, 'x');
 
 figure(3); clf;
 
-    ldOnOff = diff([out.light]);
+    ld = [out.light];
+    ldOnOff = diff(ld);
     tim = [out.timcont];
     dat1 = [out.Ch1peakAmp];
     dat2 = [out.Ch2.peakAmp];
@@ -170,10 +171,21 @@ figure(3); clf;
     Ons = find(ldOnOff > 1); % lights turned on
     Offs = find(ldOnOff < -1); % lights turned on
 
-subplot(411);     
+subplot(411); hold on; subplot(412); hold on;   
     for j = 2:length(Ons) % Synchronize at light on
-
-        tt = 
-        plot(tim(Ons(j-1):Ons(j))-tim(Ons(j-1), dat1(;
-
+    subplot(411);
+        plot(tim(Ons(j-1):Ons(j))-tim(Ons(j-1)), dat1(Ons(j-1):Ons(j)), '.');
+        plot(tim(Ons(j-1):Ons(j))-tim(Ons(j-1)), dat2(Ons(j-1):Ons(j)), '.');
+    subplot(412);
+        plot(tim(Ons(j-1):Ons(j))-tim(Ons(j-1)), ld, '.');
     end
+
+subplot(413); hold on; subplot(414); hold on;   
+    for j = 2:length(Offs) % Synchronize at light off
+    subplot(413);
+        plot(tim(Offs(j-1):Offs(j))-tim(Offs(j-1)), dat1(Offs(j-1):Offs(j)), '.');
+        plot(tim(Offs(j-1):Offs(j))-tim(Offs(j-1)), dat2(Offs(j-1):Offs(j)), '.');
+    subplot(414);
+        plot(tim(Offs(j-1):Offs(j))-tim(Offs(j-1)), ld, '.');
+    end
+    
