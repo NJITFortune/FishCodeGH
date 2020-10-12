@@ -16,6 +16,7 @@ sampidx = 1:Fs*0.100; % Duration of sample (make sure integer!)
 % So far either 0.050 or 0.100 has been best
 
 [b,a] = butter(5, 200/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
+[f,e] = butter(5, 2000/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
 
 iFiles = dir(userfilespec);
 
@@ -32,7 +33,9 @@ eval(['load ' iFiles(k).name]);
 % Get EOD amplitudes for each channel
 for j = length(dataChans):-1:1
     
-    tmpsig = filtfilt(b,a,data(sampidx,dataChans(j)));
+    tmpsig = filtfilt(b,a,data(sampidx,dataChans(j))); % High pass filter
+    tmpsig = filtfilt(f,e,tmpsig); % Low pass filter
+    
     tmp = fftmachine(tmpsig, Fs);
     [peakAmp(j), peakIDX] = max(tmp.fftdata);
     peakFreq(j) = tmp.fftfreq(peakIDX);
