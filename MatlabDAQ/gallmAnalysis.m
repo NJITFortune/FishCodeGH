@@ -161,6 +161,7 @@ linkaxes(xa, 'x');
 % Light / Dark plot
 
 figure(3); clf;
+set(gcf, 'Position', [400 100 2*560 2*420]);
 
     ld = [out.light];
     ldOnOff = diff(ld);
