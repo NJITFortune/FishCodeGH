@@ -166,7 +166,7 @@ figure(3); clf;
     ldOnOff = diff(ld);
     tim = [out.timcont];
     dat1 = [out.Ch1peakAmp];
-    dat2 = [out.Ch2.peakAmp];
+    dat2 = [out.Ch2peakAmp];
     
     Ons = find(ldOnOff > 1); % lights turned on
     Offs = find(ldOnOff < -1); % lights turned on
