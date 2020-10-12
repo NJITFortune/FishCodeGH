@@ -162,6 +162,6 @@ linkaxes(xa, 'x');
 
 
 ldOnOff = diff([out.light]);
-
+Ons = find(ldOnOff >
 
 
