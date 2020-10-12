@@ -164,13 +164,16 @@ figure(3); clf;
 
     ldOnOff = diff([out.light]);
     tim = [out.timcont];
-    dat1 = [out.
+    dat1 = [out.Ch1peakAmp];
+    dat2 = [out.Ch2.peakAmp];
+    
     Ons = find(ldOnOff > 1); % lights turned on
     Offs = find(ldOnOff < -1); % lights turned on
 
 subplot(411);     
-    for j = 1:length(Ons) % Synchronize at light on
+    for j = 2:length(Ons) % Synchronize at light on
 
-        plot(
+        tt = 
+        plot(tim(Ons(j-1):Ons(j))-tim(Ons(j-1), dat1(;
 
     end
