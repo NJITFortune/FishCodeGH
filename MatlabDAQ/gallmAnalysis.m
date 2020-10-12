@@ -186,6 +186,6 @@ subplot(413); hold on; subplot(414); hold on;
         plot(tim(Offs(j-1):Offs(j))-tim(Offs(j-1)), dat1(Offs(j-1):Offs(j)), '.');
         plot(tim(Offs(j-1):Offs(j))-tim(Offs(j-1)), dat2(Offs(j-1):Offs(j)), '.');
     subplot(414);
-        plot(tim(Offs(j-1):Offs(j))-tim(Offs(j-1)), ld(Ons(j-1):Ons(j)), '.');
+        plot(tim(Offs(j-1):Offs(j))-tim(Offs(j-1)), ld(Offs(j-1):Offs(j)), '.');
     end
     
