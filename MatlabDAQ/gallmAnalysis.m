@@ -218,8 +218,8 @@ subplot(411); hold on; subplot(412); hold on;
     ttOn = find(newtim > tim(Ons(j-1)) & newtim < tim(Ons(j)));
         
     subplot(411);
-        plot(newtim(ttOn), datrend1(ttOn), '.');
-        plot(newtim(ttOn), datrend2(ttOn), '.');
+        plot(newtim(ttOn)-newtim(ttOn(1)), datrend1(ttOn), '.');
+        plot(newtim(ttOn)-newtim(ttOn(1)), datrend2(ttOn), '.');
     subplot(412);
         plot(newtim(ttOn)-newtim(ttOn(1)), ldr(ttOn), '.');
     end
@@ -227,11 +227,11 @@ subplot(411); hold on; subplot(412); hold on;
 subplot(413); hold on; subplot(414); hold on;   
     for j = 2:length(Offs) % Synchronize at light off
         
-    ttOff = newtim(newtim > tim(Offs(j-1)) & newtim < tim(Offs(j)));
+    ttOff = find(newtim > tim(Offs(j-1)) & newtim < tim(Offs(j)));
         
     subplot(413);
-        plot(newtim(ttOff), datrend1(ttOff), '.');
-        plot(newtim(ttOff), datrend2(ttOff), '.');
+        plot(newtim(ttOff)-newtim(ttOff(1)), datrend1(ttOff), '.');
+        plot(newtim(ttOff)-newtim(ttOff(1)), datrend2(ttOff), '.');
     subplot(414);
         plot(newtim(ttOff)-newtim(ttOff(1)), ldr(ttOff), '.');
     end
