@@ -215,7 +215,7 @@ set(gcf, 'Position', [400 100 2*560 2*420]);
 subplot(411); hold on; subplot(412); hold on;   
     for j = 2:length(Ons) % Synchronize at light on
         
-    ttOn = newtim(newtim > tim(Ons(j-1)) & newtim < tim(Ons(j)));
+    ttOn = find(newtim > tim(Ons(j-1)) & newtim < tim(Ons(j)));
         
     subplot(411);
         plot(newtim(ttOn), datrend1(ttOn), '.');
