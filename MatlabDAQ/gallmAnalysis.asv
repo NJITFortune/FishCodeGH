@@ -193,10 +193,40 @@ subplot(413); hold on; subplot(414); hold on;
 % Detrend the data
 
 resampFs = 0.005; % May need to change this
+cutfreq = 0.00001; % Low pass filter for detrend - need to adjust re resampFs
 
-    [dat1r, newtim] = resample(dat1, tim, 0.005);
-    [dat2r, ~] = resample(dat2, tim, 0.005);
+    [dat1r, newtim] = resample(dat1, tim, resampFs);
+    [dat2r, ~] = resample(dat2, tim, resampFs);
 
-    [b,a
+    [h,g] = butter(5,cutfreq/(resampFs/2),'low');
+    
+    % Filter the data
+    dat1rlf = filtfilt(h,g,dat1r);
+    dat2rlf = filtfilt(h,g,dat2r);
+
+    % Remove the low frequency information
+    detrend1 = dat1r-dat1rlf;
+    detrend2 = dat2r-dat2rlf;
+    
+    subplot(411); hold on; subplot(412); hold on;   
+    for j = 2:length(Ons) % Synchronize at light on
+    subplot(411);
+        plot(tim(Ons(j-1):Ons(j))-tim(Ons(j-1)), dat1(Ons(j-1):Ons(j)), '.');
+        plot(tim(Ons(j-1):Ons(j))-tim(Ons(j-1)), dat2(Ons(j-1):Ons(j)), '.');
+    subplot(412);
+        plot(tim(Ons(j-1):Ons(j))-tim(Ons(j-1)), ld(Ons(j-1):Ons(j)), '.');
+    end
+
+subplot(413); hold on; subplot(414); hold on;   
+    for j = 2:length(Offs) % Synchronize at light off
+    subplot(413);
+        plot(tim(Offs(j-1):Offs(j))-tim(Offs(j-1)), dat1(Offs(j-1):Offs(j)), '.');
+        plot(tim(Offs(j-1):Offs(j))-tim(Offs(j-1)), dat2(Offs(j-1):Offs(j)), '.');
+    subplot(414);
+        plot(tim(Offs(j-1):Offs(j))-tim(Offs(j-1)), ld(Offs(j-1):Offs(j)), '.');
+    end
+
+    
+        
 
     
