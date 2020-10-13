@@ -212,7 +212,7 @@ cutfreq = 0.00001; % Low pass filter for detrend - need to adjust re resampFs
 figure(4); clf;
 set(gcf, 'Position', [400 100 2*560 2*420]);
 
-subplot(411); hold on; subplot(412); hold on;   
+subplot(611); hold on; subplot(612); hold on;   subplot(613); hold on;
     for j = 2:length(Ons) % Synchronize at light on
         
     ttOn = find(newtim > tim(Ons(j-1)) & newtim < tim(Ons(j)));
@@ -225,7 +225,7 @@ subplot(411); hold on; subplot(412); hold on;
         plot(newtim(ttOn)-newtim(ttOn(1)), ldr(ttOn), '.');
     end
 
-subplot(413); hold on; subplot(414); hold on;   
+subplot(614); hold on; subplot(615); hold on; subplot(616); hold on;
     for j = 2:length(Offs) % Synchronize at light off
         
     ttOff = find(newtim > tim(Offs(j-1)) & newtim < tim(Offs(j)));
