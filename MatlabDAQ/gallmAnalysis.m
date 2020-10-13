@@ -217,10 +217,11 @@ subplot(411); hold on; subplot(412); hold on;
         
     ttOn = find(newtim > tim(Ons(j-1)) & newtim < tim(Ons(j)));
         
-    subplot(411);
+    subplot(611);
         plot(newtim(ttOn)-newtim(ttOn(1)), datrend1(ttOn), '.');
+    subplot(612);
         plot(newtim(ttOn)-newtim(ttOn(1)), datrend2(ttOn), '.');
-    subplot(412);
+    subplot(613);
         plot(newtim(ttOn)-newtim(ttOn(1)), ldr(ttOn), '.');
     end
 
@@ -229,10 +230,11 @@ subplot(413); hold on; subplot(414); hold on;
         
     ttOff = find(newtim > tim(Offs(j-1)) & newtim < tim(Offs(j)));
         
-    subplot(413);
+    subplot(614);
         plot(newtim(ttOff)-newtim(ttOff(1)), datrend1(ttOff), '.');
+    subplot(615);
         plot(newtim(ttOff)-newtim(ttOff(1)), datrend2(ttOff), '.');
-    subplot(414);
+    subplot(616);
         plot(newtim(ttOff)-newtim(ttOff(1)), ldr(ttOff), '.');
     end
 
