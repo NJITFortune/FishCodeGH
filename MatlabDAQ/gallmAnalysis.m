@@ -193,10 +193,13 @@ subplot(413); hold on; subplot(414); hold on;
 % Detrend the data
 
 resampFs = 0.005; % May need to change this
+cutfreq = 0.00001; % Low pass filter for detrend - need to adjust re resampFs
 
-    [dat1r, newtim] = resample(dat1, tim, 0.005);
-    [dat2r, ~] = resample(dat2, tim, 0.005);
+    [dat1r, newtim] = resample(dat1, tim, resampFs);
+    [dat2r, ~] = resample(dat2, tim, resampFs);
 
-    [h,g] = butter
+    [h,g] = butter(5,cutfreq/(resampFs/2),'low');
+    
+    
 
     
