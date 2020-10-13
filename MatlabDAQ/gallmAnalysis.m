@@ -192,6 +192,11 @@ subplot(413); hold on; subplot(414); hold on;
     
 % Detrend the data
 
+resampFs = 0.005; % May need to change this
 
+    [dat1r, newtim] = resample(dat1, tim, 0.005);
+    [dat2r, ~] = resample(dat2, tim, 0.005);
+
+    [h,g] = butter
 
     
