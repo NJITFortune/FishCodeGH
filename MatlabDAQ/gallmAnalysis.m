@@ -157,7 +157,6 @@ xa(4) = subplot(414); hold on;
 
 linkaxes(xa, 'x');
 
-
 % Light / Dark plot
 
 figure(3); clf;
@@ -189,4 +188,10 @@ subplot(413); hold on; subplot(414); hold on;
     subplot(414);
         plot(tim(Offs(j-1):Offs(j))-tim(Offs(j-1)), ld(Offs(j-1):Offs(j)), '.');
     end
+
+    
+% Detrend the data
+
+
+
     
