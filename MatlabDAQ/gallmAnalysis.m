@@ -222,7 +222,7 @@ subplot(611); hold on; subplot(612); hold on;   subplot(613); hold on;
     subplot(612);
         plot(newtim(ttOn)-newtim(ttOn(1)), datrend2(ttOn), '.');
     subplot(613);
-        plot(newtim(ttOn)-newtim(ttOn(1)), ldr(ttOn), '-', 'LineWidth', 4);
+        plot(newtim(ttOn)-newtim(ttOn(1)), ldr(ttOn), '.');
     end
 
 subplot(614); hold on; subplot(615); hold on; subplot(616); hold on;
@@ -235,7 +235,7 @@ subplot(614); hold on; subplot(615); hold on; subplot(616); hold on;
     subplot(615);
         plot(newtim(ttOff)-newtim(ttOff(1)), datrend2(ttOff), '.');
     subplot(616);
-        plot(newtim(ttOff)-newtim(ttOff(1)), ldr(ttOff), '-', 'LineWidth', 4);
+        plot(newtim(ttOff)-newtim(ttOff(1)), ldr(ttOff), '.');
     end
 
     
