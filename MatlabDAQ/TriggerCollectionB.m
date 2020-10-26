@@ -9,7 +9,8 @@ s = daq.createSession('ni');
     s.addAnalogInputChannel('Dev2', 3, 'voltage'); % Temp data
     s.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
 
-    s.Rate = 20000;
+    s.Rate = 40000; %changed from 20000
+   
     s.DurationInSeconds = 1; % Started with 2, now 1 to try to reduce variability
     s.NotifyWhenDataAvailableExceeds = s.Rate * s.DurationInSeconds;
 
