@@ -62,9 +62,11 @@ end
     out(k).Ch1peakAmp = peakAmp(1);
     out(k).Ch1peakFreq = peakFreq(1);
     out(k).Ch1sumAmp = sumAmp(1);
+    out(k).Ch1obwAmp = obwAmp(1);
     out(k).Ch2peakAmp = peakAmp(2);
     out(k).Ch2peakFreq = peakFreq(2);
     out(k).Ch2sumAmp = sumAmp(2);
+    out(k).Ch2obwAmp = obwAmp(2);
 %    out(k).Ch3peakAmp = peakAmp(3);
 %    out(k).Ch3peakFreq = peakFreq(3);
 %    out(k).Ch3sumAmp = sumAmp(3);
@@ -243,6 +245,31 @@ subplot(614); hold on; subplot(615); hold on; subplot(616); hold on;
     end
 
     
-        
+% Continuous data plot with OBW
+figure(5); clf; 
+    set(gcf, 'Position', [200 100 2*560 2*420]);
+
+ax(1) = subplot(411); hold on;
+    plot([out.timcont]/(60*60), [out.Ch1obwAmp], '.');
+    plot([out.timcont]/(60*60), [out.Ch2obwAmp], '.');
+%    plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
+
+ax(2) = subplot(412); hold on;
+    plot([out.timcont]/(60*60), [out.Ch1zAmp], '.');
+    plot([out.timcont]/(60*60), [out.Ch2zAmp], '.');
+
+ax(3) = subplot(413); hold on;
+    yyaxis right; plot([out.timcont]/(60*60), -[out.temp], '.');
+    yyaxis left; ylim([200 800]);
+        plot([out.timcont]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
+        plot([out.timcont]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
+%        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
+    
+ax(4) = subplot(414); hold on;
+    plot([out.timcont]/(60*60), [out.light], '.', 'Markersize', 8);
+    ylim([-1, 6]);
+    xlabel('Continuous');
+
+linkaxes(ax, 'x');   
 
     
