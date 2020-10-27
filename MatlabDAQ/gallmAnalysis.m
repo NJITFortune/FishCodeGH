@@ -39,11 +39,11 @@ for j = length(dataChans):-1:1
     tmp = fftmachine(tmpsig, Fs);
     [peakAmp(j), peakIDX] = max(tmp.fftdata);
     peakFreq(j) = tmp.fftfreq(peakIDX);
-%    sumAmp(j) = sum(tmp.fftdata(tmp.fftfreq > (peakFreq(j) - rango) & tmp.fftfreq < (peakFreq(j) + rango)));
+    sumAmp(j) = sum(tmp.fftdata(tmp.fftfreq > (peakFreq(j) - rango) & tmp.fftfreq < (peakFreq(j) + rango)));
 
 % NEW METHOD
 
-[~,~,~,sumAmp(j)] = obw(data(sampidx,dataChans(j)), Fs, [200 700]);
+[~,~,~,obwAmp(j)] = obw(data(sampidx,dataChans(j)), Fs, [200 700]);
 
 % Mean amplitude method
     z = zeros(1,length(sampidx));
