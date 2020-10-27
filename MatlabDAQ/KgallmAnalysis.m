@@ -37,10 +37,11 @@ for j = length(dataChans):-1:1
     %tmpsig = filtfilt(f,e,tmpsig); % Low pass filter
     
     tmpsig = data(sampidx, dataChans(j));
-    tmp = obw(tmpsig, Fs, [200 700]);
+    %tmp = obw(tmpsig, Fs, [200 700]);
+    tmp = fftmachine(tmpsig, Fs);
     
     
-    [peakAmp(j), peakIDX] = max(tmp.fftdata);
+    [peakAmp(j), peakIDX] = obw(tmp.fftdata, [200 700]);
     peakFreq(j) = tmp.fftfreq(peakIDX);
     sumAmp(j) = sum(tmp.fftdata(tmp.fftfreq > (peakFreq(j) - rango) & tmp.fftfreq < (peakFreq(j) + rango)));
 
