@@ -44,6 +44,7 @@ for j = length(dataChans):-1:1
 % NEW METHOD
 
 [~,~,~,sumAmp(j)] = obw(data(sampidx,dataChans(j)), Fs, [200 700]);
+peakAmp(j) = sumAmp(j); % just for now
 
 % Mean amplitude method
     z = zeros(1,length(sampidx));
