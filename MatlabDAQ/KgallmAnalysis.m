@@ -41,7 +41,8 @@ for j = length(dataChans):-1:1
     tmp = fftmachine(tmpsig, Fs);
     
     
-    [peakAmp(j), peakIDX] = obw(tmp.fftdata, [200 700]);
+    %[peakAmp(j), peakIDX] = obw(tmp.fftdata, [200 700]);
+    [peakAmp(j), peakIDX] = max(tmp.fftdata);
     peakFreq(j) = tmp.fftfreq(peakIDX);
     sumAmp(j) = sum(tmp.fftdata(tmp.fftfreq > (peakFreq(j) - rango) & tmp.fftfreq < (peakFreq(j) + rango)));
 
