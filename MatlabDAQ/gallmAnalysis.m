@@ -131,19 +131,19 @@ figure(2); clf;
 % Smoothed trend line (20 minute duration window with 10 minute overlap)
 for ttk = 1:143   
     tt = find([out.tim24] > ((ttk-1)*10*60) & [out.tim24] < (((ttk-1)*10*60) + (20*60)) );
-    meanCh1sumAmp(ttk) = mean([out(tt).Ch1sumAmp]);
-    meanCh2sumAmp(ttk) = mean([out(tt).Ch2sumAmp]);
+    meanCh1sumAmp(ttk) = mean([out(tt).Ch1obwAmp]);
+    meanCh2sumAmp(ttk) = mean([out(tt).Ch2obwAmp]);
     meanCh1zAmp(ttk) = mean([out(tt).Ch1zAmp]);
     meanCh2zAmp(ttk) = mean([out(tt).Ch2zAmp]);
     meantims(ttk) = (((ttk-1)*10*60) + (10*60));
 end
 
 xa(1) = subplot(411); hold on;
-    plot([out.tim24]/(60*60), [out.Ch1sumAmp], '.');
-    plot([out.tim24]/(60*60), [out.Ch2sumAmp], '.');
+    plot([out.tim24]/(60*60), [out.Ch1obwAmp], '.');
+    plot([out.tim24]/(60*60), [out.Ch2obwAmp], '.');
 %    plot([out.tim24]/(60*60), [out.Ch3sumAmp], '.');
-    plot(meantims/(60*60), meanCh1sumAmp, 'c-', 'Linewidth', 2);
-    plot(meantims/(60*60), meanCh2sumAmp, 'm-', 'Linewidth', 2);
+    plot(meantims/(60*60), meanCh1obwAmp, 'c-', 'Linewidth', 2);
+    plot(meantims/(60*60), meanCh2obwAmp, 'm-', 'Linewidth', 2);
 
 xa(2) = subplot(412); hold on;
     plot([out.tim24]/(60*60), [out.Ch1zAmp], '.');
@@ -173,8 +173,8 @@ set(gcf, 'Position', [400 100 2*560 2*420]);
     ld = [out.light];
     ldOnOff = diff(ld);
     tim = [out.timcont];
-    dat1 = [out.Ch1peakAmp];
-    dat2 = [out.Ch2peakAmp];
+    dat1 = [out.Ch1obwAmp];
+    dat2 = [out.Ch2obwAmp];
     
     Ons = find(ldOnOff > 1); % lights turned on
     Offs = find(ldOnOff < -1); % lights turned on
