@@ -35,7 +35,7 @@ for j = length(dataChans):-1:1
 
 % ORIGINAL METHOD
     tmpsig = filtfilt(b,a,data(sampidx,dataChans(j))); % High pass filter
-%    tmpsig = filtfilt(f,e,tmpsig); % Low pass filter    
+    tmpsig = filtfilt(f,e,tmpsig); % Low pass filter    
 %    tmp = fftmachine(tmpsig, Fs);
 %    [peakAmp(j), peakIDX] = max(tmp.fftdata);
 %    peakFreq(j) = tmp.fftfreq(peakIDX);
@@ -43,8 +43,7 @@ for j = length(dataChans):-1:1
 
 % NEW METHOD
 
-[~,~,~,sumAmp(j) = obw
-
+[~,~,~,sumAmp(j)] = obw(data(sampidx,dataChans(j)), Fs, [200 700]);
 
 % Mean amplitude method
     z = zeros(1,length(sampidx));
