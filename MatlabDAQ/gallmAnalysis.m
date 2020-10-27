@@ -13,7 +13,7 @@ tempchan = 3; % Either 4 or 3
 lightchan = 4; % Either 5 or 4
 
 startidx = max([1, (0.0 * Fs)]); % In case we want to start before 0 (max avoids zero problem)
-endidx = (0.05 * Fs) + startidx;
+endidx = (0.1 * Fs) + startidx;
 sampidx = startidx:endidx; % Duration of sample (make sure integer!)
 % So far either 0.050 or 0.100 has been best
 
