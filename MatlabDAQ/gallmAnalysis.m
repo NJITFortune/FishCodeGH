@@ -142,8 +142,8 @@ xa(1) = subplot(411); hold on;
     plot([out.tim24]/(60*60), [out.Ch1obwAmp], '.');
     plot([out.tim24]/(60*60), [out.Ch2obwAmp], '.');
 %    plot([out.tim24]/(60*60), [out.Ch3sumAmp], '.');
-    plot(meantims/(60*60), meanCh1obwAmp, 'c-', 'Linewidth', 2);
-    plot(meantims/(60*60), meanCh2obwAmp, 'm-', 'Linewidth', 2);
+    plot(meantims/(60*60), meanCh1sumAmp, 'c-', 'Linewidth', 2);
+    plot(meantims/(60*60), meanCh2sumAmp, 'm-', 'Linewidth', 2);
 
 xa(2) = subplot(412); hold on;
     plot([out.tim24]/(60*60), [out.Ch1zAmp], '.');
