@@ -32,16 +32,21 @@ eval(['load ' iFiles(k).name]);
 
 % Get EOD amplitudes for each channel
 for j = length(dataChans):-1:1
-    
-    tmpsig = filtfilt(b,a,data(sampidx,dataChans(j))); % High pass filter
-    tmpsig = filtfilt(f,e,tmpsig); % Low pass filter
-    
-    tmp = fftmachine(tmpsig, Fs);
-    [peakAmp(j), peakIDX] = max(tmp.fftdata);
-    peakFreq(j) = tmp.fftfreq(peakIDX);
-    sumAmp(j) = sum(tmp.fftdata(tmp.fftfreq > (peakFreq(j) - rango) & tmp.fftfreq < (peakFreq(j) + rango)));
 
-    
+% ORIGINAL METHOD
+    tmpsig = filtfilt(b,a,data(sampidx,dataChans(j))); % High pass filter
+%    tmpsig = filtfilt(f,e,tmpsig); % Low pass filter    
+%    tmp = fftmachine(tmpsig, Fs);
+%    [peakAmp(j), peakIDX] = max(tmp.fftdata);
+%    peakFreq(j) = tmp.fftfreq(peakIDX);
+%    sumAmp(j) = sum(tmp.fftdata(tmp.fftfreq > (peakFreq(j) - rango) & tmp.fftfreq < (peakFreq(j) + rango)));
+
+% NEW METHOD
+
+[~,~,~,sumAmp(j) = obw
+
+
+% Mean amplitude method
     z = zeros(1,length(sampidx));
     z(tmpsig > 0) = 1;
     z = diff(z);
