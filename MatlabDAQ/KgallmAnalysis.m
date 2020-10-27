@@ -37,7 +37,7 @@ for j = length(dataChans):-1:1
     %tmpsig = filtfilt(f,e,tmpsig); % Low pass filter
     
     tmpsig = data(sampidx, dataChans(j));
-    tmp = fftmachine(tmpsig, Fs);
+    tmp = obw(tmpsig, Fs, [200 700]);
     
     
     [peakAmp(j), peakIDX] = max(tmp.fftdata);
