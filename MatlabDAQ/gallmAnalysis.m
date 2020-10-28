@@ -35,7 +35,7 @@ eval(['load ' iFiles(k).name]);
 % Get EOD amplitudes for each channel
 for j = length(dataChans):-1:1
 
-% ORIGINAL METHOD
+% ORIGINAL METHOD - sumAmp
     tmpsig = filtfilt(b,a,data(sampidx,dataChans(j))); % High pass filter
     tmpsig = filtfilt(f,e,tmpsig); % Low pass filter    
     tmp = fftmachine(tmpsig, Fs);
@@ -43,13 +43,13 @@ for j = length(dataChans):-1:1
     peakFreq(j) = tmp.fftfreq(peakIDX);
     sumAmp(j) = sum(tmp.fftdata(tmp.fftfreq > (peakFreq(j) - rango) & tmp.fftfreq < (peakFreq(j) + rango)));
 
-% NEW METHOD
+% NEW METHOD - obwAmp
 
 [~,~,~,obwAmp(j)] = obw(data(sampidx,dataChans(j)), Fs, [200 700]);
 
 % Mean amplitude method
-    z = zeros(1,length(sampidx));
-    z(tmpsig > 0) = 1;
+    z = zeros(1,length(sampidx)); %creat vector length of data
+    z(tmpsig > 0) = 1; %fill with 1s for all filtered data greater than 0
     z = diff(z);
     posZs = find(z == 1);
     for kk = 2:length(posZs)
@@ -131,7 +131,7 @@ figure(2); clf;
 % Smoothed trend line (20 minute duration window with 10 minute overlap)
 for ttk = 1:143   
     tt = find([out.tim24] > ((ttk-1)*10*60) & [out.tim24] < (((ttk-1)*10*60) + (20*60)) );
-    meanCh1sumAmp(ttk) = mean([out(tt).Ch1obwAmp]);
+    meanCh1sumAmp(ttk) = mean([out(tt).Ch1obwAmp]); %huh? %is this just a quick way to replace one with the other?
     meanCh2sumAmp(ttk) = mean([out(tt).Ch2obwAmp]);
     meanCh1zAmp(ttk) = mean([out(tt).Ch1zAmp]);
     meanCh2zAmp(ttk) = mean([out(tt).Ch2zAmp]);
