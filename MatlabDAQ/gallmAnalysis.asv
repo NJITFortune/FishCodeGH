@@ -53,7 +53,7 @@ for j = length(dataChans):-1:1
     z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
     posZs = find(z == 1); 
     for kk = 2:length(posZs)
-       amp(kk-1) = max(tmpsig(posZs(kk-1):posZs(kk))) + abs(min(tmpsig(posZs(kk-1):posZs(kk)))); %? why do we need the min?
+       amp(kk-1) = max(tmpsig(posZs(kk-1):posZs(kk))) + abs(min(tmpsig(posZs(kk-1):posZs(kk)))); %? why do we need the min? -k
     end
     
     zAmp(j) = mean(amp);
@@ -79,7 +79,7 @@ end
     out(k).temp = mean(data(:,tempchan));
     
 % Add time stamps (in seconds) relative to computer midnight
-    hour = str2num(iFiles(k).name(numstart:numstart+1));
+    hour = str2num(iFiles(k).name(numstart:numstart+1)); %numstart based on time stamp text location
     minute = str2num(iFiles(k).name(numstart+3:numstart+4));
     second = str2num(iFiles(k).name(numstart+6:numstart+7));
 
