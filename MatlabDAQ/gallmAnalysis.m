@@ -53,7 +53,11 @@ for j = length(dataChans):-1:1
 
 % NEW FFT METHOD - obwAmp
 
-[~,~,~,obwAmp(j)] = obw(data(sampidx,dataChans(j)), Fs, [200 700]);
+% USER DEFINED CRITICAL NUMBERS!  Fish limit frequencies
+    topFreq = 800;
+    botFreq = 300;
+
+[~,~,~,obwAmp(j)] = obw(data(sampidx,dataChans(j)), Fs, [botFreq topFreq]);
 
     tmpsig = filtfilt(b,a,data(sampidx,dataChans(j))); % High pass filter
     tmpsig = filtfilt(f,e,tmpsig); % Low pass filter    
@@ -211,7 +215,7 @@ subplot(413); hold on; subplot(414); hold on;
 % Detrend the data
 
 resampFs = 0.005; % May need to change this
-cutfreq = 0.00001; % Low pass filter for detrend - need to adjust re resampFs
+cutfreq =  0.00001; % Low pass filter for detrend - need to adjust re resampFs
 
     [dat1r, newtim] = resample(dat1, tim, resampFs);
     [dat2r, ~] = resample(dat2, tim, resampFs);
