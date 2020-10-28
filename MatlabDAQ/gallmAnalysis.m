@@ -50,8 +50,8 @@ for j = length(dataChans):-1:1
 % Mean amplitude method
     z = zeros(1,length(sampidx)); %creat vector length of data
     z(tmpsig > 0) = 1; %fill with 1s for all filtered data greater than 0
-    z = diff(z);
-    posZs = find(z == 1);
+    z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
+    posZs = find(z == 1); 
     for kk = 2:length(posZs)
        amp(kk-1) = max(tmpsig(posZs(kk-1):posZs(kk))) + abs(min(tmpsig(posZs(kk-1):posZs(kk))));
     end
