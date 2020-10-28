@@ -53,7 +53,7 @@ for j = length(dataChans):-1:1
     z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
     posZs = find(z == 1); 
     for kk = 2:length(posZs)
-       amp(kk-1) = max(tmpsig(posZs(kk-1):posZs(kk))) + abs(min(tmpsig(posZs(kk-1):posZs(kk)))); %? why do we need the min? -k
+       amp(kk-1) = max(tmpsig(posZs(kk-1):posZs(kk))) - (min(tmpsig(posZs(kk-1):posZs(kk)))); %? why do we need the min? -k
     end
     
     zAmp(j) = mean(amp);
