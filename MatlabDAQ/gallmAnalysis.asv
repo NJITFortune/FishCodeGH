@@ -12,9 +12,9 @@ rango = 10; % Hz around peak frequency over which to sum amplitude.
 tempchan = 3; % Either 4 or 3
 lightchan = 4; % Either 5 or 4
 
-staridx = 0 * Fs;
-endidx = 0.1 * Fs;
-sampidx = staridx:endidx; % Duration of sample (make sure integer!)
+startidx = max([1, (0.0 * Fs)]); % In case we want to start before 0 (max avoids zero problem)
+endidx = (0.1 * Fs) + startidx;
+sampidx = startidx:endidx; % Duration of sample (make sure integer!)
 % So far either 0.050 or 0.100 has been best
 
 [b,a] = butter(5, 200/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
@@ -35,7 +35,7 @@ eval(['load ' iFiles(k).name]);
 % Get EOD amplitudes for each channel
 for j = length(dataChans):-1:1
 
-% ORIGINAL METHOD
+% ORIGINAL METHOD - sumAmp
     tmpsig = filtfilt(b,a,data(sampidx,dataChans(j))); % High pass filter
     tmpsig = filtfilt(f,e,tmpsig); % Low pass filter    
     tmp = fftmachine(tmpsig, Fs);
@@ -43,7 +43,7 @@ for j = length(dataChans):-1:1
     peakFreq(j) = tmp.fftfreq(peakIDX);
     sumAmp(j) = sum(tmp.fftdata(tmp.fftfreq > (peakFreq(j) - rango) & tmp.fftfreq < (peakFreq(j) + rango)));
 
-% NEW METHOD
+% NEW METHOD - obwAmp
 
 [~,~,~,obwAmp(j)] = obw(data(sampidx,dataChans(j)), Fs, [200 700]);
 
@@ -131,16 +131,16 @@ figure(2); clf;
 % Smoothed trend line (20 minute duration window with 10 minute overlap)
 for ttk = 1:143   
     tt = find([out.tim24] > ((ttk-1)*10*60) & [out.tim24] < (((ttk-1)*10*60) + (20*60)) );
-    meanCh1sumAmp(ttk) = mean([out(tt).Ch1sumAmp]);
-    meanCh2sumAmp(ttk) = mean([out(tt).Ch2sumAmp]);
+    meanCh1sumAmp(ttk) = mean([out(tt).Ch1obwAmp]);
+    meanCh2sumAmp(ttk) = mean([out(tt).Ch2obwAmp]);
     meanCh1zAmp(ttk) = mean([out(tt).Ch1zAmp]);
     meanCh2zAmp(ttk) = mean([out(tt).Ch2zAmp]);
     meantims(ttk) = (((ttk-1)*10*60) + (10*60));
 end
 
 xa(1) = subplot(411); hold on;
-    plot([out.tim24]/(60*60), [out.Ch1sumAmp], '.');
-    plot([out.tim24]/(60*60), [out.Ch2sumAmp], '.');
+    plot([out.tim24]/(60*60), [out.Ch1obwAmp], '.');
+    plot([out.tim24]/(60*60), [out.Ch2obwAmp], '.');
 %    plot([out.tim24]/(60*60), [out.Ch3sumAmp], '.');
     plot(meantims/(60*60), meanCh1sumAmp, 'c-', 'Linewidth', 2);
     plot(meantims/(60*60), meanCh2sumAmp, 'm-', 'Linewidth', 2);
@@ -173,8 +173,8 @@ set(gcf, 'Position', [400 100 2*560 2*420]);
     ld = [out.light];
     ldOnOff = diff(ld);
     tim = [out.timcont];
-    dat1 = [out.Ch1peakAmp];
-    dat2 = [out.Ch2peakAmp];
+    dat1 = [out.Ch1obwAmp];
+    dat2 = [out.Ch2obwAmp];
     
     Ons = find(ldOnOff > 1); % lights turned on
     Offs = find(ldOnOff < -1); % lights turned on
