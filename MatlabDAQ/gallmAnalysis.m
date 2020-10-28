@@ -12,13 +12,23 @@ rango = 10; % Hz around peak frequency over which to sum amplitude.
 tempchan = 3; % Either 4 or 3
 lightchan = 4; % Either 5 or 4
 
-startidx = max([1, (0.0 * Fs)]); % In case we want to start before 0 (max avoids zero problem)
-endidx = (0.1 * Fs) + startidx;
-sampidx = startidx:endidx; % Duration of sample (make sure integer!)
-% So far either 0.050 or 0.100 has been best
+% THIS IS IMPORTANT USER DEFINED DETAILS (ddellayy, windw, highp, lowp)
+    % Delay (currently 0 seconds from start)
+    ddellayy = 0;
+    % Window width (Empirically either 0.050 or 0.100 have been best)
+    windw = 0.1;
+    
+    startidx = max([1, (ddellayy * Fs)]); % In case we want to start before 0 (max avoids zero problem)
+    endidx = (windw * Fs) + startidx;
+    sampidx = startidx:endidx; % Duration of sample (make sure integer!)
 
-[b,a] = butter(5, 200/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
-[f,e] = butter(5, 2000/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
+    % High pass filter cutoff frequency
+    highp = 200;
+    % Low pass filter cutoff frequency
+    lowp = 2000;
+    
+    [b,a] = butter(7, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
+    [f,e] = butter(7, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
 
 iFiles = dir(userfilespec);
 
@@ -35,25 +45,28 @@ eval(['load ' iFiles(k).name]);
 % Get EOD amplitudes for each channel
 for j = length(dataChans):-1:1
 
-% ORIGINAL METHOD - sumAmp
-    tmpsig = filtfilt(b,a,data(sampidx,dataChans(j))); % High pass filter
-    tmpsig = filtfilt(f,e,tmpsig); % Low pass filter    
-    tmp = fftmachine(tmpsig, Fs);
-    [peakAmp(j), peakIDX] = max(tmp.fftdata);
-    peakFreq(j) = tmp.fftfreq(peakIDX);
-    sumAmp(j) = sum(tmp.fftdata(tmp.fftfreq > (peakFreq(j) - rango) & tmp.fftfreq < (peakFreq(j) + rango)));
+% ORIGINAL FFT METHOD - sumAmp
+    tmpfft = fftmachine(data(sampidx,dataChans(j)), Fs);
+    [peakAmp(j), peakIDX] = max(tmpfft.fftdata);
+    peakFreq(j) = tmpfft.fftfreq(peakIDX);
+    sumAmp(j) = sum(tmpfft.fftdata(tmpfft.fftfreq > (peakFreq(j) - rango) & tmpfft.fftfreq < (peakFreq(j) + rango)));
 
-% NEW METHOD - obwAmp
+% NEW FFT METHOD - obwAmp
 
 [~,~,~,obwAmp(j)] = obw(data(sampidx,dataChans(j)), Fs, [200 700]);
+
+    tmpsig = filtfilt(b,a,data(sampidx,dataChans(j))); % High pass filter
+    tmpsig = filtfilt(f,e,tmpsig); % Low pass filter    
 
 % Mean amplitude method
     z = zeros(1,length(sampidx)); %creat vector length of data
     z(tmpsig > 0) = 1; %fill with 1s for all filtered data greater than 0
     z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
+    
     posZs = find(z == 1); 
+    
     for kk = 2:length(posZs)
-       amp(kk-1) = max(tmpsig(posZs(kk-1):posZs(kk))) - (min(tmpsig(posZs(kk-1):posZs(kk)))); %? why do we need the min? -k
+       amp(kk-1) = max(tmpsig(posZs(kk-1):posZs(kk))) - (min(tmpsig(posZs(kk-1):posZs(kk)))); % Max + min of signal for each cycle
     end
     
     zAmp(j) = mean(amp);
@@ -69,9 +82,6 @@ end
     out(k).Ch2peakFreq = peakFreq(2);
     out(k).Ch2sumAmp = sumAmp(2);
     out(k).Ch2obwAmp = obwAmp(2);
-%    out(k).Ch3peakAmp = peakAmp(3);
-%    out(k).Ch3peakFreq = peakFreq(3);
-%    out(k).Ch3sumAmp = sumAmp(3);
     out(k).Ch1zAmp = zAmp(1);
     out(k).Ch2zAmp = zAmp(2);
 
