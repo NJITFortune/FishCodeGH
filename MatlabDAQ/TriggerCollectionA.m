@@ -14,8 +14,8 @@ s = daq.createSession('ni');
     s.NotifyWhenDataAvailableExceeds = s.Rate * s.DurationInSeconds;
 
 % Add and configure Trigger    
-    %addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
-    addTriggerConnection(s,'Digital', 'StartTrigger', 'Dev2/PFI0');
+    addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
+    %addTriggerConnection(s,'Digital', 'StartTrigger', 'Dev2/PFI0');
      
     s.Connections.TriggerCondition = 'FallingEdge';
     s.ExternalTriggerTimeout = 144000;
@@ -23,15 +23,15 @@ s = daq.createSession('ni');
     
 % Add separate light signal input
    %Create second device object
-   l = daq.createSession('ni');
+  % l = daq.createSession('ni');
    %Add and configure Analogue channels
-   l.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
+  % l.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
    %Add and confiture Trigger
     addTriggerConnection(l,'External','Dev2/PFI0','StartTrigger');
     
     
 % Add the listener which can handle the data 
-    lh = s.addlistener('DataAvailable', @listentothis);
+    lh = s.addlistener('DataAvailable', @listentothisA);
     
 
 
