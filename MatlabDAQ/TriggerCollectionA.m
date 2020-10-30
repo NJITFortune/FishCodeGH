@@ -7,7 +7,7 @@ s = daq.createSession('ni');
     s.addAnalogInputChannel('Dev2', 1, 'voltage'); % EOD data
 %    s.addAnalogInputChannel('Dev2', 2, 'voltage'); % EOD data
     s.addAnalogInputChannel('Dev2', 3, 'voltage'); % Temp data
-    %s.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
+    s.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
 
     s.Rate = 40000; %changed from 20000
     s.DurationInSeconds = 1; % 2 seconds seemed like too long
