@@ -1,4 +1,4 @@
- function listentothis(~,evt)
+ function listentothisA(~,evt)
 % obj is the DataAcquisition object passed in. evt is not used.
 
     data = evt.Data;
