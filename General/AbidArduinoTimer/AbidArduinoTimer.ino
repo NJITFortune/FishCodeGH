@@ -6,12 +6,13 @@
 RTC_DS1307 rtc;
 
 int state = 0;
+int initstat = 0; // lights on 1, lights off 0
 long init_time;
 long nowtime;
 //int interval = 6*60*60;
 
 // Set the interval you want
-long hours = 10; 
+long hours = 24; 
 long minutes = 0;
 long seconds =  0;
 long interval = hours*60*60 + minutes*60 + seconds;
@@ -32,21 +33,27 @@ if (! rtc.begin()) {
   Serial.println("No RTC");
   while(1);
 }
-  // Start with 12 on and 13 off (state is 0 - NIGHT)
-  //digitalWrite(12, HIGH);
-  //digitalWrite(13, LOW);
-  //state = 0;
-
+ 
   // Get the starting time for the current state, init_time
   rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   //rtc.adjust(DateTime(2030, 1, 1, 1, 1, 0));
   DateTime now = rtc.now();
   init_time = now.unixtime();
 
-  //Initialize with 12 on and 13 off (state is 1)
+if (initstat == 0)
+{// Start with 12 on and 13 off (state is 0 - NIGHT)
+  digitalWrite(12, HIGH); //IR ON 
+  digitalWrite(13, LOW);  //LIGHT OFF
+  state = 0;}
+
+
+if (initstat == 1)
+{// Initialize with 12 off and 13 on (state is 1 - DAY)
   digitalWrite(12, LOW);
- digitalWrite(13, HIGH);
- state = 1;
+  digitalWrite(13, HIGH);
+  state = 1;}
+
+
   
 }
 
