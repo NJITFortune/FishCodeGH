@@ -27,7 +27,7 @@ s = daq.createSession('ni');
    %Add and configure Analogue channels
   % l.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
    %Add and confiture Trigger
-    addTriggerConnection(l,'External','Dev2/PFI0','StartTrigger');
+    %addTriggerConnection(l,'External','Dev2/PFI0','StartTrigger');
     
     
 % Add the listener which can handle the data 
