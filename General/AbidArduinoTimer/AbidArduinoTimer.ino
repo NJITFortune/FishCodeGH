@@ -6,7 +6,7 @@
 RTC_DS1307 rtc;
 
 int state = 0;
-int initstat = 0; // lights on 1, lights off 0
+int initstat = 1; // lights on 1, lights off 0
 long init_time;
 long nowtime;
 //int interval = 6*60*60;
