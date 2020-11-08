@@ -80,6 +80,7 @@ void loop() {
       Serial.print(now.minute(), DEC);
       Serial.print(':');
       Serial.print(now.second(), DEC);
+      Serial.print(") ");
       Serial.println();
       // RESET start time to current time
       init_time = nowtime;
