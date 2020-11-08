@@ -17,14 +17,6 @@ long minutes = 0;
 long seconds =  0;
 long interval = hours*60*60 + minutes*60 + seconds;
 
-/*Export serial monitor output to csv/txt file*/
-//From Arduino to Processing to Txt or cvs etc.
-//import
-//import processing.serial.*;
-//declare
-PrintWriter output;
-Serial udSerial;
-
 
 void setup() {
 
