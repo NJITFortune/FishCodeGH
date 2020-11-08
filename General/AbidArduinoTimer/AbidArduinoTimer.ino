@@ -6,18 +6,18 @@
 RTC_DS1307 rtc;
 
 int state = 0;
-int initstat = 1; // lights on 1, lights off 0
+int initstat = 0; // lights on 1, lights off 0
 long init_time;
 long nowtime;
 //int interval = 6*60*60;
 
 // Set the interval you want
-long hours = 1; 
+long hours = 5; 
 long minutes = 0;
 long seconds =  0;
 long interval = hours*60*60 + minutes*60 + seconds;
 
-
+char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
 void setup() {
 
@@ -37,9 +37,20 @@ void setup() {
  
   // Get the starting time for the current state, init_time
   rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+    Serial.print(now.year(), DEC);
+    Serial.print('/');
+    Serial.print(now.month(), DEC);
+    Serial.print('/');
+    Serial.print(now.day(), DEC);
+    Serial.print(" (");
+    Serial.print(daysOfTheWeek[now.dayOfTheWeek()]);
+    Serial.println(") ");
   //rtc.adjust(DateTime(2030, 1, 1, 1, 1, 0));
   DateTime now = rtc.now();
   init_time = now.unixtime();
+
+
+  
 
   if (initstat == 0)
   {// Start with 12 on and 13 off (state is 0 - NIGHT)
