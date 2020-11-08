@@ -12,9 +12,9 @@ long nowtime;
 //int interval = 6*60*60;
 
 // Set the interval you want
-long hours = 0; 
+long hours = 1; 
 long minutes = 0;
-long seconds =  10;
+long seconds =  0;
 long interval = hours*60*60 + minutes*60 + seconds;
 
 
@@ -75,15 +75,6 @@ void loop() {
        Serial.print("State: "); 
       Serial.print(state);
       Serial.println(" lights ON"); 
-      Serial.print(now.day(), DEC);
-      Serial.print(" (");
-      Serial.print(now.hour(), DEC);
-      Serial.print(':');
-      Serial.print(now.minute(), DEC);
-      Serial.print(':');
-      Serial.print(now.second(), DEC);
-      Serial.print(") ");
-      Serial.println();
       // RESET start time to current time
       init_time = nowtime;
     }
@@ -97,15 +88,6 @@ void loop() {
       Serial.print("State: "); 
       Serial.print(state);
       Serial.println(" lights OFF"); 
-      Serial.print(now.day(), DEC);
-      Serial.print(" (");
-      Serial.print(now.hour(), DEC);
-      Serial.print(':');
-      Serial.print(now.minute(), DEC);
-      Serial.print(':');
-      Serial.print(now.second(), DEC);
-      Serial.print(") ");
-      Serial.println();
       // RESET start time to current time
       init_time = nowtime;
     }
