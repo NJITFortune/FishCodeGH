@@ -37,6 +37,10 @@ void setup() {
  
   // Get the starting time for the current state, init_time
   rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+    
+  //rtc.adjust(DateTime(2030, 1, 1, 1, 1, 0));
+  DateTime now = rtc.now();
+  init_time = now.unixtime();
     Serial.print(now.year(), DEC);
     Serial.print('/');
     Serial.print(now.month(), DEC);
@@ -45,10 +49,6 @@ void setup() {
     Serial.print(" (");
     Serial.print(daysOfTheWeek[now.dayOfTheWeek()]);
     Serial.println(") ");
-  //rtc.adjust(DateTime(2030, 1, 1, 1, 1, 0));
-  DateTime now = rtc.now();
-  init_time = now.unixtime();
-
 
   
 
