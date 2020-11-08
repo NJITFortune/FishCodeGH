@@ -71,8 +71,10 @@ void loop() {
       state = 1;
       digitalWrite(12, LOW);
       digitalWrite(13, HIGH);
-      Serial.println(abs(nowtime));
-      Serial.println(state);
+      //Serial.println(abs(nowtime));
+       Serial.print("State: "); 
+      Serial.print(state);
+      Serial.println(" lights ON"); 
       Serial.print(now.day(), DEC);
       Serial.print(" (");
       Serial.print(now.hour(), DEC);
@@ -91,8 +93,10 @@ void loop() {
       state = 0;
       digitalWrite(12, HIGH);
       digitalWrite(13, LOW);
-      Serial.println(nowtime - init_time);
-      Serial.println(state);
+      //Serial.println(nowtime - init_time);
+      Serial.print("State: "); 
+      Serial.print(state);
+      Serial.println(" lights OFF"); 
       Serial.print(now.day(), DEC);
       Serial.print(" (");
       Serial.print(now.hour(), DEC);
