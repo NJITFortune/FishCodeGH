@@ -12,10 +12,18 @@ long nowtime;
 //int interval = 6*60*60;
 
 // Set the interval you want
-long hours = 24; 
+long hours = 5; 
 long minutes = 0;
 long seconds =  0;
 long interval = hours*60*60 + minutes*60 + seconds;
+
+/*Export serial monitor output to csv/txt file*/
+//From Arduino to Processing to Txt or cvs etc.
+//import
+import processing.serial.*;
+//declare
+PrintWriter output;
+Serial udSerial;
 
 
 void setup() {
@@ -24,15 +32,34 @@ void setup() {
   pinMode(12, OUTPUT); // Typically IR
   pinMode(13, OUTPUT); // Typically light
   
+  /*Export serial monitor output to csv/txt file*/
+  udSerial = new Serial(this, Serial.list()[0], 9600);
+  output = createWriter ("test.csv");
+
   Serial.begin(9600);
 
   #ifndef ESP8266
   while (!Serial); // wait for serial port to connect. Needed for native USB
-#endif
-if (! rtc.begin()) {
+  #endif
+  if (! rtc.begin()) {
   Serial.println("No RTC");
   while(1);
-}
+
+        void draw() {
+        if (udSerial.available() > 0) {
+          String SenVal = udSerial.readString();
+          if (SenVal != null) {
+            output.println(SenVal);
+          }
+         }
+        }
+    
+      void keyPressed(){
+        output.flush();
+        output.close();
+        exit();
+      }
+  }
  
   // Get the starting time for the current state, init_time
   rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
@@ -72,6 +99,14 @@ void loop() {
       digitalWrite(13, HIGH);
       Serial.println(abs(nowtime));
       Serial.println(state);
+      Serial.print(now.day(), DEC);
+      Serial.print(" (");
+      Serial.print(now.hour(), DEC);
+      Serial.print(':');
+      Serial.print(now.minute(), DEC);
+      Serial.print(':');
+      Serial.print(now.second(), DEC);
+      Serial.println();
       // RESET start time to current time
       init_time = nowtime;
     }
@@ -83,6 +118,14 @@ void loop() {
       digitalWrite(13, LOW);
       Serial.println(nowtime - init_time);
       Serial.println(state);
+      Serial.print(now.day(), DEC);
+      Serial.print(" (");
+      Serial.print(now.hour(), DEC);
+      Serial.print(':');
+      Serial.print(now.minute(), DEC);
+      Serial.print(':');
+      Serial.print(now.second(), DEC);
+      Serial.println();
       // RESET start time to current time
       init_time = nowtime;
     }
