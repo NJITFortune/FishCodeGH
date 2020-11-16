@@ -2,16 +2,18 @@ function out = gallmanCompleat(data)
 
 resampFs = 0.00167; % May need to change this
 cutfreq =  0.000005787 / 2; % Low pass filter for detrend - need to adjust re resampFs
-
+%cutfreq = 0.000001; %allows 120 hour peak in for 10 hours (0.0000023148 Hz)
 hashfreq = 0.00027778/2; % Low pass filter
 
 % Fs values
     % 1 minute =  0.0167 Hz
     % 1 hour =    0.00027778 Hz
     % 6 hours =   0.000046296 Hz
+    % 8 hours =   0.000034722 Hz
     % 12 hours =  0.000023148 Hz
     % 24 hours =  0.000011574 Hz
     % 48 hours =  0.000005787 Hz
+    % 72 hours =  0.000003858 Hz
 
 % Make the data into sequences instead of structure entries.
 
