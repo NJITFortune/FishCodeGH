@@ -14,9 +14,9 @@ lightchan = 4; % Either 5 or 4
 
 % THIS IS IMPORTANT USER DEFINED DETAILS (ddellayy, windw, highp, lowp)
     % Delay (currently 0 seconds from start)
-    ddellayy = 0.002;
+    ddellayy = 0;
     % Window width (Empirically either 0.050 or 0.100 have been best)
-    windw = 0.025;
+    windw = 0.1;
     
     startidx = max([1, (ddellayy * Fs)]); % In case we want to start before 0 (max avoids zero problem)
     endidx = (windw * Fs) + startidx;
@@ -27,8 +27,8 @@ lightchan = 4; % Either 5 or 4
     % Low pass filter cutoff frequency
     lowp = 2000;
     
-    [b,a] = butter(5, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
-    [f,e] = butter(5, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
+    [b,a] = butter(7, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
+    [f,e] = butter(7, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
 
 iFiles = dir(userfilespec);
 
@@ -75,11 +75,7 @@ for j = length(dataChans):-1:1
     
     zAmp(j) = mean(amp);
     
-% Fit SINEWAVE Method
-
-    [SineAmp(j), SineFreq(j)] = sinAnal(tmpsig', Fs);
-    
-end % By channel
+end
 
 % Crappy coding... but why not!
     out(k).Ch1peakAmp = peakAmp(1);
@@ -92,11 +88,7 @@ end % By channel
     out(k).Ch2obwAmp = obwAmp(2);
     out(k).Ch1zAmp = zAmp(1);
     out(k).Ch2zAmp = zAmp(2);
-    out(k).Ch1sAmp = SineAmp(1);
-    out(k).Ch2sAmp = SineAmp(2);
-    out(k).Ch1sFreq = SineFreq(1);
-    out(k).Ch2sFreq = SineFreq(2);
-        
+
     out(k).light = mean(data(:,lightchan));
     out(k).temp = mean(data(:,tempchan));
     
@@ -269,7 +261,7 @@ subplot(614); hold on; subplot(615); hold on; subplot(616); hold on;
     end
 
     
-% Continuous data plot with OBW and SineAmp data
+% Continuous data plot with OBW
 figure(5); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
@@ -279,13 +271,14 @@ ax(1) = subplot(411); hold on;
 %    plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
 
 ax(2) = subplot(412); hold on;
-    plot([out.timcont]/(60*60), [out.Ch1sAmp], '.');
-    plot([out.timcont]/(60*60), [out.Ch2sAmp], '.');
+    plot([out.timcont]/(60*60), [out.Ch1zAmp], '.');
+    plot([out.timcont]/(60*60), [out.Ch2zAmp], '.');
 
 ax(3) = subplot(413); hold on;
-        ylim([200 800]);
-        plot([out.timcont]/(60*60), [out.Ch1sFreq], '.', 'Markersize', 8);
-        plot([out.timcont]/(60*60), [out.Ch2sFreq], '.', 'Markersize', 8);
+    yyaxis right; plot([out.timcont]/(60*60), -[out.temp], '.');
+    yyaxis left; ylim([200 800]);
+        plot([out.timcont]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
+        plot([out.timcont]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
 %        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
     
 ax(4) = subplot(414); hold on;
@@ -294,32 +287,5 @@ ax(4) = subplot(414); hold on;
     xlabel('Continuous');
 
 linkaxes(ax, 'x');   
-
-end
-
-function [amp, freq] = sinAnal(datums, FsF)
-
-x = 1/FsF:1/FsF:length(datums)/FsF;
-
-yu = max(datums);
-yl = min(datums);
-yr = (yu-yl);                               % Range of ‘y’
-yz = datums-yu+(yr/2);
-zx = x(yz .* circshift(yz,[0 1]) <= 0);     % Find zero-crossings
-per = 2*mean(diff(zx));                     % Estimate period
-ym = mean(datums);                               % Estimate offset
-
-    fit = @(b,x)  b(1).*(sin(2*pi*x./b(2) + 2*pi/b(3))) + b(4);     % Function to fit
-    fcn = @(b) sum((fit(b,x) - datums).^2);                            % Least-Squares cost function
-    s = fminsearch(fcn, [yr;  per;  -1;  ym]);                      % Minimise Least-Squares
-
-amp = s(1) * 1000;
-freq = 1/s(2);
-
-
-
-end
-
-
 
     
