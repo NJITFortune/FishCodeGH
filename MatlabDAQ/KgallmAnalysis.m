@@ -1,7 +1,7 @@
 function out = KgallmAnalysis(userfilespec, Fs, numstart)
 % Function out = gallmAnalysis(userfilespec, Fs)
 % userfilespec is data from listentothis.m, e.g. 'EigenTest*.mat'
-% Fs is the sample rate, usually 20kHz
+% Fs is the sample rate, was 20kHz but now 40kHz
 % numstart is the first character of the hour. 
 
 %% Setup
@@ -12,11 +12,23 @@ rango = 10; % Hz around peak frequency over which to sum amplitude.
 tempchan = 3; % Either 4 or 3
 lightchan = 4; % Either 5 or 4
 
-sampidx = 2000:2000+(Fs*0.100); % Duration of sample (make sure integer!)
-% So far either 0.050 or 0.100 has been best
+% THIS IS IMPORTANT USER DEFINED DETAILS (ddellayy, windw, highp, lowp)
+    % Delay (currently 0 seconds from start)
+    ddellayy = 0;
+    % Window width (Empirically either 0.050 or 0.100 have been best)
+    windw = 0.1;
+    
+    startidx = max([1, (ddellayy * Fs)]); % In case we want to start before 0 (max avoids zero problem)
+    endidx = (windw * Fs) + startidx;
+    sampidx = startidx:endidx; % Duration of sample (make sure integer!)
 
-[b,a] = butter(5, 200/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
-[f,e] = butter(5, 2000/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
+    % High pass filter cutoff frequency
+    highp = 200;
+    % Low pass filter cutoff frequency
+    lowp = 2000;
+    
+    [b,a] = butter(7, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
+    [d,c] = butter(7, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
 
 iFiles = dir(userfilespec);
 
@@ -32,27 +44,36 @@ eval(['load ' iFiles(k).name]);
 
 % Get EOD amplitudes for each channel
 for j = length(dataChans):-1:1
-    
-    %tmpsig = filtfilt(b,a,data(sampidx,dataChans(j))); % High pass filter
-    %tmpsig = filtfilt(f,e,tmpsig); % Low pass filter
-    
-    tmpsig = data(sampidx, dataChans(j));
-    %tmp = obw(tmpsig, Fs, [200 700]);
-    tmp = fftmachine(tmpsig, Fs);
-    
-    
-    %[peakAmp(j), peakIDX] = obw(tmp.fftdata, [200 700]);
-    [peakAmp(j), peakIDX] = max(tmp.fftdata);
-    peakFreq(j) = tmp.fftfreq(peakIDX);
-    sumAmp(j) = sum(tmp.fftdata(tmp.fftfreq > (peakFreq(j) - rango) & tmp.fftfreq < (peakFreq(j) + rango)));
 
+% ORIGINAL FFT METHOD - sumAmp
+    tmpfft = fftmachine(data(sampidx,dataChans(j)), Fs);
+    [peakAmp(j), peakIDX] = max(tmpfft.fftdata);
+    peakFreq(j) = tmpfft.fftfreq(peakIDX);
+    sumAmp(j) = sum(tmpfft.fftdata(tmpfft.fftfreq > (peakFreq(j) - rango) & tmpfft.fftfreq < (peakFreq(j) + rango)));
+
+% NEW FFT METHOD - obwAmp
+
+% USER DEFINED CRITICAL NUMBERS!  Fish limit frequencies
+    topFreq = 800;
+    botFreq = 300;
+
+[~,~,~,obwAmp(j)] = obw(data(sampidx,dataChans(j)), Fs, [botFreq topFreq]);
+
+    tmpsig = filtfilt(b,a,data(sampidx,dataChans(j))); % High pass filter
+    tmpsig = filtfilt(d,c,tmpsig); % Low pass filter    
     
-    z = zeros(1,length(sampidx));
-    z(tmpsig > 0) = 1;
-    z = diff(z);
-    posZs = find(z == 1);
+% WAVELET METHOD -wavAmp
+[wavAmp(j), f(j)] = cwt(data(sampidx,dataChans(j)), Fs);
+
+% Mean amplitude method
+    z = zeros(1,length(sampidx)); %creat vector length of data
+    z(tmpsig > 0) = 1; %fill with 1s for all filtered data greater than 0
+    z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
+    
+    posZs = find(z == 1); 
+    
     for kk = 2:length(posZs)
-       amp(kk-1) = max(tmpsig(posZs(kk-1):posZs(kk))) + abs(min(tmpsig(posZs(kk-1):posZs(kk))));
+       amp(kk-1) = max(tmpsig(posZs(kk-1):posZs(kk))) - (min(tmpsig(posZs(kk-1):posZs(kk)))); % Max + min of signal for each cycle
     end
     
     zAmp(j) = mean(amp);
@@ -63,12 +84,13 @@ end
     out(k).Ch1peakAmp = peakAmp(1);
     out(k).Ch1peakFreq = peakFreq(1);
     out(k).Ch1sumAmp = sumAmp(1);
+    out(k).Ch1obwAmp = obwAmp(1);
+    out(k).Ch1wavAmp = wavAmp(1);
     out(k).Ch2peakAmp = peakAmp(2);
     out(k).Ch2peakFreq = peakFreq(2);
     out(k).Ch2sumAmp = sumAmp(2);
-%    out(k).Ch3peakAmp = peakAmp(3);
-%    out(k).Ch3peakFreq = peakFreq(3);
-%    out(k).Ch3sumAmp = sumAmp(3);
+    out(k).Ch2obwAmp = obwAmp(2);
+    out(k).Ch2wavAmp = wavAmp(1);
     out(k).Ch1zAmp = zAmp(1);
     out(k).Ch2zAmp = zAmp(2);
 
@@ -76,7 +98,7 @@ end
     out(k).temp = mean(data(:,tempchan));
     
 % Add time stamps (in seconds) relative to computer midnight
-    hour = str2num(iFiles(k).name(numstart:numstart+1));
+    hour = str2num(iFiles(k).name(numstart:numstart+1)); %numstart based on time stamp text location
     minute = str2num(iFiles(k).name(numstart+3:numstart+4));
     second = str2num(iFiles(k).name(numstart+6:numstart+7));
 
@@ -128,16 +150,16 @@ figure(2); clf;
 % Smoothed trend line (20 minute duration window with 10 minute overlap)
 for ttk = 1:143   
     tt = find([out.tim24] > ((ttk-1)*10*60) & [out.tim24] < (((ttk-1)*10*60) + (20*60)) );
-    meanCh1sumAmp(ttk) = mean([out(tt).Ch1sumAmp]);
-    meanCh2sumAmp(ttk) = mean([out(tt).Ch2sumAmp]);
+    meanCh1sumAmp(ttk) = mean([out(tt).Ch1obwAmp]); %huh? %is this just a quick way to replace one with the other?
+    meanCh2sumAmp(ttk) = mean([out(tt).Ch2obwAmp]);
     meanCh1zAmp(ttk) = mean([out(tt).Ch1zAmp]);
     meanCh2zAmp(ttk) = mean([out(tt).Ch2zAmp]);
     meantims(ttk) = (((ttk-1)*10*60) + (10*60));
 end
 
 xa(1) = subplot(411); hold on;
-    plot([out.tim24]/(60*60), [out.Ch1sumAmp], '.');
-    plot([out.tim24]/(60*60), [out.Ch2sumAmp], '.');
+    plot([out.tim24]/(60*60), [out.Ch1obwAmp], '.');
+    plot([out.tim24]/(60*60), [out.Ch2obwAmp], '.');
 %    plot([out.tim24]/(60*60), [out.Ch3sumAmp], '.');
     plot(meantims/(60*60), meanCh1sumAmp, 'c-', 'Linewidth', 2);
     plot(meantims/(60*60), meanCh2sumAmp, 'm-', 'Linewidth', 2);
@@ -170,8 +192,8 @@ set(gcf, 'Position', [400 100 2*560 2*420]);
     ld = [out.light];
     ldOnOff = diff(ld);
     tim = [out.timcont];
-    dat1 = [out.Ch1peakAmp];
-    dat2 = [out.Ch2peakAmp];
+    dat1 = [out.Ch1obwAmp];
+    dat2 = [out.Ch2obwAmp];
     
     Ons = find(ldOnOff > 1); % lights turned on
     Offs = find(ldOnOff < -1); % lights turned on
@@ -198,7 +220,7 @@ subplot(413); hold on; subplot(414); hold on;
 % Detrend the data
 
 resampFs = 0.005; % May need to change this
-cutfreq = 0.00001; % Low pass filter for detrend - need to adjust re resampFs
+cutfreq =  0.00001; % Low pass filter for detrend - need to adjust re resampFs
 
     [dat1r, newtim] = resample(dat1, tim, resampFs);
     [dat2r, ~] = resample(dat2, tim, resampFs);
@@ -244,6 +266,58 @@ subplot(614); hold on; subplot(615); hold on; subplot(616); hold on;
     end
 
     
-        
+% Continuous data plot with OBW
+figure(5); clf; 
+    set(gcf, 'Position', [200 100 2*560 2*420]);
+
+ax(1) = subplot(411); hold on;
+    plot([out.timcont]/(60*60), [out.Ch1obwAmp], '.');
+    plot([out.timcont]/(60*60), [out.Ch2obwAmp], '.');
+%    plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
+
+ax(2) = subplot(412); hold on;
+    plot([out.timcont]/(60*60), [out.Ch1zAmp], '.');
+    plot([out.timcont]/(60*60), [out.Ch2zAmp], '.');
+
+ax(3) = subplot(413); hold on;
+    yyaxis right; plot([out.timcont]/(60*60), -[out.temp], '.');
+    yyaxis left; ylim([200 800]);
+        plot([out.timcont]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
+        plot([out.timcont]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
+%        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
+    
+ax(4) = subplot(414); hold on;
+    plot([out.timcont]/(60*60), [out.light], '.', 'Markersize', 8);
+    ylim([-1, 6]);
+    xlabel('Continuous');
+    
+    
+    
+ % Continuous data plot with cwt(wavelet)
+figure(6); clf; 
+    set(gcf, 'Position', [200 100 2*560 2*420]);
+
+ax(1) = subplot(411); hold on;
+    plot([out.timcont]/(60*60), [out.Ch1wavAmp], '.');
+    plot([out.timcont]/(60*60), [out.Ch2wavAmp], '.');
+%    plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
+
+ax(2) = subplot(412); hold on;
+    plot([out.timcont]/(60*60), [out.Ch1zAmp], '.');
+    plot([out.timcont]/(60*60), [out.Ch2zAmp], '.');
+
+ax(3) = subplot(413); hold on;
+    yyaxis right; plot([out.timcont]/(60*60), -[out.temp], '.');
+    yyaxis left; ylim([200 800]);
+        plot([out.timcont]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
+        plot([out.timcont]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
+%        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
+    
+ax(4) = subplot(414); hold on;
+    plot([out.timcont]/(60*60), [out.light], '.', 'Markersize', 8);
+    ylim([-1, 6]);
+    xlabel('Continuous');
+
+linkaxes(ax, 'x');   
 
     
