@@ -152,25 +152,25 @@ figure(2); clf;
 % Smoothed trend line (20 minute duration window with 10 minute overlap)
 for ttk = 1:143   % Every ten minutes
     tt = find([out.tim24] > ((ttk-1)*10*60) & [out.tim24] < (((ttk-1)*10*60) + (20*60)) );
-    modeCh1sumAmp(ttk) = median([out(tt).Ch1obwAmp]); %huh? %is this just a quick way to replace one with the other?
-    modeCh2sumAmp(ttk) = median([out(tt).Ch2obwAmp]);
-    modeCh1zAmp(ttk) = median([out(tt).Ch1zAmp]);
-    modeCh2zAmp(ttk) = median([out(tt).Ch2zAmp]);
-    modetims(ttk) = (((ttk-1)*10*60) + (10*60));
+    medianCh1sumAmp(ttk) = median([out(tt).Ch1obwAmp]); %huh? %is this just a quick way to replace one with the other?
+    medianCh2sumAmp(ttk) = median([out(tt).Ch2obwAmp]);
+    medianCh1zAmp(ttk) = median([out(tt).Ch1zAmp]);
+    medianCh2zAmp(ttk) = median([out(tt).Ch2zAmp]);
+    mediantims(ttk) = (((ttk-1)*10*60) + (10*60));
 end
 
 xa(1) = subplot(411); hold on;
     plot([out.tim24]/(60*60), [out.Ch1obwAmp], '.');
     plot([out.tim24]/(60*60), [out.Ch2obwAmp], '.');
 %    plot([out.tim24]/(60*60), [out.Ch3sumAmp], '.');
-    plot(modetims/(60*60), modeCh1sumAmp, 'c-', 'Linewidth', 2);
-    plot(modetims/(60*60), modeCh2sumAmp, 'm-', 'Linewidth', 2);
+    plot(mediantims/(60*60), medianCh1sumAmp, 'c-', 'Linewidth', 2);
+    plot(mediantims/(60*60), medianCh2sumAmp, 'm-', 'Linewidth', 2);
 
 xa(2) = subplot(412); hold on;
     plot([out.tim24]/(60*60), [out.Ch1zAmp], '.');
     plot([out.tim24]/(60*60), [out.Ch2zAmp], '.');
-    plot(modetims/(60*60), modeCh1zAmp, 'c-', 'Linewidth', 2);
-    plot(modetims/(60*60), modeCh2zAmp, 'm-', 'Linewidth', 2);
+    plot(mediantims/(60*60), medianCh1zAmp, 'c-', 'Linewidth', 2);
+    plot(mediantims/(60*60), medianCh2zAmp, 'm-', 'Linewidth', 2);
 
 xa(3) = subplot(413); hold on;
     yyaxis right; plot([out.tim24]/(60*60), -[out.temp], '.');
