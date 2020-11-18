@@ -150,7 +150,7 @@ figure(2); clf;
     set(gcf, 'Position', [400 100 2*560 2*420]);
 
 % Smoothed trend line (20 minute duration window with 10 minute overlap)
-for ttk = 1:143   
+for ttk = 1:143   % Every ten minutes
     tt = find([out.tim24] > ((ttk-1)*10*60) & [out.tim24] < (((ttk-1)*10*60) + (20*60)) );
     meanCh1sumAmp(ttk) = mean([out(tt).Ch1obwAmp]); %huh? %is this just a quick way to replace one with the other?
     meanCh2sumAmp(ttk) = mean([out(tt).Ch2obwAmp]);
