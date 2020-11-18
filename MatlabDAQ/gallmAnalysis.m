@@ -94,7 +94,6 @@ end % By channel
     out(k).Ch2zAmp = zAmp(2);
     out(k).Ch1sAmp = SineAmp(1);
     out(k).Ch2sAmp = SineAmp(2);
-    out(k).Ch1sFreq = SineFreq(1);
     out(k).Ch2sFreq = SineFreq(2);
         
     out(k).light = mean(data(:,lightchan));
