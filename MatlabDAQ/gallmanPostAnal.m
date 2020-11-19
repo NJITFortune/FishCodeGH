@@ -24,7 +24,7 @@ for ttk = 1:floor(totaltim/(timstep*60))   % Every timwin minutes
     foo.medianCh1zAmp(ttk) = median([out(tt).Ch1zAmp]);
     foo.medianCh2zAmp(ttk) = median([out(tt).Ch2zAmp]);
     
-    foo.mediantims(ttk) = ((((ttk-1)*timstep*60) + (timstep*60))) / 2; % Middle of start and end times
+    foo.mediantims(ttk) = (((ttk)*timstep*60) + ((timwin*60)/2)); % Middle of start and end times
 
 end
 
