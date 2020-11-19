@@ -1,4 +1,4 @@
-function [foo] = gallmanPostAnal(out)
+function [foo, neww] = gallmanPostAnal(out)
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
