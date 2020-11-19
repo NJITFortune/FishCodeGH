@@ -75,6 +75,7 @@ end
      newCh1obwAmp(length(out)) = NaN; newCh2obwAmp(length(out)) = NaN;
      newCh1sAmp(length(out)) = NaN; newCh2sAmp(length(out)) = NaN;
 
+     length(find(newCh1sumAmp == 0))
 
 %% Get the NEW Trend lines 
 
