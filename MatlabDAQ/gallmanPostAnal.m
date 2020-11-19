@@ -114,7 +114,7 @@ linkaxes(ax, 'x');
 figure(2); clf;
 
 xax(1) = subplot(411); hold on;
-    plot([out.timcont]/(60*60), -, 'b.');
+    plot([out.timcont]/(60*60), newCh1zAmp, 'b.');
     plot([out.timcont]/(60*60), newCh2zAmp, 'r.');
 
     plot(foo.mediantims/(60*60), foo.medianCh1zAmp, 'c-', 'LineWidth', 3)
