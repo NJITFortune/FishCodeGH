@@ -3,7 +3,7 @@ function [foo] = gallmanPostAnal(out)
 %   Detailed explanation goes here
 
 timstep = 10; % Step size of integration window in minutes
-timwin = 20; % Time of integration window in minutes
+timwin = 30; % Time of integration window in minutes
 
 %% Calculate our time window
 
