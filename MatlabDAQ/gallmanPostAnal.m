@@ -35,10 +35,10 @@ for ttk = 1:floor(totaltim/(timstep*60))   % Every timwin minutes
 end
 
 %% Take data above trend line
-    newCh1sumAmp = []; newCh2sumAmp = [];
-    newCh1zAmp = []; newCh2zAmp = [];
-    newCh1obwAmp = []; newCh2obwAmp = [];
-    newCh1sAmp = []; newCh2sAmp = [];
+%     newCh1sumAmp = []; newCh2sumAmp = [];
+%     newCh1zAmp = []; newCh2zAmp = [];
+%     newCh1obwAmp = []; newCh2obwAmp = [];
+%     newCh1sAmp = []; newCh2sAmp = [];
 
 for j = length(out):-1:1
    
@@ -68,7 +68,7 @@ k = find(foo.mediantims > out(j).timcont, 1, 'first');
         if out(j).Ch2obwAmp > foo.medianCh2obwAmp(k)
             newCh2obwAmp(j) = out(j).Ch2obwAmp;
         end
-        if out(j).Chs2Amp > foo.medianCh2sAmp(k)
+        if out(j).Ch2sAmp > foo.medianCh2sAmp(k)
             newCh2sAmp(j) = out(j).Ch2sAmp;
         end
             
