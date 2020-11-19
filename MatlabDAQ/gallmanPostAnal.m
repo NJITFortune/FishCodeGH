@@ -13,7 +13,7 @@ endtim = out(end).timcont;
 totaltim = endtim - startim;
 
 
-% Smoothed trend line (20 minute duration window with 10 minute overlap)
+% Trend line 
 for ttk = 1:floor(totaltim/(timstep*60))   % Every timwin minutes
     
     tt = find([out.timcont] > ((ttk-1)*timstep*60) & [out.timcont] < (((ttk-1)*timstep*60) + (timwin*60)) );
