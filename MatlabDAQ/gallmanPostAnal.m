@@ -18,8 +18,8 @@ for ttk = 1:floor(totaltim/(timstep*60))   % Every timwin minutes
     
     tt = find([out.timcont] > ((ttk-1)*timstep*60) & [out.timcont] < (((ttk-1)*timstep*60) + (timwin*60)) );
     
-    foo.medianCh1sumAmp(ttk) = median([out(tt).Ch1obwAmp]); 
-    foo.medianCh2sumAmp(ttk) = median([out(tt).Ch2obwAmp]);
+    foo.medianCh1sumAmp(ttk) = median([out(tt).Ch1sumAmp]); 
+    foo.medianCh2sumAmp(ttk) = median([out(tt).Ch2sumAmp]);
     
     foo.medianCh1zAmp(ttk) = median([out(tt).Ch1zAmp]);
     foo.medianCh2zAmp(ttk) = median([out(tt).Ch2zAmp]);
@@ -34,14 +34,14 @@ subplot(211); hold on;
     plot([out.timcont]/(60*60), [out.Ch1zAmp], 'b.');
     plot([out.timcont]/(60*60), [out.Ch2zAmp], 'r.');
 
-    plot(foo.mediantims/(60*60), foo.medianCh1zAmp, 'c-', 'LineWidth', 6)
-    plot(foo.mediantims/(60*60), foo.medianCh2zAmp, 'm-', 'LineWidth', 6)
+    plot(foo.mediantims/(60*60), foo.medianCh1zAmp, 'c-', 'LineWidth', 3)
+    plot(foo.mediantims/(60*60), foo.medianCh2zAmp, 'm-', 'LineWidth', 3)
 
 subplot(212); hold on;
-    plot([out.timcont]/(60*60), [out.Ch1sumAmp], '.');
-    plot([out.timcont]/(60*60), [out.Ch2sumAmp], '.');
-    plot(foo.mediantims/(60*60), foo.medianCh1sumAmp, 'b-')
-    plot(foo.mediantims/(60*60), foo.medianCh2sumAmp, 'r-')
+    plot([out.timcont]/(60*60), [out.Ch1sumAmp], 'b.');
+    plot([out.timcont]/(60*60), [out.Ch2sumAmp], 'r.');
+    plot(foo.mediantims/(60*60), foo.medianCh1sumAmp, 'c-', 'LineWidth', 3)
+    plot(foo.mediantims/(60*60), foo.medianCh2sumAmp, 'm-', 'LineWidth', 3)
 
 end
 
