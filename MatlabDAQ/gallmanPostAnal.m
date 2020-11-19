@@ -70,10 +70,10 @@ k = find(foo.mediantims > out(j).timcont, 1, 'first');
             
 end
 
-     newCh1sumAmp(length(out)) = []; newCh2sumAmp(length(out)) = [];
-     newCh1zAmp(length(out)) = []; newCh2zAmp(length(out)) = [];
-     newCh1obwAmp(length(out)) = []; newCh2obwAmp(length(out)) = [];
-     newCh1sAmp(length(out)) = []; newCh2sAmp(length(out)) = [];
+     newCh1sumAmp(length(out)) = NaN; newCh2sumAmp(length(out)) = NaN;
+     newCh1zAmp(length(out)) = NaN; newCh2zAmp(length(out)) = NaN;
+     newCh1obwAmp(length(out)) = NaN; newCh2obwAmp(length(out)) = NaN;
+     newCh1sAmp(length(out)) = NaN; newCh2sAmp(length(out)) = NaN;
 
 
 
