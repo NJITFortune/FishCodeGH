@@ -49,7 +49,7 @@ ax(2) = subplot(412); hold on;
     plot(foo.mediantims/(60*60), foo.medianCh1sumAmp, 'c-', 'LineWidth', 3)
     plot(foo.mediantims/(60*60), foo.medianCh2sumAmp, 'm-', 'LineWidth', 3)
 
-ax(3) = subplot(412); hold on;
+ax(3) = subplot(413); hold on;
     plot([out.timcont]/(60*60), [out.Ch1obwAmp], 'b.');
     plot([out.timcont]/(60*60), [out.Ch2obwAmp], 'r.');
     plot(foo.mediantims/(60*60), foo.medianCh1obwAmp, 'c-', 'LineWidth', 3)
@@ -60,7 +60,7 @@ ax(4) = subplot(414); hold on;
     plot([out.timcont]/(60*60), [out.Ch2sAmp], 'r.');
     plot(foo.mediantims/(60*60), foo.medianCh1sAmp, 'c-', 'LineWidth', 3)
     plot(foo.mediantims/(60*60), foo.medianCh2sAmp, 'm-', 'LineWidth', 3)
-    
+    ylim([0 400]);
 
 
 linkaxes(ax, 'x');
