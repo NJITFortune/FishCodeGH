@@ -86,13 +86,15 @@ end % By channel
     out(k).Ch1peakFreq = peakFreq(1);
     out(k).Ch1sumAmp = sumAmp(1);
     out(k).Ch1obwAmp = obwAmp(1);
+    out(k).Ch1zAmp = zAmp(1);
+    out(k).Ch1sAmp = SineAmp(1);
+    out(k).Ch1sFreq = SineFreq(1);
+
     out(k).Ch2peakAmp = peakAmp(2);
     out(k).Ch2peakFreq = peakFreq(2);
     out(k).Ch2sumAmp = sumAmp(2);
     out(k).Ch2obwAmp = obwAmp(2);
-    out(k).Ch1zAmp = zAmp(1);
     out(k).Ch2zAmp = zAmp(2);
-    out(k).Ch1sAmp = SineAmp(1);
     out(k).Ch2sAmp = SineAmp(2);
     out(k).Ch2sFreq = SineFreq(2);
         
