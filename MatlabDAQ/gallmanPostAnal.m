@@ -2,7 +2,9 @@ function [foo] = gallmanPostAnal(out)
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
+%% Calculate our time window
 
+timezero = 
 
 % Smoothed trend line (20 minute duration window with 10 minute overlap)
 for ttk = 1:143   % Every ten minutes
