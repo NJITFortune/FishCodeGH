@@ -16,7 +16,7 @@ totaltim = endtim - startim;
 % Trend line 
 for ttk = 1:floor(totaltim/(timstep*60))   % Every timwin minutes
     
-    tt = find([out.timcont] > ((ttk-1)*timstep*60) & [out.timcont] < (((ttk-1)*timstep*60) + (timwin*60)) );
+    tt = find([out.timcont] > startim+((ttk-1)*timstep*60) & [out.timcont] < startim+(((ttk-1)*timstep*60) + (timwin*60)) );
     
     foo.medianCh1sumAmp(ttk) = median([out(tt).Ch1sumAmp]); 
     foo.medianCh2sumAmp(ttk) = median([out(tt).Ch2sumAmp]);
