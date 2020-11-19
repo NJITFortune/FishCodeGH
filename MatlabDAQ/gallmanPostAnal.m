@@ -35,12 +35,12 @@ for ttk = 1:floor(totaltim/(timstep*60))   % Every timwin minutes
 end
 
 %% Take data above trend line
-    newCh1sumAmp(length(out)) = []; newCh2sumAmp(length(out)) = [];
-    newCh1zAmp(length(out)) = []; newCh2zAmp(length(out)) = [];
-    newCh1obwAmp(length(out)) = []; newCh2obwAmp(length(out)) = [];
-    newCh1sAmp(length(out)) = []; newCh2sAmp(length(out)) = [];
+    newCh1sumAmp = []; newCh2sumAmp = [];
+    newCh1zAmp = []; newCh2zAmp = [];
+    newCh1obwAmp = []; newCh2obwAmp = [];
+    newCh1sAmp = []; newCh2sAmp = [];
 
-for j = 1:length(out)
+for j = length(out):-1:1
    
 % For the data points before our first median value
 
