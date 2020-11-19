@@ -35,18 +35,53 @@ for ttk = 1:floor(totaltim/(timstep*60))   % Every timwin minutes
 end
 
 %% Take data above trend line
+    newCh1sumAmp(length(out)) = []; newCh2sumAmp(length(out)) = [];
+    newCh1zAmp(length(out)) = []; newCh2zAmp(length(out)) = [];
+    newCh1obwAmp(length(out)) = []; newCh2obwAmp(length(out)) = [];
+    newCh1sAmp(length(out)) = []; newCh2sAmp(length(out)) = [];
 
 for j = 1:length(out)
    
-    
-    
-    
+% For the data points before our first median value
+    if out(j).timcont < foo.mediantims(1)
+        
+        if out(j).Ch1sumAmp > foo.medianCh1sumAmp(1)
+            newCh1sumAmp(j) = out(j).Ch1sumAmp;
+        end
+        if out(j).Ch1zAmp > foo.medianCh1zAmp(1)
+            newCh1zAmp(j) = out(j).Ch1zAmp;
+        end
+        if out(j).Ch1sumAmp > foo.medianCh1obwAmp(1)
+            newCh1obwAmp(j) = out(j).Ch1obwAmp;
+        end
+        if out(j).Ch1sAmp > foo.medianCh1sAmp(1)
+            newCh1sAmp(j) = out(j).Ch1sAmp;
+        end
+        
+        if out(j).Ch2sumAmp > foo.medianCh2sumAmp(1)
+            newCh2sumAmp(j) = out(j).Ch2sumAmp;
+        end
+        if out(j).Ch2zAmp > foo.medianCh2zAmp(1)
+            newCh2zAmp(j) = out(j).Ch2zAmp;
+        end
+        if out(j).Ch2obwAmp > foo.medianCh2obwAmp(1)
+            newCh2obwAmp(j) = out(j).Ch2obwAmp;
+        end
+        if out(j).Chs2Amp > foo.medianCh2sAmp(1)
+            newCh2sAmp(j) = out(j).Ch2sAmp;
+        end
+        
+    end
     
 end
 
+% For all other data points 
+
+    if out(j).timcont > foo.mediantims(1)
 
 
-
+        
+    end
 %% Plot
 figure(1); clf;
 
