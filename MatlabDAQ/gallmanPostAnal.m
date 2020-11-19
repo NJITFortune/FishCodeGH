@@ -76,6 +76,27 @@ end
      newCh1sAmp(length(out)) = NaN; newCh2sAmp(length(out)) = NaN;
 
 
+%% Get the NEW Trend lines 
+
+for ttk = 1:floor(totaltim/(timstep*60))   % Every timwin minutes
+    
+    tt = find([out.timcont] > startim+((ttk-1)*timstep*60) & [out.timcont] < startim+(((ttk-1)*timstep*60) + (timwin*60)) );
+    
+    neww.medianCh1sumAmp(ttk) = nanmedian(newCh1sumAmp(tt)); 
+    neww.medianCh2sumAmp(ttk) = nanmedian(newCh2sumAmp(tt));
+    
+    neww.medianCh1zAmp(ttk) = nanmedian(newCh1zAmp(tt));
+    neww.medianCh2zAmp(ttk) = nanmedian(newCh2zAmp(tt));
+
+    neww.medianCh1obwAmp(ttk) = nanmedian(newCh1obwAmp(tt)); 
+    neww.medianCh2obwAmp(ttk) = nanmedian(newCh2obwAmp(tt));
+    
+    neww.medianCh1sAmp(ttk) = nanmedian(newCh1sAmp(tt)); 
+    neww.medianCh2sAmp(ttk) = nanmedian(newCh2sAmp(tt));
+    
+    neww.mediantims(ttk) = startim+(((ttk)*timstep*60) + ((timwin*60)/2)); % Middle of start and end times
+
+end
 
 
 
