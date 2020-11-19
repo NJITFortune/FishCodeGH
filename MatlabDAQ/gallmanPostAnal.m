@@ -35,10 +35,6 @@ for ttk = 1:floor(totaltim/(timstep*60))   % Every timwin minutes
 end
 
 %% Take data above trend line
-%     newCh1sumAmp = []; newCh2sumAmp = [];
-%     newCh1zAmp = []; newCh2zAmp = [];
-%     newCh1obwAmp = []; newCh2obwAmp = [];
-%     newCh1sAmp = []; newCh2sAmp = [];
 
 for j = length(out):-1:1
    
@@ -73,6 +69,14 @@ k = find(foo.mediantims > out(j).timcont, 1, 'first');
         end
             
 end
+
+     newCh1sumAmp(length(out)) = []; newCh2sumAmp(length(out)) = [];
+     newCh1zAmp(length(out)) = []; newCh2zAmp(length(out)) = [];
+     newCh1obwAmp(length(out)) = []; newCh2obwAmp(length(out)) = [];
+     newCh1sAmp(length(out)) = []; newCh2sAmp(length(out)) = [];
+
+
+
 
 
 %% Plot
@@ -110,7 +114,7 @@ linkaxes(ax, 'x');
 figure(2); clf;
 
 xax(1) = subplot(411); hold on;
-    plot([out.timcont]/(60*60), newCh1zAmp, 'b.');
+    plot([out.timcont]/(60*60), -, 'b.');
     plot([out.timcont]/(60*60), newCh2zAmp, 'r.');
 
     plot(foo.mediantims/(60*60), foo.medianCh1zAmp, 'c-', 'LineWidth', 3)
