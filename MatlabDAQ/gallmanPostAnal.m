@@ -24,9 +24,11 @@ for ttk = 1:floor(totaltim/(timstep*60))   % Every timwin minutes
     foo.medianCh1zAmp(ttk) = median([out(tt).Ch1zAmp]);
     foo.medianCh2zAmp(ttk) = median([out(tt).Ch2zAmp]);
 
-    foo.medianCh1obwAmp(ttk) = median([out(tt).Ch1sumAmp]); 
-    foo.medianCh2obwAmp(ttk) = median([out(tt).Ch2sumAmp]);
+    foo.medianCh1obwAmp(ttk) = median([out(tt).Ch1obwAmp]); 
+    foo.medianCh2obwAmp(ttk) = median([out(tt).Ch2obwAmp]);
     
+    foo.medianCh1sAmp(ttk) = median([out(tt).Ch1sAmp]); 
+    foo.medianCh2sAmp(ttk) = median([out(tt).Ch2sAmp]);
     
     foo.mediantims(ttk) = startim+(((ttk)*timstep*60) + ((timwin*60)/2)); % Middle of start and end times
 
@@ -34,18 +36,36 @@ end
 
 figure(1); clf;
 
-subplot(211); hold on;
+ax(1) = subplot(411); hold on;
     plot([out.timcont]/(60*60), [out.Ch1zAmp], 'b.');
     plot([out.timcont]/(60*60), [out.Ch2zAmp], 'r.');
 
     plot(foo.mediantims/(60*60), foo.medianCh1zAmp, 'c-', 'LineWidth', 3)
     plot(foo.mediantims/(60*60), foo.medianCh2zAmp, 'm-', 'LineWidth', 3)
 
-subplot(212); hold on;
+ax(2) = subplot(412); hold on;
     plot([out.timcont]/(60*60), [out.Ch1sumAmp], 'b.');
     plot([out.timcont]/(60*60), [out.Ch2sumAmp], 'r.');
     plot(foo.mediantims/(60*60), foo.medianCh1sumAmp, 'c-', 'LineWidth', 3)
     plot(foo.mediantims/(60*60), foo.medianCh2sumAmp, 'm-', 'LineWidth', 3)
+
+ax(3) = subplot(412); hold on;
+    plot([out.timcont]/(60*60), [out.Ch1obwAmp], 'b.');
+    plot([out.timcont]/(60*60), [out.Ch2obwAmp], 'r.');
+    plot(foo.mediantims/(60*60), foo.medianCh1obwAmp, 'c-', 'LineWidth', 3)
+    plot(foo.mediantims/(60*60), foo.medianCh2obwAmp, 'm-', 'LineWidth', 3)
+    
+ax(4) = subplot(414); hold on;
+    plot([out.timcont]/(60*60), [out.Ch1sAmp], 'b.');
+    plot([out.timcont]/(60*60), [out.Ch2sAmp], 'r.');
+    plot(foo.mediantims/(60*60), foo.medianCh1sAmp, 'c-', 'LineWidth', 3)
+    plot(foo.mediantims/(60*60), foo.medianCh2sAmp, 'm-', 'LineWidth', 3)
+    
+
+
+linkaxes(ax, 'x');
+
+
 
 end
 
