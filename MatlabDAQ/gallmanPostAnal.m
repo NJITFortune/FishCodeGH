@@ -82,26 +82,26 @@ end
 %% Plot
 figure(1); clf;
 
-ax(1) = subplot(411); hold on;
+ax(1) = subplot(411); hold on; title('zAmp');
     plot([out.timcont]/(60*60), [out.Ch1zAmp], 'b.');
     plot([out.timcont]/(60*60), [out.Ch2zAmp], 'r.');
 
     plot(foo.mediantims/(60*60), foo.medianCh1zAmp, 'c-', 'LineWidth', 3)
     plot(foo.mediantims/(60*60), foo.medianCh2zAmp, 'm-', 'LineWidth', 3)
 
-ax(2) = subplot(412); hold on;
+ax(2) = subplot(412); hold on; title('sumAmpFFT');
     plot([out.timcont]/(60*60), [out.Ch1sumAmp], 'b.');
     plot([out.timcont]/(60*60), [out.Ch2sumAmp], 'r.');
     plot(foo.mediantims/(60*60), foo.medianCh1sumAmp, 'c-', 'LineWidth', 3)
     plot(foo.mediantims/(60*60), foo.medianCh2sumAmp, 'm-', 'LineWidth', 3)
 
-ax(3) = subplot(413); hold on;
+ax(3) = subplot(413); hold on; title('obwAmp');
     plot([out.timcont]/(60*60), [out.Ch1obwAmp], 'b.');
     plot([out.timcont]/(60*60), [out.Ch2obwAmp], 'r.');
     plot(foo.mediantims/(60*60), foo.medianCh1obwAmp, 'c-', 'LineWidth', 3)
     plot(foo.mediantims/(60*60), foo.medianCh2obwAmp, 'm-', 'LineWidth', 3)
     
-ax(4) = subplot(414); hold on;
+ax(4) = subplot(414); hold on; title('sAmp');
     plot([out.timcont]/(60*60), [out.Ch1sAmp], 'b.');
     plot([out.timcont]/(60*60), [out.Ch2sAmp], 'r.');
     plot(foo.mediantims/(60*60), foo.medianCh1sAmp, 'c-', 'LineWidth', 3)
@@ -113,26 +113,26 @@ linkaxes(ax, 'x');
 
 figure(2); clf;
 
-xax(1) = subplot(411); hold on;
+xax(1) = subplot(411); hold on; title('zAmp');
     plot([out.timcont]/(60*60), newCh1zAmp, 'b.');
     plot([out.timcont]/(60*60), newCh2zAmp, 'r.');
 
     plot(foo.mediantims/(60*60), foo.medianCh1zAmp, 'c-', 'LineWidth', 3)
     plot(foo.mediantims/(60*60), foo.medianCh2zAmp, 'm-', 'LineWidth', 3)
 
-xax(2) = subplot(412); hold on;
+xax(2) = subplot(412); hold on; title('sumAmpFFT');
     plot([out.timcont]/(60*60), newCh1sumAmp, 'b.');
     plot([out.timcont]/(60*60), newCh2sumAmp, 'r.');
     plot(foo.mediantims/(60*60), foo.medianCh1sumAmp, 'c-', 'LineWidth', 3)
     plot(foo.mediantims/(60*60), foo.medianCh2sumAmp, 'm-', 'LineWidth', 3)
 
-xax(3) = subplot(413); hold on;
+xax(3) = subplot(413); hold on; title('obwAmp');
     plot([out.timcont]/(60*60), newCh1obwAmp, 'b.');
     plot([out.timcont]/(60*60), newCh2obwAmp, 'r.');
     plot(foo.mediantims/(60*60), foo.medianCh1obwAmp, 'c-', 'LineWidth', 3)
     plot(foo.mediantims/(60*60), foo.medianCh2obwAmp, 'm-', 'LineWidth', 3)
     
-xax(4) = subplot(414); hold on;
+xax(4) = subplot(414); hold on; title('sAmp');
     plot([out.timcont]/(60*60), newCh1sAmp, 'b.');
     plot([out.timcont]/(60*60), newCh2sAmp, 'r.');
     plot(foo.mediantims/(60*60), foo.medianCh1sAmp, 'c-', 'LineWidth', 3)
