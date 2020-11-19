@@ -18,27 +18,26 @@ for ttk = 1:floor(totaltim/(timstep*60))   % Every timwin minutes
     
     tt = find([out.timcont] > ((ttk-1)*timstep*60) & [out.timcont] < (((ttk-1)*timstep*60) + (timwin*60)) );
     
-    medianCh1sumAmp(ttk) = median([out(tt).Ch1obwAmp]); 
-    medianCh2sumAmp(ttk) = median([out(tt).Ch2obwAmp]);
+    foo.medianCh1sumAmp(ttk) = median([out(tt).Ch1obwAmp]); 
+    foo.medianCh2sumAmp(ttk) = median([out(tt).Ch2obwAmp]);
     
-    medianCh1zAmp(ttk) = median([out(tt).Ch1zAmp]);
-    medianCh2zAmp(ttk) = median([out(tt).Ch2zAmp]);
+    foo.medianCh1zAmp(ttk) = median([out(tt).Ch1zAmp]);
+    foo.medianCh2zAmp(ttk) = median([out(tt).Ch2zAmp]);
     
-    mediantims(ttk) = (((ttk-1)*timstep*60) + (timstep*60));
+    foo.mediantims(ttk) = (((ttk-1)*timstep*60) + (timstep*60));
 
 end
 
 figure(1); clf;
 
 subplot(211); hold on;
-    plot(mediantims, medianCh1zAmp, 'b-')
-    plot(mediantims, medianCh2zAmp, 'r-')
+    plot(foo.mediantims, foo.medianCh1zAmp, 'b-')
+    plot(foo.mediantims, foo.medianCh2zAmp, 'r-')
 
 subplot(212); hold on;
-    plot(mediantims, medianCh1sumAmp, 'b-')
-    plot(mediantims, medianCh2sumAmp, 'r-')
+    plot(foo.mediantims, foo.medianCh1sumAmp, 'b-')
+    plot(foo.mediantims, foo.medianCh2sumAmp, 'r-')
 
 end
-
 
 
