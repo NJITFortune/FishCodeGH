@@ -31,8 +31,11 @@ end
 figure(1); clf;
 
 subplot(211); hold on;
-    plot(foo.mediantims, foo.medianCh1zAmp, 'b-')
-    plot(foo.mediantims, foo.medianCh2zAmp, 'r-')
+    plot([out.timcont]/(60*60), [out.Ch1zAmp], 'b.');
+    plot([out.timcont]/(60*60), [out.Ch2zAmp], 'r.');
+
+    plot(foo.mediantims/(60*60), foo.medianCh1zAmp, 'c-', 'LineWidth', 6)
+    plot(foo.mediantims/(60*60), foo.medianCh2zAmp, 'm-', 'LineWidth', 6)
 
 subplot(212); hold on;
     plot(foo.mediantims, foo.medianCh1sumAmp, 'b-')
