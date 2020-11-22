@@ -6,13 +6,13 @@
 RTC_DS1307 rtc;
 
 int state = 0;
-int initstat = 1; // lights on 1, lights off 0
+int initstat = 0; // lights on 1, lights off 0
 long init_time;
 long nowtime;
 //int interval = 6*60*60;
 
 // Set the interval you want
-long hours = 5; 
+long hours = 48; 
 long minutes = 0;
 long seconds =  0;
 long interval = hours*60*60 + minutes*60 + seconds;
@@ -83,7 +83,7 @@ void loop() {
       digitalWrite(12, LOW);
       digitalWrite(13, HIGH);
       //Serial.println(abs(nowtime));
-       Serial.print("State: "); 
+      Serial.print("State: "); 
       Serial.print(state);
       Serial.println(" lights ON"); 
       // RESET start time to current time
