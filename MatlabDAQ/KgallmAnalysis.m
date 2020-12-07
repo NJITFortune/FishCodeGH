@@ -89,25 +89,25 @@ for j = length(dataChans):-1:1
 
 [~,~,~,obwAmp(j)] = obw(data(sampidx,dataChans(j)), Fs, [botFreq topFreq]);
 
-    tmpsig = filtfilt(b,a,data(sampidx,dataChans(j))); % High pass filter
-    tmpsig = filtfilt(f,e,tmpsig); % Low pass filter    
+    %tmpsig = filtfilt(b,a,data(sampidx,dataChans(j))); % High pass filter
+    %tmpsig = filtfilt(f,e,tmpsig); % Low pass filter    
 
 % Mean amplitude method
     z = zeros(1,length(sampidx)); %creat vector length of data
-    z(tmpsig > 0) = 1; %fill with 1s for all filtered data greater than 0
+    z(filtsig > 0) = 1; %fill with 1s for all filtered data greater than 0
     z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
     
     posZs = find(z == 1); 
     
     for kk = 2:length(posZs)
-       amp(kk-1) = max(tmpsig(posZs(kk-1):posZs(kk))) - (min(tmpsig(posZs(kk-1):posZs(kk)))); % Max + min of signal for each cycle
+       amp(kk-1) = max(filtsig(posZs(kk-1):posZs(kk))) - (min(filtsig(posZs(kk-1):posZs(kk)))); % Max + min of signal for each cycle
     end
     
     zAmp(j) = mean(amp);
     
 % Fit SINEWAVE Method
 
-    [SineAmp(j), SineFreq(j)] = sinAnal(tmpsig', Fs);
+    [SineAmp(j), SineFreq(j)] = sinAnal(filtsig', Fs);
     
 end % By channel
 
