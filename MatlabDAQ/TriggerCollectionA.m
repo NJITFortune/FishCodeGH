@@ -41,7 +41,7 @@ pause(2);
 %[tmpData, tmpTime, tmpTriggerTimess] = s.startForeground();
 numSamples = 0;
 
-while numSamples < 10000
+while numSamples < 100000
        
     fprintf('We are %i steps.\n', numSamples);
         s.startForeground();
