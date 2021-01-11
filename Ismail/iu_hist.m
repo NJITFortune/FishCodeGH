@@ -70,7 +70,7 @@ function out = iu_hist(struct)
         foo.responseHist(~isfinite(foo.responseHist)) = 0;
         
     foo.OccCorrHist = (foo.responseHist / max(foo.responseHist)) ./ (foo.stimulusHist / max(foo.stimulusHist)); 
-        foo.OccCorrHist(~isfinite(foo.OccHist)) = 0;
+        foo.OccCorrHist(~isfinite(foo.OccCorrHist)) = 0;
     
     foo.edges = edgs;
             
