@@ -51,13 +51,13 @@ asdf  = 0;
     fjerk = iu_sta(spks, rspks, data(entry).fish_jerk, data(entry).Fs, 2);
 
     fprintf('Calculating error_pos STA.\n');
-    epos = iu_sta(spks, rspks, data(entry).err_pos, data(entry).Fs, 2);
+    epos = iu_sta(spks, rspks, data(entry).error_pos, data(entry).Fs, 2);
     fprintf('Calculating error_vel STA.\n');
-    evel = iu_sta(spks, rspks, data(entry).err_vel, data(entry).Fs, 2);
+    evel = iu_sta(spks, rspks, data(entry).error_vel, data(entry).Fs, 2);
     fprintf('Calculating error_acc STA.\n');
-    eacc = iu_sta(spks, rspks, data(entry).err_acc, data(entry).Fs, 2);
+    eacc = iu_sta(spks, rspks, data(entry).error_acc, data(entry).Fs, 2);
     fprintf('Calculating error_jerk STA.\n');
-    ejerk = iu_sta(spks, rspks, data(entry).err_jerk, data(entry).Fs, 2);
+    ejerk = iu_sta(spks, rspks, data(entry).error_jerk, data(entry).Fs, 2);
     
     fprintf('And we are done!!!\n');
 
