@@ -1,7 +1,8 @@
 %% 04_14_2019 
 j=1;
 %load /Volumes/Cgate/Data2019/4_14_2019/downsampled_data.mat
-load /Users/winds/OneDrive/Desktop/Merged_Data/downsampled_data.mat
+% load /Users/winds/OneDrive/Desktop/Merged_Data/downsampled_data.mat
+load /Users/eric/Documents/Data2019/IsmailData/1_Brown2019-04-14/downsampled_data.mat
 
 ismail(j).date=04142019;
 ismail(j).filename='4_14_2019/downsampled_data.mat';
