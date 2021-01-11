@@ -33,19 +33,19 @@ figure(27); clf;
 
 subplot(311); title('Position'); hold on;
 
-    histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.stimulusHist);
-    histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.responseHist);
-    histogram('BinEdges', out.Prand.edges, 'BinCounts', out.Prand.responseHist);
+    histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.stimulusHist, 'FaceColor', 'y');
+    histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.responseHist, 'FaceColor', 'b');
+    histogram('BinEdges', out.Prand.edges, 'BinCounts', out.Prand.responseHist, 'FaceColor', 'r');
 
 subplot(312); title('Velocity'); hold on;
-    histogram('BinEdges', out.Vresponse.edges, 'BinCounts', out.Vresponse.stimulusHist);
-    histogram('BinEdges', out.Vresponse.edges, 'BinCounts', out.Vresponse.responseHist);
-    histogram('BinEdges', out.Vrand.edges, 'BinCounts', out.Vrand.responseHist);
+    histogram('BinEdges', out.Vresponse.edges, 'BinCounts', out.Vresponse.stimulusHist, 'FaceColor', 'y');
+    histogram('BinEdges', out.Vresponse.edges, 'BinCounts', out.Vresponse.responseHist, 'FaceColor', 'b');
+    histogram('BinEdges', out.Vrand.edges, 'BinCounts', out.Vrand.responseHist, 'FaceColor', 'r');
 
 subplot(313); title('Acceleration'); hold on;
-    histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.stimulusHist);
-    histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.responseHist);
-    histogram('BinEdges', out.Arand.edges, 'BinCounts', out.Arand.responseHist);
+    histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.stimulusHist, 'FaceColor', 'y');
+    histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.responseHist, 'FaceColor', 'b');
+    histogram('BinEdges', out.Arand.edges, 'BinCounts', out.Arand.responseHist, 'FaceColor', 'r');
 
     
     function foo = OccHist(sig, spks)
