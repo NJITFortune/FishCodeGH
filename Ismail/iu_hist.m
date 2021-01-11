@@ -21,12 +21,13 @@ tim = struct.time; % Time stamps for the duration of the signal.
 
     out.fishJRK = OccHist(struct.fish_jerk, struct.spikes.fish_jerk);
     out.fishJRKrand = OccHist(struct.fish_jerk, struct.spikes_rand.fish_jerk);
+
     
-    out.errorPOS = OccHist(struct.fish_pos, struct.spikes.fish_pos);
-    out.errorPOSrand = OccHist(struct.fish_pos, struct.spikes_rand.fish_pos);
+    out.errorPOS = OccHist(struct.error_pos, struct.spikes.error_pos);
+    out.errorPOSrand = OccHist(struct.error_pos, struct.spikes_rand.error_pos);
     
-    out.errorVEL = OccHist(struct.fish_vel, struct.spikes.fish_vel);
-    out.errorVELrand = OccHist(struct.fish_vel, struct.spikes_rand.fish_vel);
+    out.errorVEL = OccHist(struct.error_vel, struct.spikes.error_vel);
+    out.errorVELrand = OccHist(struct.error_vel, struct.spikes_rand.error_vel);
     
     out.errorACC = OccHist(struct.error_acc, struct.spikes.error_acc);
     out.errorACCrand = OccHist(struct.error_acc, struct.spikes_rand.error_acc);
