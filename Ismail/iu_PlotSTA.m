@@ -41,35 +41,68 @@ asdf  = 0;
 % rspks = spikes_rand.times;
 
 %% Calculate spike triggered averages
+    fprintf('Calculating fish_pos STA.\n');
+    fpos = iu_sta(spks, rspks, data(entry).fish_pos, data(entry).Fs, 2);
+    fprintf('Calculating fish_vel STA.\n');
+    fvel = iu_sta(spks, rspks, data(entry).fish_vel, data(entry).Fs, 2);
+    fprintf('Calculating fish_acc STA.\n');
+    facc = iu_sta(spks, rspks, data(entry).fish_acc, data(entry).Fs, 2);
+    fprintf('Calculating Fish_jerk STA.\n');
+    fjerk = iu_sta(spks, rspks, data(entry).fish_jerk, data(entry).Fs, 2);
+
     fprintf('Calculating error_pos STA.\n');
-    epos = iu_sta(spks, rspks, data(entry).fish_pos, data(entry).Fs, 2);
+    epos = iu_sta(spks, rspks, data(entry).err_pos, data(entry).Fs, 2);
     fprintf('Calculating error_vel STA.\n');
-    evel = iu_sta(spks, rspks, data(entry).fish_vel, data(entry).Fs, 2);
+    evel = iu_sta(spks, rspks, data(entry).err_vel, data(entry).Fs, 2);
     fprintf('Calculating error_acc STA.\n');
-    eacc = iu_sta(spks, rspks, data(entry).fish_acc, data(entry).Fs, 2);
+    eacc = iu_sta(spks, rspks, data(entry).err_acc, data(entry).Fs, 2);
     fprintf('Calculating error_jerk STA.\n');
-    ejerk = iu_sta(spks, rspks, data(entry).fish_jerk, data(entry).Fs, 2);
+    ejerk = iu_sta(spks, rspks, data(entry).err_jerk, data(entry).Fs, 2);
+    
     fprintf('And we are done!!!\n');
 
-    %% Plot them all in one figure
+    %% Figure 1: Fish
     figure(1); clf; 
 
-    subplot(2,2,1); title('Position'); hold on;
+    subplot(2,2,1); title('Fish Position'); hold on;
+    plot([0, 0], [min(fpos.MEAN), max(fpos.MEAN)], 'k-', 'LineWidth',1);
+    plot(fpos.time, fpos.MEAN, 'b-', 'LineWidth', 3);
+    plot(fpos.time, fpos.randMEAN,'r-','LineWidth',3);
+
+    subplot(222); title('Fish Acceleration'); hold on;
+    plot([0, 0], [min(facc.MEAN), max(facc.MEAN)], 'k-', 'LineWidth',1);
+    plot(facc.time, facc.MEAN, 'b-', 'LineWidth', 3);
+    plot(facc.time, facc.randMEAN,'r-','LineWidth',3);
+
+    subplot(223); title('Fish Velocity'); hold on;
+    plot([0, 0], [min(fvel.MEAN), max(fvel.MEAN)], 'k-', 'LineWidth',1);
+    plot(fvel.time, fvel.MEAN, 'b-', 'LineWidth', 3);
+    plot(fvel.time, fvel.randMEAN,'r-','LineWidth',3);
+    
+    subplot(224); title('Fish Jerk'); hold on;
+    plot([0, 0], [min(fjerk.MEAN), max(fjerk.MEAN)], 'k-', 'LineWidth',1);
+    plot(fjerk.time, fjerk.MEAN, 'b-', 'LineWidth', 3);
+    plot(fjerk.time, fjerk.randMEAN,'r-','LineWidth',3);
+
+    %% Figure 2: Error
+    figure(2); clf; 
+
+    subplot(2,2,1); title('Error Position'); hold on;
     plot([0, 0], [min(epos.MEAN), max(epos.MEAN)], 'k-', 'LineWidth',1);
     plot(epos.time, epos.MEAN, 'b-', 'LineWidth', 3);
     plot(epos.time, epos.randMEAN,'r-','LineWidth',3);
 
-    subplot(222); title('Acceleration'); hold on;
+    subplot(222); title('Error Acceleration'); hold on;
     plot([0, 0], [min(eacc.MEAN), max(eacc.MEAN)], 'k-', 'LineWidth',1);
     plot(eacc.time, eacc.MEAN, 'b-', 'LineWidth', 3);
     plot(eacc.time, eacc.randMEAN,'r-','LineWidth',3);
 
-    subplot(223); title('Velocity'); hold on;
+    subplot(223); title('Error Velocity'); hold on;
     plot([0, 0], [min(evel.MEAN), max(evel.MEAN)], 'k-', 'LineWidth',1);
     plot(evel.time, evel.MEAN, 'b-', 'LineWidth', 3);
     plot(evel.time, evel.randMEAN,'r-','LineWidth',3);
     
-    subplot(224); title('Jerk'); hold on;
+    subplot(224); title('Error Jerk'); hold on;
     plot([0, 0], [min(ejerk.MEAN), max(ejerk.MEAN)], 'k-', 'LineWidth',1);
     plot(ejerk.time, ejerk.MEAN, 'b-', 'LineWidth', 3);
     plot(ejerk.time, ejerk.randMEAN,'r-','LineWidth',3);
