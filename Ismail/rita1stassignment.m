@@ -30,7 +30,8 @@ ismail(j).shuttle_acc = shuttle_acc;
 %% 04_12_2019
 j=2;
 %load /Volumes/Cgate/Data2019/4_12_2019/brown2019_04_12_merged_wEric_ID123.mat
-load /Users/winds/OneDrive/Desktop/Merged_Data/brown2019_04_12_merged_wEric_ID123.mat
+%load /Users/winds/OneDrive/Desktop/Merged_Data/brown2019_04_12_merged_wEric_ID123.mat
+load /Users/eric/Documents/Data2019/IsmailData/2_Brown2019-04-12/brown_123.mat
 
 ismail(j).date=04122019;
 ismail(j).filename='4_12_2019/brown2019_04_12_merged_wEric_ID123.mat';
