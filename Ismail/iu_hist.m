@@ -6,7 +6,7 @@ function out = iu_hist(struct)
 % Fs is the sample rate (usually 25 for these data, fs = 25
 % wid is the width of the spike triggered average in seconds (1 or 2 seconds is good)%% Histogram of All Spikes as Isolated Spikes
 
-tim = struct.time; % Time stamps for the duration of the signal.
+% tim = struct.time; % Time stamps for the duration of the signal.
 
 % Get the signal values at spike times
 
