@@ -10,7 +10,7 @@ tim = struct.time; % Time stamps for the duration of the signal.
 
 % Get the signal values at spike times
 
-    out.fishPOS = OccHist(struct.pos, spikePOS);
+    out.fishPOS = OccHist(struct.fish_pos, struct.spikes.spikePOS);
     out.fishPOSrand = OccHist(pos, RspikePOS);
     
     out.Vresponse = OccHist(vel, spikeVEL);
