@@ -47,7 +47,7 @@ asdf  = 0;
     fvel = iu_sta(spks, rspks, data(entry).fish_vel, data(entry).Fs, 2);
     fprintf('Calculating fish_acc STA.\n');
     facc = iu_sta(spks, rspks, data(entry).fish_acc, data(entry).Fs, 2);
-    fprintf('Calculating Fish_jerk STA.\n');
+    fprintf('Calculating fish_jerk STA.\n');
     fjerk = iu_sta(spks, rspks, data(entry).fish_jerk, data(entry).Fs, 2);
 
     fprintf('Calculating error_pos STA.\n');
