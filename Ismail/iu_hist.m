@@ -10,6 +10,7 @@ function out = iu_hist(struct)
 
 % Get the signal values at spike times
 
+    for j=1:length(struct.spikes.
     out.fishPOS = OccHist(struct.fish_pos, struct.spikes.fish_pos);
     out.fishPOSrand = OccHist(struct.fish_pos, struct.spikes_rand.fish_pos);
     
