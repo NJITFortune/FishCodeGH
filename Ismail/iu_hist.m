@@ -11,13 +11,17 @@ tim = struct.time; % Time stamps for the duration of the signal.
 % Get the signal values at spike times
 
     out.fishPOS = OccHist(struct.fish_pos, struct.spikes.fish_pos);
-    out.fishPOSrand = OccHist(struct.fish_pos, struct.spikes.fish_pos);
+    out.fishPOSrand = OccHist(struct.fish_pos, struct.spikes_rand.fish_pos);
     
-    out.Vresponse = OccHist(vel, spikeVEL);
-    out.Vrand = OccHist(vel, RspikeVEL);
+    out.fishVEL = OccHist(struct.fish_vel, struct.spikes.fish_vel);
+    out.fishVELrand = OccHist(struct.fish_vel, struct.spikes_rand.fish_vel);
     
-    out.Aresponse = OccHist(acc, spikeACC);
-    out.Arand = OccHist(acc, RspikeACC);
+    out.fishACC = OccHist(struct.fish_acc, struct.spikes.fish_acc);
+    out.fishACCrand = OccHist(struct.fish_acc, struct.spikes_rand.fish_acc);
+
+    out.fishVEL = OccHist(struct.fish_vel, struct.spikes.fish_vel);
+    out.fishVELrand = OccHist(struct.fish_vel, struct.spikes_rand.fish_vel);
+    
     
 % figure(27); clf;
 % 
