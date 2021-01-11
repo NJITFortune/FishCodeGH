@@ -109,31 +109,31 @@ asdf  = 0;
 
 %% Plot the error
 
-figure(2); clf; 
+figure(3); clf; 
 
-    subplot(221); title('Position'); hold on;
+    subplot(221); title('STD Error Position'); hold on;
     plot([0, 0], [min(epos.STD), max(epos.STD)], 'k-', 'LineWidth',1);
     plot(epos.time, epos.STD, 'b-', 'LineWidth', 3);
     plot(epos.time, epos.randSTD, 'r-', 'LineWidth', 3);
 
-    subplot(222); title('Acceleration'); hold on;
+    subplot(222); title('STD Error Acceleration'); hold on;
     plot([0, 0], [min(eacc.STD), max(eacc.STD)], 'k-', 'LineWidth',1);
     plot(eacc.time, eacc.STD, 'b-', 'LineWidth', 3);
     plot(eacc.time, eacc.randSTD, 'r-', 'LineWidth', 3);
 
-    subplot(223); title('Velocity'); hold on;
+    subplot(223); title('STD Error Velocity'); hold on;
     plot([0, 0], [min(evel.STD), max(evel.STD)], 'k-', 'LineWidth',1);
     plot(evel.time, evel.STD, 'b-', 'LineWidth', 3);
     plot(evel.time, evel.randSTD, 'r-', 'LineWidth', 3);
 
-    subplot(224); title('Jerk'); hold on;
+    subplot(224); title('STD Error Jerk'); hold on;
     plot([0, 0], [min(ejerk.STD), max(ejerk.STD)], 'k-', 'LineWidth',1);
     plot(ejerk.time, ejerk.STD, 'b-', 'LineWidth', 3);
     plot(ejerk.time, ejerk.randSTD, 'r-', 'LineWidth', 3);
 
     %% Plot the raw data
     
-    figure(3); clf;
+    figure(4); clf;
     
     ax(1) = subplot(311); hold on; title('Position');
         plot(data(entry).time(tt), data(entry).shuttle_pos(tt), 'b-'); 
