@@ -56,7 +56,7 @@ function out = iu_hist(struct)
     
     function foo = OccHist(sig, spks)
         
-        numOfBins = 8;
+        numOfBins = 6;
         std_coeff   = 3;
     % Determine edge boundaries
     
