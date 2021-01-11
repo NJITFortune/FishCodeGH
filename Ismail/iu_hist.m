@@ -73,6 +73,8 @@ function out = iu_hist(struct)
         foo.OccCorrHist(~isfinite(foo.OccCorrHist)) = 0;
     
     foo.edges = edgs;
+        distX = abs((edgs(2) - edgs(1))/2);
+    foo.Xs = edgs(1:end-1)+distX;
             
     end
 
