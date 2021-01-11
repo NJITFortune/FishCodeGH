@@ -61,7 +61,7 @@ function out = iu_hist(struct)
     % Determine edge boundaries
     
     histBound = std_coeff * std(sig);    
-    edgs = linspace(mean(sig)-histBound, mean(sig)+histBound, numOfBins+1);
+    edgs = linspace(-histBound, histBound, numOfBins+1);
     
     foo.stimulusHist = histcounts(sig, edgs);
         foo.stimulusHist(~isfinite(foo.stimulusHist)) = 0;
