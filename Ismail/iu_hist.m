@@ -10,8 +10,8 @@ tim = struct.time; % Time stamps for the duration of the signal.
 
 % Get the signal values at spike times
 
-    out.fishPOS = OccHist(struct.fish_pos, struct.spikes.spikePOS);
-    out.fishPOSrand = OccHist(pos, RspikePOS);
+    out.fishPOS = OccHist(struct.fish_pos, struct.spikes.fish_pos);
+    out.fishPOSrand = OccHist(struct.fish_pos, struct.spikes.fish_pos);
     
     out.Vresponse = OccHist(vel, spikeVEL);
     out.Vrand = OccHist(vel, RspikeVEL);
@@ -49,15 +49,14 @@ tim = struct.time; % Time stamps for the duration of the signal.
     
     foo.stimulusHist = histcounts(sig, edgs);
         foo.stimulusHist(~isfinite(foo.stimulusHist)) = 0;
-    % hc      = hc / 25;
     
     foo.responseHist = histcounts(spks, edgs);
         foo.responseHist(~isfinite(foo.responseHist)) = 0;
         
-    foo.OccHist = (foo.responseHist / max(foo.responseHist)) ./ (foo.stimulusHist / max(foo.stimulusHist)); 
-        foo.OccHist(~isfinite(foo.OccHist)) = 0;
+    foo.OccCorrHist = (foo.responseHist / max(foo.responseHist)) ./ (foo.stimulusHist / max(foo.stimulusHist)); 
+        foo.OccCorrHist(~isfinite(foo.OccHist)) = 0;
     
-        foo.edges = edgs;
+    foo.edges = edgs;
             
     end
 
