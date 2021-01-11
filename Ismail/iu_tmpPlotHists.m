@@ -1,8 +1,8 @@
 figure(1); clf;
-    subplot(211); plot(out.errorVEL.edges(1:end-1), out.errorVEL.OccCorrHist); 
+    subplot(211); plot(out.errorVEL.Xs, out.errorVEL.OccCorrHist); 
     subplot(212); hold on;
-        plot(out.errorVEL.edges(1:end-1), out.errorVEL.responseHist); 
-        plot(out.errorVEL.edges(1:end-1), out.errorVEL.stimulusHist);
+        plot(out.errorVEL.Xs, out.errorVEL.responseHist); 
+        plot(out.errorVEL.Xs, out.errorVEL.stimulusHist);
         
 figure(2); clf;
     subplot(211); plot(out.errorACC.edges(1:end-1), out.errorACC.OccCorrHist); 
