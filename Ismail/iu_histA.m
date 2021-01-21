@@ -1,4 +1,4 @@
-function out = iu_hist(struct)
+function out = iu_histA(struct)
 % Function out = iu_hist(spikes, randspikes, sig, Fs, wid)
 % spikes are the spike times
 % randspikes are shuffled spike times
