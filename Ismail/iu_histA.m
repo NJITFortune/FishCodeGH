@@ -10,25 +10,25 @@ function out = iu_histA(struct)
 
 % Get the signal values at spike times
 
-    for j=length(struct.spikes.times):-1:1
+    for j=length(spikes):-1:1
         
         PreTim = 1; % Position integration time before spike
-        tt = find(struct.time > struct.spikes.times(j)-PreTim & struct.time < struct.spikes.times(j));
+        tt = find(struct.time > spikes(j)-PreTim & struct.time < spikes(j));
         fishSpikePos(j) = mean(struct.fish_pos(tt));
         errSpikePos(j) = mean(struct.error_pos(tt));
         
         PreTim = PreTim / 2;
-        tt = find(struct.time > struct.spikes.times(j)-PreTim & struct.time < struct.spikes.times(j));
+        tt = find(struct.time > spikes(j)-PreTim & struct.time < spikes(j));
         fishSpikeVel(j) = mean(struct.fish_vel(tt));
         errSpikeVel(j) = mean(struct.error_vel(tt));
         
         PreTim = PreTim / 2;
-        tt = find(struct.time > struct.spikes.times(j)-PreTim & struct.time < struct.spikes.times(j));
+        tt = find(struct.time > spikes(j)-PreTim & struct.time < spikes(j));
         fishSpikeAcc(j) = mean(struct.fish_acc(tt));
         errSpikeAcc(j) = mean(struct.error_acc(tt));
         
         PreTim = PreTim / 2;
-        tt = find(struct.time > struct.spikes.times(j)-PreTim & struct.time < struct.spikes.times(j));
+        tt = find(struct.time > spikes(j)-PreTim & struct.time < spikes(j));
         fishSpikeJrk(j) = mean(struct.fish_jerk(tt));    
         errSpikeJrk(j) = mean(struct.error_jerk(tt));        
     end
