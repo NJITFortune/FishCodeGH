@@ -59,7 +59,7 @@ for j = length(dataChans):-1:1
     filtsig = filtfilt(b,a, data(:,dataChans(j))); % High pass filter
     filtsig = filtfilt(f,e,filtsig); % Low pass filter      
     
-    windw = 0.5; %window width is 100 ms %changed to 250 ms - fixed doubling in fft
+    windw = 0.25; %window width is 100 ms %changed to 250 ms - fixed doubling in fft
     
     
 % ADJUST FOR DIRECTIONALITY - NOT SURE HOW TO APPLY THIS WITHIN THE FOR
