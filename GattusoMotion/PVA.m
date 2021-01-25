@@ -29,8 +29,8 @@ end
 
 buff = 0.100; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-[b,a] = butter(3, 30/Fs, 'low'); 
-[d,c] = butter(5, 20/Fs, 'low'); 
+[b,a] = butter(3, 30/pFs, 'low'); 
+[d,c] = butter(5, 20/pFs, 'low'); 
 
 % Make stimuli
 
