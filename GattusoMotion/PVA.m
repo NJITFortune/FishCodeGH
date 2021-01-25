@@ -3,11 +3,22 @@ function out = PVA(in, ent, sz)
 
 pFs = in(ent).s(1).pFs;
 
-idx = find([in(ent).s.
+idx = find([in(ent).s.sizeDX] == sz);
 
+%% Concatonate data
+if ~isempty(idx)
+
+    for j = 1:length(idx)
+
+        stimPOS = [stimPOS in(ent).s(idx(j)).pos];
+        
+        
 spikes = spikechan.times;
 
-tim = 1/Fs:1/Fs:length(stim)/Fs;
+tim = 1/Fs:1/Fs:length(stimPOS)/Fs;
+
+
+    end
 
 buff = 0.100; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -16,7 +27,7 @@ buff = 0.100; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Make stimuli
 
-firstorder = filtfilt(b,a,diff(stim));
+firstorder = filtfilt(b,a,diff(stimPOS));
 secondorder = filtfilt(d,c,diff(firstorder));
 
 cpos = []; cvel = []; cacc = [];
@@ -25,7 +36,7 @@ cpos = []; cvel = []; cacc = [];
 for ss = length(spikes):-1:1;
     
     tt = find(tim < spikes(ss) & tim > spikes(ss) - buff);
-    cpos(ss) = mean(stim(tt));
+    cpos(ss) = mean(stimPOS(tt));
     cvel(ss) = mean(firstorder(tt));
     cacc(ss) = mean(secondorder(tt));
 
@@ -62,3 +73,4 @@ out.acc = cacc;
 
 % save filename.mat oogabuug
 
+end
