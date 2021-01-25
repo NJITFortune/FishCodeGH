@@ -74,6 +74,11 @@ figure(1); clf;
     subplot(121); surf(out.posvel'); view(0,90); 
     subplot(122); surf(out.accvel'); view(0,90);
 colormap('HOT');
+figure(27); clf;
+    subplot(311); plot(out.pos);
+    subplot(312); plot(out.vel);
+    subplot(313); plot(out.acc);
+
 % caxis([0 10]);
 
 % figure(2); subplot(121); plot(oogabuug.pos, oogabuug.vel,'*'); subplot(122); plot(oogabuug.acc, oogabuug.vel, '*');
