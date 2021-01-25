@@ -7,6 +7,7 @@ idx = find([in(ent).s.sizeDX] == sz);
 
 tim = 0;
 spikes = [];
+stimPOS = [];
 
 %% Concatonate data
 if ~isempty(idx)
