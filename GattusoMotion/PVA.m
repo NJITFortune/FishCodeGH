@@ -24,13 +24,7 @@ if ~isempty(idx)
         
     tim = tim(2:end); % Remove the initial zero
     
-    
-spikes = spikechan.times;
-
-tim = 1/Fs:1/Fs:length(stimPOS)/Fs;
-
-
-    end
+end
 
 buff = 0.100; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -39,13 +33,12 @@ buff = 0.100; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Make stimuli
 
-firstorder = filtfilt(b,a,diff(stimPOS));
-secondorder = filtfilt(d,c,diff(firstorder));
+    firstorder = filtfilt(b,a,diff(stimPOS)); % VELOCITY
+    secondorder = filtfilt(d,c,diff(firstorder)); % ACCELERATION
 
-cpos = []; cvel = []; cacc = [];
+    cpos = []; cvel = []; cacc = [];
 
-
-for ss = length(spikes):-1:1;
+for ss = length(spikes):-1:1
     
     tt = find(tim < spikes(ss) & tim > spikes(ss) - buff);
     cpos(ss) = mean(stimPOS(tt));
@@ -55,7 +48,7 @@ for ss = length(spikes):-1:1;
     pv(ss,:) = [cpos(ss) cvel(ss)];
     av(ss,:) = [cacc(ss) cvel(ss)];
     
-end;
+end
 
 
 %out.posvel = hist3(pv,{-6:0.01:6 -0.0012:.0024/128:0.0012});
@@ -84,5 +77,4 @@ out.acc = cacc;
 
 
 % save filename.mat oogabuug
-
 end
