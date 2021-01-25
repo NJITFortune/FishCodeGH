@@ -1,8 +1,9 @@
 function out = PVA(in, ent, sz)
 %Usage: out = postvelaccTOT(spikes, stim, Fs)
 
-Fs = 1/stimulus.interval;
-stim = stimulus.values;
+pFs = in(ent).s(1).pFs;
+
+idx = find([in(ent).s.
 
 spikes = spikechan.times;
 
