@@ -14,7 +14,7 @@ if ~isempty(idx)
 
     for j = 1:length(idx)
 
-        stimPOS = [stimPOS in(ent).s(idx(j)).pos];
+        stimPOS = [stimPOS in(ent).s(idx(j)).pos'];
 
         spikes = [spikes (in(ent).s(idx(j)).st + tim(end))];
         
