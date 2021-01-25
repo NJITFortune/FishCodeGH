@@ -1,4 +1,4 @@
-function out = PVA(spikechan, stimulus)
+function out = PVA(in, ent, sz)
 %Usage: out = postvelaccTOT(spikes, stim, Fs)
 
 Fs = 1/stimulus.interval;
