@@ -14,12 +14,17 @@ if ~isempty(idx)
     for j = 1:length(idx)
 
         stimPOS = [stimPOS in(ent).s(idx(j)).pos];
+
+        spikes = [spikes (in(ent).s(idx(j)).st + tim(end))];
         
         currtim = 1/pFs:1/pFs:length(in(ent).s(idx(j)).pos)/pFs;
         tim = [tim (currtim + tim(end))];
         
-        spikes = [spikes 
+    end
         
+    tim = tim(2:end); % Remove the initial zero
+    
+    
 spikes = spikechan.times;
 
 tim = 1/Fs:1/Fs:length(stimPOS)/Fs;
