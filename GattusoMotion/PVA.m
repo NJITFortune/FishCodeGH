@@ -16,7 +16,7 @@ if ~isempty(idx)
 
         stimPOS = [stimPOS in(ent).s(idx(j)).pos'];
 
-        spikes = [spikes (in(ent).s(idx(j)).st + tim(end))];
+        spikes = [spikes (in(ent).s(idx(j)).st + tim(end))'];
         
         currtim = 1/pFs:1/pFs:length(in(ent).s(idx(j)).pos)/pFs;
         tim = [tim (currtim + tim(end))];
