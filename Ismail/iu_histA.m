@@ -8,8 +8,6 @@ function out = iu_histA(spiketimes, randspiketimes, pos, vel, acc, Fs)
 
 tim = 1/Fs:1/Fs:length(pos)/Fs; % Time stamps for the duration of the signal.
 
-
-
 % Get the signal values at spike times
 
     spikePOS = interp1(tim, pos, spiketimes);
