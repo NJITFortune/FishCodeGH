@@ -76,7 +76,7 @@ figure(1); clf;
 colormap('HOT');
 figure(27); clf;
     subplot(311); histogram(out.pos);
-    subplot(312); histogram(out.vel));
+    subplot(312); histogram(out.vel);
     subplot(313); histogram(out.acc);
 
 % caxis([0 10]);
