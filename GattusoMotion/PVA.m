@@ -70,8 +70,10 @@ out.acc = cacc;
 % plot(tim, bg_2015_Ch2.values);
 %
 % oogabuug = posvelacc(bg_2015_Ch405.times, bg_2015_Ch2.values, bg_2015_Ch31.times, 20, Fs);
-% figure(1); subplot(121); surf(oogabuug.posvel'); view(0,90); subplot(122); surf(oogabuug.accvel'); view(0,90);
-% colormap('HOT');
+figure(1); clf;
+    subplot(121); surf(out.posvel'); view(0,90); 
+    subplot(122); surf(out.accvel'); view(0,90);
+colormap('HOT');
 % caxis([0 10]);
 
 % figure(2); subplot(121); plot(oogabuug.pos, oogabuug.vel,'*'); subplot(122); plot(oogabuug.acc, oogabuug.vel, '*');
