@@ -5,6 +5,9 @@ pFs = in(ent).s(1).pFs;
 
 idx = find([in(ent).s.sizeDX] == sz);
 
+tim = 0;
+spikes = [];
+
 %% Concatonate data
 if ~isempty(idx)
 
@@ -12,6 +15,10 @@ if ~isempty(idx)
 
         stimPOS = [stimPOS in(ent).s(idx(j)).pos];
         
+        currtim = 1/pFs:1/pFs:length(in(ent).s(idx(j)).pos)/pFs;
+        tim = [tim (currtim + tim(end))];
+        
+        spikes = [spikes 
         
 spikes = spikechan.times;
 
