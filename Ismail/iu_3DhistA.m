@@ -124,9 +124,9 @@ figure(1); clf;
 colormap('HOT');
 
 figure(2); clf;
-    subplot(311); histogram(out.POccHist);
-    subplot(312); histogram(out.VOccHist);
-    subplot(313); histogram(out.AOccHist);
+    subplot(311); bar(out.POccHist);
+    subplot(312); bar(out.VOccHist);
+    subplot(313); bar(out.AOccHist);
     
     
 % Raw stimulus
