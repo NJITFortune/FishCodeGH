@@ -1,60 +1,65 @@
 function out = PVA(in, ent, sz)
-%Usage: out = postvelaccTOT(spikes, stim, Fs)
+% Usage: out = PVA(structure, entry, sizeDX)
 
+% Get the sample rate for position
 pFs = in(ent).s(1).pFs;
 
+% Get the entries for the size selected by the user
 idx = find([in(ent).s.sizeDX] == sz);
 
-tim = 0;
-spikes = [];
-stimPOS = [];
+% Preparations
+tim = 0; % Starting time for the next sample as we concatonate
+spikes = []; % List of spike times
+stimPOS = []; % Position over time
 
 %% Concatonate data
-if ~isempty(idx)
+if ~isempty(idx) % just make sure that the user isn't an idiot 
 
-    for j = 1:length(idx)
+    for j = 1:length(idx) % cycle to concatonate all of the correct entries
 
-        stimPOS = [stimPOS in(ent).s(idx(j)).pos'];
+        stimPOS = [stimPOS in(ent).s(idx(j)).pos']; % Concatonate position
+        currtim = 1/pFs:1/pFs:length(in(ent).s(idx(j)).pos)/pFs; % A time base for the currently added position
 
-        spikes = [spikes (in(ent).s(idx(j)).st + tim(end))'];
+        spikes = [spikes (in(ent).s(idx(j)).st + tim(end))']; % Concatonate spike times, adding the time from the end of previous
         
-        currtim = 1/pFs:1/pFs:length(in(ent).s(idx(j)).pos)/pFs;
-        tim = [tim (currtim + tim(end))];
+        tim = [tim (currtim + tim(end))]; % Update the time base 
         
     end
         
-    tim = tim(2:end); % Remove the initial zero
+    tim = tim(2:end); % When we are all done, we remove the initial zero
     
 end
 
-buff = 0.100; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Derive the velocity and acceleration from position
 
-[b,a] = butter(3, 30/pFs, 'low'); 
-[d,c] = butter(5, 20/pFs, 'low'); 
+    [b,a] = butter(3, 30/pFs, 'low'); % Filter for velocity
+    [d,c] = butter(5, 20/pFs, 'low'); % Filter for acceleration
 
-% Make stimuli
+    vel = filtfilt(b,a,diff(stimPOS)); % VELOCITY
+    acc = filtfilt(d,c,diff(vel)); % ACCELERATION
 
-    firstorder = filtfilt(b,a,diff(stimPOS)); % VELOCITY
-    secondorder = filtfilt(d,c,diff(firstorder)); % ACCELERATION
+    
+%% Get the pos/vel/acc values associated with each spike
 
-    cpos = []; cvel = []; cacc = [];
-
+windw = 0.100; % Time in seconds prior to spike to integrate
+    
 for ss = length(spikes):-1:1
     
-    tt = find(tim < spikes(ss) & tim > spikes(ss) - buff);
+    tt = find(tim < spikes(ss) & tim > spikes(ss) - windw);
+    
     cpos(ss) = mean(stimPOS(tt));
-    cvel(ss) = mean(firstorder(tt));
-    cacc(ss) = mean(secondorder(tt));
+    cvel(ss) = mean(vel(tt));
+    cacc(ss) = mean(acc(tt));
 
-    pv(ss,:) = [cpos(ss) cvel(ss)];
-    av(ss,:) = [cacc(ss) cvel(ss)];
+    posVvel(ss,:) = [cpos(ss) cvel(ss)];
+    accVvel(ss,:) = [cacc(ss) cvel(ss)];
     
 end
 
 
 %out.posvel = hist3(pv,{-6:0.01:6 -0.0012:.0024/128:0.0012});
-out.posvel = hist3(pv,[20 20]);
-out.accvel = hist3(av,[20 20]);
+out.posvel = hist3(posVvel,[20 20]);
+out.accvel = hist3(accVvel,[20 20]);
 
 out.pos = cpos;
 out.vel = cvel;
