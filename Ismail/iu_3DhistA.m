@@ -119,12 +119,14 @@ end
 
 % Histogram for stimulus
 for ss = length(pos):-10:1
-    out.STIMposVvel(ss,:) = [pos(ss) vel(ss)];
-    out.STIMaccVvel(ss,:) = [acc(ss) vel(ss)];
+    STIMposVvel(ss,:) = [pos(ss) vel(ss)];
+    STIMaccVvel(ss,:) = [acc(ss) vel(ss)];
 end
-
-    out.STIMposvel = hist3(out.STIMposVvel, 'Edges', {out.Pedges, out.Vedges});
-    out.STIMaccvel = hist3(out.STIMaccVvel, 'Edges', {out.Aedges, out.Vedges});
+ STIMposVvel(~cellfun('isempty',STIMposVvel));
+ STIMaccVvel(~cellfun('isempty',STIMaccVvel));
+ 
+    out.STIMposvel = hist3(STIMposVvel, 'Edges', {out.Pedges, out.Vedges});
+    out.STIMaccvel = hist3(STIMaccVvel, 'Edges', {out.Aedges, out.Vedges});
 
 
 figure(1); clf;
