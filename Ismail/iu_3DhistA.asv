@@ -18,7 +18,7 @@ tim = 1/Fs:1/Fs:length(pos)/Fs; % Time stamps for the duration of the signal.
     RspikeVEL = interp1(tim, vel, randspiketimes);
     RspikeACC = interp1(tim, acc, randspiketimes);
 
-    actually = OccHist(pos, vel, acc, spikePOS, spikeVEL, spikeACC, spiketimes, randspiketimes);
+out = OccHist(pos, vel, acc, spikePOS, spikeVEL, spikeACC, RspikePOS, RspikeVEL, RspikeACC);
         
 % figure(27); clf;
 % 
@@ -51,7 +51,7 @@ subplot(313); title('Acceleration'); hold on;
     histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.OccHist, 'FaceColor', 'b');
 
     
-  function foo = OccHist(psig, vsig, asig, pspks, vspks, aspks)
+  function foo = OccHist(psig, vsig, asig, pspks, vspks, aspks, pRspks, vRspks, aRspks)
 %     actually = OccHist(pos, vel, acc, spikePOS, spikeVEL, spikeACC);
         
         numOfBins = 8;
@@ -91,16 +91,12 @@ subplot(313); title('Acceleration'); hold on;
 
 % 3D histograms
 
-for ss = length(spikes):-1:1
+for ss = length(pspks):-1:1
     
-    tt = find(tim < spikes(ss) & tim > spikes(ss) - windw);
-    
-    cpos(ss) = mean(stimPOS(tt));
-    cvel(ss) = mean(vel(tt));
-    cacc(ss) = mean(acc(tt));
-
-    posVvel(ss,:) = [cpos(ss) cvel(ss)];
-    accVvel(ss,:) = [cacc(ss) cvel(ss)];
+    posVvel(ss,:) = [pspks(ss) vspks(ss)];
+    accVvel(ss,:) = [aspks(ss) vspks(ss)];
+    RposVvel(ss,:) = [pRspks(ss) vRspks(ss)];
+    RaccVvel(ss,:) = [aRspks(ss) vRspks(ss)];
     
 end
 
