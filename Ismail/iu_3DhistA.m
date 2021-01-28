@@ -118,7 +118,7 @@ end
     out.accvel = hist3(accVvel, 'Edges', {out.Aedges, out.Vedges});
 
 % Histogram for stimulus
-for ss = length(pos):-100:1
+for ss = length(pos):-10:1
     STIMposVvel(ss,:) = [pos(ss) vel(ss)];
     STIMaccVvel(ss,:) = [acc(ss) vel(ss)];
 end
