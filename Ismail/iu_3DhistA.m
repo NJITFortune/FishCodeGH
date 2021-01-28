@@ -122,8 +122,8 @@ for ss = length(pos):-10:1
     STIMposVvel(ss,:) = [pos(ss) vel(ss)];
     STIMaccVvel(ss,:) = [acc(ss) vel(ss)];
 end
- STIMposVvel(~cellfun('isempty',STIMposVvel));
- STIMaccVvel(~cellfun('isempty',STIMaccVvel));
+ STIMposVvel = STIMposVvel(find(STIMposVvel));
+ STIMaccVvel = STIMaccVvel(find(STIMaccVvel));
  
     out.STIMposvel = hist3(STIMposVvel, 'Edges', {out.Pedges, out.Vedges});
     out.STIMaccvel = hist3(STIMaccVvel, 'Edges', {out.Aedges, out.Vedges});
