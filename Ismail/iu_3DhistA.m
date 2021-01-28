@@ -103,7 +103,7 @@ end
 % 3D histograms
 
 % Raw spikes
-for ss = length(spikesPOS):-1:1
+for ss = length(spikePOS):-1:1
     
     posVvel(ss,:) = [spikesPOS(ss) spikesVEL(ss)];
     accVvel(ss,:) = [spikesACC(ss) spikesVEL(ss)];
