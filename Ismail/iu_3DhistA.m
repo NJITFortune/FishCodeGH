@@ -114,6 +114,18 @@ end
     out.posvel = hist3(posVvel, 'Edges', {out.Pedges, out.Vedges});
     out.accvel = hist3(accVvel, 'Edges', {out.Pedges, out.Vedges});
 
+    
+figure(1); clf;
+    subplot(121); surf(out.posvel'); view(0,90); 
+    subplot(122); surf(out.accvel'); view(0,90);
+colormap('HOT');
+
+figure(2); clf;
+    subplot(311); histogram(out.POccHist);
+    subplot(312); histogram(out.VOccHist);
+    subplot(313); histogram(out.AOccHist);
+    
+    
 % Raw stimulus
         
 % figure(27); clf;
@@ -133,8 +145,6 @@ end
 %     histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.stimulusHist);
 %     histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.responseHist);
 %     histogram('BinEdges', out.Arand.edges, 'BinCounts', out.Arand.responseHist);
-
-figure; clf;
 
 % subplot(311); title('Position'); hold on;
 %     histogram('BinEdges', out.Prand.edges, 'BinCounts', out.Prand.OccHist, 'FaceColor', 'r');
