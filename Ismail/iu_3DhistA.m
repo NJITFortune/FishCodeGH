@@ -117,7 +117,9 @@ end
     out.posvel = hist3(posVvel, 'Edges', {out.Pedges, out.Vedges});
     out.accvel = hist3(accVvel, 'Edges', {out.Aedges, out.Vedges});
 
-    
+% Histogram for stimulus
+
+
 figure(1); clf;
     subplot(121); surf(out.posvel'); view(0,90); 
     subplot(122); surf(out.accvel'); view(0,90);
