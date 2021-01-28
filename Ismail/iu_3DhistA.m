@@ -1,4 +1,4 @@
-function out = iu_histA(spiketimes, randspiketimes, pos, vel, acc, Fs)
+function out = iu_3DhistA(spiketimes, randspiketimes, pos, vel, acc, Fs)
 % Function out = iu_hist(spikes, randspikes, sig, Fs, wid)
 % spikes are the spike times
 % randspikes are shuffled spike times
@@ -18,15 +18,9 @@ tim = 1/Fs:1/Fs:length(pos)/Fs; % Time stamps for the duration of the signal.
     RspikeVEL = interp1(tim, vel, randspiketimes);
     RspikeACC = interp1(tim, acc, randspiketimes);
 
-    out.Presponse = OccHist(pos, spikePOS);
-    out.Prand = OccHist(pos, RspikePOS);
-    
-    out.Vresponse = OccHist(vel, spikeVEL);
-    out.Vrand = OccHist(vel, RspikeVEL);
-    
-    out.Aresponse = OccHist(acc, spikeACC);
-    out.Arand = OccHist(acc, RspikeACC);
-    
+    actually = OccHist(pos, vel, acc, spikePOS, spikeVEL, spikeACC);
+    randomly = OccHist(pos, vel, acc, RspikePOS, RspikeVEL, RspikeACC);
+        
 % figure(27); clf;
 % 
 % subplot(311); title('Position'); hold on;
@@ -58,27 +52,44 @@ subplot(313); title('Acceleration'); hold on;
     histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.OccHist, 'FaceColor', 'b');
 
     
-  function foo = OccHist(sig, spks)
+  function foo = OccHist(psig, vsig, asig, pspks, vspks, aspks)
+%     actually = OccHist(pos, vel, acc, spikePOS, spikeVEL, spikeACC);
         
         numOfBins = 8;
         std_coeff   = 3;
-    % Determine edge boundaries
-    
-    histBound = std_coeff * std(sig);    
-    edgs = linspace(mean(sig)-histBound, mean(sig)+histBound, numOfBins+1);
-    
-    foo.stimulusHist = histcounts(sig, edgs);
-        foo.stimulusHist(~isfinite(foo.stimulusHist)) = 0;
-    % hc      = hc / 25;
-    
-    foo.responseHist = histcounts(spks, edgs);
-        foo.responseHist(~isfinite(foo.responseHist)) = 0;
+    % Position-only histogram
+    histBound = std_coeff * std(psig);    
+    edgs = linspace(mean(psig)-histBound, mean(psig)+histBound, numOfBins+1);
+    foo.PstimulusHist = histcounts(psig, edgs);
+        foo.PstimulusHist(~isfinite(foo.PstimulusHist)) = 0;    
+    foo.PresponseHist = histcounts(pspks, edgs);
+        foo.PresponseHist(~isfinite(foo.PresponseHist)) = 0;
+    foo.POccHist = (foo.PresponseHist / max(foo.PresponseHist)) ./ (foo.PstimulusHist / max(foo.PstimulusHist)); 
+        foo.POccHist(~isfinite(foo.POccHist)) = 0;    
+        foo.Pedges = edgs;
         
-    foo.OccHist = (foo.responseHist / max(foo.responseHist)) ./ (foo.stimulusHist / max(foo.stimulusHist)); 
-        foo.OccHist(~isfinite(foo.OccHist)) = 0;
-    
-        foo.edges = edgs;
-            
+    % Velocity-only histogram
+    histBound = std_coeff * std(vsig);    
+    edgs = linspace(mean(vsig)-histBound, mean(vsig)+histBound, numOfBins+1);
+    foo.VstimulusHist = histcounts(vsig, edgs);
+        foo.VstimulusHist(~isfinite(foo.VstimulusHist)) = 0;    
+    foo.VresponseHist = histcounts(vspks, edgs);
+        foo.VresponseHist(~isfinite(foo.VresponseHist)) = 0;
+    foo.VOccHist = (foo.VresponseHist / max(foo.VresponseHist)) ./ (foo.VstimulusHist / max(foo.VstimulusHist)); 
+        foo.VOccHist(~isfinite(foo.VOccHist)) = 0;    
+        foo.Vedges = edgs;
+
+    % Acceleration-only histogram
+    histBound = std_coeff * std(asig);    
+    edgs = linspace(mean(asig)-histBound, mean(asig)+histBound, numOfBins+1);
+    foo.AstimulusHist = histcounts(asig, edgs);
+        foo.AstimulusHist(~isfinite(foo.AstimulusHist)) = 0;    
+    foo.AresponseHist = histcounts(aspks, edgs);
+        foo.AresponseHist(~isfinite(foo.AresponseHist)) = 0;
+    foo.AOccHist = (foo.AresponseHist / max(foo.AresponseHist)) ./ (foo.AstimulusHist / max(foo.AstimulusHist)); 
+        foo.AOccHist(~isfinite(foo.AOccHist)) = 0;    
+        foo.Aedges = edgs;
+        
   end
 
 
