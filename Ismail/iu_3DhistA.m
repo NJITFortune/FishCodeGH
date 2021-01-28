@@ -111,8 +111,8 @@ for ss = length(spikePOS):-1:1
     RaccVvel(ss,:) = [RspikeACC(ss) RspikeVEL(ss)];    
     
 end
-    out.posvel = hist3(posVvel, 'Edges', [out.Pedges, out.Vedges]);
-    out.accvel = hist3(accVvel, 'Edges', [out.Pedges, out.Vedges]);
+    out.posvel = hist3(posVvel, 'Edges', {out.Pedges, out.Vedges});
+    out.accvel = hist3(accVvel, 'Edges', {out.Pedges, out.Vedges});
 
 % Raw stimulus
         
