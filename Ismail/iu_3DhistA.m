@@ -107,8 +107,8 @@ for ss = length(spikePOS):-1:1
     
     posVvel(ss,:) = [spikePOS(ss) spikeVEL(ss)];
     accVvel(ss,:) = [spikeACC(ss) spikeVEL(ss)];
-    RposVvel(ss,:) = [RspikesPOS(ss) RspikesVEL(ss)];
-    RaccVvel(ss,:) = [RspikesACC(ss) RspikesVEL(ss)];    
+    RposVvel(ss,:) = [RspikePOS(ss) RspikeVEL(ss)];
+    RaccVvel(ss,:) = [RspikeACC(ss) RspikeVEL(ss)];    
     
 end
     out.posvel = hist3(posVvel,[out.Pedges, out.Vedges]);
