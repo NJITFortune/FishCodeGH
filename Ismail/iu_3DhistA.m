@@ -123,8 +123,8 @@ for ss = length(pos):-10:1
     out.STIMaccVvel(ss,:) = [acc(ss) vel(ss)];
 end
 
-    out.STIMposvel = hist3(STIMposVvel, 'Edges', {out.Pedges, out.Vedges});
-    out.STIMaccvel = hist3(STIMaccVvel, 'Edges', {out.Aedges, out.Vedges});
+    out.STIMposvel = hist3(out.STIMposVvel, 'Edges', {out.Pedges, out.Vedges});
+    out.STIMaccvel = hist3(out.STIMaccVvel, 'Edges', {out.Aedges, out.Vedges});
 
 
 figure(1); clf;
