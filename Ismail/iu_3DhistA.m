@@ -116,6 +116,9 @@ for ss = length(spikePOS):-1:1
 end
     out.posvel = hist3(posVvel, 'Edges', {out.Pedges, out.Vedges});
     out.accvel = hist3(accVvel, 'Edges', {out.Aedges, out.Vedges});
+    
+    out.Rposvel = hist3(RposVvel, 'Edges', {out.Pedges, out.Vedges});
+    out.Raccvel = hist3(RaccVvel, 'Edges', {out.Aedges, out.Vedges});
 
 % Histogram for stimulus
 for ss = length(pos):-1:1
@@ -133,6 +136,11 @@ figure(1); clf;
 colormap('HOT');
 
 figure(2); clf;
+    subplot(121); surf(out.Rposvel'); view(0,90); 
+    subplot(122); surf(out.Raccvel'); view(0,90);
+colormap('HOT');
+
+figure(3); clf;
     subplot(121); surf(out.STIMposvel'); view(0,90); 
     subplot(122); surf(out.STIMaccvel'); view(0,90);
 colormap('HOT');
