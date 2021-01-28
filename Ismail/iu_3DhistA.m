@@ -94,12 +94,15 @@ subplot(313); title('Acceleration'); hold on;
 % Raw spikes
 for ss = length(pspks):-1:1
     
-    foo.posVvel(ss,:) = [pspks(ss) vspks(ss)];
-    foo.accVvel(ss,:) = [aspks(ss) vspks(ss)];
-    foo.RposVvel(ss,:) = [pRspks(ss) vRspks(ss)];
-    foo.RaccVvel(ss,:) = [aRspks(ss) vRspks(ss)];    
+    posVvel(ss,:) = [pspks(ss) vspks(ss)];
+    accVvel(ss,:) = [aspks(ss) vspks(ss)];
+    RposVvel(ss,:) = [pRspks(ss) vRspks(ss)];
+    RaccVvel(ss,:) = [aRspks(ss) vRspks(ss)];    
     
 end
+
+foo.posvel = hist3(posVvel,[20 20]);
+foo.accvel = hist3(accVvel,[20 20]);
 
 % Raw stimulus
 
