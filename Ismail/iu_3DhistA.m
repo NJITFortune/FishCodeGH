@@ -46,18 +46,24 @@ end
     vel = filtfilt(b,a,diff(pos)); % VELOCITY
     acc = filtfilt(d,c,diff(vel)); % ACCELERATION
         
-        
+% Make random spike train    
+    ISIs = diff(spikes);
+    randspikes(1) = spikes(1);
+    for k = randperm(length(ISIs))
+        randspikes(end+1) = randspikes(end) + ISIs(k);
+    end
+
         
        
 %% Get the signal values at spike times
 
-    spikePOS = interp1(tim, pos, spiketimes);
-    spikeVEL = interp1(tim, vel, spiketimes);
-    spikeACC = interp1(tim, acc, spiketimes);
+    spikePOS = interp1(tim, pos, spikes);
+    spikeVEL = interp1(tim, vel, spikes);
+    spikeACC = interp1(tim, acc, spikes);
 
-    RspikePOS = interp1(tim, pos, randspiketimes);
-    RspikeVEL = interp1(tim, vel, randspiketimes);
-    RspikeACC = interp1(tim, acc, randspiketimes);
+    RspikePOS = interp1(tim, pos, randspikes);
+    RspikeVEL = interp1(tim, vel, randspikes);
+    RspikeACC = interp1(tim, acc, randspikes);
         
     % Position-only histogram
     histBound = std_coeff * std(pos);    
