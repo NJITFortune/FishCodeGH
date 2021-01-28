@@ -131,7 +131,7 @@ end
 
 
 figure(1); clf;
-    subplot(121); surf(out.posvel'); view(0,90); 
+    subplot(121); surf(out.posvel'); view(0,90); xlim([1 numOfbins+1]); ylim([1 numOfbins+1]);
     subplot(122); surf(out.accvel'); view(0,90);
 colormap('HOT');
 
