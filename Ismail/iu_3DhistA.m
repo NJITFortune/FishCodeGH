@@ -1,4 +1,4 @@
-function out = iu_3DhistA(spiketimes, randspiketimes, pos, vel, acc, Fs)
+function out = iu_3DhistA(in, ent, sz)
 % Function out = iu_hist(spikes, randspikes, sig, Fs, wid)
 % spikes are the spike times
 % randspikes are shuffled spike times
@@ -10,7 +10,7 @@ function out = iu_3DhistA(spiketimes, randspiketimes, pos, vel, acc, Fs)
         std_coeff   = 3;
 
 % Get the sample rate for position
-pFs = in(ent).s(1).pFs;
+Fs = in(ent).s(1).pFs;
 
 % Get the entries for the size selected by the user
 idx = find([in(ent).s.sizeDX] == sz);
@@ -18,15 +18,15 @@ idx = find([in(ent).s.sizeDX] == sz);
 % Preparations
 tim = 0; % Starting time for the next sample as we concatonate
 spikes = []; % List of spike times
-stimPOS = []; % Position over time
+pos = []; % Position over time
 
 %% Concatonate data
 if ~isempty(idx) % just make sure that the user isn't an idiot 
 
     for j = 1:length(idx) % cycle to concatonate all of the correct entries
 
-        stimPOS = [stimPOS in(ent).s(idx(j)).pos']; % Concatonate position
-        currtim = 1/pFs:1/pFs:length(in(ent).s(idx(j)).pos)/pFs; % A time base for the currently added position
+        pos = [pos in(ent).s(idx(j)).pos']; % Concatonate position
+        currtim = 1/Fs:1/Fs:length(in(ent).s(idx(j)).pos)/Fs; % A time base for the currently added position
 
         spikes = [spikes (in(ent).s(idx(j)).st + tim(end))']; % Concatonate spike times, adding the time from the end of previous
         
@@ -40,10 +40,10 @@ end
 
 % Derive the velocity and acceleration from position
 
-    [b,a] = butter(3, 30/pFs, 'low'); % Filter for velocity
-    [d,c] = butter(5, 20/pFs, 'low'); % Filter for acceleration
+    [b,a] = butter(3, 30/Fs, 'low'); % Filter for velocity
+    [d,c] = butter(5, 20/Fs, 'low'); % Filter for acceleration
 
-    vel = filtfilt(b,a,diff(stimPOS)); % VELOCITY
+    vel = filtfilt(b,a,diff(pos)); % VELOCITY
     acc = filtfilt(d,c,diff(vel)); % ACCELERATION
         
         
