@@ -18,8 +18,7 @@ tim = 1/Fs:1/Fs:length(pos)/Fs; % Time stamps for the duration of the signal.
     RspikeVEL = interp1(tim, vel, randspiketimes);
     RspikeACC = interp1(tim, acc, randspiketimes);
 
-    actually = OccHist(pos, vel, acc, spikePOS, spikeVEL, spikeACC);
-    randomly = OccHist(pos, vel, acc, RspikePOS, RspikeVEL, RspikeACC);
+    actually = OccHist(pos, vel, acc, spikePOS, spikeVEL, spikeACC, spiketimes, randspiketimes);
         
 % figure(27); clf;
 % 
@@ -65,10 +64,48 @@ subplot(313); title('Acceleration'); hold on;
     foo.PresponseHist = histcounts(pspks, edgs);
         foo.PresponseHist(~isfinite(foo.PresponseHist)) = 0;
     foo.POccHist = (foo.PresponseHist / max(foo.PresponseHist)) ./ (foo.PstimulusHist / max(foo.PstimulusHist)); 
-        foo.POccHist(~isfinite(foo.POccHist)) = 0;
-    
+        foo.POccHist(~isfinite(foo.POccHist)) = 0;    
         foo.Pedges = edgs;
-            
+        
+    % Velocity-only histogram
+    histBound = std_coeff * std(vsig);    
+    edgs = linspace(mean(vsig)-histBound, mean(vsig)+histBound, numOfBins+1);
+    foo.VstimulusHist = histcounts(vsig, edgs);
+        foo.VstimulusHist(~isfinite(foo.VstimulusHist)) = 0;    
+    foo.VresponseHist = histcounts(vspks, edgs);
+        foo.VresponseHist(~isfinite(foo.VresponseHist)) = 0;
+    foo.VOccHist = (foo.VresponseHist / max(foo.VresponseHist)) ./ (foo.VstimulusHist / max(foo.VstimulusHist)); 
+        foo.VOccHist(~isfinite(foo.VOccHist)) = 0;    
+        foo.Vedges = edgs;
+
+    % Acceleration-only histogram
+    histBound = std_coeff * std(asig);    
+    edgs = linspace(mean(asig)-histBound, mean(asig)+histBound, numOfBins+1);
+    foo.AstimulusHist = histcounts(asig, edgs);
+        foo.AstimulusHist(~isfinite(foo.AstimulusHist)) = 0;    
+    foo.AresponseHist = histcounts(aspks, edgs);
+        foo.AresponseHist(~isfinite(foo.AresponseHist)) = 0;
+    foo.AOccHist = (foo.AresponseHist / max(foo.AresponseHist)) ./ (foo.AstimulusHist / max(foo.AstimulusHist)); 
+        foo.AOccHist(~isfinite(foo.AOccHist)) = 0;    
+        foo.Aedges = edgs;
+
+% 3D histograms
+
+for ss = length(spikes):-1:1
+    
+    tt = find(tim < spikes(ss) & tim > spikes(ss) - windw);
+    
+    cpos(ss) = mean(stimPOS(tt));
+    cvel(ss) = mean(vel(tt));
+    cacc(ss) = mean(acc(tt));
+
+    posVvel(ss,:) = [cpos(ss) cvel(ss)];
+    accVvel(ss,:) = [cacc(ss) cvel(ss)];
+    
+end
+
+        
+        
   end
 
 
