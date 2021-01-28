@@ -6,8 +6,8 @@ function out = iu_3DhistA(in, ent, sz)
 % Fs is the sample rate (usually 25 for these data, fs = 25
 % wid is the width of the spike triggered average in seconds (1 or 2 seconds is good)%% Histogram of All Spikes as Isolated Spikes
 
-        numOfBins = 8;
-        std_coeff   = 3;
+        numOfBins = 16;
+        std_coeff   = 2;
 
 % Get the sample rate for position
 Fs = in(ent).s(1).pFs;
@@ -39,12 +39,17 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
 end
 
 % Derive the velocity and acceleration from position
-
-    [b,a] = butter(3, 30/Fs, 'low'); % Filter for velocity
-    [d,c] = butter(5, 20/Fs, 'low'); % Filter for acceleration
-
-    vel = filtfilt(b,a,diff(pos)); % VELOCITY
-    acc = filtfilt(d,c,diff(vel)); % ACCELERATION
+% 
+%     [b,a] = butter(3, 30/Fs, 'low'); % Filter for velocity
+%     [d,c] = butter(5, 20/Fs, 'low'); % Filter for acceleration
+% 
+%     vel = filtfilt(b,a,diff(pos)); % VELOCITY
+%         vel(end+1) = vel(end);
+%     acc = filtfilt(d,c,diff(vel)); % ACCELERATION
+%         acc(end+1) = acc(end);
+    vel = smooth(diff(pos)); vel(end+1) = vel(end);
+    acc = smooth(diff(vel)); acc(end+1) = acc(end);
+    vel = vel'; acc = acc';
         
 % Make random spike train    
     ISIs = diff(spikes);
@@ -61,9 +66,9 @@ end
     spikeVEL = interp1(tim, vel, spikes);
     spikeACC = interp1(tim, acc, spikes);
 
-    RspikePOS = interp1(tim, pos, randspiketimes);
-    RspikeVEL = interp1(tim, vel, randspiketimes);
-    RspikeACC = interp1(tim, acc, randspiketimes);
+    RspikePOS = interp1(tim, pos, randspikes);
+    RspikeVEL = interp1(tim, vel, randspikes);
+    RspikeACC = interp1(tim, acc, randspikes);
         
     % Position-only histogram
     histBound = std_coeff * std(pos);    
@@ -88,7 +93,7 @@ end
         out.Vedges = VELedgs;
 
     % Acceleration-only histogram
-    histBound = std_coeff * std(acc);    
+    histBound = std_coeff * std(acc) / 10;    
     ACCedgs = linspace(mean(acc)-histBound, mean(acc)+histBound, numOfBins+1);
     out.AstimulusHist = histcounts(acc, ACCedgs);
         out.AstimulusHist(~isfinite(out.AstimulusHist)) = 0;    
@@ -101,17 +106,40 @@ end
 % 3D histograms
 
 % Raw spikes
-for ss = length(spikesPOS):-1:1
+for ss = length(spikePOS):-1:1
     
-    posVvel(ss,:) = [spikesPOS(ss) spikesVEL(ss)];
-    accVvel(ss,:) = [spikesACC(ss) spikesVEL(ss)];
-    RposVvel(ss,:) = [RspikesPOS(ss) RspikesVEL(ss)];
-    RaccVvel(ss,:) = [RspikesACC(ss) RspikesVEL(ss)];    
+    posVvel(ss,:) = [spikePOS(ss) spikeVEL(ss)];
+    accVvel(ss,:) = [spikeACC(ss) spikeVEL(ss)];
+    RposVvel(ss,:) = [RspikePOS(ss) RspikeVEL(ss)];
+    RaccVvel(ss,:) = [RspikeACC(ss) RspikeVEL(ss)];    
     
 end
-    out.posvel = hist3(posVvel,[out.Pedges, out.Vedges]);
-    out.accvel = hist3(accVvel,[out.Pedges, out.Vedges]);
+    out.posvel = hist3(posVvel, 'Edges', {out.Pedges, out.Vedges});
+    out.accvel = hist3(accVvel, 'Edges', {out.Aedges, out.Vedges});
 
+% Histogram for stimulus
+for ss = length(pos):-100:1
+    
+    STIMposVvel(ss,:) = [pos(ss) vel(ss)];
+    STIMaccVvel(ss,:) = [acc(ss) vel(ss)];
+    
+end
+
+    out.STIMposvel = hist3(STIMposVvel, 'Edges', {out.Pedges, out.Vedges});
+    out.STIMaccvel = hist3(STIMaccVvel, 'Edges', {out.Aedges, out.Vedges});
+
+
+figure(1); clf;
+    subplot(121); surf(out.posvel'); view(0,90); 
+    subplot(122); surf(out.accvel'); view(0,90);
+colormap('HOT');
+
+figure(2); clf;
+    subplot(311); bar(out.POccHist);
+    subplot(312); bar(out.VOccHist);
+    subplot(313); bar(out.AOccHist);
+    
+    
 % Raw stimulus
         
 % figure(27); clf;
@@ -131,8 +159,6 @@ end
 %     histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.stimulusHist);
 %     histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.responseHist);
 %     histogram('BinEdges', out.Arand.edges, 'BinCounts', out.Arand.responseHist);
-
-figure; clf;
 
 % subplot(311); title('Position'); hold on;
 %     histogram('BinEdges', out.Prand.edges, 'BinCounts', out.Prand.OccHist, 'FaceColor', 'r');
