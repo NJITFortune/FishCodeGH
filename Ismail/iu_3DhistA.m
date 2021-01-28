@@ -37,7 +37,7 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
     tim = tim(2:end); % When we are all done, we remove the initial zero
     
 end
-length(pos)
+
 % Derive the velocity and acceleration from position
 % 
 %     [b,a] = butter(3, 30/Fs, 'low'); % Filter for velocity
