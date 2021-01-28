@@ -93,7 +93,7 @@ end
         out.Vedges = VELedgs;
 
     % Acceleration-only histogram
-    histBound = std_coeff * std(acc);    
+    histBound = std_coeff * std(acc) / 10;    
     ACCedgs = linspace(mean(acc)-histBound, mean(acc)+histBound, numOfBins+1);
     out.AstimulusHist = histcounts(acc, ACCedgs);
         out.AstimulusHist(~isfinite(out.AstimulusHist)) = 0;    
