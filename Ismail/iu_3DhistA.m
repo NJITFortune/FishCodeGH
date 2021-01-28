@@ -39,14 +39,17 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
 end
 
 % Derive the velocity and acceleration from position
-
-    [b,a] = butter(3, 30/Fs, 'low'); % Filter for velocity
-    [d,c] = butter(5, 20/Fs, 'low'); % Filter for acceleration
-
-    vel = filtfilt(b,a,diff(pos)); % VELOCITY
-        vel(end+1) = vel(end);
-    acc = filtfilt(d,c,diff(vel)); % ACCELERATION
-        acc(end+1) = acc(end);
+% 
+%     [b,a] = butter(3, 30/Fs, 'low'); % Filter for velocity
+%     [d,c] = butter(5, 20/Fs, 'low'); % Filter for acceleration
+% 
+%     vel = filtfilt(b,a,diff(pos)); % VELOCITY
+%         vel(end+1) = vel(end);
+%     acc = filtfilt(d,c,diff(vel)); % ACCELERATION
+%         acc(end+1) = acc(end);
+    vel = smooth(diff(pos)); vel(end+1) = vel(end);
+    acc = smooth(diff(vel)); acc(end+1) = acc(end);
+    vel = vel'; acc = acc';
         
 % Make random spike train    
     ISIs = diff(spikes);
