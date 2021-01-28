@@ -105,8 +105,8 @@ end
 % Raw spikes
 for ss = length(spikePOS):-1:1
     
-    posVvel(ss,:) = [spikesPOS(ss) spikesVEL(ss)];
-    accVvel(ss,:) = [spikesACC(ss) spikesVEL(ss)];
+    posVvel(ss,:) = [spikePOS(ss) spikeVEL(ss)];
+    accVvel(ss,:) = [spikeACC(ss) spikeVEL(ss)];
     RposVvel(ss,:) = [RspikesPOS(ss) RspikesVEL(ss)];
     RaccVvel(ss,:) = [RspikesACC(ss) RspikesVEL(ss)];    
     
