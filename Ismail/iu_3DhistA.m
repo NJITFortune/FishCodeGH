@@ -9,10 +9,47 @@ function out = iu_3DhistA(spiketimes, randspiketimes, pos, vel, acc, Fs)
         numOfBins = 8;
         std_coeff   = 3;
 
+% Get the sample rate for position
+pFs = in(ent).s(1).pFs;
 
-tim = 1/Fs:1/Fs:length(pos)/Fs; % Time stamps for the duration of the signal.
+% Get the entries for the size selected by the user
+idx = find([in(ent).s.sizeDX] == sz);
 
-% Get the signal values at spike times
+% Preparations
+tim = 0; % Starting time for the next sample as we concatonate
+spikes = []; % List of spike times
+stimPOS = []; % Position over time
+
+%% Concatonate data
+if ~isempty(idx) % just make sure that the user isn't an idiot 
+
+    for j = 1:length(idx) % cycle to concatonate all of the correct entries
+
+        stimPOS = [stimPOS in(ent).s(idx(j)).pos']; % Concatonate position
+        currtim = 1/pFs:1/pFs:length(in(ent).s(idx(j)).pos)/pFs; % A time base for the currently added position
+
+        spikes = [spikes (in(ent).s(idx(j)).st + tim(end))']; % Concatonate spike times, adding the time from the end of previous
+        
+        tim = [tim (currtim + tim(end))]; % Update the time base 
+        
+    end
+        
+    tim = tim(2:end); % When we are all done, we remove the initial zero
+    
+end
+
+% Derive the velocity and acceleration from position
+
+    [b,a] = butter(3, 30/pFs, 'low'); % Filter for velocity
+    [d,c] = butter(5, 20/pFs, 'low'); % Filter for acceleration
+
+    vel = filtfilt(b,a,diff(stimPOS)); % VELOCITY
+    acc = filtfilt(d,c,diff(vel)); % ACCELERATION
+        
+        
+        
+       
+%% Get the signal values at spike times
 
     spikePOS = interp1(tim, pos, spiketimes);
     spikeVEL = interp1(tim, vel, spiketimes);
