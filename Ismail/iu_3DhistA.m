@@ -43,8 +43,8 @@ end
     [b,a] = butter(3, 30/Fs, 'low'); % Filter for velocity
     [d,c] = butter(5, 20/Fs, 'low'); % Filter for acceleration
 
-    vel = filtfilt(b,a,diff(pos)); % VELOCITY
-    acc = filtfilt(d,c,diff(vel)); % ACCELERATION
+    vel = filtfilt(b,a,diff(pos))'; % VELOCITY
+    acc = filtfilt(d,c,diff(vel))'; % ACCELERATION
         
 % Make random spike train    
     ISIs = diff(spikes);
