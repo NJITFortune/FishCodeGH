@@ -44,7 +44,9 @@ end
     [d,c] = butter(5, 20/Fs, 'low'); % Filter for acceleration
 
     vel = filtfilt(b,a,diff(pos)); % VELOCITY
+        vel(end+1) = vel(end);
     acc = filtfilt(d,c,diff(vel)); % ACCELERATION
+        acc(end+1) = acc(end);
         
 % Make random spike train    
     ISIs = diff(spikes);
