@@ -115,7 +115,7 @@ for ss = length(spikePOS):-1:1
     
 end
     out.posvel = hist3(posVvel, 'Edges', {out.Pedges, out.Vedges});
-    out.accvel = hist3(accVvel, 'Edges', {out.Pedges, out.Vedges});
+    out.accvel = hist3(accVvel, 'Edges', {out.Aedges, out.Vedges});
 
     
 figure(1); clf;
