@@ -118,6 +118,15 @@ end
     out.accvel = hist3(accVvel, 'Edges', {out.Aedges, out.Vedges});
 
 % Histogram for stimulus
+for ss = length(pos):-100:1
+    
+    STIMposVvel(ss,:) = [pos(ss) vel(ss)];
+    STIMaccVvel(ss,:) = [acc(ss) vel(ss)];
+    
+end
+
+    out.STIMposvel = hist3(STIMposVvel, 'Edges', {out.Pedges, out.Vedges});
+    out.STIMaccvel = hist3(STIMaccVvel, 'Edges', {out.Aedges, out.Vedges});
 
 
 figure(1); clf;
@@ -126,6 +135,11 @@ figure(1); clf;
 colormap('HOT');
 
 figure(2); clf;
+    subplot(121); surf(out.STIMposvel'); view(0,90); 
+    subplot(122); surf(out.STIMaccvel'); view(0,90);
+colormap('HOT');
+
+figure(3); clf;
     subplot(311); bar(out.POccHist);
     subplot(312); bar(out.VOccHist);
     subplot(313); bar(out.AOccHist);
