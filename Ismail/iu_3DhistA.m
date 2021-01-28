@@ -145,7 +145,7 @@ figure(3); clf;
     subplot(122); surf(out.STIMaccvel'); view(0,90);
 colormap('HOT');
 
-figure(3); clf;
+figure(4); clf;
     subplot(311); bar(out.POccHist);
     subplot(312); bar(out.VOccHist);
     subplot(313); bar(out.AOccHist);
