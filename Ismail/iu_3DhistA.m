@@ -130,26 +130,51 @@ end
     out.STIMaccvel = hist3(STIMaccVvel, 'Edges', {out.Aedges, out.Vedges});
 
 
-figure(1); clf;
-    subplot(121); surf(out.posvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
-    subplot(122); surf(out.accvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
-colormap('HOT');
+figure(1); clf; title('Position and Velocity');
 
-figure(2); clf;
-    subplot(121); surf(out.Rposvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
-    subplot(122); surf(out.Raccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
-colormap('HOT');
+    h(1) = subplot(2,2,1);
+        h(1).Position = [0.1 0.35 0.2 0.6];
+        barh(out.VOccHist); ylim([0.5 8.5]);
+        ylabel('Velocity');
+    h(2) = subplot(2,2,4);
+        h(2).Position = [0.35 0.1 0.6 0.2];
+        bar(out.POccHist); xlim([0.5 8.5]);
+        xlabel('Position');
+    h(3) = subplot(2,2,2);
+        h(3).Position = [0.35 0.35 0.6 0.6];
+        surf(out.posvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
+        colormap('HOT');
+        
+figure(2); clf; title('Acceleration and Velocity');
+
+    hh(1) = subplot(2,2,1);
+        hh(1).Position = [0.1 0.35 0.2 0.6];
+        barh(out.VOccHist); ylim([0.5 8.5]);
+        ylabel('Velocity');
+    hh(2) = subplot(2,2,4);
+        hh(2).Position = [0.35 0.1 0.6 0.2];
+        bar(out.AOccHist); xlim([0.5 8.5]);
+        xlabel('Acceleration');
+    hh(3) = subplot(2,2,2);
+        hh(3).Position = [0.35 0.35 0.6 0.6];
+        surf(out.accvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
+        colormap('HOT');
+
+% figure(2); clf;
+%     subplot(121); surf(out.Rposvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
+%     subplot(122); surf(out.Raccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
+% colormap('HOT');
 
 figure(3); clf;
     subplot(121); surf(out.STIMposvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
     subplot(122); surf(out.STIMaccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
 colormap('HOT');
-
-figure(4); clf;
-    subplot(311); bar(out.POccHist);
-    subplot(312); bar(out.VOccHist);
-    subplot(313); bar(out.AOccHist);
-    
+% 
+% figure(4); clf;
+%     subplot(311); barh(out.POccHist);
+%     subplot(312); bar(out.VOccHist);
+%     subplot(313); bar(out.AOccHist);
+%     
     
 % Raw stimulus
         
