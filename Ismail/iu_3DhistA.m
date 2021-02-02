@@ -25,7 +25,7 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
 
     for j = 1:length(idx) % cycle to concatonate all of the correct entries
 
-        sizetmp = size(in(ent).s(idx(j)).pos);
+        sizetmp = size(in(ent).s(idx(j)).pos)
             if sizetmp(1)/sizetmp(2) > 1; pos = [pos in(ent).s(idx(j)).pos']; end % Concatonate position
             if sizetmp(1)/sizetmp(2) < 1; pos = [pos in(ent).s(idx(j)).pos']; end % Concatonate position
             
