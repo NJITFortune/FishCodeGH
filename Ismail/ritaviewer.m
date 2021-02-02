@@ -22,7 +22,7 @@ for k=1:8
     sFs = Fs/subsample;
         
 % Show the raw plot for this stimulus
-    figure(4); clf; hold on; 
+    figure(5); clf; hold on; 
 
     for j=1:length(idx) % For each stimulus entry
         if dat(neuronidx).s(idx(j)).pFs ~=0 % If there is data
