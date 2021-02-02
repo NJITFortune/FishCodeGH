@@ -70,7 +70,7 @@ end
     vSTA = iu_sta(spiketimes, randspikes, vel, sFs, 2);
     aSTA = iu_sta(spiketimes, randspikes, acc, sFs, 2);
     
-    figure; clf; 
+    figure(1); clf; 
         subplot(311); hold on; plot(pSTA.time, pSTA.MEAN, 'b-'); 
             plot(pSTA.time, pSTA.randMEAN, 'r-');
         subplot(312); hold on; plot(vSTA.time, vSTA.MEAN, 'b-'); 
@@ -149,7 +149,7 @@ end
     out.STIMaccvel = hist3(STIMaccVvel, 'Edges', {out.Aedges, out.Vedges});
 
 
-figure(1); clf; title('Position and Velocity');
+figure(2); clf; title('Position and Velocity');
 
     h(1) = subplot(2,2,1);
         h(1).Position = [0.1 0.35 0.2 0.6];
@@ -164,7 +164,7 @@ figure(1); clf; title('Position and Velocity');
         surf(out.posvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
         colormap('HOT');
         
-figure(2); clf; title('Acceleration and Velocity');
+figure(3); clf; title('Acceleration and Velocity');
 
     hh(1) = subplot(2,2,1);
         hh(1).Position = [0.1 0.35 0.2 0.6];
@@ -184,7 +184,7 @@ figure(2); clf; title('Acceleration and Velocity');
 %     subplot(122); surf(out.Raccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
 % colormap('HOT');
 
-figure(3); clf;
+figure(4); clf;
     subplot(121); surf(out.STIMposvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
     subplot(122); surf(out.STIMaccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
 colormap('HOT');
