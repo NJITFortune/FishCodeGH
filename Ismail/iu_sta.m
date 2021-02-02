@@ -8,23 +8,40 @@ function out = iu_sta(spikes, randspikes, sig, Fs, wid)
 
 tim = 1/Fs:1/Fs:length(sig)/Fs; % Time stamps for the duration of the signal.
 
-% For every spike (starting at the end) get the time "wid" before and after
+% %% NON PARALLEL
+% % For every spike (starting at the end) get the time "wid" before and after
+% % the time of the spike.
+% for idx = length(spikes):-1:1
+%     if spikes(idx) > wid && spikes(idx) < tim(end)-wid % Make sure that the window does not go before or after the signal.
+%         temp = interp1(tim, sig, spikes(idx)-wid:1/Fs:spikes(idx)+wid); % Copy the signal 
+%         sta(idx,:) = temp; % Put the signal into a temporary structure
+%     end
+% end
+% 
+% % For every random spike (starting at the end) get the time "wid" before and after
+% % the time of the spike.
+% for idx = length(randspikes):-1:1
+%     if randspikes(idx) > wid && randspikes(idx) < tim(end)-wid % Make sure that the window does not go before or after the signal.
+%         temp = interp1(tim, sig, randspikes(idx)-wid:1/Fs:randspikes(idx)+wid);    
+%         sta_rand(idx,:) = temp;
+%     end
+% end
+
+%% PARALLEL
+% For every spike get the time "wid" before and after
 % the time of the spike.
 parfor idx = 1:length(spikes)
     if spikes(idx) > wid && spikes(idx) < tim(end)-wid % Make sure that the window does not go before or after the signal.
         temp = interp1(tim, sig, spikes(idx)-wid:1/Fs:spikes(idx)+wid); % Copy the signal 
         sta(idx,:) = temp; % Put the signal into a temporary structure
     end
-end
-
-% For every random spike (starting at the end) get the time "wid" before and after
-% the time of the spike.
-parfor idx = 1:length(randspikes)
     if randspikes(idx) > wid && randspikes(idx) < tim(end)-wid % Make sure that the window does not go before or after the signal.
         temp = interp1(tim, sig, randspikes(idx)-wid:1/Fs:randspikes(idx)+wid);    
         sta_rand(idx,:) = temp;
     end
 end
+
+%% Finish up
 
     out.MEAN  = nanmean(sta,1); % Calculate the mean (which is the STA)
     out.STD  = nanstd(sta,0,1); % Get the standard deviation for each point.
