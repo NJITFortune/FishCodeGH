@@ -46,8 +46,8 @@ end
 
 % Derive the velocity and acceleration from position
 % 
-    [b,a] = butter(3, 5/(Fs/2), 'low'); % Filter for velocity
-    [d,c] = butter(3, 5/(Fs/2), 'low'); % Filter for acceleration
+    [b,a] = butter(3, 2/(Fs/2), 'low'); % Filter for velocity
+    [d,c] = butter(3, 2/(Fs/2), 'low'); % Filter for acceleration
 
     vel = filtfilt(b,a,diff(pos)); % VELOCITY
         vel(end+1) = vel(end);
