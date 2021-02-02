@@ -66,9 +66,9 @@ end
 
 %% Get the STAs
 
-    pSTA = iu_sta(spikes, randspikes, pos, sFs, 2);
-    vSTA = iu_sta(spikes, randspikes, vel, sFs, 2);
-    aSTA = iu_sta(spikes, randspikes, acc, sFs, 2);
+    pSTA = iu_sta(spikes, randspikes, pos, Fs, 2);
+    vSTA = iu_sta(spikes, randspikes, vel, Fs, 2);
+    aSTA = iu_sta(spikes, randspikes, acc, Fs, 2);
     
     figure(1); clf; 
         subplot(311); hold on; plot(pSTA.time, pSTA.MEAN, 'b-'); 
