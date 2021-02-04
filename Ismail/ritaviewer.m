@@ -10,7 +10,7 @@ fprintf('There were %i M1 entries 5. \n', length(find([dat(neuronidx).s.sizeDX] 
 fprintf('There were %i M2 entries 6. \n', length(find([dat(neuronidx).s.sizeDX] == 6)));
 fprintf('There were %i M3 entries 7. \n', length(find([dat(neuronidx).s.sizeDX] == 7)));
 fprintf('There were %i L entries 8. \n', length(find([dat(neuronidx).s.sizeDX] == 8)));
-
+fprintf('\n');
 fprintf('Hopefully there are %i total entries.\n', length(find([dat(neuronidx).s.sizeDX])));
 
 % Cycle for the data that we have
