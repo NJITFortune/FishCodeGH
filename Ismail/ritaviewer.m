@@ -27,7 +27,7 @@ for k=1:8
     for j=1:length(idx) % For each stimulus entry
             
         % Plot the data at y value *10 of entry number (to separate them)
-        tim = 1/dat(neuronidx).s(idx(j)).pFs:1/dat(neuronidx).s(idx(j)).pFs:length(dat(neuronidx).s(idx(j)).pos)/dat(neuronidx).s(idx(j)).pFs;
+        tim = 1/dat(neuronidx).s(idx(j)).pFs:1/dat(neuronidx).s(idx(j)).pFs:length(dat(neuronidx).s(idx(j)).pos) / dat(neuronidx).s(idx(j)).pFs;
         plot(tim, dat(neuronidx).s(idx(j)).pos + 10*j, 'k-');
         text(1, 10*j, dat(neuronidx).s(idx(j)).size);
         
