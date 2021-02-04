@@ -7,7 +7,7 @@ function out = iu_3DhistA(in, ent, sz)
 % wid is the width of the spike triggered average in seconds (1 or 2 seconds is good)%% Histogram of All Spikes as Isolated Spikes
 
         numOfBins = 16;
-        std_coeff   = 2;
+        std_coeff   = 3;
 
 % Get the sample rate for position
 Fs = in(ent).s(1).pFs;
