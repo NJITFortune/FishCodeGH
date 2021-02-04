@@ -25,15 +25,15 @@ for k=1:8
     figure(5); clf; hold on; 
 
     for j=1:length(idx) % For each stimulus entry
-        if dat(neuronidx).s(idx(j)).pFs ~=0 % If there is data
             
         % Plot the data at y value *10 of entry number (to separate them)
         tim = 1/dat(neuronidx).s(idx(j)).pFs:1/dat(neuronidx).s(idx(j)).pFs:length(dat(neuronidx).s(idx(j)).pos)/dat(neuronidx).s(idx(j)).pFs;
         plot(tim, dat(neuronidx).s(idx(j)).pos + 10*j, 'k-');
         text(1, 10*j, dat(neuronidx).s(idx(j)).size);
-
-        ySpikes = interp1(tim, dat(neuronidx).s(idx(j)).pos, dat(neuronidx).s(idx(j)).st);
-        plot(dat(neuronidx).s(idx(j)).st, ySpikes + 10*j, 'b.', 'MarkerSize', 8);    
+        
+        if dat(neuronidx).s(idx(j)).pFs ~= 0 % If there is data
+            ySpikes = interp1(tim, dat(neuronidx).s(idx(j)).pos, dat(neuronidx).s(idx(j)).st);
+            plot(dat(neuronidx).s(idx(j)).st, ySpikes + 10*j, 'b.', 'MarkerSize', 8);    
         end
     end 
     
