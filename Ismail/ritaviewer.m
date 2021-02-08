@@ -46,7 +46,7 @@ for k=1:8
         vel(end+1) = vel(end);
     acc = filtfilt(d,c,diff(vel)); % ACCELERATION
         acc(end+1) = acc(end);
-        vel = 1000*vel'; acc = 1000000*acc';
+        vel = 500*vel'; acc = 100000*acc';
             
             
             figure(5); % Position
