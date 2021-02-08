@@ -2,6 +2,10 @@ function out = ritaviewer(dat, neuronidx)
 
 subsample = 20;
 
+    [b,a] = butter(3, 2/(Fs/2), 'low'); % Filter for velocity
+    [d,c] = butter(3, 2/(Fs/2), 'low'); % Filter for acceleration
+
+
 fprintf('There were %i S1 entries 1. \n', length(find([dat(neuronidx).s.sizeDX] == 1)));
 fprintf('There were %i S2 entries 2. \n', length(find([dat(neuronidx).s.sizeDX] == 2)));
 fprintf('There were %i S3 entries 3. \n', length(find([dat(neuronidx).s.sizeDX] == 3)));
@@ -37,7 +41,12 @@ for k=1:8
             
         if ~isempty(dat(neuronidx).s(idx(j)).pos)
             
-            vel = 
+    % Make velocity and acceleration plots        
+    vel = filtfilt(b,a,diff(dat(neuronidx).s(idx(j)).pos)); % VELOCITY
+        vel(end+1) = vel(end);
+    acc = filtfilt(d,c,diff(vel)); % ACCELERATION
+        acc(end+1) = acc(end);
+        vel = vel'; acc = acc';
             
             
             figure(5); % Position
@@ -47,13 +56,11 @@ for k=1:8
         text(1, 10*j, dat(neuronidx).s(idx(j)).size);
             figure(6); % Velocity
         % Plot the data at y value *10 of entry number (to separate them)
-        tim = 1/dat(neuronidx).s(idx(j)).pFs:1/dat(neuronidx).s(idx(j)).pFs:length(dat(neuronidx).s(idx(j)).vel) / dat(neuronidx).s(idx(j)).pFs;
-        plot(tim, dat(neuronidx).s(idx(j)).vel + 10*j, 'k-');
+        plot(tim, vel + 10*j, 'k-');
         text(1, 10*j, dat(neuronidx).s(idx(j)).size);
             figure(7); % Acceleration
         % Plot the data at y value *10 of entry number (to separate them)
-        tim = 1/dat(neuronidx).s(idx(j)).pFs:1/dat(neuronidx).s(idx(j)).pFs:length(dat(neuronidx).s(idx(j)).pos) / dat(neuronidx).s(idx(j)).pFs;
-        plot(tim, dat(neuronidx).s(idx(j)).pos + 10*j, 'k-');
+        plot(tim, acc + 10*j, 'k-');
         text(1, 10*j, dat(neuronidx).s(idx(j)).size);
         end
         
@@ -62,10 +69,10 @@ for k=1:8
             ySpikes = interp1(tim, dat(neuronidx).s(idx(j)).pos, dat(neuronidx).s(idx(j)).st);
             plot(dat(neuronidx).s(idx(j)).st, ySpikes + 10*j, 'b.', 'MarkerSize', 8);    
             figure(6);
-            ySpikes = interp1(tim, dat(neuronidx).s(idx(j)).vel, dat(neuronidx).s(idx(j)).st);
+            ySpikes = interp1(tim, vel, dat(neuronidx).s(idx(j)).st);
             plot(dat(neuronidx).s(idx(j)).st, ySpikes + 10*j, 'r.', 'MarkerSize', 8);    
             figure(7);
-            ySpikes = interp1(tim, dat(neuronidx).s(idx(j)).acc, dat(neuronidx).s(idx(j)).st);
+            ySpikes = interp1(tim, acc, dat(neuronidx).s(idx(j)).st);
             plot(dat(neuronidx).s(idx(j)).st, ySpikes + 10*j, 'm.', 'MarkerSize', 8);    
         end
     end 
