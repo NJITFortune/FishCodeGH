@@ -29,11 +29,24 @@ for k=1:8
     sFs = Fs/subsample;
         
 % Show the raw plot for this stimulus
-    figure(5); clf; hold on; 
+    figure(5); clf; hold on; title('Position');
+    figure(6); clf; hold on; title('Velocity');
+    figure(7); clf; hold on; title('Acceleration');
 
     for j=1:length(idx) % For each stimulus entry
             
         if ~isempty(dat(neuronidx).s(idx(j)).pos)
+            figure(5); % Position
+        % Plot the data at y value *10 of entry number (to separate them)
+        tim = 1/dat(neuronidx).s(idx(j)).pFs:1/dat(neuronidx).s(idx(j)).pFs:length(dat(neuronidx).s(idx(j)).pos) / dat(neuronidx).s(idx(j)).pFs;
+        plot(tim, dat(neuronidx).s(idx(j)).pos + 10*j, 'k-');
+        text(1, 10*j, dat(neuronidx).s(idx(j)).size);
+            figure(6); % Velocity
+        % Plot the data at y value *10 of entry number (to separate them)
+        tim = 1/dat(neuronidx).s(idx(j)).pFs:1/dat(neuronidx).s(idx(j)).pFs:length(dat(neuronidx).s(idx(j)).vel) / dat(neuronidx).s(idx(j)).pFs;
+        plot(tim, dat(neuronidx).s(idx(j)).vel + 10*j, 'k-');
+        text(1, 10*j, dat(neuronidx).s(idx(j)).size);
+            figure(7); % Acceleration
         % Plot the data at y value *10 of entry number (to separate them)
         tim = 1/dat(neuronidx).s(idx(j)).pFs:1/dat(neuronidx).s(idx(j)).pFs:length(dat(neuronidx).s(idx(j)).pos) / dat(neuronidx).s(idx(j)).pFs;
         plot(tim, dat(neuronidx).s(idx(j)).pos + 10*j, 'k-');
@@ -41,8 +54,15 @@ for k=1:8
         end
         
         if dat(neuronidx).s(idx(j)).pFs ~= 0 % If there is data
+            figure(5);
             ySpikes = interp1(tim, dat(neuronidx).s(idx(j)).pos, dat(neuronidx).s(idx(j)).st);
             plot(dat(neuronidx).s(idx(j)).st, ySpikes + 10*j, 'b.', 'MarkerSize', 8);    
+            figure(6);
+            ySpikes = interp1(tim, dat(neuronidx).s(idx(j)).vel, dat(neuronidx).s(idx(j)).st);
+            plot(dat(neuronidx).s(idx(j)).st, ySpikes + 10*j, 'r.', 'MarkerSize', 8);    
+            figure(7);
+            ySpikes = interp1(tim, dat(neuronidx).s(idx(j)).acc, dat(neuronidx).s(idx(j)).st);
+            plot(dat(neuronidx).s(idx(j)).st, ySpikes + 10*j, 'm.', 'MarkerSize', 8);    
         end
     end 
     
