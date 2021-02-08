@@ -2,8 +2,6 @@ function out = ritaviewer(dat, neuronidx)
 
 subsample = 20;
 
-    [b,a] = butter(3, 2/(Fs/2), 'low'); % Filter for velocity
-    [d,c] = butter(3, 2/(Fs/2), 'low'); % Filter for acceleration
 
 
 fprintf('There were %i S1 entries 1. \n', length(find([dat(neuronidx).s.sizeDX] == 1)));
@@ -31,6 +29,8 @@ for k=1:8
 
     Fs = dat(neuronidx).s(idx(1)).pFs;
     sFs = Fs/subsample;
+    [b,a] = butter(3, 2/(Fs/2), 'low'); % Filter for velocity
+    [d,c] = butter(3, 2/(Fs/2), 'low'); % Filter for acceleration
         
 % Show the raw plot for this stimulus
     figure(5); clf; hold on; title('Position');
