@@ -16,7 +16,12 @@ fprintf('Hopefully there are %i total entries.\n', length(find([dat(neuronidx).s
 % Cycle for the data that we have
 for k=1:8
     
-    idx = find([dat(neuronidx).s.sizeDX] == k);
+    idx = [];
+    for omg = length(dat(neuronidx).s):-1:1
+        if dat(neuronidx).s(omg).sizeDX == k 
+            idx(end+1) = omg;
+        end
+    end
     
     if ~isempty(idx) % Is there data for this size stimulus?
 
