@@ -1,4 +1,4 @@
-function out = iu_3DhistA(spiketimes, randspiketimes, pos, vel, acc, Fs)
+function out = iu_3DhistA(in, ent, sz)
 % Function out = iu_hist(spikes, randspikes, sig, Fs, wid)
 % spikes are the spike times
 % randspikes are shuffled spike times
@@ -6,70 +6,195 @@ function out = iu_3DhistA(spiketimes, randspiketimes, pos, vel, acc, Fs)
 % Fs is the sample rate (usually 25 for these data, fs = 25
 % wid is the width of the spike triggered average in seconds (1 or 2 seconds is good)%% Histogram of All Spikes as Isolated Spikes
 
-        numOfBins = 8;
+        numOfBins = 16;
         std_coeff   = 3;
 
+% Get the sample rate for position
+Fs = in(ent).s(1).pFs;
 
-tim = 1/Fs:1/Fs:length(pos)/Fs; % Time stamps for the duration of the signal.
+% Get the entries for the size selected by the user
+idx = find([in(ent).s.sizeDX] == sz);
 
-% Get the signal values at spike times
+% Preparations
+tim = 0; % Starting time for the next sample as we concatonate
+spikes = []; % List of spike times
+pos = []; % Position over time
 
-    spikePOS = interp1(tim, pos, spiketimes);
-    spikeVEL = interp1(tim, vel, spiketimes);
-    spikeACC = interp1(tim, acc, spiketimes);
+%% Concatonate data
+if ~isempty(idx) % just make sure that the user isn't an idiot 
 
-    RspikePOS = interp1(tim, pos, randspiketimes);
-    RspikeVEL = interp1(tim, vel, randspiketimes);
-    RspikeACC = interp1(tim, acc, randspiketimes);
+    for j = 1:length(idx) % cycle to concatonate all of the correct entries
+
+        sizetmp = size(in(ent).s(idx(j)).pos);
+            if sizetmp(1)/sizetmp(2) < 1; pos = [pos in(ent).s(idx(j)).pos]; end % Concatonate position
+            if sizetmp(1)/sizetmp(2) > 1; pos = [pos in(ent).s(idx(j)).pos']; end % Concatonate position
+            
+        currtim = 1/Fs:1/Fs:length(in(ent).s(idx(j)).pos)/Fs; % A time base for the currently added position
+
+        sizetmp = size(in(ent).s(idx(j)).st);
+            if sizetmp(1)/sizetmp(2) < 1; spikes = [spikes (in(ent).s(idx(j)).st + tim(end))]; end % Concatonate position
+            if sizetmp(1)/sizetmp(2) > 1; spikes = [spikes (in(ent).s(idx(j)).st + tim(end))']; end % Concatonate position
+         % Concatonate spike times, adding the time from the end of previous
+        
+        tim = [tim (currtim + tim(end))]; % Update the time base 
+        
+    end
+        
+    tim = tim(2:end); % When we are all done, we remove the initial zero
+    
+end
+
+% Derive the velocity and acceleration from position
+% 
+    [b,a] = butter(3, 2/(Fs/2), 'low'); % Filter for velocity
+    [d,c] = butter(3, 2/(Fs/2), 'low'); % Filter for acceleration
+
+    vel = filtfilt(b,a,diff(pos)); % VELOCITY
+        vel(end+1) = vel(end);
+    acc = filtfilt(d,c,diff(vel)); % ACCELERATION
+        acc(end+1) = acc(end);
+%     vel = smooth(diff(pos)); vel(end+1) = vel(end);
+%     acc = smooth(diff(vel)); acc(end+1) = acc(end);
+    vel = vel'; acc = acc';
+        
+% Make random spike train    
+    ISIs = diff(spikes);
+    randspikes(1) = spikes(1);
+    for k = randperm(length(ISIs))
+        randspikes(end+1) = randspikes(end) + ISIs(k);
+    end
+
+%% Get the STAs
+
+    pSTA = iu_sta(spikes, randspikes, pos, Fs, 2);
+    vSTA = iu_sta(spikes, randspikes, vel, Fs, 2);
+    aSTA = iu_sta(spikes, randspikes, acc, Fs, 2);
+    
+    figure(1); clf; 
+        subplot(311); hold on; plot(pSTA.time, pSTA.MEAN, 'b-'); 
+            plot(pSTA.time, pSTA.randMEAN, 'r-');
+        subplot(312); hold on; plot(vSTA.time, vSTA.MEAN, 'b-'); 
+            plot(vSTA.time, vSTA.randMEAN, 'r-');
+        subplot(313); hold on; plot(aSTA.time, aSTA.MEAN, 'b-'); 
+            plot(aSTA.time, aSTA.randMEAN, 'r-');    
+        
+       
+%% Get the signal values at spike times
+
+    spikePOS = interp1(tim, pos, spikes);
+    spikeVEL = interp1(tim, vel, spikes);
+    spikeACC = interp1(tim, acc, spikes);
+
+    RspikePOS = interp1(tim, pos, randspikes);
+    RspikeVEL = interp1(tim, vel, randspikes);
+    RspikeACC = interp1(tim, acc, randspikes);
         
     % Position-only histogram
-    histBound = std_coeff * std(psig);    
-    edgs = linspace(mean(psig)-histBound, mean(psig)+histBound, numOfBins+1);
-    foo.PstimulusHist = histcounts(psig, edgs);
-        foo.PstimulusHist(~isfinite(foo.PstimulusHist)) = 0;    
-    foo.PresponseHist = histcounts(pspks, edgs);
-        foo.PresponseHist(~isfinite(foo.PresponseHist)) = 0;
-    foo.POccHist = (foo.PresponseHist / max(foo.PresponseHist)) ./ (foo.PstimulusHist / max(foo.PstimulusHist)); 
-        foo.POccHist(~isfinite(foo.POccHist)) = 0;    
-        foo.Pedges = edgs;
+    histBound = std_coeff * std(pos);    
+    POSedgs = linspace(mean(pos)-histBound, mean(pos)+histBound, numOfBins+1);
+    out.PstimulusHist = histcounts(pos, POSedgs);
+        out.PstimulusHist(~isfinite(out.PstimulusHist)) = 0;    
+    out.PresponseHist = histcounts(spikePOS, POSedgs);
+        out.PresponseHist(~isfinite(out.PresponseHist)) = 0;
+    out.POccHist = (out.PresponseHist / max(out.PresponseHist)) ./ (out.PstimulusHist / max(out.PstimulusHist)); 
+        out.POccHist(~isfinite(out.POccHist)) = 0;    
+        out.Pedges = POSedgs;
         
     % Velocity-only histogram
-    histBound = std_coeff * std(vsig);    
-    edgs = linspace(mean(vsig)-histBound, mean(vsig)+histBound, numOfBins+1);
-    foo.VstimulusHist = histcounts(vsig, edgs);
-        foo.VstimulusHist(~isfinite(foo.VstimulusHist)) = 0;    
-    foo.VresponseHist = histcounts(vspks, edgs);
-        foo.VresponseHist(~isfinite(foo.VresponseHist)) = 0;
-    foo.VOccHist = (foo.VresponseHist / max(foo.VresponseHist)) ./ (foo.VstimulusHist / max(foo.VstimulusHist)); 
-        foo.VOccHist(~isfinite(foo.VOccHist)) = 0;    
-        foo.Vedges = edgs;
+    histBound = std_coeff * std(vel);    
+    VELedgs = linspace(mean(vel)-histBound, mean(vel)+histBound, numOfBins+1);
+    out.VstimulusHist = histcounts(vel, VELedgs);
+        out.VstimulusHist(~isfinite(out.VstimulusHist)) = 0;    
+    out.VresponseHist = histcounts(spikeVEL, VELedgs);
+        out.VresponseHist(~isfinite(out.VresponseHist)) = 0;
+    out.VOccHist = (out.VresponseHist / max(out.VresponseHist)) ./ (out.VstimulusHist / max(out.VstimulusHist)); 
+        out.VOccHist(~isfinite(out.VOccHist)) = 0;    
+        out.Vedges = VELedgs;
 
     % Acceleration-only histogram
-    histBound = std_coeff * std(asig);    
-    edgs = linspace(mean(asig)-histBound, mean(asig)+histBound, numOfBins+1);
-    foo.AstimulusHist = histcounts(asig, edgs);
-        foo.AstimulusHist(~isfinite(foo.AstimulusHist)) = 0;    
-    foo.AresponseHist = histcounts(aspks, edgs);
-        foo.AresponseHist(~isfinite(foo.AresponseHist)) = 0;
-    foo.AOccHist = (foo.AresponseHist / max(foo.AresponseHist)) ./ (foo.AstimulusHist / max(foo.AstimulusHist)); 
-        foo.AOccHist(~isfinite(foo.AOccHist)) = 0;    
-        foo.Aedges = edgs;
+    histBound = std_coeff * std(acc) / 20;    
+    ACCedgs = linspace(mean(acc)-histBound, mean(acc)+histBound, numOfBins+1);
+    out.AstimulusHist = histcounts(acc, ACCedgs);
+        out.AstimulusHist(~isfinite(out.AstimulusHist)) = 0;    
+    out.AresponseHist = histcounts(spikeACC, ACCedgs);
+        out.AresponseHist(~isfinite(out.AresponseHist)) = 0;
+    out.AOccHist = (out.AresponseHist / max(out.AresponseHist)) ./ (out.AstimulusHist / max(out.AstimulusHist)); 
+        out.AOccHist(~isfinite(out.AOccHist)) = 0;    
+        out.Aedges = ACCedgs;
 
 % 3D histograms
 
 % Raw spikes
-for ss = length(pspks):-1:1
+for ss = length(spikePOS):-1:1
     
-    posVvel(ss,:) = [pspks(ss) vspks(ss)];
-    accVvel(ss,:) = [aspks(ss) vspks(ss)];
-    RposVvel(ss,:) = [pRspks(ss) vRspks(ss)];
-    RaccVvel(ss,:) = [aRspks(ss) vRspks(ss)];    
+    posVvel(ss,:) = [spikePOS(ss) spikeVEL(ss)];
+    accVvel(ss,:) = [spikeACC(ss) spikeVEL(ss)];
+    RposVvel(ss,:) = [RspikePOS(ss) RspikeVEL(ss)];
+    RaccVvel(ss,:) = [RspikeACC(ss) RspikeVEL(ss)];    
     
 end
+    out.posvel = hist3(posVvel, 'Edges', {out.Pedges, out.Vedges});
+    out.accvel = hist3(accVvel, 'Edges', {out.Aedges, out.Vedges});
+    
+    out.Rposvel = hist3(RposVvel, 'Edges', {out.Pedges, out.Vedges});
+    out.Raccvel = hist3(RaccVvel, 'Edges', {out.Aedges, out.Vedges});
 
-foo.posvel = hist3(posVvel,[20 20]);
-foo.accvel = hist3(accVvel,[20 20]);
+% Histogram for stimulus
+for ss = length(pos):-1:1
+    STIMposVvel(ss,:) = [pos(ss) vel(ss)];
+    STIMaccVvel(ss,:) = [acc(ss) vel(ss)];
+end
+ 
+    out.STIMposvel = hist3(STIMposVvel, 'Edges', {out.Pedges, out.Vedges});
+    out.STIMaccvel = hist3(STIMaccVvel, 'Edges', {out.Aedges, out.Vedges});
 
+
+figure(2); clf; title('Position and Velocity');
+
+    h(1) = subplot(2,2,1);
+        h(1).Position = [0.1 0.35 0.2 0.6];
+        barh(out.VOccHist); ylim([0.5 numOfBins+0.5]);
+        ylabel('Velocity');
+    h(2) = subplot(2,2,4);
+        h(2).Position = [0.35 0.1 0.6 0.2];
+        bar(out.POccHist); xlim([0.5 numOfBins+0.5]);
+        xlabel('Position');
+    h(3) = subplot(2,2,2);
+        h(3).Position = [0.35 0.35 0.6 0.6];
+        surf(out.posvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
+        colormap('HOT');
+        
+figure(3); clf; title('Acceleration and Velocity');
+
+    hh(1) = subplot(2,2,1);
+        hh(1).Position = [0.1 0.35 0.2 0.6];
+        barh(out.VOccHist); ylim([0.5 numOfBins+0.5]);
+        ylabel('Velocity');
+    hh(2) = subplot(2,2,4);
+        hh(2).Position = [0.35 0.1 0.6 0.2];
+        bar(out.AOccHist); xlim([0.5 numOfBins+0.5]);
+        xlabel('Acceleration');
+    hh(3) = subplot(2,2,2);
+        hh(3).Position = [0.35 0.35 0.6 0.6];
+        surf(out.accvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
+        colormap('HOT');
+
+% figure(2); clf;
+%     subplot(121); surf(out.Rposvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
+%     subplot(122); surf(out.Raccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
+% colormap('HOT');
+
+figure(4); clf;
+    subplot(121); surf(out.STIMposvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
+    subplot(122); surf(out.STIMaccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
+colormap('HOT');
+% 
+% figure(4); clf;
+%     subplot(311); barh(out.POccHist);
+%     subplot(312); bar(out.VOccHist);
+%     subplot(313); bar(out.AOccHist);
+%     
+    
 % Raw stimulus
         
 % figure(27); clf;
@@ -90,22 +215,16 @@ foo.accvel = hist3(accVvel,[20 20]);
 %     histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.responseHist);
 %     histogram('BinEdges', out.Arand.edges, 'BinCounts', out.Arand.responseHist);
 
-figure; clf;
-
-subplot(311); title('Position'); hold on;
-    histogram('BinEdges', out.Prand.edges, 'BinCounts', out.Prand.OccHist, 'FaceColor', 'r');
-    histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.OccHist, 'FaceColor', 'b');
-subplot(312); title('Velocity'); hold on;
-    histogram('BinEdges', out.Vrand.edges, 'BinCounts', out.Vrand.OccHist, 'FaceColor', 'r');
-    histogram('BinEdges', out.Vresponse.edges, 'BinCounts', out.Aresponse.OccHist, 'FaceColor', 'b');
-subplot(313); title('Acceleration'); hold on;
-    histogram('BinEdges', out.Arand.edges, 'BinCounts', out.Arand.OccHist, 'FaceColor', 'r');
-    histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.OccHist, 'FaceColor', 'b');
+% subplot(311); title('Position'); hold on;
+%     histogram('BinEdges', out.Prand.edges, 'BinCounts', out.Prand.OccHist, 'FaceColor', 'r');
+%     histogram('BinEdges', out.Presponse.edges, 'BinCounts', out.Presponse.OccHist, 'FaceColor', 'b');
+% subplot(312); title('Velocity'); hold on;
+%     histogram('BinEdges', out.Vrand.edges, 'BinCounts', out.Vrand.OccHist, 'FaceColor', 'r');
+%     histogram('BinEdges', out.Vresponse.edges, 'BinCounts', out.Aresponse.OccHist, 'FaceColor', 'b');
+% subplot(313); title('Acceleration'); hold on;
+%     histogram('BinEdges', out.Arand.edges, 'BinCounts', out.Arand.OccHist, 'FaceColor', 'r');
+%     histogram('BinEdges', out.Aresponse.edges, 'BinCounts', out.Aresponse.OccHist, 'FaceColor', 'b');
 
     
 
-        
-  end
-
-
-end
+      
