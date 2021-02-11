@@ -177,7 +177,7 @@ end
 %[~,folder,~]=fileparts(pwd);
 %extract the light cycle info and convert to number
 %timstep = str2num(folder(6:7)); %length of light cycle in hours
-timstep = 48;
+timstep = 24;
 cyc = floor([out(end).timcont]/(timstep*60*60)); %number of cycles in data
 
 %user defined details by light trial
