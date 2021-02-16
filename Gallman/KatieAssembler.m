@@ -33,7 +33,7 @@ function out  = KatieAssembler(userfilespec)
         
        % LOAD THE DATA FILE
         load(iFiles(k).name, 'data', 'tim');
-        Fs = 1 / (tim(2)-tim(1)); % Extract the sample rate
+        out(k).Fs = 1 / (tim(2)-tim(1)); % Extract the sample rate
         
        % Filter data  
           
