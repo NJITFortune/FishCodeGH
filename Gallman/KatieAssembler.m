@@ -54,8 +54,8 @@ for k = length(iFiles):-1:1
             [~,~,~,out(k).obwAmp(j)] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
             % zAmp
             out(k).zAmp(j) = k_zAmp(data4analysis, Fs);
-            
-               
+            % FFT Machine
+            [out(k).fftFreq(j), out(k).fftAmp(j)] = k_fft(data4analysis, Fs); 
         end
 end
     
