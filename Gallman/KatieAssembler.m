@@ -55,7 +55,7 @@ for k = length(iFiles):-1:1
             % zAmp
             out(k).zAmp(j) = k_zAmp(data4analysis, Fs);
             % FFT Machine
-            [out(k).fftFreq(j), out(k).fftAmp(j)] = k_fft(data4analysis, Fs); 
+            [out(k).fftFreq(j), out(k).fftpeakAmp(j), out(k).fftsumAmp(j)] = k_fft(data4analysis, Fs); 
         end
 end
     
