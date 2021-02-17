@@ -45,27 +45,13 @@ for k = length(iFiles):-1:1
         for j = 1:2 % For the two channels
         
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
-            [startim, startidx] = k_FindMaxWindow(data(:,j), tim, out(k).Fs, SampleWindw);
+            [out(k).startim(j), ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
+            data4analysis = data(tim > out(k).startim(j) & tim < out(k).startim(j)+SampleWindw, j);            
             
-            maxtim(j) = tim(idx);
-            %place the peak amplitude in the middle of the new sample time window
-            startim(j) = max([0, maxtim(j)-(SampleWindw/2)]); 
-                %if the peak is near the end of the sample, need to just take the last windw 
-                if startim(j)+(SampleWindw/2) > tim(end)
-                   startim(j) = tim(end) - SampleWindw;
-                end
-            %create subsample time index by defining sample duration
-            %sampidx = find(tim > startim(j) & tim < startim(j)+windw); 
-            
-            % Take data from the time window defined by startim for each
-            % channel
-            tmpdat = data(tim > startim(j) & tim < startim(j)+SampleWindw, dataChans(j));            
-            
-            
-            [~,~,~,out(k).obwAmp(j)] = obw(data(sampidx,dataChans(1)), Fs, [botFreqOBW topFreqOBW]);
-        
-        out(k).Ch1obwAmp = kg_obw
-        
+            % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            [~,~,~,out(k).obwAmp(j)] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+            out(k).zAmp(j) = k_zAmp(data4analysis, Fs);
+               
         end
 end
     
