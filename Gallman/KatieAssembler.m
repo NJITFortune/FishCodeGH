@@ -49,9 +49,13 @@ for k = length(iFiles):-1:1
             data4analysis = data(tim > out(k).startim(j) & tim < out(k).startim(j)+SampleWindw, j);            
             
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            
+            % OBW
             [~,~,~,out(k).obwAmp(j)] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+            % zAmp
             out(k).zAmp(j) = k_zAmp(data4analysis, Fs);
-               
+            % FFT Machine
+            [out(k).fftFreq(j), out(k).fftpeakAmp(j), out(k).fftsumAmp(j)] = k_fft(data4analysis, Fs); 
         end
 end
     
