@@ -44,7 +44,8 @@ for k = length(iFiles):-1:1
 
         for j = 1:2 % For the two channels
         
-            [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
+            % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
+            [startim, startidx] = k_FindMaxWindow(data(:,j), tim, out(k).Fs, SampleWindw);
             
             maxtim(j) = tim(idx);
             %place the peak amplitude in the middle of the new sample time window
