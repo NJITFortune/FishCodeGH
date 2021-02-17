@@ -7,6 +7,6 @@ tmpfft = fftmachine(in, Fs);
     [peakamp, peakIDX] = max(tmpfft.fftdata);
     
     peakfreq = tmpfft.fftfreq(peakIDX);
-    sumamp = sum(tmpfft.fftdata(tmpfft.fftfreq > (peakFreq - rango) & tmpfft.fftfreq < (peakFreq + rango)));
+    sumamp = sum(tmpfft.fftdata(tmpfft.fftfreq > (peakfreq - rango) & tmpfft.fftfreq < (peakfreq + rango)));
     
     
