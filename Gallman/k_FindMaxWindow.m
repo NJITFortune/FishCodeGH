@@ -6,7 +6,7 @@ function [startim, startidx] = k_FindMaxWindow(in, tim, SampleWindowDur)
     numsamps = length(find(tim < SampleWindowDur)); % Number of samples in the time
 
 %% Loop for every window in the sample    
-    for k = length(in)/stepsize:-1:1
+    for k = (length(in)-numsamps)/stepsize:-1:1
     
         rmsamp(k) = rms(in(k*stepsize:(k*stepsize)+numsamps));
         
