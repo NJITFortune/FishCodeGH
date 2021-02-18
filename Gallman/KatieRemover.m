@@ -10,6 +10,7 @@ figure(1); clf;
     [cutofffreq, ~]  = ginput(1);
     plot([cutofffreq, cutofffreq], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow;
+    
     out(k).obwidx = find([in(k).sampl.obwAmp] > cutofffreq);
 
     pause(1);
