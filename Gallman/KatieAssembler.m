@@ -76,7 +76,7 @@ for k = 1:length(iFiles)
             out(j).sampl(k).light = mean(data(:,lightchan));
             out(j).sampl(k).temp = mean(data(:,tempchan));
     
-% Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
+        % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
  
         hour = str2double(iFiles(k).name(numstart:numstart+1));        %numstart based on time stamp text location
         minute = str2double(iFiles(k).name(numstart+3:numstart+4));
@@ -91,6 +91,16 @@ for k = 1:length(iFiles)
         % There are 86400 seconds in a day.
         out(j).sampl(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
         out(j).sampl(k).tim24 = (hour*60*60) + (minute*60) + second;
+        
+        % Add universal time cutoffs
+
+        out(j)
+function luz = luzzer(tim, timstep, timerstart)
+
+cyc = floor(tim(end)/(timstep*60*60)); %number of cycles in data
+timz = 1:1:cyc;
+luz(timz) = (timerstart) + (timstep*(timz-1)); %without for-loop
+
         
         end
         
