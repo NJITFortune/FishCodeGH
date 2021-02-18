@@ -40,11 +40,13 @@ for k = length(iFiles):-1:1
             data(:,2) = filtfilt(b,a, data(:,2)); % High pass filter
             data(:,2) = filtfilt(f,e, data(:,2)); % Low pass filter   
 
-        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
         for j = 1:2 % For the two channels
         
-            % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
+            % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
+            
+            % [~, idx] = max(abs(data(:,j))); % Strategy 1: FIND THE SIMPLE MAXIMUM
+            
             [out(k).startim(j), ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
             data4analysis = data(tim > out(k).startim(j) & tim < out(k).startim(j)+SampleWindw, j);            
             
@@ -57,5 +59,7 @@ for k = length(iFiles):-1:1
             % FFT Machine
             [out(k).fftFreq(j), out(k).fftAmp(j)] = k_fft(data4analysis, Fs); 
         end
+        
+        
 end
     
