@@ -58,5 +58,6 @@ for k = length(iFiles):-1:1
             % FFT Machine
             [out(k).fftFreq(j), out(k).fftAmp(j)] = k_fft(data4analysis, Fs); 
         end
+        
 end
     
