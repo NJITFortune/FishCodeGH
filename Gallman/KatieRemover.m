@@ -27,16 +27,28 @@ figure(1); clf;
     out(k).zidx = find([in(k).sampl.zAmp] > cutofffreq);
     pause(1);
 
-% fftAmp        
+% peakfftAmp        
 figure(1); clf;
 
-    histogram([in(k).sampl.fftAmp], 100); hold on;
+    histogram([in(k).sampl.peakfftAmp], 100); hold on;
     
     fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
     [cutofffreq, ~]  = ginput(1);
     plot([cutofffreq, cutofffreq], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow;    
-    out(k).fftidx = find([in(k).sampl.fftAmp] > cutofffreq);
+    out(k).peakfftidx = find([in(k).sampl.peakfftAmp] > cutofffreq);
     pause(1);
     
+% sumfftAmp        
+figure(1); clf;
+
+    histogram([in(k).sampl.sumfftAmp], 100); hold on;
+    
+    fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
+    [cutofffreq, ~]  = ginput(1);
+    plot([cutofffreq, cutofffreq], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+    drawnow;    
+    out(k).sumfftidx = find([in(k).sampl.sumfftAmp] > cutofffreq);
+    pause(1);
+
 end
