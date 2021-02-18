@@ -16,9 +16,9 @@ function out  = KatieLabeler(in)
     
     
 % LIGHT CYCLE ON/OFF STARTS        
-    numbercycles = floor(in(1).sampl(end).timcont/(timstep*60*60)); %number of cycles in data
+    numbercycles = floor(in(1).sampl(end).timcont/(out.ld*60*60)); %number of cycles in data
     timz = 1:1:numbercycles;
-    out.luz(timz) = timerstart + (timstep*(timz-1)); %without for-loop
+    out.luz(timz) = timerstart + (out.ld*(timz-1)); %without for-loop
 
     meaninitialbright = mean([in(1).sampl([in(1).sampl.timcont] < luz(2)).light]);
     
