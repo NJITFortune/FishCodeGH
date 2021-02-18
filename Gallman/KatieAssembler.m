@@ -1,4 +1,4 @@
-function out  = KatieAssembler(userfilespec, Fs, numstart)
+function out  = KatieAssembler(userfilespec, Fs, numstart, timstep, startim)
 % This function reads the original data collection files
 % It filters the data and saves it into a single structure
 % Performs these analyses: OBW, zAMP
@@ -91,16 +91,6 @@ for k = 1:length(iFiles)
         % There are 86400 seconds in a day.
         out(j).sampl(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
         out(j).sampl(k).tim24 = (hour*60*60) + (minute*60) + second;
-        
-        % Add universal time cutoffs
-
-        out(j)
-function luz = luzzer(tim, timstep, timerstart)
-
-cyc = floor(tim(end)/(timstep*60*60)); %number of cycles in data
-timz = 1:1:cyc;
-luz(timz) = (timerstart) + (timstep*(timz-1)); %without for-loop
-
         
         end
         
