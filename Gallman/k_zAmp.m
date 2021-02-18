@@ -1,7 +1,7 @@
 function out = k_zAmp(in)
 % Mean amplitude method
 
-    z = zeros(1,length(in)); %creat vector length of data
+    z = zeros(1,length(in)); %create vector length of data
     z(in > 0) = 1; %fill with 1s for all filtered data greater than 0
     z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
     
