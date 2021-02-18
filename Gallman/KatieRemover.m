@@ -1,6 +1,6 @@
 function out = KatieRemover(in)
 % This eliminates bad data
-
+% Usage: kg(#).idx
 for k=1:2
 
 % OBW        
