@@ -4,7 +4,7 @@ function out  = KatieLabeler(in)
 % Performs these analyses: OBW, zAMP
 % Relies on k_zAmp, k_FindMaxWindow, k_fft
 %
-% Usage: kg(#).info = KatieLabeler
+% Usage: kg(#).info = KatieLabeler(kg(#).e)
 
     [~,out.folder,~]=fileparts(pwd);
     
