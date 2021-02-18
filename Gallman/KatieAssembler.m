@@ -2,6 +2,7 @@ function out  = KatieAssembler(userfilespec, Fs)
 % This function reads the original data collection files
 % It filters the data and saves it into a single structure
 % Performs these analyses: OBW, zAMP
+% Relies on k_zAmp, k_FindMaxWindow, k_fft
 
 
 %% SET UP 
