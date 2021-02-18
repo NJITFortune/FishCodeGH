@@ -3,6 +3,9 @@ function out  = KatieAssembler(userfilespec, Fs, numstart)
 % It filters the data and saves it into a single structure
 % Performs these analyses: OBW, zAMP
 % Relies on k_zAmp, k_FindMaxWindow, k_fft
+%
+% Usage: kg(#).e = KatieAssembler(userfilespec, Fs, numstart)
+%
 
 % This should not change, but if for some reason...
 tempchan = 3; % Either 4 or 3
