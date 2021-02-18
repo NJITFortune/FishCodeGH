@@ -1,7 +1,7 @@
 function out = KatieRemover(in)
 % This eliminates bad data
 
-for k=2:1
+for k=1:2
     
 figure(1); clf;
     histogram([in(k).sampl.obwAmp], 100); hold on;
