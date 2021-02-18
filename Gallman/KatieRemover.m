@@ -14,6 +14,6 @@ figure(1); clf;
     drawnow;
     out(k).goodidx.obw = find([in(k).sampl.obwAmp] > cutofffreq);
 
-    sleep(1);
+    pause(1);
     
 end
