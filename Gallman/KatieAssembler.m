@@ -1,8 +1,14 @@
-function out  = KatieAssembler(userfilespec, Fs)
+function out  = KatieAssembler(userfilespec, Fs, numstart)
 % This function reads the original data collection files
 % It filters the data and saves it into a single structure
 % Performs these analyses: OBW, zAMP
 % Relies on k_zAmp, k_FindMaxWindow, k_fft
+
+% This should not change, but if for some reason...
+tempchan = 3; % Either 4 or 3
+lightchan = 4; % Either 5 or 4
+
+daycount = 0;
 
 
 %% SET UP 
@@ -24,14 +30,19 @@ function out  = KatieAssembler(userfilespec, Fs)
 % Fish limit frequencies for OBW calculation (unlikely to be changed)
         topFreqOBW = 800;
         botFreqOBW = 300;
+
+out(1).sampl(length(iFiles)).Fs = Fs;
+out(1).sampl(length(iFiles)).name = [];
+        
         
 %% CYCLE THROUGH EVERY FILE IN DIRECTORY
-        
-for k = length(iFiles):-1:1
+
+for k = 1:length(iFiles)
         
        % LOAD THE DATA FILE
         load(iFiles(k).name, 'data', 'tim');
-        out(k).Fs = 1 / (tim(2)-tim(1)); % Extract the sample rate
+        out(1).sampl(k).Fs = 1 / (tim(2)-tim(1)); % Extract the sample rate
+        out(2).sampl(k).Fs = out(1).sampl(k).Fs;
         
        % Filter data  
           
@@ -43,20 +54,41 @@ for k = length(iFiles):-1:1
 
         % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
-        for j = 1:2 % For the two channels
+        for j = 1:2 % Perform analyses on the two channels
         
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
-            [out(k).startim(j), ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
-            data4analysis = data(tim > out(k).startim(j) & tim < out(k).startim(j)+SampleWindw, j);            
+            [out(j).sampl(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
+            data4analysis = data(tim > out(j).sampl(k).startim & tim < out(j).sampl(k).startim+SampleWindw, j);            
             
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
             % OBW
-            [~,~,~,out(k).obwAmp(j)] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+            [~,~,~,out(j).sampl(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
             % zAmp
-            out(k).zAmp(j) = k_zAmp(data4analysis, Fs);
+            out(j).sampl(k).zAmp = k_zAmp(data4analysis);
             % FFT Machine
-            [out(k).fftFreq(j), out(k).fftAmp(j)] = k_fft(data4analysis, Fs); 
+            [out(j).sampl(k).fftFreq, out(j).sampl(k).peakfftAmp, out(j).sampl(k).sumfftAmp] = k_fft(data4analysis, Fs); 
+        
+      
+            out(j).sampl(k).light = mean(data(:,lightchan));
+            out(j).sampl(k).temp = mean(data(:,tempchan));
+    
+% Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
+ 
+        hour = str2double(iFiles(k).name(numstart:numstart+1));        %numstart based on time stamp text location
+        minute = str2double(iFiles(k).name(numstart+3:numstart+4));
+        second = str2double(iFiles(k).name(numstart+6:numstart+7));
+
+            if k > 1 
+                if ((hour*60*60) + (minute*60) + second) < out(j).sampl(k-1).tim24
+                daycount = daycount + 1;
+                end
+            end
+            
+        % There are 86400 seconds in a day.
+        out(j).sampl(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
+        out(j).sampl(k).tim24 = (hour*60*60) + (minute*60) + second;
+        
         end
         
 end
