@@ -1,9 +1,7 @@
 function out = KatieRemover(in)
 % This eliminates bad data
 
-out = in;
-
-for k=1:2
+for k=2:1
     
 figure(1); clf;
     histogram([in(k).sampl.obwAmp], 100); hold on;
@@ -12,7 +10,7 @@ figure(1); clf;
     [cutofffreq, ~]  = ginput(1);
     plot([cutofffreq, cutofffreq], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow;
-    out(k).goodidx.obw = find([in(k).sampl.obwAmp] > cutofffreq);
+    out(k).obwidx = find([in(k).sampl.obwAmp] > cutofffreq);
 
     pause(1);
     
