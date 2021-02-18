@@ -1,4 +1,4 @@
-function out  = KatieAssembler(userfilespec, Fs, numstart, timstep, startim)
+function out  = KatieAssembler(userfilespec, Fs, numstart)
 % This function reads the original data collection files
 % It filters the data and saves it into a single structure
 % Performs these analyses: OBW, zAMP
