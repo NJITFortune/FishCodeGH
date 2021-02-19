@@ -37,6 +37,7 @@ for k=1:8
     for j=1:length(idx) % For each stimulus entry
                     
         if dat(neuronidx).s(idx(j)).pFs ~= 0 % If there is data
+        tim = 1/dat(neuronidx).s(idx(j)).pFs:1/dat(neuronidx).s(idx(j)).pFs:length(dat(neuronidx).s(idx(j)).pos) / dat(neuronidx).s(idx(j)).pFs;
             
             figure(1); text(1, 10*j, dat(neuronidx).s(idx(j)).size);
             ySpikes = interp1(tim, dat(neuronidx).s(idx(j)).pos, dat(neuronidx).s(idx(j)).st);
