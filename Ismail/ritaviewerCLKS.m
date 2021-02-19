@@ -26,7 +26,7 @@ for k=1:8
     if ~isempty(idx) % Is there data for this size stimulus?
 
     Fs = dat(neuronidx).s(idx(1)).pFs;
-    sFs = Fs/subsample;
+%     sFs = Fs/subsample;
 %     [b,a] = butter(3, 2/(Fs/2), 'low'); % Filter for velocity
 %     [d,c] = butter(3, 2/(Fs/2), 'low'); % Filter for acceleration
         
@@ -47,7 +47,7 @@ for k=1:8
             POSedges = -5:0.5:5;
             spikebins = histcounts(ySpikes, POSedges);
 
-            barh(spikebins,
+            barh(spikebins);
             
             
         end
