@@ -71,15 +71,15 @@ for k=1:8
             figure(5);
             ySpikes = interp1(tim, dat(neuronidx).s(idx(j)).pos, dat(neuronidx).s(idx(j)).st);
 %            plot(dat(neuronidx).s(idx(j)).st, ySpikes + 10*j, 'b.', 'MarkerSize', 8);    
-%            plot(dat(neuronidx).s(idx(j)).st, ySpikes+(rand-0.5), 'b.', 'MarkerSize', 8);    
+            plot(dat(neuronidx).s(idx(j)).st + (rand-0.5), ySpikes, 'b.', 'MarkerSize', 8);    
             figure(6);
             ySpikes = interp1(tim, vel, dat(neuronidx).s(idx(j)).st);
 %            plot(dat(neuronidx).s(idx(j)).st, ySpikes + 10*j, 'r.', 'MarkerSize', 8);    
-            plot(dat(neuronidx).s(idx(j)).st, ySpikes + (rand-0.5), 'r.', 'MarkerSize', 8);    
+            plot(dat(neuronidx).s(idx(j)).st + (rand-0.5), ySpikes, 'r.', 'MarkerSize', 8);    
             figure(7);
             ySpikes = interp1(tim, acc, dat(neuronidx).s(idx(j)).st);
 %            plot(dat(neuronidx).s(idx(j)).st, ySpikes + 10*j, 'm.', 'MarkerSize', 8);    
-            plot(dat(neuronidx).s(idx(j)).st, ySpikes + (rand-0.5), 'm.', 'MarkerSize', 8);    
+            plot(dat(neuronidx).s(idx(j)).st + (rand-0.5), ySpikes, 'm.', 'MarkerSize', 8);    
         end
     end 
     
