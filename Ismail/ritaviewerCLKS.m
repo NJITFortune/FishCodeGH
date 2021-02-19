@@ -79,7 +79,7 @@ for k=1:8
             figure(7);
             ySpikes = interp1(tim, acc, dat(neuronidx).s(idx(j)).st);
 %            plot(dat(neuronidx).s(idx(j)).st, ySpikes + 10*j, 'm.', 'MarkerSize', 8);    
-            plot(dat(neuronidx).s(idx(j)).st + 2*(rand(1)-0.5), ySpikes, 'm.', 'MarkerSize', 8);    
+            plot(dat(neuronidx).s(idx(j)).st + 2*(rand(1,length(dat(neuronidx).s(idx(j)).st))-0.5), ySpikes, 'm.', 'MarkerSize', 8);    
         end
     end 
     
