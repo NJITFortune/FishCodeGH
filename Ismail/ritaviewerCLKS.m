@@ -25,6 +25,7 @@ for k=1:8
     
     if ~isempty(idx) % Is there data for this size stimulus?
 
+    totalspikes = [];        
 %     Fs = dat(neuronidx).s(idx(1)).pFs;
 %     sFs = Fs/subsample;
 %     [b,a] = butter(3, 2/(Fs/2), 'low'); % Filter for velocity
@@ -41,19 +42,21 @@ for k=1:8
             
             figure(1); text(1, 10*j, dat(neuronidx).s(idx(j)).size);
             ySpikes = interp1(tim, dat(neuronidx).s(idx(j)).pos, dat(neuronidx).s(idx(j)).st);
-            plot(dat(neuronidx).s(idx(j)).st + 2*(rand(1,length(dat(neuronidx).s(idx(j)).st))-0.5), ySpikes, 'b.', 'MarkerSize', 8);    
-            ylim([-5 5]);
+            tmp = size(ySpikes); if tmp(1) ~= 1; ySpikes = ySpikes'; end
+            plot(ySpikes, dat(neuronidx).s(idx(j)).st + 2*(rand(1,length(dat(neuronidx).s(idx(j)).st))-0.5),  'b.', 'MarkerSize', 8);    
+            xlim([-5 5]);
             
-            figure(2);    
-            POSedges = -5:0.5:5;
-            spikebins = histcounts(ySpikes, POSedges);
-
-            plot(spikebins);
-            
+            totalspikes = [totalspikes ySpikes];
+                       
             
         end
     end 
 
+            figure(2);    
+            POSedges = -5:0.5:5;
+            spikebins = histcounts(ySpikes, POSedges);
+
+            bar(-4.37:0.46:4.5, spikebins); xlim([-5 5]);
 
     
         aa = input('Hit return when ready. \n');
