@@ -43,8 +43,11 @@ for k=1:8
             plot(dat(neuronidx).s(idx(j)).st + 2*(rand(1,length(dat(neuronidx).s(idx(j)).st))-0.5), ySpikes, 'b.', 'MarkerSize', 8);    
             ylim([-5 5]);
             
-            figure(2);
-            barh(ySpikes,
+            figure(2);    
+            POSedges = -5:0.5:5;
+            spikebins = histcounts(ySpikes, POSedges);
+
+            barh(spikebins,
             
             
         end
