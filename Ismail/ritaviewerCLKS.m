@@ -53,7 +53,7 @@ for k=1:8
         % Plot the data at y value *10 of entry number (to separate them)
         tim = 1/dat(neuronidx).s(idx(j)).pFs:1/dat(neuronidx).s(idx(j)).pFs:length(dat(neuronidx).s(idx(j)).pos) / dat(neuronidx).s(idx(j)).pFs;
 %        plot(tim, dat(neuronidx).s(idx(j)).pos + 10*j, 'k-');
-        plot(tim, dat(neuronidx).s(idx(j)).pos, 'k-');
+%        plot(tim, dat(neuronidx).s(idx(j)).pos, 'k-');
         text(1, 10*j, dat(neuronidx).s(idx(j)).size);
             figure(6); % Velocity
         % Plot the data at y value *10 of entry number (to separate them)
@@ -63,7 +63,7 @@ for k=1:8
             figure(7); % Acceleration
         % Plot the data at y value *10 of entry number (to separate them)
 %        plot(tim, acc + 10*j, 'k-');
-        plot(tim, acc, 'k-');
+%        plot(tim, acc, 'k-');
         text(1, 10*j, dat(neuronidx).s(idx(j)).size);
         end
         
@@ -71,7 +71,7 @@ for k=1:8
             figure(5);
             ySpikes = interp1(tim, dat(neuronidx).s(idx(j)).pos, dat(neuronidx).s(idx(j)).st);
 %            plot(dat(neuronidx).s(idx(j)).st, ySpikes + 10*j, 'b.', 'MarkerSize', 8);    
-            plot(dat(neuronidx).s(idx(j)).st, ySpikes+(rand-0.5), 'b.', 'MarkerSize', 8);    
+%            plot(dat(neuronidx).s(idx(j)).st, ySpikes+(rand-0.5), 'b.', 'MarkerSize', 8);    
             figure(6);
             ySpikes = interp1(tim, vel, dat(neuronidx).s(idx(j)).st);
 %            plot(dat(neuronidx).s(idx(j)).st, ySpikes + 10*j, 'r.', 'MarkerSize', 8);    
