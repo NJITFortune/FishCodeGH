@@ -48,7 +48,7 @@ for k=1:8
             POSedges = -5:0.5:5;
             spikebins = histcounts(ySpikes, POSedges);
 
-            barh(spikebins);
+            plot(spikebins);
             
             
         end
