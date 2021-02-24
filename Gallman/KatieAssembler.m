@@ -41,7 +41,9 @@ out(1).s(length(iFiles)).name = [];
 %% CYCLE THROUGH EVERY FILE IN DIRECTORY
 
 for k = 1:length(iFiles)
+       
         
+    
        % LOAD THE DATA FILE
         load(iFiles(k).name, 'data', 'tim');
         out(1).s(k).Fs = 1 / (tim(2)-tim(1)); % Extract the sample rate
