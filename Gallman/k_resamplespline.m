@@ -19,7 +19,7 @@ function k_resamplespline(in)
     %specgram(obwredata)
         
    %[Freq, Peak, ] = k_fft(obwredata, 60);
-    foo = fftmachine(obwredata, 60);
+    foo = fftmachine(obwredata - mean(obwredata), 60);
      plot(foo.fftfreq, foo.fftdata);
         
         
