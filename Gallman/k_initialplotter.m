@@ -69,7 +69,7 @@ linkaxes(ax, 'x');
 % tim24 based off of computer midnight
 
 figure(2); clf; 
-    set(gcf, 'Position', [200 100 2*560 2*420]);
+    set(gcf, 'Position', [300 100 2*560 2*420]);
 
 xa(1) = subplot(511); hold on; title('sumfftAmp');
     plot([out.e(2).s(ttsf{2}).tim24]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
@@ -108,7 +108,16 @@ linkaxes(xa, 'x'); xlim([0 24]);
 
 %% Light/Dark Plot 
 
+figure(3); clf; 
+    set(gcf, 'Position', [400 100 2*560 2*420]);
+
     lighttimes = abs(out.info.luz);
 
-    
+     for j=1:length(lighttimes)-1
+
+         
+         
+         
+         
+     end
             
