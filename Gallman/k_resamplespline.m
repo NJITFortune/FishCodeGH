@@ -20,7 +20,7 @@ function k_resamplespline(in)
         
    %[Freq, Peak, ] = k_fft(obwredata, 60);
     foo = fftmachine(obwredata - mean(obwredata), 60);
-     plot(foo.fftfreq, foo.fftdata);
+     plot(foo.fftfreq, foo.fftdata, 'o-');
         
         
 % % Initialize the figure        
