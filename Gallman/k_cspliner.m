@@ -2,7 +2,7 @@ function [xx, yy] = k_cspliner(x, y)
 
 %%GENERATE CUBIC SPLINE FUNCTION FOR DATA
 %f(x) = csaps(x,y,p); p = 0.9
-p = 0.3; %smoothing factor
+p = 0.9; %smoothing factor
 ReFs = 60;  %resample once every minute
 
 spliney = csaps(x, y, p);
