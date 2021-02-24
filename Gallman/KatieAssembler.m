@@ -104,12 +104,15 @@ end
         
  %% Optional data trimming
         
- % Pick frame - OLD VERSION
+ 
+%plot the data over time to check for problems 
+Figure (1); hold on; title('sumfftAmp');
+    yyaxis right; plot([out(2).s.timcont]/(60*60), [out(2).s.sumfftAmp], '.');
+    yyaxis left; plot([out(1).s.timcont]/(60*60), [out(1).s.sumfftAmp], '.');
+   % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
  
  
- 
- 
- 
+%Trim data if it is problematic... or just plain weird
  answer = questdlg('Do you want to trim the data?', ...
 	'Trim data?', ...
 	'Yes','No');
