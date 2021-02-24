@@ -4,7 +4,8 @@ function k_resamplespline(in)
 
 % Prepare the data
 
-    tim = [in.e(1).s.timcont]/(60*60);
+    %tim = [in.e(1).s.timcont]/(60*60);
+    tim = in.e(1).s.timcont;
 
     obwdata = [in.e(1).s.obwAmp]; obwdata = obwdata(in.idx(1).obwidx);
         obwtim = tim(in.idx(1).obwidx);
