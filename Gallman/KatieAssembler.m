@@ -40,7 +40,7 @@ out(1).s(length(iFiles)).name = [];
         
 %% CYCLE THROUGH EVERY FILE IN DIRECTORY
 
-ff = waitbar(0, 'Starting to cycle through files.');
+    ff = waitbar(0, 'Cycling through files.');
 
 for k = 1:length(iFiles)
        
