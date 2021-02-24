@@ -88,7 +88,7 @@ xa(4) = subplot(514); hold on; title('frequency (black) and temperature (red)');
     yyaxis left; ylim([200 800]);
         plot([out.e(2).s.tim24]/(60*60), [out.e(2).s.fftFreq], '.', 'Markersize', 8);      
     
-xa(4) = subplot(515); hold on; title('light transitions');
+xa(5) = subplot(515); hold on; title('light transitions');
     plot([out.e(2).s.tim24]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
     xlabel('24 Hour');
     ylim([-1, 6]);
