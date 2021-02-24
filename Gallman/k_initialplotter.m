@@ -97,7 +97,7 @@ linkaxes(xa, 'x'); xlim([0 24]);
 
         subplot(5,1,1); 
             plot([5 5], [0, max([out.e(1).s.sumfftAmp])], 'y', 'LineWidth', 4); 
-            plot([17 17], [0, max([out.e(1).s.sumfftAmp])], [0 1], 'k', 'LineWidth', 4);
+            plot([17 17], [0, max([out.e(1).s.sumfftAmp])], 'k', 'LineWidth', 4);
         subplot(5,1,2); 
             plot([5 5], [0, max([out.e(1).s.zAmp])], 'y', 'LineWidth', 4); 
             plot([17 17], [0, max([out.e(1).s.zAmp])], 'k', 'LineWidth', 4);
