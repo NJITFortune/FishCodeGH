@@ -44,7 +44,7 @@ ff = waitbar(0, 'Starting to cycle through files.');
 
 for k = 1:length(iFiles)
        
-     waitbar(k/length(iFiles), ff, sprintf('Progress: %d %%', floor(k/length(iFiles)*100)));
+     waitbar(k/length(iFiles), ff);
 
     
        % LOAD THE DATA FILE
