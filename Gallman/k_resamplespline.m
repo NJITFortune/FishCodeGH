@@ -14,15 +14,17 @@ function k_resamplespline(in)
 %         sffttim = tim(in.idx(1).sumfftidx);
 
     
-    [~, obwredata] = k_cspliner(in.info.ld, obwtim, obwdata);
+    [obwretim, obwredata] = k_cspliner(in.info.ld, obwtim, obwdata);
     
     %specgram(obwredata)
         
    %[Freq, Peak, ] = k_fft(obwredata, 60);
+figure(1);clf;
     foo = fftmachine(obwredata - mean(obwredata), 60);
      plot(foo.fftfreq, foo.fftdata, 'o-');
         
-        
+figure(2); clf;
+    plot(obwretim, obwredata);
 % % Initialize the figure        
 % 
 % figure(1); clf; a = gcf; 
