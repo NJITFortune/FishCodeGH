@@ -108,5 +108,7 @@ linkaxes(xa, 'x'); xlim([0 24]);
 
 %% Light/Dark Plot 
 
+    lighttimes = abs(out.info.luz);
 
+    
             
