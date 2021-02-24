@@ -28,7 +28,6 @@ figure(1); clf;
 ax(1) = subplot(511); hold on; title('sumfftAmp');
     yyaxis right; plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
     yyaxis left; plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.');
-    plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
    % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
 
 ax(2) = subplot(512); hold on; title('zAmp');
@@ -55,9 +54,10 @@ ax(5) = subplot(515); hold on; title('light transitions');
     
      if isfield(out, 'info')
         subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
-        subplot(512); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
-        subplot(513); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
+        subplot(512); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.zAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
+        subplot(513); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.obwAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
      end
+     
 %         darkidx = find(out.info.luz < 0); lightidx = find(out.info.luz > 0);
 %         for j=1:length(darkidx); plot([abs(out.info.luz(darkidx(j))) abs(out.info.luz(darkidx(j)))], [0 5], 'k-'); end
 %         for j=1:length(lightidx); plot([abs(out.info.luz(lightidx(j))) abs(out.info.luz(lightidx(j)))], [0 5], 'c-'); end
@@ -94,9 +94,10 @@ xa(5) = subplot(515); hold on; title('light transitions');
     ylim([-1, 6]);
 
 linkaxes(xa, 'x'); xlim([0 24]); 
-    for ll=1:4
-        subplot(5,1,ll); plot([5 5], [0 1], 'g'); plot([17 17], [0 1], 'r');
-    end
+
+        subplot(5,1,1); plot([5 5], [0, max([out.e(1).s.sumfftAmp])], 'y', 'LineWidth', 4); plot([17 17], [0, max([out.e(1).s.sumfftAmp])], [0 1], 'k', 'LineWidth', 4);
+        subplot(5,1,2); plot([5 5], [0, max([out.e(1).s.zAmp])], 'y', 'LineWidth', 4); plot([17 17], [0, max([out.e(1).s.zAmp])], 'k', 'LineWidth', 4);
+        subplot(5,1,3); plot([5 5], [0, max([out.e(1).s.obwAmp])], 'y', 'LineWidth', 4); plot([17 17], [0, max([out.e(1).s.obwAmp])], 'k', 'LineWidth', 4);
 
 
 
