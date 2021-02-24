@@ -120,6 +120,7 @@ Figure (1); hold on; title('sumfftAmp');
 switch answer
     case 'Yes'
         [x, ~] = ginput(2);
+        
     case 'No'
         disp([answer ' coming right up.'])
         dessert = 2;
