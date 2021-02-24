@@ -16,7 +16,7 @@ function k_resamplespline(in)
     
     [~, obwredata] = k_cspliner(in.info.ld, obwtim, obwdata);
     
-    specgram(obwredata, 'yaxis')
+    specgram(obwredata)
         
         
         
