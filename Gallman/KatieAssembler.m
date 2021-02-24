@@ -107,7 +107,7 @@ end
  % Pick frame - OLD VERSION
     fixme = input('Do you want to trim the data? '); 
         
-    if fixme = 'yes' % User didn't click a frame    
+    if fixme == 'yes' % User didn't click a frame    
         out(eidx).Ch1 = 0;
         out(eidx).Ch2 = 0;        
     end    
