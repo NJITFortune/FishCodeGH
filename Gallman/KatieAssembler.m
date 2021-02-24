@@ -107,20 +107,21 @@ end
  % Pick frame - OLD VERSION
  
  
+ 
+ 
+ 
  answer = questdlg('Do you want to trim the data?', ...
-	'Dessert Menu', ...
-	'Ice cream','Cake','No thank you','No thank you');
+	'Trim data?', ...
+	'Yes','No');
 % Handle response
 switch answer
-    case 'Ice cream'
+    case 'Yes'
         disp([answer ' coming right up.'])
         dessert = 1;
-    case 'Cake'
+    case 'No'
         disp([answer ' coming right up.'])
         dessert = 2;
-    case 'No thank you'
-        disp('I''ll bring you your check.')
-        dessert = 0;
+    
 end
  
  
