@@ -107,6 +107,19 @@ end
  % Pick frame - OLD VERSION
     fixme = input('Do you want to trim the data? '); 
         
+    if fixme = 'yes' % User didn't click a frame    
+        out(eidx).Ch1 = 0;
+        out(eidx).Ch2 = 0;        
+    end    
+    if ~isempty(framNo) % The fish is in the correct position in these frames
+        fprintf('Our frame started at %i.\n', round(minVartim(framNo)));
+%         out(eidx).Ch1 = tmpsigA(tim > minVartim(framNo) & minVartim(framNo)+winwidth);
+%         out(eidx).Ch2 = tmpsigB(tim > minVartim(framNo) & minVartim(framNo)+winwidth);            
+        out(eidx).Ch1 = [eidx, framNo];
+        out(eidx).Ch2 = [eidx, framNo];
+        tmpEODdat(eidx).Ch1 = tmpsigA(tim > minVartim(framNo) & minVartim(framNo)+winwidth);
+        tmpEODdat(eidx).Ch2 = tmpsigB(tim > minVartim(framNo) & minVartim(framNo)+winwidth);
+    end
         
         
         
