@@ -24,7 +24,7 @@ figure(1);clf;
      plot(foo.fftfreq, foo.fftdata, 'o-');
         
 figure(2); clf;
-    plot(obwretim, obwredata);
+    plot(obwredata);
 % % Initialize the figure        
 % 
 % figure(1); clf; a = gcf; 
