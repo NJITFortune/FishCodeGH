@@ -19,7 +19,7 @@ function k_resamplespline(in)
     specgram(obwredata)
         
         
-        
+     plot(out.fftfreq, out.fftdata);
         
         
 % % Initialize the figure        
