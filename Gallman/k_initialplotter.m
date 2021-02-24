@@ -118,30 +118,23 @@ figure(4); clf;
      for j=1:length(lighttimes)-2
 
         if in.info.luz(j) > 0  % Light side
-            
-            figure(3); subplot(121);     % Light to dark plot       
-        if ~isempty(find(tim > lighttimes(j) & tim <= lighttimes(j+2), 1))            
-            ott = find(obwtim > lighttimes(j) & obwtim <= lighttimes(j+2));
-            plot(obwtim(ott) - lighttimes(j), movmean(obwdata(ott), 5), 'o-', 'MarkerSize', 2); 
-            end
-        end
+
+                figure(3); subplot(121);     % Light to dark plot  OBW     
+                if ~isempty(find(tim > lighttimes(j) & tim <= lighttimes(j+2), 1))            
+                    ott = find(obwtim > lighttimes(j) & obwtim <= lighttimes(j+2));
+                    plot(obwtim(ott) - lighttimes(j), movmean(obwdata(ott), 5), 'o-', 'MarkerSize', 2); 
+                end
         
         else % Dark side
             
-            figure(4); subplot(121);
-            
-        if ~isempty(find(tim > lighttimes(j) & tim <= lighttimes(j+1), 1))
-            
-            ott = find(obwtim > lighttimes(j) & obwtim <= lighttimes(j+1));
-            plot(obwtim(ott) - lighttimes(j), movmean(obwdata(ott), 5), 'o-', 'MarkerSize', 2); 
-  
-        end
-            
-            
+                figure(4); subplot(121);      % Dark to light plot  OBW      
+            if ~isempty(find(tim > lighttimes(j) & tim <= lighttimes(j+1), 1))
+
+                ott = find(obwtim > lighttimes(j) & obwtim <= lighttimes(j+1));
+                plot(obwtim(ott) - lighttimes(j), movmean(obwdata(ott), 5), 'o-', 'MarkerSize', 2); 
+            end
             
         end         
-         
-         
          
      end
             
