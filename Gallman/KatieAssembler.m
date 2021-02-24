@@ -67,7 +67,7 @@ for k = 1:length(iFiles)
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
-        for j = 1:2 % Perform analyses on the two channels
+        parfor j = 1:2 % Perform analyses on the two channels
         
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
             [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
