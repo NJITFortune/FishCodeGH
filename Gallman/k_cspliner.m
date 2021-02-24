@@ -1,4 +1,4 @@
-function [xx, yy] = k_cspliner(nhours,x, y)
+function [xx, yy] = k_cspliner(nhours, x, y)
 
 %%GENERATE CUBIC SPLINE FUNCTION FOR DATA
 %f(x) = csaps(x,y,p); p = 0.9
