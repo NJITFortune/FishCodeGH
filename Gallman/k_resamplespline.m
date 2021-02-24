@@ -16,10 +16,10 @@ function k_resamplespline(in)
     
     [~, obwredata] = k_cspliner(in.info.ld, obwtim, obwdata);
     
-    specgram(obwredata)
+    %specgram(obwredata)
         
-%    [Freq, Peak, Summ] = k_fft(obwredata, 60);
-%      plot(Freq, Peak);
+   [Freq, Peak, Summ] = k_fft(obwredata, 60);
+     plot(Freq, Peak);
         
         
 % % Initialize the figure        
