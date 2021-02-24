@@ -93,8 +93,10 @@ xa(4) = subplot(515); hold on; title('light transitions');
     xlabel('24 Hour');
     ylim([-1, 6]);
 
-linkaxes(xa, 'x'); xlim([0 24]); plot([5 5], [0 1], 'g'); plot([17 17], [0 1], 'r');
-
+linkaxes(xa, 'x'); xlim([0 24]); 
+    for ll=1:4
+        subplot(5,1,ll); plot([5 5], [0 1], 'g'); plot([17 17], [0 1], 'r');
+    end
 
 
 
