@@ -64,12 +64,12 @@ ax(5) = subplot(515); hold on; title('light transitions');
 %         
         
 linkaxes(ax, 'x');
+
 %% 24 hour plot 
-%tim24 based off of computer midnight
+% tim24 based off of computer midnight
 
 figure(2); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
-
 
 xa(1) = subplot(511); hold on; title('sumfftAmp');
     plot([out.e(2).s(ttsf{2}).tim24]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
@@ -93,7 +93,7 @@ xa(4) = subplot(515); hold on; title('light transitions');
     xlabel('24 Hour');
     ylim([-1, 6]);
 
-linkaxes(xa, 'x');
+linkaxes(xa, 'x'); xlim([0 24]); 
 
 
 
