@@ -98,7 +98,8 @@ for k = 1:length(iFiles)
         
         end
         
+end
+
         pause(1); close(ff);
         
-end
     
