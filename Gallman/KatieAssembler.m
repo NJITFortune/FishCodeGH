@@ -105,7 +105,29 @@ end
  %% Optional data trimming
         
  % Pick frame - OLD VERSION
-    fixme = input('Do you want to trim the data? '); 
+ 
+ 
+ answer = questdlg('Do you want to trim the data?', ...
+	'Dessert Menu', ...
+	'Ice cream','Cake','No thank you','No thank you');
+% Handle response
+switch answer
+    case 'Ice cream'
+        disp([answer ' coming right up.'])
+        dessert = 1;
+    case 'Cake'
+        disp([answer ' coming right up.'])
+        dessert = 2;
+    case 'No thank you'
+        disp('I''ll bring you your check.')
+        dessert = 0;
+end
+ 
+ 
+ 
+ 
+ 
+    fixme = input('Do you want to trim the data?  '); 
         
     if fixme == 'yes' % User didn't click a frame    
         out(eidx).Ch1 = 0;
