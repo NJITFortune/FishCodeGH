@@ -102,6 +102,15 @@ end
 
         pause(1); close(ff);
         
+ %% Optional data trimming
+        
+ % Pick frame - OLD VERSION
+    fixme = input('Do you want to trim the data? '); 
+        
+        
+        
+        
+        
         
          
     
