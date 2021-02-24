@@ -7,8 +7,11 @@ function k_resamplespline(in)
     %tim = [in.e(1).s.timcont]/(60*60);
     tim = [in.e(1).s.timcont];
 
-    obwdata = [in.e(1).s.obwAmp]; obwdata = obwdata(in.idx(1).obwidx);
-        obwtim = tim(in.idx(1).obwidx);
+    obwdata = [in.e(1).s.obwAmp]; 
+    obwdata = obwdata(in.idx(1).obwidx);
+        
+    obwtim = tim(in.idx(1).obwidx);
+    
 %     zdata = [in.e(1).sampl.zAmp]; zdata = zdata(in.idx(1).zidx);
 %         ztim = tim(in.idx(1).zidx);
 %     sfftdata = [in.e(1).sampl.sumfftAmp]; sfftdata = sfftdata(in.idx(1).sumfftidx);
