@@ -40,11 +40,11 @@ out(1).s(length(iFiles)).name = [];
         
 %% CYCLE THROUGH EVERY FILE IN DIRECTORY
 
-f = waitbar(0, 'Starting to cycle through files.');
+ff = waitbar(0, 'Starting to cycle through files.');
 
 for k = 1:length(iFiles)
        
-     waitbar(i/n, f, sprintf('Progress: %d %%', floor(i/n*100)));
+     waitbar(k/length(iFiles), ff, sprintf('Progress: %d %%', floor(k/length(iFiles)*100)));
 
     
        % LOAD THE DATA FILE
