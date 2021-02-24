@@ -110,12 +110,36 @@ linkaxes(xa, 'x'); xlim([0 24]);
 
 figure(3); clf; 
     set(gcf, 'Position', [400 100 2*560 2*420]);
+figure(4); clf; 
+    set(gcf, 'Position', [500 100 2*560 2*420]);
 
     lighttimes = abs(out.info.luz);
 
-     for j=1:length(lighttimes)-1
+     for j=1:length(lighttimes)-2
 
-         
+        if in.info.luz(j) > 0  % Light side
+            
+            figure(3); subplot(121);     % Light to dark plot       
+        if ~isempty(find(tim > lighttimes(j) & tim <= lighttimes(j+2), 1))            
+            ott = find(obwtim > lighttimes(j) & obwtim <= lighttimes(j+2));
+            plot(obwtim(ott) - lighttimes(j), movmean(obwdata(ott), 5), 'o-', 'MarkerSize', 2); 
+            end
+        end
+        
+        else % Dark side
+            
+            figure(4); subplot(121);
+            
+        if ~isempty(find(tim > lighttimes(j) & tim <= lighttimes(j+1), 1))
+            
+            ott = find(obwtim > lighttimes(j) & obwtim <= lighttimes(j+1));
+            plot(obwtim(ott) - lighttimes(j), movmean(obwdata(ott), 5), 'o-', 'MarkerSize', 2); 
+  
+        end
+            
+            
+            
+        end         
          
          
          
