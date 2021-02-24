@@ -12,7 +12,7 @@ spliney = csaps(x, y, p);
 %%RESAMPLE DATA ALONG SPLINE FUNCTION
 %%Generate uniform (regular) time values
 
-xx = 1/ReFs:1/ReFs:nhours;
+xx = 1/ReFs:1/ReFs:max(x);
 
 
 
