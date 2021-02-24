@@ -119,7 +119,7 @@ figure(4); clf;
 
         if out.info.luz(j) > 0  % Light side
 
-                figure(3); subplot(121);     % Light to dark plot  OBW     
+                figure(3); subplot(211);     % Light to dark plot  OBW     
                 if ~isempty(find(out.e(2).s(tto{2}).timcont > lighttimes(j) & out.e(2).s(tto{2}).timcont <= lighttimes(j+2), 1))            
                     ott = find(out.e(2).s(tto{2}).timcont > lighttimes(j) & out.e(2).s(tto{2}).timcont <= lighttimes(j+2));
                     plot(out.e(2).s(tto{2}(ott)).timcont - lighttimes(j), out.e(2).s(tto{2}(ott)).obwAmp, 5, 'o-', 'MarkerSize', 2); 
@@ -127,7 +127,7 @@ figure(4); clf;
         
         else % Dark side
             
-                figure(4); subplot(121);      % Dark to light plot  OBW      
+                figure(4); subplot(211);      % Dark to light plot  OBW      
             if ~isempty(find(out.e(2).s(tto{2}).timcont > lighttimes(j) & out.e(2).s(tto{2}).timcont <= lighttimes(j+2), 1))            
                     ott = find(out.e(2).s(tto{2}).timcont > lighttimes(j) & out.e(2).s(tto{2}).timcont <= lighttimes(j+2));
                     plot(out.e(2).s(tto{2}(ott)).timcont - lighttimes(j), out.e(2).s(tto{2}(ott)).obwAmp, 5, 'o-', 'MarkerSize', 2); 
