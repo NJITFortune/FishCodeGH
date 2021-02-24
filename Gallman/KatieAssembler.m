@@ -116,11 +116,15 @@ Figure (1); hold on; title('sumfftAmp');
  answer = questdlg('Do you want to trim the data?', ...
 	'Trim data?', ...
 	'Yes','No');
+
 % Handle response
 switch answer
     case 'Yes'
         [x, ~] = ginput(2);
-        tt = find([kg.e(1).s.timcont] > x(1) & [kg.e(1).s.timcont] < x(2));
+        tt = find([out(1).s.timcont] > x(1) & [out(1).s.timcont] < x(2));
+        out(1).s = out.e(1).s(tt);
+        tt = find([out(2).s.timcont] > x(1) & [out(2).s.timcont] < x(2));
+        out(2).s = out(2).s(tt);
         
     case 'No'
         disp([answer ' coming right up.'])
