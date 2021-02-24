@@ -120,6 +120,7 @@ Figure (1); hold on; title('sumfftAmp');
 switch answer
     case 'Yes'
         [x, ~] = ginput(2);
+        tt = find([kg.e(1).s.timcont] > x(1) & [kg.e(1).s.timcont] < x(2));
         
     case 'No'
         disp([answer ' coming right up.'])
