@@ -66,17 +66,17 @@ end
 
 %% Get the STAs
 
-    pSTA = iu_sta(spikes, randspikes, pos, Fs, 2);
-    vSTA = iu_sta(spikes, randspikes, vel, Fs, 2);
-    aSTA = iu_sta(spikes, randspikes, acc, Fs, 2);
-    
-    figure(1); clf; 
-        subplot(311); hold on; plot(pSTA.time, pSTA.MEAN, 'b-'); 
-            plot(pSTA.time, pSTA.randMEAN, 'r-');
-        subplot(312); hold on; plot(vSTA.time, vSTA.MEAN, 'b-'); 
-            plot(vSTA.time, vSTA.randMEAN, 'r-');
-        subplot(313); hold on; plot(aSTA.time, aSTA.MEAN, 'b-'); 
-            plot(aSTA.time, aSTA.randMEAN, 'r-');    
+%     pSTA = iu_sta(spikes, randspikes, pos, Fs, 2);
+%     vSTA = iu_sta(spikes, randspikes, vel, Fs, 2);
+%     aSTA = iu_sta(spikes, randspikes, acc, Fs, 2);
+%     
+%     figure(1); clf; 
+%         subplot(311); hold on; plot(pSTA.time, pSTA.MEAN, 'b-'); 
+%             plot(pSTA.time, pSTA.randMEAN, 'r-');
+%         subplot(312); hold on; plot(vSTA.time, vSTA.MEAN, 'b-'); 
+%             plot(vSTA.time, vSTA.randMEAN, 'r-');
+%         subplot(313); hold on; plot(aSTA.time, aSTA.MEAN, 'b-'); 
+%             plot(aSTA.time, aSTA.randMEAN, 'r-');    
         
        
 %% Get the signal values at spike times
