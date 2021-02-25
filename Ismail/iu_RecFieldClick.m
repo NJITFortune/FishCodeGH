@@ -97,13 +97,17 @@ a = input('Get clicks for receptive field? (Y=1 or N=2) \n');
 if a == 2
     outy.Pidx = 999;
     outy.Nidx = 999;
+    outy.tims = [0, 999];
 end
 if a == 1
     
     figure(1); [xs, ~] = ginput(2); xs = sort(xs);
 
+    outy.tims = sort(xs);
+    
     for j = 1:length(idx) % cycle through each 
         outy.Pidx{idx(j)} = find(in(ent).s(idx(j)).pos > xs(1) & in(ent).s(idx(j)).pos < xs(2));
+        outy.Nidx{idx(j)} = find(in(ent).s(idx(j)).st > xs(1) & in(ent).s(idx(j)).st < xs(2));
     end
     
 end
