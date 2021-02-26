@@ -14,7 +14,7 @@ spliney = csaps(x, y, p);
 
 %xx = 1/ReFs:1/ReFs:max(x);
 xx = linspace(x(1), x(end), ((x(end)-x(1))*ReFs));
-
+xx
 
 %%Resample at new time values along cubic spline
 yy = fnval(xx, spliney);
