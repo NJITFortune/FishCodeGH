@@ -33,41 +33,42 @@ end
     tim = [in.e(1).s.timcont]/(60*60);
 
     %hard coded because fuck thinking
-    obwdata1 = in.e(1).s(tto{1}).obwAmp; 
+    obwdata1 = [in.e(1).s(tto{1}).obwAmp]; 
     obwtim1 = tim(tto{1});
+    
             spliney = csaps(obwtim1, obwdata1, p);
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
             o.obw(1).y = fnval(o.obw(1).x, spliney);
             
-    obwdata2 = in.e(2).s(tto{2}).obwAmp; 
+    obwdata2 = [in.e(2).s(tto{2}).obwAmp]; 
     obwtim2 = tim(tto{2});
             spliney = csaps(obwtim2, obwdata2, p);
             o.obw(2).x = obwtim2(1):1/ReFs:obwtim2(end);
             o.obw(2).y = fnval(o.obw(2).x, spliney);
         
-    zdata1 = in.e(1).s(ttz{1}).zAmp; 
+    zdata1 = [in.e(1).s(ttz{1}).zAmp]; 
     ztim1 = tim(ttz{1});
             spliney = csaps(ztim1, zdata1, p);
             o.z(1).x = ztim1(1):1/ReFs:ztim1(end);
             o.z(1).y = fnval(o.z(1).x, spliney);
             
-    zdata2 = in.e(2).s(ttz{2}).zAmp; 
+    zdata2 = [in.e(2).s(ttz{2}).zAmp]; 
     ztim2 = tim(ttz{2});
             spliney = csaps(ztim2, zdata2, p);
-            o.obw(2).x = ztim2(1):1/ReFs:ztim2(end);
+            o.z(2).x = ztim2(1):1/ReFs:ztim2(end);
             o.z(2).y = fnval(o.z(2).x, spliney);
 
             
-    sfftdata1 = in.e(1).s(ttsf{1}).sfftAmp; 
+    sfftdata1 = [in.e(1).s(ttsf{1}).sumfftAmp]; 
     sffttim1 = tim(ttsf{1});
             spliney = csaps(sffttim1, sfftdata1, p);
             o.sfft(1).x = sffttim1(1):1/ReFs:sffttim1(end);
             o.sfft(1).y = fnval(o.sfft(1).x, spliney);
             
-    sfftdata1 = in.e(2).s(ttsf{2}).sfftAmp; 
-    sffttim1 = tim(ttsf{2});
-            spliney = csaps(sffttim1, sfftdata1, p);
-            o.sfft(2).x = sffttim1(2):1/ReFs:sffttim1(end);
+    sfftdata2 = [in.e(2).s(ttsf{2}).sumfftAmp]; 
+    sffttim2 = tim(ttsf{2});
+            spliney = csaps(sffttim2, sfftdata2, p);
+            o.sfft(2).x = sffttim2(2):1/ReFs:sffttim2(end);
             o.sfft(2).y = fnval(o.sfft(2).x, spliney);
 
 %% Plot to check fit?
@@ -75,33 +76,40 @@ end
 figure(1); clf; title('Channel 1')
 
     subplot(311); hold on; title('sfft')
-    plot(sffttim1, sfftdata1);
-    plot(o.sfft(1).x, o.sfft(1).y); 
+        plot(sffttim1, sfftdata1);
+        plot(o.sfft(1).x, o.sfft(1).y, 'k', 'LineWidth', 2); 
 
     subplot(312); hold on; title('zAmp')
-    plot(ztim1, zdata1);
-    plot(o.z(1).x, o.z(1).y); 
+        plot(ztim1, zdata1);
+        plot(o.z(1).x, o.z(1).y, 'k', 'LineWidth', 2); 
     
     subplot(313); hold on; title('obwAmp')
-    plot(obwtim1, obwdata1);
-    plot(o.obw(1).x, o.obw(1).y); 
+        plot(obwtim1, obwdata1);
+        plot(o.obw(1).x, o.obw(1).y, 'k', 'LineWidth', 2); 
     
     
  figure(2); clf; title('Channel 2')
 
     subplot(311); hold on; title('sfft')
     plot(sffttim2, sfftdata2);
-    plot(o.sfft(2).x, o.sfft(2).y); 
+    plot(o.sfft(2).x, o.sfft(2).y, 'k', 'LineWidth', 2); 
 
     subplot(312); hold on; title('zAmp')
     plot(ztim2, zdata2);
-    plot(o.z(2).x, o.z(2).y); 
+    plot(o.z(2).x, o.z(2).y, 'k', 'LineWidth', 2); 
     
     subplot(313); hold on; title('obwAmp')
     plot(obwtim2, obwdata2);
-    plot(o.obw(2).x, o.obw(2).y); 
+    plot(o.obw(2).x, o.obw(2).y, 'k', 'LineWidth', 2); 
     
+ figure(3); clf; title('Spline Comparo MF'); hold on;
    
+    plot(o.sfft(1).x, o.sfft(1).y, 'b', 'LineWidth', 2); 
+    plot(o.z(1).x, o.z(1).y, 'r', 'LineWidth', 2); 
+    plot(o.sfft(2).x, o.sfft(2).y, 'c', 'LineWidth', 2); 
+    plot(o.z(2).x, o.z(2).y, 'm', 'LineWidth', 2); 
+    plot(o.obw(1).x, o.obw(1).y, 'LineWidth', 2); 
+    plot(o.obw(2).x, o.obw(2).y, 'LineWidth', 2); 
 
 %% Resample - original for reference
 
