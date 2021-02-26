@@ -70,7 +70,15 @@ end
             o.sfft(2).x = sffttim1(2):1/ReFs:sffttim1(end);
             o.sfft(2).y = fnval(o.sfft(2).x, spliney);
 
+%% Plot to check fit?
 
+figure(1); clf; 
+    subplot(311); hold on;
+    plot(obwtim1, obwdata1
+
+    plot(obwtim, obwdata);
+hold on; 
+    plot(obwretim, obwredata, '.-')
 
 %% Resample - original for reference
 
