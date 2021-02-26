@@ -21,11 +21,14 @@ figure (1); hold on; title('sumfftAmp');
     plot([in(2).s.timcont]/(60*60), [in(1).s.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
-   
-   [x, ~] = ginput(2);
-    tt = find([out(1).s.timcont] > x(1) & [out(1).s.timcont] < x(2));
-    out(1).s = out.e(1).s(tt);
-    tt = find([out(2).s.timcont] > x(1) & [out(2).s.timcont] < x(2));
+    
+  linkaxes(ax, 'x');
+
+%click new figure bounds starting from left
+    [x, ~] = ginput(2);
+    tt = find([in(1).s.timcont] > x(1) & [in(1).s.timcont] < x(2));
+    out(1).s = in.e(1).s(tt);
+    tt = find([in(2).s.timcont] > x(1) & [in(2).s.timcont] < x(2));
     out(2).s = out(2).s(tt);
    
 %Conditional dialogue box for reference
