@@ -34,7 +34,8 @@ end
 
     %hard coded because fuck thinking
     obwdata1 = in.e(1).s(tto{1}).obwAmp; 
-    obwtim1 = tim(tto{1});
+    %obwtim1 = tim(tto{1});
+    obwtim1 = [in.e(1).s(tto{1}).timcont]/(60*60);
             spliney = csaps(obwtim1, obwdata1, p);
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
             o.obw(1).y = fnval(o.obw(1).x, spliney);
