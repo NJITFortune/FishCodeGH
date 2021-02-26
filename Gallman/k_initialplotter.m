@@ -1,44 +1,42 @@
 function k_initialplotter(out)
 % plot the data for fun
 % Usage: k_initialplotter(kg(#));
-%% Plot the data for fun
 
-% All the data
-    tto{1} = 1:length([out.e(1).s.timcont]);
+%% Preparations
+
+% All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
+    tto{1} = 1:length([out.e(1).s.timcont]); % tto is indices for obwAmp
     tto{2} = tto{1};
-    ttz{1} = tto{1};
+
+    ttz{1} = tto{1}; % ttz is indices for zAmp
     ttz{2} = tto{1};
-    %ttpf{1} = tto{1};
-    %ttpf{2} = tto{1};
-    ttsf{1} = tto{1};
+
+    ttsf{1} = tto{1}; % ttsf is indices for sumfftAmp
     ttsf{2} = tto{1};
     
-% BUT.. if we have removed outliers, use these...    
+% If we have removed outliers via KatieRemover, get the indices...    
     if isfield(out, 'idx')
-        tto{1} = out.idx(1).obwidx; tto{2} = out.idx(2).obwidx;
-        ttz{1} = out.idx(1).zidx; ttz{2} = out.idx(2).zidx;
-        %ttpf{1} = out.idx(1).peakfftidx; ttpf{2} = out.idx(2).peakfftidx;
-        ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx;
+        tto{1} = out.idx(1).obwidx; tto{2} = out.idx(2).obwidx; % tto is indices for obwAmp
+        ttz{1} = out.idx(1).zidx; ttz{2} = out.idx(2).zidx; % ttz is indices for zAmp
+        ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
     end
 
-% Continuous data plot
+%% Continuous data plot
+
 figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
 ax(1) = subplot(511); hold on; title('sumfftAmp');
     yyaxis right; plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
     yyaxis left; plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.');
-   % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
 
 ax(2) = subplot(512); hold on; title('zAmp');
     yyaxis right; plot([out.e(2).s(ttz{2}).timcont]/(60*60), [out.e(2).s(ttz{2}).zAmp], '.');
     yyaxis left; plot([out.e(1).s(ttz{1}).timcont]/(60*60), [out.e(1).s(ttz{1}).zAmp], '.');
-   % plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
 
 ax(3) = subplot(513); hold on; title('obwAmp');
     yyaxis right; plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
     yyaxis left; plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
-   % plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
 
 ax(4) = subplot(514); hold on; title('frequency (black) and temperature (red)');   
         yyaxis right; plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.fftFreq], '.k', 'Markersize', 8);
@@ -50,8 +48,8 @@ ax(5) = subplot(515); hold on; title('light transitions');
     plot([out.e(2).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
-    
-    
+        
+% Add feedingtimes, if we have them...    
      if isfield(out, 'info')
         subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
         subplot(512); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.zAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
@@ -120,9 +118,13 @@ figure(4); clf;
         if out.info.luz(j) > 0  % Light side
 
                 if ~isempty(find([out.e(1).s(tto{1}).timcont]/(60*60) > lighttimes(j) & [out.e(1).s(tto{1}).timcont]/(60*60) <= lighttimes(j+2), 1))            
-                    figure(3); subplot(211); hold on;    % Light to dark plot  OBW     
+                    figure(3); 
+                    subplot(211); hold on;    % Light to dark plot  OBW     
                     ott = find([out.e(1).s(tto{1}).timcont]/(60*60) > lighttimes(j) & [out.e(1).s(tto{1}).timcont]/(60*60) <= lighttimes(j+2));
                     plot(([out.e(1).s(tto{1}(ott)).timcont]/(60*60)) - lighttimes(j), [out.e(1).s(tto{1}(ott)).obwAmp] - mean([out.e(1).s(tto{1}(ott)).obwAmp]), 'o', 'MarkerSize', 2); 
+                    subplot(212); hold on;    % Light to dark plot zAmp     
+                    ztt = find([out.e(1).s(ttz{1}).timcont]/(60*60) > lighttimes(j) & [out.e(1).s(ttz{1}).timcont]/(60*60) <= lighttimes(j+2));
+                    plot(([out.e(1).s(ttz{1}(ztt)).timcont]/(60*60)) - lighttimes(j), [out.e(1).s(ttz{1}(ztt)).zAmp] - mean([out.e(1).s(ttz{1}(ztt)).zAmp]), 'o', 'MarkerSize', 2); 
                 end
         
         else % Dark side
