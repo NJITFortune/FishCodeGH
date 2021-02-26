@@ -92,15 +92,15 @@ figure(1); clf; title('Channel 1')
 
     subplot(311); hold on; title('sfft')
     plot(sffttim2, sfftdata2);
-    plot(o.sfft(2).x, o.sfft(2).y); 
+    plot(o.sfft(2).x, o.sfft(2).y, 'k', 'LineWidth', 2); 
 
     subplot(312); hold on; title('zAmp')
     plot(ztim2, zdata2);
-    plot(o.z(2).x, o.z(2).y); 
+    plot(o.z(2).x, o.z(2).y, 'k', 'LineWidth', 2); 
     
     subplot(313); hold on; title('obwAmp')
     plot(obwtim2, obwdata2);
-    plot(o.obw(2).x, o.obw(2).y); 
+    plot(o.obw(2).x, o.obw(2).y, 'k', 'LineWidth', 2); 
     
    
 
