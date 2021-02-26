@@ -111,7 +111,7 @@ if a == 1
         
         % SPIKE INDICES
         faketim = 1:length(in(ent).s(idx(j)).pos);
-        spikerpos = interp1(faketim, in(ent).s(idx(j)).pos, spin(ent).s(idx(j)).st);
+        spikerpos = interp1(faketim, in(ent).s(idx(j)).pos, in(ent).s(idx(j)).st);
         outy.Nidx{idx(j)} = find(spikerpos > xs(1) & spikerpos < xs(2));
         
     end
