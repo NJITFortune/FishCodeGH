@@ -102,35 +102,7 @@ end
 
         pause(1); close(ff);
         
- %% Optional data trimming
-        
- 
-%plot the data over time to check for problems 
-figure (1); hold on; title('sumfftAmp');
-    yyaxis right; plot([out(2).s.timcont]/(60*60), [out(2).s.sumfftAmp], '.');
-    yyaxis left; plot([out(1).s.timcont]/(60*60), [out(1).s.sumfftAmp], '.');
-   % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
- 
- 
-%Trim data if it is problematic... or just plain weird
- answer = questdlg('Do you want to trim the data?', ...
-	'Trim data?', ...
-	'Yes','No');
 
-% Handle response
-switch answer
-    case 'Yes'
-        [x, ~] = ginput(2);
-        tt = find([out(1).s.timcont] > x(1) & [out(1).s.timcont] < x(2));
-        out(1).s = out.e(1).s(tt);
-        tt = find([out(2).s.timcont] > x(1) & [out(2).s.timcont] < x(2));
-        out(2).s = out(2).s(tt);
-        
-    case 'No'
-        return
-    
-end
- 
  
  
  
