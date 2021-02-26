@@ -44,7 +44,7 @@ out(1).s(length(iFiles)).name = [];
 
 for k = 1:length(iFiles)
        
-     waitbar(k/length(iFiles), ff, 'windowstyle', 'modal');
+     waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
 
     
        % LOAD THE DATA FILE
