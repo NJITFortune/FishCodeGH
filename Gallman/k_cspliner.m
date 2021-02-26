@@ -67,8 +67,8 @@ end
             
     sfftdata2 = [in.e(2).s(ttsf{2}).sumfftAmp]; 
     sffttim2 = tim(ttsf{2});
-            spliney = csaps(sffttim1, sfftdata1, p);
-            o.sfft(2).x = sffttim1(2):1/ReFs:sffttim1(end);
+            spliney = csaps(sffttim2, sfftdata2, p);
+            o.sfft(2).x = sffttim2(2):1/ReFs:sffttim2(end);
             o.sfft(2).y = fnval(o.sfft(2).x, spliney);
 
 %% Plot to check fit?
@@ -76,16 +76,16 @@ end
 figure(1); clf; title('Channel 1')
 
     subplot(311); hold on; title('sfft')
-    plot(sffttim1, sfftdata1);
-    plot(o.sfft(1).x, o.sfft(1).y); 
+        plot(sffttim1, sfftdata1);
+        plot(o.sfft(1).x, o.sfft(1).y, 'k', 'LineWidth', 2); 
 
     subplot(312); hold on; title('zAmp')
-    plot(ztim1, zdata1);
-    plot(o.z(1).x, o.z(1).y); 
+        plot(ztim1, zdata1);
+        plot(o.z(1).x, o.z(1).y, 'k', 'LineWidth', 2); 
     
     subplot(313); hold on; title('obwAmp')
-    plot(obwtim1, obwdata1);
-    plot(o.obw(1).x, o.obw(1).y); 
+        plot(obwtim1, obwdata1);
+        plot(o.obw(1).x, o.obw(1).y, 'k', 'LineWidth', 2); 
     
     
  figure(2); clf; title('Channel 2')
