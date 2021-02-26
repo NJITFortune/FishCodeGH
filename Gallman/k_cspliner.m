@@ -59,13 +59,13 @@ end
             o.z(2).y = fnval(o.z(2).x, spliney);
 
             
-    sfftdata1 = [in.e(1).s(ttsf{1}).sfftAmp]; 
+    sfftdata1 = [in.e(1).s(ttsf{1}).sumfftAmp]; 
     sffttim1 = tim(ttsf{1});
             spliney = csaps(sffttim1, sfftdata1, p);
             o.sfft(1).x = sffttim1(1):1/ReFs:sffttim1(end);
             o.sfft(1).y = fnval(o.sfft(1).x, spliney);
             
-    sfftdata1 = [in.e(2).s(ttsf{2}).sfftAmp]; 
+    sfftdata1 = [in.e(2).s(ttsf{2}).sumfftAmp]; 
     sffttim1 = tim(ttsf{2});
             spliney = csaps(sffttim1, sfftdata1, p);
             o.sfft(2).x = sffttim1(2):1/ReFs:sffttim1(end);
