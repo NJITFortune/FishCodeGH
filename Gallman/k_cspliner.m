@@ -40,32 +40,32 @@ end
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
             o.obw(1).y = fnval(o.obw(1).x, spliney);
             
-    obwdata2 = in.e(2).s(tto{2}).obwAmp; 
+    obwdata2 = [in.e(2).s(tto{2}).obwAmp]; 
     obwtim2 = tim(tto{2});
             spliney = csaps(obwtim2, obwdata2, p);
             o.obw(2).x = obwtim2(1):1/ReFs:obwtim2(end);
             o.obw(2).y = fnval(o.obw(2).x, spliney);
         
-    zdata1 = in.e(1).s(ttz{1}).zAmp; 
+    zdata1 = [in.e(1).s(ttz{1}).zAmp]; 
     ztim1 = tim(ttz{1});
             spliney = csaps(ztim1, zdata1, p);
             o.z(1).x = ztim1(1):1/ReFs:ztim1(end);
             o.z(1).y = fnval(o.z(1).x, spliney);
             
-    zdata2 = in.e(2).s(ttz{2}).zAmp; 
+    zdata2 = [in.e(2).s(ttz{2}).zAmp]; 
     ztim2 = tim(ttz{2});
             spliney = csaps(ztim2, zdata2, p);
             o.obw(2).x = ztim2(1):1/ReFs:ztim2(end);
             o.z(2).y = fnval(o.z(2).x, spliney);
 
             
-    sfftdata1 = in.e(1).s(ttsf{1}).sfftAmp; 
+    sfftdata1 = [in.e(1).s(ttsf{1}).sfftAmp]; 
     sffttim1 = tim(ttsf{1});
             spliney = csaps(sffttim1, sfftdata1, p);
             o.sfft(1).x = sffttim1(1):1/ReFs:sffttim1(end);
             o.sfft(1).y = fnval(o.sfft(1).x, spliney);
             
-    sfftdata1 = in.e(2).s(ttsf{2}).sfftAmp; 
+    sfftdata1 = [in.e(2).s(ttsf{2}).sfftAmp]; 
     sffttim1 = tim(ttsf{2});
             spliney = csaps(sffttim1, sfftdata1, p);
             o.sfft(2).x = sffttim1(2):1/ReFs:sffttim1(end);
