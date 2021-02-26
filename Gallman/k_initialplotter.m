@@ -22,6 +22,24 @@ function k_initialplotter(out)
 %     end
 %% Preparations
 
+isFieldResult = isfield(out, 'idx');
+
+    if isFieldResult == 0
+        tto{1} = 1:length([out.e(1).s.timcont]); % tto is indices for obwAmp
+        tto{2} = tto{1};
+
+        ttz{1} = tto{1}; % ttz is indices for zAmp
+        ttz{2} = tto{1};
+
+        ttsf{1} = tto{1}; % ttsf is indices for sumfftAmp
+        ttsf{2} = tto{1};
+    end    
+    
+    if isFieldResult == 1
+        tto{1} = out.idx(1).obwidx; tto{2} = out.idx(2).obwidx; % tto is indices for obwAmp
+        ttz{1} = out.idx(1).zidx; ttz{2} = out.idx(2).zidx; % ttz is indices for zAmp
+        ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+    end     
 
 
 
