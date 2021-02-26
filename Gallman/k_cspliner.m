@@ -72,13 +72,36 @@ end
 
 %% Plot to check fit?
 
-figure(1); clf; 
-    subplot(311); hold on;
-    plot(obwtim1, obwdata1
+figure(1); clf; title('Channel 1')
 
-    plot(obwtim, obwdata);
-hold on; 
-    plot(obwretim, obwredata, '.-')
+    subplot(311); hold on; title('sfft')
+    plot(sffttim1, sfftdata1);
+    plot(o.sfft(1).x, o.sfft(1).y); 
+
+    subplot(312); hold on; title('zAmp')
+    plot(ztim1, zdata1);
+    plot(o.z(1).x, o.z(1).y); 
+    
+    subplot(313); hold on; title('obwAmp')
+    plot(obwtim1, obwdata1);
+    plot(o.obw(1).x, o.obw(1).y); 
+    
+    
+ figure(2); clf; title('Channel 2')
+
+    subplot(311); hold on; title('sfft')
+    plot(sffttim2, sfftdata2);
+    plot(o.sfft(2).x, o.sfft(2).y); 
+
+    subplot(312); hold on; title('zAmp')
+    plot(ztim2, zdata2);
+    plot(o.z(2).x, o.z(2).y); 
+    
+    subplot(313); hold on; title('obwAmp')
+    plot(obwtim2, obwdata2);
+    plot(o.obw(2).x, o.obw(2).y); 
+    
+   
 
 %% Resample - original for reference
 
