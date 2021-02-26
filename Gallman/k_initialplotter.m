@@ -35,7 +35,7 @@ ax(2) = subplot(512); hold on; title('zAmp');
     yyaxis left; plot([out.e(1).s(ttz{1}).timcont]/(60*60), [out.e(1).s(ttz{1}).zAmp], '.');
 
 ax(3) = subplot(513); hold on; title('obwAmp');
-    yyaxis right; plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
+    yyaxis right; plot([out.e(2).s(tto{2}).timcont]/(60*60*24), [out.e(2).s(tto{2}).obwAmp], '.');
     yyaxis left; plot([out.e(1).s(tto{1}).timcont]/(60*60*24), [out.e(1).s(tto{1}).obwAmp], '.');
 
 ax(4) = subplot(514); hold on; title('frequency (black) and temperature (red)');   
