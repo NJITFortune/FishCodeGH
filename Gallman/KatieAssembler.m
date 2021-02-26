@@ -34,18 +34,23 @@ daycount = 0;
         topFreqOBW = 800;
         botFreqOBW = 300;
 
-out(1).sampl(length(iFiles)).Fs = Fs;
-out(1).sampl(length(iFiles)).name = [];
+out(1).s(length(iFiles)).Fs = Fs;
+out(1).s(length(iFiles)).name = [];
         
         
 %% CYCLE THROUGH EVERY FILE IN DIRECTORY
 
+    ff = waitbar(0, 'Cycling through files.');
+
 for k = 1:length(iFiles)
-        
+       
+     waitbar(k/length(iFiles), ff);
+
+    
        % LOAD THE DATA FILE
         load(iFiles(k).name, 'data', 'tim');
-        out(1).sampl(k).Fs = 1 / (tim(2)-tim(1)); % Extract the sample rate
-        out(2).sampl(k).Fs = out(1).sampl(k).Fs;
+        out(1).s(k).Fs = 1 / (tim(2)-tim(1)); % Extract the sample rate
+        out(2).s(k).Fs = out(1).s(k).Fs;
         
        % Filter data  
           
@@ -55,44 +60,86 @@ for k = 1:length(iFiles)
             data(:,2) = filtfilt(b,a, data(:,2)); % High pass filter
             data(:,2) = filtfilt(f,e, data(:,2)); % Low pass filter   
 
-        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
+        % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
+ 
+                hour = str2double(iFiles(k).name(numstart:numstart+1));        %numstart based on time stamp text location
+                minute = str2double(iFiles(k).name(numstart+3:numstart+4));
+                second = str2double(iFiles(k).name(numstart+6:numstart+7));
+                
+            if k > 1 && ((hour*60*60) + (minute*60) + second) < out(1).s(k-1).tim24
+                   daycount = daycount + 1;
+            end
+            
+       % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
         for j = 1:2 % Perform analyses on the two channels
         
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
-            [out(j).sampl(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
-            data4analysis = data(tim > out(j).sampl(k).startim & tim < out(j).sampl(k).startim+SampleWindw, j);            
+            [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
+            data4analysis = data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j);            
             
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
             % OBW
-            [~,~,~,out(j).sampl(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+            [~,~,~,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
             % zAmp
-            out(j).sampl(k).zAmp = k_zAmp(data4analysis);
+            out(j).s(k).zAmp = k_zAmp(data4analysis);
             % FFT Machine
-            [out(j).sampl(k).fftFreq, out(j).sampl(k).peakfftAmp, out(j).sampl(k).sumfftAmp] = k_fft(data4analysis, Fs); 
+            [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
         
       
-            out(j).sampl(k).light = mean(data(:,lightchan));
-            out(j).sampl(k).temp = mean(data(:,tempchan));
+            out(j).s(k).light = mean(data(:,lightchan));
+            out(j).s(k).temp = mean(data(:,tempchan));
     
-        % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
- 
-        hour = str2double(iFiles(k).name(numstart:numstart+1));        %numstart based on time stamp text location
-        minute = str2double(iFiles(k).name(numstart+3:numstart+4));
-        second = str2double(iFiles(k).name(numstart+6:numstart+7));
-
-            if k > 1 
-                if ((hour*60*60) + (minute*60) + second) < out(j).sampl(k-1).tim24
-                daycount = daycount + 1;
-                end
-            end
             
         % There are 86400 seconds in a day.
-        out(j).sampl(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
-        out(j).sampl(k).tim24 = (hour*60*60) + (minute*60) + second;
+        out(j).s(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
+        out(j).s(k).tim24 = (hour*60*60) + (minute*60) + second;
         
         end
         
 end
+
+        pause(1); close(ff);
+        
+ %% Optional data trimming
+        
+ 
+%plot the data over time to check for problems 
+Figure (1); hold on; title('sumfftAmp');
+    yyaxis right; plot([out(2).s.timcont]/(60*60), [out(2).s.sumfftAmp], '.');
+    yyaxis left; plot([out(1).s.timcont]/(60*60), [out(1).s.sumfftAmp], '.');
+   % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
+ 
+ 
+%Trim data if it is problematic... or just plain weird
+ answer = questdlg('Do you want to trim the data?', ...
+	'Trim data?', ...
+	'Yes','No');
+
+% Handle response
+switch answer
+    case 'Yes'
+        [x, ~] = ginput(2);
+        tt = find([out(1).s.timcont] > x(1) & [out(1).s.timcont] < x(2));
+        out(1).s = out.e(1).s(tt);
+        tt = find([out(2).s.timcont] > x(1) & [out(2).s.timcont] < x(2));
+        out(2).s = out(2).s(tt);
+        
+    case 'No'
+        return
+    
+end
+ 
+ 
+ 
+ 
+ 
+    
+        
+        
+        
+        
+        
+         
     
