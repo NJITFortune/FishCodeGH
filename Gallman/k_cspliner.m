@@ -5,7 +5,7 @@ function [xx, yy] = k_cspliner(x, y, p)
 if nargin < 3
     p = 0.9; %smoothing factor
 end
-ReFs = 80;  %resample once every minute
+ReFs = 60;  %resample once every minute
 
 spliney = csaps(x, y, p);
 
