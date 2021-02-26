@@ -106,6 +106,8 @@ linkaxes(xa, 'x'); xlim([0 24]);
 
 %% Light/Dark Plot 
 
+if ~isempty(out.info)
+
 figure(3); clf; 
     set(gcf, 'Position', [400 100 2*560 2*420]);
 figure(4); clf; 
@@ -142,4 +144,6 @@ figure(4); clf;
         end         
          
      end
+     
+end
             
