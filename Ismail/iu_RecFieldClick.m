@@ -107,7 +107,7 @@ if a == 1
     
     for j = 1:length(idx) % cycle through each 
         outy.Pidx{idx(j)} = find(in(ent).s(idx(j)).pos > xs(1) & in(ent).s(idx(j)).pos < xs(2));
-        outy.Nidx{idx(j)} = find(in(ent).s(idx(j)).st > xs(1) & in(ent).s(idx(j)).st < xs(2));
+        outy.Nidx{idx(j)} = find(spikePOS > xs(1) & spikePOS < xs(2));
     end
     
 end
