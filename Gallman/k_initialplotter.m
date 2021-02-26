@@ -34,7 +34,7 @@ ax(2) = subplot(512); hold on; title('zAmp');
     yyaxis right; plot([out.e(2).s(ttz{2}).timcont]/(60*60), [out.e(2).s(ttz{2}).zAmp], '.');
     yyaxis left; plot([out.e(1).s(ttz{1}).timcont]/(60*60), [out.e(1).s(ttz{1}).zAmp], '.');
 
- subplot(513); hold on; title('obwAmp');
+xa(1) = subplot(513); hold on; title('obwAmp');
     yyaxis right; plot([out.e(2).s(tto{2}).timcont]/(60*60*24), [out.e(2).s(tto{2}).obwAmp], '.');
     yyaxis left; plot([out.e(1).s(tto{1}).timcont]/(60*60*24), [out.e(1).s(tto{1}).obwAmp], '.');
 
@@ -61,7 +61,8 @@ ax(5) = subplot(515); hold on; title('light transitions');
 %         for j=1:length(lightidx); plot([abs(out.info.luz(lightidx(j))) abs(out.info.luz(lightidx(j)))], [0 5], 'c-'); end
 %         
         
-linkaxes(ax, 'x');
+linkaxes(ax, 'x'); 
+
 
 %% 24 hour plot 
 % tim24 based off of computer midnight
