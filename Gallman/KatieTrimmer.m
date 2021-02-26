@@ -26,28 +26,27 @@ figure (1); hold on; title('sumfftAmp');
 
 %click new figure bounds starting from left
     [x, ~] = ginput(2);
+    
+      %Make sure these are the ones we want before we over write the data  
+       answer = questdlg('Do you like these bounds?', ...
+        'Trim data?', ...
+        'Yes','No');
+
+        % Handle response
+        switch answer
+            case 'Yes'
+                tt = find([in(1).s.timcont] > x(1) & [in(1).s.timcont] < x(2));
+                out(1).s = in(1).s(tt);
+                tt = find([in(2).s.timcont] > x(1) & [in(2).s.timcont] < x(2));
+                out(2).s = in(2).s(tt);
+
+            case 'No'
+                clear x; 
+                [x, ~] = ginput(2);
+        end 
+    
     tt = find([in(1).s.timcont] > x(1) & [in(1).s.timcont] < x(2));
-    out(1).s = in.e(1).s(tt);
+    out(1).s = in(1).s(tt);
     tt = find([in(2).s.timcont] > x(1) & [in(2).s.timcont] < x(2));
-    out(2).s = out(2).s(tt);
-   
-%Conditional dialogue box for reference
-% %Trim data if it is problematic... or just plain weird
-%  answer = questdlg('Do you want to trim the data?', ...
-% 	'Trim data?', ...
-% 	'Yes','No');
-% 
-% % Handle response
-% switch answer
-%     case 'Yes'
-%         [x, ~] = ginput(2);
-%         tt = find([out(1).s.timcont] > x(1) & [out(1).s.timcont] < x(2));
-%         out(1).s = out.e(1).s(tt);
-%         tt = find([out(2).s.timcont] > x(1) & [out(2).s.timcont] < x(2));
-%         out(2).s = out(2).s(tt);
-%         
-%     case 'No'
-%         return
-%     
-% end
- 
+    out(2).s = in(2).s(tt);
+
