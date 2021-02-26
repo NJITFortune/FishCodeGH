@@ -1,5 +1,5 @@
 function out  = KatieTrimmer(in)
-%Usage:kg(#).e = k_initialplotter(kg(#).e);
+%Usage:kg(#).e = KatieTrimmer(kg(#).e);
  % Optional data trimming
         
  
