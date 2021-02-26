@@ -26,14 +26,14 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
     for j = 1:length(idx) % cycle to concatonate all of the correct entries
 
         sizetmp = size(in(ent).s(idx(j)).pos);
-            if sizetmp(1)/sizetmp(2) < 1; pos = [pos in(ent).s(idx(j)).pos(rf.Pidx{(idx(j))})]; end % Concatonate position
-            if sizetmp(1)/sizetmp(2) > 1; pos = [pos in(ent).s(idx(j)).pos(rf.Pidx{(idx(j))})']; end % Concatonate position
+            if sizetmp(1)/sizetmp(2) < 1; pos = [pos in(ent).s(idx(j)).pos(rf.Pidx{idx(j)})]; end % Concatonate position
+            if sizetmp(1)/sizetmp(2) > 1; pos = [pos in(ent).s(idx(j)).pos(rf.Pidx{idx(j)})']; end % Concatonate position
             
         currtim = 1/Fs:1/Fs:length(in(ent).s(idx(j)).pos)/Fs; % A time base for the currently added position
 
         sizetmp = size(in(ent).s(idx(j)).st);
-            if sizetmp(1)/sizetmp(2) < 1; spikes = [spikes (in(ent).s(idx(j)).st(idx(j).Nidx) + tim(end))]; end % Concatonate position
-            if sizetmp(1)/sizetmp(2) > 1; spikes = [spikes (in(ent).s(idx(j)).st(idx(j).Nidx) + tim(end))']; end % Concatonate position
+            if sizetmp(1)/sizetmp(2) < 1; spikes = [spikes (in(ent).s(idx(j)).st(rf.Nidx{idx(j)}) + tim(end))]; end % Concatonate position
+            if sizetmp(1)/sizetmp(2) > 1; spikes = [spikes (in(ent).s(idx(j)).st(rf.Nidx{idx(j)}) + tim(end))']; end % Concatonate position
          % Concatonate spike times, adding the time from the end of previous
         
         tim = [tim (currtim(rf(idx(j)).Pidx) + tim(end))]; % Update the time base 
