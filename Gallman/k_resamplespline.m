@@ -1,4 +1,4 @@
-function k_resamplespline(in)
+function k_resamplespline(in, p)
 
 %in = kg
 
@@ -18,7 +18,7 @@ function k_resamplespline(in)
 %         sffttim = tim(in.idx(1).sumfftidx);
 
     
-    [obwretim, obwredata] = k_cspliner(obwtim, obwdata);
+    [obwretim, obwredata] = k_cspliner(obwtim, obwdata, p);
     
     %specgram(obwredata)
         
