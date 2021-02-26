@@ -1,6 +1,6 @@
 function out  = KatieTrimmer(in)
-%Usage:kg(#).e = KatieTrimmer(kg(#).e);
- % Optional data trimming
+% Usage:kg(#).e = KatieTrimmer(kg(#).e);
+% Optional data trimming
         
  
 %plot the data over time to check for problems 
