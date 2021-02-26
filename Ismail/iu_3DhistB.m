@@ -1,4 +1,4 @@
-function out = iu_3DhistA(in, ent, sz)
+function out = iu_3DhistB(in, ent, sz, rf)
 % Function out = iu_hist(spikes, randspikes, sig, Fs, wid)
 % spikes are the spike times
 % randspikes are shuffled spike times
@@ -25,7 +25,6 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
 
     for j = 1:length(idx) % cycle to concatonate all of the correct entries
 
-        sizetmp = size(in(ent).s(idx(j)).pos);
             if sizetmp(1)/sizetmp(2) < 1; pos = [pos in(ent).s(idx(j)).pos]; end % Concatonate position
             if sizetmp(1)/sizetmp(2) > 1; pos = [pos in(ent).s(idx(j)).pos']; end % Concatonate position
             
@@ -36,7 +35,7 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
             if sizetmp(1)/sizetmp(2) > 1; spikes = [spikes (in(ent).s(idx(j)).st + tim(end))']; end % Concatonate position
          % Concatonate spike times, adding the time from the end of previous
         
-        tim = [tim (currtim + tim(end))]; % Update the time base 
+        tim = [tim (currtim(rf(idx(j)).Pidx + tim(end))]; % Update the time base 
         
     end
         
