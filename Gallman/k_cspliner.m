@@ -12,10 +12,8 @@ spliney = csaps(x, y, p);
 %%RESAMPLE DATA ALONG SPLINE FUNCTION
 %%Generate uniform (regular) time values
 
-%xx = 1/ReFs:1/ReFs:max(x);
-xx = linspace(x(1), x(end), ((x(end)-x(1))*ReFs));
-xx(1)
-xx(end)
+xx = x(1):1/ReFs:x(end);
+%xx = linspace(x(1), x(end), ((x(end)-x(1))*ReFs));
 
 %%Resample at new time values along cubic spline
 yy = fnval(xx, spliney);
