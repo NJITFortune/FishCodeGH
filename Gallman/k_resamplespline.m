@@ -23,12 +23,12 @@ function k_resamplespline(in)
     %specgram(obwredata)
         
    %[Freq, Peak, ] = k_fft(obwredata, 60);
-figure(1);clf; plot(obwredata, 'o-')
+figure(1);clf; plot(obwretim, obwredata, '.-')
 %     foo = fftmachine(obwredata - mean(obwredata), 60);
 %      plot(foo.fftfreq, foo.fftdata, 'o-');
         
 figure(2); clf;
-    plot(obwdata);
+    plot(tim, obwdata);
 % % Initialize the figure        
 % 
 % figure(1); clf; a = gcf; 
