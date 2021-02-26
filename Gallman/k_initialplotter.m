@@ -15,7 +15,7 @@ function k_initialplotter(out)
     ttsf{2} = tto{1};
     
 % If we have removed outliers via KatieRemover, get the indices...    
-    if isfield(out, 'idx')
+    if ~isempty(out.idx)
         tto{1} = out.idx(1).obwidx; tto{2} = out.idx(2).obwidx; % tto is indices for obwAmp
         ttz{1} = out.idx(1).zidx; ttz{2} = out.idx(2).zidx; % ttz is indices for zAmp
         ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
@@ -50,7 +50,7 @@ ax(5) = subplot(515); hold on; title('light transitions');
     xlabel('Continuous');
         
 % Add feedingtimes, if we have them...    
-     if isfield(out, 'info')
+     if ~isempty(out.info)
         subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
         subplot(512); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.zAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
         subplot(513); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.obwAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
@@ -106,6 +106,8 @@ linkaxes(xa, 'x'); xlim([0 24]);
 
 %% Light/Dark Plot 
 
+if ~isempty(out.info)
+
 figure(3); clf; 
     set(gcf, 'Position', [400 100 2*560 2*420]);
 figure(4); clf; 
@@ -142,4 +144,6 @@ figure(4); clf;
         end         
          
      end
+     
+end
             
