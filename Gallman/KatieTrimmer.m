@@ -1,6 +1,6 @@
 function out  = KatieTrimmer(in)
-%Usage:kg(#).e = KatieTrimmer(kg(#).e);
- % Optional data trimming
+% Usage:kg(#).e = KatieTrimmer(kg(#).e);
+% Optional data trimming
         
  
 %plot the data over time to check for problems 
@@ -30,10 +30,10 @@ figure (1); hold on; title('sumfftAmp');
     %Make sure these are the ones we want before we over write the data  
     A = input('Wtf do you want to do?');
     if A == 1 
-        tt = find([in(1).s.timcont] > x(1) & [in(1).s.timcont] < x(2));
-        out(1).s = in(1).s(tt);
-        tt = find([in(2).s.timcont] > x(1) & [in(2).s.timcont] < x(2));
-        out(2).s = in(2).s(tt);
+        tt = find([in(1).s.timcont]/(60*60) > x(1) & [in(1).s.timcont]/(60*60) < x(2));
+            out(1).s = in(1).s(tt);
+        tt = find([in(2).s.timcont]/(60*60) > x(1) & [in(2).s.timcont]/(60*60) < x(2));
+            out(2).s = in(2).s(tt);
     else 
         return
    
