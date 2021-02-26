@@ -1,8 +1,10 @@
-function [xx, yy] = k_cspliner(x, y)
+function [xx, yy] = k_cspliner(x, y, p)
 
 %%GENERATE CUBIC SPLINE FUNCTION FOR DATA
 %f(x) = csaps(x,y,p); p = 0.9
-p = 0.9; %smoothing factor
+if nargin < 3
+    p = 0.9; %smoothing factor
+end
 ReFs = 80;  %resample once every minute
 
 spliney = csaps(x, y, p);
@@ -12,9 +14,8 @@ spliney = csaps(x, y, p);
 %%RESAMPLE DATA ALONG SPLINE FUNCTION
 %%Generate uniform (regular) time values
 
-%xx = 1/ReFs:1/ReFs:max(x);
-xx = linspace(x(1), x(end), ((x(end)-x(1))*ReFs));
-
+xx = x(1):1/ReFs:x(end);
+%xx = linspace(x(1), x(end), ((x(end)-x(1))*ReFs));
 
 %%Resample at new time values along cubic spline
 yy = fnval(xx, spliney);
