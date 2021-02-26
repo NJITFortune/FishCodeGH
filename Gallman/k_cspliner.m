@@ -55,7 +55,7 @@ end
     zdata2 = [in.e(2).s(ttz{2}).zAmp]; 
     ztim2 = tim(ttz{2});
             spliney = csaps(ztim2, zdata2, p);
-            o.obw(2).x = ztim2(1):1/ReFs:ztim2(end);
+            o.z(2).x = ztim2(1):1/ReFs:ztim2(end);
             o.z(2).y = fnval(o.z(2).x, spliney);
 
             
