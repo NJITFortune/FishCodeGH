@@ -41,12 +41,7 @@ figure (1); hold on; title('sumfftAmp');
                 out(2).s = in(2).s(tt);
 
             case 'No'
-                clear x; 
-                [x, ~] = ginput(2);
+                return
         end 
     
-    tt = find([in(1).s.timcont] > x(1) & [in(1).s.timcont] < x(2));
-    out(1).s = in(1).s(tt);
-    tt = find([in(2).s.timcont] > x(1) & [in(2).s.timcont] < x(2));
-    out(2).s = in(2).s(tt);
-
+    
