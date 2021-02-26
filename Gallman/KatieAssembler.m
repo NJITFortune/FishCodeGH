@@ -106,7 +106,7 @@ end
         
  
 %plot the data over time to check for problems 
-Figure (1); hold on; title('sumfftAmp');
+figure (1); hold on; title('sumfftAmp');
     yyaxis right; plot([out(2).s.timcont]/(60*60), [out(2).s.sumfftAmp], '.');
     yyaxis left; plot([out(1).s.timcont]/(60*60), [out(1).s.sumfftAmp], '.');
    % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
