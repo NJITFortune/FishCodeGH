@@ -28,7 +28,7 @@ figure(1);clf; plot(obwretim, obwredata, '.-')
 %      plot(foo.fftfreq, foo.fftdata, 'o-');
         
 figure(2); clf;
-    plot(tim, obwdata);
+    plot(obwtim, obwdata);
 % % Initialize the figure        
 % 
 % figure(1); clf; a = gcf; 
