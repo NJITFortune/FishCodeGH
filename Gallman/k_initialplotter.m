@@ -62,6 +62,7 @@ ax(5) = subplot(515); hold on; title('light transitions');
 %         
         
 linkaxes(ax, 'x'); 
+xa.XLim = ax(1).XLim/24;
 
 
 %% 24 hour plot 
