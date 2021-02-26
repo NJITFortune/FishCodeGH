@@ -106,10 +106,10 @@ figure(1); clf; title('Channel 1')
    
     plot(o.sfft(1).x, o.sfft(1).y, 'b', 'LineWidth', 2); 
     plot(o.z(1).x, o.z(1).y, 'r', 'LineWidth', 2); 
-    plot(o.obw(1).x, o.obw(1).y, 'k', 'LineWidth', 2); 
     plot(o.sfft(2).x, o.sfft(2).y, 'c', 'LineWidth', 2); 
     plot(o.z(2).x, o.z(2).y, 'm', 'LineWidth', 2); 
-    plot(o.obw(2).x, o.obw(2).y, '', 'LineWidth', 2); 
+    plot(o.obw(1).x, o.obw(1).y, 'LineWidth', 2); 
+    plot(o.obw(2).x, o.obw(2).y, 'LineWidth', 2); 
 
 %% Resample - original for reference
 
