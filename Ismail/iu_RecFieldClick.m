@@ -106,7 +106,9 @@ if a == 1
 
     outy.Yrang = sort(xs);
     
-            figure(27); clf; hold on; 
+            figure(27); clf; 
+                subplot(121); hold on; title('Original Data');
+                subplot(122); hold on; title('RF Data');
     
     for j = 1:length(idx) % cycle through each 
         % STIMULUS INDICES 
@@ -120,7 +122,8 @@ if a == 1
           spikerpos = interp1(tim, in(ent).s(idx(j)).pos, in(ent).s(idx(j)).st);
           outy.Nidx{idx(j)} = find(spikerpos > xs(1) & spikerpos < xs(2));
 
-          plot(in(ent).s(idx(j)).st(outy.Nidx{idx(j)}), spikerpos(outy.Nidx{idx(j)}), 'o');
+          subplot(121); plot(in(ent).s(idx(j)).st, spikerpos, 'o');
+          subplot(122); plot(in(ent).s(idx(j)).st(outy.Nidx{idx(j)}), spikerpos(outy.Nidx{idx(j)}), 'o');
         end
     end
     
