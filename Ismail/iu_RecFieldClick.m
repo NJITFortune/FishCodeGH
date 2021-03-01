@@ -5,6 +5,7 @@ function outy = iu_RecFieldClick(in, ent, sz)
 % "out is rf
 % "ent" = is entry (e.g. AL(1) and rf(1))
 % sz is 1-8 (1 being small close, and 8 large)
+% EXAMPLE: rf(13).s(2) = iu_RecFieldClick(AL, 13, 2);
 
 % For the histogram
     numOfBins = 24;
