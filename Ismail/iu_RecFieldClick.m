@@ -115,7 +115,7 @@ if a == 1
         figure(27); hold on; plot(faketim, in(ent).s(idx(j)).pos);
         spikerpos = interp1(faketim, in(ent).s(idx(j)).pos, in(ent).s(idx(j)).st);
         outy.Nidx{idx(j)} = find(spikerpos > xs(1) & spikerpos < xs(2));
-        plot(in(ent).s(idx(j)).st(outy.Nidx{idx(j)}), spikerpos(outy.Nidx{idx(j)}), 'o');
+        plot(faketim(outy.Nidx{idx(j)}), spikerpos(outy.Nidx{idx(j)}), 'o');
         end
     end
     
