@@ -118,7 +118,8 @@ if a == 1
         if ~isempty(in(ent).s(idx(j)).st)
         % SPIKE INDICES
           tim = 1/in(ent).s(idx(j)).pFs:1/in(ent).s(idx(j)).pFs:length(in(ent).s(idx(j)).pos) / in(ent).s(idx(j)).pFs;
-            plot(tim, in(ent).s(idx(j)).pos);
+            subplot(121); plot(tim, in(ent).s(idx(j)).pos);
+            subplot(122); plot(tim, in(ent).s(idx(j)).pos);
           spikerpos = interp1(tim, in(ent).s(idx(j)).pos, in(ent).s(idx(j)).st);
           outy.Nidx{idx(j)} = find(spikerpos > xs(1) & spikerpos < xs(2));
 
