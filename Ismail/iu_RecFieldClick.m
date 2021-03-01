@@ -108,14 +108,18 @@ if a == 1
     
     for j = 1:length(idx) % cycle through each 
         % STIMULUS INDICES 
-        outy.Pidx{idx(j)} = find(in(ent).s(idx(j)).pos > xs(1) & in(ent).s(idx(j)).pos < xs(2));
+        
+            outy.Pidx{idx(j)} = find(in(ent).s(idx(j)).pos > xs(1) & in(ent).s(idx(j)).pos < xs(2));
+            
         if ~isempty(in(ent).s(idx(j)).st)
         % SPIKE INDICES
-        faketim = 1:1:length(in(ent).s(idx(j)).pos);
-        figure(27); hold on; plot(faketim, in(ent).s(idx(j)).pos);
-        spikerpos = interp1(faketim, in(ent).s(idx(j)).pos, in(ent).s(idx(j)).st);
-        outy.Nidx{idx(j)} = find(spikerpos > xs(1) & spikerpos < xs(2));
-        plot(faketim(outy.Nidx{idx(j)}), spikerpos(outy.Nidx{idx(j)}), 'o');
+          tim = 1/in(ent).s(idx(j)).pFs:1/in(ent).s(idx(j)).pFs:length(in(ent).s(idx(j)).pos) / in(ent).s(idx(j)).pFs;
+            figure(27); hold on; 
+            plot(tim, in(ent).s(idx(j)).pos);
+          spikerpos = interp1(tim, in(ent).s(idx(j)).pos, in(ent).s(idx(j)).st);
+          outy.Nidx{idx(j)} = find(spikerpos > xs(1) & spikerpos < xs(2));
+
+          plot(in(ent).s(idx(j)).st(outy.Nidx{idx(j)}), spikerpos(outy.Nidx{idx(j)}), 'o');
         end
     end
     
