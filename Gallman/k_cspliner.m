@@ -112,9 +112,17 @@ figure(1); clf; title('Channel 1')
     
     plot(o.obw(1).x, o.obw(1).y / max(o.obw(1).y), 'LineWidth', 2); 
     plot(o.obw(2).x, o.obw(2).y / max(o.obw(2).y), 'LineWidth', 2); 
-%% Fft power analysis
+%% Fft power analysis of obw
+%1/x = hours
+%comparisons tell us that ReFs and p do not have much affect at the lower
+%frequencies
 
+f = fftmachine(o.obw(1).y - mean(o.obw(1).y), ReFs); 
 
+figure(4); clf; hold on; 
+
+    
+    plot(f.fftfreq, f.fftdata, 'm-o'); xlim([0 0.4]);
 
 
 
