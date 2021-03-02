@@ -71,7 +71,7 @@ end
             o.sfft(2).x = sffttim2(2):1/ReFs:sffttim2(end);
             o.sfft(2).y = fnval(o.sfft(2).x, spliney);
 
-%% Plot to check fit?
+%% Plot to check fit
 
 figure(1); clf; title('Channel 1')
 
@@ -112,6 +112,11 @@ figure(1); clf; title('Channel 1')
     
     plot(o.obw(1).x, o.obw(1).y / max(o.obw(1).y), 'LineWidth', 2); 
     plot(o.obw(2).x, o.obw(2).y / max(o.obw(2).y), 'LineWidth', 2); 
+%% Fft power analysis
+
+
+
+
 
 %% Resample - original for reference
 
