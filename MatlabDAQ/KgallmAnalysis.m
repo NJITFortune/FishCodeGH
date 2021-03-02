@@ -220,7 +220,7 @@ ax(3) = subplot(413); hold on;
     yyaxis left; ylim([200 800]);
         plot([out.timcont]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
         plot([out.timcont]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
-%        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
+%        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Ma[brkersize', 8);
     
 ax(4) = subplot(414); hold on;
     plot([out.timcont]/(60*60), [out.light], '.', 'Markersize', 8);
