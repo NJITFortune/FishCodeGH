@@ -1,7 +1,7 @@
 function k_initialplotter(out)
 % plot the data for fun
 % Usage: k_initialplotter(kg(#));
-
+close all;
 %% Preparations
 
 % All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
