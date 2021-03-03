@@ -1,7 +1,7 @@
 function k_initialplotter(out)
 % plot the data for fun
 % Usage: k_initialplotter(kg(#));
-
+close all;
 %% Preparations
 
 % All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
@@ -110,9 +110,9 @@ linkaxes(xa, 'x'); xlim([0 24]);
 
 if ~isempty(out.info)
 
-figure(3); clf; 
+figure(3); clf; title('Light to dark');
     set(gcf, 'Position', [400 100 2*560 2*420]);
-figure(4); clf; 
+figure(4); clf; title('Dark to light');
     set(gcf, 'Position', [500 100 2*560 2*420]);
 
     lighttimes = abs(out.info.luz);
@@ -123,10 +123,10 @@ figure(4); clf;
 
                 if ~isempty(find([out.e(1).s(tto{1}).timcont]/(60*60) > lighttimes(j) & [out.e(1).s(tto{1}).timcont]/(60*60) <= lighttimes(j+2), 1))            
                     figure(3); 
-                    subplot(211); hold on;    % Light to dark plot  OBW     
+                    subplot(211); hold on; title('OBW');   % Light to dark plot  OBW     
                     ott = find([out.e(1).s(tto{1}).timcont]/(60*60) > lighttimes(j) & [out.e(1).s(tto{1}).timcont]/(60*60) <= lighttimes(j+2));
                     plot(([out.e(1).s(tto{1}(ott)).timcont]/(60*60)) - lighttimes(j), [out.e(1).s(tto{1}(ott)).obwAmp] - mean([out.e(1).s(tto{1}(ott)).obwAmp]), 'o', 'MarkerSize', 2); 
-                    subplot(212); hold on;    % Light to dark plot zAmp     
+                    subplot(212); hold on; title('zAmp');     % Light to dark plot zAmp     
                     ztt = find([out.e(1).s(ttz{1}).timcont]/(60*60) > lighttimes(j) & [out.e(1).s(ttz{1}).timcont]/(60*60) <= lighttimes(j+2));
                     plot(([out.e(1).s(ttz{1}(ztt)).timcont]/(60*60)) - lighttimes(j), [out.e(1).s(ttz{1}(ztt)).zAmp] - mean([out.e(1).s(ttz{1}(ztt)).zAmp]), 'o', 'MarkerSize', 2); 
                 end
@@ -135,10 +135,10 @@ figure(4); clf;
             
             if ~isempty(find([out.e(2).s(tto{2}).timcont]/(60*60) > lighttimes(j) & [out.e(2).s(tto{2}).timcont]/(60*60) <= lighttimes(j+2), 1))            
                     figure(4); 
-                    subplot(211); hold on;     % Dark to light plot  OBW      
+                    subplot(211); hold on; title('OBW');     % Dark to light plot  OBW      
                     ott = find([out.e(2).s(tto{2}).timcont]/(60*60) > lighttimes(j) & [out.e(2).s(tto{2}).timcont]/(60*60) <= lighttimes(j+2));
                     plot(([out.e(2).s(tto{2}(ott)).timcont]/(60*60)) - lighttimes(j), [out.e(2).s(tto{2}(ott)).obwAmp] - mean([out.e(2).s(tto{2}(ott)).obwAmp]), 'o', 'MarkerSize', 2); 
-                    subplot(212); hold on;     % Dark to light plot  zAmp      
+                    subplot(212); hold on;  title('zAmp');     % Dark to light plot  zAmp      
                     ztt = find([out.e(2).s(ttz{2}).timcont]/(60*60) > lighttimes(j) & [out.e(2).s(ttz{2}).timcont]/(60*60) <= lighttimes(j+2));
                     plot(([out.e(2).s(ttz{2}(ztt)).timcont]/(60*60)) - lighttimes(j), [out.e(2).s(ttz{2}(ztt)).zAmp] - mean([out.e(2).s(ttz{2}(ztt)).zAmp]), 'o', 'MarkerSize', 2); 
             end
