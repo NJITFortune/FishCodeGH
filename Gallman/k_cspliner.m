@@ -130,7 +130,17 @@ figure(4); clf; hold on;
 
     yyaxis right; plot(f,pxx);
 
-    figure(5); plot(1./f(end:-1:1), pxx);
+    maxY = max(pxx);
+    
+    hrs = [96, 48, 24, 20, 16, 12, 10, 8]; % Double hours
+    
+    for j=1:length(hrs)
+        
+        plot([1/hrs, 1/hrs], [maxY/2, maxY], 'b');
+        text(1/hrs, maxY*0.9, num2str(hrs/2));
+        
+    end
+    
     
 %% Resample - original for reference
 
