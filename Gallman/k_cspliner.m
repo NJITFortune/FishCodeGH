@@ -130,7 +130,7 @@ figure(4); clf; hold on;
 
     yyaxis right; plot(f,pxx);
 
-    figure(5); semilogx(1./f(end:-1:1), pxx);
+    figure(5); plot(1./f(end:-1:1), pxx);
     
 %% Resample - original for reference
 
