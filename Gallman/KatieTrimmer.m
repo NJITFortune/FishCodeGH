@@ -27,15 +27,20 @@ figure (1); hold on; title('sumfftAmp');
 %click new figure bounds starting from left
     [x, ~] = ginput(2);
     
-    %Make sure these are the ones we want before we over write the data  
-    A = input('Wtf do you want to do?');
-    if A == 1 
-        tt = find([in(1).s.timcont]/(60*60) > x(1) & [in(1).s.timcont]/(60*60) < x(2));
+    
+    tt = find([in(1).s.timcont]/(60*60) > x(1) & [in(1).s.timcont]/(60*60) < x(2));
             out(1).s = in(1).s(tt);
-        tt = find([in(2).s.timcont]/(60*60) > x(1) & [in(2).s.timcont]/(60*60) < x(2));
+    tt = find([in(2).s.timcont]/(60*60) > x(1) & [in(2).s.timcont]/(60*60) < x(2));
             out(2).s = in(2).s(tt);
-    else 
-        return
+    %Make sure these are the ones we want before we over write the data  
+%     A = input('Wtf do you want to do?');
+%     if A == 1 
+%         tt = find([in(1).s.timcont]/(60*60) > x(1) & [in(1).s.timcont]/(60*60) < x(2));
+%             out(1).s = in(1).s(tt);
+%         tt = find([in(2).s.timcont]/(60*60) > x(1) & [in(2).s.timcont]/(60*60) < x(2));
+%             out(2).s = in(2).s(tt);
+%     else 
+%         return
    
     end        
      
