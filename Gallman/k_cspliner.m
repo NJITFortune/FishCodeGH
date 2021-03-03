@@ -125,7 +125,7 @@ figure(4); clf; hold on;
 
     L = length(o.obw(1).y); 
     NFFT = 2^nextpow2(L)/2;
-    FreqRange = 0.002:0.0001:0.2; % From XX days to 5 hours 
+    FreqRange = 0.02:0.0001:0.2; % From XX days to 5 hours 
     [pxx,f] = pwelch(o.obw(1).y,NFFT,floor(ReFs*0.99),FreqRange,ReFs);    
 
     plot(f,pxx);
