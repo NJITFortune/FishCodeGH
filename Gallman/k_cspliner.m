@@ -125,12 +125,22 @@ figure(4); clf; hold on;
 
     L = length(o.obw(1).y); 
     NFFT = 2^nextpow2(L)/2;
-    FreqRange = 0.02:0.0001:0.2; % From XX days to 5 hours 
-    [pxx,f] = pwelch(o.obw(1).y,NFFT,floor(ReFs*0.99),FreqRange,ReFs);    
+    FreqRange = 0.002:0.0001:0.2; % From XX days to 5 hours 
+    [pxx,f] = pwelch(o.obw(1).y - mean(o.obw(1).y),NFFT,floor(ReFs*0.99),FreqRange,ReFs);    
 
     yyaxis right; plot(f,pxx);
 
-    figure(5); plot(1./f(end:-1:1), pxx);
+    maxY = max(pxx);
+    
+    hrs = [96, 48, 24, 20, 16, 12, 10, 8]; % Double hours
+    
+    for j=1:length(hrs)
+        
+        plot([1/hrs(j), 1/hrs(j)], [maxY/2, maxY], 'b');
+        text(1/hrs(j), maxY*0.9, num2str(hrs(j)/2));
+        
+    end
+    
     
 %% Resample - original for reference
 
