@@ -136,8 +136,8 @@ figure(4); clf; hold on;
     
     for j=1:length(hrs)
         
-        plot([1/hrs, 1/hrs], [maxY/2, maxY], 'b');
-        text(1/hrs, maxY*0.9, num2str(hrs/2));
+        plot([1/hrs(j), 1/hrs(j)], [maxY/2, maxY], 'b');
+        text(1/hrs(j), maxY*0.9, num2str(hrs(j)/2));
         
     end
     
