@@ -122,8 +122,9 @@ f = fftmachine(o.obw(1).y - mean(o.obw(1).y), ReFs);
 figure(4); clf; hold on; 
     
     plot(f.fftfreq, f.fftdata, 'm-o'); xlim([0 0.4]);
-    
-[pxx,f] = pwelch(o.obw(1).y,[],floor(ReFs*0.95),0.001:0.001:0.04,ReFs);    
+
+    L = length(o.obw(1).y); NFFT = 2^nextpow2(L);
+    [pxx,f] = pwelch(o.obw(1).y,NFFT,floor(ReFs*0.95),0.001:0.001:0.04,ReFs);    
 
     plot(f,pxx);
     
