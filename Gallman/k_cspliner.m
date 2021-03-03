@@ -128,7 +128,7 @@ figure(4); clf; hold on;
     FreqRange = 0.02:0.0001:0.2; % From XX days to 5 hours 
     [pxx,f] = pwelch(o.obw(1).y,NFFT,floor(ReFs*0.99),FreqRange,ReFs);    
 
-    yyaxis right; plot(f,pxx);
+    yyaxis right; plot(1./f,pxx);
 
     figure(5); plot(1./f(end:-1:1), pxx);
     
