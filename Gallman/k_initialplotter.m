@@ -110,9 +110,9 @@ linkaxes(xa, 'x'); xlim([0 24]);
 
 if ~isempty(out.info)
 
-figure(3); clf; title('Light to dark');
+figure(3); clf; title('Light to dark');hold on;
     set(gcf, 'Position', [400 100 2*560 2*420]);
-figure(4); clf; title('Dark to light');
+figure(4); clf; title('Dark to light'); hold on;
     set(gcf, 'Position', [500 100 2*560 2*420]);
 
     lighttimes = abs(out.info.luz);
