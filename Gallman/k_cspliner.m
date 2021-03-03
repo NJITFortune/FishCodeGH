@@ -126,7 +126,7 @@ figure(4); clf; hold on;
     L = length(o.obw(1).y); 
     NFFT = 2^nextpow2(L)/2;
     
-    [pxx,f] = pwelch(o.obw(1).y,NFFT,floor(ReFs*0.95),0.001:0.001:0.04,ReFs);    
+    [pxx,f] = pwelch(o.obw(1).y,NFFT,floor(ReFs*0.99),0.001:0.001:0.04,ReFs);    
 
     plot(f,pxx);
     
