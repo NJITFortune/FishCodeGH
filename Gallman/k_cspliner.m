@@ -120,12 +120,16 @@ figure(1); clf; title('Channel 1')
 f = fftmachine(o.obw(1).y - mean(o.obw(1).y), ReFs); 
 
 figure(4); clf; hold on; 
-
     
     plot(f.fftfreq, f.fftdata, 'm-o'); xlim([0 0.4]);
 
+    L = length(o.obw(1).y); 
+    NFFT = 2^nextpow2(L)/2;
+    FreqRange = 0.05:0.0001:0.04
+    [pxx,f] = pwelch(o.obw(1).y,NFFT,floor(ReFs*0.99,ReFs);    
 
-
+    plot(f,pxx);
+    
 %% Resample - original for reference
 
 % spliney = csaps(x, y, p);
