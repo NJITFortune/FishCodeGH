@@ -53,7 +53,7 @@ ax(4) = subplot(515); hold on; title('light transitions');
      if ~isempty(out.info)
         subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
         subplot(512); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.zAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
-        subplot(513); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.obwAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
+       % subplot(513); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.obwAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
      end
      
 %         darkidx = find(out.info.luz < 0); lightidx = find(out.info.luz > 0);
