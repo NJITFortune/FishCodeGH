@@ -125,8 +125,8 @@ figure(4); clf; hold on;
 
     L = length(o.obw(1).y); 
     NFFT = 2^nextpow2(L)/2;
-    
-    [pxx,f] = pwelch(o.obw(1).y,NFFT,floor(ReFs*0.99),0.005:0.0001:0.04,ReFs);    
+    FreqRange = 0.05:0.0001:0.04
+    [pxx,f] = pwelch(o.obw(1).y,NFFT,floor(ReFs*0.99,ReFs);    
 
     plot(f,pxx);
     
