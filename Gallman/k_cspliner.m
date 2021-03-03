@@ -123,7 +123,7 @@ figure(4); clf; hold on;
     
     plot(f.fftfreq, f.fftdata, 'm-o'); xlim([0 0.4]);
     
-[pxx,f] = pwelch(o.obw(1).y,[],floor(ReFs*0.95),0.01:0.001:0.03,ReFs);    
+[pxx,f] = pwelch(o.obw(1).y,[],floor(ReFs*0.95),0.001:0.001:0.04,ReFs);    
 
     plot(f,pxx);
     
