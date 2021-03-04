@@ -99,7 +99,7 @@ figure(127); clf; plot(fulltim, fullpos); hold on; plot(tim, pos, '.');
        
 %% Get the signal values at spike times
 
-    spikePOS = interp1(tim, fullpos, spikes);
+    spikePOS = interp1(fulltim, fullpos, spikes);
     spikeVEL = interp1(tim, vel, spikes);
     spikeACC = interp1(tim, acc, spikes);
 
