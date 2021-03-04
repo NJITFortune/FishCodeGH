@@ -36,7 +36,7 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
             if sizetmp(1)/sizetmp(2) > 1; spikes = [spikes (in(ent).s(idx(j)).st(rf(ent).s(sz).Nidx{idx(j)}) + tim(end))']; end % Concatonate position
          % Concatonate spike times, adding the time from the end of previous
         
-        tim = [tim (currtim(rf.Pidx{idx(j)}) + tim(end))]; % Update the time base 
+        tim = [tim (currtim(rf(ent).s(sz).Pidx{idx(j)}) + tim(end))]; % Update the time base 
         
     end
         
