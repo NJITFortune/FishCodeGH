@@ -379,7 +379,7 @@ ax(4) = subplot(414); hold on;
 
 linkaxes(ax, 'x');   
 
-end
+
 
 function [amp, freq] = sinAnal(datums, FsF)
 
