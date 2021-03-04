@@ -52,7 +52,10 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
     fulltim = fulltim(2:end);
     
 end
-
+length(fulltim)
+length(fullpos)
+length(tim)
+length(pos)
 figure(127); clf; plot(fulltim, fullpos); hold on; plot(tim, pos, '.');
 
 % Derive the velocity and acceleration from position
