@@ -53,6 +53,8 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
     
 end
 
+figure(127); clf; plot(fulltim, fullpos); hold on; plot(tim, pos, '.');
+
 % Derive the velocity and acceleration from position
 % 
     [b,a] = butter(3, 2/(Fs/2), 'low'); % Filter for velocity
