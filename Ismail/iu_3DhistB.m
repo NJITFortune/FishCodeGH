@@ -17,8 +17,10 @@ idx = find([in(ent).s.sizeDX] == sz);
 
 % Preparations
 tim = 0; % Starting time for the next sample as we concatonate
+fulltim = 0;
 spikes = []; % List of spike times
 pos = []; % Position over time
+fullpos = [];
 
 %% Concatonate data
 if ~isempty(idx) % just make sure that the user isn't an idiot 
@@ -26,21 +28,28 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
     for j = 1:length(idx) % cycle to concatonate all of the correct entries
 
         sizetmp = size(in(ent).s(idx(j)).pos);
+        
             if sizetmp(1)/sizetmp(2) < 1; pos = [pos in(ent).s(idx(j)).pos(rf(ent).s(sz).Pidx{idx(j)})]; end % Concatonate position
             if sizetmp(1)/sizetmp(2) > 1; pos = [pos in(ent).s(idx(j)).pos(rf(ent).s(sz).Pidx{idx(j)})']; end % Concatonate position
-            
-        currtim = 1/Fs:1/Fs:length(in(ent).s(idx(j)).pos)/Fs; % A time base for the currently added position
 
+            if sizetmp(1)/sizetmp(2) < 1; fullpos = [fullpos in(ent).s(idx(j)).pos(rf(ent).s(sz).Pidx{idx(j)})]; end % Concatonate position
+            if sizetmp(1)/sizetmp(2) > 1; fullpos = [fullpos in(ent).s(idx(j)).pos(rf(ent).s(sz).Pidx{idx(j)})']; end % Concatonate position
+
+           
         sizetmp = size(in(ent).s(idx(j)).st);
+        
             if sizetmp(1)/sizetmp(2) < 1; spikes = [spikes (in(ent).s(idx(j)).st(rf(ent).s(sz).Nidx{idx(j)}) + tim(end))]; end % Concatonate position
             if sizetmp(1)/sizetmp(2) > 1; spikes = [spikes (in(ent).s(idx(j)).st(rf(ent).s(sz).Nidx{idx(j)}) + tim(end))']; end % Concatonate position
          % Concatonate spike times, adding the time from the end of previous
         
+        currtim = 1/Fs:1/Fs:length(in(ent).s(idx(j)).pos)/Fs; % A time base for the currently added position
         tim = [tim (currtim(rf(ent).s(sz).Pidx{idx(j)}) + tim(end))]; % Update the time base 
+        fulltim = [fulltim (currtim + tim(end))]; % Update the time base 
         
     end
         
     tim = tim(2:end); % When we are all done, we remove the initial zero
+    fulltim = fulltim(2:end);
     
 end
 
@@ -49,7 +58,7 @@ end
     [b,a] = butter(3, 2/(Fs/2), 'low'); % Filter for velocity
     [d,c] = butter(3, 2/(Fs/2), 'low'); % Filter for acceleration
 
-    vel = filtfilt(b,a,diff(pos)); % VELOCITY
+    vel = filtfilt(b,a,diff(fullpos)); % VELOCITY
         vel(end+1) = vel(end);
     acc = filtfilt(d,c,diff(vel)); % ACCELERATION
         acc(end+1) = acc(end);
