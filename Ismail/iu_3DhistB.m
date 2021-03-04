@@ -43,7 +43,7 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
          % Concatonate spike times, adding the time from the end of previous
         
         currtim = 1/Fs:1/Fs:length(in(ent).s(idx(j)).pos)/Fs; % A time base for the currently added position
-        tim = [tim (currtim(rf(ent).s(sz).Pidx{idx(j)}) + tim(end))]; % Update the time base 
+        tim = [tim (currtim(rf(ent).s(sz).Pidx{idx(j)}) + fulltim(end))]; % Update the time base 
         fulltim = [fulltim (currtim + tim(end))]; % Update the time base 
         
     end
