@@ -55,6 +55,8 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
     fulltim = fulltim(2:end);
     
 end
+
+
 figure(127); clf; plot(fulltim, fullpos); hold on; plot(tim, pos, '.');
 
 % Derive the velocity and acceleration from position
@@ -94,11 +96,11 @@ figure(127); clf; plot(fulltim, fullpos); hold on; plot(tim, pos, '.');
        
 %% Get the signal values at spike times
 
-    spikePOS = interp1(tim, pos, spikes);
+    spikePOS = interp1(tim, fullpos, spikes);
     spikeVEL = interp1(tim, vel, spikes);
     spikeACC = interp1(tim, acc, spikes);
 
-    RspikePOS = interp1(tim, pos, randspikes);
+    RspikePOS = interp1(tim, fullpos, randspikes);
     RspikeVEL = interp1(tim, vel, randspikes);
     RspikeACC = interp1(tim, acc, randspikes);
         
