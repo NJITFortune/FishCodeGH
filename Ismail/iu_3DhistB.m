@@ -29,19 +29,22 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
 
         sizetmp = size(in(ent).s(idx(j)).pos);
         
+        % POSITION IN RANGE
             if sizetmp(1)/sizetmp(2) < 1; pos = [pos in(ent).s(idx(j)).pos(rf(ent).s(sz).Pidx{idx(j)})]; end % Concatonate position
             if sizetmp(1)/sizetmp(2) > 1; pos = [pos in(ent).s(idx(j)).pos(rf(ent).s(sz).Pidx{idx(j)})']; end % Concatonate position
 
+        % ALL POSITION DATA
             if sizetmp(1)/sizetmp(2) < 1; fullpos = [fullpos in(ent).s(idx(j)).pos]; end % Concatonate position
             if sizetmp(1)/sizetmp(2) > 1; fullpos = [fullpos in(ent).s(idx(j)).pos']; end % Concatonate position
-
            
         sizetmp = size(in(ent).s(idx(j)).st);
         
-            if sizetmp(1)/sizetmp(2) < 1; spikes = [spikes (in(ent).s(idx(j)).st(rf(ent).s(sz).Nidx{idx(j)}) + tim(end))]; end % Concatonate position
-            if sizetmp(1)/sizetmp(2) > 1; spikes = [spikes (in(ent).s(idx(j)).st(rf(ent).s(sz).Nidx{idx(j)}) + tim(end))']; end % Concatonate position
+        % Spike Times in Range
+            if sizetmp(1)/sizetmp(2) < 1; spikes = [spikes (in(ent).s(idx(j)).st(rf(ent).s(sz).Nidx{idx(j)}) + fulltim(end))]; end % Concatonate position
+            if sizetmp(1)/sizetmp(2) > 1; spikes = [spikes (in(ent).s(idx(j)).st(rf(ent).s(sz).Nidx{idx(j)}) + fulltim(end))']; end % Concatonate position
          % Concatonate spike times, adding the time from the end of previous
-        
+
+         
         currtim = 1/Fs:1/Fs:length(in(ent).s(idx(j)).pos)/Fs; % A time base for the currently added position
         tim = [tim (currtim(rf(ent).s(sz).Pidx{idx(j)}) + fulltim(end))]; % Update the time base 
         fulltim = [fulltim (currtim + fulltim(end))]; % Update the time base 
@@ -52,10 +55,6 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
     fulltim = fulltim(2:end);
     
 end
-length(fulltim)
-length(fullpos)
-length(tim)
-length(pos)
 figure(127); clf; plot(fulltim, fullpos); hold on; plot(tim, pos, '.');
 
 % Derive the velocity and acceleration from position
