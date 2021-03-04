@@ -32,8 +32,8 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
             if sizetmp(1)/sizetmp(2) < 1; pos = [pos in(ent).s(idx(j)).pos(rf(ent).s(sz).Pidx{idx(j)})]; end % Concatonate position
             if sizetmp(1)/sizetmp(2) > 1; pos = [pos in(ent).s(idx(j)).pos(rf(ent).s(sz).Pidx{idx(j)})']; end % Concatonate position
 
-            if sizetmp(1)/sizetmp(2) < 1; fullpos = [fullpos in(ent).s(idx(j)).pos(rf(ent).s(sz).Pidx{idx(j)})]; end % Concatonate position
-            if sizetmp(1)/sizetmp(2) > 1; fullpos = [fullpos in(ent).s(idx(j)).pos(rf(ent).s(sz).Pidx{idx(j)})']; end % Concatonate position
+            if sizetmp(1)/sizetmp(2) < 1; fullpos = [fullpos in(ent).s(idx(j)).pos]; end % Concatonate position
+            if sizetmp(1)/sizetmp(2) > 1; fullpos = [fullpos in(ent).s(idx(j)).pos']; end % Concatonate position
 
            
         sizetmp = size(in(ent).s(idx(j)).st);
