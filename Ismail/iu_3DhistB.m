@@ -67,14 +67,13 @@ figure(127); clf; plot(fulltim, fullpos); hold on; plot(tim, pos, '.');
 
     vel = filtfilt(b,a,diff(fullpos)); % VELOCITY
         vel(end+1) = vel(end);
-        vel = vel(tt);
+    
     acc = filtfilt(d,c,diff(vel)); % ACCELERATION
         acc(end+1) = acc(end);
-        acc = acc(tt);
 %     vel = smooth(diff(pos)); vel(end+1) = vel(end);
 %     acc = smooth(diff(vel)); acc(end+1) = acc(end);
-    vel = vel'; 
-    acc = acc';
+    vel = vel(tt)'; 
+    acc = acc(tt)';
         
 % Make random spike train    
     ISIs = diff(spikes);
