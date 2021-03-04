@@ -7,8 +7,8 @@ function out = iu_3DhistB(in, ent, sz, rf)
 % wid is the width of the spike triggered average in seconds (1 or 2 seconds is good)%% Histogram of All Spikes as Isolated Spikes
 
         numOfBins = 16;
-        std_coeff   = 3;
-
+        std_coeff   = 3;        
+        
 % Get the sample rate for position
 Fs = in(ent).s(1).pFs;
 
@@ -26,8 +26,8 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
     for j = 1:length(idx) % cycle to concatonate all of the correct entries
 
         sizetmp = size(in(ent).s(idx(j)).pos);
-            if sizetmp(1)/sizetmp(2) < 1; pos = [pos in(ent).s(idx(j)).pos(rf.Pidx{idx(j)})]; end % Concatonate position
-            if sizetmp(1)/sizetmp(2) > 1; pos = [pos in(ent).s(idx(j)).pos(rf.Pidx{idx(j)})']; end % Concatonate position
+            if sizetmp(1)/sizetmp(2) < 1; pos = [pos in(ent).s(idx(j)).pos(rf(ent).s(idx(j)).Pidx)]; end % Concatonate position
+            if sizetmp(1)/sizetmp(2) > 1; pos = [pos in(ent).s(idx(j)).pos(rf(ent).s(idx(j)).Pidx)']; end % Concatonate position
             
         currtim = 1/Fs:1/Fs:length(in(ent).s(idx(j)).pos)/Fs; % A time base for the currently added position
 
