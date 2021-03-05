@@ -1,4 +1,4 @@
-sfunction out = KgallmAnalysis(userfilespec, Fs, numstart)
+function out = KgallmAnalysis(userfilespec, Fs, numstart)
 % Function out = gallmAnalysis(userfilespec, Fs)
 % userfilespec is data from listentothis.m, e.g. 'EigenTest*.mat'
 % Fs is the sample rate, was 20kHz but now 40kHz
@@ -402,7 +402,7 @@ freq = 1/s(2);
 
 
 
-end
+
 
 
 
