@@ -228,7 +228,7 @@ ax(4) = subplot(414); hold on;
     ylim([-1, 6]);
     xlabel('Continuous');
 
-linkaxes(ax, 'x');
+linkaxes([ax1 ax2, ax3, 'x');
     
 % 24-hour data plot
 figure(2); clf; 
