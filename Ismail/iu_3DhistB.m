@@ -201,11 +201,11 @@ figure(6); clf; title('Acceleration and Velocity');
 %     subplot(121); surf(out.Rposvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
 %     subplot(122); surf(out.Raccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
 % colormap('HOT');
-
-figure(7); clf;
-    subplot(121); surf(out.STIMposvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
-    subplot(122); surf(out.STIMaccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
-colormap('HOT');
+% 
+% figure(7); clf;
+%     subplot(121); surf(out.STIMposvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
+%     subplot(122); surf(out.STIMaccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
+% colormap('HOT');
 % 
 % figure(4); clf;
 %     subplot(311); barh(out.POccHist);
