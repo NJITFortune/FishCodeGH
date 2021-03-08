@@ -167,7 +167,7 @@ end
     out.STIMaccvel = hist3(STIMaccVvel, 'Edges', {out.Aedges, out.Vedges});
 
 
-figure(2); clf; title('Position and Velocity');
+figure(5); clf; title('Position and Velocity');
 
     h(1) = subplot(2,2,1);
         h(1).Position = [0.1 0.35 0.2 0.6];
@@ -182,7 +182,7 @@ figure(2); clf; title('Position and Velocity');
         surf(out.posvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
         colormap('HOT');
         
-figure(3); clf; title('Acceleration and Velocity');
+figure(6); clf; title('Acceleration and Velocity');
 
     hh(1) = subplot(2,2,1);
         hh(1).Position = [0.1 0.35 0.2 0.6];
@@ -202,7 +202,7 @@ figure(3); clf; title('Acceleration and Velocity');
 %     subplot(122); surf(out.Raccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
 % colormap('HOT');
 
-figure(4); clf;
+figure(7); clf;
     subplot(121); surf(out.STIMposvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
     subplot(122); surf(out.STIMaccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
 colormap('HOT');
