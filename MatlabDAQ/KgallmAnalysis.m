@@ -1,4 +1,4 @@
-sfunction out = KgallmAnalysis(userfilespec, Fs, numstart)
+function out = KgallmAnalysis(userfilespec, Fs, numstart)
 % Function out = gallmAnalysis(userfilespec, Fs)
 % userfilespec is data from listentothis.m, e.g. 'EigenTest*.mat'
 % Fs is the sample rate, was 20kHz but now 40kHz
@@ -208,7 +208,7 @@ figure(1); clf;
 ax(1) = subplot(411); hold on;
     plot([out.timcont]/(60*60), [out.Ch1sumAmp], '.');
     plot([out.timcont]/(60*60), [out.Ch2sumAmp], '.');
-    ylim([0.1, 2]);
+    %ylim([0.1, 2]);
    % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
 
 ax(2) = subplot(412); hold on;
@@ -402,8 +402,8 @@ freq = 1/s(2);
 
 
 
-end
 
 
 
-    
+
+   
