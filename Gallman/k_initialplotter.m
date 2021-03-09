@@ -51,9 +51,11 @@ ax(4) = subplot(515); hold on; title('light transitions');
         
 % Add feedingtimes, if we have them...    
      if ~isempty(out.info)
-        subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
-        subplot(512); plot([out.info.feedingtimes' out.info.feedingtimes'], [0 max([out.e(1).s.zAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
-        subplot(515); plot([abs(out.info.luz)' abs(out.info.luz)'], [0 6], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
+        subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
+        subplot(512); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.zAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
+        % subplot(515); plot([abs(out.info.luz)' abs(out.info.luz)'], [0 6], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
+                    drawnow;
+        
      end
      
 %         darkidx = find(out.info.luz < 0); lightidx = find(out.info.luz > 0);
@@ -63,6 +65,8 @@ ax(4) = subplot(515); hold on; title('light transitions');
         
 linkaxes(ax, 'x'); 
 xa.XLim = ax(1).XLim/24;
+
+                    drawnow;
 
 
 %% 24 hour plot 
@@ -105,6 +109,7 @@ linkaxes(xa, 'x'); xlim([0 24]);
             plot([5 5], [0, max([out.e(1).s.obwAmp])], 'y', 'LineWidth', 4); 
             plot([17 17], [0, max([out.e(1).s.obwAmp])], 'k', 'LineWidth', 4);
 
+                    drawnow;
 
 %% Light/Dark Plot 
 
@@ -133,6 +138,7 @@ figure(4); clf; title('Dark to light'); hold on;
                     plot(([out.e(1).s(ttz{1}(ztt)).timcont]/(60*60)) - lighttimes(j), [out.e(1).s(ttz{1}(ztt)).zAmp] - mean([out.e(1).s(ttz{1}(ztt)).zAmp]), 'o', 'MarkerSize', 2); 
                     upperlim = max([out.e(1).s(ttz{1}(ztt)).zAmp] - mean([out.e(1).s(ttz{1}(ztt)).zAmp]));
                     plot([[out.info.ld] [out.info.ld]], [-upperlim upperlim], 'k-', 'Linewidth', 2); 
+                    drawnow;
                 end
         
         else % Dark side
@@ -149,6 +155,7 @@ figure(4); clf; title('Dark to light'); hold on;
                     plot(([out.e(2).s(ttz{2}(ztt)).timcont]/(60*60)) - lighttimes(j), [out.e(2).s(ttz{2}(ztt)).zAmp] - mean([out.e(2).s(ttz{2}(ztt)).zAmp]), 'o', 'MarkerSize', 2); 
                     upperlim = max([out.e(2).s(ttz{2}(ztt)).zAmp] - mean([out.e(2).s(ttz{2}(ztt)).zAmp]));
                     plot([[out.info.ld] [out.info.ld]], [-upperlim upperlim], 'k-', 'Linewidth', 2); 
+                    drawnow;
             end
             
         end         
