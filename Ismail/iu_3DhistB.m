@@ -29,22 +29,25 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
 
         sizetmp = size(in(ent).s(idx(j)).pos);
         
+        % POSITION IN RANGE
             if sizetmp(1)/sizetmp(2) < 1; pos = [pos in(ent).s(idx(j)).pos(rf(ent).s(sz).Pidx{idx(j)})]; end % Concatonate position
             if sizetmp(1)/sizetmp(2) > 1; pos = [pos in(ent).s(idx(j)).pos(rf(ent).s(sz).Pidx{idx(j)})']; end % Concatonate position
 
-            if sizetmp(1)/sizetmp(2) < 1; fullpos = [fullpos in(ent).s(idx(j)).pos(rf(ent).s(sz).Pidx{idx(j)})]; end % Concatonate position
-            if sizetmp(1)/sizetmp(2) > 1; fullpos = [fullpos in(ent).s(idx(j)).pos(rf(ent).s(sz).Pidx{idx(j)})']; end % Concatonate position
-
+        % ALL POSITION DATA
+            if sizetmp(1)/sizetmp(2) < 1; fullpos = [fullpos in(ent).s(idx(j)).pos]; end % Concatonate position
+            if sizetmp(1)/sizetmp(2) > 1; fullpos = [fullpos in(ent).s(idx(j)).pos']; end % Concatonate position
            
         sizetmp = size(in(ent).s(idx(j)).st);
         
-            if sizetmp(1)/sizetmp(2) < 1; spikes = [spikes (in(ent).s(idx(j)).st(rf(ent).s(sz).Nidx{idx(j)}) + tim(end))]; end % Concatonate position
-            if sizetmp(1)/sizetmp(2) > 1; spikes = [spikes (in(ent).s(idx(j)).st(rf(ent).s(sz).Nidx{idx(j)}) + tim(end))']; end % Concatonate position
+        % Spike Times in Range
+            if sizetmp(1)/sizetmp(2) < 1; spikes = [spikes (in(ent).s(idx(j)).st(rf(ent).s(sz).Nidx{idx(j)}) + fulltim(end))]; end % Concatonate position
+            if sizetmp(1)/sizetmp(2) > 1; spikes = [spikes (in(ent).s(idx(j)).st(rf(ent).s(sz).Nidx{idx(j)}) + fulltim(end))']; end % Concatonate position
          % Concatonate spike times, adding the time from the end of previous
-        
+
+         
         currtim = 1/Fs:1/Fs:length(in(ent).s(idx(j)).pos)/Fs; % A time base for the currently added position
-        tim = [tim (currtim(rf(ent).s(sz).Pidx{idx(j)}) + tim(end))]; % Update the time base 
-        fulltim = [fulltim (currtim + tim(end))]; % Update the time base 
+        tim = [tim (currtim(rf(ent).s(sz).Pidx{idx(j)}) + fulltim(end))]; % Update the time base 
+        fulltim = [fulltim (currtim + fulltim(end))]; % Update the time base 
         
     end
         
@@ -52,10 +55,9 @@ if ~isempty(idx) % just make sure that the user isn't an idiot
     fulltim = fulltim(2:end);
     
 end
-length(fulltim)
-length(fullpos)
-length(tim)
-length(pos)
+
+tt = ismember(fulltim, tim);
+
 figure(127); clf; plot(fulltim, fullpos); hold on; plot(tim, pos, '.');
 
 % Derive the velocity and acceleration from position
@@ -65,11 +67,13 @@ figure(127); clf; plot(fulltim, fullpos); hold on; plot(tim, pos, '.');
 
     vel = filtfilt(b,a,diff(fullpos)); % VELOCITY
         vel(end+1) = vel(end);
+    
     acc = filtfilt(d,c,diff(vel)); % ACCELERATION
         acc(end+1) = acc(end);
 %     vel = smooth(diff(pos)); vel(end+1) = vel(end);
 %     acc = smooth(diff(vel)); acc(end+1) = acc(end);
-    vel = vel'; acc = acc';
+    vel = vel(tt)'; 
+    acc = acc(tt)';
         
 % Make random spike train    
     ISIs = diff(spikes);
@@ -99,7 +103,7 @@ figure(127); clf; plot(fulltim, fullpos); hold on; plot(tim, pos, '.');
     spikeVEL = interp1(tim, vel, spikes);
     spikeACC = interp1(tim, acc, spikes);
 
-    RspikePOS = interp1(tim, pos, randspikes);
+    RspikePOS = interp1(fulltim, fullpos, randspikes);
     RspikeVEL = interp1(tim, vel, randspikes);
     RspikeACC = interp1(tim, acc, randspikes);
         
@@ -163,7 +167,7 @@ end
     out.STIMaccvel = hist3(STIMaccVvel, 'Edges', {out.Aedges, out.Vedges});
 
 
-figure(2); clf; title('Position and Velocity');
+figure(5); clf; title('Position and Velocity');
 
     h(1) = subplot(2,2,1);
         h(1).Position = [0.1 0.35 0.2 0.6];
@@ -178,7 +182,7 @@ figure(2); clf; title('Position and Velocity');
         surf(out.posvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
         colormap('HOT');
         
-figure(3); clf; title('Acceleration and Velocity');
+figure(6); clf; title('Acceleration and Velocity');
 
     hh(1) = subplot(2,2,1);
         hh(1).Position = [0.1 0.35 0.2 0.6];
@@ -197,11 +201,11 @@ figure(3); clf; title('Acceleration and Velocity');
 %     subplot(121); surf(out.Rposvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
 %     subplot(122); surf(out.Raccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
 % colormap('HOT');
-
-figure(4); clf;
-    subplot(121); surf(out.STIMposvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
-    subplot(122); surf(out.STIMaccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
-colormap('HOT');
+% 
+% figure(7); clf;
+%     subplot(121); surf(out.STIMposvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
+%     subplot(122); surf(out.STIMaccvel'); view(0,90); xlim([1 numOfBins+1]); ylim([1 numOfBins+1]);
+% colormap('HOT');
 % 
 % figure(4); clf;
 %     subplot(311); barh(out.POccHist);
