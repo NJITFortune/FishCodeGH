@@ -15,7 +15,12 @@ function outy = iu_RecFieldClick(in, ent, sz)
     Fs = in(ent).s(1).pFs;
 
 % Get the entries for the size selected by the user
-    idx = find([in(ent).s.sizeDX] == sz);
+    idx = [];
+    for omg = 1:length(dat(neuronidx).s)
+        if dat(neuronidx).s(omg).sizeDX == sz 
+            idx(end+1) = omg;
+        end
+    end
 
 % Preparations
     tim = 0; % Starting time for the next sample as we concatonate
