@@ -24,7 +24,7 @@ for k=1:8
             idx(end+1) = omg;
         end
     end
-    
+    idx
     if ~isempty(idx) % Is there data for this size stimulus?
 
     Fs = dat(neuronidx).s(idx(1)).pFs;
