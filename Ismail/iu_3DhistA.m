@@ -14,8 +14,8 @@ Fs = in(ent).s(1).pFs;
 
 % Get the entries for the size selected by the user
     idx = [];
-    for omg = 1:length(dat(neuronidx).s)
-        if dat(neuronidx).s(omg).sizeDX == sz 
+    for omg = 1:length(in(ent).s)
+        if in(ent).s(omg).sizeDX == sz 
             idx(end+1) = omg;
         end
     end
