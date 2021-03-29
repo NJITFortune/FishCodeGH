@@ -1,4 +1,4 @@
-function o = k_cspliner(in, ReFs, p)
+function o = k_pow(in, ReFs, p)
 % GENERATE CUBIC SPLINE FUNCTION FOR DATA
 % Usage: [xx, yy] = k_cspliner(x, y, p)
 % f(x) = csaps(x,y,p); p = 0.9
@@ -73,57 +73,71 @@ end
 
 %% Plot to check fit
 
-figure(1); clf; title('Channel 1')
-
-    subplot(311); hold on; title('sfft')
-        plot(sffttim1, sfftdata1);
-        plot(o.sfft(1).x, o.sfft(1).y, 'k', 'LineWidth', 2); 
-
-    subplot(312); hold on; title('zAmp')
-        plot(ztim1, zdata1);
-        plot(o.z(1).x, o.z(1).y, 'k', 'LineWidth', 2); 
-    
-    subplot(313); hold on; title('obwAmp')
-        plot(obwtim1, obwdata1);
-        plot(o.obw(1).x, o.obw(1).y, 'k', 'LineWidth', 2); 
-    
-    
- figure(2); clf; title('Channel 2')
-
-    subplot(311); hold on; title('sfft')
-    plot(sffttim2, sfftdata2);
-    plot(o.sfft(2).x, o.sfft(2).y, 'k', 'LineWidth', 2); 
-
-    subplot(312); hold on; title('zAmp')
-    plot(ztim2, zdata2);
-    plot(o.z(2).x, o.z(2).y, 'k', 'LineWidth', 2); 
-    
-    subplot(313); hold on; title('obwAmp')
-    plot(obwtim2, obwdata2);
-    plot(o.obw(2).x, o.obw(2).y, 'k', 'LineWidth', 2); 
-    
- figure(3); clf; title('Spline Comparo MF'); hold on;
-   
-    plot(o.sfft(1).x, o.sfft(1).y / max(o.sfft(1).y), 'b', 'LineWidth', 2); 
-    plot(o.sfft(2).x, o.sfft(2).y / max(o.sfft(2).y), 'c', 'LineWidth', 2); 
-    
-    plot(o.z(1).x, o.z(1).y / max(o.z(1).y), 'r', 'LineWidth', 2); 
-    plot(o.z(2).x, o.z(2).y / max(o.z(2).y), 'm', 'LineWidth', 2); 
-    
-    plot(o.obw(1).x, o.obw(1).y / max(o.obw(1).y), 'LineWidth', 2); 
-    plot(o.obw(2).x, o.obw(2).y / max(o.obw(2).y), 'LineWidth', 2); 
+% figure(1); clf; title('Channel 1')
+% 
+%     subplot(311); hold on; title('sfft')
+%         plot(sffttim1, sfftdata1);
+%         plot(o.sfft(1).x, o.sfft(1).y, 'k', 'LineWidth', 2); 
+% 
+%     subplot(312); hold on; title('zAmp')
+%         plot(ztim1, zdata1);
+%         plot(o.z(1).x, o.z(1).y, 'k', 'LineWidth', 2); 
+%     
+%     subplot(313); hold on; title('obwAmp')
+%         plot(obwtim1, obwdata1);
+%         plot(o.obw(1).x, o.obw(1).y, 'k', 'LineWidth', 2); 
+%     
+%     
+%  figure(2); clf; title('Channel 2')
+% 
+%     subplot(311); hold on; title('sfft')
+%     plot(sffttim2, sfftdata2);
+%     plot(o.sfft(2).x, o.sfft(2).y, 'k', 'LineWidth', 2); 
+% 
+%     subplot(312); hold on; title('zAmp')
+%     plot(ztim2, zdata2);
+%     plot(o.z(2).x, o.z(2).y, 'k', 'LineWidth', 2); 
+%     
+%     subplot(313); hold on; title('obwAmp')
+%     plot(obwtim2, obwdata2);
+%     plot(o.obw(2).x, o.obw(2).y, 'k', 'LineWidth', 2); 
+%     
+%  figure(3); clf; title('Spline Comparo MF'); hold on;
+%    
+%     plot(o.sfft(1).x, o.sfft(1).y / max(o.sfft(1).y), 'b', 'LineWidth', 2); 
+%     plot(o.sfft(2).x, o.sfft(2).y / max(o.sfft(2).y), 'c', 'LineWidth', 2); 
+%     
+%     plot(o.z(1).x, o.z(1).y / max(o.z(1).y), 'r', 'LineWidth', 2); 
+%     plot(o.z(2).x, o.z(2).y / max(o.z(2).y), 'm', 'LineWidth', 2); 
+%     
+%     plot(o.obw(1).x, o.obw(1).y / max(o.obw(1).y), 'LineWidth', 2); 
+%     plot(o.obw(2).x, o.obw(2).y / max(o.obw(2).y), 'LineWidth', 2); 
     
 %% Fft power analysis of obw
 %1/x = hours
 %comparisons tell us that ReFs and p do not have much affect at the lower
 %frequencies
 
-figure(4); hold on; 
-figure(5); hold on; 
+%colors for plots
+rosey = [.8588 0.4980 0.4980];
+aqua = [0.4784 0.9020 0.7882];
+
+%size of figure window
+L = 2*200;
+W = 2*700; %changed from 2*420
+
+figure(1); hold on; 
+%set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
+set(gcf, 'Position', [0 0 W L]);
+
+
+%figure(5); hold on; 
+
+ 
 
     f = fftmachine(o.obw(1).y - mean(o.obw(1).y), ReFs, 3); 
-    figure(4); yyaxis left; plot(f.fftfreq, f.fftdata, 'm-o'); xlim([0 0.4]);
-    figure(5); yyaxis left; plot(f.fftfreq, f.fftdata/(max(f.fftdata)), 'm-o'); xlim([0 0.4]);
+    figure(1);  plot(f.fftfreq, f.fftdata, '-o', 'Color', aqua, 'LineWidth', 2); xlim([0 0.18]);
+    %figure(5); yyaxis left; plot(f.fftfreq, f.fftdata/(max(f.fftdata)), 'm-o'); xlim([0 0.4]);
 
     L = length(o.obw(1).y); 
     NFFT = 2^nextpow2(L)/2;
@@ -131,17 +145,23 @@ figure(5); hold on;
     %[pxx,pf] = pwelch(o.obw(1).y - mean(o.obw(1).y), NFFT, floor(ReFs*0.99), FreqRange, ReFs);    
     [pxx,pf] = pwelch(o.obw(1).y - mean(o.obw(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);    
     
-    figure(4);     yyaxis right; plot(pf,pxx);
-    figure(5);    yyaxis right; plot(pf,pxx/(max(pxx)));
+    figure(1);     plot(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3);
+    %figure(5);    yyaxis right; plot(pf,pxx/(max(pxx)));
 
-    maxY = max(pxx);
+    if max(pxx) > max(f.fftdata)
+        maxY = max(pxx);
+    else
+        maxY = max(f.fftdata);
+    end   
     
     hrs = [96, 48, 24, 20, 16, 12, 10, 8]; % Double hours
-figure(4);    
+figure(1);    
     for j=1:length(hrs)
         
-        plot([1/hrs(j), 1/hrs(j)], [0, maxY], 'b-');
-        text(1/hrs(j), maxY*0.9, num2str(hrs(j)/2));
+        plot([1/hrs(j), 1/hrs(j)], [0, maxY], 'k-', 'LineWidth', 1);
+        label = num2str(hrs(j)/2);
+        str = label + ":" + label + " LD";
+        text(1/hrs(j), maxY*0.9, str, 'FontSize', 12);
         
     end
     
