@@ -136,7 +136,7 @@ set(gcf, 'Position', [0 0 W L]);
  
 
     f = fftmachine(o.obw(1).y - mean(o.obw(1).y), ReFs, 3); 
-    figure(1);  semilogy(f.fftfreq, f.fftdata, '-o', 'Color', aqua, 'LineWidth', 2); xlim([0 0.18]);
+    figure(1);  plot(f.fftfreq, f.fftdata, '-o', 'Color', aqua, 'LineWidth', 2); xlim([0 0.18]);
     %figure(5); yyaxis left; plot(f.fftfreq, f.fftdata/(max(f.fftdata)), 'm-o'); xlim([0 0.4]);
 
     L = length(o.obw(1).y); 
@@ -145,7 +145,7 @@ set(gcf, 'Position', [0 0 W L]);
     %[pxx,pf] = pwelch(o.obw(1).y - mean(o.obw(1).y), NFFT, floor(ReFs*0.99), FreqRange, ReFs);    
     [pxx,pf] = pwelch(o.obw(1).y - mean(o.obw(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);    
     
-    figure(1);     semilogy(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3);
+    figure(1);     plot(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3);
     %figure(5);    yyaxis right; plot(pf,pxx/(max(pxx)));
 
     if max(pxx) > max(f.fftdata)
