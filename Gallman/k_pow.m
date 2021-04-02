@@ -165,14 +165,15 @@ set(gcf, 'Position', [0 0 W L]);
    % figure(1);     plot(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3);
     figure(1); hold on; semilogy(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3); ylim([minY, maxY + 0.01]);
     %figure(5);    yyaxis right; plot(pf,pxx/(max(pxx)));
-
-   
     
+    
+    %Draw lines for light cycles
     hrs = [96, 48, 24, 20, 16, 12, 10, 8]; % Double hours
-figure(1);    
+    
+figure(1); hold on;   
     for j=1:length(hrs)
         
-        plot([1/hrs(j), 1/hrs(j)], [0, maxY], 'k-', 'LineWidth', 1);
+        semilogy([1/hrs(j), 1/hrs(j)], [0, maxY], 'k-', 'LineWidth', 1);
         label = num2str(hrs(j)/2);
         str = label + ":" + label + " LD";
         text(1/hrs(j), maxY*0.9, str, 'FontSize', 12);
