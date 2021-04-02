@@ -137,10 +137,9 @@ aqua = [0.4784 0.9020 0.7882];
 L = 2*200;
 W = 2*700; %changed from 2*420
 
-figure(1); hold on; 
+figure(1); hold; 
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
-set(gcf, 'Position', [0 0 W L]);
-
+ set(gcf, 'Position', [0 0 W L]);
 
     %get ylim variables
     %maxY
@@ -160,24 +159,24 @@ set(gcf, 'Position', [0 0 W L]);
     %Draw lines for light cycles
     hrs = [96, 48, 24, 20, 16, 12, 10, 8]; % Double hours
 
+    %plot data on log scale
+    %fftmachine
+    figure(1); plot(f.fftfreq(f.fftfreq < 0.2), f.fftdata(f.fftfreq < 0.2), '-o', 'Color', aqua, 'LineWidth', 2); 
+    %pwelch
+    figure(1); plot(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3); ylim([minY, maxY + 0.01]);
+    
     figure(1);    
         for j=1:length(hrs)
 
             semilogy([1/hrs(j), 1/hrs(j)], [minY, maxY], 'k-', 'LineWidth', 1);
             label = num2str(hrs(j)/2);
-            str = label + ":" + label + " LD";
-            text(1/hrs(j), maxY*0.9, str, 'FontSize', 12);
+            str = " " + label + ":" + label;
+            text(1/hrs(j), maxY*0.9, str, 'FontSize', 14);
 
         end
+    
+        set(gca, 'yscale', 'log');
 
-    %plot data on log scale
-    %fftmachine
-    figure(1); semilogy(f.fftfreq(f.fftfreq < 0.2), f.fftdata(f.fftfreq < 0.2), '-o', 'Color', aqua, 'LineWidth', 2); 
-    %pwelch
-    figure(1); semilogy(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3); ylim([minY, maxY + 0.01]);
-    
-    
-    
     
 %% save peak values
 %[o.Xfftpower, o.Yfftpower] = ginput(1);
