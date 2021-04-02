@@ -129,8 +129,6 @@ FreqRange = 0.002:0.0001:0.2;
 [pxx,pf] = pwelch(o.obw(1).y - mean(o.obw(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);   
 
 
-
-
 %colors for plots
 rosey = [.8588 0.4980 0.4980];
 aqua = [0.4784 0.9020 0.7882];
@@ -165,7 +163,7 @@ set(gcf, 'Position', [0 0 W L]);
     figure(1);    
         for j=1:length(hrs)
 
-            semilogy([1/hrs(j), 1/hrs(j)], [0, maxY], 'k-', 'LineWidth', 1);
+            plot([1/hrs(j), 1/hrs(j)], [0, maxY], 'k-', 'LineWidth', 1);
             label = num2str(hrs(j)/2);
             str = label + ":" + label + " LD";
             text(1/hrs(j), maxY*0.9, str, 'FontSize', 12);
