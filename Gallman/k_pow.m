@@ -160,8 +160,6 @@ set(gcf, 'Position', [0 0 W L]);
     %Draw lines for light cycles
     hrs = [96, 48, 24, 20, 16, 12, 10, 8]; % Double hours
 
-    
-
     %plot data on log scale
     %fftmachine
     figure(1); semilogy(f.fftfreq(f.fftfreq < 0.2), f.fftdata(f.fftfreq < 0.2), '-o', 'Color', aqua, 'LineWidth', 2); 
