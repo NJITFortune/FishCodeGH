@@ -163,7 +163,7 @@ set(gcf, 'Position', [0 0 W L]);
     
     
    % figure(1);     plot(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3);
-    figure(1); hold on; semilogy(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3); ylim([minY, maxY]);
+    figure(1); hold on; semilogy(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3); ylim([minY, maxY + 100]);
     %figure(5);    yyaxis right; plot(pf,pxx/(max(pxx)));
 
    
