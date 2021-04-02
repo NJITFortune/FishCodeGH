@@ -137,7 +137,7 @@ aqua = [0.4784 0.9020 0.7882];
 L = 2*200;
 W = 2*700; %changed from 2*420
 
-figure(1); hold; 
+figure(1); hold on; 
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
  set(gcf, 'Position', [0 0 W L]);
 
