@@ -166,15 +166,15 @@ set(gcf, 'Position', [0 0 W L]);
     %pwelch
     figure(1); semilogy(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3); ylim([minY, maxY + 0.01]);
     
-    figure(1);    
-        for j=1:length(hrs)
-
-            semilogy([1/hrs(j), 1/hrs(j)], [0.01, maxY], 'k-', 'LineWidth', 1);
-            label = num2str(hrs(j)/2);
-            str = label + ":" + label + " LD";
-            text(1/hrs(j), maxY*0.9, str, 'FontSize', 12);
-
-        end
+%     figure(1);    
+%         for j=1:length(hrs)
+% 
+%             semilogy([1/hrs(j), 1/hrs(j)], [0.000001, maxY], 'k-', 'LineWidth', 1);
+%             label = num2str(hrs(j)/2);
+%             str = label + ":" + label + " LD";
+%             text(1/hrs(j), maxY*0.9, str, 'FontSize', 12);
+% 
+%         end
     
     
 %% save peak values
