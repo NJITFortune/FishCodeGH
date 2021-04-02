@@ -125,6 +125,7 @@ f = fftmachine(o.obw(1).y - mean(o.obw(1).y), ReFs, 3);
 %pwelch
 L = length(o.obw(1).y); 
 NFFT = 2^nextpow2(L)/2;
+%NFFT = 8192;
 FreqRange = 0.002:0.0001:0.2;
 [pxx,pf] = pwelch(o.obw(1).y - mean(o.obw(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);   
 
@@ -137,7 +138,7 @@ aqua = [0.4784 0.9020 0.7882];
 L = 2*200;
 W = 2*700; %changed from 2*420
 
-figure(1); hold; 
+figure(1); hold on; 
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
  set(gcf, 'Position', [0 0 W L]);
 
@@ -168,7 +169,7 @@ figure(1); hold;
     figure(1);    
         for j=1:length(hrs)
 
-            semilogy([1/hrs(j), 1/hrs(j)], [minY, maxY], 'k-', 'LineWidth', 1);
+            plot([1/hrs(j), 1/hrs(j)], [minY, maxY], 'k-', 'LineWidth', 1);
             label = num2str(hrs(j)/2);
             str = " " + label + ":" + label;
             text(1/hrs(j), maxY*0.9, str, 'FontSize', 14);
