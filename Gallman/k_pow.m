@@ -126,7 +126,7 @@ f = fftmachine(o.obw(1).y - mean(o.obw(1).y), ReFs, 3);
 L = length(o.obw(1).y); 
 NFFT = 2^nextpow2(L)/2;
 FreqRange = 0.002:0.0001:0.2;
-[pxx,pf] = pwelch(o.obw(1).y - mean(o.obw(1).y), NFFT, floor(NFFT*0.050), FreqRange, ReFs);   
+[pxx,pf] = pwelch(o.obw(1).y - mean(o.obw(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);   
 
 
 %colors for plots
