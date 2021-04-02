@@ -139,7 +139,7 @@ W = 2*700; %changed from 2*420
 
 figure(1); hold; 
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
-
+ set(gcf, 'Position', [0 0 W L]);
 
     %get ylim variables
     %maxY
@@ -175,7 +175,7 @@ figure(1); hold;
 
         end
     
-        set(gcf, 'Position', [0 0 W L], 'yscale', 'log');
+        set(gca, 'yscale', 'log');
 
     
 %% save peak values
