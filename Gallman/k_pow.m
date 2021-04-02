@@ -170,8 +170,8 @@ figure(1); hold;
 
             semilogy([1/hrs(j), 1/hrs(j)], [minY, maxY], 'k-', 'LineWidth', 1);
             label = num2str(hrs(j)/2);
-            str = label + ":" + label + " LD";
-            text(1/hrs(j), maxY*0.9, str, 'FontSize', 14);
+            str = " " + label + ":" + label + " LD";
+            text(1/hrs(j), maxY*0.9, str, 'FontSize', 13);
 
         end
     
