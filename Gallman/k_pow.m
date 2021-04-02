@@ -137,9 +137,9 @@ aqua = [0.4784 0.9020 0.7882];
 L = 2*200;
 W = 2*700; %changed from 2*420
 
-figure(1); hold on; 
+figure(2); hold on; 
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
-%set(gcf, 'Position', [0 0 W L]);
+set(gcf, 'Position', [0 0 W L]);
 
 
     %get ylim variables
@@ -162,9 +162,9 @@ figure(1); hold on;
 
     %plot data on log scale
     %fftmachine
-    figure(1); semilogy(f.fftfreq(f.fftfreq < 0.2), f.fftdata(f.fftfreq < 0.2), '-o', 'Color', aqua, 'LineWidth', 2); 
+    figure(2); semilogy(f.fftfreq(f.fftfreq < 0.2), f.fftdata(f.fftfreq < 0.2), '-o', 'Color', aqua, 'LineWidth', 2); 
     %pwelch
-    figure(1); semilogy(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3); ylim([minY, maxY + 0.01]);
+    figure(2); semilogy(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3); ylim([minY, maxY + 0.01]);
     
 %     figure(1);    
 %         for j=1:length(hrs)
