@@ -169,7 +169,7 @@ set(gcf, 'Position', [0 0 W L]);
     figure(1);    
         for j=1:length(hrs)
 
-            line([1/hrs(j), 1/hrs(j)], [minY, maxY], 'k-', 'LineWidth', 1);
+            plot([1/hrs(j), 1/hrs(j)], [minY, maxY], 'k-', 'LineWidth', 1);
             label = num2str(hrs(j)/2);
             str = label + ":" + label + " LD";
             text(1/hrs(j), maxY*0.9, str, 'FontSize', 12);
