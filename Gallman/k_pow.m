@@ -118,6 +118,19 @@ end
 %comparisons tell us that ReFs and p do not have much affect at the lower
 %frequencies
 
+
+%Analysis
+%fftmachine
+f = fftmachine(o.obw(1).y - mean(o.obw(1).y), ReFs, 3); 
+%pwelch
+L = length(o.obw(1).y); 
+NFFT = 2^nextpow2(L)/2;
+FreqRange = 0.002:0.0001:0.2;
+pxx,pf] = pwelch(o.obw(1).y - mean(o.obw(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);   
+
+
+
+
 %colors for plots
 rosey = [.8588 0.4980 0.4980];
 aqua = [0.4784 0.9020 0.7882];
@@ -131,21 +144,6 @@ figure(1); hold on;
 set(gcf, 'Position', [0 0 W L]);
 
 
-%figure(5); hold on; 
-
- 
-
-    f = fftmachine(o.obw(1).y - mean(o.obw(1).y), ReFs, 3); 
-    %figure(1);  plot(f.fftfreq, f.fftdata, '-o', 'Color', aqua, 'LineWidth', 2); xlim([0 0.18]);
-    figure(1); semilogy(f.fftfreq(f.fftfreq < 0.2), f.fftdata(f.fftfreq < 0.2), '-o', 'Color', aqua, 'LineWidth', 2); 
-    %figure(5); yyaxis left; plot(f.fftfreq, f.fftdata/(max(f.fftdata)), 'm-o'); xlim([0 0.4]);
-
-    L = length(o.obw(1).y); 
-    NFFT = 2^nextpow2(L)/2;
-    FreqRange = 0.002:0.0001:0.2; % From XX days to 5 hours 
-    %[pxx,pf] = pwelch(o.obw(1).y - mean(o.obw(1).y), NFFT, floor(ReFs*0.99), FreqRange, ReFs);    
-    [pxx,pf] = pwelch(o.obw(1).y - mean(o.obw(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);    
-    
     %get ylim variables
     %maxY
     if max(pxx) > max(f.fftdata)
@@ -160,16 +158,10 @@ set(gcf, 'Position', [0 0 W L]);
     else
         minY = min(f.fftdata);
     end  
-    
-    
-   % figure(1);     plot(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3);
-    figure(1); semilogy(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3); ylim([minY, maxY + 0.01]);
-    %figure(5);    yyaxis right; plot(pf,pxx/(max(pxx)));
-    
-    
+
     %Draw lines for light cycles
     hrs = [96, 48, 24, 20, 16, 12, 10, 8]; % Double hours
-    
+
     figure(1);    
         for j=1:length(hrs)
 
@@ -179,6 +171,15 @@ set(gcf, 'Position', [0 0 W L]);
             text(1/hrs(j), maxY*0.9, str, 'FontSize', 12);
 
         end
+
+    %plot data on log scale
+    %fftmachine
+    figure(1); semilogy(f.fftfreq(f.fftfreq < 0.2), f.fftdata(f.fftfreq < 0.2), '-o', 'Color', aqua, 'LineWidth', 2); 
+    %pwelch
+    figure(1); semilogy(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3); ylim([minY, maxY + 0.01]);
+    
+    
+    
     
 %% save peak values
 %[o.Xfftpower, o.Yfftpower] = ginput(1);
