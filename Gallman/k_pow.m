@@ -137,7 +137,7 @@ set(gcf, 'Position', [0 0 W L]);
 
     f = fftmachine(o.obw(1).y - mean(o.obw(1).y), ReFs, 3); 
     %figure(1);  plot(f.fftfreq, f.fftdata, '-o', 'Color', aqua, 'LineWidth', 2); xlim([0 0.18]);
-    figure(1); clf; semilogy(f.fftfreq(f.fftfreq < 0.2), f.fftdata(f.fftfreq < 0.2)); 
+    figure(1); clf; semilogy(f.fftfreq(f.fftfreq < 0.2), f.fftdata(f.fftfreq < 0.2), '-o', 'Color', aqua, 'LineWidth', 2)); 
     %figure(5); yyaxis left; plot(f.fftfreq, f.fftdata/(max(f.fftdata)), 'm-o'); xlim([0 0.4]);
 
     L = length(o.obw(1).y); 
