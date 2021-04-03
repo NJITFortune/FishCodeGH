@@ -118,8 +118,8 @@ end
 %comparisons tell us that ReFs and p do not have much affect at the lower
 %frequencies
 
-Analysis OBW
-fftmachine
+% Analysis OBW
+% fftmachine
 f = fftmachine(o.obw(1).y - mean(o.obw(1).y), ReFs, 3); 
 %pwelch
 L = length(o.obw(1).y); 
