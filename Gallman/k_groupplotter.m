@@ -22,13 +22,10 @@ close all;
     end
     
 %% Linear Regression
-mdlsf1 = fitlm([out.e(1).s(ttsf{1}).temp],[out.e(1).s(ttsf{1}).sumfftAmp]);
-mdlz1 = fitlm([out.e(1).s(ttz{1}).temp],[out.e(1).s(ttz{1}).zAmp]);
-mdlobw1 = filtm([out.e(1).s(tto{1}).temp], [out.e(1).s(tto{1}).obwAmp]);
+x = [out.e(1).s(ttsf{1}).temp];
+y = [out.e(1).s(ttsf{1}).sumfftAmp];
+b1 = x/y
 
-mldsf1
-mdlz1
-mdlobw1
 
 %% amplitude vs temperature
 
