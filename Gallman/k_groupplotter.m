@@ -27,10 +27,10 @@ figure(1); clf;
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
 ax(1) = subplot(511); hold on; title('sumfftAmp');
-    yyaxis right; 
+    %yyaxis right; 
     %plot([out.e(2).s(ttsf{2}).temp], [out.e(2).s(ttsf{2}).sumfftAmp], '.'); 
-    plotregression([out.e(2).s(ttsf{2}).temp],[out.e(2).s(ttsf{2}).sumfftAmp],'Regression')
-    yyaxis left; 
+    %plotregression([out.e(2).s(ttsf{2}).temp],[out.e(2).s(ttsf{2}).sumfftAmp],'Regression')
+   % yyaxis left; 
     %plot([out.e(1).s(ttsf{1}).temp], [out.e(1).s(ttsf{1}).sumfftAmp], '.');
     plotregression([out.e(1).s(ttsf{1}).temp],[out.e(1).s(ttsf{1}).sumfftAmp],'Regression')
 
