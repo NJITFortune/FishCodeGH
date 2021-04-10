@@ -48,6 +48,7 @@ ax(1) = subplot(511); hold on; title('sumfftAmp');
     plot([out.e(1).s(ttsf{1}).temp]', yCalcsf, '--', 'LineWidth', 2);
     %text(max([out.e(1).s(ttsf{1}).temp])*0.7, max([out.e(1).s(ttsf{1}).sumfftAmp])*0.9, Rsqsf, 'FontSize', 14);
     NE = [max(xlim) max(ylim)]-[diff(xlim) diff(ylim)]*0.09;
+    label = 
     text(NE(1), NE(2), num2str(Rsqsf), 'FontSize', 14);
     
 
