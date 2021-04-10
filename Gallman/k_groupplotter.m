@@ -27,7 +27,7 @@ figure(1); clf;
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
 ax(1) = subplot(511); hold on; title('sumfftAmp');
-    yyaxis right; plot([out.e(2).s(ttsf{2}).temp], [out.e(2).s(ttsf{2}).sumfftAmp], '.');
+    yyaxis right; plot([out.e(2).s(ttsf{2}).temp], [out.e(2).s(ttsf{2}).sumfftAmp], '.'); plot
     yyaxis left; plot([out.e(1).s(ttsf{1}).temp], [out.e(1).s(ttsf{1}).sumfftAmp], '.');
 
 ax(2) = subplot(512); hold on; title('zAmp');
