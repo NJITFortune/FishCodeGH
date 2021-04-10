@@ -66,7 +66,7 @@ ax(4) = subplot(514); hold on; title('frequency (black) and temperature (red)');
     scatter([out.e(1).s.temp], [out.e(1).s.fftFreq]);
     hold on
     plot([out.e(1).s.temp]', yCalfreq, '--','LineWidth', 2);
-    ylim([mean([out.e(1).s.fftFreq])-200, mean([out.e(1).s.fftFreq])+200]);
+    ylim([mean([out.e(1).s.fftFreq])-100, mean([out.e(1).s.fftFreq])+100]);
 
 
        
