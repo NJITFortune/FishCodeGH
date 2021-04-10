@@ -46,6 +46,7 @@ ax(1) = subplot(511); hold on; title('sumfftAmp');
     scatter([out.e(1).s(ttsf{1}).temp], [out.e(1).s(ttsf{1}).sumfftAmp]);
     hold on
     plot([out.e(1).s(ttsf{1}).temp]', yCalcsf, '--', 'LineWidth', 2);
+    text(1/hrs(j), maxY*0.9, str, 'FontSize', 14);
     
 
 ax(2) = subplot(512); hold on; title('zAmp');
