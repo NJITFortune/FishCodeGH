@@ -47,7 +47,8 @@ ax(1) = subplot(511); hold on; title('sumfftAmp');
     hold on
     plot([out.e(1).s(ttsf{1}).temp]', yCalcsf, '--', 'LineWidth', 2);
     %text(max([out.e(1).s(ttsf{1}).temp])*0.7, max([out.e(1).s(ttsf{1}).sumfftAmp])*0.9, Rsqsf, 'FontSize', 14);
-    text(max([out.e(1).s(ttsf{1}).temp])*0.5, max([out.e(1).s(ttsf{1}).sumfftAmp])*0.5, Rsqsf, 'FontSize', 14);
+    NE = [max(xlim) max(ylim)]-[diff(xlim) diff(ylim)]*0.05;
+    text(max(NE, max([out.e(1).s(ttsf{1}).sumfftAmp])*0.5, Rsqsf, 'FontSize', 14);
     
 
 ax(2) = subplot(512); hold on; title('zAmp');
