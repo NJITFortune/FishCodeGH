@@ -74,7 +74,7 @@ ax(3) = subplot(513); hold on; title('obwAmp');
     str = "Rsquared = " + num2str(Rsqobw);
     text(NE(1), NE(2), str, 'FontSize', 14);
 
-ax(4) = subplot(514); hold on; title('frequency (black) and temperature (red)');  
+ax(4) = subplot(514); hold on; title('frequency');  
     [Rsqfreq,yCalfreq] = KatieRegress([out.e(1).s.temp], [out.e(1).s.fftFreq]);
     scatter([out.e(1).s.temp], [out.e(1).s.fftFreq]);
     hold on
