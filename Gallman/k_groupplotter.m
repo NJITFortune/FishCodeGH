@@ -45,27 +45,27 @@ ax(1) = subplot(511); hold on; title('sumfftAmp');
     yCalcsf = KatieRegress([out.e(1).s(ttsf{1}).temp], [out.e(1).s(ttsf{1}).sumfftAmp]);
     scatter([out.e(1).s(ttsf{1}).temp], [out.e(1).s(ttsf{1}).sumfftAmp]);
     hold on
-    plot([out.e(1).s(ttsf{1}).temp]', yCalcsf, '--');
+    plot([out.e(1).s(ttsf{1}).temp]', yCalcsf, '--', 'LineWidth', 2);
     
 
 ax(2) = subplot(512); hold on; title('zAmp');
     yCalz = KatieRegress([out.e(1).s(ttz{1}).temp], [out.e(1).s(ttz{1}).zAmp]);
     scatter([out.e(1).s(ttz{1}).temp], [out.e(1).s(ttz{1}).zAmp]);
     hold on
-    plot([out.e(1).s(ttz{1}).temp]', yCalz, '--');
+    plot([out.e(1).s(ttz{1}).temp]', yCalz, '--','LineWidth', 2);
 
 
 ax(3) = subplot(513); hold on; title('obwAmp');
     yCalobw = KatieRegress([out.e(1).s(tto{1}).temp], [out.e(1).s(tto{1}).obwAmp]);
     scatter([out.e(1).s(tto{1}).temp], [out.e(1).s(tto{1}).obwAmp]);
     hold on
-    plot([out.e(1).s(tto{1}).temp]', yCalobw, '--');
+    plot([out.e(1).s(tto{1}).temp]', yCalobw, '--' ,'LineWidth', 2);
 
 ax(4) = subplot(514); hold on; title('frequency (black) and temperature (red)');  
     yCalfreq = KatieRegress([out.e(1).s.temp], [out.e(1).s.fftFreq]);
     scatter([out.e(1).s.temp], [out.e(1).s.fftFreq]);
     hold on
-    plot([out.e(1).s.temp]', yCalfreq, '--');
+    plot([out.e(1).s.temp]', yCalfreq, '--','LineWidth', 2);
 
 
        
