@@ -24,7 +24,7 @@ close all;
 %% Linear Regression
 x = [out.e(1).s(ttsf{1}).temp];
 y = [out.e(1).s(ttsf{1}).sumfftAmp];
-X = [ones(length(x),1) x];
+X = [ones(length([out.e(1).s(ttsf{1}).temp]),1) [out.e(1).s(ttsf{1}).temp]];
 b = X\y;
 yCalc2 = X*b;
 b1 = x/y;
