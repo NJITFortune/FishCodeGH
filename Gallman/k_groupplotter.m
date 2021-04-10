@@ -41,8 +41,6 @@ plot(x,yCalc2,'--')
 figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
     
-    label = num2str(hrs(j)/2);
-            str = " " + label + ":" + label;
 
 ax(1) = subplot(511); hold on; title('sumfftAmp');
     [Rsqsf,yCalcsf] = KatieRegress([out.e(1).s(ttsf{1}).temp], [out.e(1).s(ttsf{1}).sumfftAmp]);
