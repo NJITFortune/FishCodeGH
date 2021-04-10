@@ -58,6 +58,10 @@ ax(2) = subplot(512); hold on; title('zAmp');
     scatter([out.e(1).s(ttz{1}).temp], [out.e(1).s(ttz{1}).zAmp]);
     hold on
     plot([out.e(1).s(ttz{1}).temp]', yCalz, '--','LineWidth', 2);
+    
+    NE = [max(xlim) max(ylim)]-[diff(xlim) diff(ylim)]*0.2;
+    str = "Rsquared = " + num2str(Rsqz);
+    text(NE(1), NE(2), str, 'FontSize', 14);
 
 
 ax(3) = subplot(513); hold on; title('obwAmp');
@@ -65,6 +69,10 @@ ax(3) = subplot(513); hold on; title('obwAmp');
     scatter([out.e(1).s(tto{1}).temp], [out.e(1).s(tto{1}).obwAmp]);
     hold on
     plot([out.e(1).s(tto{1}).temp]', yCalobw, '--' ,'LineWidth', 2);
+    
+    NE = [max(xlim) max(ylim)]-[diff(xlim) diff(ylim)]*0.2;
+    str = "Rsquared = " + num2str(Rsqobw);
+    text(NE(1), NE(2), str, 'FontSize', 14);
 
 ax(4) = subplot(514); hold on; title('frequency (black) and temperature (red)');  
     [Rsqfreq,yCalfreq] = KatieRegress([out.e(1).s.temp], [out.e(1).s.fftFreq]);
@@ -73,6 +81,9 @@ ax(4) = subplot(514); hold on; title('frequency (black) and temperature (red)');
     plot([out.e(1).s.temp]', yCalfreq, '--','LineWidth', 2);
     ylim([mean([out.e(1).s.fftFreq])-100, mean([out.e(1).s.fftFreq])+100]);
 
+    NE = [max(xlim) max(ylim)]-[diff(xlim) diff(ylim)]*0.2;
+    str = "Rsquared = " + num2str(Rsqfreq);
+    text(NE(1), NE(2), str, 'FontSize', 14);
 
        
     
