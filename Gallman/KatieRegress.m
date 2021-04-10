@@ -1,4 +1,4 @@
-function yCalc = KatieRegress(x, y)
+function [yCalc = KatieRegress(x, y)
 % plot the data for fun
 % Usage: k_initialplotter(kg(#));
 
