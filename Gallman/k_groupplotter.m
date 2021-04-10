@@ -27,13 +27,13 @@ y = [out.e(1).s(ttsf{1}).sumfftAmp]';
 X = [ones(length(x),1) x];
 b = X\y;
 yCalc2 = X*b;
-b1 = x/y;
-yCalc1 = b1*x;
+%b1 = x/y;
+%yCalc1 = b1*x;
 scatter(x,y)
 hold on
 
 plot(x,yCalc2,'--')
-plot(x,yCalc1)
+%plot(x,yCalc1)
 
 
 %% amplitude vs temperature
