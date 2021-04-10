@@ -4,6 +4,8 @@ function yCalc = KatieRegress(x, y)
 
     
 %% Linear Regression
+x = x';
+y = y';
 X = [ones(length(x),1) x];
 b = X\y;
 yCalc = X*b;
