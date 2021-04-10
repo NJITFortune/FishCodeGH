@@ -40,6 +40,9 @@ plot(x,yCalc2,'--')
 
 figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
+    
+    label = num2str(hrs(j)/2);
+            str = " " + label + ":" + label;
 
 ax(1) = subplot(511); hold on; title('sumfftAmp');
     [Rsqsf,yCalcsf] = KatieRegress([out.e(1).s(ttsf{1}).temp], [out.e(1).s(ttsf{1}).sumfftAmp]);
@@ -48,8 +51,9 @@ ax(1) = subplot(511); hold on; title('sumfftAmp');
     plot([out.e(1).s(ttsf{1}).temp]', yCalcsf, '--', 'LineWidth', 2);
     %text(max([out.e(1).s(ttsf{1}).temp])*0.7, max([out.e(1).s(ttsf{1}).sumfftAmp])*0.9, Rsqsf, 'FontSize', 14);
     NE = [max(xlim) max(ylim)]-[diff(xlim) diff(ylim)]*0.09;
-    label = 
-    text(NE(1), NE(2), num2str(Rsqsf), 'FontSize', 14);
+    value = num2str(Rsqsf);
+    label = "Rsquared = " value;
+    text(NE(1), NE(2), label, 'FontSize', 14);
     
 
 ax(2) = subplot(512); hold on; title('zAmp');
