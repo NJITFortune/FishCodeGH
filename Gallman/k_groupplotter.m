@@ -25,6 +25,7 @@ close all;
 x = [out.e(1).s(ttsf{1}).temp];
 y = [out.e(1).s(ttsf{1}).sumfftAmp];
 X = [ones(length(x),1) x];
+b = X\y;
 yCalc2 = X*b;
 b1 = x/y;
 yCalc1 = b1*x;
