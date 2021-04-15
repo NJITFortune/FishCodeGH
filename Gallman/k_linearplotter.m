@@ -78,10 +78,9 @@ ax(4) = subplot(514); hold on; title('frequency');
 
     ntemp = normalize([out.e(1).s.temp], 'range');
     nfreq = normalize([out.e(1).s.fftFreq], 'range');
-    %nfreq = nfreq(nfreq < 0.35 & nfreq > 0.25);
-    %ntemp = ntemp(nfreq < 0.35 & nfreq > 0.25);
-    mean(nfreq)
-    std(nfreq)
+    nfreq = nfreq(nfreq < (mean(nfreq) + std(nfreq)) & nfreq > (mean(nfreq) - std(nfreq)));
+    ntemp = ntemp(nfreq < (mean(nfreq) + std(nfreq)) & nfreq > (mean(nfreq) - std(nfreq)));
+   
 
     [Rsqfreq,yCalfreq] = KatieRegress(ntemp, nfreq);
     scatter(ntemp, nfreq);
