@@ -33,11 +33,12 @@ figure(1); clf;
 ax(1) = subplot(511); hold on; title('sumfftAmp');
     
     ffttemp1 = normalize([out.e(1).s(ttsf{1}).temp], 'range'); 
+    fftAmp1 = normalize([out.e(1).s(ttsf{1}).sumfftAmp], 'range');
 
-    [Rsqsf,yCalcsf] = KatieRegress(, normalize([out.e(1).s(ttsf{1}).sumfftAmp], 'range'));
-    scatter([out.e(1).s(ttsf{1}).temp], [out.e(1).s(ttsf{1}).sumfftAmp]);
+    [Rsqsf,yCalcsf] = KatieRegress(ffttemp1, fftAmp1);
+    scatter(ffttemp1, fftAmp1);
     hold on
-    plot([out.e(1).s(ttsf{1}).temp]', yCalcsf, '--', 'LineWidth', 2);
+    plot(ffttemp1', yCalcsf, '--', 'LineWidth', 2);
     
     NE = [max(xlim) max(ylim)]-[diff(xlim) diff(ylim)]*0.2;
     str = "Rsquared = " + num2str(Rsqsf);
@@ -45,10 +46,14 @@ ax(1) = subplot(511); hold on; title('sumfftAmp');
     
 
 ax(2) = subplot(512); hold on; title('zAmp');
-    [Rsqz,yCalz] = KatieRegress([out.e(1).s(ttz{1}).temp], [out.e(1).s(ttz{1}).zAmp]);
-    scatter([out.e(1).s(ttz{1}).temp], [out.e(1).s(ttz{1}).zAmp]);
+    
+    ztemp1 = normalize([out.e(1).s(ttz{1}).temp], 'range');
+    zAmp1 = normalize([out.e(1).s(ttz{1}).zAmp], 'range');
+
+    [Rsqz,yCalz] = KatieRegress(ztemp1, zAmp1);
+    scatter(ztemp1, zAmp1);
     hold on
-    plot([out.e(1).s(ttz{1}).temp]', yCalz, '--','LineWidth', 2);
+    plot(ztemp1', yCalz, '--','LineWidth', 2);
     
     NE = [max(xlim) max(ylim)]-[diff(xlim) diff(ylim)]*0.2;
     str = "Rsquared = " + num2str(Rsqz);
@@ -56,6 +61,10 @@ ax(2) = subplot(512); hold on; title('zAmp');
 
 
 ax(3) = subplot(513); hold on; title('obwAmp');
+
+    obwtemp1 = normalize([out.e(1).s(tto{1}).temp], 'range');
+    obwAmp1 = normalize([out.e(1).s(tto{1}).obwAmp, 'range');
+
     [Rsqobw, yCalobw] = KatieRegress([out.e(1).s(tto{1}).temp], [out.e(1).s(tto{1}).obwAmp]);
     scatter([out.e(1).s(tto{1}).temp], [out.e(1).s(tto{1}).obwAmp]);
     hold on
