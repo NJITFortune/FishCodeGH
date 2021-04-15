@@ -31,10 +31,14 @@ figure(1); clf;
     
 
 ax(1) = subplot(511); hold on; title('sumfftAmp');
-    [Rsqsf,yCalcsf] = KatieRegress([out.e(1).s(ttsf{1}).temp], [out.e(1).s(ttsf{1}).sumfftAmp]);
-    scatter([out.e(1).s(ttsf{1}).temp], [out.e(1).s(ttsf{1}).sumfftAmp]);
+    
+    ffttemp1 = normalize([out.e(1).s(ttsf{1}).temp], 'range'); 
+    fftAmp1 = normalize([out.e(1).s(ttsf{1}).sumfftAmp], 'range');
+
+    [Rsqsf,yCalcsf] = KatieRegress(ffttemp1, fftAmp1);
+    scatter(ffttemp1, fftAmp1);
     hold on
-    plot([out.e(1).s(ttsf{1}).temp]', yCalcsf, '--', 'LineWidth', 2);
+    plot(ffttemp1', yCalcsf, '--', 'LineWidth', 2);
     
     NE = [max(xlim) max(ylim)]-[diff(xlim) diff(ylim)]*0.2;
     str = "Rsquared = " + num2str(Rsqsf);
