@@ -49,6 +49,11 @@ ax(3) = subplot(513); hold on; title('obwAmp');
 ax(4) = subplot(514); hold on; title('frequency');  
 
     qqplot([out.e(1).s.fftFreq]);
+    
+ax(5) = subplot(515); hold on; title('temperature');  
+
+    qqplot([out.e(1).s.fftFreq]);
+ 
 
     
 linkaxes(ax, 'x'); 
