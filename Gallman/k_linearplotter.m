@@ -21,19 +21,7 @@ close all;
         ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
     end
     
-%% Linear Regression
-x = [out.e(1).s(ttsf{1}).temp]';
-y = [out.e(1).s(ttsf{1}).sumfftAmp]';
-X = [ones(length(x),1) x];
-b = X\y;
-yCalc2 = X*b;
-%b1 = x/y;
-%yCalc1 = b1*x;
-scatter(x,y)
-hold on
 
-plot(x,yCalc2,'--')
-%plot(x,yCalc1)
 
 
 %% amplitude vs temperature
