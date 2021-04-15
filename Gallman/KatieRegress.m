@@ -4,16 +4,16 @@ function [Rsq, yCalc] = KatieRegress(x, y)
 
     
 %% Linear Regression
-x = normalize(x', 'range');
-y = normalize(y', 'range');
+xn = normalize(x', 'range');
+yn = normalize(y', 'range');
 
 
 
-X = [ones(length(x),1) x];
-b = X\y;
+X = [ones(length(xn),1) xn];
+b = X\yn;
 yCalc = X*b;
 
-Rsq = 1 - sum((y - yCalc).^2)/sum((y - mean(y)).^2);
+Rsq = 1 - sum((yn - yCalc).^2)/sum((yn - mean(yn)).^2);
 %b1 = x/y;
 %yCalc1 = b1*x;
 end
