@@ -63,7 +63,7 @@ ax(2) = subplot(512); hold on; title('zAmp');
 ax(3) = subplot(513); hold on; title('obwAmp');
 
     nobwtemp1 = normalize([out.e(1).s(tto{1}).temp], 'range');
-    nobwAmp1 = normalize([out.e(1).s(tto{1}).obwAmp, 'range');
+    nobwAmp1 = normalize([out.e(1).s(tto{1}).obwAmp], 'range');
 
     [Rsqobw, yCalobw] = KatieRegress(nobwtemp1, nobwAmp1);
     scatter(nobwtemp1, nobwAmp1);
