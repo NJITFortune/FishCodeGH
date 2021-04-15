@@ -26,7 +26,7 @@ close all;
 
 %% amplitude vs temperature
 
-figure(1); clf; 
+figure(1); clf; title('Amplitude vs temperature');
     set(gcf, 'Position', [200 100 2*560 2*420]);
     
 
