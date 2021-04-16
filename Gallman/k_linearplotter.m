@@ -162,7 +162,7 @@ linkaxes(ax, 'x');
 
     sumfft1 = [out.e(1).s(ttsf{1}).sumfftAmp];
     tempfft1 = [out.e(1).s(ttsf{1}).temp];
-    lightfft1 = [out.e(1).s(ttsf{1}).light];
+    
 %     
     gscatter(tempfft1, sumfft1, lightfft1, 'bgr', 'x.o');
 %     line(w,feval(fit,w,'70'),'Color','b','LineWidth',2)
