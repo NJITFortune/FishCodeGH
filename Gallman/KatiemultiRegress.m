@@ -14,10 +14,9 @@ y = y';
 
 %compute regression coefficients
 X = [ones(size(x1)) x1 x2 x1.*x2]; %with interaction term
-b = regress(y, X); %Removes NaN data
+[b, bint, r, rint, stats] = regress(y, X); %Removes NaN data
 
 
 
-%b1 = x/y;
-%yCalc1 = b1*x;
+
 end
