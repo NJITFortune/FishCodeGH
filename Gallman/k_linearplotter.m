@@ -162,15 +162,17 @@ linkaxes(ax, 'x');
 
     sumfft1 = [out.e(1).s(ttsf{1}).sumfftAmp];
     tempfft1 = [out.e(1).s(ttsf{1}).temp];
+    w = linspace(min(tempfft1),max(tempfft1));
+    
     fftreg1 = table(sumfft1, tempfft1, categorical(lightfft1));
     fftfit = fitlm(fftreg1, 'sumfft1~tempfft1*lightfft');
   
     
 %     
-    gscatter(tempfft1, sumfft1, lightfft1, 'bgr', 'x.o');
-    line(w,feval(fit,w,'70'),'Color','b','LineWidth',2)
-    line(w,feval(fit,w,'76'),'Color','g','LineWidth',2)
-    line(w,feval(fit,w,'82'),'Color','r','LineWidth',2)
+    gscatter(tempfft1, sumfft1, lightfft1, 'br', 'x.o');
+    line(w,feval(fftfit,w,'1'),'Color','b','LineWidth',2)
+    line(w,feval(fftfit,w,'5'),'Color','r','LineWidth',2)
+    %line(w,feval(fit,w,'82'),'Color','r','LineWidth',2)
     
     
     
