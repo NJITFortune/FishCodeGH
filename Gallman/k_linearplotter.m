@@ -98,28 +98,30 @@ linkaxes(ax, 'x');
 
 %% Multiple linear regression
 
-figure(1); clf; title('Amplitude vs temperature vs light');
+figure(2); clf; title('Amplitude vs temperature vs light');
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
     
     ax(1) = subplot(511); hold on; title('sumfftAmp');
     
-    [b, bint, r, rint, stats] = KatiemultiRegress(y, nfftAmp1, nffttemp1)
+    nfftlight1 = normalize([out.e(1).s(ttsf{1}).light], 'range');
     
-    scatter3(x1,x2,y,'filled')
+    [bfft, ~, ~, ~, stats] = KatiemultiRegress(nfftAmp1, nfftlight1, nffttemp1);
+    
+    scatter3(nfftlight1,nffttemp1,nfftAmp1,'filled')
     hold on
-    x1fit = min(x1):100:max(x1);
-    x2fit = min(x2):10:max(x2);
+    x1fit = min(nfftlight1):0.5:max(nfftlight1);
+    x2fit = min(nffttemp1):0.1:max(nffttemp1);
     [X1FIT,X2FIT] = meshgrid(x1fit,x2fit);
-    YFIT = b(1) + b(2)*X1FIT + b(3)*X2FIT + b(4)*X1FIT.*X2FIT;
+    YFIT = bfft(1) + bfft(2)*X1FIT + bfft(3)*X2FIT + bfft(4)*X1FIT.*X2FIT;
     mesh(X1FIT,X2FIT,YFIT)
-    xlabel('Weight')
-    ylabel('Horsepower')
-    zlabel('MPG')
+    xlabel('Light')
+    ylabel('fftAmp')
+    zlabel('Temperature')
     view(50,10)
     hold off
 
-
+stats
 
 
 
