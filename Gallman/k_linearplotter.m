@@ -145,17 +145,18 @@ linkaxes(ax, 'x');
 %     nfftstats
 
     
-    
-    
-    
-    figure(2); clf; title('Amplitude vs temperature vs light');
-    set(gcf, 'Position', [200 100 2*560 2*420]);
-
-    sumfft1 = [out.e(1).s(ttsf{1}).sumfftAmp];
-    tempfft1 = [out.e(1).s(ttsf{1}).temp];
     lightfft1 = [out.e(1).s(ttsf{1}).light];
+    lightfft1
     
-    gscatter(tempfft1, sumfft1, lightfft1, 'bgr', 'x.o');
+    
+%     figure(2); clf; title('Amplitude vs temperature vs light');
+%     set(gcf, 'Position', [200 100 2*560 2*420]);
+% 
+%     sumfft1 = [out.e(1).s(ttsf{1}).sumfftAmp];
+%     tempfft1 = [out.e(1).s(ttsf{1}).temp];
+%     lightfft1 = [out.e(1).s(ttsf{1}).light];
+%     
+%     gscatter(tempfft1, sumfft1, lightfft1, 'bgr', 'x.o');
 %     line(w,feval(fit,w,'70'),'Color','b','LineWidth',2)
 %     line(w,feval(fit,w,'76'),'Color','g','LineWidth',2)
 %     line(w,feval(fit,w,'82'),'Color','r','LineWidth',2)
