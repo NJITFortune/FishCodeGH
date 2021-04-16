@@ -104,14 +104,13 @@ figure(2); clf; title('Amplitude vs temperature vs light');
     
     ax(1) = subplot(511); hold on; title('sumfftAmp');
     
-    nfftlight1 = normalize([out.e(1).s(ttsf{1}).light], 'range');
     
-    [bfft, ~, ~, ~, stats] = KatiemultiRegress(nfftAmp1, nfftlight1, nffttemp1);
+    [bfft, ~, ~, ~, fftstats] = KatiemultiRegress([out.e(1).s(ttsf{1}).sumfftAmp], [out.e(1).s(ttsf{1}).light], [out.e(1).s(ttsf{1}).temp]);
     
-    scatter3(nfftlight1,nffttemp1,nfftAmp1,'filled')
+    scatter3([out.e(1).s(ttsf{1}).light], [out.e(1).s(ttsf{1}).temp],[out.e(1).s(ttsf{1}).sumfftAmp],'filled')
     hold on
-    x1fit = min(nfftlight1):0.5:max(nfftlight1);
-    x2fit = min(nffttemp1):0.1:max(nffttemp1);
+    x1fit = min([out.e(1).s(ttsf{1}).light]):0.5:max([out.e(1).s(ttsf{1}).light]);
+    x2fit = min([out.e(1).s(ttsf{1}).light]):0.1:max([out.e(1).s(ttsf{1}).light]);
     [X1FIT,X2FIT] = meshgrid(x1fit,x2fit);
     YFIT = bfft(1) + bfft(2)*X1FIT + bfft(3)*X2FIT + bfft(4)*X1FIT.*X2FIT;
     mesh(X1FIT,X2FIT,YFIT)
@@ -120,8 +119,30 @@ figure(2); clf; title('Amplitude vs temperature vs light');
     zlabel('Temperature')
     view(50,10)
     hold off
-
-stats
+    
+    fftstats
+    
+    ax(2) = sublot(512); hold on; title('normalized sumfftAmp')
+    
+    nfftlight1 = normalize([out.e(1).s(ttsf{1}).light], 'range');
+   
+    
+    [nbfft, ~, ~, ~, nfftstats] = KatiemultiRegress(nfftAmp1, nfftlight1, nffttemp1);
+    
+    scatter3(nfftlight1, nffttemp1 ,nfftAmp1,'filled')
+    hold on
+    x1fit = min(nfftlight1):0.5:max(nfftlight1);
+    x2fit = min(nffttemp1 ):0.1:max(nffttemp1);
+    [X1FIT,X2FIT] = meshgrid(x1fit,x2fit);
+    YFIT = nbfft(1) + nbfft(2)*X1FIT + nbfft(3)*X2FIT + nbfft(4)*X1FIT.*X2FIT;
+    mesh(X1FIT,X2FIT,YFIT)
+    xlabel('Light')
+    ylabel('fftAmp')
+    zlabel('Temperature')
+    view(50,10)
+    hold off
+    
+    nfftstats
 
 
 
