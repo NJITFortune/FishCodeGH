@@ -98,51 +98,65 @@ linkaxes(ax, 'x');
 
 %% Multiple linear regression
 
-figure(2); clf; title('Amplitude vs temperature vs light');
+% figure(2); clf; title('Amplitude vs temperature vs light');
+%     set(gcf, 'Position', [200 100 2*560 2*420]);
+% 
+%     
+%     subplot(211); hold on; title('sumfftAmp');
+%     
+%     
+%     [bfft, ~, ~, ~, fftstats] = KatiemultiRegress([out.e(1).s(ttsf{1}).sumfftAmp], [out.e(1).s(ttsf{1}).light], [out.e(1).s(ttsf{1}).temp]);
+%     
+%     scatter3([out.e(1).s(ttsf{1}).light], [out.e(1).s(ttsf{1}).temp],[out.e(1).s(ttsf{1}).sumfftAmp],'filled')
+%     hold on
+%     x1fit = min([out.e(1).s(ttsf{1}).light]):1:max([out.e(1).s(ttsf{1}).light]);
+%     x2fit = min([out.e(1).s(ttsf{1}).temp]):0.01:max([out.e(1).s(ttsf{1}).temp]);
+%     [X1FIT,X2FIT] = meshgrid(x1fit,x2fit);
+%     YFIT = bfft(1) + bfft(2)*X1FIT + bfft(3)*X2FIT + bfft(4)*X1FIT.*X2FIT;
+%     mesh(X1FIT,X2FIT,YFIT)
+%     xlabel('Light')
+%     ylabel('fftAmp')
+%     zlabel('Temperature')
+%     view(50,10)
+%     hold off
+%     
+%     fftstats
+%     
+%     subplot(212); hold on; title('normalized sumfftAmp')
+%     
+%     nfftlight1 = normalize([out.e(1).s(ttsf{1}).light], 'range');
+%    
+%     
+%     [nbfft, ~, ~, ~, nfftstats] = KatiemultiRegress(nfftAmp1, nfftlight1, nffttemp1);
+%     
+%     scatter3(nfftlight1, nffttemp1 ,nfftAmp1,'filled')
+%     hold on
+%     x1fit = min(nfftlight1):0.5:max(nfftlight1);
+%     x2fit = min(nffttemp1 ):0.1:max(nffttemp1);
+%     [X1FIT,X2FIT] = meshgrid(x1fit,x2fit);
+%     YFIT = nbfft(1) + nbfft(2)*X1FIT + nbfft(3)*X2FIT + nbfft(4)*X1FIT.*X2FIT;
+%     mesh(X1FIT,X2FIT,YFIT)
+%     xlabel('Light')
+%     ylabel('fftAmp')
+%     zlabel('Temperature')
+%     view(50,10)
+%     hold off
+%     
+%     nfftstats
+
+    
+    
+    
+    
+    figure(2); clf; title('Amplitude vs temperature vs light');
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
     
-    subplot(211); hold on; title('sumfftAmp');
+  
     
     
-    [bfft, ~, ~, ~, fftstats] = KatiemultiRegress([out.e(1).s(ttsf{1}).sumfftAmp], [out.e(1).s(ttsf{1}).light], [out.e(1).s(ttsf{1}).temp]);
     
-    scatter3([out.e(1).s(ttsf{1}).light], [out.e(1).s(ttsf{1}).temp],[out.e(1).s(ttsf{1}).sumfftAmp],'filled')
-    hold on
-    x1fit = min([out.e(1).s(ttsf{1}).light]):1:max([out.e(1).s(ttsf{1}).light]);
-    x2fit = min([out.e(1).s(ttsf{1}).temp]):0.01:max([out.e(1).s(ttsf{1}).temp]);
-    [X1FIT,X2FIT] = meshgrid(x1fit,x2fit);
-    YFIT = bfft(1) + bfft(2)*X1FIT + bfft(3)*X2FIT + bfft(4)*X1FIT.*X2FIT;
-    mesh(X1FIT,X2FIT,YFIT)
-    xlabel('Light')
-    ylabel('fftAmp')
-    zlabel('Temperature')
-    view(50,10)
-    hold off
     
-    fftstats
-    
-    subplot(212); hold on; title('normalized sumfftAmp')
-    
-    nfftlight1 = normalize([out.e(1).s(ttsf{1}).light], 'range');
-   
-    
-    [nbfft, ~, ~, ~, nfftstats] = KatiemultiRegress(nfftAmp1, nfftlight1, nffttemp1);
-    
-    scatter3(nfftlight1, nffttemp1 ,nfftAmp1,'filled')
-    hold on
-    x1fit = min(nfftlight1):0.5:max(nfftlight1);
-    x2fit = min(nffttemp1 ):0.1:max(nffttemp1);
-    [X1FIT,X2FIT] = meshgrid(x1fit,x2fit);
-    YFIT = nbfft(1) + nbfft(2)*X1FIT + nbfft(3)*X2FIT + nbfft(4)*X1FIT.*X2FIT;
-    mesh(X1FIT,X2FIT,YFIT)
-    xlabel('Light')
-    ylabel('fftAmp')
-    zlabel('Temperature')
-    view(50,10)
-    hold off
-    
-    nfftstats
 
 %linkaxes(ax, 'x'); 
 
