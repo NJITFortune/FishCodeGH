@@ -122,7 +122,7 @@ figure(2); clf; title('Amplitude vs temperature vs light');
     
     fftstats
     
-    ax(2) = sublot(512); hold on; title('normalized sumfftAmp')
+    ax(2) = subplot(512); hold on; title('normalized sumfftAmp')
     
     nfftlight1 = normalize([out.e(1).s(ttsf{1}).light], 'range');
    
