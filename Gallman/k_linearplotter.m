@@ -96,6 +96,13 @@ ax(4) = subplot(514); hold on; title('frequency');
     
 linkaxes(ax, 'x'); 
 
+%% Multiple linear regression
+
+
+
+
+
+
 
 %% Continuous data plot
 
