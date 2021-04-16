@@ -156,10 +156,13 @@ linkaxes(ax, 'x');
     lightfft1 = [out.e(1).s(ttsf{1}).light];
     
     gscatter(tempfft1, sumfft1, lightfft1, 'bgr', 'x.o')
+%     line(w,feval(fit,w,'70'),'Color','b','LineWidth',2)
+%     line(w,feval(fit,w,'76'),'Color','g','LineWidth',2)
+%     line(w,feval(fit,w,'82'),'Color','r','LineWidth',2)
     
-    fftreg1 = table(sumfft1, tempfft1, categorical(lightfft1));
-    fftfit = fitlm(fftreg1, 'sumfft1~tempfft1*lightfft');
-  
+%     fftreg1 = table(sumfft1, tempfft1, categorical(lightfft1));
+%     fftfit = fitlm(fftreg1, 'sumfft1~tempfft1*lightfft');
+%   
     
     
     
