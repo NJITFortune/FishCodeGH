@@ -144,7 +144,7 @@ figure(2); clf; title('Amplitude vs temperature vs light');
     
     nfftstats
 
-linkaxes(ax, 'x'); 
+%linkaxes(ax, 'x'); 
 
 %% Continuous data plot
 
