@@ -104,7 +104,7 @@ figure(1); clf; title('Amplitude vs temperature vs light');
     
     ax(1) = subplot(511); hold on; title('sumfftAmp');
     
-    
+    [b, bint, r, rint, stats] = KatiemultiRegress(y, nfftAmp1, nffttemp1)
     
     scatter3(x1,x2,y,'filled')
     hold on
