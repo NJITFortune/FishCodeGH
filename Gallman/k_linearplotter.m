@@ -96,6 +96,34 @@ ax(4) = subplot(514); hold on; title('frequency');
     
 linkaxes(ax, 'x'); 
 
+%% Multiple linear regression
+
+figure(2); clf; title('Amplitude vs temperature vs light');
+    set(gcf, 'Position', [200 100 2*560 2*420]);
+
+    
+    ax(1) = subplot(511); hold on; title('sumfftAmp');
+    
+    nfftlight1 = normalize([out.e(1).s(ttsf{1}).light], 'range');
+    
+    [bfft, ~, ~, ~, stats] = KatiemultiRegress(nfftAmp1, nfftlight1, nffttemp1);
+    
+    scatter3(nfftlight1,nffttemp1,nfftAmp1,'filled')
+    hold on
+    x1fit = min(nfftlight1):0.5:max(nfftlight1);
+    x2fit = min(nffttemp1):0.1:max(nffttemp1);
+    [X1FIT,X2FIT] = meshgrid(x1fit,x2fit);
+    YFIT = bfft(1) + bfft(2)*X1FIT + bfft(3)*X2FIT + bfft(4)*X1FIT.*X2FIT;
+    mesh(X1FIT,X2FIT,YFIT)
+    xlabel('Light')
+    ylabel('fftAmp')
+    zlabel('Temperature')
+    view(50,10)
+    hold off
+
+stats
+
+
 
 %% Continuous data plot
 
