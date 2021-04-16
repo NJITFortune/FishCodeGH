@@ -60,4 +60,7 @@ linkaxes(ax, 'x');
 
 %% Multivariate Regression modeling
 
-anova1([out.e(1).s(ttsf{1}).sumfftAmp], [out.e(1).s(ttsf{1}).light])
+[p,tbl,stats] = anova1([out.e(1).s(ttsf{1}).sumfftAmp], [out.e(1).s(ttsf{1}).light]);
+p
+tbl
+stats
