@@ -151,7 +151,14 @@ linkaxes(ax, 'x');
     figure(2); clf; title('Amplitude vs temperature vs light');
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
+    sumfft1 = [out.e(1).s(ttsf{1}).sumfftAmp];
+    tempfft1 = [out.e(1).s(ttsf{1}).temp];
+    lightfft1 = [out.e(1).s(ttsf{1}).light];
     
+    gscatter(tempfft1, sumfft1, lightfft1, 'bgr', 'x.o')
+    
+    fftreg1 = table(sumfft1, tempfft1, categorical(lightfft1));
+    fftfit = fitlm(fftreg1, 'sumfft1~tempfft1*lightfft');
   
     
     
