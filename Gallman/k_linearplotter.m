@@ -102,7 +102,7 @@ figure(2); clf; title('Amplitude vs temperature vs light');
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
     
-    ax(1) = subplot(511); hold on; title('sumfftAmp');
+    ax(1) = subplot(211); hold on; title('sumfftAmp');
     
     
     [bfft, ~, ~, ~, fftstats] = KatiemultiRegress([out.e(1).s(ttsf{1}).sumfftAmp], [out.e(1).s(ttsf{1}).light], [out.e(1).s(ttsf{1}).temp]);
@@ -122,7 +122,7 @@ figure(2); clf; title('Amplitude vs temperature vs light');
     
     fftstats
     
-    ax(2) = subplot(512); hold on; title('normalized sumfftAmp')
+    ax(2) = subplot(212); hold on; title('normalized sumfftAmp')
     
     nfftlight1 = normalize([out.e(1).s(ttsf{1}).light], 'range');
    
