@@ -110,7 +110,7 @@ figure(2); clf; title('Amplitude vs temperature vs light');
     scatter3([out.e(1).s(ttsf{1}).light], [out.e(1).s(ttsf{1}).temp],[out.e(1).s(ttsf{1}).sumfftAmp],'filled')
     hold on
     x1fit = min([out.e(1).s(ttsf{1}).light]):1:max([out.e(1).s(ttsf{1}).light]);
-    x2fit = min([out.e(1).s(ttsf{1}).temp]):0.1:max([out.e(1).s(ttsf{1}).temp]);
+    x2fit = min([out.e(1).s(ttsf{1}).temp]):0.01:max([out.e(1).s(ttsf{1}).temp]);
     [X1FIT,X2FIT] = meshgrid(x1fit,x2fit);
     YFIT = bfft(1) + bfft(2)*X1FIT + bfft(3)*X2FIT + bfft(4)*X1FIT.*X2FIT;
     mesh(X1FIT,X2FIT,YFIT)
