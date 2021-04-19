@@ -186,7 +186,7 @@ figure(1); hold on;
             if mod(j, 2) == 0 % j is even
                 pos(j) = maxY*0.9;
             else % j is odd
-                pos(j) = maxY*0.7;
+                pos(j) = maxY*0.6;
             end
             
             text(1/hrs(j), pos(j), str, 'FontSize', 14);
