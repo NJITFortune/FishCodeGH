@@ -189,7 +189,7 @@ figure(1); hold on;
                 pos(j) = maxY*0.6;
             end
             
-            text(1/hrs(j), pos(j), str, 'FontSize', 14);
+            setbold(text(1/hrs(j), pos(j), str, 'FontSize', 14), ;
 
         end
     
