@@ -118,7 +118,7 @@ end
 
 %% Histogram
 
-    out = iu_hist(spiketimes, randspikes, pos, vel, acc, sFs);
+    out = iu_histA(spiketimes, randspikes, pos, vel, acc, sFs);
 
 figure; clf;
 

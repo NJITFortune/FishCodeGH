@@ -59,7 +59,7 @@ for j = length(dataChans):-1:1
     filtsig = filtfilt(b,a, data(:,dataChans(j))); % High pass filter
     filtsig = filtfilt(f,e,filtsig); % Low pass filter      
     
-    windw = 0.25; %window width is 100 ms %changed to 250 ms - fixed doubling in fft
+    windw = 0.5; %window width is 100 ms %changed to 250 ms - fixed doubling in fft
     
     
 % ADJUST FOR DIRECTIONALITY - NOT SURE HOW TO APPLY THIS WITHIN THE FOR
@@ -159,6 +159,8 @@ end % By channel
     minute = str2num(iFiles(k).name(numstart+3:numstart+4));
     second = str2num(iFiles(k).name(numstart+6:numstart+7));
 
+    
+
     if k > 1 && ((hour*60*60) + (minute*60) + second) < out(k-1).tim24
         daycount = daycount + 1;
     end
@@ -176,8 +178,8 @@ end
 %Get the name of the current folder
 %[~,folder,~]=fileparts(pwd);
 %extract the light cycle info and convert to number
-%timstep = str2num(folder(6:7)); %length of light cycle in hours
-timstep = 24;
+%timstep = str2num(folder(7:8)); %length of light cycle in hours
+timstep = 12;
 cyc = floor([out(end).timcont]/(timstep*60*60)); %number of cycles in data
 
 %user defined details by light trial
@@ -208,7 +210,7 @@ figure(1); clf;
 ax(1) = subplot(411); hold on;
     plot([out.timcont]/(60*60), [out.Ch1sumAmp], '.');
     plot([out.timcont]/(60*60), [out.Ch2sumAmp], '.');
-    %ylim([0.1, 2]);
+    ylim([0.1, 2]);
    % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
 
 ax(2) = subplot(412); hold on;
@@ -220,11 +222,11 @@ ax(3) = subplot(413); hold on;
     yyaxis left; ylim([200 800]);
         plot([out.timcont]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
         plot([out.timcont]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
-%        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Ma[brkersize', 8);
+%        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
     
 ax(4) = subplot(414); hold on;
     plot([out.timcont]/(60*60), [out.light], '.', 'Markersize', 8);
-    %plot([out.luz], ztzed, '.-', 'Markersize', 8);
+%    plot([out.luz], ztzed, '.-', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
 
@@ -379,7 +381,7 @@ ax(4) = subplot(414); hold on;
 
 linkaxes(ax, 'x');   
 
-
+end
 
 function [amp, freq] = sinAnal(datums, FsF)
 
@@ -402,10 +404,8 @@ freq = 1/s(2);
 
 
 
+end
 
 
 
-
-
-
-   
+    

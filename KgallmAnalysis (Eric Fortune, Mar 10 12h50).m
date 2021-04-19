@@ -177,7 +177,7 @@ end
 %[~,folder,~]=fileparts(pwd);
 %extract the light cycle info and convert to number
 %timstep = str2num(folder(6:7)); %length of light cycle in hours
-timstep = 24;
+timstep = 48;
 cyc = floor([out(end).timcont]/(timstep*60*60)); %number of cycles in data
 
 %user defined details by light trial
@@ -208,7 +208,7 @@ figure(1); clf;
 ax(1) = subplot(411); hold on;
     plot([out.timcont]/(60*60), [out.Ch1sumAmp], '.');
     plot([out.timcont]/(60*60), [out.Ch2sumAmp], '.');
-    %ylim([0.1, 2]);
+    ylim([0.1, 2]);
    % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
 
 ax(2) = subplot(412); hold on;
@@ -407,5 +407,4 @@ freq = 1/s(2);
 
 
 
-
-   
+    

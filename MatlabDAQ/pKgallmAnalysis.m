@@ -1,4 +1,4 @@
-function out = KgallmAnalysis(userfilespec, Fs, numstart)
+function out = pKgallmAnalysis(userfilespec, Fs, numstart)
 % Function out = gallmAnalysis(userfilespec, Fs)
 % userfilespec is data from listentothis.m, e.g. 'EigenTest*.mat'
 % Fs is the sample rate, was 20kHz but now 40kHz
@@ -44,14 +44,14 @@ daycount = 0;
 
 %% Cycle through every file in the directory
 
-k = 1; % Our counter.
+%k = 1; % Our counter.
 
-while k <= length(iFiles)
+for k=1:length(iFiles)
 
 eval(['load ' iFiles(k).name]);
 
 % Get EOD amplitudes for each channel
-for j = length(dataChans):-1:1
+parfor j = length(dataChans):-1:1
 
     
 %NEW METHOD SAMPIDX - PEAK |AMP| WINDOW - not Fs dependent
@@ -117,11 +117,10 @@ for j = length(dataChans):-1:1
     
     posZs = find(z == 1); 
     
-    for kk = 2:length(posZs)
-       amp(kk-1) = max(filtsig(posZs(kk-1):posZs(kk))) - (min(filtsig(posZs(kk-1):posZs(kk)))); % Max + min of signal for each cycle
-    end
+    amp = max(filtsig(posZs(1:end-1):posZs(2:end))) - (min(filtsig(posZs(1:end-1):posZs(2:end)))); % Max + min of signal for each cycle
     
-    zAmp(j) = mean(amp);
+    zAmp = mean(amp);
+    
     
 % Fit SINEWAVE Method
 
@@ -177,7 +176,7 @@ end
 %[~,folder,~]=fileparts(pwd);
 %extract the light cycle info and convert to number
 %timstep = str2num(folder(6:7)); %length of light cycle in hours
-timstep = 24;
+timstep = 48;
 cyc = floor([out(end).timcont]/(timstep*60*60)); %number of cycles in data
 
 %user defined details by light trial
@@ -208,7 +207,7 @@ figure(1); clf;
 ax(1) = subplot(411); hold on;
     plot([out.timcont]/(60*60), [out.Ch1sumAmp], '.');
     plot([out.timcont]/(60*60), [out.Ch2sumAmp], '.');
-    %ylim([0.1, 2]);
+    ylim([0.1, 2]);
    % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
 
 ax(2) = subplot(412); hold on;
@@ -220,7 +219,7 @@ ax(3) = subplot(413); hold on;
     yyaxis left; ylim([200 800]);
         plot([out.timcont]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
         plot([out.timcont]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
-%        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Ma[brkersize', 8);
+%        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
     
 ax(4) = subplot(414); hold on;
     plot([out.timcont]/(60*60), [out.light], '.', 'Markersize', 8);
@@ -379,7 +378,7 @@ ax(4) = subplot(414); hold on;
 
 linkaxes(ax, 'x');   
 
-
+end
 
 function [amp, freq] = sinAnal(datums, FsF)
 
@@ -402,10 +401,8 @@ freq = 1/s(2);
 
 
 
+end
 
 
 
-
-
-
-   
+    
