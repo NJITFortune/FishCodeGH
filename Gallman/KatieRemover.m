@@ -20,7 +20,7 @@ figure(1); clf;
     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow; 
     
-    out(k).obwidx = [in(k).s.obwAmp] > cutofffreqL & [in(k).s.obwAmp] < cutofffreqH;
+    out(k).obwidx = find([in(k).s.obwAmp] > cutofffreqL & [in(k).s.obwAmp] < cutofffreqH);
     pause(1);
     
 % zAmp        
@@ -41,7 +41,7 @@ figure(1); clf;
     drawnow; 
     
     %Define indices by upper and lower lim
-    out(k).zidx = [in(k).s.zAmp] > cutofffreqL & [in(k).s.zAmp] < cutofffreqH;
+    out(k).zidx = find([in(k).s.zAmp] > cutofffreqL & [in(k).s.zAmp] < cutofffreqH);
     pause(1);
 
 % peakfftAmp        
@@ -83,7 +83,7 @@ figure(1); clf;
     drawnow; 
     
     %Define indices by upper and lower lim
-    out(k).sumfftidx = [in(k).s.sumfftAmp] > cutofffreqL & [in(k).s.sumfftAmp] < cutofffreqH;
+    out(k).sumfftidx = find([in(k).s.sumfftAmp] > cutofffreqL & [in(k).s.sumfftAmp] < cutofffreqH);
     pause(1);
 
 end
