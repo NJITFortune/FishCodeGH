@@ -62,7 +62,7 @@ figure(1); clf;
     drawnow; 
     
    %Define indices by upper and lower lim
-    out(k).peakfftidx = [in(k).s.peakfftAmp] > cutofffreqL & [in(k).s.peakfftAmp] < cutofffreqH;
+    out(k).peakfftidx = find([in(k).s.peakfftAmp] > cutofffreqL & [in(k).s.peakfftAmp] < cutofffreqH);
     pause(1);
     
 % sumfftAmp        
