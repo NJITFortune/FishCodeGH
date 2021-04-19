@@ -183,7 +183,13 @@ figure(1); hold on;
             plot([1/hrs(j), 1/hrs(j)], [minY, maxY], 'k-', 'LineWidth', 1);
             label = num2str(hrs(j)/2);
             str = " " + label + ":" + label;
-            text(1/hrs(j), maxY*0.9, str, 'FontSize', 14);
+            if mod(j, 2) == 0 % j is even
+                pos(j) = maxY*0.9;
+            else % j is odd
+                pos(j) = maxY*0.7;
+            end
+            
+            text(1/hrs(j), pos(j), str, 'FontSize', 14);
 
         end
     
