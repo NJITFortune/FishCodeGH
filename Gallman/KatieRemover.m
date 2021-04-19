@@ -1,4 +1,4 @@
-function out = KatieRemover(in)
+function out = KatielowerRemover(in)
 % This eliminates bad data
 % Usage: kg(#).idx = KatieRemover(kg(#).e);
 for k=1:2
