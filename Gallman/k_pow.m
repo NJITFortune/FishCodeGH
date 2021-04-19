@@ -169,7 +169,7 @@ figure(1); hold on;
     end  
 
     %Draw lines for light cycles
-    hrs = [96, 48, 24, 20, 16, 12, 10, 8]; % Double hours
+    hrs = [96, 48, 26, 24, 20, 16, 12, 10, 8]; % Double hours
 
     %plot data on log scale
     %fftmachine
