@@ -59,12 +59,29 @@ for j = length(dataChans):-1:1
     filtsig = filtfilt(b,a, data(:,dataChans(j))); % High pass filter
     filtsig = filtfilt(f,e,filtsig); % Low pass filter      
     
-    windw = 0.1; %window width is 100 ms
+    windw = 0.5; %window width is 100 ms %changed to 250 ms - fixed doubling in fft
+    
+    
+% ADJUST FOR DIRECTIONALITY - NOT SURE HOW TO APPLY THIS WITHIN THE FOR
+% LOOP - ERIC SAYS NO...
+%     if max(filtsig) < 0
+%        max(filtsig) = negmax;
+%     end
+%     
+%     if max(filtsig) > 0
+%        max(filtsig) = posmax;
+%     end
+%     
+%     posmax + negmax = diffac;
+%     negmax + diffac = adjneg;
+%     adjmax = cat(1, posmax, negmax);
+%     
+%     adjmax(sampidx, dataChans(j));
 
     [~, idx] = max(abs(filtsig)); %find where the amplitude of the sample is greatests
     
-    maxtim(j) = tim(idx); %find the time index with the greatest amplitude
-
+    maxtim(j) = tim(idx); %find the time index of idx
+    
     %place the peak amplitude in the middle of the new sample time window
     startim(j) = max([0, maxtim(j)-(windw/2)]); 
     
@@ -74,6 +91,8 @@ for j = length(dataChans):-1:1
     end
 
     sampidx = find(tim > startim(j) & tim < startim(j)+windw); %duration of sample
+    
+    
     
 % ORIGINAL FFT METHOD - sumAmp
     tmpfft = fftmachine(data(sampidx,dataChans(j)), Fs);
@@ -89,8 +108,7 @@ for j = length(dataChans):-1:1
 
 [~,~,~,obwAmp(j)] = obw(data(sampidx,dataChans(j)), Fs, [botFreq topFreq]);
 
-    %tmpsig = filtfilt(b,a,data(sampidx,dataChans(j))); % High pass filter
-    %tmpsig = filtfilt(f,e,tmpsig); % Low pass filter    
+   
 
 % Mean amplitude method
     z = zeros(1,length(sampidx)); %creat vector length of data
@@ -109,6 +127,8 @@ for j = length(dataChans):-1:1
 
     [SineAmp(j), SineFreq(j)] = sinAnal(filtsig', Fs);
     
+    
+    
 end % By channel
 
 % Crappy coding... but why not!
@@ -120,6 +140,7 @@ end % By channel
     out(k).Ch1sAmp = SineAmp(1);
     out(k).Ch1sFreq = SineFreq(1);
 
+
     out(k).Ch2peakAmp = peakAmp(2);
     out(k).Ch2peakFreq = peakFreq(2);
     out(k).Ch2sumAmp = sumAmp(2);
@@ -127,6 +148,7 @@ end % By channel
     out(k).Ch2zAmp = zAmp(2);
     out(k).Ch2sAmp = SineAmp(2);
     out(k).Ch2sFreq = SineFreq(2);
+   
         
     out(k).light = mean(data(:,lightchan));
     out(k).temp = mean(data(:,tempchan));
@@ -136,6 +158,8 @@ end % By channel
     hour = str2num(iFiles(k).name(numstart:numstart+1)); %numstart based on time stamp text location
     minute = str2num(iFiles(k).name(numstart+3:numstart+4));
     second = str2num(iFiles(k).name(numstart+6:numstart+7));
+
+    
 
     if k > 1 && ((hour*60*60) + (minute*60) + second) < out(k-1).tim24
         daycount = daycount + 1;
@@ -149,16 +173,45 @@ end % By channel
 
 end
 
+%% Create a separate vector for exact light time changes
+ 
+%Get the name of the current folder
+%[~,folder,~]=fileparts(pwd);
+%extract the light cycle info and convert to number
+%timstep = str2num(folder(7:8)); %length of light cycle in hours
+timstep = 12;
+cyc = floor([out(end).timcont]/(timstep*60*60)); %number of cycles in data
+
+%user defined details by light trial
+timerstart = 17; %hour of the first state change
+%initstate = 0; %initial state
+
+%timz = 1:1:cyc; %to avoid for-loop
+
+ztzed = [0 6]; %y
+
+
+%luz(timz) = (timerstart) + (timstep*(timz-1)); %without for-loop
+
+for i = 1:cyc
+    luz(i)=timstep*(i-1)+timerstart;
+    x1(:,i) = [luz(i), luz(i)];
+    
+    out(i).luz = x1(:,i);
+end    
+
+
 %% Plot the data for fun
 
 % Continuous data plot
 figure(1); clf; 
-    %set(gcf, 'Position', [200 100 2*560 2*420]);
+    set(gcf, 'Position', [200 100 2*560 2*420]);
 
 ax(1) = subplot(411); hold on;
     plot([out.timcont]/(60*60), [out.Ch1sumAmp], '.');
     plot([out.timcont]/(60*60), [out.Ch2sumAmp], '.');
-%    plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
+    ylim([0.1, 2]);
+   % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
 
 ax(2) = subplot(412); hold on;
     plot([out.timcont]/(60*60), [out.Ch1zAmp], '.');
@@ -173,6 +226,7 @@ ax(3) = subplot(413); hold on;
     
 ax(4) = subplot(414); hold on;
     plot([out.timcont]/(60*60), [out.light], '.', 'Markersize', 8);
+%    plot([out.luz], ztzed, '.-', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
 
