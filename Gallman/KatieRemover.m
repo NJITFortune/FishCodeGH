@@ -41,7 +41,7 @@ figure(1); clf;
     drawnow; 
     
     %Define indices by upper and lower lim
-    out(k).zidx = [in(k).s.obwAmp] > cutofffreqL & [in(k).s.obwAmp] < cutofffreqH;
+    out(k).zidx = [in(k).s.zAmp] > cutofffreqL & [in(k).s.zAmp] < cutofffreqH;
     pause(1);
 
 % peakfftAmp        
@@ -62,7 +62,7 @@ figure(1); clf;
     drawnow; 
     
    %Define indices by upper and lower lim
-    out(k).peakfftidx = [in(k).s.obwAmp] > cutofffreqL & [in(k).s.obwAmp] < cutofffreqH;
+    out(k).peakfftidx = [in(k).s.peakfftAmp] > cutofffreqL & [in(k).s.peakfftAmp] < cutofffreqH;
     pause(1);
     
 % sumfftAmp        
@@ -83,7 +83,7 @@ figure(1); clf;
     drawnow; 
     
     %Define indices by upper and lower lim
-    out(k).sumfftidx = [in(k).s.obwAmp] > cutofffreqL & [in(k).s.obwAmp] < cutofffreqH;
+    out(k).sumfftidx = [in(k).s.sumfftAmp] > cutofffreqL & [in(k).s.sumfftAmp] < cutofffreqH;
     pause(1);
 
 end
