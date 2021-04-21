@@ -25,7 +25,7 @@ end
     
     
 % If we have removed outliers via KatieRemover, get the indices...    
-    if isfield(in, 'idx')
+    if ~isempty('in.idx')
         tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
         ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
         ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
@@ -33,23 +33,28 @@ end
 
     tim = [in.e(1).s.timcont]/(60*60);
    
-    if isfield(in, 'info.poweridx')
+    if ~isempty('in.info.poweridx')
         tt = find(tim > in.info.poweridx(1) & tim < in.info.poweridx(2));
     else
         tt = 1:length(tim);
     end
         
+    length(tt)
+    length(tim)
     
     %hard coded because fuck thinking
     obwdata1 = [in.e(1).s(tto{1}(tt)).obwAmp]; 
     obwtim1 = tim(tto{1}(tt));
+    
+    length(obwdata1)
+    length(obwtim1)
     
             spliney = csaps(obwtim1, obwdata1, p);
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
             o.obw(1).y = fnval(o.obw(1).x, spliney);
             
     obwdata2 = [in.e(2).s(tto{2}(tt)).obwAmp]; 
-    obwtim2 = tim(tto{2});
+    obwtim2 = tim(tto{2}(tt));
             spliney = csaps(obwtim2, obwdata2, p);
             o.obw(2).x = obwtim2(1):1/ReFs:obwtim2(end);
             o.obw(2).y = fnval(o.obw(2).x, spliney);
