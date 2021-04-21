@@ -37,6 +37,7 @@ end
         tt = find(tim > in.info.poweridx(1) & tim < in.info.poweridx(2));
     else
         tt = 1:length(tim);
+    end
         
 
     %hard coded because fuck thinking
