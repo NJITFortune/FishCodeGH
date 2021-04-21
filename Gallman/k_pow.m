@@ -34,13 +34,13 @@ end
     tim = [in.e(1).s.timcont]/(60*60);
    
     if isfield(in, 'info.poweridx')
-        tt = find(tim > in.info.poweridx(1) & tim < in.info.poweridx(2);
+        tt = find(tim > in.info.poweridx(1) & tim < in.info.poweridx(2));
     else
         tt = 1:length(tim);
         
 
     %hard coded because fuck thinking
-    obwdata1 = [in.e(1).s(tto{1}(tt).obwAmp]; 
+    obwdata1 = [in.e(1).s(tto{1}(tt)).obwAmp]; 
     obwtim1 = tim(tto{1}(tt));
     
             spliney = csaps(obwtim1, obwdata1, p);
