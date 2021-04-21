@@ -39,6 +39,7 @@ end
         tt = 1:length(tim);
     end
         
+    length(tt)
     
     %hard coded because fuck thinking
     obwdata1 = [in.e(1).s(tto{1}(tt)).obwAmp]; 
