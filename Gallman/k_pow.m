@@ -34,7 +34,7 @@ end
     tim = [in.e(1).s.timcont]/(60*60);
    
     if isfield(in, 'info.poweridx')
-        tt = find(tim > in.info.poweridx(1) & tim < in.info.poweridx(2));
+        tt = find(tim > in.info.poweridx(1) & tim <= in.info.poweridx(2));
     else
         tt = 1:length(tim);
     end
