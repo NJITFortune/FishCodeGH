@@ -32,7 +32,7 @@ daycount = 0;
         
 % Fish limit frequencies for OBW calculation (unlikely to be changed)
         topFreqOBW = 800;
-        botFreqOBW = 300;
+        botFreqOBW = 200;
 
 out(1).s(length(iFiles)).Fs = Fs;
 out(1).s(length(iFiles)).name = [];
