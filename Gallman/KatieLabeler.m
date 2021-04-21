@@ -13,7 +13,7 @@ function out  = KatieLabeler(in)
     out.qual = input('Enter Quality of data (1-3): ');
     out.fishid = input('Enter fish name or identifier: ');
     out.feedingtimes = input('Enter feeding times in hours from start: ');
-    out.powerindicies = input('Enter the values of timcont in hours over which to perform power analysis: ');
+    out.poweridx = input('Enter the values of timcont in hours over which to perform power analysis: ');
     
     
 % LIGHT CYCLE ON/OFF STARTS        
