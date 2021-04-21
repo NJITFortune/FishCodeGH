@@ -34,46 +34,47 @@ end
     tim = [in.e(1).s.timcont]/(60*60);
    
     if isfield(in, 'info.poweridx')
-        tt = find(tim > in.info.poweridx(1) & tim < in.info.poweridx(2);
+        tt = find(tim > in.info.poweridx(1) & tim < in.info.poweridx(2));
     else
         tt = 1:length(tim);
+    end
         
-
+    
     %hard coded because fuck thinking
-    obwdata1 = [in.e(1).s(tto{1}).obwAmp]; 
-    obwtim1 = tim(tto{1});
+    obwdata1 = [in.e(1).s(tto{1}(tt)).obwAmp]; 
+    obwtim1 = tim(tto{1}(tt));
     
             spliney = csaps(obwtim1, obwdata1, p);
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
             o.obw(1).y = fnval(o.obw(1).x, spliney);
             
-    obwdata2 = [in.e(2).s(tto{2}).obwAmp]; 
+    obwdata2 = [in.e(2).s(tto{2}(tt)).obwAmp]; 
     obwtim2 = tim(tto{2});
             spliney = csaps(obwtim2, obwdata2, p);
             o.obw(2).x = obwtim2(1):1/ReFs:obwtim2(end);
             o.obw(2).y = fnval(o.obw(2).x, spliney);
         
-    zdata1 = [in.e(1).s(ttz{1}).zAmp]; 
-    ztim1 = tim(ttz{1});
+    zdata1 = [in.e(1).s(ttz{1}(tt)).zAmp]; 
+    ztim1 = tim(ttz{1}(tt));
             spliney = csaps(ztim1, zdata1, p);
             o.z(1).x = ztim1(1):1/ReFs:ztim1(end);
             o.z(1).y = fnval(o.z(1).x, spliney);
             
-    zdata2 = [in.e(2).s(ttz{2}).zAmp]; 
-    ztim2 = tim(ttz{2});
+    zdata2 = [in.e(2).s(ttz{2}(tt)).zAmp]; 
+    ztim2 = tim(ttz{2}(tt));
             spliney = csaps(ztim2, zdata2, p);
             o.z(2).x = ztim2(1):1/ReFs:ztim2(end);
             o.z(2).y = fnval(o.z(2).x, spliney);
 
             
-    sfftdata1 = [in.e(1).s(ttsf{1}).sumfftAmp]; 
-    sffttim1 = tim(ttsf{1});
+    sfftdata1 = [in.e(1).s(ttsf{1}(tt)).sumfftAmp]; 
+    sffttim1 = tim(ttsf{1}(tt));
             spliney = csaps(sffttim1, sfftdata1, p);
             o.sfft(1).x = sffttim1(1):1/ReFs:sffttim1(end);
             o.sfft(1).y = fnval(o.sfft(1).x, spliney);
             
-    sfftdata2 = [in.e(2).s(ttsf{2}).sumfftAmp]; 
-    sffttim2 = tim(ttsf{2});
+    sfftdata2 = [in.e(2).s(ttsf{2}(tt)).sumfftAmp]; 
+    sffttim2 = tim(ttsf{2}(tt));
             spliney = csaps(sffttim2, sfftdata2, p);
             o.sfft(2).x = sffttim2(2):1/ReFs:sffttim2(end);
             o.sfft(2).y = fnval(o.sfft(2).x, spliney);
