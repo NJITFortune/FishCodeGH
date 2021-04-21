@@ -23,6 +23,7 @@ end
     ttsf{1} = tto{1}; % ttsf is indices for sumfftAmp
     ttsf{2} = tto{1};
     
+    
 % If we have removed outliers via KatieRemover, get the indices...    
     if isfield(in, 'idx')
         tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
@@ -31,6 +32,9 @@ end
     end
 
     tim = [in.e(1).s.timcont]/(60*60);
+    tt = tim;
+    
+    if isfield(in, '
 
     %hard coded because fuck thinking
     obwdata1 = [in.e(1).s(tto{1}).obwAmp]; 
