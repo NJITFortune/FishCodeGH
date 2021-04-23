@@ -2,9 +2,9 @@
 
 s = daq.createSession("ni");
 
-b = daqlist("ni")
+b = daqlist("ni");
 
-deviceInfo = b{1, "DeviceInfo"}
+deviceInfo = b{1, "DeviceInfo"};
 
 bb = daq("ni");
 bb.Rate = 40000;
@@ -13,12 +13,14 @@ addinput(bb, "Dev1", "ai1", "Voltage");
 addinput(bb, "Dev1", "ai2", "Voltage");
 addinput(bb, "Dev1", "ai3", "Voltage");
 
-tabledata = read(bb)
+tabledata = read(bb);
 
 bbdata = read (bb, seconds(60));
 plot(bbdata.Time, bbdata.Variables);
 ylabel("Voltage (V)")
-addtrigger(bb, "Digital", "StartTrigger", "External", "Dev1/PFIO", "FallingEdge");
+addtrigger(bb, "Digital", "StartTrigger", "External", "Dev1/PFIO");
+bb.Connections.TriggerConditions = "FallingEdge";
+
 bb.DigitalTriggers
 
 % % Add and configure Analogue Channels
