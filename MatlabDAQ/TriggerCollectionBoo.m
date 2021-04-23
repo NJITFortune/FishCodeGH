@@ -14,6 +14,10 @@ addinput(bb, "Dev1", "ai2", "Voltage");
 addinput(bb, "Dev1", "ai3", "Voltage");
 
 tabledata = read(bb)
+
+bbdata = read (bb, seconds(1));
+plot(bbdata.Time, bbdata.Variables);
+ylabel("Voltage (V)")
 % % Add and configure Analogue Channels
 %     s.addAnalogInputChannel('Dev2', 0, 'voltage'); % EOD data
 %     s.addAnalogInputChannel('Dev2', 1, 'voltage'); % EOD data
