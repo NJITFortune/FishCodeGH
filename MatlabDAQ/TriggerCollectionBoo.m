@@ -18,7 +18,7 @@ tabledata = read(bb);
 bbdata = read (bb, seconds(60));
 plot(bbdata.Time, bbdata.Variables);
 ylabel("Voltage (V)")
-addtrigger(bb, "Digital", "StartTrigger", "External", "Dev1/PFIO");
+addtrigger(bb, "Digital", "StartTrigger", "External", "Dev1/PFI0");
 bb.Connections.TriggerConditions = "FallingEdge";
 
 bb.DigitalTriggers
