@@ -18,6 +18,9 @@ tabledata = read(bb)
 bbdata = read (bb, seconds(60));
 plot(bbdata.Time, bbdata.Variables);
 ylabel("Voltage (V)")
+addtrigger(bb, "Digital", "StartTrigger", "External", "Dev1/PFIO", "FallingEdge");
+bb.DigitalTriggers
+
 % % Add and configure Analogue Channels
 %     s.addAnalogInputChannel('Dev2', 0, 'voltage'); % EOD data
 %     s.addAnalogInputChannel('Dev2', 1, 'voltage'); % EOD data
