@@ -4,6 +4,8 @@ s = daq.createSession("ni");
 
 b = daqlist("ni")
 
+deviceInfo = b{1, "DeviceInfo"}
+
 % % Add and configure Analogue Channels
 %     s.addAnalogInputChannel('Dev2', 0, 'voltage'); % EOD data
 %     s.addAnalogInputChannel('Dev2', 1, 'voltage'); % EOD data
