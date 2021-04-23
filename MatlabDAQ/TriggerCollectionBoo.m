@@ -1,6 +1,6 @@
 %% Set up the DAQ
 
-s = daq.createSession('ni');
+s = daq.createSession("ni");
 
 s.daqlist('ni')
 
