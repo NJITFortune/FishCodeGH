@@ -2,7 +2,7 @@
 
 s = daq.createSession("ni");
 
-s.daqlist()
+s.list("ni")
 
 % % Add and configure Analogue Channels
 %     s.addAnalogInputChannel('Dev2', 0, 'voltage'); % EOD data
