@@ -8,10 +8,10 @@ deviceInfo = b{1, "DeviceInfo"}
 
 bb = daq("ni");
 bb.Rate = 40000;
-addinput(dq, "Dev1", "ai0", "Voltage");
-addinput(dq, "Dev1", "ai1", "Voltage");
-addinput(dq, "Dev1", "ai2", "Voltage");
-addinput(dq, "Dev1", "ai3", "Voltage");
+addinput(bb, "Dev1", "ai0", "Voltage");
+addinput(bb, "Dev1", "ai1", "Voltage");
+addinput(bb, "Dev1", "ai2", "Voltage");
+addinput(bb, "Dev1", "ai3", "Voltage");
 
 tabledata = read(bb)
 % % Add and configure Analogue Channels
