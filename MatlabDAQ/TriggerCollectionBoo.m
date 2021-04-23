@@ -15,7 +15,7 @@ addinput(bb, "Dev1", "ai3", "Voltage");
 
 tabledata = read(bb)
 
-bbdata = read (bb, seconds(1));
+bbdata = read (bb, seconds(60));
 plot(bbdata.Time, bbdata.Variables);
 ylabel("Voltage (V)")
 % % Add and configure Analogue Channels
