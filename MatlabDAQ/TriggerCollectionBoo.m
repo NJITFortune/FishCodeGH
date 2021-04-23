@@ -15,11 +15,11 @@ addinput(bb, "Dev1", "ai3", "Voltage");
 
 tabledata = read(bb);
 
-bbdata = read (bb, seconds(60));
+bbdata = read (bb, seconds(30));
 plot(bbdata.Time, bbdata.Variables);
 ylabel("Voltage (V)")
 addtrigger(bb, "Digital", "StartTrigger", "External", "Dev1/PFI0");
-bb.Connections.TriggerConditions = "FallingEdge";
+bb.TriggerConditions = "FallingEdge";
 
 bb.DigitalTriggers
 
