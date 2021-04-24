@@ -1,3 +1,5 @@
+import matlab.io.*
+
 function out = KgallmAnalysis3(userfilespec, Fs, numstart)
 % Function out = gallmAnalysis(userfilespec, Fs)
 % userfilespec is data from listentothis.m, e.g. 'EigenTest*.mat'
