@@ -48,7 +48,7 @@ while k <= length(iFiles)
 
 eval(['load ' iFiles(k).name]);
 
-numCols = getNumCols(iFiles(k).name;
+numCols = getNumCols(iFiles(k).name);
 
 
 if  numCols == 5      
