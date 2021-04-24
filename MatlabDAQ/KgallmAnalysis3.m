@@ -50,7 +50,7 @@ k = 1; % Our counter.
     %numCols = getNumCols(data);
     [~,numCols] = size(data);
     
-    numCols
+    %numCols
 
 
 while k <= length(iFiles)
