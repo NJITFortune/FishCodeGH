@@ -64,7 +64,7 @@ while k <= length(iFiles)
     end
 
     % Get EOD amplitudes for each channel
-    for j = length(dataChans):1:-1
+    for j = 1:length(dataChans)
 
     %NEW METHOD SAMPIDX - PEAK |AMP| WINDOW - not Fs dependent
        %filter data to remove noise maximums
