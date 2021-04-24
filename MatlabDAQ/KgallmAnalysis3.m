@@ -5,7 +5,7 @@ function out = KgallmAnalysis3(userfilespec, Fs, numstart)
 % numstart is the first character of the hour. 
 
 %% Setup
-
+import matlab.io.*
 rango = 10; % Hz around peak frequency over which to sum amplitude.
 
 
@@ -46,10 +46,11 @@ k = 1; % Our counter.
 
  eval(['load ' iFiles(k).name]);
 
-    numCols = getNumCols(iFiles(k).name);
+    %numCols = fits.getNumCols(iFiles(k).name);
     %numCols = getNumCols(data);
+    [~,numCols] = size(data);
     
-    numCols
+    %numCols
 
 
 while k <= length(iFiles)
