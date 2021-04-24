@@ -49,7 +49,7 @@ while k <= length(iFiles)
 eval(['load ' iFiles(k).name]);
 
 
-if  iFile(k).name == data(:,5)      
+if  iFiles(k).name == data(:,5)      
     dataChans = [1 2 3];
     tempchan = 4; % Either 4 or 3
     lightchan = 5; % Either 5 or 4
