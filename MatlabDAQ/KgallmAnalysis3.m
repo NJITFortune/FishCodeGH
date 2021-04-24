@@ -1,4 +1,4 @@
-function out = KgallmAnalysis(userfilespec, Fs, numstart)
+function out = KgallmAnalysis3(userfilespec, Fs, numstart)
 % Function out = gallmAnalysis(userfilespec, Fs)
 % userfilespec is data from listentothis.m, e.g. 'EigenTest*.mat'
 % Fs is the sample rate, was 20kHz but now 40kHz
@@ -13,6 +13,7 @@ rango = 10; % Hz around peak frequency over which to sum amplitude.
 % DATA FILTERING
 % High pass filter cutoff frequency
     highp = 200;
+    
     % Low pass filter cutoff frequency
     lowp = 2000;
     
