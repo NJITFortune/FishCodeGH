@@ -23,50 +23,58 @@ end
     ttsf{1} = tto{1}; % ttsf is indices for sumfftAmp
     ttsf{2} = tto{1};
     
+    
 % If we have removed outliers via KatieRemover, get the indices...    
-    if isfield(in, 'idx')
+    if ~isempty('in.idx')
         tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
         ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
         ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
     end
 
     tim = [in.e(1).s.timcont]/(60*60);
-
+   
+    if ~isempty('in.info.poweridx')
+        tt = find(tim > in.info.poweridx(1) & tim < in.info.poweridx(2));
+    else
+        tt = 1:length(tim);
+    end
+        
+    
     %hard coded because fuck thinking
-    obwdata1 = [in.e(1).s(tto{1}).obwAmp]; 
-    obwtim1 = tim(tto{1});
+    obwdata1 = [in.e(1).s(tto{1}(tt)).obwAmp]; 
+    obwtim1 = tim(tto{1}(tt));
     
             spliney = csaps(obwtim1, obwdata1, p);
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
             o.obw(1).y = fnval(o.obw(1).x, spliney);
             
-    obwdata2 = [in.e(2).s(tto{2}).obwAmp]; 
-    obwtim2 = tim(tto{2});
-            spliney = csaps(obwtim2, obwdata2, p);
-            o.obw(2).x = obwtim2(1):1/ReFs:obwtim2(end);
-            o.obw(2).y = fnval(o.obw(2).x, spliney);
+%     obwdata2 = [in.e(2).s(tto{2}(tt)).obwAmp]; 
+%     obwtim2 = tim(tto{2}(tt));
+%             spliney = csaps(obwtim2, obwdata2, p);
+%             o.obw(2).x = obwtim2(1):1/ReFs:obwtim2(end);
+%             o.obw(2).y = fnval(o.obw(2).x, spliney);
         
-    zdata1 = [in.e(1).s(ttz{1}).zAmp]; 
-    ztim1 = tim(ttz{1});
+    zdata1 = [in.e(1).s(ttz{1}(tt)).zAmp]; 
+    ztim1 = tim(ttz{1}(tt));
             spliney = csaps(ztim1, zdata1, p);
             o.z(1).x = ztim1(1):1/ReFs:ztim1(end);
             o.z(1).y = fnval(o.z(1).x, spliney);
             
-    zdata2 = [in.e(2).s(ttz{2}).zAmp]; 
-    ztim2 = tim(ttz{2});
+    zdata2 = [in.e(2).s(ttz{2}(tt)).zAmp]; 
+    ztim2 = tim(ttz{2}(tt));
             spliney = csaps(ztim2, zdata2, p);
             o.z(2).x = ztim2(1):1/ReFs:ztim2(end);
             o.z(2).y = fnval(o.z(2).x, spliney);
 
             
-    sfftdata1 = [in.e(1).s(ttsf{1}).sumfftAmp]; 
-    sffttim1 = tim(ttsf{1});
+    sfftdata1 = [in.e(1).s(ttsf{1}(tt)).sumfftAmp]; 
+    sffttim1 = tim(ttsf{1}(tt));
             spliney = csaps(sffttim1, sfftdata1, p);
             o.sfft(1).x = sffttim1(1):1/ReFs:sffttim1(end);
             o.sfft(1).y = fnval(o.sfft(1).x, spliney);
             
-    sfftdata2 = [in.e(2).s(ttsf{2}).sumfftAmp]; 
-    sffttim2 = tim(ttsf{2});
+    sfftdata2 = [in.e(2).s(ttsf{2}(tt)).sumfftAmp]; 
+    sffttim2 = tim(ttsf{2}(tt));
             spliney = csaps(sffttim2, sfftdata2, p);
             o.sfft(2).x = sffttim2(2):1/ReFs:sffttim2(end);
             o.sfft(2).y = fnval(o.sfft(2).x, spliney);
@@ -169,7 +177,7 @@ figure(1); hold on;
     end  
 
     %Draw lines for light cycles
-    hrs = [96, 48, 24, 20, 16, 12, 10, 8]; % Double hours
+    hrs = [96, 48, 26, 24, 20, 16, 12, 10, 8]; % Double hours
 
     %plot data on log scale
     %fftmachine
@@ -183,7 +191,13 @@ figure(1); hold on;
             plot([1/hrs(j), 1/hrs(j)], [minY, maxY], 'k-', 'LineWidth', 1);
             label = num2str(hrs(j)/2);
             str = " " + label + ":" + label;
-            text(1/hrs(j), maxY*0.9, str, 'FontSize', 14);
+            if mod(j, 2) == 0 % j is even
+                pos(j) = maxY*0.9;
+            else % j is odd
+                pos(j) = maxY*0.5;
+            end
+            
+            text(1/hrs(j), pos(j), str, 'FontSize', 14, 'FontWeight', 'bold');
 
         end
     

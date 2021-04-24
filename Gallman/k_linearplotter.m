@@ -21,32 +21,24 @@ close all;
         ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
     end
     
-%% Linear Regression
-x = [out.e(1).s(ttsf{1}).temp]';
-y = [out.e(1).s(ttsf{1}).sumfftAmp]';
-X = [ones(length(x),1) x];
-b = X\y;
-yCalc2 = X*b;
-%b1 = x/y;
-%yCalc1 = b1*x;
-scatter(x,y)
-hold on
 
-plot(x,yCalc2,'--')
-%plot(x,yCalc1)
 
 
 %% amplitude vs temperature
 
-figure(1); clf; 
+figure(1); clf; title('Amplitude vs temperature');
     set(gcf, 'Position', [200 100 2*560 2*420]);
     
 
 ax(1) = subplot(511); hold on; title('sumfftAmp');
-    [Rsqsf,yCalcsf] = KatieRegress([out.e(1).s(ttsf{1}).temp], [out.e(1).s(ttsf{1}).sumfftAmp]);
-    scatter([out.e(1).s(ttsf{1}).temp], [out.e(1).s(ttsf{1}).sumfftAmp]);
+    
+    nffttemp1 = normalize([out.e(1).s(ttsf{1}).temp], 'range'); 
+    nfftAmp1 = normalize([out.e(1).s(ttsf{1}).sumfftAmp], 'range');
+
+    [Rsqsf,yCalcsf] = KatieRegress(nffttemp1, nfftAmp1);
+    scatter(nffttemp1, nfftAmp1);
     hold on
-    plot([out.e(1).s(ttsf{1}).temp]', yCalcsf, '--', 'LineWidth', 2);
+    plot(nffttemp1', yCalcsf, '--', 'LineWidth', 2);
     
     NE = [max(xlim) max(ylim)]-[diff(xlim) diff(ylim)]*0.2;
     str = "Rsquared = " + num2str(Rsqsf);
@@ -54,10 +46,14 @@ ax(1) = subplot(511); hold on; title('sumfftAmp');
     
 
 ax(2) = subplot(512); hold on; title('zAmp');
-    [Rsqz,yCalz] = KatieRegress([out.e(1).s(ttz{1}).temp], [out.e(1).s(ttz{1}).zAmp]);
-    scatter([out.e(1).s(ttz{1}).temp], [out.e(1).s(ttz{1}).zAmp]);
+    
+    nztemp1 = normalize([out.e(1).s(ttz{1}).temp], 'range');
+    nzAmp1 = normalize([out.e(1).s(ttz{1}).zAmp], 'range');
+
+    [Rsqz,yCalz] = KatieRegress(nztemp1, nzAmp1);
+    scatter(nztemp1, nzAmp1);
     hold on
-    plot([out.e(1).s(ttz{1}).temp]', yCalz, '--','LineWidth', 2);
+    plot(nztemp1', yCalz, '--','LineWidth', 2);
     
     NE = [max(xlim) max(ylim)]-[diff(xlim) diff(ylim)]*0.2;
     str = "Rsquared = " + num2str(Rsqz);
@@ -65,21 +61,32 @@ ax(2) = subplot(512); hold on; title('zAmp');
 
 
 ax(3) = subplot(513); hold on; title('obwAmp');
-    [Rsqobw, yCalobw] = KatieRegress([out.e(1).s(tto{1}).temp], [out.e(1).s(tto{1}).obwAmp]);
-    scatter([out.e(1).s(tto{1}).temp], [out.e(1).s(tto{1}).obwAmp]);
+
+    nobwtemp1 = normalize([out.e(1).s(tto{1}).temp], 'range');
+    nobwAmp1 = normalize([out.e(1).s(tto{1}).obwAmp], 'range');
+
+    [Rsqobw, yCalobw] = KatieRegress(nobwtemp1, nobwAmp1);
+    scatter(nobwtemp1, nobwAmp1);
     hold on
-    plot([out.e(1).s(tto{1}).temp]', yCalobw, '--' ,'LineWidth', 2);
+    plot(nobwtemp1', yCalobw, '--' ,'LineWidth', 2);
     
     NE = [max(xlim) max(ylim)]-[diff(xlim) diff(ylim)]*0.2;
     str = "Rsquared = " + num2str(Rsqobw);
     text(NE(1), NE(2), str, 'FontSize', 14);
 
 ax(4) = subplot(514); hold on; title('frequency');  
-    [Rsqfreq,yCalfreq] = KatieRegress([out.e(1).s.temp], [out.e(1).s.fftFreq]);
-    scatter([out.e(1).s.temp], [out.e(1).s.fftFreq]);
+
+    ntemp = normalize([out.e(1).s.temp], 'range');
+    nfreq = normalize([out.e(1).s.fftFreq], 'range');
+    nfreqr = nfreq(nfreq < (mean(nfreq) + std(nfreq)) & nfreq > (mean(nfreq) - std(nfreq)));
+    ntempr = ntemp(nfreq < (mean(nfreq) + std(nfreq)) & nfreq > (mean(nfreq) - std(nfreq)));
+    
+
+    [Rsqfreq,yCalfreq] = KatieRegress(ntempr, nfreqr);
+    scatter(ntempr, nfreqr);
     hold on
-    plot([out.e(1).s.temp]', yCalfreq, '--','LineWidth', 2);
-    ylim([mean([out.e(1).s.fftFreq])-100, mean([out.e(1).s.fftFreq])+100]);
+    plot(ntempr', yCalfreq, '--','LineWidth', 2);
+%     ylim([mean([out.e(1).s.fftFreq])-100, mean([out.e(1).s.fftFreq])+100]);
 
     NE = [max(xlim) max(ylim)]-[diff(xlim) diff(ylim)]*0.2;
     str = "Rsquared = " + num2str(Rsqfreq);
@@ -89,6 +96,90 @@ ax(4) = subplot(514); hold on; title('frequency');
     
 linkaxes(ax, 'x'); 
 
+%% Multiple linear regression
+
+% figure(2); clf; title('Amplitude vs temperature vs light');
+%     set(gcf, 'Position', [200 100 2*560 2*420]);
+% 
+%     
+%     subplot(211); hold on; title('sumfftAmp');
+%     
+%     
+%     [bfft, ~, ~, ~, fftstats] = KatiemultiRegress([out.e(1).s(ttsf{1}).sumfftAmp], [out.e(1).s(ttsf{1}).light], [out.e(1).s(ttsf{1}).temp]);
+%     
+%     scatter3([out.e(1).s(ttsf{1}).light], [out.e(1).s(ttsf{1}).temp],[out.e(1).s(ttsf{1}).sumfftAmp],'filled')
+%     hold on
+%     x1fit = min([out.e(1).s(ttsf{1}).light]):1:max([out.e(1).s(ttsf{1}).light]);
+%     x2fit = min([out.e(1).s(ttsf{1}).temp]):0.01:max([out.e(1).s(ttsf{1}).temp]);
+%     [X1FIT,X2FIT] = meshgrid(x1fit,x2fit);
+%     YFIT = bfft(1) + bfft(2)*X1FIT + bfft(3)*X2FIT + bfft(4)*X1FIT.*X2FIT;
+%     mesh(X1FIT,X2FIT,YFIT)
+%     xlabel('Light')
+%     ylabel('fftAmp')
+%     zlabel('Temperature')
+%     view(50,10)
+%     hold off
+%     
+%     fftstats
+%     
+%     subplot(212); hold on; title('normalized sumfftAmp')
+%     
+%     nfftlight1 = normalize([out.e(1).s(ttsf{1}).light], 'range');
+%    
+%     
+%     [nbfft, ~, ~, ~, nfftstats] = KatiemultiRegress(nfftAmp1, nfftlight1, nffttemp1);
+%     
+%     scatter3(nfftlight1, nffttemp1 ,nfftAmp1,'filled')
+%     hold on
+%     x1fit = min(nfftlight1):0.5:max(nfftlight1);
+%     x2fit = min(nffttemp1 ):0.1:max(nffttemp1);
+%     [X1FIT,X2FIT] = meshgrid(x1fit,x2fit);
+%     YFIT = nbfft(1) + nbfft(2)*X1FIT + nbfft(3)*X2FIT + nbfft(4)*X1FIT.*X2FIT;
+%     mesh(X1FIT,X2FIT,YFIT)
+%     xlabel('Light')
+%     ylabel('fftAmp')
+%     zlabel('Temperature')
+%     view(50,10)
+%     hold off
+%     
+%     nfftstats
+
+    
+    lightfft1 = [out.e(1).s(ttsf{1}).light];
+    
+    for j = 1:length(lightfft1)
+        if lightfft1(j) > 2
+            lightfft1(j) = 5;
+        else
+            lightfft1(j) = 1;
+        end
+    end
+    
+    
+    
+    figure(2); clf; title('Amplitude vs temperature vs light');
+    set(gcf, 'Position', [200 100 2*560 2*420]);
+
+    sumfft1 = [out.e(1).s(ttsf{1}).sumfftAmp];
+    tempfft1 = [out.e(1).s(ttsf{1}).temp];
+    w = linspace(min(tempfft1),max(tempfft1));
+    
+    fftreg1 = table(sumfft1, tempfft1, categorical(lightfft1));
+    fftfit = fitlm(fftreg1, 'sumfft1~tempfft1*lightfft');
+  
+    
+%     
+    gscatter(tempfft1, sumfft1, lightfft1, 'br', 'x.o');
+    line(w,feval(fftfit,w,'1'),'Color','b','LineWidth',2)
+    line(w,feval(fftfit,w,'5'),'Color','r','LineWidth',2)
+    %line(w,feval(fit,w,'82'),'Color','r','LineWidth',2)
+    
+    
+    
+    
+    
+
+%linkaxes(ax, 'x'); 
 
 %% Continuous data plot
 

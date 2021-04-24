@@ -4,8 +4,12 @@ function [Rsq, yCalc] = KatieRegress(x, y)
 
     
 %% Linear Regression
+% xn = normalize(x', 'range');
+% yn = normalize(y', 'range');
+
 x = x';
 y = y';
+
 X = [ones(length(x),1) x];
 b = X\y;
 yCalc = X*b;

@@ -1,11 +1,11 @@
-function out = KgallmAnalysis(userfilespec, Fs, numstart)
+function out = KgallmAnalysis3(userfilespec, Fs, numstart)
 % Function out = gallmAnalysis(userfilespec, Fs)
 % userfilespec is data from listentothis.m, e.g. 'EigenTest*.mat'
 % Fs is the sample rate, was 20kHz but now 40kHz
 % numstart is the first character of the hour. 
 
 %% Setup
-
+import matlab.io.*
 rango = 10; % Hz around peak frequency over which to sum amplitude.
 
 
@@ -13,6 +13,7 @@ rango = 10; % Hz around peak frequency over which to sum amplitude.
 % DATA FILTERING
 % High pass filter cutoff frequency
     highp = 200;
+    
     % Low pass filter cutoff frequency
     lowp = 2000;
     
@@ -33,7 +34,6 @@ rango = 10; % Hz around peak frequency over which to sum amplitude.
 
 
     
-    
 
     
 iFiles = dir(userfilespec);
@@ -44,12 +44,23 @@ daycount = 0;
 
 k = 1; % Our counter.
 
+ eval(['load ' iFiles(k).name]);
+
+    %numCols = fits.getNumCols(iFiles(k).name);
+    %numCols = getNumCols(data);
+    [~,numCols] = size(data);
+    
+    %numCols
+
+
 while k <= length(iFiles)
 
-    eval(['load ' iFiles(k).name]);
-
-    %numCols = getNumCols(iFiles(k).name);
-    numCols = getNumCols(data);
+%     eval(['load ' iFiles(k).name]);
+% 
+%     numCols = getNumCols(iFiles(k).name);
+%     %numCols = getNumCols(data);
+%     
+%     numCols
 
     if  numCols == 5      
         dataChans = [1 2 3];
@@ -407,10 +418,7 @@ ym = mean(datums);                               % Estimate offset
 amp = s(1) * 1000;
 freq = 1/s(2);
 
-end
 
-
-end
 
 
 
