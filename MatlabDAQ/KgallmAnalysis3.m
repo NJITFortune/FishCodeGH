@@ -33,7 +33,7 @@ rango = 10; % Hz around peak frequency over which to sum amplitude.
 
 
     
-    
+data = dataChans();    
 
     
 iFiles = dir(userfilespec);
