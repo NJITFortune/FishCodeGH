@@ -72,7 +72,7 @@ eval(['load ' iFiles(k).name]);
 tempchan = 4; % Either 4 or 3
 lightchan = 5; % Either 5 or 4
 
-if isfield([iFiles(k).name] 'data(:,3))');
+if isfield([iFiles(k).name] 'data(:,3)');
     dataChans = [1 2 3];
 else
     dataChans = [1 2];
