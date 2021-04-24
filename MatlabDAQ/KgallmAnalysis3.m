@@ -46,7 +46,7 @@ k = 1; % Our counter.
 
  eval(['load ' iFiles(k).name]);
 
-    numCols = getNumCols(iFiles(k).name);
+    numCols = fits.getNumCols(iFiles(k).name);
     %numCols = getNumCols(data);
     
     numCols
