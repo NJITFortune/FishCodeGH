@@ -6,25 +6,6 @@ function out = KgallmAnalysis(userfilespec, Fs, numstart)
 
 %% Setup
 
-dataChans = [1 2 3]; % EOD recording channels in recorded files
-tempchan = 4; % Either 4 or 3
-lightchan = 5; % Either 5 or 4
-
-if ~isempty(dataChans(3))
-    dataChans = dataChans;
-else
-    dataChans = [1 2];
-    tempchan = 3;
-    lightchan = 4;
-end
-
-
-if chans = 3;
-    dataChans = [1 2 3];
-else
-    dataChans = dataChans;
-end
-
 rango = 10; % Hz around peak frequency over which to sum amplitude.
 
 
