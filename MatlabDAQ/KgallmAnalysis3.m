@@ -48,7 +48,7 @@ k = 1; % Our counter.
 
     %numCols = fits.getNumCols(iFiles(k).name);
     %numCols = getNumCols(data);
-    [numCols, ~] = size(iFiles(k).name);
+    [~,numCols] = size(data);
     
     numCols
 
