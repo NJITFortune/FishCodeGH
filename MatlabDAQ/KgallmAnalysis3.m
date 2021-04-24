@@ -46,7 +46,7 @@ k = 1; % Our counter.
 
 while k <= length(iFiles)
 
-    data = eval(['load ' iFiles(k).name]);
+    eval(['load ' iFiles(k).name]);
 
     numCols = getNumCols(iFiles(k).name);
     %numCols = getNumCols(data);
