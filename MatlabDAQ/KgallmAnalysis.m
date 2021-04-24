@@ -8,7 +8,9 @@ function out = KgallmAnalysis(userfilespec, Fs, numstart)
 
 rango = 10; % Hz around peak frequency over which to sum amplitude.
 
-
+dataChans = [1 2];
+tempchan = 3;
+lightchan = 4;    
 
 % DATA FILTERING
 % High pass filter cutoff frequency
@@ -48,23 +50,9 @@ while k <= length(iFiles)
 
     eval(['load ' iFiles(k).name]);
 
-    %numCols = getNumCols(iFiles(k).name);
-    numCols = getNumCols(data);
-
-    if  numCols == 5      
-        dataChans = [1 2 3];
-        tempchan = 4; % Either 4 or 3
-        lightchan = 5; % Either 5 or 4
-    elseif numCols == 4
-        dataChans = [1 2];
-        tempchan = 3;
-        lightchan = 4;    
-    else
-        fprintf("How did you get here?")
-    end
-
+   
     % Get EOD amplitudes for each channel
-    for j = 1:length(dataChans)
+    for j = length(dataChans):-1:1
 
     %NEW METHOD SAMPIDX - PEAK |AMP| WINDOW - not Fs dependent
        %filter data to remove noise maximums
@@ -394,7 +382,7 @@ x = 1/FsF:1/FsF:length(datums)/FsF;
 
 yu = max(datums);
 yl = min(datums);
-yr = (yu-yl);                               % Range of â€˜yâ€™
+yr = (yu-yl);                               % Range of ‘y’
 yz = datums-yu+(yr/2);
 zx = x(yz .* circshift(yz,[0 1]) <= 0);     % Find zero-crossings
 per = 2*mean(diff(zx));                     % Estimate period
@@ -407,10 +395,7 @@ ym = mean(datums);                               % Estimate offset
 amp = s(1) * 1000;
 freq = 1/s(2);
 
-end
 
-
-end
 
 
 
