@@ -67,6 +67,22 @@ while k <= length(iFiles)
 
 eval(['load ' iFiles(k).name]);
 
+
+%dataChans = [1 2 3]; % EOD recording channels in recorded files
+tempchan = 4; % Either 4 or 3
+lightchan = 5; % Either 5 or 4
+
+if isfield([iFiles(k).name] 'data(:,3))');
+    dataChans = [1 2 3];
+else
+    dataChans = [1 2];
+    tempchan = 3;
+    lightchan = 4;
+end
+
+
+
+
 % Get EOD amplitudes for each channel
 for j = length(dataChans):-1:1
 
