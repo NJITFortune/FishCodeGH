@@ -139,7 +139,7 @@ end
 
 
     end % By channel
-
+end
 % Crappy coding... but why not!
     out(k).Ch1peakAmp = peakAmp(1);
     out(k).Ch1peakFreq = peakFreq(1);
