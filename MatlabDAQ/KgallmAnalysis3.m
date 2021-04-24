@@ -46,11 +46,11 @@ k = 1; % Our counter.
 
  eval(['load ' iFiles(k).name]);
 
-    numCols = fits.getNumCols(iFiles(k).name);
+    %numCols = fits.getNumCols(iFiles(k).name);
     %numCols = getNumCols(data);
-    numCols = size(iFiles(k).name);
+    [~, numCols] = size(iFiles(k).name);
     
-    numCols = numCols[1]
+    numCols
 
 
 while k <= length(iFiles)
