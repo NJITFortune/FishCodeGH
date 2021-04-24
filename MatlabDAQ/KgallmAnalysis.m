@@ -1,3 +1,5 @@
+import matlab.io.*
+
 function out = KgallmAnalysis(userfilespec, Fs, numstart)
 % Function out = gallmAnalysis(userfilespec, Fs)
 % userfilespec is data from listentothis.m, e.g. 'EigenTest*.mat'
@@ -63,87 +65,80 @@ else
     fprintf("How did you get here?")
 end
 
+    % Get EOD amplitudes for each channel
+    for j = length(dataChans):-1:1
 
-% Get EOD amplitudes for each channel
-for j = length(dataChans):-1:1
+    %NEW METHOD SAMPIDX - PEAK |AMP| WINDOW - not Fs dependent
+       %filter data to remove noise maximums
+        filtsig = filtfilt(b,a, data(:,dataChans(j))); % High pass filter
+        filtsig = filtfilt(f,e,filtsig); % Low pass filter      
 
-    
-%NEW METHOD SAMPIDX - PEAK |AMP| WINDOW - not Fs dependent
-   %filter data to remove noise maximums
-    filtsig = filtfilt(b,a, data(:,dataChans(j))); % High pass filter
-    filtsig = filtfilt(f,e,filtsig); % Low pass filter      
-    
-    windw = 0.25; %window width is 100 ms %changed to 250 ms - fixed doubling in fft
-    
-    
-% ADJUST FOR DIRECTIONALITY - NOT SURE HOW TO APPLY THIS WITHIN THE FOR
-% LOOP - ERIC SAYS NO...
-%     if max(filtsig) < 0
-%        max(filtsig) = negmax;
-%     end
-%     
-%     if max(filtsig) > 0
-%        max(filtsig) = posmax;
-%     end
-%     
-%     posmax + negmax = diffac;
-%     negmax + diffac = adjneg;
-%     adjmax = cat(1, posmax, negmax);
-%     
-%     adjmax(sampidx, dataChans(j));
+        windw = 0.25; %window width is 100 ms %changed to 250 ms - fixed doubling in fft
 
-    [~, idx] = max(abs(filtsig)); %find where the amplitude of the sample is greatests
-    
-    maxtim(j) = tim(idx); %find the time index of idx
-    
-    %place the peak amplitude in the middle of the new sample time window
-    startim(j) = max([0, maxtim(j)-(windw/2)]); 
-    
-    %if the peak is near the end of the sample, need to just take the last windw 
-    if startim(j)+(windw/2) > tim(end)
-     startim(j) = tim(end) - windw;
-    end
+    % ADJUST FOR DIRECTIONALITY - NOT SURE HOW TO APPLY THIS WITHIN THE FOR
+    % LOOP - ERIC SAYS NO...
+    %     if max(filtsig) < 0
+    %        max(filtsig) = negmax;
+    %     end
+    %     
+    %     if max(filtsig) > 0
+    %        max(filtsig) = posmax;
+    %     end
+    %     
+    %     posmax + negmax = diffac;
+    %     negmax + diffac = adjneg;
+    %     adjmax = cat(1, posmax, negmax);
+    %     
+    %     adjmax(sampidx, dataChans(j));
 
-    sampidx = find(tim > startim(j) & tim < startim(j)+windw); %duration of sample
-    
-    
-    
-% ORIGINAL FFT METHOD - sumAmp
-    tmpfft = fftmachine(data(sampidx,dataChans(j)), Fs);
-    [peakAmp(j), peakIDX] = max(tmpfft.fftdata);
-    peakFreq(j) = tmpfft.fftfreq(peakIDX);
-    sumAmp(j) = sum(tmpfft.fftdata(tmpfft.fftfreq > (peakFreq(j) - rango) & tmpfft.fftfreq < (peakFreq(j) + rango)));
+        [~, idx] = max(abs(filtsig)); %find where the amplitude of the sample is greatests
 
-% NEW FFT METHOD - obwAmp
+        maxtim(j) = tim(idx); %find the time index of idx
 
-% USER DEFINED CRITICAL NUMBERS!  Fish limit frequencies
-    topFreq = 800;
-    botFreq = 300;
+        %place the peak amplitude in the middle of the new sample time window
+        startim(j) = max([0, maxtim(j)-(windw/2)]); 
 
-[~,~,~,obwAmp(j)] = obw(data(sampidx,dataChans(j)), Fs, [botFreq topFreq]);
+        %if the peak is near the end of the sample, need to just take the last windw 
+        if startim(j)+(windw/2) > tim(end)
+         startim(j) = tim(end) - windw;
+        end
 
-   
+        sampidx = find(tim > startim(j) & tim < startim(j)+windw); %duration of sample
 
-% Mean amplitude method
-    z = zeros(1,length(sampidx)); %creat vector length of data
-    z(filtsig > 0) = 1; %fill with 1s for all filtered data greater than 0
-    z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
-    
-    posZs = find(z == 1); 
-    
-    for kk = 2:length(posZs)
-       amp(kk-1) = max(filtsig(posZs(kk-1):posZs(kk))) - (min(filtsig(posZs(kk-1):posZs(kk)))); % Max + min of signal for each cycle
-    end
-    
-    zAmp(j) = mean(amp);
-    
-% Fit SINEWAVE Method
+    % ORIGINAL FFT METHOD - sumAmp
+        tmpfft = fftmachine(data(sampidx,dataChans(j)), Fs);
+        [peakAmp(j), peakIDX] = max(tmpfft.fftdata);
+        peakFreq(j) = tmpfft.fftfreq(peakIDX);
+        sumAmp(j) = sum(tmpfft.fftdata(tmpfft.fftfreq > (peakFreq(j) - rango) & tmpfft.fftfreq < (peakFreq(j) + rango)));
 
-    [SineAmp(j), SineFreq(j)] = sinAnal(filtsig', Fs);
-    
-    
-    
-end % By channel
+    % NEW FFT METHOD - obwAmp
+
+    % USER DEFINED CRITICAL NUMBERS!  Fish limit frequencies
+        topFreq = 800;
+        botFreq = 300;
+
+    [~,~,~,obwAmp(j)] = obw(data(sampidx,dataChans(j)), Fs, [botFreq topFreq]);
+
+    % Mean amplitude method
+        z = zeros(1,length(sampidx)); %creat vector length of data
+        z(filtsig > 0) = 1; %fill with 1s for all filtered data greater than 0
+        z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
+
+        posZs = find(z == 1); 
+
+        for kk = 2:length(posZs)
+           amp(kk-1) = max(filtsig(posZs(kk-1):posZs(kk))) - (min(filtsig(posZs(kk-1):posZs(kk)))); % Max + min of signal for each cycle
+        end
+
+        zAmp(j) = mean(amp);
+
+    % Fit SINEWAVE Method
+
+        [SineAmp(j), SineFreq(j)] = sinAnal(filtsig', Fs);
+
+
+
+    end % By channel
 
 % Crappy coding... but why not!
     out(k).Ch1peakAmp = peakAmp(1);
@@ -414,7 +409,7 @@ ym = mean(datums);                               % Estimate offset
 amp = s(1) * 1000;
 freq = 1/s(2);
 
-
+end
 
 
 
