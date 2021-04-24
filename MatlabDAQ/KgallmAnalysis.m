@@ -1,5 +1,3 @@
-
-
 function out = KgallmAnalysis(userfilespec, Fs, numstart)
 % Function out = gallmAnalysis(userfilespec, Fs)
 % userfilespec is data from listentothis.m, e.g. 'EigenTest*.mat'
@@ -412,7 +410,7 @@ freq = 1/s(2);
 end
 
 
-
+end
 
 
 
