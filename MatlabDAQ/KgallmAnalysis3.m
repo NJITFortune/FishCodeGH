@@ -1,5 +1,3 @@
-import matlab.io.*
-
 function out = KgallmAnalysis3(userfilespec, Fs, numstart)
 % Function out = gallmAnalysis(userfilespec, Fs)
 % userfilespec is data from listentothis.m, e.g. 'EigenTest*.mat'
@@ -7,7 +5,7 @@ function out = KgallmAnalysis3(userfilespec, Fs, numstart)
 % numstart is the first character of the hour. 
 
 %% Setup
-
+import matlab.io.*
 rango = 10; % Hz around peak frequency over which to sum amplitude.
 
 
