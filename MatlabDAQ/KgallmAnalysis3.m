@@ -48,8 +48,10 @@ while k <= length(iFiles)
 
     eval(['load ' iFiles(k).name]);
 
-    %numCols = getNumCols(iFiles(k).name);
-    numCols = getNumCols(data);
+    numCols = getNumCols(iFiles(k).name);
+    %numCols = getNumCols(data);
+    
+    numCols
 
     if  numCols == 5      
         dataChans = [1 2 3];
