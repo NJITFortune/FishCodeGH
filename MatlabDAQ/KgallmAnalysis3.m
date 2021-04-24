@@ -417,9 +417,6 @@ ym = mean(datums);                               % Estimate offset
 amp = s(1) * 1000;
 freq = 1/s(2);
 
-end
-
-
 
 
 
