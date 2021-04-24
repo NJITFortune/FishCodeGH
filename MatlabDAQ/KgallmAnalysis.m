@@ -53,10 +53,12 @@ if  iFiles(k).name == data(:,5)
     dataChans = [1 2 3];
     tempchan = 4; % Either 4 or 3
     lightchan = 5; % Either 5 or 4
-else
+elseif iFiles(k).name == data(:,4)
     dataChans = [1 2];
     tempchan = 3;
-    lightchan = 4;
+    lightchan = 4;    
+else
+    fprintf("How did you get here?")
 end
 
 
