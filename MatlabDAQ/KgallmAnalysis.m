@@ -1,4 +1,4 @@
-import matlab.io.*
+
 
 function out = KgallmAnalysis(userfilespec, Fs, numstart)
 % Function out = gallmAnalysis(userfilespec, Fs)
@@ -48,22 +48,22 @@ k = 1; % Our counter.
 
 while k <= length(iFiles)
 
-eval(['load ' iFiles(k).name]);
+    eval(['load ' iFiles(k).name]);
 
-numCols = getNumCols(iFiles(k).name);
+    numCols = getNumCols(iFiles(k).name);
 
 
-if  numCols == 5      
-    dataChans = [1 2 3];
-    tempchan = 4; % Either 4 or 3
-    lightchan = 5; % Either 5 or 4
-elseif numCols == 4
-    dataChans = [1 2];
-    tempchan = 3;
-    lightchan = 4;    
-else
-    fprintf("How did you get here?")
-end
+    if  numCols == 5      
+        dataChans = [1 2 3];
+        tempchan = 4; % Either 4 or 3
+        lightchan = 5; % Either 5 or 4
+    elseif numCols == 4
+        dataChans = [1 2];
+        tempchan = 3;
+        lightchan = 4;    
+    else
+        fprintf("How did you get here?")
+    end
 
     % Get EOD amplitudes for each channel
     for j = length(dataChans):-1:1
