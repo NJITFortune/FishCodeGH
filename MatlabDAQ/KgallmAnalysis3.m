@@ -75,7 +75,7 @@ while k <= length(iFiles)
     end
 
     % Get EOD amplitudes for each channel
-    for j = 1:length(dataChans)
+    for j = length(dataChans):-1:1
 
     %NEW METHOD SAMPIDX - PEAK |AMP| WINDOW - not Fs dependent
        %filter data to remove noise maximums
@@ -167,7 +167,16 @@ while k <= length(iFiles)
     out(k).Ch2zAmp = zAmp(2);
     out(k).Ch2sAmp = SineAmp(2);
     out(k).Ch2sFreq = SineFreq(2);
-   
+    
+    if length(dataChans) > 2  
+    out(k).Ch3peakAmp = peakAmp(3);
+    out(k).Ch3peakFreq = peakFreq(3);
+    out(k).Ch3sumAmp = sumAmp(3);
+    out(k).Ch3obwAmp = obwAmp(3);
+    out(k).Ch3zAmp = zAmp(3);
+    out(k).Ch3sAmp = SineAmp(3);
+    out(k).Ch3sFreq = SineFreq(3);
+    end
         
     out(k).light = mean(data(:,lightchan));
     out(k).temp = mean(data(:,tempchan));
@@ -190,32 +199,32 @@ while k <= length(iFiles)
 
 end
 
-%% Create a separate vector for exact light time changes
- 
-%Get the name of the current folder
-%[~,folder,~]=fileparts(pwd);
-%extract the light cycle info and convert to number
-%timstep = str2num(folder(6:7)); %length of light cycle in hours
-timstep = 24;
-cyc = floor([out(end).timcont]/(timstep*60*60)); %number of cycles in data
-
-%user defined details by light trial
-timerstart = 17; %hour of the first state change
-%initstate = 0; %initial state
-
-%timz = 1:1:cyc; %to avoid for-loop
-
-ztzed = [0 6]; %y
-
-
-%luz(timz) = (timerstart) + (timstep*(timz-1)); %without for-loop
-
-for i = 1:cyc
-    luz(i)=timstep*(i-1)+timerstart;
-    x1(:,i) = [luz(i), luz(i)];
-    
-    out(i).luz = x1(:,i);
-end    
+% %% Create a separate vector for exact light time changes
+%  
+% %Get the name of the current folder
+% %[~,folder,~]=fileparts(pwd);
+% %extract the light cycle info and convert to number
+% %timstep = str2num(folder(6:7)); %length of light cycle in hours
+% timstep = 24;
+% cyc = floor([out(end).timcont]/(timstep*60*60)); %number of cycles in data
+% 
+% %user defined details by light trial
+% timerstart = 17; %hour of the first state change
+% %initstate = 0; %initial state
+% 
+% %timz = 1:1:cyc; %to avoid for-loop
+% 
+% ztzed = [0 6]; %y
+% 
+% 
+% %luz(timz) = (timerstart) + (timstep*(timz-1)); %without for-loop
+% 
+% for i = 1:cyc
+%     luz(i)=timstep*(i-1)+timerstart;
+%     x1(:,i) = [luz(i), luz(i)];
+%     
+%     out(i).luz = x1(:,i);
+% end    
 
 
 %% Plot the data for fun
