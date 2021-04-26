@@ -5,7 +5,7 @@ function out = KgallmAnalysis3(userfilespec, Fs, numstart)
 % numstart is the first character of the hour. 
 
 %% Setup
-import matlab.io.*
+
 rango = 10; % Hz around peak frequency over which to sum amplitude.
 
 
@@ -256,12 +256,11 @@ ax(4) = subplot(414); hold on;
     ylim([-1, 6]);
     xlabel('Continuous');
     
-    if ~isempty(out.info)
-        subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
-        subplot(512); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.zAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
-        % subplot(515); plot([abs(out.info.luz)' abs(out.info.luz)'], [0 6], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
-                    drawnow;
-        
+    if  exist('out.Ch3sumAmp','var') == 1
+        subplot(411); plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
+        subplot(412); plot([out.timcont]/(60*60), [out.Ch3zAmp], '.');
+        subplot(413); plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
+        draw now
      end
 
 linkaxes(ax, 'x');
@@ -413,6 +412,14 @@ ax(4) = subplot(414); hold on;
     ylim([-1, 6]);
     xlabel('Continuous');
 
+     if  exist('out.Ch3obwAmp','var') == 1
+        subplot(411); plot([out.timcont]/(60*60), [out.Ch3obwAmp], '.');
+        subplot(412); plot([out.timcont]/(60*60), [out.Ch3sAmp], '.');
+        subplot(413); plot([out.timcont]/(60*60), [out.Ch3sFreq], '.', 'Markersize', 8);
+        draw now
+     end
+    
+    
 linkaxes(ax, 'x');   
 
 
