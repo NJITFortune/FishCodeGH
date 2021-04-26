@@ -102,7 +102,7 @@ while k <= length(iFiles)
 
         [~, idx] = max(abs(filtsig)); %find where the amplitude of the sample is greatests
 
-        maxtim = zeros(1, length(idx));
+        %maxtim = zeros(1, length(idx));
         maxtim(j) = tim(idx); %find the time index of idx
 
         %place the peak amplitude in the middle of the new sample time window
