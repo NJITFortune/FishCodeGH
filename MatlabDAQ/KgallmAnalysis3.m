@@ -75,7 +75,7 @@ while k <= length(iFiles)
     end
 
     % Get EOD amplitudes for each channel
-    for j = 1:length(dataChans)
+    for j = length(dataChans):-1:1
 
     %NEW METHOD SAMPIDX - PEAK |AMP| WINDOW - not Fs dependent
        %filter data to remove noise maximums
@@ -102,6 +102,7 @@ while k <= length(iFiles)
 
         [~, idx] = max(abs(filtsig)); %find where the amplitude of the sample is greatests
 
+        %maxtim = zeros(1, length(idx));
         maxtim(j) = tim(idx); %find the time index of idx
 
         %place the peak amplitude in the middle of the new sample time window
@@ -166,7 +167,16 @@ while k <= length(iFiles)
     out(k).Ch2zAmp = zAmp(2);
     out(k).Ch2sAmp = SineAmp(2);
     out(k).Ch2sFreq = SineFreq(2);
-   
+    
+    if length(dataChans) > 2  
+    out(k).Ch3peakAmp = peakAmp(3);
+    out(k).Ch3peakFreq = peakFreq(3);
+    out(k).Ch3sumAmp = sumAmp(3);
+    out(k).Ch3obwAmp = obwAmp(3);
+    out(k).Ch3zAmp = zAmp(3);
+    out(k).Ch3sAmp = SineAmp(3);
+    out(k).Ch3sFreq = SineFreq(3);
+    end
         
     out(k).light = mean(data(:,lightchan));
     out(k).temp = mean(data(:,tempchan));
@@ -189,32 +199,32 @@ while k <= length(iFiles)
 
 end
 
-%% Create a separate vector for exact light time changes
- 
-%Get the name of the current folder
-%[~,folder,~]=fileparts(pwd);
-%extract the light cycle info and convert to number
-%timstep = str2num(folder(6:7)); %length of light cycle in hours
-timstep = 24;
-cyc = floor([out(end).timcont]/(timstep*60*60)); %number of cycles in data
-
-%user defined details by light trial
-timerstart = 17; %hour of the first state change
-%initstate = 0; %initial state
-
-%timz = 1:1:cyc; %to avoid for-loop
-
-ztzed = [0 6]; %y
-
-
-%luz(timz) = (timerstart) + (timstep*(timz-1)); %without for-loop
-
-for i = 1:cyc
-    luz(i)=timstep*(i-1)+timerstart;
-    x1(:,i) = [luz(i), luz(i)];
-    
-    out(i).luz = x1(:,i);
-end    
+% %% Create a separate vector for exact light time changes
+%  
+% %Get the name of the current folder
+% %[~,folder,~]=fileparts(pwd);
+% %extract the light cycle info and convert to number
+% %timstep = str2num(folder(6:7)); %length of light cycle in hours
+% timstep = 24;
+% cyc = floor([out(end).timcont]/(timstep*60*60)); %number of cycles in data
+% 
+% %user defined details by light trial
+% timerstart = 17; %hour of the first state change
+% %initstate = 0; %initial state
+% 
+% %timz = 1:1:cyc; %to avoid for-loop
+% 
+% ztzed = [0 6]; %y
+% 
+% 
+% %luz(timz) = (timerstart) + (timstep*(timz-1)); %without for-loop
+% 
+% for i = 1:cyc
+%     luz(i)=timstep*(i-1)+timerstart;
+%     x1(:,i) = [luz(i), luz(i)];
+%     
+%     out(i).luz = x1(:,i);
+% end    
 
 
 %% Plot the data for fun
@@ -245,6 +255,14 @@ ax(4) = subplot(414); hold on;
     %plot([out.luz], ztzed, '.-', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
+    
+    if ~isempty(out.info)
+        subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
+        subplot(512); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.zAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
+        % subplot(515); plot([abs(out.info.luz)' abs(out.info.luz)'], [0 6], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
+                    drawnow;
+        
+     end
 
 linkaxes(ax, 'x');
     
