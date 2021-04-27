@@ -36,7 +36,7 @@ end
     %OBW
     %Channel 1
    
-    if ~isempty('in.info.poweridx') = 1
+    if ~isempty('in.info.poweridx') == 1
         obtt = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
     else
         obtt = 1:length([in.e(1).s(tto{1}).timcont]/(60*60));
@@ -95,7 +95,7 @@ end
     %SUMAMP - FFT
     %Channel 1
     
-    if ~isempty('in.info.poweridx')
+    if ~isempty('in.info.poweridx') == 1
         st1 = find([in.e(1).s(ttsf{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttsf{1}).timcont]/(60*60) < in.info.poweridx(2));
     else
         st1 = 1:length([in.e(1).s(ttsf{1}).timcont]/(60*60));
