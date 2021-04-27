@@ -39,6 +39,8 @@ end
         tt = 1:length(tim);
     end
         
+    in.info.poweridx(1)
+    in.info.poweridx(2)
     
     %hard coded because fuck thinking
     obwdata1 = [in.e(1).s(tto{1}(tt)).obwAmp]; 
@@ -48,8 +50,8 @@ end
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
             o.obw(1).y = fnval(o.obw(1).x, spliney);
             
-%     obwdata2 = [in.e(2).s(tto{2}(tt)).obwAmp]; 
-%     obwtim2 = tim(tto{2}(tt));
+   % obwdata2 = [in.e(2).s(tto{2}(tt)).obwAmp]; 
+    obwtim2 = tim(tto{2}(tt));
 %             spliney = csaps(obwtim2, obwdata2, p);
 %             o.obw(2).x = obwtim2(1):1/ReFs:obwtim2(end);
 %             o.obw(2).y = fnval(o.obw(2).x, spliney);
@@ -81,23 +83,23 @@ end
             
             
 %% Plot raw data range
-figure(27); clf; hold on;
-    set(gcf, 'Position', [200 100 2*560 2*420]);
+figure(27); 
+    %set(gcf, 'Position', [200 100 2*560 2*420]);
 
-ax(1) = subplot(511); hold on; title('sumfftAmp');
-    yyaxis right; plot([in.e(2).s(ttsf{2}(tt)).timcont]/(60*60), [in.e(2).s(ttsf{2}(tt)).sumfftAmp], '.');
-    yyaxis left; plot([in.e(1).s(ttsf{1}(tt)).timcont]/(60*60), [in.e(1).s(ttsf{1}(tt)).sumfftAmp], '.');
+ax(1) = subplot(411); hold on; title('sumfftAmp');
+    yyaxis right; plot(sffttim2, [in.e(2).s(ttsf{2}(tt)).sumfftAmp], '.');
+    yyaxis left; plot(sffttim1, [in.e(1).s(ttsf{1}(tt)).sumfftAmp], '.');
 
-ax(2) = subplot(512); hold on; title('zAmp');
-    yyaxis right; plot([in.e(2).s(ttz{2}(tt)).timcont]/(60*60), [in.e(2).s(ttz{2}(tt)).zAmp], '.');
-    yyaxis left; plot([in.e(1).s(ttz{1}(tt)).timcont]/(60*60), [in.e(1).s(ttz{1}(tt)).zAmp], '.');
+ax(2) = subplot(412); hold on; title('zAmp');
+    yyaxis right; plot(ztim2, [in.e(2).s(ttz{2}(tt)).zAmp], '.');
+    yyaxis left; plot(ztim1, [in.e(1).s(ttz{1}(tt)).zAmp], '.');
 
-ax(3) = subplot(513); hold on; title('obwAmp');
-    yyaxis right; plot([in.e(2).s(tto{2}(tt)).timcont]/(60*60), [in.e(2).s(tto{2}(tt)).obwAmp], '.');
-    yyaxis left; plot([in.e(1).s(tto{1}(tt)).timcont]/(60*60), [in.e(1).s(tto{1}(tt)).obwAmp], '.');
+ax(3) = subplot(413); hold on; title('obwAmp');
+    yyaxis right; plot(obwtim2, [in.e(2).s(tto{2}(tt)).obwAmp], '.');
+    yyaxis left; plot(obwtim1, [in.e(1).s(tto{1}(tt)).obwAmp], '.');
     
-ax(4) = subplot(515); hold on; title('light transitions');
-    plot([in.e(2).s.timcont]/(60*60), [in.e(1).s.light], '.', 'Markersize', 8);
+ax(4) = subplot(414); hold on; title('light transitions');
+    plot(tim(tt), [in.e(1).s(tt).light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
     
@@ -183,7 +185,7 @@ W = 2*700; %changed from 2*420
 
 figure(2); clf; hold on; 
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
- set(gcf, 'Position', [0 0 W L]);
+ %set(gcf, 'Position', [0 0 W L]);
 
     %get ylim variables
     %maxY
