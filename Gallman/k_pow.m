@@ -43,6 +43,8 @@ end
 %     in.info.poweridx(2)
     
     %hard coded because fuck thinking
+    %OBW
+    
     obwdata1 = [in.e(1).s(tto{1}(tt)).obwAmp]; 
     obwtim1 = tim(tto{1}(tt));
     
