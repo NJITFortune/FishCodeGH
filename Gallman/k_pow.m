@@ -101,7 +101,7 @@ ax(4) = subplot(515); hold on; title('light transitions');
     ylim([-1, 6]);
     xlabel('Continuous');
     
-
+linkaxes(ax, 'x'); 
 
 %% Plot to check fit
 
