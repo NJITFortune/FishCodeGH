@@ -44,13 +44,13 @@ end
     
     %hard coded because fuck thinking
     %OBW
+    %Channel 1
    
     if ~isempty('in.info.poweridx')
-        obtt = find([in.e(1).stto{1}.timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).stto{1}.timcont]/(60*60) < in.info.poweridx(2));
+        obtt = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
     else
-        obtt = 1:[in.e(1).stto{1}.timcont]/(60*60);
+        obtt = 1:length([in.e(1).s(tto{1}).timcont]/(60*60));
     end
-    
     
     obwdata1 = [in.e(1).s(tto{1}(obtt)).obwAmp]; 
     obwtim1 = [in.e(1).s(tto{1}(obtt)).timcont]/(60*60);
@@ -59,33 +59,72 @@ end
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
             o.obw(1).y = fnval(o.obw(1).x, spliney);
             
-   % obwdata2 = [in.e(2).s(tto{2}(tt)).obwAmp]; 
-    obwtim2 = tim(tto{2}(tt));
-%             spliney = csaps(obwtim2, obwdata2, p);
-%             o.obw(2).x = obwtim2(1):1/ReFs:obwtim2(end);
-%             o.obw(2).y = fnval(o.obw(2).x, spliney);
+    %Channel 2
+   
+    if ~isempty('in.info.poweridx')
+        obt2 = find([in.e(1).s(tto{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{2}).timcont]/(60*60) < in.info.poweridx(2));
+    else
+        obt2 = 1:length([in.e(1).s(tto{2}).timcont]/(60*60));
+    end
+            
+    obwdata2 = [in.e(2).s(tto{2}(obt2)).obwAmp]; 
+    obwtim2 = [in.e(1).s(tto{1}(obt2)).timcont]/(60*60);
+            spliney = csaps(obwtim2, obwdata2, p);
+            o.obw(2).x = obwtim2(1):1/ReFs:obwtim2(end);
+            o.obw(2).y = fnval(o.obw(2).x, spliney);
+            
+    %ZAMP
+    %Channel 1
+    
+    if ~isempty('in.info.poweridx')
+        tz1 = find([in.e(1).s(ttz{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttz{1}).timcont]/(60*60) < in.info.poweridx(2));
+    else
+        tz1 = 1:length([in.e(1).s(ttz{1}).timcont]/(60*60));
+    end
         
-    zdata1 = [in.e(1).s(ttz{1}(tt)).zAmp]; 
-    ztim1 = tim(ttz{1}(tt));
+    zdata1 = [in.e(1).s(ttz{1}(tz1)).zAmp]; 
+    ztim1 = [in.e(1).s(ttz{1}(tz1)).timcont]/(60*60);
             spliney = csaps(ztim1, zdata1, p);
             o.z(1).x = ztim1(1):1/ReFs:ztim1(end);
             o.z(1).y = fnval(o.z(1).x, spliney);
             
-    zdata2 = [in.e(2).s(ttz{2}(tt)).zAmp]; 
-    ztim2 = tim(ttz{2}(tt));
+    %Channel 2
+    
+    if ~isempty('in.info.poweridx')
+        tz2 = find([in.e(1).s(ttz{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttz{2}).timcont]/(60*60) < in.info.poweridx(2));
+    else
+        tz2 = 1:length([in.e(1).s(ttz{2}).timcont]/(60*60));
+    end
+    
+    zdata2 = [in.e(2).s(ttz{2}(tz2)).zAmp]; 
+    ztim2 = [in.e(1).s(ttz{2}(tz2)).timcont]/(60*60);
             spliney = csaps(ztim2, zdata2, p);
             o.z(2).x = ztim2(1):1/ReFs:ztim2(end);
             o.z(2).y = fnval(o.z(2).x, spliney);
 
+    %SUMAMP - FFT
+    %Channel 1
+    
+    if ~isempty('in.info.poweridx')
+        st1 = find([in.e(1).s(ttsf{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttsf{1}).timcont]/(60*60) < in.info.poweridx(2));
+    else
+        st1 = 1:length([in.e(1).s(ttsf{1}).timcont]/(60*60));
+    end
             
-    sfftdata1 = [in.e(1).s(ttsf{1}(tt)).sumfftAmp]; 
-    sffttim1 = tim(ttsf{1}(tt));
+    sfftdata1 = [in.e(1).s(ttsf{1}(st1)).sumfftAmp]; 
+    sffttim1 = [in.e(1).s(ttsf{1}(st1)).timcont]/(60*60);
             spliney = csaps(sffttim1, sfftdata1, p);
             o.sfft(1).x = sffttim1(1):1/ReFs:sffttim1(end);
             o.sfft(1).y = fnval(o.sfft(1).x, spliney);
             
-    sfftdata2 = [in.e(2).s(ttsf{2}(tt)).sumfftAmp]; 
-    sffttim2 = tim(ttsf{2}(tt));
+    if ~isempty('in.info.poweridx')
+        st2 = find([in.e(1).s(ttsf{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttsf{2}).timcont]/(60*60) < in.info.poweridx(2));
+    else
+        st2 = 1:length([in.e(1).s(ttsf{2}).timcont]/(60*60));
+    end
+            
+    sfftdata2 = [in.e(2).s(ttsf{2}(st2)).sumfftAmp]; 
+    sffttim2 = [in.e(1).s(ttsf{2}(st2)).timcont]/(60*60);
             spliney = csaps(sffttim2, sfftdata2, p);
             o.sfft(2).x = sffttim2(2):1/ReFs:sffttim2(end);
             o.sfft(2).y = fnval(o.sfft(2).x, spliney);
@@ -93,7 +132,7 @@ end
             
 %% Plot raw data range
 figure(27); clf;
-    %set(gcf, 'Position', [200 100 2*560 2*420]);
+    set(gcf, 'Position', [200 100 2*560 2*420]);
 
 ax(1) = subplot(411); hold on; title('sumfftAmp');
     yyaxis right; plot(sffttim2, [in.e(2).s(ttsf{2}(tt)).sumfftAmp], '.');
@@ -194,7 +233,7 @@ W = 2*700; %changed from 2*420
 
 figure(1); clf; hold on; 
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
-%set(gcf, 'Position', [0 0 W L]);
+    set(gcf, 'Position', [0 0 W L]);
 
     %get ylim variables
     %maxY
