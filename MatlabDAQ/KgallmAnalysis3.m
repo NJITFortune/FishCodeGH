@@ -8,8 +8,6 @@ function out = KgallmAnalysis3(userfilespec, Fs, numstart)
 
 rango = 10; % Hz around peak frequency over which to sum amplitude.
 
-
-
 % DATA FILTERING
 % High pass filter cutoff frequency
     highp = 200;
@@ -31,9 +29,6 @@ rango = 10; % Hz around peak frequency over which to sum amplitude.
 %     startidx = max([1, (ddellayy * Fs)]); % In case we want to start before 0 (max avoids zero problem)
 %     endidx = (windw * Fs) + startidx;
 %     sampidx = startidx:endidx; % Duration of sample (make sure integer!)
-
-
-    
 
     
 iFiles = dir(userfilespec);
