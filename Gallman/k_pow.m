@@ -36,8 +36,8 @@ end
     %OBW
     %Channel 1
    
-    if isempty('in.info.poweridx') == 1
-        obtt = 1:length([in.e(1).s(tto{1}).timcont]/(60*60));
+    if isempty('in.info.poweridx') == 0
+       obtt = 1:length([in.e(1).s(tto{1}).timcont]/(60*60));
     else
         obtt = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
     end
