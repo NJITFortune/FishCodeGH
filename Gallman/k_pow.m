@@ -31,17 +31,7 @@ end
         ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
     end
 
-    tim = [in.e(1).s.timcont]/(60*60);
-   
-    if isfield(in.info,'poweridx')
-        tt = find(tim > in.info.poweridx(1) & tim < in.info.poweridx(2));
-    else
-        tt = 1:length(tim);
-    end
-        
-%     in.info.poweridx(1)
-%     in.info.poweridx(2)
-    
+  
     %hard coded because fuck thinking
     %OBW
     %Channel 1
