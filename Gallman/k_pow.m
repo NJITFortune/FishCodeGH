@@ -81,7 +81,7 @@ end
             
             
 %% Plot raw data range
-figure(27); clf; hold on;
+figure(27); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
 ax(1) = subplot(511); hold on; title('sumfftAmp');
