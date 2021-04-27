@@ -25,7 +25,7 @@ end
     
     
 % If we have removed outliers via KatieRemover, get the indices...    
-    if ~isempty('in.idx')
+    if ~isempty('in.idx') == 1
         tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
         ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
         ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
@@ -36,7 +36,7 @@ end
     %OBW
     %Channel 1
    
-    if ~isempty('in.info.poweridx')
+    if ~isempty('in.info.poweridx') == 1
         obtt = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
     else
         obtt = 1:length([in.e(1).s(tto{1}).timcont]/(60*60));
@@ -51,7 +51,7 @@ end
             
     %Channel 2
    
-    if ~isempty('in.info.poweridx')
+    if ~isempty('in.info.poweridx') == 1
         obt2 = find([in.e(1).s(tto{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{2}).timcont]/(60*60) < in.info.poweridx(2));
     else
         obt2 = 1:length([in.e(1).s(tto{2}).timcont]/(60*60));
@@ -66,7 +66,7 @@ end
     %ZAMP
     %Channel 1
     
-    if ~isempty('in.info.poweridx')
+    if ~isempty('in.info.poweridx') == 1
         tz1 = find([in.e(1).s(ttz{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttz{1}).timcont]/(60*60) < in.info.poweridx(2));
     else
         tz1 = 1:length([in.e(1).s(ttz{1}).timcont]/(60*60));
@@ -80,7 +80,7 @@ end
             
     %Channel 2
     
-    if ~isempty('in.info.poweridx')
+    if ~isempty('in.info.poweridx') == 1
         tz2 = find([in.e(1).s(ttz{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttz{2}).timcont]/(60*60) < in.info.poweridx(2));
     else
         tz2 = 1:length([in.e(1).s(ttz{2}).timcont]/(60*60));
