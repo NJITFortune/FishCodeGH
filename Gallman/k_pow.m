@@ -131,27 +131,27 @@ end
             
             
 %% Plot raw data range
-figure(27); clf;
-    set(gcf, 'Position', [200 100 2*560 2*420]);
-
-ax(1) = subplot(411); hold on; title('sumfftAmp');
-    yyaxis right; plot(sffttim2, [in.e(2).s(ttsf{2}(tt)).sumfftAmp], '.');
-    yyaxis left; plot(sffttim1, [in.e(1).s(ttsf{1}(tt)).sumfftAmp], '.');
-
-ax(2) = subplot(412); hold on; title('zAmp');
-    yyaxis right; plot(ztim2, [in.e(2).s(ttz{2}(tt)).zAmp], '.');
-    yyaxis left; plot(ztim1, [in.e(1).s(ttz{1}(tt)).zAmp], '.');
-
-ax(3) = subplot(413); hold on; title('obwAmp');
-    yyaxis right; plot(obwtim2, [in.e(2).s(tto{2}(tt)).obwAmp], '.');
-    yyaxis left; plot(obwtim1, [in.e(1).s(tto{1}(tt)).obwAmp], '.');
-    
-ax(4) = subplot(414); hold on; title('light transitions');
-    plot(obwtim1, [in.e(1).s(tto{1}(tt)).light], '.', 'Markersize', 8);
-    ylim([-1, 6]);
-    xlabel('Continuous');
-    
-linkaxes(ax, 'x'); 
+% figure(27); clf;
+%     set(gcf, 'Position', [200 100 2*560 2*420]);
+% 
+% ax(1) = subplot(411); hold on; title('sumfftAmp');
+%     yyaxis right; plot(sffttim2, [in.e(2).s(ttsf{2}(tt)).sumfftAmp], '.');
+%     yyaxis left; plot(sffttim1, [in.e(1).s(ttsf{1}(tt)).sumfftAmp], '.');
+% 
+% ax(2) = subplot(412); hold on; title('zAmp');
+%     yyaxis right; plot(ztim2, [in.e(2).s(ttz{2}(tt)).zAmp], '.');
+%     yyaxis left; plot(ztim1, [in.e(1).s(ttz{1}(tt)).zAmp], '.');
+% 
+% ax(3) = subplot(413); hold on; title('obwAmp');
+%     yyaxis right; plot(obwtim2, [in.e(2).s(tto{2}(tt)).obwAmp], '.');
+%     yyaxis left; plot(obwtim1, [in.e(1).s(tto{1}(tt)).obwAmp], '.');
+%     
+% ax(4) = subplot(414); hold on; title('light transitions');
+%     plot(obwtim1, [in.e(1).s(tto{1}(tt)).light], '.', 'Markersize', 8);
+%     ylim([-1, 6]);
+%     xlabel('Continuous');
+%     
+% linkaxes(ax, 'x'); 
 
 %% Plot to check fit
 
