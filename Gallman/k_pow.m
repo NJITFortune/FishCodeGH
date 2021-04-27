@@ -50,7 +50,7 @@ end
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
             o.obw(1).y = fnval(o.obw(1).x, spliney);
             
-    obwdata2 = [in.e(2).s(tto{2}(tt)).obwAmp]; 
+   % obwdata2 = [in.e(2).s(tto{2}(tt)).obwAmp]; 
     obwtim2 = tim(tto{2}(tt));
 %             spliney = csaps(obwtim2, obwdata2, p);
 %             o.obw(2).x = obwtim2(1):1/ReFs:obwtim2(end);
@@ -99,7 +99,7 @@ ax(3) = subplot(413); hold on; title('obwAmp');
     yyaxis left; plot(obwtim1, [in.e(1).s(tto{1}(tt)).obwAmp], '.');
     
 ax(4) = subplot(414); hold on; title('light transitions');
-    plot(obwtim1, [in.e(1).s.light], '.', 'Markersize', 8);
+    plot(tim(tt), [in.e(1).s(tt).light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
     
