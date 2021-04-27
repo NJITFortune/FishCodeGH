@@ -4,7 +4,7 @@ function o = k_pow(in, ReFs, p)
 % f(x) = csaps(x,y,p); p = 0.9
 
 %% Preparations
-
+clear; close all;
 %ReFs = 60;  %resample once every minute
 
 
