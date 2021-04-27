@@ -183,9 +183,9 @@ aqua = [0.4784 0.9020 0.7882];
 L = 2*200;
 W = 2*700; %changed from 2*420
 
-figure(2); clf; hold on; 
+figure(1); clf; hold on; 
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
- %set(gcf, 'Position', [0 0 W L]);
+ set(gcf, 'Position', [0 0 W L]);
 
     %get ylim variables
     %maxY
