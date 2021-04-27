@@ -185,7 +185,7 @@ W = 2*700; %changed from 2*420
 
 figure(1); clf; hold on; 
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
- set(gcf, 'Position', [0 0 W L]);
+%set(gcf, 'Position', [0 0 W L]);
 
     %get ylim variables
     %maxY
