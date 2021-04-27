@@ -97,7 +97,7 @@ ax(3) = subplot(513); hold on; title('obwAmp');
     yyaxis left; plot([in.e(1).s(tto{1}(tt)).timcont]/(60*60*24), [in.e(1).s(tto{1}(tt)).obwAmp], '.');
     
 ax(4) = subplot(515); hold on; title('light transitions');
-    plot([in.e(2).s.timcont]/(60*60),in.e(1).s.light], '.', 'Markersize', 8);
+    plot([in.e(2).s.timcont]/(60*60), [in.e(1).s.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
     
