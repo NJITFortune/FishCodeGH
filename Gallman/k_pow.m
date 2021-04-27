@@ -78,6 +78,30 @@ end
             spliney = csaps(sffttim2, sfftdata2, p);
             o.sfft(2).x = sffttim2(2):1/ReFs:sffttim2(end);
             o.sfft(2).y = fnval(o.sfft(2).x, spliney);
+            
+            
+%% Plot raw data range
+figure(27); clf; hold on;
+    set(gcf, 'Position', [200 100 2*560 2*420]);
+
+ax(1) = subplot(511); hold on; title('sumfftAmp');
+    yyaxis right; plot([in.e(2).s(ttsf{2}(tt)).timcont]/(60*60), [in.e(2).s(ttsf{2}(tt)).sumfftAmp], '.');
+    yyaxis left; plot([in.e(1).s(ttsf{1}(tt)).timcont]/(60*60), [in.e(1).s(ttsf{1}(tt)).sumfftAmp], '.');
+
+ax(2) = subplot(512); hold on; title('zAmp');
+    yyaxis right; plot([in.e(2).s(ttz{2}(tt)).timcont]/(60*60), [in.e(2).s(ttz{2}(tt)).zAmp], '.');
+    yyaxis left; plot([in.e(1).s(ttz{1}(tt)).timcont]/(60*60), [in.e(1).s(ttz{1}(tt)).zAmp], '.');
+
+ax(3) = subplot(513); hold on; title('obwAmp');
+    yyaxis right; plot([in.e(2).s(tto{2}(tt)).timcont]/(60*60), [in.e(2).s(tto{2}(tt)).obwAmp], '.');
+    yyaxis left; plot([in.e(1).s(tto{1}(tt)).timcont]/(60*60), [in.e(1).s(tto{1}(tt)).obwAmp], '.');
+    
+ax(4) = subplot(515); hold on; title('light transitions');
+    plot([in.e(2).s.timcont]/(60*60), [in.e(1).s.light], '.', 'Markersize', 8);
+    ylim([-1, 6]);
+    xlabel('Continuous');
+    
+linkaxes(ax, 'x'); 
 
 %% Plot to check fit
 
@@ -157,7 +181,7 @@ aqua = [0.4784 0.9020 0.7882];
 L = 2*200;
 W = 2*700; %changed from 2*420
 
-figure(1); hold on; 
+figure(2); clf; hold on; 
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
  set(gcf, 'Position', [0 0 W L]);
 
