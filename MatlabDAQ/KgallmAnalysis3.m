@@ -39,41 +39,35 @@ daycount = 0;
 
 k = 1; % Our counter.
 
- eval(['load ' iFiles(k).name]);
-
-    %numCols = fits.getNumCols(iFiles(k).name);
-    %numCols = getNumCols(data);
-    [~,numCols] = size(data);
+ 
     
     %numCols
 
 
 while k <= length(iFiles)
+    
+    
+    eval(['load ' iFiles(k).name]); % Load the current file
+    [~,numCols] = size(data); % how big is it (2 or 3 channels?)
 
-%     eval(['load ' iFiles(k).name]);
-% 
-%     numCols = getNumCols(iFiles(k).name);
-%     %numCols = getNumCols(data);
-%     
-%     numCols
-
-    if  numCols == 5      
+    if  numCols == 5      % 3 channels
         dataChans = [1 2 3];
         tempchan = 4; % Either 4 or 3
         lightchan = 5; % Either 5 or 4
-    elseif numCols == 4
+        
+    elseif numCols == 4   % 2 channels
         dataChans = [1 2];
         tempchan = 3;
         lightchan = 4;    
     else
-        fprintf("How did you get here?")
+        fprintf("How did you get here you fucktard?")
     end
 
     % Get EOD amplitudes for each channel
     for j = length(dataChans):-1:1
 
-    %NEW METHOD SAMPIDX - PEAK |AMP| WINDOW - not Fs dependent
-       %filter data to remove noise maximums
+        %NEW METHOD SAMPIDX - PEAK |AMP| WINDOW - not Fs dependent
+        %filter data to remove noise maximums
         filtsig = filtfilt(b,a, data(:,dataChans(j))); % High pass filter
         filtsig = filtfilt(f,e,filtsig); % Low pass filter      
 
@@ -95,7 +89,7 @@ while k <= length(iFiles)
     %     
     %     adjmax(sampidx, dataChans(j));
 
-        [~, idx] = max(abs(filtsig)); %find where the amplitude of the sample is greatests
+        [~, idx] = max(abs(filtsig)); %find where the amplitude of the sample is greatest
 
         %maxtim = zeros(1, length(idx));
         maxtim(j) = tim(idx); %find the time index of idx
@@ -141,8 +135,6 @@ while k <= length(iFiles)
 
         [SineAmp(j), SineFreq(j)] = sinAnal(filtsig', Fs);
 
-
-
     end % By channel
 
 % Crappy coding... but why not!
@@ -164,13 +156,13 @@ while k <= length(iFiles)
     out(k).Ch2sFreq = SineFreq(2);
     
     if length(dataChans) > 2  
-    out(k).Ch3peakAmp = peakAmp(3);
-    out(k).Ch3peakFreq = peakFreq(3);
-    out(k).Ch3sumAmp = sumAmp(3);
-    out(k).Ch3obwAmp = obwAmp(3);
-    out(k).Ch3zAmp = zAmp(3);
-    out(k).Ch3sAmp = SineAmp(3);
-    out(k).Ch3sFreq = SineFreq(3);
+        out(k).Ch3peakAmp = peakAmp(3);
+        out(k).Ch3peakFreq = peakFreq(3);
+        out(k).Ch3sumAmp = sumAmp(3);
+        out(k).Ch3obwAmp = obwAmp(3);
+        out(k).Ch3zAmp = zAmp(3);
+        out(k).Ch3sAmp = SineAmp(3);
+        out(k).Ch3sFreq = SineFreq(3);
     end
         
     out(k).light = mean(data(:,lightchan));
