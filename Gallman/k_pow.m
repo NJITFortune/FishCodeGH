@@ -85,19 +85,19 @@ figure(2); clf;
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
 ax(1) = subplot(511); hold on; title('sumfftAmp');
-    yyaxis right; plot([in.e(2).s(ttsf{2}(tt)).timcont]/(60*60), [out.e(2).s(ttsf{2}(tt)).sumfftAmp], '.');
-    yyaxis left; plot([in.e(1).s(ttsf{1}(tt)).timcont]/(60*60), [out.e(1).s(ttsf{1}(tt)).sumfftAmp], '.');
+    yyaxis right; plot([in.e(2).s(ttsf{2}(tt)).timcont]/(60*60), [in.e(2).s(ttsf{2}(tt)).sumfftAmp], '.');
+    yyaxis left; plot([in.e(1).s(ttsf{1}(tt)).timcont]/(60*60), [in.e(1).s(ttsf{1}(tt)).sumfftAmp], '.');
 
 ax(2) = subplot(512); hold on; title('zAmp');
-    yyaxis right; plot([out.e(2).s(ttz{2}(tt)).timcont]/(60*60), [out.e(2).s(ttz{2}(tt)).zAmp], '.');
-    yyaxis left; plot([out.e(1).s(ttz{1}(tt)).timcont]/(60*60), [out.e(1).s(ttz{1}(tt)).zAmp], '.');
+    yyaxis right; plot([in.e(2).s(ttz{2}(tt)).timcont]/(60*60), [in.e(2).s(ttz{2}(tt)).zAmp], '.');
+    yyaxis left; plot([in.e(1).s(ttz{1}(tt)).timcont]/(60*60), [in.e(1).s(ttz{1}(tt)).zAmp], '.');
 
 ax(3) = subplot(513); hold on; title('obwAmp');
-    yyaxis right; plot([out.e(2).s(tto{2}(tt)).timcont]/(60*60*24), [out.e(2).s(tto{2}(tt)).obwAmp], '.');
-    yyaxis left; plot([out.e(1).s(tto{1}(tt)).timcont]/(60*60*24), [out.e(1).s(tto{1}(tt)).obwAmp], '.');
+    yyaxis right; plot([in.e(2).s(tto{2}(tt)).timcont]/(60*60*24), in.e(2).s(tto{2}(tt)).obwAmp], '.');
+    yyaxis left; plot([in.e(1).s(tto{1}(tt)).timcont]/(60*60*24), in.e(1).s(tto{1}(tt)).obwAmp], '.');
     
 ax(4) = subplot(515); hold on; title('light transitions');
-    plot([out.e(2).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
+    plot([in.e(2).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
     
