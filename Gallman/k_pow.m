@@ -51,7 +51,7 @@ end
             
     %Channel 2
    
-    if ~isempty(in.info.poweridx) == 1
+    if ~isempty(in.info.poweridx) 
         obt2 = find([in.e(1).s(tto{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{2}).timcont]/(60*60) < in.info.poweridx(2));
     else
         obt2 = 1:length([in.e(1).s(tto{2}).timcont]/(60*60));
@@ -66,7 +66,7 @@ end
     %ZAMP
     %Channel 1
     
-    if ~isempty(in.info.poweridx) == 1
+    if ~isempty(in.info.poweridx)
         tz1 = find([in.e(1).s(ttz{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttz{1}).timcont]/(60*60) < in.info.poweridx(2));
     else
         tz1 = 1:length([in.e(1).s(ttz{1}).timcont]/(60*60));
@@ -80,7 +80,7 @@ end
             
     %Channel 2
     
-    if ~isempty(in.info.poweridx) == 1
+    if ~isempty(in.info.poweridx) 
         tz2 = find([in.e(1).s(ttz{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttz{2}).timcont]/(60*60) < in.info.poweridx(2));
     else
         tz2 = 1:length([in.e(1).s(ttz{2}).timcont]/(60*60));
@@ -95,7 +95,7 @@ end
     %SUMAMP - FFT
     %Channel 1
     
-    if ~isempty(in.info.poweridx) == 1
+    if ~isempty(in.info.poweridx) 
         st1 = find([in.e(1).s(ttsf{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttsf{1}).timcont]/(60*60) < in.info.poweridx(2));
     else
         st1 = 1:length([in.e(1).s(ttsf{1}).timcont]/(60*60));
