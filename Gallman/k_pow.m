@@ -82,7 +82,7 @@ end
             
 %% Plot raw data range
 figure(27); clf; 
-    set(gcf, 'Position', [200 100 2*560 2*420]);
+    %set(gcf, 'Position', [200 100 2*560 2*420]);
 
 ax(1) = subplot(511); hold on; title('sumfftAmp');
     yyaxis right; plot([in.e(2).s(ttsf{2}(tt)).timcont]/(60*60), [in.e(2).s(ttsf{2}(tt)).sumfftAmp], '.');
