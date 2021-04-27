@@ -44,9 +44,16 @@ end
     
     %hard coded because fuck thinking
     %OBW
+   
+    if ~isempty('in.info.poweridx')
+        obtt = find([in.e(1).stto{1}.timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).stto{1}.timcont]/(60*60) < in.info.poweridx(2));
+    else
+        obtt = 1:[in.e(1).stto{1}.timcont]/(60*60);
+    end
     
-    obwdata1 = [in.e(1).s(tto{1}(tt)).obwAmp]; 
-    obwtim1 = tim(tto{1}(tt));
+    
+    obwdata1 = [in.e(1).s(tto{1}(obtt)).obwAmp]; 
+    obwtim1 = [in.e(1).s(tto{1}(obtt)).timcont]/(60*60);
     
             spliney = csaps(obwtim1, obwdata1, p);
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
