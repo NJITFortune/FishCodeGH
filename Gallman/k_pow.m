@@ -51,7 +51,7 @@ end
             
     %Channel 2
    
-    if ~isempty('in.info.poweridx') == 1
+    if ~isempty(in.info.poweridx) == 1
         obt2 = find([in.e(1).s(tto{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{2}).timcont]/(60*60) < in.info.poweridx(2));
     else
         obt2 = 1:length([in.e(1).s(tto{2}).timcont]/(60*60));
