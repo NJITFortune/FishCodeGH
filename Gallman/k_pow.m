@@ -33,14 +33,14 @@ end
 
     tim = [in.e(1).s.timcont]/(60*60);
    
-    if ~isempty('in.info.poweridx')
+    if isfield(in.info,'poweridx')
         tt = find(tim > in.info.poweridx(1) & tim < in.info.poweridx(2));
     else
         tt = 1:length(tim);
     end
         
-    in.info.poweridx(1)
-    in.info.poweridx(2)
+%     in.info.poweridx(1)
+%     in.info.poweridx(2)
     
     %hard coded because fuck thinking
     obwdata1 = [in.e(1).s(tto{1}(tt)).obwAmp]; 
@@ -83,7 +83,7 @@ end
             
             
 %% Plot raw data range
-figure(27); 
+figure(27); clf;
     %set(gcf, 'Position', [200 100 2*560 2*420]);
 
 ax(1) = subplot(411); hold on; title('sumfftAmp');
@@ -99,7 +99,7 @@ ax(3) = subplot(413); hold on; title('obwAmp');
     yyaxis left; plot(obwtim1, [in.e(1).s(tto{1}(tt)).obwAmp], '.');
     
 ax(4) = subplot(414); hold on; title('light transitions');
-    plot(tim(tt), [in.e(1).s(tt).light], '.', 'Markersize', 8);
+    plot(obwtim1, [in.e(1).s(tto{1}(tt)).light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
     
@@ -183,9 +183,9 @@ aqua = [0.4784 0.9020 0.7882];
 L = 2*200;
 W = 2*700; %changed from 2*420
 
-figure(2); clf; hold on; 
+figure(1); clf; hold on; 
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
- %set(gcf, 'Position', [0 0 W L]);
+%set(gcf, 'Position', [0 0 W L]);
 
     %get ylim variables
     %maxY
