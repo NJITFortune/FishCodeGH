@@ -81,7 +81,7 @@ end
             
             
 %% Plot raw data range
-figure(2); clf; 
+figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
 ax(1) = subplot(511); hold on; title('sumfftAmp');
@@ -181,7 +181,7 @@ aqua = [0.4784 0.9020 0.7882];
 L = 2*200;
 W = 2*700; %changed from 2*420
 
-figure(1); hold on; 
+figure(2);clf; hold on; 
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
  set(gcf, 'Position', [0 0 W L]);
 
