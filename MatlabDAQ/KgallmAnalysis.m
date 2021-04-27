@@ -9,8 +9,8 @@ function out = KgallmAnalysis(userfilespec, Fs, numstart)
 rango = 10; % Hz around peak frequency over which to sum amplitude.
 
 dataChans = [1 2];
-tempchan = 4;
-lightchan = 5;    
+tempchan = 3;
+lightchan = 4;    
 
 % DATA FILTERING
 % High pass filter cutoff frequency
