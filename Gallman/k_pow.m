@@ -93,8 +93,8 @@ ax(2) = subplot(512); hold on; title('zAmp');
     yyaxis left; plot([in.e(1).s(ttz{1}(tt)).timcont]/(60*60), [in.e(1).s(ttz{1}(tt)).zAmp], '.');
 
 ax(3) = subplot(513); hold on; title('obwAmp');
-    yyaxis right; plot([in.e(2).s(tto{2}(tt)).timcont]/(60*60*24), [in.e(2).s(tto{2}(tt)).obwAmp], '.');
-    yyaxis left; plot([in.e(1).s(tto{1}(tt)).timcont]/(60*60*24), [in.e(1).s(tto{1}(tt)).obwAmp], '.');
+    yyaxis right; plot([in.e(2).s(tto{2}(tt)).timcont]/(60*60), [in.e(2).s(tto{2}(tt)).obwAmp], '.');
+    yyaxis left; plot([in.e(1).s(tto{1}(tt)).timcont]/(60*60), [in.e(1).s(tto{1}(tt)).obwAmp], '.');
     
 ax(4) = subplot(515); hold on; title('light transitions');
     plot([in.e(2).s.timcont]/(60*60), [in.e(1).s.light], '.', 'Markersize', 8);
