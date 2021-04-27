@@ -58,7 +58,7 @@ end
     end
             
     obwdata2 = [in.e(2).s(tto{2}(obt2)).obwAmp]; 
-    obwtim2 = [in.e(1).s(tto{1}(obt2)).timcont]/(60*60);
+    obwtim2 = [in.e(1).s(tto{2}(obt2)).timcont]/(60*60);
             spliney = csaps(obwtim2, obwdata2, p);
             o.obw(2).x = obwtim2(1):1/ReFs:obwtim2(end);
             o.obw(2).y = fnval(o.obw(2).x, spliney);
