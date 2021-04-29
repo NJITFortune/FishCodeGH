@@ -220,14 +220,6 @@ pw(j).zAmp = array2table(zwelch,'VariableNames',colNames);
 
 end
 
-%derivateve method
-for j = 1:2 % Perform analyses on the two channels
-    
-fun = pwelch(o.z(j).y - mean(o.z(j).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
-
-x0 = 1/(2*hourperiod); % initial point
-timpeak = fzero(fun,x0);
-end
 
 
 
