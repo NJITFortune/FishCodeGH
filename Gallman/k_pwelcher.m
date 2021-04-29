@@ -211,11 +211,14 @@ NFFT = 2^nextpow2(L)/2;
 %NFFT = 8192;
 FreqRange = 0.002:0.0001:0.2;
 
-[pxx,pf] = pwelch(o.z(1).y - mean(o.z(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+for j = 1:2 % Perform analyses on the two channels
+[pxx,pf] = pwelch(o.z(j).y - mean(o.z(j).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
 
-zwelch1 = [pxx', pf'];
+zwelch = [pxx', pf'];
 colNames = {'pxx','pfreq'};
 pw.e(j).zAmp = array2table(zwelch1,'VariableNames',colNames);
+
+end
 
 
 % %colors for plots
