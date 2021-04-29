@@ -129,15 +129,15 @@ figure(27); clf;
 %     yyaxis left; plot(sffttim1, [in.e(1).s(ttsf{1}(tt)).sumfftAmp], '.');
 % 
 ax(1) = subplot(211); hold on; title('zAmp');
-    yyaxis right; plot(ztim2, [in.e(2).s(ttz{2}(tt)).zAmp], '.');
-    yyaxis left; plot(ztim1, [in.e(1).s(ttz{1}(tt)).zAmp], '.');
+    yyaxis right; plot(ztim2, zData2, '.');
+    yyaxis left; plot(ztim1, zData1, '.');
 % 
 % ax(3) = subplot(413); hold on; title('obwAmp');
 %     yyaxis right; plot(obwtim2, [in.e(2).s(tto{2}(tt)).obwAmp], '.');
 %     yyaxis left; plot(obwtim1, [in.e(1).s(tto{1}(tt)).obwAmp], '.');
 %     
 ax(4) = subplot(212); hold on; title('light transitions');
-    plot(ztim1, [in.e(1).s(tto{1}(tt)).light], '.', 'Markersize', 8);
+    plot(ztim1, [in.e(1).s(ttz{1}(tz1)).light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
     
