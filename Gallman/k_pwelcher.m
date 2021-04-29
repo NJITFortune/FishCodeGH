@@ -203,8 +203,8 @@ end
 
 
 %Analysis zAMp
-%fftmachine
-f = fftmachine(o.z(1).y - mean(o.z(1).y), ReFs, 3); 
+% %fftmachine
+% f = fftmachine(o.z(1).y - mean(o.z(1).y), ReFs, 3); 
 %pwelch
 L = length(o.z(1).y); 
 NFFT = 2^nextpow2(L)/2;
