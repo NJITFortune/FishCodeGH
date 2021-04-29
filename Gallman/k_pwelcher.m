@@ -210,11 +210,12 @@ L = length(o.z(1).y);
 NFFT = 2^nextpow2(L)/2;
 %NFFT = 8192;
 FreqRange = 0.002:0.0001:0.2;
+
 [pxx,pf] = pwelch(o.z(1).y - mean(o.z(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
 
 zwelch1 = [pxx', pf'];
 colNames = {'pxx','pfreq'};
-pw.e(1).zAmp = array2table(zwelch1,'VariableNames',colNames);
+pw.e(j).zAmp = array2table(zwelch1,'VariableNames',colNames);
 
 
 % %colors for plots
