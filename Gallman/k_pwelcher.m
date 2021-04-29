@@ -222,7 +222,7 @@ for j = 1:2 % Perform analyses on the two channels
     %find peak at given frequency
     range = 0.05;
 
-
+mean(pw.e(1).zAmp.pxx(pw.e(1).zAmp.pfreq > 0.124 & pw.e(1).zAmp.pfreq < 0.126))
 end
 
 
