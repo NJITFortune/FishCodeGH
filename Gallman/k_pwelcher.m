@@ -216,7 +216,7 @@ for j = 1:2 % Perform analyses on the two channels
 
 zwelch = [pxx', pf'];
 colNames = {'pxx','pfreq'};
-pw.e(j).zAmp = array2table(zwelch,'VariableNames',colNames);
+pw(j).zAmp = array2table(zwelch,'VariableNames',colNames);
 
 end
 
