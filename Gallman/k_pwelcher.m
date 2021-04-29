@@ -1,4 +1,4 @@
-function peak = k_pwelcher(in, ReFs, p, hourperiod)
+function hourpeak = k_pwelcher(in, ReFs, p, hourperiod)
 % GENERATE CUBIC SPLINE FUNCTION FOR DATA
 % Usage: [xx, yy] = k_cspliner(x, y, p)
 % f(x) = csaps(x,y,p); p = 0.9
@@ -222,7 +222,7 @@ for j = 2:-1:1 % Perform analyses on the two channels
     %find peak at given frequency
     range = 0.002;
 
-peak(j) = mean(pw(j).zAmp.pxx(ppw(j).zAmp.pfreq > ((1/(2*hourperiod)) - range/2) & pw(j).zAmp.pfreq < ((1/(2*hourperiod)) + range/2)));
+hourpeak(j) = mean(pw(j).zAmp.pxx(ppw(j).zAmp.pfreq > ((1/(2*hourperiod)) - range/2) & pw(j).zAmp.pfreq < ((1/(2*hourperiod)) + range/2)));
 end
 
 
