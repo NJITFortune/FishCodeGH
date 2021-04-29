@@ -212,7 +212,7 @@ NFFT = 2^nextpow2(L)/2;
 FreqRange = 0.002:0.0001:0.2;
 [pxx,pf] = pwelch(o.z(1).y - mean(o.z(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
 
-welched = [pxx, pf];
+welched = [pxx', pf'];
 % %colors for plots
 % rosey = [.8588 0.4980 0.4980];
 % aqua = [0.4784 0.9020 0.7882];
