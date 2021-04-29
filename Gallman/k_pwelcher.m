@@ -212,9 +212,9 @@ NFFT = 2^nextpow2(L)/2;
 FreqRange = 0.002:0.0001:0.2;
 [pxx,pf] = pwelch(o.z(1).y - mean(o.z(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
 
-whelp1 = [pxx', pf'];
+zwelch1 = [pxx', pf'];
 colNames = {'pxx','pfreq'};
-welched1 = array2table(whelp1,'VariableNames',colNames);
+zwelch1 = array2table(whelp1,'VariableNames',colNames);
 
 
 % %colors for plots
