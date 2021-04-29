@@ -129,8 +129,8 @@ figure(27); clf;
 %     yyaxis left; plot(sffttim1, [in.e(1).s(ttsf{1}(tt)).sumfftAmp], '.');
 % 
 ax(1) = subplot(211); hold on; title('zAmp');
-    yyaxis right; plot(ztim2, zData2, '.');
-    yyaxis left; plot(ztim1, zData1, '.');
+    yyaxis right; plot(ztim2, zdata2, '.');
+    yyaxis left; plot(ztim1, zdata1, '.');
 % 
 % ax(3) = subplot(413); hold on; title('obwAmp');
 %     yyaxis right; plot(obwtim2, [in.e(2).s(tto{2}(tt)).obwAmp], '.');
