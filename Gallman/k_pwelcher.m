@@ -1,4 +1,4 @@
-function pw = k_pwelcher(in, ReFs, p)
+function pw = k_pwelcher(in, ReFs, p, hourperiod)
 % GENERATE CUBIC SPLINE FUNCTION FOR DATA
 % Usage: [xx, yy] = k_cspliner(x, y, p)
 % f(x) = csaps(x,y,p); p = 0.9
@@ -225,7 +225,8 @@ for j = 1:2 % Perform analyses on the two channels
     
 fun = pwelch(o.z(j).y - mean(o.z(j).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
 
-
+x0 = 1/(2*hourperiod); % initial point
+timpeak = fzero(fun,x0);
 end
 
 
