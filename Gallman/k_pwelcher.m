@@ -214,7 +214,7 @@ FreqRange = 0.002:0.0001:0.2;
 
 zwelch1 = [pxx', pf'];
 colNames = {'pxx','pfreq'};
-pw. = array2table(zwelch1,'VariableNames',colNames);
+pw.e(1).zAmp = array2table(zwelch1,'VariableNames',colNames);
 
 
 % %colors for plots
