@@ -1,4 +1,4 @@
-function welched = k_pwelch(in, ReFs, p)
+function pw = k_pwelch(in, ReFs, p)
 % GENERATE CUBIC SPLINE FUNCTION FOR DATA
 % Usage: [xx, yy] = k_cspliner(x, y, p)
 % f(x) = csaps(x,y,p); p = 0.9
@@ -212,11 +212,11 @@ NFFT = 2^nextpow2(L)/2;
 FreqRange = 0.002:0.0001:0.2;
 [pxx,pf] = pwelch(o.z(1).y - mean(o.z(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
 
-whelp = [pxx', pf'];
-
-
+whelp1 = [pxx', pf'];
 colNames = {'pxx','pfreq'};
-welched = array2table(whelp,'VariableNames',colNames);
+welched1 = array2table(whelp1,'VariableNames',colNames);
+
+
 % %colors for plots
 % rosey = [.8588 0.4980 0.4980];
 % aqua = [0.4784 0.9020 0.7882];
