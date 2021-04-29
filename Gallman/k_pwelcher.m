@@ -222,7 +222,7 @@ for j = 2:-1:1 % Perform analyses on the two channels
     %find peak at given frequency
     range = 0.002;
 
-hourpeak(j) = mean(pw(j).zAmp.pxx(ppw(j).zAmp.pfreq > ((1/(2*hourperiod)) - range/2) & pw(j).zAmp.pfreq < ((1/(2*hourperiod)) + range/2)));
+hourpeak(j) = mean(pw(j).zAmp.pxx(pw(j).zAmp.pfreq > ((1/(2*hourperiod)) - range/2) & pw(j).zAmp.pfreq < ((1/(2*hourperiod)) + range/2)));
 end
 
 
