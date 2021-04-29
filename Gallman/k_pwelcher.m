@@ -1,4 +1,4 @@
-function pw = k_pwelcher(in, ReFs, p, hourperiod)
+function peak = k_pwelcher(in, ReFs, p, hourperiod)
 % GENERATE CUBIC SPLINE FUNCTION FOR DATA
 % Usage: [xx, yy] = k_cspliner(x, y, p)
 % f(x) = csaps(x,y,p); p = 0.9
@@ -211,7 +211,7 @@ NFFT = 2^nextpow2(L)/2;
 %NFFT = 8192;
 FreqRange = 0.002:0.0001:0.2;
 
-for j = 1:2 % Perform analyses on the two channels
+for j = 2:-1:1 % Perform analyses on the two channels
     %generate fft
     [pxx,pf] = pwelch(o.z(j).y - mean(o.z(j).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
     %populate values 
@@ -220,9 +220,9 @@ for j = 1:2 % Perform analyses on the two channels
     pw(j).zAmp = array2table(zwelch,'VariableNames',colNames);
     
     %find peak at given frequency
-    range = 0.05;
+    range = 0.002;
 
-mean(pw.e(1).zAmp.pxx(pw.e(1).zAmp.pfreq > 0.124 & pw.e(1).zAmp.pfreq < 0.126))
+peak(j) = mean(pw(j).zAmp.pxx(ppw(j).zAmp.pfreq > ((1/(2*hourperiod)) - range/2) & pw(j).zAmp.pfreq < ((1/(2*hourperiod)) + range/2)));
 end
 
 
@@ -230,7 +230,6 @@ end
 
 
 
-rx = find(in.pxx > (1/(2*hourperiod)) - range/2 & in.pxx < (1/(2*hourperiod)) + range/2);
 
 
 % %colors for plots
