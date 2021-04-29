@@ -212,15 +212,25 @@ NFFT = 2^nextpow2(L)/2;
 FreqRange = 0.002:0.0001:0.2;
 
 for j = 1:2 % Perform analyses on the two channels
-[pxx,pf] = pwelch(o.z(j).y - mean(o.z(j).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+    %generate fft
+    [pxx,pf] = pwelch(o.z(j).y - mean(o.z(j).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+    %populate values 
+    zwelch = [pxx', pf'];
+    colNames = {'pxx','pfreq'};
+    pw(j).zAmp = array2table(zwelch,'VariableNames',colNames);
+    
+    %find peak at given frequency
+    range = 0.05;
 
-zwelch = [pxx', pf'];
-colNames = {'pxx','pfreq'};
-pw(j).zAmp = array2table(zwelch,'VariableNames',colNames);
 
 end
 
 
+
+
+
+
+rx = find(in.pxx > (1/(2*hourperiod)) - range/2 & in.pxx < (1/(2*hourperiod)) + range/2);
 
 
 % %colors for plots
