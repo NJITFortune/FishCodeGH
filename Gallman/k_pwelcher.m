@@ -213,7 +213,7 @@ FreqRange = 0.002:0.0001:0.2;
 
 
 
-for j = 2:-1:1 % Perform analyses on the two channels
+for j = 1%2:-1:1 % Perform analyses on the two channels
     %generate fft
     [pxx,pf] = pwelch(o.z(j).y - mean(o.z(j).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
     %populate values 
