@@ -143,8 +143,8 @@ FreqRange = 0.002:0.0001:0.2;
     
     %find peak at given frequency
     range = 0.002;
-    pf.xfreq.z(1) = 1/(2*hourperiod);
-    pf.hourpeak.z(1) = mean(pw(1).zAmp.pxx(pw(1).zAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(1).zAmp.pfreq < ((1/(2*hourperiod) + range/2))));
+    pf.freq.z(1) = 1/(2*hourperiod);
+    pf.pwr.z(1) = mean(pw(1).zAmp.pxx(pw(1).zAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(1).zAmp.pfreq < ((1/(2*hourperiod) + range/2))));
 
     %Channel 2
     [pxx2,pf2] = pwelch(o.z(2).y - mean(o.z(2).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
@@ -155,8 +155,8 @@ FreqRange = 0.002:0.0001:0.2;
     
     %find peak at given frequency
     range = 0.002;
-    pf.xfreq.z(2) = 1/(2*hourperiod);
-    pf.hourpeak.z(2) = mean(pw(2).zAmp.pxx(pw(2).zAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(2).zAmp.pfreq < ((1/(2*hourperiod) + range/2))));
+    pf.freq.z(2) = 1/(2*hourperiod);
+    pf.pwr.z(2) = mean(pw(2).zAmp.pxx(pw(2).zAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(2).zAmp.pfreq < ((1/(2*hourperiod) + range/2))));
 
 
 % for j = 2:-1:1 % Perform analyses on the two channels
