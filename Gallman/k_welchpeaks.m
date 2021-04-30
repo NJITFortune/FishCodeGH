@@ -1,4 +1,4 @@
-function o = k_pow(in, ReFs, p)
+function [hourpeak, peak12] = k_welchpeaks(in, ReFs, p, hourperiod)
 % GENERATE CUBIC SPLINE FUNCTION FOR DATA
 % Usage: [xx, yy] = k_cspliner(x, y, p)
 % f(x) = csaps(x,y,p); p = 0.9
@@ -36,32 +36,32 @@ end
     %OBW
     %Channel 1
    
-    if isempty(in.info.poweridx) 
-       obtt = 1:length([in.e(1).s(tto{1}).timcont]/(60*60));
-    else
-        obtt = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
-    end
-    
-    obwdata1 = [in.e(1).s(tto{1}(obtt)).obwAmp]; 
-    obwtim1 = [in.e(1).s(tto{1}(obtt)).timcont]/(60*60);
-    
-            spliney = csaps(obwtim1, obwdata1, p);
-            o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
-            o.obw(1).y = fnval(o.obw(1).x, spliney);
-            
-    %Channel 2
-   
-    if ~isempty(in.info.poweridx) 
-        obt2 = find([in.e(1).s(tto{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{2}).timcont]/(60*60) < in.info.poweridx(2));
-    else
-        obt2 = 1:length([in.e(1).s(tto{2}).timcont]/(60*60));
-    end
-            
-    obwdata2 = [in.e(2).s(tto{2}(obt2)).obwAmp]; 
-    obwtim2 = [in.e(1).s(tto{2}(obt2)).timcont]/(60*60);
-            spliney = csaps(obwtim2, obwdata2, p);
-            o.obw(2).x = obwtim2(1):1/ReFs:obwtim2(end);
-            o.obw(2).y = fnval(o.obw(2).x, spliney);
+%     if isempty(in.info.poweridx) 
+%        obtt = 1:length([in.e(1).s(tto{1}).timcont]/(60*60));
+%     else
+%         obtt = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
+%     end
+%     
+%     obwdata1 = [in.e(1).s(tto{1}(obtt)).obwAmp]; 
+%     obwtim1 = [in.e(1).s(tto{1}(obtt)).timcont]/(60*60);
+%     
+%             spliney = csaps(obwtim1, obwdata1, p);
+%             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
+%             o.obw(1).y = fnval(o.obw(1).x, spliney);
+%             
+%     %Channel 2
+%    
+%     if ~isempty(in.info.poweridx) 
+%         obt2 = find([in.e(1).s(tto{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{2}).timcont]/(60*60) < in.info.poweridx(2));
+%     else
+%         obt2 = 1:length([in.e(1).s(tto{2}).timcont]/(60*60));
+%     end
+%             
+%     obwdata2 = [in.e(2).s(tto{2}(obt2)).obwAmp]; 
+%     obwtim2 = [in.e(1).s(tto{2}(obt2)).timcont]/(60*60);
+%             spliney = csaps(obwtim2, obwdata2, p);
+%             o.obw(2).x = obwtim2(1):1/ReFs:obwtim2(end);
+%             o.obw(2).y = fnval(o.obw(2).x, spliney);
             
     %ZAMP
     %Channel 1
@@ -95,53 +95,53 @@ end
     %SUMAMP - FFT
     %Channel 1
     
-    if ~isempty(in.info.poweridx) 
-        st1 = find([in.e(1).s(ttsf{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttsf{1}).timcont]/(60*60) < in.info.poweridx(2));
-    else
-        st1 = 1:length([in.e(1).s(ttsf{1}).timcont]/(60*60));
-    end
-            
-    sfftdata1 = [in.e(1).s(ttsf{1}(st1)).sumfftAmp]; 
-    sffttim1 = [in.e(1).s(ttsf{1}(st1)).timcont]/(60*60);
-            spliney = csaps(sffttim1, sfftdata1, p);
-            o.sfft(1).x = sffttim1(1):1/ReFs:sffttim1(end);
-            o.sfft(1).y = fnval(o.sfft(1).x, spliney);
-            
-    if ~isempty(in.info.poweridx)
-        st2 = find([in.e(1).s(ttsf{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttsf{2}).timcont]/(60*60) < in.info.poweridx(2));
-    else
-        st2 = 1:length([in.e(1).s(ttsf{2}).timcont]/(60*60));
-    end
-            
-    sfftdata2 = [in.e(2).s(ttsf{2}(st2)).sumfftAmp]; 
-    sffttim2 = [in.e(1).s(ttsf{2}(st2)).timcont]/(60*60);
-            spliney = csaps(sffttim2, sfftdata2, p);
-            o.sfft(2).x = sffttim2(2):1/ReFs:sffttim2(end);
-            o.sfft(2).y = fnval(o.sfft(2).x, spliney);
+%     if ~isempty(in.info.poweridx) 
+%         st1 = find([in.e(1).s(ttsf{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttsf{1}).timcont]/(60*60) < in.info.poweridx(2));
+%     else
+%         st1 = 1:length([in.e(1).s(ttsf{1}).timcont]/(60*60));
+%     end
+%             
+%     sfftdata1 = [in.e(1).s(ttsf{1}(st1)).sumfftAmp]; 
+%     sffttim1 = [in.e(1).s(ttsf{1}(st1)).timcont]/(60*60);
+%             spliney = csaps(sffttim1, sfftdata1, p);
+%             o.sfft(1).x = sffttim1(1):1/ReFs:sffttim1(end);
+%             o.sfft(1).y = fnval(o.sfft(1).x, spliney);
+%             
+%     if ~isempty(in.info.poweridx)
+%         st2 = find([in.e(1).s(ttsf{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttsf{2}).timcont]/(60*60) < in.info.poweridx(2));
+%     else
+%         st2 = 1:length([in.e(1).s(ttsf{2}).timcont]/(60*60));
+%     end
+%             
+%     sfftdata2 = [in.e(2).s(ttsf{2}(st2)).sumfftAmp]; 
+%     sffttim2 = [in.e(1).s(ttsf{2}(st2)).timcont]/(60*60);
+%             spliney = csaps(sffttim2, sfftdata2, p);
+%             o.sfft(2).x = sffttim2(2):1/ReFs:sffttim2(end);
+%             o.sfft(2).y = fnval(o.sfft(2).x, spliney);
             
             
 %% Plot raw data range
-figure(27); clf;
-    set(gcf, 'Position', [200 100 2*560 2*420]);
+% figure(27); clf;
+%     set(gcf, 'Position', [200 100 2*560 2*420]);
 % 
 % ax(1) = subplot(411); hold on; title('sumfftAmp');
 %     yyaxis right; plot(sffttim2, [in.e(2).s(ttsf{2}(tt)).sumfftAmp], '.');
 %     yyaxis left; plot(sffttim1, [in.e(1).s(ttsf{1}(tt)).sumfftAmp], '.');
 % 
-ax(1) = subplot(211); hold on; title('zAmp');
-    yyaxis right; plot(ztim2, zdata2, '.');
-    yyaxis left; plot(ztim1, zdata1, '.');
+% ax(2) = subplot(412); hold on; title('zAmp');
+%     yyaxis right; plot(ztim2, [in.e(2).s(ttz{2}(tt)).zAmp], '.');
+%     yyaxis left; plot(ztim1, [in.e(1).s(ttz{1}(tt)).zAmp], '.');
 % 
 % ax(3) = subplot(413); hold on; title('obwAmp');
 %     yyaxis right; plot(obwtim2, [in.e(2).s(tto{2}(tt)).obwAmp], '.');
 %     yyaxis left; plot(obwtim1, [in.e(1).s(tto{1}(tt)).obwAmp], '.');
 %     
-ax(4) = subplot(212); hold on; title('light transitions');
-    plot(ztim1, [in.e(1).s(ttz{1}(tz1)).light], '.', 'Markersize', 8);
-    ylim([-1, 6]);
-    xlabel('Continuous');
-    
-linkaxes(ax, 'x'); 
+% ax(4) = subplot(414); hold on; title('light transitions');
+%     plot(obwtim1, [in.e(1).s(tto{1}(tt)).light], '.', 'Markersize', 8);
+%     ylim([-1, 6]);
+%     xlabel('Continuous');
+%     
+% linkaxes(ax, 'x'); 
 
 %% Plot to check fit
 
@@ -203,20 +203,32 @@ linkaxes(ax, 'x');
 
 
 %Analysis zAMp
-%fftmachine
-f = fftmachine(o.z(1).y - mean(o.z(1).y), ReFs, 3); 
+% %fftmachine
+% f = fftmachine(o.z(1).y - mean(o.z(1).y), ReFs, 3); 
 %pwelch
 L = length(o.z(1).y); 
 NFFT = 2^nextpow2(L)/2;
 %NFFT = 8192;
 FreqRange = 0.002:0.0001:0.2;
-[pxx,pf] = pwelch(o.z(1).y - mean(o.z(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+
+
+%derivateve method
+for j = 1:2 % Perform analyses on the two channels
+    
+fun = pwelch(o.z(j).y - mean(o.z(j).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+
+x0 = 1/(2*hourperiod); % initial point
+hourpeak = fzero(fun,x0);
+x12 = 1/(2*12);
+peak12 = fzero(fun,x12);
+end
+
 
 
 %colors for plots
 rosey = [.8588 0.4980 0.4980];
 aqua = [0.4784 0.9020 0.7882];
-
+% 
 %size of figure window
 L = 2*200;
 W = 2*700; %changed from 2*420
@@ -227,27 +239,22 @@ figure(1); clf; hold on;
 
     %get ylim variables
     %maxY
-    if max(pxx) > max(f.fftdata)
-        maxY = max(pxx);
-    else
-        maxY = max(f.fftdata);
-    end  
     
-    %minY
-    if min(pxx) < max(f.fftdata)
-        minY = min(pxx);
-    else
-        minY = min(f.fftdata);
-    end  
+    maxY = max(pxx);
+    minY = min(pxx);
+    
+    plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
 
     %Draw lines for light cycles
     hrs = [96, 48, 26, 24, 20, 16, 12, 10, 8]; % Double hours
 
     %plot data on log scale
     %fftmachine
-    figure(1); plot(f.fftfreq(f.fftfreq < 0.2), f.fftdata(f.fftfreq < 0.2), '-o', 'Color', aqua, 'LineWidth', 2); 
+    %figure(1); plot(f.fftfreq(f.fftfreq < 0.2), f.fftdata(f.fftfreq < 0.2), '-o', 'Color', aqua, 'LineWidth', 2); 
     %pwelch
     figure(1); plot(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3); ylim([minY, maxY + 0.01]);
+               plot(x0, hourpeak, '*', 'Color', aqua, 'MarkerSize', 12);
+               plot(x12, peak12, '*', 'Color', aqua, 'MarkerSize', 12);
     
     figure(1);    
         for j=1:length(hrs)

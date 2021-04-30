@@ -1,4 +1,4 @@
-function o = k_pow(in, ReFs, p)
+function [xfreq, hourpeak] = k_pwelcher(in, ReFs, p, hourperiod)
 % GENERATE CUBIC SPLINE FUNCTION FOR DATA
 % Usage: [xx, yy] = k_cspliner(x, y, p)
 % f(x) = csaps(x,y,p); p = 0.9
@@ -121,27 +121,27 @@ end
             
             
 %% Plot raw data range
-figure(27); clf;
-    set(gcf, 'Position', [200 100 2*560 2*420]);
+% figure(27); clf;
+%     set(gcf, 'Position', [200 100 2*560 2*420]);
 % 
 % ax(1) = subplot(411); hold on; title('sumfftAmp');
 %     yyaxis right; plot(sffttim2, [in.e(2).s(ttsf{2}(tt)).sumfftAmp], '.');
 %     yyaxis left; plot(sffttim1, [in.e(1).s(ttsf{1}(tt)).sumfftAmp], '.');
 % 
-ax(1) = subplot(211); hold on; title('zAmp');
-    yyaxis right; plot(ztim2, zdata2, '.');
-    yyaxis left; plot(ztim1, zdata1, '.');
+% ax(2) = subplot(412); hold on; title('zAmp');
+%     yyaxis right; plot(ztim2, [in.e(2).s(ttz{2}(tt)).zAmp], '.');
+%     yyaxis left; plot(ztim1, [in.e(1).s(ttz{1}(tt)).zAmp], '.');
 % 
 % ax(3) = subplot(413); hold on; title('obwAmp');
 %     yyaxis right; plot(obwtim2, [in.e(2).s(tto{2}(tt)).obwAmp], '.');
 %     yyaxis left; plot(obwtim1, [in.e(1).s(tto{1}(tt)).obwAmp], '.');
 %     
-ax(4) = subplot(212); hold on; title('light transitions');
-    plot(ztim1, [in.e(1).s(ttz{1}(tz1)).light], '.', 'Markersize', 8);
-    ylim([-1, 6]);
-    xlabel('Continuous');
-    
-linkaxes(ax, 'x'); 
+% ax(4) = subplot(414); hold on; title('light transitions');
+%     plot(obwtim1, [in.e(1).s(tto{1}(tt)).light], '.', 'Markersize', 8);
+%     ylim([-1, 6]);
+%     xlabel('Continuous');
+%     
+% linkaxes(ax, 'x'); 
 
 %% Plot to check fit
 
@@ -203,69 +203,90 @@ linkaxes(ax, 'x');
 
 
 %Analysis zAMp
-%fftmachine
-f = fftmachine(o.z(1).y - mean(o.z(1).y), ReFs, 3); 
+% %fftmachine
+% f = fftmachine(o.z(1).y - mean(o.z(1).y), ReFs, 3); 
 %pwelch
 L = length(o.z(1).y); 
 NFFT = 2^nextpow2(L)/2;
 %NFFT = 8192;
 FreqRange = 0.002:0.0001:0.2;
-[pxx,pf] = pwelch(o.z(1).y - mean(o.z(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
 
 
-%colors for plots
-rosey = [.8588 0.4980 0.4980];
-aqua = [0.4784 0.9020 0.7882];
 
-%size of figure window
-L = 2*200;
-W = 2*700; %changed from 2*420
-
-figure(1); clf; hold on; 
-%set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
-    set(gcf, 'Position', [0 0 W L]);
-
-    %get ylim variables
-    %maxY
-    if max(pxx) > max(f.fftdata)
-        maxY = max(pxx);
-    else
-        maxY = max(f.fftdata);
-    end  
+for j = 2:-1:1 % Perform analyses on the two channels
+    %generate fft
+    [pxx,pf] = pwelch(o.z(j).y - mean(o.z(j).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+    %populate values 
+    zwelch = [pxx', pf'];
+    colNames = {'pxx','pfreq'};
+    pw(j).zAmp = array2table(zwelch,'VariableNames',colNames);
     
-    %minY
-    if min(pxx) < max(f.fftdata)
-        minY = min(pxx);
-    else
-        minY = min(f.fftdata);
-    end  
+    %find peak at given frequency
+    range = 0.002;
+    xfreq(j) = 1/(2*hourperiod);
+    hourpeak(j) = mean(pw(j).zAmp.pxx(pw(j).zAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(j).zAmp.pfreq < ((1/(2*hourperiod) + range/2))));
+end
 
-    %Draw lines for light cycles
-    hrs = [96, 48, 26, 24, 20, 16, 12, 10, 8]; % Double hours
 
-    %plot data on log scale
-    %fftmachine
-    figure(1); plot(f.fftfreq(f.fftfreq < 0.2), f.fftdata(f.fftfreq < 0.2), '-o', 'Color', aqua, 'LineWidth', 2); 
-    %pwelch
-    figure(1); plot(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3); ylim([minY, maxY + 0.01]);
-    
-    figure(1);    
-        for j=1:length(hrs)
 
-            plot([1/hrs(j), 1/hrs(j)], [minY, maxY], 'k-', 'LineWidth', 1);
-            label = num2str(hrs(j)/2);
-            str = " " + label + ":" + label;
-            if mod(j, 2) == 0 % j is even
-                pos(j) = maxY*0.9;
-            else % j is odd
-                pos(j) = maxY*0.5;
-            end
-            
-            text(1/hrs(j), pos(j), str, 'FontSize', 14, 'FontWeight', 'bold');
 
-        end
-    
-        set(gca, 'yscale', 'log');
+
+
+
+
+% %colors for plots
+% rosey = [.8588 0.4980 0.4980];
+% aqua = [0.4784 0.9020 0.7882];
+% 
+% %size of figure window
+% L = 2*200;
+% W = 2*700; %changed from 2*420
+% 
+% figure(1); clf; hold on; 
+% %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
+%     set(gcf, 'Position', [0 0 W L]);
+% 
+%     %get ylim variables
+%     %maxY
+%     if max(pxx) > max(f.fftdata)
+%         maxY = max(pxx);
+%     else
+%         maxY = max(f.fftdata);
+%     end  
+%     
+%     %minY
+%     if min(pxx) < max(f.fftdata)
+%         minY = min(pxx);
+%     else
+%         minY = min(f.fftdata);
+%     end  
+% 
+%     %Draw lines for light cycles
+%     hrs = [96, 48, 26, 24, 20, 16, 12, 10, 8]; % Double hours
+% 
+%     %plot data on log scale
+%     %fftmachine
+%     figure(1); plot(f.fftfreq(f.fftfreq < 0.2), f.fftdata(f.fftfreq < 0.2), '-o', 'Color', aqua, 'LineWidth', 2); 
+%     %pwelch
+%     figure(1); plot(pf,pxx, '-o','Color', rosey, 'LineWidth', 2, 'MarkerSize', 3); ylim([minY, maxY + 0.01]);
+%     
+%     figure(1);    
+%         for j=1:length(hrs)
+% 
+%             plot([1/hrs(j), 1/hrs(j)], [minY, maxY], 'k-', 'LineWidth', 1);
+%             label = num2str(hrs(j)/2);
+%             str = " " + label + ":" + label;
+%             if mod(j, 2) == 0 % j is even
+%                 pos(j) = maxY*0.9;
+%             else % j is odd
+%                 pos(j) = maxY*0.5;
+%             end
+%             
+%             text(1/hrs(j), pos(j), str, 'FontSize', 14, 'FontWeight', 'bold');
+% 
+%         end
+%     
+%         set(gca, 'yscale', 'log');
 
     
 %% save peak values

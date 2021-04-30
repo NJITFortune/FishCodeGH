@@ -1,4 +1,4 @@
-function out = KgallmAnalysis(userfilespec, Fs, numstart)
+function out = KgallmAnalysis3(userfilespec, Fs, numstart)
 % Function out = gallmAnalysis(userfilespec, Fs)
 % userfilespec is data from listentothis.m, e.g. 'EigenTest*.mat'
 % Fs is the sample rate, was 20kHz but now 40kHz
@@ -8,13 +8,10 @@ function out = KgallmAnalysis(userfilespec, Fs, numstart)
 
 rango = 10; % Hz around peak frequency over which to sum amplitude.
 
-dataChans = [1 2];
-tempchan = 3;
-lightchan = 4;    
-
 % DATA FILTERING
 % High pass filter cutoff frequency
     highp = 200;
+    
     % Low pass filter cutoff frequency
     lowp = 2000;
     
@@ -33,10 +30,6 @@ lightchan = 4;
 %     endidx = (windw * Fs) + startidx;
 %     sampidx = startidx:endidx; % Duration of sample (make sure integer!)
 
-
-    
-    
-
     
 iFiles = dir(userfilespec);
 
@@ -46,16 +39,35 @@ daycount = 0;
 
 k = 1; % Our counter.
 
+ 
+    
+    %numCols
+
+
 while k <= length(iFiles)
+    
+    
+    eval(['load ' iFiles(k).name]); % Load the current file
+    [~,numCols] = size(data); % how big is it (2 or 3 channels?)
 
-    eval(['load ' iFiles(k).name]);
+    if  numCols == 5      % 3 channels
+        dataChans = [1 2 3];
+        tempchan = 4; % Either 4 or 3
+        lightchan = 5; % Either 5 or 4
+        
+    elseif numCols == 4   % 2 channels
+        dataChans = [1 2];
+        tempchan = 3;
+        lightchan = 4;    
+    else
+        fprintf("How did you get here you fucktard?")
+    end
 
-   
     % Get EOD amplitudes for each channel
     for j = length(dataChans):-1:1
 
-    %NEW METHOD SAMPIDX - PEAK |AMP| WINDOW - not Fs dependent
-       %filter data to remove noise maximums
+        %NEW METHOD SAMPIDX - PEAK |AMP| WINDOW - not Fs dependent
+        %filter data to remove noise maximums
         filtsig = filtfilt(b,a, data(:,dataChans(j))); % High pass filter
         filtsig = filtfilt(f,e,filtsig); % Low pass filter      
 
@@ -77,8 +89,9 @@ while k <= length(iFiles)
     %     
     %     adjmax(sampidx, dataChans(j));
 
-        [~, idx] = max(abs(filtsig)); %find where the amplitude of the sample is greatests
+        [~, idx] = max(abs(filtsig)); %find where the amplitude of the sample is greatest
 
+        %maxtim = zeros(1, length(idx));
         maxtim(j) = tim(idx); %find the time index of idx
 
         %place the peak amplitude in the middle of the new sample time window
@@ -122,8 +135,6 @@ while k <= length(iFiles)
 
         [SineAmp(j), SineFreq(j)] = sinAnal(filtsig', Fs);
 
-
-
     end % By channel
 
 % Crappy coding... but why not!
@@ -143,7 +154,16 @@ while k <= length(iFiles)
     out(k).Ch2zAmp = zAmp(2);
     out(k).Ch2sAmp = SineAmp(2);
     out(k).Ch2sFreq = SineFreq(2);
-   
+    
+    if length(dataChans) > 2  
+        out(k).Ch3peakAmp = peakAmp(3);
+        out(k).Ch3peakFreq = peakFreq(3);
+        out(k).Ch3sumAmp = sumAmp(3);
+        out(k).Ch3obwAmp = obwAmp(3);
+        out(k).Ch3zAmp = zAmp(3);
+        out(k).Ch3sAmp = SineAmp(3);
+        out(k).Ch3sFreq = SineFreq(3);
+    end
         
     out(k).light = mean(data(:,lightchan));
     out(k).temp = mean(data(:,tempchan));
@@ -166,32 +186,32 @@ while k <= length(iFiles)
 
 end
 
-%% Create a separate vector for exact light time changes
- 
-%Get the name of the current folder
-%[~,folder,~]=fileparts(pwd);
-%extract the light cycle info and convert to number
-%timstep = str2num(folder(6:7)); %length of light cycle in hours
-timstep = 24;
-cyc = floor([out(end).timcont]/(timstep*60*60)); %number of cycles in data
-
-%user defined details by light trial
-timerstart = 17; %hour of the first state change
-%initstate = 0; %initial state
-
-%timz = 1:1:cyc; %to avoid for-loop
-
-ztzed = [0 6]; %y
-
-
-%luz(timz) = (timerstart) + (timstep*(timz-1)); %without for-loop
-
-for i = 1:cyc
-    luz(i)=timstep*(i-1)+timerstart;
-    x1(:,i) = [luz(i), luz(i)];
-    
-    out(i).luz = x1(:,i);
-end    
+% %% Create a separate vector for exact light time changes
+%  
+% %Get the name of the current folder
+% %[~,folder,~]=fileparts(pwd);
+% %extract the light cycle info and convert to number
+% %timstep = str2num(folder(6:7)); %length of light cycle in hours
+% timstep = 24;
+% cyc = floor([out(end).timcont]/(timstep*60*60)); %number of cycles in data
+% 
+% %user defined details by light trial
+% timerstart = 17; %hour of the first state change
+% %initstate = 0; %initial state
+% 
+% %timz = 1:1:cyc; %to avoid for-loop
+% 
+% ztzed = [0 6]; %y
+% 
+% 
+% %luz(timz) = (timerstart) + (timstep*(timz-1)); %without for-loop
+% 
+% for i = 1:cyc
+%     luz(i)=timstep*(i-1)+timerstart;
+%     x1(:,i) = [luz(i), luz(i)];
+%     
+%     out(i).luz = x1(:,i);
+% end    
 
 
 %% Plot the data for fun
@@ -222,6 +242,13 @@ ax(4) = subplot(414); hold on;
     %plot([out.luz], ztzed, '.-', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
+    
+    if  isfield(out,'Ch3sumAmp') == 1
+        subplot(411); plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
+        subplot(412); plot([out.timcont]/(60*60), [out.Ch3zAmp], '.');
+        subplot(413); plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
+        draw now
+     end
 
 linkaxes(ax, 'x');
     
@@ -372,6 +399,14 @@ ax(4) = subplot(414); hold on;
     ylim([-1, 6]);
     xlabel('Continuous');
 
+     if isfield(out,'Ch3sumAmp') == 1
+        subplot(411); plot([out.timcont]/(60*60), [out.Ch3obwAmp], '.');
+        subplot(412); plot([out.timcont]/(60*60), [out.Ch3sAmp], '.');
+        subplot(413); plot([out.timcont]/(60*60), [out.Ch3sFreq], '.', 'Markersize', 8);
+        draw now
+     end
+    
+    
 linkaxes(ax, 'x');   
 
 
@@ -382,7 +417,7 @@ x = 1/FsF:1/FsF:length(datums)/FsF;
 
 yu = max(datums);
 yl = min(datums);
-yr = (yu-yl);                               % Range of ‘y’
+yr = (yu-yl);                               % Range of â€˜yâ€™
 yz = datums-yu+(yr/2);
 zx = x(yz .* circshift(yz,[0 1]) <= 0);     % Find zero-crossings
 per = 2*mean(diff(zx));                     % Estimate period
