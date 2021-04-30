@@ -1,4 +1,4 @@
-function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod)
+function [xfreq hourpeak] = k_pwelcher(in, ReFs, p, hourperiod)
 % GENERATE CUBIC SPLINE FUNCTION FOR DATA
 % Usage: [xx, yy] = k_cspliner(x, y, p)
 % f(x) = csaps(x,y,p); p = 0.9
