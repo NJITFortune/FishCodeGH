@@ -231,7 +231,7 @@ end
     colnames = {'ch1', 'ch2'};
     hpeaks = array2table(hourpeaks,'VariableNames',colnames);
 
-    peakfreqs = [xfreqk(1) xfreq(2)];
+    peakfreqs = [xfreq(1) xfreq(2)];
     freqnames = {'ch1', 'ch2'};
     freqsofpeaks = array2table(peakfreqs,'VariableNames',freqnames);
 
