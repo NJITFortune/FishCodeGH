@@ -243,7 +243,7 @@ ax(4) = subplot(414); hold on;
     ylim([-1, 6]);
     xlabel('Continuous');
     
-    if  isfield(out,'var') == 1
+    if  isfield(out,'Ch3sumAmp') == 1
         subplot(411); plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
         subplot(412); plot([out.timcont]/(60*60), [out.Ch3zAmp], '.');
         subplot(413); plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Markersize', 8);
@@ -399,7 +399,7 @@ ax(4) = subplot(414); hold on;
     ylim([-1, 6]);
     xlabel('Continuous');
 
-     if  exist('out.Ch3obwAmp','var') == 1
+     if isfield(out,'Ch3sumAmp') == 1
         subplot(411); plot([out.timcont]/(60*60), [out.Ch3obwAmp], '.');
         subplot(412); plot([out.timcont]/(60*60), [out.Ch3sAmp], '.');
         subplot(413); plot([out.timcont]/(60*60), [out.Ch3sFreq], '.', 'Markersize', 8);
