@@ -1,4 +1,4 @@
-function k_initialplotter(out)
+function k_initialplotter3(out)
 % plot the data for fun
 % Usage: k_initialplotter(kg(#));
 close all;
@@ -26,11 +26,11 @@ close all;
 figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
-ax(1) = subplot(511); hold on; title('sumfftAmp - magenta = added worms to tank');
+ax(1) = subplot(511); hold on; title('sumfftAmp');
     yyaxis right; plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
     yyaxis left; plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.');
 
-ax(2) = subplot(512); hold on; title('zAmp - green = social');
+ax(2) = subplot(512); hold on; title('zAmp');
     yyaxis right; plot([out.e(2).s(ttz{2}).timcont]/(60*60), [out.e(2).s(ttz{2}).zAmp], '.');
     yyaxis left; plot([out.e(1).s(ttz{1}).timcont]/(60*60), [out.e(1).s(ttz{1}).zAmp], '.');
 
@@ -41,25 +41,35 @@ xa(1) = subplot(513); hold on; title('obwAmp');
 ax(3) = subplot(514); hold on; title('frequency (black) and temperature (red)');   
         yyaxis right; plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.fftFreq], '.k', 'Markersize', 8);
         yyaxis right; plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.fftFreq], '.k', 'Markersize', 8);
-        yyaxis left; plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.temp], '-r', 'Markersize', 8);
-        yyaxis left; plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.temp], '-r', 'Markersize', 8);
+        yyaxis left; plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.temp], '.r', 'Markersize', 8);
+        yyaxis left; plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.temp], '.r', 'Markersize', 8);
     
 ax(4) = subplot(515); hold on; title('light transitions');
     plot([out.e(2).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
+    
+    if  isfield(out,'out.e(3)') == 1
+        subplot(511); plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
+        subplot(512); plot([out.timcont]/(60*60), [out.Ch3zAmp], '.');
+        subplot(513); plot([out.timcont]/(60*60), [out.Ch3obwAmp], '.', 'Markersize', 8);
+        draw now
+     end
+    
         
 % Add feedingtimes, if we have them...    
      if ~isempty(out.info)
         subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
-        subplot(512); plot([abs(out.info.socialtimes)' abs(out.info.socialtimes)']', [0 max([out.e(1).s.zAmp])], 'g-', 'LineWidth', 2, 'MarkerSize', 10);
+        subplot(512); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.zAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
         % subplot(515); plot([abs(out.info.luz)' abs(out.info.luz)'], [0 6], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
                     drawnow;
+        
      end
      
-% Add social times, if we have them...    
-     
-      
+%         darkidx = find(out.info.luz < 0); lightidx = find(out.info.luz > 0);
+%         for j=1:length(darkidx); plot([abs(out.info.luz(darkidx(j))) abs(out.info.luz(darkidx(j)))], [0 5], 'k-'); end
+%         for j=1:length(lightidx); plot([abs(out.info.luz(lightidx(j))) abs(out.info.luz(lightidx(j)))], [0 5], 'c-'); end
+%         
         
 linkaxes(ax, 'x'); 
 xa.XLim = ax(1).XLim/24;

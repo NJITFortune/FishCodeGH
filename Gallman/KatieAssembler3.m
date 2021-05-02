@@ -7,9 +7,7 @@ function out  = KatieAssembler3(userfilespec, Fs, numstart)
 % Usage: kg(#).e = KatieAssembler(userfilespec, Fs, numstart)
 %
 
-% This should not change, but if for some reason...
-tempchan = 3; % Either 4 or 3
-lightchan = 4; % Either 5 or 4
+
 
 daycount = 0;
 
@@ -49,16 +47,21 @@ for k = 1:length(iFiles)
     
        % LOAD THE DATA FILE
         load(iFiles(k).name, 'data', 'tim');
-        out(1).s(k).Fs = 1 / (tim(2)-tim(1)); % Extract the sample rate
-        out(2).s(k).Fs = out(1).s(k).Fs;
         
-       % Filter data  
-          
-            data(:,1) = filtfilt(b,a, data(:,1)); % High pass filter
-            data(:,1) = filtfilt(f,e, data(:,1)); % Low pass filter   
-            
-            data(:,2) = filtfilt(b,a, data(:,2)); % High pass filter
-            data(:,2) = filtfilt(f,e, data(:,2)); % Low pass filter   
+        %check for third channel
+        [~, numCols] = size(data); % how big is it (2 or 3 channels?)
+
+    if  numCols == 5      % 3 channels
+        dataChans = [1 2 3];
+        tempchan = 4; % Either 4 or 3
+        lightchan = 5; % Either 5 or 4
+    else
+       % 2 channels
+        dataChans = [1 2];
+        tempchan = 3;
+        lightchan = 4;    
+    end
+        
 
         % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
  
@@ -66,13 +69,27 @@ for k = 1:length(iFiles)
                 minute = str2double(iFiles(k).name(numstart+3:numstart+4));
                 second = str2double(iFiles(k).name(numstart+6:numstart+7));
                 
-            if k > 1 && ((hour*60*60) + (minute*60) + second) < out(1).s(k-1).tim24
+                if k > 1 && ((hour*60*60) + (minute*60) + second) < out(1).s(k-1).tim24
                    daycount = daycount + 1;
-            end
+                end
+                
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
-        for j = 1:2 % Perform analyses on the two channels
+   
+        for j = length(dataChans):-1:1 % Perform analyses on the channels
+            
+            out(j).s(k).Fs = 1 / (tim(2)-tim(1)); % Extract the sample rate
+            
+            % There are 86400 seconds in a day.
+            out(j).s(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
+            out(j).s(k).tim24 = (hour*60*60) + (minute*60) + second;
+        
+            
+            
+            % Filter data
+            data(:,j) = filtfilt(b,a, data(:,j)); % High pass filter
+            data(:,j) = filtfilt(f,e, data(:,j)); % Low pass filter         
         
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
             [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
@@ -91,10 +108,6 @@ for k = 1:length(iFiles)
             out(j).s(k).light = mean(data(:,lightchan));
             out(j).s(k).temp = mean(data(:,tempchan));
     
-            
-        % There are 86400 seconds in a day.
-        out(j).s(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
-        out(j).s(k).tim24 = (hour*60*60) + (minute*60) + second;
         
         end
         
