@@ -41,8 +41,8 @@ xa(1) = subplot(513); hold on; title('obwAmp');
 ax(3) = subplot(514); hold on; title('frequency (black) and temperature (red)');   
         yyaxis right; plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.fftFreq], '.k', 'Markersize', 8);
         yyaxis right; plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.fftFreq], '.k', 'Markersize', 8);
-        yyaxis left; plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.temp], '.r', 'Markersize', 8);
-        yyaxis left; plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.temp], '.r', 'Markersize', 8);
+        yyaxis left; plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.temp], '-r', 'Markersize', 8);
+        yyaxis left; plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.temp], '-r', 'Markersize', 8);
     
 ax(4) = subplot(515); hold on; title('light transitions');
     plot([out.e(2).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
