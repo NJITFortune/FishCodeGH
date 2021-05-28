@@ -68,24 +68,16 @@ err%:=SerialWrite(port%, apos$); ' Set position mode
 err%:=SerialWrite(port%, pstart$); ' Start the program
     err%:=SerialRead(port%, in$);
     'Message(Print$("pstart is %s ", in$));
-
-'err%:=SerialWrite(port%, readacc$);
-'    err%:=SerialRead(port%, in$);
     Message(Print$("Actuator is running: %s ", in$));
 
 
 ' Play your waveforms
 ' Yield(10);
 
-
-
-
-
 ' Stop the actuator and release (allows prepositioning
 'err%:=SerialWrite(port%, stp$);
 '     err%:=SerialRead(port%, in$);
 '     Message(Print$("Stopped the Device = %s ", in$));
-
 
 '' Close the serial port
 SerialClose(port%);
