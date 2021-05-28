@@ -7,11 +7,11 @@ Var hsk%:=0;
 Var List%:=1;
 
 '' Control values - change these for correct performance
-Var scal$:="s r0x19 36000\n";    ' Scaling in counts per 10V 360000
-Var mvel$:="s r0xcb 400000\n";        ' Max velocity, counts per second
-Var macc$:="s r0xcc 1500000\n";        ' Max acceleration, counts per second
-Var mdec$:="s r0xcd 1500000\n";        ' Max deceleration, counts per second
-Var mdead$:="s r0x26 10\n";                                  ' Deadband in mV
+Var scal$:="s r0x19 36000\n";    		' Scaling in counts per 10V 36000 for 1cm/V, 72000 for 2cm/V
+Var mvel$:="s r0xcb 500000\n";        	' Max velocity, counts per second 
+Var macc$:="s r0xcc 500000\n";        	' Max acceleration, counts per second
+Var mdec$:="s r0xcd 500000\n";        	' Max deceleration, counts per second
+Var mdead$:="s r0x26 0\n";             	' Deadband in mV [default = 0]
 'Var vel$:="s r0x33 16384\n";        ' Max deceleration, counts per second
 'Var acc$:="s r0x34 0\n";        ' Max deceleration, counts per second
 Var gainmult$:="s r0xe3 5\n";        ' 100 is unity gain, don't know why 5 works better (less shaking) (DEFAULT IS 100)
