@@ -22,7 +22,6 @@ Var apos$:="s r0x24 22\n";      		' 22 is Analog Position mode
 Var stp$:="s r0x24 0\n";            	' stops the device
 Var pstart$:="t 1\n";               	' Start program
 Var pendd$:="t 0\n";                	' Stop program
-'Var deadband$:="s r0x26 100\n"; ' Deaband in mV
 
 '' Read commands
 Var homeread$:="g r0x32\n"; 'read current location at home
