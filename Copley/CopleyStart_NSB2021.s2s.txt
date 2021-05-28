@@ -22,7 +22,7 @@ Var pstart$:="t 1\n";               	' Start program
 Var pendd$:="t 0\n";                	' Stop program
 
 '' Read commands
-Var homeread$:="g r0x32\n"; 'read current location at home
+Var homeread$:="g r0x32\n"; 		'read current location at home
 Var readacc$:="g r0xcc\n";
 
 '' General variables
