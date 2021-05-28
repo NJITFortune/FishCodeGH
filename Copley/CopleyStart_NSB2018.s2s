@@ -1,16 +1,17 @@
-Var port%:=3; 		' Change to Match Port Number from CME2
+var port%:=5; 		' Change to Match Port Number from CME2
 var baud%:=115200; 	' 115200 57600
 var bits%:=8;
 var par%:=0;
 var stop%:=1;
-Var hsk%:=0;
-Var List%:=1;
+var hsk%:=0;
+var List%:=1;
 
 '' Control values - change these for correct performance
 Var scal$:="s r0x19 36000\n";    		' Scaling in counts per 10V 36000 for 1cm/V, 72000 for 2cm/V
 Var mvel$:="s r0xcb 500000\n";        	' Max velocity, counts per second 
 Var macc$:="s r0xcc 500000\n";        	' Max acceleration, counts per second
 Var mdec$:="s r0xcd 500000\n";        	' Max deceleration, counts per second
+
 Var mdead$:="s r0x26 0\n";             	' Deadband in mV [default = 0]
 'Var vel$:="s r0x33 16384\n";        ' Max deceleration, counts per second
 'Var acc$:="s r0x34 0\n";        ' Max deceleration, counts per second
