@@ -1,5 +1,5 @@
-Var port%:=3; ' Change to Match Port Number from CME2
-var baud%:=115200; ' 115200 57600
+Var port%:=3; 		' Change to Match Port Number from CME2
+var baud%:=115200; 	' 115200 57600
 var bits%:=8;
 var par%:=0;
 var stop%:=1;
