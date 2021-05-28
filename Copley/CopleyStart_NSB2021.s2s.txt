@@ -18,10 +18,10 @@ var mdead$:="s r0x26 0\n";             	' Deadband in mV [default = 0]
 var gainmult$:="s r0xe3 5\n";        	' 100 is unity gain, don't know why 5 works better (less shaking) (DEFAULT IS 100)
 
 '' Set commands 
-Var apos$:="s r0x24 22\n";      ' 22 is Analog Position mode
-Var stp$:="s r0x24 0\n";            ' stops the device
-Var pstart$:="t 1\n";               ' Start program
-Var pendd$:="t 0\n";                ' Stop program
+Var apos$:="s r0x24 22\n";      		' 22 is Analog Position mode
+Var stp$:="s r0x24 0\n";            	' stops the device
+Var pstart$:="t 1\n";               	' Start program
+Var pendd$:="t 0\n";                	' Stop program
 'Var deadband$:="s r0x26 100\n"; ' Deaband in mV
 
 '' Read commands
