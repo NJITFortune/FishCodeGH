@@ -62,6 +62,12 @@ ax(4) = subplot(515); hold on; title('light transitions');
     subplot(512); plot([abs(out.info.socialtimes)' abs(out.info.socialtimes)']', [0 max([out.e(1).s.zAmp])], 'g-', 'LineWidth', 2, 'MarkerSize', 10);
     end  
         
+    
+% Add light transitions times to check luz
+    if  ~isempty(out.info.luz)
+        subplot(515); plot([abs(out.info.luz)' abs(out.info.luz)']', [0 6], 'g-', 'LineWidth', 2, 'MarkerSize', 10);
+    end    
+
 linkaxes(ax, 'x'); 
 xa.XLim = ax(1).XLim/24;
 
