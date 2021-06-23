@@ -29,7 +29,7 @@ figure(1); clf;
 ax(1) = subplot(511); hold on; title('sumfftAmp - magenta = added worms to tank');
     gg = ttsf{2} < length([out.e(2).s]);
     yyaxis right; plot([out.e(2).s(ttsf{2}(gg)).timcont]/(60*60), [out.e(2).s(ttsf{2}(gg)).sumfftAmp], '.');
-    yyaxis left; plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.');
+    yyaxis left; plot([out.e(1).s(ttsf{1}(gg)).timcont]/(60*60), [out.e(1).s(ttsf{1}(gg)).sumfftAmp], '.');
 
 ax(2) = subplot(512); hold on; title('zAmp - green = social');
     yyaxis right; plot([out.e(2).s(ttz{2}).timcont]/(60*60), [out.e(2).s(ttz{2}).zAmp], '.');
