@@ -27,7 +27,8 @@ figure(1); clf;
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
 ax(1) = subplot(511); hold on; title('sumfftAmp - magenta = added worms to tank');
-    yyaxis right; plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
+    gg = ttsf{2} < length([out.e(2).s]);
+    yyaxis right; plot([out.e(2).s(ttsf{2}(gg)).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
     yyaxis left; plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.');
 
 ax(2) = subplot(512); hold on; title('zAmp - green = social');
