@@ -53,7 +53,7 @@ end
 
 figure(10); clf
 hold on;
-for j=1:20:length(sta(:,1))
+for j=1:200:length(sta(:,1))
     plot(out.time, sta(j,:));
 end
     plot(out.time, out.MEAN, 'b-', 'LineWidth', 3);
