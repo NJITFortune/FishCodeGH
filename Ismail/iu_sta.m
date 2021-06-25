@@ -51,13 +51,13 @@ end
 
     out.time = -wid:1/Fs:wid; % Give the user a time base for plotting.
 
-figure(10); clf
-hold on;
-for j=1:200:length(sta(:,1))
-    plot(out.time, sta(j,:));
-end
-    plot(out.time, out.MEAN, 'b-', 'LineWidth', 3);
-    plot(out.time, out.randMEAN,'r-','LineWidth',3);
-    xlabel('Time (s)')
+% figure(10); clf
+% hold on;
+% for j=1:200:length(sta(:,1))
+%     plot(out.time, sta(j,:));
+% end
+%     plot(out.time, out.MEAN, 'b-', 'LineWidth', 3);
+%     plot(out.time, out.randMEAN,'r-','LineWidth',3);
+%     xlabel('Time (s)')
 
  
