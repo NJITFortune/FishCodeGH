@@ -6,8 +6,6 @@ function out = AnalTempTest(userfilespec, numstart)
 
 %% Setup
 
-rango = 10; % Hz around peak frequency over which to sum amplitude.
-
 %dataChans = [1 2];
 tempchan = 3;
 lightchan = 4;    
