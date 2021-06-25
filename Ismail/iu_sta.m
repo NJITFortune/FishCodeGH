@@ -53,8 +53,7 @@ end
 
 figure(10); clf
 hold on;
-box on;
-for j=1:length(spikes)
+for j=1:20:length(spikes)
     plot(out.time, sta(j,:));
 end
     plot(out.time, out.MEAN, 'b-', 'LineWidth', 3);
