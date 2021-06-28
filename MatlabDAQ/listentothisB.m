@@ -4,7 +4,7 @@
     data = evt.Data;
     tim = evt.TimeStamps;
 
-    FileName = sprintf('Eigen48LDB-%s.mat', datestr(now, 'mm-dd-yyyy_HH-MM-SS'));
+    FileName = sprintf('Eigen12LDB-%s.mat', datestr(now, 'mm-dd-yyyy_HH-MM-SS'));
     save(FileName, 'data', 'tim');
 
     % plot(tim, data);
