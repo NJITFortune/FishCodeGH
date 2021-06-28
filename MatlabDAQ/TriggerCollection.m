@@ -15,6 +15,7 @@ s = daq.createSession('ni');
 
 % Add and configure Trigger    
     addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
+    addTriggerConnection(s,'External','Dev2/PFI1','StartTrigger');
     
     s.Connections.TriggerCondition = 'FallingEdge';
     s.ExternalTriggerTimeout = 144000;
