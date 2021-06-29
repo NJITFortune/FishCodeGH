@@ -35,7 +35,8 @@ while numSamples < 100000
        
     fprintf('We are %i steps.\n', numSamples);
         s.startForeground();
-    fprintf('We are are done waiting\n');
+        a = datestr(now, 'mm-dd-yyyy_HH-MM-SS');
+    fprintf('We are are done waiting %s\n', a);
         pause(60) % After detection, pause for this long
         
         s.stop;
