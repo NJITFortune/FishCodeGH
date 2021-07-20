@@ -136,7 +136,7 @@ end
 
 %%Plot the frequencies over time
 figure(2); hold on;
-    plot([out(k).pwr1A]
+    plot([out(k) [out(k).pwr1A]
 
 
     
