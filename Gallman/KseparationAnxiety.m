@@ -1,4 +1,4 @@
-function
+function out = KseparationAnxiety(in)
 
 % Fs = 40000;
 % 
