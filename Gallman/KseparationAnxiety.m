@@ -75,9 +75,11 @@ figure(1); clf;
     subplot(212); plot(tube1a); hold on; plot(tube2a);
 
     
+
+    out = 1;
     
-    
-    
+end
+
     
     
     function [t1f,t1a,t2f,t2a] = getfreqs(t1, t2, sepfreaky)       
