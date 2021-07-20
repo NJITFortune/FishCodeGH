@@ -27,14 +27,7 @@ ff = waitbar(0, 'Cycling through files.');
      tube1 = filtfilt(b,a,data(:,1));
      tube2 = filtfilt(b,a,data(:,2));
      
-   % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
-    hour = str2double(iFiles(k).name(numstart:numstart+1));        %numstart based on time stamp text location
-    minute = str2double(iFiles(k).name(numstart+3:numstart+4));
-    second = str2double(iFiles(k).name(numstart+6:numstart+7));
-
-        if k > 1 && ((hour*60*60) + (minute*60) + second) < out(1).s(k-1).tim24
-               daycount = daycount + 1;
-        end
+  
 
    % extract the fish frequencies
      t1 = fftmachine(tube1, Fs);
@@ -57,6 +50,15 @@ for k = 2:length(iFiles)
     
        % LOAD THE DATA FILE
         load(iFiles(k).name, 'data', 'tim');
+        
+        % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
+        hour = str2double(iFiles(k).name(numstart:numstart+1));        %numstart based on time stamp text location
+        minute = str2double(iFiles(k).name(numstart+3:numstart+4));
+        second = str2double(iFiles(k).name(numstart+6:numstart+7));
+
+        if k > 1 && ((hour*60*60) + (minute*60) + second) < out(k-1).tim24
+               daycount = daycount + 1;
+        end 
         
        %filter the data
         
