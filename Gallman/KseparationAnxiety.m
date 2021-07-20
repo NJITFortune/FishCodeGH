@@ -4,8 +4,8 @@ Fs = 40000;
 % userfilespec = 'Eigen*';
 % Get the list of files to be analyzed  
         iFiles = dir(userfilespec);
-numstart = 23;
-daycount = 0;
+    % numstart = 23;
+    % daycount = 0;
 
 
 % Set up filters
@@ -19,7 +19,7 @@ daycount = 0;
 
 
 % CLICK THE FIRST FILE
-    load(iFiles(1).name, 'data', 'tim');
+    load(iFiles(1).name, 'data');
 
    % filter the data
 
