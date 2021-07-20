@@ -136,7 +136,8 @@ end
 
 %%Plot the frequencies over time
 figure(2); hold on;
-    plot([out.pwr1F], [out.pwr1A]
+    plot([out.pwr1F], [out.pwr1A]);
+    plot([out.pwr2F], [out.pwr2A]);
 
 
     
