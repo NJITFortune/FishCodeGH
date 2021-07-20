@@ -88,7 +88,7 @@ end
         %Assign frequencies to tubles 
 
        % Tube 1
-        lfreqs = find(t1.fftfreq < sepfreaky & t1.fftfreq > 350);
+        lfreqs = find(t1.fftfreq < sepfreaky & t1.fftfreq > 300);
             [pwrA1l, idx] = max(t1.fftdata(lfreqs));
             pwrF1l = t1.fftfreq(lfreqs(idx));
 
