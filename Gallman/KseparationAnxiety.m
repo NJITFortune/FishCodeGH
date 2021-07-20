@@ -1,7 +1,8 @@
-function out = KseparationAnxiety(userfilespec, numstart)
+function out = KseparationAnxiety(userfilespec)
 
 Fs = 40000;
-userfilespec = 
+%userfilespec = 'Eigen*';
+numstart = 23;
 
 % Set up filters
         % High pass filter cutoff frequency
