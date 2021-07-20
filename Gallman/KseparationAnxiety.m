@@ -1,3 +1,5 @@
+function
+
 % Fs = 40000;
 % 
 % % Set up filters
