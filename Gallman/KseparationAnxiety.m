@@ -2,7 +2,10 @@ function out = KseparationAnxiety(userfilespec)
 
 Fs = 40000;
 %userfilespec = 'Eigen*';
+% Get the list of files to be analyzed  
+        iFiles = dir(userfilespec);
 numstart = 23;
+
 
 % Set up filters
         % High pass filter cutoff frequency
