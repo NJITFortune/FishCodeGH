@@ -16,6 +16,21 @@ numstart = 23;
 %             [f,e] = butter(5, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
             
 
+ff = waitbar(0, 'Cycling through files.');
+
+for k = 1:length(iFiles)
+       
+     waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
+
+    
+       % LOAD THE DATA FILE
+        load(iFiles(k).name, 'data', 'tim');
+        out(1).s(k).Fs = 1 / (tim(2)-tim(1)); % Extract the sample rate
+        out(2).s(k).Fs = out(1).s(k).Fs;
+        
+        
+        
+
  tube1 = filtfilt(b,a,data(:,1));
  tube2 = filtfilt(b,a,data(:,2));
  
