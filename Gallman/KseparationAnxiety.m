@@ -125,7 +125,8 @@ for k = 2:length(iFiles)
 
         end
         
-        out(k) 
+        out(k).pwr1 = [pwr1F, pwr1A];
+        out(k).pwr2 = [pwr2F, pwr2A];
     
             
         % There are 86400 seconds in a day.
@@ -136,8 +137,8 @@ end
 
 %%Plot the frequencies over time
 figure(2); hold on;
-    plot([out.timcont]/(60*60), [out.pwr1F, out.pwr1A]);
-    plot([out.pwr2F], [out.pwr2A]);
+    plot([out.timcont]/(60*60), [out.pwr1]);
+    plot([out.timcont]/(60*60), [out.pwr2]);
 
 
     
