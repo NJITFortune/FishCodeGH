@@ -74,7 +74,8 @@ for k = 2:length(iFiles)
              
 end
 
-%%Plot the frequencies over time
+%% Plot the frequencies over time
+
 figure(1); clf; 
 
     ax(1) = subplot(211); plot(tube1f, '.'); hold on; plot(tube2f, '.');
