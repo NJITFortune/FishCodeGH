@@ -124,6 +124,13 @@ for k = 2:length(iFiles)
             end
 
         end
+        
+        out(k) 
+    
+            
+        % There are 86400 seconds in a day.
+        out(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
+        out(k).tim24 = (hour*60*60) + (minute*60) + second;
 
 out = 
 
