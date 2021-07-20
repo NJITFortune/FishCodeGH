@@ -131,7 +131,12 @@ for k = 2:length(iFiles)
         % There are 86400 seconds in a day.
         out(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
         out(k).tim24 = (hour*60*60) + (minute*60) + second;
+ 
+end
 
-out = 
+%%Plot the frequencies over time
+figure(2); hold on;
+    plot([out(k).pwr1A]
+
 
     
