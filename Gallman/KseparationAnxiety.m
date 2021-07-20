@@ -1,4 +1,4 @@
-function out = KseparationAnxiety(in)
+function out = KseparationAnxiety(userfilespec, numstart)
 
 Fs = 40000;
 
