@@ -35,10 +35,10 @@ hfreqs = find(t1.fftfreq > sepfreq & t1.fftfreq < 700);
     
 if pwrA1h > pwrA1l
     pwr1A = pwrA1h; pwr1F = pwrF1h;
-    ratio1 = pwrA1l / pwrA1h;
+    ratio1 = pwrA1h / pwrA1l;
 else
     pwr1A = pwrA1l; pwr1F = pwrF1l;
-    ratio1 = pwrA1h / pwrA1l;
+    ratio1 = pwrA1l / pwrA1h;
 end
     
 % Tube 2
@@ -53,10 +53,10 @@ hfreqs = find(t2.fftfreq > sepfreq & t2.fftfreq < 700);
     
 if pwrA2h > pwrA2l
     pwr2A = pwrA2h; pwr2F = pwrF2h;
-    ratio2 = pwrA2l / pwrA2h;
+    ratio2 = pwrA2h / pwrA2l;
 else
     pwr2A = pwrA2l; pwr2F = pwrF2l;
-    ratio2 = pwrA2h / pwrA2l;
+    ratio2 = pwrA2l / pwrA2h;
 end
     
 if pwr2F == pwr1F
@@ -66,7 +66,10 @@ if pwr2F == pwr1F
             pwr2A = pwrA2l; pwr2F = pwrF2l;
         else
             pwr2A = pwrA2h; pwr2F = pwrF2h;
+        fprintf('Power 1 %2.2f > Power 2 %2.2f \n', pwrA1l, pwrA2l);
         end
+
+        
     end
     if ratio2 > ratio1
         if pwrA1h > pwrA1l
@@ -78,3 +81,6 @@ if pwr2F == pwr1F
 
 end
 
+% Did we get it right?
+
+    
