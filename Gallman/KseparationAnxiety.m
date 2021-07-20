@@ -5,6 +5,7 @@ Fs = 40000;
 % Get the list of files to be analyzed  
         iFiles = dir(userfilespec);
 numstart = 23;
+daycount = 0;
 
 
 % Set up filters
