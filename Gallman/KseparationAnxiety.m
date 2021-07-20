@@ -77,10 +77,10 @@ end
 %%Plot the frequencies over time
 figure(1); clf; 
 
-    subplot(211); plot(tube1f); hold on; plot(tube2f);
-    subplot(212); plot(tube1a); hold on; plot(tube2a);
+    ax(1) = subplot(211); plot(tube1f, '.'); hold on; plot(tube2f, '.');
+    ax(2) = subplot(212); plot(tube1a, '.'); hold on; plot(tube2a, '.');
 
-    
+    linkaxes(ax, 'x');
 
     out = 1;
     
