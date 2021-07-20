@@ -55,7 +55,7 @@ for k = 2:length(iFiles)
 
     
        % LOAD THE DATA FILE
-        load(iFiles(k).name, 'data', 'tim');
+        load(iFiles(k).name, 'data');
         
        %filter the data
         
