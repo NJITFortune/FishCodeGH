@@ -74,9 +74,9 @@ for k = 1:length(iFiles)
 
         for j = 1:2 % Perform analyses on the two channels
         
-%             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
-%             [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
-%             data4analysis = data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j);            
+            % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
+            [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
+            data4analysis = data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j);            
             
 %             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %             
@@ -90,6 +90,8 @@ for k = 1:length(iFiles)
 %       
 %             out(j).s(k).light = mean(data(:,lightchan));
 %             out(j).s(k).temp = mean(data(:,tempchan));
+
+              out(j).s(k) 
     
             
         % There are 86400 seconds in a day.
