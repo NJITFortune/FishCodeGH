@@ -10,7 +10,7 @@ daycount = 0;
 
 % Set up filters
         % High pass filter cutoff frequency
-            highp = 200;
+            highp = 350;
             [b,a] = butter(5, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
         % Low pass filter cutoff frequency
 %             lowp = 2000;    
