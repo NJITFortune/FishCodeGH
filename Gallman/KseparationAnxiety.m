@@ -136,7 +136,7 @@ end
 
 %%Plot the frequencies over time
 figure(2); hold on;
-    plot([out.timcont]/[out.pwr1F], [out.pwr1A]);
+    plot([out.timcont]/(60*60), [out.pwr1F, out.pwr1A]);
     plot([out.pwr2F], [out.pwr2A]);
 
 
