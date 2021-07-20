@@ -71,19 +71,25 @@ for k = 2:length(iFiles)
          [tube1f(k), tube1a(k), tube2f(k), tube2a(k)] = getfreqs(t1, t2, sepfreq);
          
          sepfreq = ((abs(tube1f(k) - tube2f(k)))/2) + min([tube1f(k), tube2f(k)]);
+         
+ 
              
 end
+
+out.tube1f = tube1f;
+out.tube1a = tube1a;
+out.tube2f = tube2f;
+out.tube2a = tube2a; 
 
 %% Plot the frequencies over time
 
 figure(1); clf; 
 
-    ax(1) = subplot(211); plot(tube1f, '.'); hold on; plot(tube2f, '.');
-    ax(2) = subplot(212); plot(tube1a, '.'); hold on; plot(tube2a, '.');
+    ax(1) = subplot(211); plot(out.tube1f, '.'); hold on; plot(out.tube2f, '.');
+    ax(2) = subplot(212); plot(out.tube1a, '.'); hold on; plot(out.tube2a, '.');
 
     linkaxes(ax, 'x');
 
-    out = 1;
     
 close(ff); % get rid of the counter thingy
 
