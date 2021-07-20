@@ -15,10 +15,12 @@ Fs = 40000;
  t1 = fftmachine(tube1, Fs);
  t2 = fftmachine(tube2, Fs);
  
- figure(1); clf; hold on;
+ figure(1); clf; 
  
     semilogy(t1.fftfreq, t1.fftdata);
+    hold on;
     semilogy(t2.fftfreq, t2.fftdata);
+    xlim([200 600]);
 
 [sepfreq, ~] = ginput(1);
 
