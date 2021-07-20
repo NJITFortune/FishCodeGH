@@ -32,11 +32,13 @@ lfreqs = find(t1.fftfreq < sepfreq & t1.fftfreq > 200);
 hfreqs = find(t1.fftfreq > sepfreq & t1.fftfreq < 700);
     [pwrA1h, idx] = max(t1.fftdata(hfreqs));
     pwrF1h = t1.fftfreq(hfreqs(idx));
-        
+    
 if pwrA1h > pwrA1l
     pwr1A = pwrA1h; pwr1F = pwrF1h;
+    ratio1 = pwrA1l / pwrA1h;
 else
     pwr1A = pwrA1l; pwr1F = pwrF1l;
+    ratio1 = pwrA1h / pwrA1l;
 end
     
 % Tube 2
@@ -47,13 +49,32 @@ lfreqs = find(t2.fftfreq < sepfreq & t2.fftfreq > 200);
 hfreqs = find(t2.fftfreq > sepfreq & t2.fftfreq < 700);
     [pwrA2h, idx] = max(t2.fftdata(hfreqs));
     pwrF2h = t2.fftfreq(hfreqs(idx));
-        
+     
+    
 if pwrA2h > pwrA2l
     pwr2A = pwrA2h; pwr2F = pwrF2h;
+    ratio2 = pwrA2l / pwrA2h;
 else
     pwr2A = pwrA2l; pwr2F = pwrF2l;
+    ratio2 = pwrA2h / pwrA2l;
 end
     
 if pwr2F == pwr1F
     fprintf('Sucky ducky.\n');
+    if ratio1 > ratio2
+        if pwrA2h > pwrA2l
+            pwr2A = pwrA2l; pwr2F = pwrF2l;
+        else
+            pwr2A = pwrA2h; pwr2F = pwrF2h;
+        end
+    end
+    if ratio2 > ratio1
+        if pwrA1h > pwrA1l
+            pwr1A = pwrA1l; pwr1F = pwrF1l;
+        else
+            pwr1A = pwrA1h; pwr1F = pwrF1h;
+        end
+    end
+
 end
+
