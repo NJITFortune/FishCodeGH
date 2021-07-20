@@ -84,6 +84,6 @@ if pwr2F == pwr1F
 
 end
 
-% Did we get it right?
+out = 
 
     
