@@ -18,7 +18,20 @@ numstart = 23;
 
 ff = waitbar(0, 'Cycling through files.');
 
-for k = 1:length(iFiles)
+%CLICK THE FIRST FILE
+    load(iFiles(1).name, 'data', 'tim');
+
+   %filter the data
+
+     tube1 = filtfilt(b,a,data(:,1));
+     tube2 = filtfilt(b,a,data(:,2));
+
+   % extract the fish frequencies
+     t1 = fftmachine(tube1, Fs);
+     t2 = fftmachine(tube2, Fs);
+ 
+
+for k = 2:length(iFiles)
        
      waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
 
@@ -26,16 +39,16 @@ for k = 1:length(iFiles)
        % LOAD THE DATA FILE
         load(iFiles(k).name, 'data', 'tim');
         
+       %filter the data
         
-        
-        
-
- tube1 = filtfilt(b,a,data(:,1));
- tube2 = filtfilt(b,a,data(:,2));
+         tube1 = filtfilt(b,a,data(:,1));
+         tube2 = filtfilt(b,a,data(:,2));
+         
+       % extract the fish frequencies
+         t1 = fftmachine(tube1, Fs);
+         t2 = fftmachine(tube2, Fs);
  
- t1 = fftmachine(tube1, Fs);
- t2 = fftmachine(tube2, Fs);
- 
+         
  figure(1); clf; 
  
     semilogy(t1.fftfreq, t1.fftdata);
