@@ -84,6 +84,8 @@ figure(1); clf;
 
     out = 1;
     
+close(ff); % get rid of the counter thingy
+
 end
 
     
