@@ -1,6 +1,7 @@
 function out = KseparationAnxiety(userfilespec, numstart)
 
 Fs = 40000;
+userfilespec = 
 
 % Set up filters
         % High pass filter cutoff frequency
