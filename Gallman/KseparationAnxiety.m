@@ -45,11 +45,11 @@ daycount = 0;
     
 
 
-% ff = waitbar(0, 'Cycling through files.');
+ff = waitbar(0, 'Cycling through files.');
 
-parfor k = 2:length(iFiles)
+for k = 2:length(iFiles)
        
-     %waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
+     waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
 
     
        % LOAD THE DATA FILE
