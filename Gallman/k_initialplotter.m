@@ -105,12 +105,6 @@ xa(5) = subplot(515); hold on; title('light transitions');
 linkaxes(xa, 'x'); xlim([0 24]); 
 
     if  ~isempty(out.info.luz)
-        
-        
-        
-        
-    end   
-
         subplot(5,1,1); 
             plot([5 5], [0, max([out.e(1).s.sumfftAmp])], 'y', 'LineWidth', 4); 
             plot([17 17], [0, max([out.e(1).s.sumfftAmp])], 'k', 'LineWidth', 4);
@@ -123,6 +117,9 @@ linkaxes(xa, 'x'); xlim([0 24]);
 
                     drawnow;
 
+    end   
+
+        
 %% Light/Dark Plot 
 
 if ~isempty(out.info)
