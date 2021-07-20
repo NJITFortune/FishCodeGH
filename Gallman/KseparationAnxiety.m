@@ -1,7 +1,7 @@
 function out = KseparationAnxiety(userfilespec)
 
 Fs = 40000;
-%userfilespec = 'Eigen*';
+% userfilespec = 'Eigen*';
 % Get the list of files to be analyzed  
         iFiles = dir(userfilespec);
 numstart = 23;
@@ -17,16 +17,14 @@ daycount = 0;
 %             [f,e] = butter(5, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
             
 
-ff = waitbar(0, 'Cycling through files.');
 
-%CLICK THE FIRST FILE
+% CLICK THE FIRST FILE
     load(iFiles(1).name, 'data', 'tim');
 
-   %filter the data
+   % filter the data
 
      tube1 = filtfilt(b,a,data(:,1));
      tube2 = filtfilt(b,a,data(:,2));
-     
   
 
    % extract the fish frequencies
@@ -41,7 +39,13 @@ ff = waitbar(0, 'Cycling through files.');
     semilogy(t2.fftfreq, t2.fftdata);
     xlim([200 600]);
 
-[sepfreq, ~] = ginput(1);
+    [sepfreq, ~] = ginput(1);
+
+    [tube1f, tube1a, tube2f, tube2a] = getfreqs(t1, t2, sepfreq);
+    
+
+
+ff = waitbar(0, 'Cycling through files.');
 
 for k = 2:length(iFiles)
        
@@ -51,15 +55,6 @@ for k = 2:length(iFiles)
        % LOAD THE DATA FILE
         load(iFiles(k).name, 'data', 'tim');
         
-        % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
-        hour = str2double(iFiles(k).name(numstart:numstart+1));        %numstart based on time stamp text location
-        minute = str2double(iFiles(k).name(numstart+3:numstart+4));
-        second = str2double(iFiles(k).name(numstart+6:numstart+7));
-
-        if k > 1 && ((hour*60*60) + (minute*60) + second) < out(k-1).tim24
-               daycount = daycount + 1;
-        end 
-        
        %filter the data
         
          tube1 = filtfilt(b,a,data(:,1));
@@ -67,15 +62,33 @@ for k = 2:length(iFiles)
          
        % extract the fish frequencies
          t1 = fftmachine(tube1, Fs);
-         t2 = fftmachine(tube2, Fs); 
- 
-       %Assign frequencies to tubles 
-        % Tube 1
-        lfreqs = find(t1.fftfreq < sepfreq & t1.fftfreq > 200);
+         t2 = fftmachine(tube2, Fs);
+         
+         [tube1f(k), tube1a(k), tube2f(k), tube2a(k)] = getfreqs(t1, t2, sepfreq);
+             
+end
+
+%%Plot the frequencies over time
+figure(1); clf; 
+
+    subplot(211); plot(tube1f); hold on; plot(tube2f);
+    subplot(212); plot(tube1a); hold on; plot(tube2a);
+
+    
+    
+    
+    
+    
+    
+    function [t1f,t1a,t2f,t2a] = getfreqs(t1, t2, sepfreaky)       
+        %Assign frequencies to tubles 
+
+       % Tube 1
+        lfreqs = find(t1.fftfreq < sepfreaky & t1.fftfreq > 200);
             [pwrA1l, idx] = max(t1.fftdata(lfreqs));
             pwrF1l = t1.fftfreq(lfreqs(idx));
 
-        hfreqs = find(t1.fftfreq > sepfreq & t1.fftfreq < 700);
+        hfreqs = find(t1.fftfreq > sepfreaky & t1.fftfreq < 700);
             [pwrA1h, idx] = max(t1.fftdata(hfreqs));
             pwrF1h = t1.fftfreq(hfreqs(idx));
 
@@ -88,11 +101,11 @@ for k = 2:length(iFiles)
         end
 
         % Tube 2
-        lfreqs = find(t2.fftfreq < sepfreq & t2.fftfreq > 200);
+        lfreqs = find(t2.fftfreq < sepfreaky & t2.fftfreq > 200);
             [pwrA2l, idx] = max(t2.fftdata(lfreqs));
             pwrF2l = t2.fftfreq(lfreqs(idx));
 
-        hfreqs = find(t2.fftfreq > sepfreq & t2.fftfreq < 700);
+        hfreqs = find(t2.fftfreq > sepfreaky & t2.fftfreq < 700);
             [pwrA2h, idx] = max(t2.fftdata(hfreqs));
             pwrF2h = t2.fftfreq(hfreqs(idx));
 
@@ -128,20 +141,9 @@ for k = 2:length(iFiles)
 
         end
         
-        out(k).pwr1 = [pwr1F, pwr1A];
-        out(k).pwr2 = [pwr2F, pwr2A];
-    
-            
-        % There are 86400 seconds in a day.
-        out(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
-        out(k).tim24 = (hour*60*60) + (minute*60) + second;
- 
-end
-
-%%Plot the frequencies over time
-figure(2); hold on;
-    plot([out.timcont]/(60*60), [out.pwr1]);
-    plot([out.timcont]/(60*60), [out.pwr2]);
-
-
+        t1f = pwr1F; t1a = pwr1A;
+        t2f = pwr2F; t2a = pwr2A;
+        
+        
+    end
     
