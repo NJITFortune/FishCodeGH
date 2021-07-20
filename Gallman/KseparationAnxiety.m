@@ -13,8 +13,8 @@ daycount = 0;
             highp = 300;
             [b,a] = butter(5, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
         % Low pass filter cutoff frequency
-%             lowp = 2000;    
-%             [f,e] = butter(5, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
+             lowp = 600;    
+             [f,e] = butter(5, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
             
 
 
@@ -25,7 +25,9 @@ daycount = 0;
 
      tube1 = filtfilt(b,a,data(:,1));
      tube2 = filtfilt(b,a,data(:,2));
-  
+     tube1 = filtfilt(f,e,tube1);
+     tube2 = filtfilt(f,e,tube2);
+
 
    % extract the fish frequencies
      t1 = fftmachine(tube1, Fs);
@@ -59,6 +61,8 @@ for k = 2:length(iFiles)
         
          tube1 = filtfilt(b,a,data(:,1));
          tube2 = filtfilt(b,a,data(:,2));
+         tube1 = filtfilt(f,e,tube1);
+         tube2 = filtfilt(f,e,tube2);
          
        % extract the fish frequencies
          t1 = fftmachine(tube1, Fs);
