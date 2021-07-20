@@ -26,13 +26,13 @@ daycount = 0;
             lowp = 2000;    
             [f,e] = butter(5, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
                     
-% How much of the sample that we will use (each sample is 1 second)  
-% This is important because the fish moves
-        SampleWindw = 0.250; % 250 ms window
-        
-% Fish limit frequencies for OBW calculation (unlikely to be changed)
-        topFreqOBW = 800;
-        botFreqOBW = 300;
+% % How much of the sample that we will use (each sample is 1 second)  
+% % This is important because the fish moves
+%         SampleWindw = 0.250; % 250 ms window
+%         
+% % Fish limit frequencies for OBW calculation (unlikely to be changed)
+%         topFreqOBW = 800;
+%         botFreqOBW = 300;
 
 out(1).s(length(iFiles)).Fs = Fs;
 out(1).s(length(iFiles)).name = [];
