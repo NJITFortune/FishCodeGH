@@ -24,5 +24,36 @@ Fs = 40000;
 
 [sepfreq, ~] = ginput(1);
 
-
+% Tube 1
+lfreqs = t1.fftdata(t1.fftfreq < sepfreq & t1.fftfreq > 200);
+    [pwrA1l, idx] = max(t1.fftdata(lfreqs));
+    pwrF1l = t1.fftdata(lfreqs(idx));
     
+hfreqs = t1.fftdata(t1.fftfreq > sepfreq & t1.fftfreq < 700);
+    [pwrA1h, idx] = max(t1.fftdata(hfreqs));
+    pwrF1h = t1.fftdata(hfreqs(idx));
+        
+if pwrA1h > pwrA1l
+    pwr1A = pwrA1h; pwr1F = pwrF1h;
+else
+    pwr1A = pwrA1l; pwr1F = pwrF1l;
+end
+    
+% Tube 2
+lfreqs = t2.fftdata(t2.fftfreq < sepfreq & t2.fftfreq > 200);
+    [pwrA2l, idx] = max(t2.fftdata(lfreqs));
+    pwrF2l = t2.fftdata(lfreqs(idx));
+    
+hfreqs = t2.fftdata(t2.fftfreq > sepfreq & t2.fftfreq < 700);
+    [pwrA2h, idx] = max(t2.fftdata(hfreqs));
+    pwrF2h = t2.fftdata(hfreqs(idx));
+        
+if pwrA2h > pwrA2l
+    pwr2A = pwrA2h; pwr2F = pwrF2h;
+else
+    pwr2A = pwrA2l; pwr2F = pwrF2l;
+end
+    
+if pwr2F == pwr1F
+    fprintf('Sucky ducky.\n');
+end
