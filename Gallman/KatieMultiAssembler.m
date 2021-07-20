@@ -7,9 +7,9 @@ function out  = KatieMultiAssembler(userfilespec, Fs, numstart)
 % Usage: kg(#).e = KatieAssembler(userfilespec, Fs, numstart)
 %
 
-% This should not change, but if for some reason...
-tempchan = 3; % Either 4 or 3
-lightchan = 4; % Either 5 or 4
+% % This should not change, but if for some reason...
+% tempchan = 3; % Either 4 or 3
+% lightchan = 4; % Either 5 or 4
 
 daycount = 0;
 
@@ -74,22 +74,22 @@ for k = 1:length(iFiles)
 
         for j = 1:2 % Perform analyses on the two channels
         
-            % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
-            [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
-            data4analysis = data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j);            
+%             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
+%             [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
+%             data4analysis = data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j);            
             
-            % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            
-            % OBW
-            [~,~,~,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
-            % zAmp
-            out(j).s(k).zAmp = k_zAmp(data4analysis);
-            % FFT Machine
-            [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
-        
-      
-            out(j).s(k).light = mean(data(:,lightchan));
-            out(j).s(k).temp = mean(data(:,tempchan));
+%             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             
+%             % OBW
+%             [~,~,~,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+%             % zAmp
+%             out(j).s(k).zAmp = k_zAmp(data4analysis);
+%             % FFT Machine
+%             [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
+%         
+%       
+%             out(j).s(k).light = mean(data(:,lightchan));
+%             out(j).s(k).temp = mean(data(:,tempchan));
     
             
         % There are 86400 seconds in a day.
