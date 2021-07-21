@@ -85,8 +85,8 @@ out.tube2a = tube2a;
 
 figure(1); clf; 
 
-    ax(1) = subplot(211); plot(out.tube1f, '.'); hold on; plot(out.tube2f, '.');
-    ax(2) = subplot(212); plot(out.tube1a, '.'); hold on; plot(out.tube2a, '.');
+    ax(1) = subplot(211); plot(out.tube1f(:,1), '.'); hold on; plot(out.tube2f(:,1), '.');
+    ax(2) = subplot(212); plot(out.tube1a(:,1), '.'); hold on; plot(out.tube2a(:,1), '.');
 
     linkaxes(ax, 'x');
 
@@ -110,10 +110,10 @@ end
             pwrF1h = t1.fftfreq(hfreqs(idx));
 
         if pwrA1h > pwrA1l
-            pwr1A = pwrA1h; pwr1F = pwrF1h;
+            pwr1A = [pwrA1h pwrA1l]; pwr1F = [pwrF1h pwrF1l];
             ratio1 = pwrA1h / pwrA1l;
         else
-            pwr1A = pwrA1l; pwr1F = pwrF1l;
+            pwr1A = [pwrA1l pwrA1h]; pwr1F = [pwrF1l pwrF1h];
             ratio1 = pwrA1l / pwrA1h;
         end
 
@@ -128,29 +128,27 @@ end
 
 
         if pwrA2h > pwrA2l
-            pwr2A = pwrA2h; pwr2F = pwrF2h;
+            pwr2A = [pwrA2h pwrA2l]; pwr2F = [pwrF2h pwrF2l];
             ratio2 = pwrA2h / pwrA2l;
         else
-            pwr2A = pwrA2l; pwr2F = pwrF2l;
+            pwr2A = [pwrA2l pwrA2h]; pwr2F = [pwrF2l pwrF2h];
             ratio2 = pwrA2l / pwrA2h;
         end
 
-        if pwr2F == pwr1F
+        if pwr2F(1) == pwr1F(1)
+            
             if ratio1 > ratio2
-                if pwrA2h > pwrA2l
-                    pwr2A = pwrA2l; pwr2F = pwrF2l;
-                else
-                    pwr2A = pwrA2h; pwr2F = pwrF2h;
-                end
-
-
+                
+                pwr2A = [pwr2A(2) pwr2A(1)];
+                pwr2F = [pwr2F(2) pwr2F(1)];
+                
             end
+            
             if ratio2 > ratio1
-                if pwrA1h > pwrA1l
-                    pwr1A = pwrA1l; pwr1F = pwrF1l;
-                else
-                    pwr1A = pwrA1h; pwr1F = pwrF1h;
-                end
+                
+                pwr1A = [pwr1A(2) pwr1A(1)];
+                pwr1F = [pwr1F(2) pwr1F(1)];
+                
             end
 
         end
