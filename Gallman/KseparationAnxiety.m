@@ -136,14 +136,11 @@ end
         end
 
         if pwr2F == pwr1F
-            %fprintf('Sucky ducky.\n');
             if ratio1 > ratio2
                 if pwrA2h > pwrA2l
                     pwr2A = pwrA2l; pwr2F = pwrF2l;
                 else
                     pwr2A = pwrA2h; pwr2F = pwrF2h;
-                    %fprintf('Power1 %2.2f > Power2 %2.2f \n', pwrA1l, pwrA2l);
-                    %fprintf('Power1 %2.2f < Power2 %2.2f \n', pwrA1h, pwrA2h);
                 end
 
 
