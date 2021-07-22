@@ -35,7 +35,7 @@ end
 figure(27); clf; 
     qw(1) = subplot(211); plot(time, resampRandSpikeIntervals)
     qw(2) = subplot(212); plot(time, sig);
-    linkaxes(qw);
+    linkaxes(qw, 'x');
     
 [pxyOrig,f] = mscohere(resampSpikeIntervals-mean(resampSpikeIntervals), sig,[],[],[],Fs);
 [pxyShuf,~] = mscohere(resampRandSpikeIntervals-mean(resampRandSpikeIntervals), sig,[],[],[],Fs);
