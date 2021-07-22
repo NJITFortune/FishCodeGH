@@ -37,7 +37,7 @@ end
 % Coherence 
 
 figure(27); clf; 
-    qw(1) = subplot(211); plot(time, resampRandSpikeIntervals)
+    qw(1) = subplot(211); plot(time, resampSpikeIntervals)
     qw(2) = subplot(212); plot(time, sig);
     linkaxes(qw, 'x');
     
