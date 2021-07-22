@@ -13,7 +13,8 @@ spiketimes = [0 spikes.times', time(end)];
 spikeintervals = diff(spiketimes); % Interspike interval as proxy for firing rate
 spikeintervals(end+1) = spikeintervals(end); % add on fake sample at the end to match length
 
-shuffledintervals = spikeintervals(randperm(length(spikeintervals)));
+%shuffledintervals = spikeintervals(randperm(length(spikeintervals)));
+shuffledintervals = fliplr(spikeintervals); 
 shuffledtimes(1) = 0;
 for j=2:length(shuffledintervals)
     shuffledtimes(j) = shuffledtimes(j-1) + shuffledintervals(j-1);
