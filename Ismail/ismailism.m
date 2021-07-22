@@ -29,6 +29,8 @@ resampSpikeIntervals = filtfilt(bb,aa,resampSpikeIntervals);
 
 if length(resampRandSpikeIntervals) ~= length(sig)
     fprintf('oops I did it again \n');
+    length(sig)
+    length(resampRandSpikeIntervals)
     resampRandSpikeIntervals(end+1) = resampRandSpikeIntervals(end);
 end
 
