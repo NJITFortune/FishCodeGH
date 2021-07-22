@@ -22,6 +22,10 @@ end
 resampSpikeIntervals = resample(spikeintervals, spiketimes, Fs); % Resampled to uniform rate
 resampRandSpikeIntervals = resample(shuffledintervals, shuffledtimes, Fs); % Resampled to uniform rate
 
+% Added filter to make Noah happy
+[bb,aa] = butter(5, 5 / (Fs/2), 'low');
+resampSpikeIntervals = filtfilt(bb,aa,resampSpikeIntervals);
+
 if length(resampRandSpikeIntervals) ~= length(sig)
     fprintf('oops I did it again \n');
     resampRandSpikeIntervals(end+1) = resampRandSpikeIntervals(end);
