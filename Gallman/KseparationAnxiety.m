@@ -41,7 +41,7 @@ Fs = 40000;
 
 % take the freqeuncy of the AM (findpeaks)
     oneAM = k_AM(filtdata1, tim);
-    twoAM = k_AM(filtdata2);
+    twoAM = k_AM(filtdata2, tim);
     % See if dF is same on both channels (dF being freq of AM)
     if oneAM.fftfreq == twoAM.fftfreq
         fprintf('Woohoo for tubes!\n');
