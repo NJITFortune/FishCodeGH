@@ -34,7 +34,7 @@ Fs = 40000;
     
 % Determine if same or different peak freqs
     pkfreq1 = onefft.fftfreq(max(nonefft));
-    pkfreq2 = twofft.fftfreq(max(twofft));
+    pkfreq2 = twofft.fftfreq(max(ntwofft));
     
     
         
