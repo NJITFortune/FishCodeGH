@@ -48,7 +48,7 @@ end
 %% AM analysis (Check to see if dF on both tubes is the same)
 % take the freqeuncy of the AM (findpeaks)
 
-    rFs = 10000;
+    rFs = 200;
     resamptim = 1/rFs:1/rFs:1;
 
     oneAM = k_AM(filtdata1, tim, rFs);
