@@ -16,7 +16,7 @@ Fs = 40000;
              lowp = 600;    
              [f,e] = butter(5, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
 
-        [h,g] = 
+        [h,g] = butter(5, [highp/(Fs/2) lowp/(Fs/2)]);
              
 
 
@@ -25,11 +25,14 @@ Fs = 40000;
 
    % filter the data
 
-     tube1 = filtfilt(b,a,data(:,1));
-     tube2 = filtfilt(b,a,data(:,2));
-     tube1 = filtfilt(f,e,tube1);
-     tube2 = filtfilt(f,e,tube2);
+%      tube1 = filtfilt(b,a,data(:,1));
+%      tube2 = filtfilt(b,a,data(:,2));
+%      tube1 = filtfilt(f,e,tube1);
+%      tube2 = filtfilt(f,e,tube2);
 
+    tube1 = filtfilt(h,g,data(:,1));
+    tube2 = filtfilt(h,g,data(:,2));
+         
 
    % extract the fish frequencies
      t1 = fftmachine(tube1, Fs);
@@ -43,9 +46,9 @@ Fs = 40000;
     semilogy(t2.fftfreq, t2.fftdata);
     xlim([200 600]);
 
-    [sepfreq, ~] = ginput(1);
+    [sepfreq, ~] = ginput(2);
 
-    [tube1f, tube1a, tube2f, tube2a] = getfreqs(t1, t2, sepfreq);
+    [tube1f, tube1a, tube2f, tube2a] = getfreqs(t1, t2, sort(sepfreq));
     
 
 
