@@ -61,7 +61,7 @@ end
         dFam = mean([onePeakAMf, twoPeakAMf]);
     else
         fprintf('onePeakAMf is %2.2f and twoPeakAMf is %2.2f.\n', onePeakAMf, twoPeakAMf);
-
+        dFam = 100000;
     end
     
     % Difference in peaks between tubes should equal the dF. 
