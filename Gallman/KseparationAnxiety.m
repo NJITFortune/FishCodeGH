@@ -42,8 +42,11 @@ Fs = 40000;
         
 
 % take the freqeuncy of the AM (findpeaks)
-    [peaky, idx] = findpeaks(filtdata1); 
+    oneAM = k_AM(filtdata1);
+    twoAM = k_AM(filtdata2);
     % See if dF is same on both channels (dF being freq of AM)
+    if oneAM.fftfreq == twoAM.fftfreq
+        fprintf('Woohoo for tubes!'
     
     % Difference in peaks between tubes should equal the dF. 
     
