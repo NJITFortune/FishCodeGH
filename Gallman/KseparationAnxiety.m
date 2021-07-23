@@ -19,25 +19,19 @@ Fs = 40000;
     % Band pass filter in frequency range of fish
         [h,g] = butter(5, [300/(Fs/2) 600/(Fs/2)]);
 
-for
+for j = 1:2 % Perform analyses on the two channels
         
 % Filter data  
           
-        data(:,1) = filtfilt(b,a, data(:,1)); % High pass filter
-        data(:,1) = filtfilt(f,e, data(:,1)); % Low pass filter   
-        data(:,1) = filtfilt(h,g, data(:,1)); % Band pass filter   
-
-        data(:,2) = filtfilt(b,a, data(:,2)); % High pass filter
-        data(:,2) = filtfilt(f,e, data(:,2)); % Low pass filter 
-        data(:,2) = filtfilt(h,g, data(:,2)); % Band pass filter
+        data(:,j) = filtfilt(b,a, data(:,j)); % High pass filter
+        data(:,j) = filtfilt(f,e, data(:,j)); % Low pass filter   
+        data(:,j) = filtfilt(h,g, data(:,j)); % Band pass filter   
 
 
 % Find the normalized peaks of the FFT of each tube in freq range
     %find peaks
-        %channel 1
-        [peaky, idx] = findpeaks(data(:,1));
-        %channel 2
-        [pky2, pkx2] = findpeaks(data(:,2));
+        [peaky, idx] = findpeaks(data(:,j));
+        
         
         
     % Determine if same or different peak freqs
