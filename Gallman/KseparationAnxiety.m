@@ -92,7 +92,7 @@ end
 
     
     
-    function [t1f,t1a,t2f,t2a] = getfreqs(t1, t2, previousfreaky)       
+    function [t1f,t1a,t2f,t2a] = getfreqs(t1data, t2data, previousfreaky)       
         %Assign frequencies to tubles 
 
         wid = 40; % +/- this number of Hz for filter
@@ -105,14 +105,14 @@ end
         
        % Tube 1
        
-        t1fl = filtfilt(b,a,t1);       
+        t1fl = filtfilt(b,a,t1data);       
         t1 = fftmachine(t1fl, 40000);
         
         lfreqs = find(t1.fftfreq > previousfreaky(1)-wid & t1.fftfreq < previousfreaky(1)+wid);
             [pwrA1l, idx] = max(t1.fftdata(lfreqs));
             pwrF1l = t1.fftfreq(lfreqs(idx));
 
-        t1fh = filtfilt(d,c,t1);
+        t1fh = filtfilt(d,c,t1data);
         t1 = fftmachine(t1fh, 40000);
         
         hfreqs = find(t1.fftfreq > previousfreaky(2)-wid & t1.fftfreq < previousfreaky(2)+wid);
@@ -129,14 +129,14 @@ end
         end
 
         % Tube 2
-        t2fl = filtfilt(b,a,t2);       
+        t2fl = filtfilt(b,a,t2data);       
         t2 = fftmachine(t2fl, 40000);
         
         lfreqs = find(t2.fftfreq < previousfreaky(1)-wid & t2.fftfreq < previousfreaky(1)+wid);
             [pwrA2l, idx] = max(t2.fftdata(lfreqs));
             pwrF2l = t2.fftfreq(lfreqs(idx));
 
-        t2hl = filtfilt(d,c,t2);       
+        t2hl = filtfilt(d,c,t2data);       
         t2 = fftmachine(t2hl, 40000);
         
         hfreqs = find(t2.fftfreq > previousfreaky(2)-wid & t2.fftfreq < previousfreaky(2)+wid);
