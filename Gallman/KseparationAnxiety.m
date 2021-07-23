@@ -48,8 +48,11 @@ end
 %% AM analysis (Check to see if dF on both tubes is the same)
 % take the freqeuncy of the AM (findpeaks)
 
-    oneAM = k_AM(filtdata1, tim);
-    twoAM = k_AM(filtdata2, tim);
+    rFs = 400;
+    resamptim = 1/rFs:1/rFs:1;
+
+    oneAM = k_AM(filtdata1, resamptim);
+    twoAM = k_AM(filtdata2, resamptim);
     
     % See if dF is same on both channels (dF being freq of AM)
     
