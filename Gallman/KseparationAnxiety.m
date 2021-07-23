@@ -7,65 +7,20 @@ Fs = 40000;
 
 % Set up filter
         [h,g] = butter(5, [300/(Fs/2) 600/(Fs/2)]);
-             
-% CLICK THE FIRST FILE
-    load(iFiles(1).name, 'data');
+                 
 
-   % filter the data
+ff = waitbar(0, 'Starting the painful process...');
+pause(2);
 
-    tube1 = filtfilt(h,g,data(:,1));
-    tube2 = filtfilt(h,g,data(:,2));
-         
-   % extract the fish frequencies
-     t1 = fftmachine(tube1, Fs, 9);
-     t2 = fftmachine(tube2, Fs, 9);
-     
-   % click between the two frequency peaks
-    figure(1); clf; 
- 
-    semilogy(t1.fftfreq, t1.fftdata);
-    hold on;
-    semilogy(t2.fftfreq, t2.fftdata);
-    xlim([200 600]);
-
-    [sepfreq, ~] = ginput(2);
-    idx1 = find(t1.fftfreq >= sepfreq(1), 1);
-    idx2 = find(t1.fftfreq >= sepfreq(2), 1);
-    
-    tube1f = [t1.fftfreq(idx1) t1.fftfreq(idx2)]; 
-    tube1a = [t1.fftdata(idx1) t1.fftdata(idx2)]; 
-    if tube1a(2) > tube1a(1)
-        tube1f = [tube1f(2) tube1f(1)];
-        tube1a = [tube1a(2) tube1a(1)];
-    end
- 
-    tube2f = [t2.fftfreq(idx1) t2.fftfreq(idx2)]; 
-    tube2a = [t2.fftdata(idx1) t2.fftdata(idx2)]; 
-    if tube2a(2) > tube2a(1)
-        tube2f = [tube2f(2) tube2f(1)];
-        tube2a = [tube2a(2) tube2a(1)];
-    end
-
-    % May need to add fixer for ampl crossover problem
-    
-
-ff = waitbar(0, 'Cycling through files.');
-
-for k = 2:length(iFiles)
+for k = 1:length(iFiles)
        
      waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
 
     
        % LOAD THE DATA FILE
         load(iFiles(k).name, 'data');
-           
-         ttmp(2,:) = sort(tube2f(k-1,:));
-         ttmp(1,:) = sort(tube1f(k-1,:));
-         sepfreq = mean(ttmp);
-         sepfreq(sepfreq < 300) = 300;
-         sepfreq(sepfreq > 600) = 600;
-           
-         [tube1f(k,:), tube1a(k,:), tube2f(k,:), tube2a(k,:)] = getfreqs(data(:,1)-mean(data(:,1)), data(:,2)-mean(data(:,2)), sepfreq);
+                      
+        [tube1f(k,:), tube1a(k,:), tube2f(k,:), tube2a(k,:)] = getfreqs(data(:,1)-mean(data(:,1)), data(:,2)-mean(data(:,2)), sepfreq);
          
          % sepfreq = ((abs(tube1f(k,1) - tube2f(k,1)))/2) + min([tube1f(k,1), tube2f(k,1)]);
          
