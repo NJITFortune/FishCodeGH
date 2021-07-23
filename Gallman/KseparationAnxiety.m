@@ -33,15 +33,17 @@ Fs = 40000;
     clf; plot(onefft.fftfreq, nonefft); hold on; plot(twofft.fftfreq, ntwofft); xlim([300 600]);    
     
 % Determine if same or different peak freqs
-    pkfreq1 = onefft.fftfreq(find(nonefft == max(nonefft)));
-    pkfreq2 = twofft.fftfreq(find(ntwofft == max(ntwofft)));
+    pkfreq1 = onefft.fftfreq(nonefft == max(nonefft));
+    pkfreq2 = twofft.fftfreq(ntwofft == max(ntwofft));
     
    
         
 
 % take the freqeuncy of the AM (findpeaks)
+
     oneAM = k_AM(filtdata1, tim);
     twoAM = k_AM(filtdata2, tim);
+    
     % See if dF is same on both channels (dF being freq of AM)
     if oneAM.fftfreq == twoAM.fftfreq
         fprintf('Woohoo for tubes!\n');
