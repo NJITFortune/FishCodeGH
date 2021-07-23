@@ -23,14 +23,14 @@ Fs = 40000;
 
 % Find the normalized peaks of the FFT of each tube in freq range
     %FFT
-    ff(1) = fftmachine(filtdata(1), Fs);
-    ff(2) = fftmachine(filtdata(2), Fs);
+    onefft = fftmachine(filtdata1, Fs);
+    twofft = fftmachine(filtdata2, Fs);
     
-    normff(1) = ff(1).fftdata/ max(ff(1).fftdata);
-    normff(2) = ff(2).fftdata/ max(ff(2).fftdata);
+    nonefft = onefft.fftdata/ max(onefft.fftdata);
+    ntwofft = twofft.fftdata/ max(twofft.fftdata);
     
     %plot to check
-    clf; plot(ff(1).fftfreq, normff(1)); hold on; plot(ff(2).fftfreq, normff(2)); xlim([300 600]);    
+    clf; plot(onefft.fftfreq, nonefft); hold on; plot(twofft.fftfreq, ntwofft); xlim([300 600]);    
     % Determine if same or different peak freqs
 
 % take the freqeuncy of the AM (findpeaks)
