@@ -30,11 +30,12 @@ for j = 1:2 % Perform analyses on the two channels
 
 % Find the normalized peaks of the FFT of each tube in freq range
     %find peaks
-        [peaky, idx] = findpeaks(data(:,j));   
+          
         
     % Determine if same or different peak freqs
 
 % take the freqeuncy of the AM (findpeaks)
+    [peaky, idx] = findpeaks(data(:,j)); 
     % See if dF is same on both channels (dF being freq of AM)
     
     % Difference in peaks between tubes should equal the dF. 
