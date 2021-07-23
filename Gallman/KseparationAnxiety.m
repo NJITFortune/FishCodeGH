@@ -1,15 +1,14 @@
 function out = KseparationAnxiety(userfilespec)
-
+%% Load data
 Fs = 40000;
 % userfilespec = 'Eigen*';
 % Get the list of files to be analyzed  
     iFiles = dir(userfilespec);
       
 % load the first file
-    load(iFiles(1).name, 'data');
+    load(iFiles(1).name, 'data', 'tim');
 
-        
-        
+%% Filter        
 % Set up filter
     % High pass filter cutoff frequency
         highp = 200;
@@ -32,6 +31,10 @@ Fs = 40000;
 
 
 % Find the normalized peaks of the FFT of each tube in freq range
+    %find peaks
+        %channel 1
+        [
+        
     % Determine if same or different peak freqs
 
 % take the freqeuncy of the AM (findpeaks)
