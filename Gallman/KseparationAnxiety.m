@@ -110,7 +110,7 @@ end
     function [t1f,t1a,t2f,t2a] = getfreqs(t1, t2, previousfreaky)       
         %Assign frequencies to tubles 
 
-        wid = 5; % +/- this number of Hz for peak
+        wid = 30; % +/- this number of Hz for peak
         
         % Get low frequency in both channels
         
