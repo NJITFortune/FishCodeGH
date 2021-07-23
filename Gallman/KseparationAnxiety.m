@@ -15,7 +15,9 @@ Fs = 40000;
         % Low pass filter cutoff frequency
              lowp = 600;    
              [f,e] = butter(5, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
-            
+
+        [h,g] = 
+             
 
 
 % CLICK THE FIRST FILE
