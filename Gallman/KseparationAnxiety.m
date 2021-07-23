@@ -32,21 +32,33 @@ Fs = 40000;
     %plot to check
     clf; plot(onefft.fftfreq, nonefft); hold on; plot(twofft.fftfreq, ntwofft); xlim([300 600]);    
     
-% Determine if same or different peak freqs
+% Calculate peak freqs
     pkfreq1 = onefft.fftfreq(nonefft == max(nonefft));
     pkfreq2 = twofft.fftfreq(ntwofft == max(ntwofft));
-    
-   
-        
 
+% are they the same or different?
+
+if abs(pkfreq1 - pkfreq2) < 1
+    fprintf('We need to do something about this because they are the same freq');
+else
+    dFraw = abs(pkfreq1 - pkfreq2);
+end
+    
+
+%% AM analysis (Check to see if dF on both tubes is the same)
 % take the freqeuncy of the AM (findpeaks)
 
     oneAM = k_AM(filtdata1, tim);
     twoAM = k_AM(filtdata2, tim);
     
     % See if dF is same on both channels (dF being freq of AM)
-    if oneAM.fftfreq == twoAM.fftfreq
+    
+    onePeakAMf = oneAM.fftfreq(oneAM.fftdata == max(oneAM.fftdata));
+    twoPeakAMf = twoAM.fftfreq(twoAM.fftdata == max(twoAM.fftdata));
+    
+    if abs(onePeakAMf - twoPeakAMf) < 1 % The AMs are within 1 Hz
         fprintf('Woohoo for tubes!\n');
+        dFam = mean([onePeakAMf, twoPeakAMf]);
     end
     
     % Difference in peaks between tubes should equal the dF. 
@@ -55,6 +67,15 @@ Fs = 40000;
     else 
         dFreq = abs(pkfreq1 - pkfreq2);
     end
+    
+    % Test if dFraw and dFam are the same
+    
+    if abs(dFraw - dFam) < 1
+        fprintf('This data and analysis is probably fabulous.\n');
+    else
+        fprintf('dFraw is %2.2f and dFam is %2.2f.\n', dFraw, dFam);
+    end
+    
     
 %     if dFreq == oneAM.fftfreq
 %         fprintf('Yay we did not fuck up!\n');
