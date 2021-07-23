@@ -56,12 +56,12 @@ end
     
     % See if dF is same on both channels (dF being freq of AM)
     
-    onePeakAMf = oneAM.fftfreq(oneAM.fftdata == max(oneAM.fftdata));
-    twoPeakAMf = twoAM.fftfreq(twoAM.fftdata == max(twoAM.fftdata));
+    onePeakAMf = oneAM.fftfreq(oneAM.fftdata(oneAM.fftfreq > 2) == max(oneAM.fftdata(oneAM.fftfreq > 2)));
+    twoPeakAMf = twoAM.fftfreq(twoAM.fftdata(twoAM.fftfreq > 2) == max(twoAM.fftdata(twoAM.fftfreq > 2)));
     
     figure(27); clf; hold on;
-    plot(oneAM.fftfreq, oneAM.fftdata);
-    plot(twoAM.fftfreq, twoAM.fftdata);
+        plot(oneAM.fftfreq, oneAM.fftdata);
+        plot(twoAM.fftfreq, twoAM.fftdata);
     xlim([0 100]);
     
     if abs(onePeakAMf - twoPeakAMf) < 1 % The AMs are within 1 Hz
