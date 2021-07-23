@@ -51,7 +51,6 @@ Fs = 40000;
     [tube1f, tube1a, tube2f, tube2a] = getfreqs(t1, t2, sort(sepfreq));
     
 
-
 ff = waitbar(0, 'Cycling through files.');
 
 for k = 2:length(iFiles)
@@ -64,14 +63,20 @@ for k = 2:length(iFiles)
         
        %filter the data
         
-         tube1 = filtfilt(b,a,data(:,1));
-         tube2 = filtfilt(b,a,data(:,2));
-         tube1 = filtfilt(f,e,tube1);
-         tube2 = filtfilt(f,e,tube2);
+%          tube1 = filtfilt(b,a,data(:,1));
+%          tube2 = filtfilt(b,a,data(:,2));
+%          tube1 = filtfilt(f,e,tube1);
+%          tube2 = filtfilt(f,e,tube2);
+    tube1 = filtfilt(h,g,data(:,1));
+    tube2 = filtfilt(h,g,data(:,2));
          
        % extract the fish frequencies
          t1 = fftmachine(tube1, Fs);
          t2 = fftmachine(tube2, Fs);
+         
+         ttmp(:,1) = sort(tube1f(k-1,:));
+         ttmp(:,2) = sort(tube2f(k-1,:));
+         sepfreq = mean(ttmp);
          
          [tube1f(k,:), tube1a(k,:), tube2f(k,:), tube2a(k,:)] = getfreqs(t1, t2, sepfreq);
          
@@ -102,18 +107,24 @@ end
 
     
     
-    function [t1f,t1a,t2f,t2a] = getfreqs(t1, t2, sepfreaky)       
+    function [t1f,t1a,t2f,t2a] = getfreqs(t1, t2, previousfreaky)       
         %Assign frequencies to tubles 
 
+        wid = 20; % +/- this number of Hz for peak
+        
+        % Get low frequency in both channels
+        
+        
        % Tube 1
-        lfreqs = find(t1.fftfreq < sepfreaky & t1.fftfreq > 300);
+        lfreqs = find(t1.fftfreq > previousfreaky(1)-wid & t1.fftfreq < previousfreaky(1)+wid);
             [pwrA1l, idx] = max(t1.fftdata(lfreqs));
             pwrF1l = t1.fftfreq(lfreqs(idx));
 
-        hfreqs = find(t1.fftfreq > sepfreaky & t1.fftfreq < 650);
+        hfreqs = find(t1.fftfreq > previousfreaky(2)-wid & t1.fftfreq < previousfreaky(2)+wid);
             [pwrA1h, idx] = max(t1.fftdata(hfreqs));
             pwrF1h = t1.fftfreq(hfreqs(idx));
 
+       % Which amplitude is higher and what is the ratio of power?
         if pwrA1h > pwrA1l
             pwr1A = [pwrA1h pwrA1l]; pwr1F = [pwrF1h pwrF1l];
             ratio1 = pwrA1h / pwrA1l;
@@ -123,15 +134,15 @@ end
         end
 
         % Tube 2
-        lfreqs = find(t2.fftfreq < sepfreaky & t2.fftfreq > 200);
+        lfreqs = find(t2.fftfreq < previousfreaky(1)-wid & t2.fftfreq < previousfreaky(1)+wid);
             [pwrA2l, idx] = max(t2.fftdata(lfreqs));
             pwrF2l = t2.fftfreq(lfreqs(idx));
 
-        hfreqs = find(t2.fftfreq > sepfreaky & t2.fftfreq < 700);
+        hfreqs = find(t2.fftfreq > previousfreaky(2)-wid & t2.fftfreq < previousfreaky(2)+wid);
             [pwrA2h, idx] = max(t2.fftdata(hfreqs));
             pwrF2h = t2.fftfreq(hfreqs(idx));
 
-
+       % Which amplitude is higher and what is the ratio of power?
         if pwrA2h > pwrA2l
             pwr2A = [pwrA2h pwrA2l]; pwr2F = [pwrF2h pwrF2l];
             ratio2 = pwrA2h / pwrA2l;
@@ -141,20 +152,21 @@ end
         end
 
         if pwr2F(1) == pwr1F(1)
-            
-            if ratio1 > ratio2
-                
-                pwr2A = [pwr2A(2) pwr2A(1)];
-                pwr2F = [pwr2F(2) pwr2F(1)];
-                
-            end
-            
-            if ratio2 > ratio1
-                
-                pwr1A = [pwr1A(2) pwr1A(1)];
-                pwr1F = [pwr1F(2) pwr1F(1)];
-                
-            end
+            fprintf('Like what the fuck?\n');
+         
+%             if ratio1 > ratio2
+%                 
+%                 pwr2A = [pwr2A(2) pwr2A(1)];
+%                 pwr2F = [pwr2F(2) pwr2F(1)];
+%                 
+%             end
+%             
+%             if ratio2 > ratio1
+%                 
+%                 pwr1A = [pwr1A(2) pwr1A(1)];
+%                 pwr1F = [pwr1F(2) pwr1F(1)];
+%                 
+%             end
 
         end
         
