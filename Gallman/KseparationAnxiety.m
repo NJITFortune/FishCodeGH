@@ -51,8 +51,8 @@ end
     rFs = 400;
     resamptim = 1/rFs:1/rFs:1;
 
-    oneAM = k_AM(filtdata1, resamptim);
-    twoAM = k_AM(filtdata2, resamptim);
+    oneAM = k_AM(filtdata1, resamptim, rFs);
+    twoAM = k_AM(filtdata2, resamptim, rFs);
     
     % See if dF is same on both channels (dF being freq of AM)
     
