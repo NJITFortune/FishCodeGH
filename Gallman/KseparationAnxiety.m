@@ -18,8 +18,8 @@ Fs = 40000;
         
 % Filter data  
      
-        filtdata(1) = filtfilt(h,g, data(:,1)); % Band pass filter   
-        filtdata(2) = filtfilt(h,g, data(:,2)); % Band pass filter  
+        filtdata1 = filtfilt(h,g, data(:,1)); % Band pass filter   
+        filtdata2 = filtfilt(h,g, data(:,2)); % Band pass filter  
 
 % Find the normalized peaks of the FFT of each tube in freq range
     %FFT
