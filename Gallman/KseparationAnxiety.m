@@ -54,9 +54,9 @@ Fs = 40000;
         dFreq = abs(pkfreq1 - pkfreq2);
     end
     
-    if dFreq == oneAM.fftfreq
-        fprintf('Yay we did not fuck up!\n');
-    end
+%     if dFreq == oneAM.fftfreq
+%         fprintf('Yay we did not fuck up!\n');
+%     end
         
     
     
