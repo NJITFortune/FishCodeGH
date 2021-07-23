@@ -59,6 +59,9 @@ end
     if abs(onePeakAMf - twoPeakAMf) < 1 % The AMs are within 1 Hz
         fprintf('Woohoo for tubes!\n');
         dFam = mean([onePeakAMf, twoPeakAMf]);
+    else
+        fprintf('onePeakAMf is %2.2f and twoPeakAMf is %2.2f.\n', onePeakAMf, twoPeakAMf);
+
     end
     
     % Difference in peaks between tubes should equal the dF. 
