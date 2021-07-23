@@ -17,8 +17,8 @@ Fs = 40000;
     tube2 = filtfilt(h,g,data(:,2));
          
    % extract the fish frequencies
-     t1 = fftmachine(tube1, Fs, 20);
-     t2 = fftmachine(tube2, Fs, 20);
+     t1 = fftmachine(tube1, Fs, 9);
+     t2 = fftmachine(tube2, Fs, 9);
      
    % click between the two frequency peaks
     figure(1); clf; 
@@ -108,14 +108,14 @@ end
        % Tube 1
        
         t1fl = filtfilt(b,a,t1data);       
-        t1 = fftmachine(t1fl, 40000, 20);
+        t1 = fftmachine(t1fl, 40000, 9);
         
         lfreqs = find(t1.fftfreq > previousfreaky(1)-wid & t1.fftfreq < previousfreaky(1)+wid);
             [pwrA1l, idx] = max(t1.fftdata(lfreqs));
             pwrF1l = t1.fftfreq(lfreqs(idx));
 
         t1fh = filtfilt(d,c,t1data);
-        t1 = fftmachine(t1fh, 40000, 20);
+        t1 = fftmachine(t1fh, 40000, 9);
         
         hfreqs = find(t1.fftfreq > previousfreaky(2)-wid & t1.fftfreq < previousfreaky(2)+wid);
             [pwrA1h, idx] = max(t1.fftdata(hfreqs));
@@ -132,14 +132,14 @@ end
 
         % Tube 2
         t2fl = filtfilt(b,a,t2data);       
-        t2 = fftmachine(t2fl, 40000, 20);
+        t2 = fftmachine(t2fl, 40000, 9);
         
         lfreqs = find(t2.fftfreq < previousfreaky(1)-wid & t2.fftfreq < previousfreaky(1)+wid);
             [pwrA2l, idx] = max(t2.fftdata(lfreqs));
             pwrF2l = t2.fftfreq(lfreqs(idx));
 
         t2hl = filtfilt(d,c,t2data);       
-        t2 = fftmachine(t2hl, 40000, 20);
+        t2 = fftmachine(t2hl, 40000, 9);
         
         hfreqs = find(t2.fftfreq > previousfreaky(2)-wid & t2.fftfreq < previousfreaky(2)+wid);
             [pwrA2h, idx] = max(t2.fftdata(hfreqs));
