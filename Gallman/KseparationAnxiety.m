@@ -152,21 +152,20 @@ end
         end
 
         if pwr2F(1) == pwr1F(1)
-            fprintf('Like what the fuck?\n');
          
-%             if ratio1 > ratio2
-%                 
-%                 pwr2A = [pwr2A(2) pwr2A(1)];
-%                 pwr2F = [pwr2F(2) pwr2F(1)];
-%                 
-%             end
-%             
-%             if ratio2 > ratio1
-%                 
-%                 pwr1A = [pwr1A(2) pwr1A(1)];
-%                 pwr1F = [pwr1F(2) pwr1F(1)];
-%                 
-%             end
+            if ratio1 > ratio2
+                
+                pwr2A = [pwr2A(2) pwr2A(1)];
+                pwr2F = [pwr2F(2) pwr2F(1)];
+                
+            end
+            
+            if ratio2 > ratio1
+                
+                pwr1A = [pwr1A(2) pwr1A(1)];
+                pwr1F = [pwr1F(2) pwr1F(1)];
+                
+            end
 
         end
         
