@@ -56,6 +56,10 @@ end
     onePeakAMf = oneAM.fftfreq(oneAM.fftdata == max(oneAM.fftdata));
     twoPeakAMf = twoAM.fftfreq(twoAM.fftdata == max(twoAM.fftdata));
     
+    figure(27); clf; hold on;
+    plot(oneAM.fftfreq, oneAM.fftdata);
+    plot(twoAM.fftfreq, twoAM.fftdata);
+    
     if abs(onePeakAMf - twoPeakAMf) < 1 % The AMs are within 1 Hz
         fprintf('Woohoo for tubes!\n');
         dFam = mean([onePeakAMf, twoPeakAMf]);
