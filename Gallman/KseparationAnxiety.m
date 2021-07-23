@@ -10,22 +10,15 @@ Fs = 40000;
 
 %% Filter        
 % Set up filter
-    % High pass filter cutoff frequency
-        highp = 200;
-        [b,a] = butter(5, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
-    % Low pass filter cutoff frequency
-        lowp = 2000;    
-        [f,e] = butter(5, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
+  
     % Band pass filter in frequency range of fish
         [h,g] = butter(5, [300/(Fs/2) 600/(Fs/2)]);
 
 for j = 1:2 % Perform analyses on the two channels
         
 % Filter data  
-          
-        data(:,j) = filtfilt(b,a, data(:,j)); % High pass filter
-        data(:,j) = filtfilt(f,e, data(:,j)); % Low pass filter   
-        data(:,j) = filtfilt(h,g, data(:,j)); % Band pass filter   
+     
+        filtdata(j) = filtfilt(h,g, data(:,j)); % Band pass filter   
 
 
 % Find the normalized peaks of the FFT of each tube in freq range
