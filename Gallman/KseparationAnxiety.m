@@ -7,7 +7,21 @@ Fs = 40000;
 
 % Set up filter
         [h,g] = butter(5, [300/(Fs/2) 600/(Fs/2)]);
-                 
+
+% FILTER in frequency range of fish
+
+% Find the normalized peaks of the FFT of each tube in freq range
+    % Determine if same or different peak freqs
+
+% take the freqeuncy of the AM (findpeaks)
+    % See if dF is same on both channels (dF being freq of AM)
+    
+    % Difference in peaks between tubes should equal the dF. 
+    
+% AND perhaps we can find the frequency of the weaker fish using dF
+        
+    % If both same freq, take maximum amplitude.
+    % If different freqs and dF matches, the take both amplitudes.
 
 ff = waitbar(0, 'Starting the painful process...');
 pause(2);
