@@ -36,7 +36,9 @@ Fs = 40000;
     pkfreq1 = onefft.fftfreq(max(nonefft));
     pkfreq2 = twofft.fftfreq(max(ntwofft));
     
-    
+    xIndex = find(y == max(y), 1, 'first');
+    maxXValue = x(xIndex);
+
         
 
 % take the freqeuncy of the AM (findpeaks)
