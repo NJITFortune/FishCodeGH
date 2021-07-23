@@ -74,13 +74,13 @@ for k = 2:length(iFiles)
          t1 = fftmachine(tube1, Fs);
          t2 = fftmachine(tube2, Fs);
          
-         ttmp(:,1) = sort(tube1f(k-1,:));
-         ttmp(:,2) = sort(tube2f(k-1,:));
+         ttmp(2,:) = sort(tube2f(k-1,:));
+         ttmp(1,:) = sort(tube1f(k-1,:));
          sepfreq = mean(ttmp);
          
          [tube1f(k,:), tube1a(k,:), tube2f(k,:), tube2a(k,:)] = getfreqs(t1, t2, sepfreq);
          
-         sepfreq = ((abs(tube1f(k,1) - tube2f(k,1)))/2) + min([tube1f(k,1), tube2f(k,1)]);
+         % sepfreq = ((abs(tube1f(k,1) - tube2f(k,1)))/2) + min([tube1f(k,1), tube2f(k,1)]);
          
  
              
