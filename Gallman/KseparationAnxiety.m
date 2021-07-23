@@ -3,8 +3,13 @@ function out = KseparationAnxiety(userfilespec)
 Fs = 40000;
 % userfilespec = 'Eigen*';
 % Get the list of files to be analyzed  
-        iFiles = dir(userfilespec);
+      iFiles = dir(userfilespec);
+      
+% load the first file
 
+
+        
+        
 % Set up filter
     % High pass filter cutoff frequency
         highp = 200;
@@ -15,7 +20,15 @@ Fs = 40000;
     % Band pass filter in frequency range of fish
         [h,g] = butter(5, [300/(Fs/2) 600/(Fs/2)]);
 
-% FILTER data
+% Filter data  
+          
+        data(:,1) = filtfilt(b,a, data(:,1)); % High pass filter
+        data(:,1) = filtfilt(f,e, data(:,1)); % Low pass filter   
+        data(:,1) = filtfilt(h,g, data(:,1)); % Band pass filter   
+
+        data(:,2) = filtfilt(b,a, data(:,2)); % High pass filter
+        data(:,2) = filtfilt(f,e, data(:,2)); % Low pass filter 
+        data(:,2) = filtfilt(h,g, data(:,2)); % Band pass filter
 
 
 % Find the normalized peaks of the FFT of each tube in freq range
