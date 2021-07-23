@@ -6,7 +6,7 @@ Fs = 40000;
         iFiles = dir(userfilespec);
 
 % Set up filter
-        [h,g] = butter(5, [highp/(Fs/2) lowp/(Fs/2)]);
+        [h,g] = butter(5, [300/(Fs/2) 600/(Fs/2)]);
              
 % CLICK THE FIRST FILE
     load(iFiles(1).name, 'data');
