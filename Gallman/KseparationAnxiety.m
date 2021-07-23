@@ -62,6 +62,7 @@ end
     figure(27); clf; hold on;
     plot(oneAM.fftfreq, oneAM.fftdata);
     plot(twoAM.fftfreq, twoAM.fftdata);
+    xlim([0 100]);
     
     if abs(onePeakAMf - twoPeakAMf) < 1 % The AMs are within 1 Hz
         fprintf('Woohoo for tubes!\n');
