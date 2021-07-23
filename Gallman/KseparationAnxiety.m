@@ -61,7 +61,7 @@ for k = 2:length(iFiles)
            
          ttmp(2,:) = sort(tube2f(k-1,:));
          ttmp(1,:) = sort(tube1f(k-1,:));
-         sepfreq = mean(ttmp);           
+         sepfreq = mean(ttmp)           
            
          [tube1f(k,:), tube1a(k,:), tube2f(k,:), tube2a(k,:)] = getfreqs(data(:,1), data(:,2), sepfreq);
          
