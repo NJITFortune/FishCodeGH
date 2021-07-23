@@ -30,8 +30,14 @@ Fs = 40000;
     ntwofft = twofft.fftdata/ max(twofft.fftdata);
     
     %plot to check
-    clf; plot(onefft.fftfreq, nonefft); hold on; plot(twofft.fftfreq, ntwofft); xlim([300 600]);    
-    % Determine if same or different peak freqs
+    %clf; plot(onefft.fftfreq, nonefft); hold on; plot(twofft.fftfreq, ntwofft); xlim([300 600]);    
+    
+% Determine if same or different peak freqs
+    pkfreq1 = onefft.fftfreq(max(nonefft));
+    pkfreq2 = twofft.fftfreq(max(twofft));
+    
+    if pkfreq1 == pkfreq2
+        fprint
 
 % take the freqeuncy of the AM (findpeaks)
     %[peaky, idx] = findpeaks(data(:,j)); 
