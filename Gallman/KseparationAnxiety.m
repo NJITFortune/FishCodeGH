@@ -37,7 +37,7 @@ Fs = 40000;
     pkfreq2 = twofft.fftfreq(max(twofft));
     
     if pkfreq1 == pkfreq2
-        fprint
+        fprintf 
 
 % take the freqeuncy of the AM (findpeaks)
     %[peaky, idx] = findpeaks(data(:,j)); 
