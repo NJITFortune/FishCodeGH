@@ -100,7 +100,7 @@ figure(2); clf;
 
     linkaxes(ax, 'x');
 
-    
+%%    
 close(ff); % get rid of the counter thingy
 
 end
