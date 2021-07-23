@@ -1,4 +1,4 @@
-function out = KseparationAnxiety(userfilespec)
+%function out = KseparationAnxiety(userfilespec)
 %% Load data
 Fs = 40000;
 % userfilespec = 'Eigen*';
@@ -26,10 +26,11 @@ Fs = 40000;
     ff(1) = fftmachine(filtdata(1), Fs);
     ff(2) = fftmachine(filtdata(2), Fs);
     
-    normfftdata(1) = ff(1).fftdata/ max(ff(1).fftdata);
-    normfftdata(2) = ff(2).fftdata/ max(ff(2).fftdata);
-          
-        
+    normff(1) = ff(1).fftdata/ max(ff(1).fftdata);
+    normff(2) = ff(2).fftdata/ max(ff(2).fftdata);
+    
+    %plot to check
+    clf; plot(ff(1).fftfreq, normff(1)); hold on; plot(ff(2).fftfreq, normff(2)); xlim([300 600]);    
     % Determine if same or different peak freqs
 
 % take the freqeuncy of the AM (findpeaks)
