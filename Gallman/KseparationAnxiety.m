@@ -17,8 +17,8 @@ Fs = 40000;
     tube2 = filtfilt(h,g,data(:,2));
          
    % extract the fish frequencies
-     t1 = fftmachine(tube1, Fs);
-     t2 = fftmachine(tube2, Fs);
+     t1 = fftmachine(tube1, Fs, 20);
+     t2 = fftmachine(tube2, Fs, 20);
      
    % click between the two frequency peaks
     figure(1); clf; 
