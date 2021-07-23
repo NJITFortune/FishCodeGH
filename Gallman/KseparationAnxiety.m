@@ -36,9 +36,7 @@ Fs = 40000;
     pkfreq1 = onefft.fftfreq(max(nonefft));
     pkfreq2 = twofft.fftfreq(max(twofft));
     
-    if pkfreq1 == pkfreq2
-        fprintf('Poo on fish two');
-    end
+    
         
 
 % take the freqeuncy of the AM (findpeaks)
@@ -46,9 +44,21 @@ Fs = 40000;
     twoAM = k_AM(filtdata2);
     % See if dF is same on both channels (dF being freq of AM)
     if oneAM.fftfreq == twoAM.fftfreq
-        fprintf('Woohoo for tubes!'
+        fprintf('Woohoo for tubes!\n');
+    end
     
     % Difference in peaks between tubes should equal the dF. 
+    if pkfreq1 == pkfreq2
+        fprintf('Poo on you fish two\n');
+    else 
+        dFreq = abs(pkfreq1 - pkfreq2);
+    end
+    
+    if dFreq == oneAM.fftfreq
+        fprintf('Yay we did not fuck up!\n');
+    end
+        
+    
     
 % AND perhaps we can find the frequency of the weaker fish using dF
         
