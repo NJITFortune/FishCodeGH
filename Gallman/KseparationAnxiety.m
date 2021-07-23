@@ -34,11 +34,9 @@ Fs = 40000;
     
 % Determine if same or different peak freqs
     pkfreq1 = onefft.fftfreq(find(nonefft == max(nonefft)));
-    pkfreq2 = twofft.fftfreq(max(ntwofft));
+    pkfreq2 = twofft.fftfreq(find(ntwofft == max(ntwofft)));
     
-    xIndex = find(y == max(y), 1, 'first');
-    maxXValue = x(xIndex);
-
+   
         
 
 % take the freqeuncy of the AM (findpeaks)
