@@ -3,10 +3,10 @@ function out = KseparationAnxiety(userfilespec)
 Fs = 40000;
 % userfilespec = 'Eigen*';
 % Get the list of files to be analyzed  
-      iFiles = dir(userfilespec);
+    iFiles = dir(userfilespec);
       
 % load the first file
-
+    load(iFiles(1).name, 'data');
 
         
         
