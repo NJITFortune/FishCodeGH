@@ -37,10 +37,12 @@ Fs = 40000;
     pkfreq2 = twofft.fftfreq(max(twofft));
     
     if pkfreq1 == pkfreq2
-        fprintf 
+        fprintf('Poo on fish two');
+    end
+        
 
 % take the freqeuncy of the AM (findpeaks)
-    %[peaky, idx] = findpeaks(data(:,j)); 
+    [peaky, idx] = findpeaks(filtdata1); 
     % See if dF is same on both channels (dF being freq of AM)
     
     % Difference in peaks between tubes should equal the dF. 
