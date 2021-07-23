@@ -66,6 +66,7 @@ end
     
     if abs(onePeakAMf - twoPeakAMf) < 1 % The AMs are within 1 Hz
         fprintf('Woohoo for tubes!\n');
+        fprintf('onePeakAMf is %2.2f and twoPeakAMf is %2.2f.\n', onePeakAMf, twoPeakAMf);
         dFam = mean([onePeakAMf, twoPeakAMf]);
     else
         fprintf('onePeakAMf is %2.2f and twoPeakAMf is %2.2f.\n', onePeakAMf, twoPeakAMf);
