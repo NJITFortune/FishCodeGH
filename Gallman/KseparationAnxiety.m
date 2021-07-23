@@ -30,9 +30,7 @@ for j = 1:2 % Perform analyses on the two channels
 
 % Find the normalized peaks of the FFT of each tube in freq range
     %find peaks
-        [peaky, idx] = findpeaks(data(:,j));
-        
-        
+        [peaky, idx] = findpeaks(data(:,j));   
         
     % Determine if same or different peak freqs
 
