@@ -100,7 +100,7 @@ end
         wid = 40; % +/- this number of Hz for filter
         Fs = 40000;
         
-        [b,a] = butter(3, [(previousfreaky(1)-wid)/(Fs/2) (previousfreaky(1)+wid)/(Fs/2)], 'band');
+        [b,a] = butter(3, [(previousfreaky(1)-wid)/(Fs/2) (previousfreaky(1)+wid)/(Fs/2)], 'bandpass');
         [d,c] = butter(3, [(previousfreaky(2)-wid)/(Fs/2) (previousfreaky(2)+wid)/(Fs/2)], 'bandpass');
         
         
