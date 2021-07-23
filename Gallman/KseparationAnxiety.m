@@ -95,8 +95,8 @@ out.tube2a = tube2a;
 
 figure(2); clf; 
 
-    ax(1) = subplot(211); plot(out.tube1f(:,1), '.'); hold on; plot(out.tube2f(:,1), '.');
-    ax(2) = subplot(212); plot(out.tube1a(:,1), '.'); hold on; plot(out.tube2a(:,1), '.');
+    ax(1) = subplot(211); plot(out.tube1f(:,1), '.'); hold on; plot(out.tube1f(:,2), '.');
+    ax(2) = subplot(212); plot(out.tube2f(:,1), '.'); hold on; plot(out.tube2f(:,2), '.');
 
     linkaxes(ax, 'x');
 
