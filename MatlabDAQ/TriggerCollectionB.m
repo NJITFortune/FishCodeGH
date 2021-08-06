@@ -17,7 +17,7 @@ s = daq.createSession('ni');
 % Add and configure Trigger    
     addTriggerConnection(s,'External','Dev3/PFI0','StartTrigger');
    
-    
+  
     s.Connections.TriggerCondition = 'FallingEdge';
     s.ExternalTriggerTimeout = 144000;
     s.TriggersPerRun = 1;
@@ -33,9 +33,10 @@ numSamples = 0;
 
 while numSamples < 100000
        
-    fprintf('We are %i steps.\n', numSamples);
+    fprintf('We are at %i steps and waiting for next trigger.\n', numSamples);
         s.startForeground();
-    fprintf('We are are done waiting\n');
+        a = datestr(now, 'mm-dd-yyyy_HH-MM-SS');
+    fprintf('We are triggered and paused %s\n', a);
         pause(60) % After detection, pause for this long
         
         s.stop;
