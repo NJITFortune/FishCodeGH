@@ -34,9 +34,9 @@ ax(2) = subplot(512); hold on; title('zAmp - green = social');
     yyaxis right; plot([out.e(2).s(ttz{2}).timcont]/(60*60), [out.e(2).s(ttz{2}).zAmp], '.');
     yyaxis left; plot([out.e(1).s(ttz{1}).timcont]/(60*60), [out.e(1).s(ttz{1}).zAmp], '.');
 
-xa(1) = subplot(513); hold on; title('obwAmp');
-    yyaxis right; plot([out.e(2).s(tto{2}).timcont]/(60*60*24), [out.e(2).s(tto{2}).obwAmp], '.');
-    yyaxis left; plot([out.e(1).s(tto{1}).timcont]/(60*60*24), [out.e(1).s(tto{1}).obwAmp], '.');
+ax(1) = subplot(513); hold on; title('obwAmp');
+    yyaxis right; plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
+    yyaxis left; plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
 
 ax(3) = subplot(514); hold on; title('frequency (black) and temperature (red)');   
         yyaxis right; plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.fftFreq], '.k', 'Markersize', 8);
@@ -78,7 +78,7 @@ ax(4) = subplot(515); hold on; title('light transitions');
     end    
 
 linkaxes(ax, 'x'); 
-xa.XLim = ax(1).XLim/24;
+
 
                     drawnow;
 
