@@ -65,7 +65,19 @@ ax(4) = subplot(515); hold on; title('light transitions');
     
 % Add light transitions times to check luz
     if  ~isempty(out.info.luz)
-        subplot(515); plot([abs(out.info.luz)' abs(out.info.luz)']', [0 6], 'g-', 'LineWidth', 2, 'MarkerSize', 10);
+        out.info.luz
+        %just luz
+            %subplot(515); plot([abs(out.info.luz)' abs(out.info.luz)']', [0 6], 'g-', 'LineWidth', 2, 'MarkerSize', 10);
+        %luz by transition type
+            %separate by transition type
+            lighton = out.info.luz(out.info.luz > 0);
+            darkon = out.info.luz(out.info.luz < 0);
+            
+            %plot
+            subplot(515); hold on;
+            plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
+            plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
+           
     end    
 
 linkaxes(ax, 'x'); 

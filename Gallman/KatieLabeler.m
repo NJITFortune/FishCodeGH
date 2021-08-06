@@ -17,17 +17,22 @@ function out  = KatieLabeler(in)
     out.poweridx = input('Enter the values of timcont in hours over which to perform power analysis: ');
     
     
-% LIGHT CYCLE ON/OFF STARTS        
-    numbercycles = floor(in(1).s(end).timcont/(out.ld*60*60)); %number of cycles in data
-    timz = 1:1:numbercycles;
-    out.luz(timz) = startim + (out.ld*(timz-1)); %without for-loop
-
-    meaninitialbright = mean([in(1).s([in(1).s.timcont] < out.luz(2)).light]);
+% LIGHT CYCLE ON/OFF STARTS 
+    %caclulate hours when the light changed
+        numbercycles = floor(in(1).s(end).timcont/(out.ld*60*60)); %number of cycles in data
+        timz = 1:1:numbercycles;
+        out.luz(timz) = startim + (out.ld*(timz-1)); %without for-loop
     
-    if meaninitialbright < 2.5 % Lights in initial period were off
-        out.luz(1:2:end) = -out.luz(1:2:end); % Set initial period and every other subseqent  as off
-    else
-        out.luz(2:2:end) = -out.luz(2:2:end); % Set the second period and every other subsequent as off.
-    end
+    %find the time indicies for the first light cycle
+        lidx = find([in(1).s.timcont] < out.luz(2)*(60*60));  
+    %take the mean of the light values in the first cycle
+        meaninitialbright = mean([in(1).s(lidx).light]);
+    
+    %Assign negative values to luz when lights were off
+        if meaninitialbright < 2.5 % Lights in initial period were off
+            out.luz(1:2:end) = -out.luz(1:2:end); % Set initial period and every other subseqent  as off
+        else
+            out.luz(2:2:end) = -out.luz(2:2:end); % Set the second period and every other subsequent as off.
+        end
 
     
