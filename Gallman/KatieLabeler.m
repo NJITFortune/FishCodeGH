@@ -24,7 +24,7 @@ function out  = KatieLabeler(in)
         out.luz(timz) = startim + (out.ld*(timz-1)); %without for-loop
     
     %find the time indicies for the first light cycle
-        lidx = find([in(1).s.timcont] < out.luz(2)*(60*60));  
+        lidx = [in(1).s.timcont] < out.luz(2)*(60*60);  
     %take the mean of the light values in the first cycle
         meaninitialbright = mean([in(1).s(lidx).light]);
     
