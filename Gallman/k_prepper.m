@@ -5,7 +5,7 @@ function [Ampdata, Amptim] = k_prepper(in, Amp, ampidx)
 % in = kg(k);
 %analysis
 
-for i = 1:length(kg(k).e(1).s.
+for i = 1:length(kg(k).e(1).s)
 
 
 %options for Amp
