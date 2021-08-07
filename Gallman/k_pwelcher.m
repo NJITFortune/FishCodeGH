@@ -63,7 +63,8 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
     obwtim1 = [in.e(1).s(tto{1}(obtt)).timcont]/(60*60);
     
     
-    
+            %ppform of cubic smoothing spline
+                %
             spliney = csaps(obwtim1, obwdata1, p);
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
             o.obw(1).y = fnval(o.obw(1).x, spliney);
