@@ -5,6 +5,9 @@ function [Ampdata, Amptim] = k_prepper(in, Amp, ampidx)
 % in = kg(k);
 %analysis
 
+for i = 1:length(kg(k).e(1).s.
+
+
 %options for Amp
 % obwAmp
 % zAmp
@@ -37,7 +40,7 @@ function [Ampdata, Amptim] = k_prepper(in, Amp, ampidx)
                    obtt = 1:length([in.e(j).s(tto{j}).timcont]/(60*60)); %use the entire data set to perform the analysis
                 else %if there are values in poweridx [X1 X2]
                     %perform the analysis between the poweridx values
-                   obtt = find([in.e(j).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
+                   obtt = find([in.e(j).s(tto{j}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(j).s(tto{j}).timcont]/(60*60) < in.info.poweridx(2));
                 end  
 
             
