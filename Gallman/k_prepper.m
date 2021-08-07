@@ -1,4 +1,4 @@
-function [Ampdata, Amptim] = k_prepper(in, Amp, ampidx)
+function [Ampdata, Amptim] = k_prepper(in, Amp,)
 %function inputs
 %data
 % k = 5;
@@ -8,6 +8,8 @@ function [Ampdata, Amptim] = k_prepper(in, Amp, ampidx)
 for i = 1:length(kg(k).e(1).s)
 
 
+    %kg(k).idx(j).ampidx
+    
 %options for Amp
 % obwAmp
 % zAmp
