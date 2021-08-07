@@ -62,11 +62,12 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
     obwdata1 = [in.e(1).s(tto{1}(obtt)).obwAmp]; 
     obwtim1 = [in.e(1).s(tto{1}(obtt)).timcont]/(60*60);
     
-    
+        %summarize data
             %ppform of cubic smoothing spline
-                %
             spliney = csaps(obwtim1, obwdata1, p);
+            %fortune doesn't like linspace... I think he does it to confuse me
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
+            %evaluate the csplined values of y for the new equally spaced values of x
             o.obw(1).y = fnval(o.obw(1).x, spliney);
             
     %Channel 2
