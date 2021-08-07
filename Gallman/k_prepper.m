@@ -1,4 +1,4 @@
-function [Ampdata, Amptim] = k_prepper(in, Amp,)
+function [Ampdata, Amptim] = k_prepper(in, Amp, ampidx)
 %function inputs
 %data
 % k = 5;
@@ -16,7 +16,7 @@ for i = 1:length(kg(k).e(1).s)
 % sumfftAmp
 
 %options for ampidx
-% obwidx
+ampidx = 'obwidx';
 % zidk
 % sumfftidx
 
