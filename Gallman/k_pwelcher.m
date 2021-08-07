@@ -9,43 +9,60 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
 
 %ReFs = 60;  %resample once every minute
 
+% Define variables
 
-if nargin < 3
-    p = 0.9; %smoothing factor
-end
-
-% Prepare the data
-
-    tto{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
-    tto{2} = tto{1};
-
-    ttz{1} = tto{1}; % ttz is indices for zAmp
-    ttz{2} = tto{1};
-
-    ttsf{1} = tto{1}; % ttsf is indices for sumfftAmp
-    ttsf{2} = tto{1};
-    
-    
-% If we have removed outliers via KatieRemover, get the indices...    
-    if ~isempty(in.idx) 
-        tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
-        ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
-        ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+    if nargin < 3
+        p = 0.9; %smoothing factor
     end
+
+%Accounting for outlier exclusion
+   
+    % Prepare the data with outliers
+
+        tto{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
+        tto{2} = tto{1};
+
+        ttz{1} = tto{1}; % ttz is indices for zAmp
+        ttz{2} = tto{1};
+
+        ttsf{1} = tto{1}; % ttsf is indices for sumfftAmp
+        ttsf{2} = tto{1};
+
+
+    % Prepare the data without outliers
+    
+        % If we have removed outliers via KatieRemover, get the indices...    
+        if ~isempty(in.idx) 
+            tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
+            ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
+            ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+        end
 
   
+    
+    
     %hard coded because fuck thinking
     %OBW
+    
+    
     %Channel 1
    
-    if isempty(in.info.poweridx) 
-       obtt = 1:length([in.e(1).s(tto{1}).timcont]/(60*60));
-    else
-        obtt = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
-    end
     
+    %Sample dataset by poweridx 
+        %poweridx-window of good data to analyze [start end]  
+    
+        if isempty(in.info.poweridx) %if there are no values in poweridx []
+           obtt = 1:length([in.e(1).s(tto{1}).timcont]/(60*60)); %use the entire data set to perform the analysis
+        else %if there are values in poweridx [X1 X2]
+            %perform the analysis between the poweridx values
+            obtt = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
+        end
+    
+    %create data variables of poweridx 
     obwdata1 = [in.e(1).s(tto{1}(obtt)).obwAmp]; 
     obwtim1 = [in.e(1).s(tto{1}(obtt)).timcont]/(60*60);
+    
+    
     
             spliney = csaps(obwtim1, obwdata1, p);
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
