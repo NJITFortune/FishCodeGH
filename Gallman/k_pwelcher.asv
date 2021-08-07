@@ -9,11 +9,14 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
 
 %ReFs = 60;  %resample once every minute
 
+% Define variables
 
-if nargin < 3
-    p = 0.9; %smoothing factor
-end
+    if nargin < 3
+        p = 0.9; %smoothing factor
+    end
 
+%Accounting for outlier exclusion
+    %if we 
 % Prepare the data
 
     tto{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
@@ -34,15 +37,21 @@ end
     end
 
   
+    
+    
     %hard coded because fuck thinking
     %OBW
+    
+    
     %Channel 1
    
-    %poweridx-window of good data to analyze [start end] 
-         
-    if isempty(in.info.poweridx) %if there are no values in powe
-       obtt = 1:length([in.e(1).s(tto{1}).timcont]/(60*60));
-    else
+    
+    
+    %poweridx-window of good data to analyze [start end]      
+    if isempty(in.info.poweridx) %if there are no values in poweridx []
+       obtt = 1:length([in.e(1).s(tto{1}).timcont]/(60*60)); %use the entire data set to perform the analysis
+    else %if there are values in poweridx [X1 X2]
+        %perform the analysis between the poweridx values
         obtt = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
     end
     
