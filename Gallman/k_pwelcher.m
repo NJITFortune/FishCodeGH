@@ -155,45 +155,7 @@ FreqRange = 0.002:0.0001:0.2;
 
 
 % %generate fft by channel
-%     %Channel 1
-%     [pxx1,pf1] = pwelch(o.z(1).y - mean(o.z(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
-%     %populate values 
-%     zwelch1 = [pxx1', pf1'];
-%     colNames = {'pxx','pfreq'};
-%     pw(1).zAmp = array2table(zwelch1,'VariableNames',colNames);
 %     
-%     %find peak at given frequency
-%     range = 0.002;
-%     freq(1) = 1/(2*hourperiod);
-%     pwr(1) = mean(pw(1).zAmp.pxx(pw(1).zAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(1).zAmp.pfreq < ((1/(2*hourperiod) + range/2))));
-% 
-%     %Channel 2
-%     [pxx2,pf2] = pwelch(o.z(2).y - mean(o.z(2).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
-%     %populate values 
-%     zwelch2 = [pxx2', pf2'];
-%     colNames = {'pxx','pfreq'};
-%     pw(2).zAmp = array2table(zwelch2,'VariableNames',colNames);
-%     
-%     %find peak at given frequency
-%     range = 0.002;
-%     freq(2) = 1/(2*hourperiod);
-%     pwr(2) = mean(pw(2).zAmp.pxx(pw(2).zAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(2).zAmp.pfreq < ((1/(2*hourperiod) + range/2))));
-
-%Had to do individually since some only have one good channel
-% for j = 2:-1:1 % Perform analyses on the two channels
-%     
-%     %generate fft
-%     [pxx,pf] = pwelch(o.z(j).y - mean(o.z(j).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
-%     %populate values 
-%     zwelch = [pxx', pf'];
-%     colNames = {'pxx','pfreq'};
-%     pw(j).zAmp = array2table(zwelch,'VariableNames',colNames);
-%     
-%     %find peak at given frequency
-%     range = 0.002;
-%     xfreq(j) = 1/(2*hourperiod);
-%     hourpeak(j) = mean(pw(j).zAmp.pxx(pw(j).zAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(j).zAmp.pfreq < ((1/(2*hourperiod) + range/2))));
-% end
 
 
     if channel == 1
