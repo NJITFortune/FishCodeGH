@@ -31,7 +31,7 @@ if length(resampRandSpikeIntervals) ~= length(sig)
     fprintf('oops I did it again \n');
     length(sig)
     length(resampRandSpikeIntervals)
-    resampRandSpikeIntervals(end+1) = resampRandSpikeIntervals(end);
+    resampRandSpikeIntervals(end+1:length(sig)) = resampRandSpikeIntervals(end);
 end
 
 %figure(1); clf;
