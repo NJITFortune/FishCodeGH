@@ -27,6 +27,7 @@ resampRandSpikeIntervals = resample(shuffledintervals, shuffledtimes, Fs); % Res
 [bb,aa] = butter(5, 5 / (Fs/2), 'low');
 resampSpikeIntervals = filtfilt(bb,aa,resampSpikeIntervals);
 
+% I AM A TERRIBLE PERSON (can't code my way out of a box)
 if length(resampRandSpikeIntervals) ~= length(sig)
     fprintf('oops I did it again \n');
     length(sig)
