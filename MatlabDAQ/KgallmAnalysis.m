@@ -118,12 +118,6 @@ while k <= length(iFiles)
 
         zAmp(j) = mean(amp);
 
-    % Fit SINEWAVE Method
-
-        [SineAmp(j), SineFreq(j)] = sinAnal(filtsig', Fs);
-
-
-
     end % By channel
 
 % Crappy coding... but why not!
@@ -132,8 +126,7 @@ while k <= length(iFiles)
     out(k).Ch1sumAmp = sumAmp(1);
     out(k).Ch1obwAmp = obwAmp(1);
     out(k).Ch1zAmp = zAmp(1);
-    out(k).Ch1sAmp = SineAmp(1);
-    out(k).Ch1sFreq = SineFreq(1);
+   
 
 
     out(k).Ch2peakAmp = peakAmp(2);
@@ -141,8 +134,7 @@ while k <= length(iFiles)
     out(k).Ch2sumAmp = sumAmp(2);
     out(k).Ch2obwAmp = obwAmp(2);
     out(k).Ch2zAmp = zAmp(2);
-    out(k).Ch2sAmp = SineAmp(2);
-    out(k).Ch2sFreq = SineFreq(2);
+    
    
         
     out(k).light = mean(data(:,lightchan));
@@ -165,34 +157,7 @@ while k <= length(iFiles)
     
 
 end
-
-% %% Create a separate vector for exact light time changes
-%  
-% %Get the name of the current folder
-% %[~,folder,~]=fileparts(pwd);
-% %extract the light cycle info and convert to number
-% %timstep = str2num(folder(6:7)); %length of light cycle in hours
-% timstep = 24;
-% cyc = floor([out(end).timcont]/(timstep*60*60)); %number of cycles in data
-% 
-% %user defined details by light trial
-% timerstart = 17; %hour of the first state change
-% %initstate = 0; %initial state
-% 
-% %timz = 1:1:cyc; %to avoid for-loop
-% 
-% ztzed = [0 6]; %y
-% 
-% 
-% %luz(timz) = (timerstart) + (timstep*(timz-1)); %without for-loop
-% 
-% for i = 1:cyc
-%     luz(i)=timstep*(i-1)+timerstart;
-%     x1(:,i) = [luz(i), luz(i)];
-%     
-%     out(i).luz = x1(:,i);
-% end    
-
+    
 
 %% Plot the data for fun
 
