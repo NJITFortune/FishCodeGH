@@ -125,7 +125,7 @@ linkaxes(xa, 'x'); xlim([0 24]);
 
 %% Light/Dark Plot 
 
-%moved to 
+%moved to k_lightdarkplotter
 
 % if ~isempty(out.info)
 % 
