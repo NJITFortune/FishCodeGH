@@ -85,7 +85,6 @@ while k <= length(iFiles)
     out(k).Ch1peakAmp = peakAmp(1);
     out(k).Ch1peakFreq = peakFreq(1);
     out(k).Ch1sumAmp = sumAmp(1);
-    out(k).Ch1obwAmp = obwAmp(1);
     out(k).Ch1zAmp = zAmp(1);
    
 
@@ -93,7 +92,6 @@ while k <= length(iFiles)
     out(k).Ch2peakAmp = peakAmp(2);
     out(k).Ch2peakFreq = peakFreq(2);
     out(k).Ch2sumAmp = sumAmp(2);
-    out(k).Ch2obwAmp = obwAmp(2);
     out(k).Ch2zAmp = zAmp(2);
     
    
