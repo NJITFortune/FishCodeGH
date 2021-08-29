@@ -22,6 +22,8 @@ function out  = KatieLabeler(in)
         numbercycles = floor(in(1).s(end).timcont/(out.ld*60*60)); %number of cycles in data
         timz = 1:1:numbercycles;
         out.luz(timz) = startim + (out.ld*(timz-1)); %without for-loop
+       
+            
     
     %find the time indicies for the first light cycle
         lidx = [in(1).s.timcont] < out.luz(2)*(60*60);  
