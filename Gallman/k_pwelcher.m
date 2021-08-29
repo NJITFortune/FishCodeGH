@@ -9,46 +9,65 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
 
 %ReFs = 60;  %resample once every minute
 
+% Define variables
 
-if nargin < 3
-    p = 0.9; %smoothing factor
-end
-
-% Prepare the data
-
-    tto{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
-    tto{2} = tto{1};
-
-    ttz{1} = tto{1}; % ttz is indices for zAmp
-    ttz{2} = tto{1};
-
-    ttsf{1} = tto{1}; % ttsf is indices for sumfftAmp
-    ttsf{2} = tto{1};
-    
-    
-% If we have removed outliers via KatieRemover, get the indices...    
-    if ~isempty(in.idx) 
-        tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
-        ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
-        ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+    if nargin < 3
+        p = 0.9; %smoothing factor
     end
+
+%Accounting for outlier exclusion
+   
+    % Prepare the data with outliers
+
+        tto{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
+        tto{2} = tto{1};
+
+        ttz{1} = tto{1}; % ttz is indices for zAmp
+        ttz{2} = tto{1};
+
+        ttsf{1} = tto{1}; % ttsf is indices for sumfftAmp
+        ttsf{2} = tto{1};
+
+
+    % Prepare the data without outliers
+    
+        % If we have removed outliers via KatieRemover, get the indices...    
+        if ~isempty(in.idx) 
+            tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
+            ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
+            ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+        end
 
   
+    
+    
     %hard coded because fuck thinking
     %OBW
+    
+    
     %Channel 1
    
-    if isempty(in.info.poweridx) 
-       obtt = 1:length([in.e(1).s(tto{1}).timcont]/(60*60));
-    else
-        obtt = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
-    end
     
+    %Sample dataset by poweridx 
+        %poweridx-window of good data to analyze [start end]  
+    
+        if isempty(in.info.poweridx) %if there are no values in poweridx []
+           obtt = 1:length([in.e(1).s(tto{1}).timcont]/(60*60)); %use the entire data set to perform the analysis
+        else %if there are values in poweridx [X1 X2]
+            %perform the analysis between the poweridx values
+            obtt = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
+        end
+    
+    %create data variables of poweridx 
     obwdata1 = [in.e(1).s(tto{1}(obtt)).obwAmp]; 
     obwtim1 = [in.e(1).s(tto{1}(obtt)).timcont]/(60*60);
     
+        %summarize data
+            %ppform of cubic smoothing spline
             spliney = csaps(obwtim1, obwdata1, p);
+            %fortune doesn't like linspace... I think he does it to confuse me
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
+            %evaluate the csplined values of y for the new equally spaced values of x
             o.obw(1).y = fnval(o.obw(1).x, spliney);
             
     %Channel 2
@@ -136,50 +155,37 @@ FreqRange = 0.002:0.0001:0.2;
 
 
 % %generate fft by channel
-%     %Channel 1
-%     [pxx1,pf1] = pwelch(o.z(1).y - mean(o.z(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
-%     %populate values 
-%     zwelch1 = [pxx1', pf1'];
-%     colNames = {'pxx','pfreq'};
-%     pw(1).zAmp = array2table(zwelch1,'VariableNames',colNames);
 %     
-%     %find peak at given frequency
-%     range = 0.002;
-%     freq(1) = 1/(2*hourperiod);
-%     pwr(1) = mean(pw(1).zAmp.pxx(pw(1).zAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(1).zAmp.pfreq < ((1/(2*hourperiod) + range/2))));
-% 
-%     %Channel 2
-%     [pxx2,pf2] = pwelch(o.z(2).y - mean(o.z(2).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
-%     %populate values 
-%     zwelch2 = [pxx2', pf2'];
-%     colNames = {'pxx','pfreq'};
-%     pw(2).zAmp = array2table(zwelch2,'VariableNames',colNames);
-%     
-%     %find peak at given frequency
-%     range = 0.002;
-%     freq(2) = 1/(2*hourperiod);
-%     pwr(2) = mean(pw(2).zAmp.pxx(pw(2).zAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(2).zAmp.pfreq < ((1/(2*hourperiod) + range/2))));
 
 
-for j = 2:-1:1 % Perform analyses on the two channels
-    
+    if channel == 1
+    %Channel 1
     %generate fft
-    [pxx,pf] = pwelch(o.z(j).y - mean(o.z(j).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+    [pxx,pf] = pwelch(o.z(1).y - mean(o.z(1).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
     %populate values 
     zwelch = [pxx', pf'];
     colNames = {'pxx','pfreq'};
-    pw(j).zAmp = array2table(zwelch,'VariableNames',colNames);
+    pw(1).zAmp = array2table(zwelch,'VariableNames',colNames);
     
     %find peak at given frequency
     range = 0.002;
-    xfreq(j) = 1/(2*hourperiod);
-    hourpeak(j) = mean(pw(j).zAmp.pxx(pw(j).zAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(j).zAmp.pfreq < ((1/(2*hourperiod) + range/2))));
-end
-
-    if channel == 1
+    xfreq(1) = 1/(2*hourperiod);
+    hourpeak(1) = mean(pw(1).zAmp.pxx(pw(1).zAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(1).zAmp.pfreq < ((1/(2*hourperiod) + range/2))));
         freq = xfreq(1);
         pwr = hourpeak(1);
-    else
+    else    
+    %Channel 2
+    %generate fft
+    [pxx,pf] = pwelch(o.z(2).y - mean(o.z(2).y), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+    %populate values 
+    zwelch = [pxx', pf'];
+    colNames = {'pxx','pfreq'};
+    pw(2).zAmp = array2table(zwelch,'VariableNames',colNames);
+    
+    %find peak at given frequency
+    range = 0.002;
+    xfreq(2) = 1/(2*hourperiod);
+    hourpeak(2) = mean(pw(2).zAmp.pxx(pw(2).zAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(2).zAmp.pfreq < ((1/(2*hourperiod) + range/2))));
         freq = xfreq(2);
         pwr = hourpeak(2);
     end

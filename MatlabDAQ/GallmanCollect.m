@@ -35,7 +35,7 @@ for j = 1:144
         [~, tmp] = cam.Memory.CopyToArray(MemId);
         vData = reshape(uint8(tmp), [Bits/8, Width, Height]);
         vData = vData(1:3, 1:Width, 1:Height);
-        vData = permute(vData, [3,2,1]);
+        vData = permute(vData, [j3,2,1]);
         % himg = imshow(vData); 
         imageFileName = sprintf('GallmanImage_%s.mat', datestr(now, 'mm-dd-yyyy_HH-MM-SS'));
         save(imageFileName, 'vData');        

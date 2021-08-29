@@ -3,11 +3,11 @@
 s = daq.createSession('ni');
 
 % Add and configure Analogue Channels
-    s.addAnalogInputChannel('Dev2', 0, 'voltage'); % EOD data
-    s.addAnalogInputChannel('Dev2', 1, 'voltage'); % EOD data
+    s.addAnalogInputChannel('Dev3', 0, 'voltage'); % EOD data
+    s.addAnalogInputChannel('Dev3', 1, 'voltage'); % EOD data
     %s.addAnalogInputChannel('Dev2', 2, 'voltage'); % EOD data
-    s.addAnalogInputChannel('Dev2', 3, 'voltage'); % Temp data
-    s.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
+    s.addAnalogInputChannel('Dev3', 3, 'voltage'); % Temp data
+    s.addAnalogInputChannel('Dev3', 4, 'voltage'); % Light data
 
     s.Rate = 40000; %changed from 20000
    
@@ -15,8 +15,9 @@ s = daq.createSession('ni');
     s.NotifyWhenDataAvailableExceeds = s.Rate * s.DurationInSeconds;
 
 % Add and configure Trigger    
-    addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
-    
+    addTriggerConnection(s,'External','Dev3/PFI0','StartTrigger');
+   
+  
     s.Connections.TriggerCondition = 'FallingEdge';
     s.ExternalTriggerTimeout = 144000;
     s.TriggersPerRun = 1;
@@ -32,9 +33,10 @@ numSamples = 0;
 
 while numSamples < 100000
        
-    fprintf('We are %i steps.\n', numSamples);
+    fprintf('We are at %i steps and waiting for next trigger.\n', numSamples);
         s.startForeground();
-    fprintf('We are are done waiting\n');
+        a = datestr(now, 'mm-dd-yyyy_HH-MM-SS');
+    fprintf('We are triggered and paused %s\n', a);
         pause(60) % After detection, pause for this long
         
         s.stop;

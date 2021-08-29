@@ -3,18 +3,19 @@
 s = daq.createSession('ni');
 
 % Add and configure Analogue Channels
-    s.addAnalogInputChannel('Dev2', 0, 'voltage'); % EOD data
-    s.addAnalogInputChannel('Dev2', 1, 'voltage'); % EOD data
+    s.addAnalogInputChannel('Dev1', 0, 'voltage'); % EOD data
+    s.addAnalogInputChannel('Dev1', 1, 'voltage'); % EOD data
 %    s.addAnalogInputChannel('Dev2', 2, 'voltage'); % EOD data
-    s.addAnalogInputChannel('Dev2', 3, 'voltage'); % Temp data
-    s.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
+    s.addAnalogInputChannel('Dev1', 3, 'voltage'); % Temp data
+    s.addAnalogInputChannel('Dev1', 4, 'voltage'); % Light data
 
     s.Rate = 40000; %changed from 20000
     s.DurationInSeconds = 1; % 2 seconds seemed like too long
     s.NotifyWhenDataAvailableExceeds = s.Rate * s.DurationInSeconds;
 
 % Add and configure Trigger    
-    addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
+    addTriggerConnection(s,'External','Dev1/PFI0','StartTrigger');
+ 
     
     s.Connections.TriggerCondition = 'FallingEdge';
     s.ExternalTriggerTimeout = 144000;

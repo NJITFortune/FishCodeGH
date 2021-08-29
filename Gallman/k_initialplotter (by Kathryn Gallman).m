@@ -34,9 +34,9 @@ ax(2) = subplot(512); hold on; title('zAmp - green = social');
     yyaxis right; plot([out.e(2).s(ttz{2}).timcont]/(60*60), [out.e(2).s(ttz{2}).zAmp], '.');
     yyaxis left; plot([out.e(1).s(ttz{1}).timcont]/(60*60), [out.e(1).s(ttz{1}).zAmp], '.');
 
-ax(1) = subplot(513); hold on; title('obwAmp');
-    yyaxis right; plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
-    yyaxis left; plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
+xa(1) = subplot(513); hold on; title('obwAmp');
+    yyaxis right; plot([out.e(2).s(tto{2}).timcont]/(60*60*24), [out.e(2).s(tto{2}).obwAmp], '.');
+    yyaxis left; plot([out.e(1).s(tto{1}).timcont]/(60*60*24), [out.e(1).s(tto{1}).obwAmp], '.');
 
 ax(3) = subplot(514); hold on; title('frequency (black) and temperature (red)');   
         yyaxis right; plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.fftFreq], '.k', 'Markersize', 8);
@@ -51,19 +51,23 @@ ax(4) = subplot(515); hold on; title('light transitions');
         
 % Add feedingtimes, if we have them... 
 
-    if ~isempty(out.info.feedingtimes)
-        subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
-    end
+     if ~isempty(out.info.feedingtimes)
+        subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
+        % subplot(515); plot([abs(out.info.luz)' abs(out.info.luz)'], [0 6], 'm-', 'LineWidth', 2, 'MarkerSize', 10);
+                    drawnow;
+     end
      
 % Add social times, if we have them...    
     if ~isempty(out.info.socialtimes)   
-        subplot(512); plot([abs(out.info.socialtimes)' abs(out.info.socialtimes)']', [0 max([out.e(1).s.zAmp])], 'g-', 'LineWidth', 2, 'MarkerSize', 10);
+    subplot(512); plot([abs(out.info.socialtimes)' abs(out.info.socialtimes)']', [0 max([out.e(1).s.zAmp])], 'g-', 'LineWidth', 2, 'MarkerSize', 10);
     end  
-
+        
     
 % Add light transitions times to check luz
     if  ~isempty(out.info.luz)
-        
+        out.info.luz
+        %just luz
+            %subplot(515); plot([abs(out.info.luz)' abs(out.info.luz)']', [0 6], 'g-', 'LineWidth', 2, 'MarkerSize', 10);
         %luz by transition type
             %separate by transition type
             lighton = out.info.luz(out.info.luz > 0);
@@ -73,10 +77,11 @@ ax(4) = subplot(515); hold on; title('light transitions');
             subplot(515); hold on;
             plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
             plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
+           
     end    
 
 linkaxes(ax, 'x'); 
-
+xa.XLim = ax(1).XLim/24;
 
                     drawnow;
 
@@ -125,61 +130,59 @@ linkaxes(xa, 'x'); xlim([0 24]);
 
 %% Light/Dark Plot 
 
-%moved to k_lightdarkplotter
+if ~isempty(out.info)
 
-% if ~isempty(out.info)
-% 
-% figure(3); clf; title('Light to dark');hold on;
-%     set(gcf, 'Position', [400 100 2*560 2*420]);
-% figure(4); clf; title('Dark to light'); hold on;
-%     set(gcf, 'Position', [500 100 2*560 2*420]);
-% 
-%     lighttimes = abs(out.info.luz);
-% 
-%      for j=1:length(lighttimes)-2
-% 
-%         if out.info.luz(j) > 0  % Light side
-% 
-%                 if ~isempty(find([out.e(1).s(tto{1}).timcont]/(60*60) > lighttimes(j) & [out.e(1).s(tto{1}).timcont]/(60*60) <= lighttimes(j+2), 1))            
-%                     figure(3); 
-%                     subplot(211); hold on; title('OBW');   % Light to dark plot  OBW     
-%                     ott = find([out.e(1).s(tto{1}).timcont]/(60*60) > lighttimes(j) & [out.e(1).s(tto{1}).timcont]/(60*60) <= lighttimes(j+2));
-%                     plot(([out.e(1).s(tto{1}(ott)).timcont]/(60*60)) - lighttimes(j), [out.e(1).s(tto{1}(ott)).obwAmp] - mean([out.e(1).s(tto{1}(ott)).obwAmp]), 'o', 'MarkerSize', 2);
-%                     upperlim = max([out.e(1).s(tto{1}(ott)).obwAmp] - mean([out.e(1).s(tto{1}(ott)).obwAmp]));
-%                     plot([[out.info.ld] [out.info.ld]], [-upperlim upperlim], 'k-', 'Linewidth', 2);  
-%                     
-%                     subplot(212); hold on; title('zAmp');     % Light to dark plot zAmp     
-%                     ztt = find([out.e(1).s(ttz{1}).timcont]/(60*60) > lighttimes(j) & [out.e(1).s(ttz{1}).timcont]/(60*60) <= lighttimes(j+2));
-%                     plot(([out.e(1).s(ttz{1}(ztt)).timcont]/(60*60)) - lighttimes(j), [out.e(1).s(ttz{1}(ztt)).zAmp] - mean([out.e(1).s(ttz{1}(ztt)).zAmp]), 'o', 'MarkerSize', 2); 
-%                     upperlim = max([out.e(1).s(ttz{1}(ztt)).zAmp] - mean([out.e(1).s(ttz{1}(ztt)).zAmp]));
-%                     plot([[out.info.ld] [out.info.ld]], [-upperlim upperlim], 'k-', 'Linewidth', 2); 
-%                     drawnow;
-%                 end
-%         
-%         else % Dark side
-%             
-%             if ~isempty(find([out.e(2).s(tto{2}).timcont]/(60*60) > lighttimes(j) & [out.e(2).s(tto{2}).timcont]/(60*60) <= lighttimes(j+2), 1))            
-%                     figure(4); 
-%                     subplot(211); hold on; title('OBW');     % Dark to light plot  OBW      
-%                     ott = find([out.e(2).s(tto{2}).timcont]/(60*60) > lighttimes(j) & [out.e(2).s(tto{2}).timcont]/(60*60) <= lighttimes(j+2));
-%                     plot(([out.e(2).s(tto{2}(ott)).timcont]/(60*60)) - lighttimes(j), [out.e(2).s(tto{2}(ott)).obwAmp] - mean([out.e(2).s(tto{2}(ott)).obwAmp]), 'o', 'MarkerSize', 2); 
-%                     %line at hour
-%                     upperlim = max([out.e(2).s(tto{2}(ott)).obwAmp] - mean([out.e(2).s(tto{2}(ott)).obwAmp]));
-%                     plot([[out.info.ld] [out.info.ld]], [-upperlim upperlim], 'k-', 'Linewidth', 2);  
-%                     
-%                     
-%                     subplot(212); hold on;  title('zAmp');     % Dark to light plot  zAmp      
-%                     ztt = find([out.e(2).s(ttz{2}).timcont]/(60*60) > lighttimes(j) & [out.e(2).s(ttz{2}).timcont]/(60*60) <= lighttimes(j+2));
-%                     plot(([out.e(2).s(ttz{2}(ztt)).timcont]/(60*60)) - lighttimes(j), [out.e(2).s(ttz{2}(ztt)).zAmp] - mean([out.e(2).s(ttz{2}(ztt)).zAmp]), 'o', 'MarkerSize', 2); 
-%                    
-%                     upperlim = max([out.e(2).s(ttz{2}(ztt)).zAmp] - mean([out.e(2).s(ttz{2}(ztt)).zAmp]));
-%                     plot([[out.info.ld] [out.info.ld]], [-upperlim upperlim], 'k-', 'Linewidth', 2); 
-%                     drawnow;
-%             end
-%             
-%         end         
-%          
-%      end
-%      
-% end
-%             
+figure(3); clf; title('Light to dark');hold on;
+    set(gcf, 'Position', [400 100 2*560 2*420]);
+figure(4); clf; title('Dark to light'); hold on;
+    set(gcf, 'Position', [500 100 2*560 2*420]);
+
+    lighttimes = abs(out.info.luz);
+
+     for j=1:length(lighttimes)-2
+
+        if out.info.luz(j) > 0  % Light side
+
+                if ~isempty(find([out.e(1).s(tto{1}).timcont]/(60*60) > lighttimes(j) & [out.e(1).s(tto{1}).timcont]/(60*60) <= lighttimes(j+2), 1))            
+                    figure(3); 
+                    subplot(211); hold on; title('OBW');   % Light to dark plot  OBW     
+                    ott = find([out.e(1).s(tto{1}).timcont]/(60*60) > lighttimes(j) & [out.e(1).s(tto{1}).timcont]/(60*60) <= lighttimes(j+2));
+                    plot(([out.e(1).s(tto{1}(ott)).timcont]/(60*60)) - lighttimes(j), [out.e(1).s(tto{1}(ott)).obwAmp] - mean([out.e(1).s(tto{1}(ott)).obwAmp]), 'o', 'MarkerSize', 2);
+                    upperlim = max([out.e(1).s(tto{1}(ott)).obwAmp] - mean([out.e(1).s(tto{1}(ott)).obwAmp]));
+                    plot([[out.info.ld] [out.info.ld]], [-upperlim upperlim], 'k-', 'Linewidth', 2);  
+                    
+                    subplot(212); hold on; title('zAmp');     % Light to dark plot zAmp     
+                    ztt = find([out.e(1).s(ttz{1}).timcont]/(60*60) > lighttimes(j) & [out.e(1).s(ttz{1}).timcont]/(60*60) <= lighttimes(j+2));
+                    plot(([out.e(1).s(ttz{1}(ztt)).timcont]/(60*60)) - lighttimes(j), [out.e(1).s(ttz{1}(ztt)).zAmp] - mean([out.e(1).s(ttz{1}(ztt)).zAmp]), 'o', 'MarkerSize', 2); 
+                    upperlim = max([out.e(1).s(ttz{1}(ztt)).zAmp] - mean([out.e(1).s(ttz{1}(ztt)).zAmp]));
+                    plot([[out.info.ld] [out.info.ld]], [-upperlim upperlim], 'k-', 'Linewidth', 2); 
+                    drawnow;
+                end
+        
+        else % Dark side
+            
+            if ~isempty(find([out.e(2).s(tto{2}).timcont]/(60*60) > lighttimes(j) & [out.e(2).s(tto{2}).timcont]/(60*60) <= lighttimes(j+2), 1))            
+                    figure(4); 
+                    subplot(211); hold on; title('OBW');     % Dark to light plot  OBW      
+                    ott = find([out.e(2).s(tto{2}).timcont]/(60*60) > lighttimes(j) & [out.e(2).s(tto{2}).timcont]/(60*60) <= lighttimes(j+2));
+                    plot(([out.e(2).s(tto{2}(ott)).timcont]/(60*60)) - lighttimes(j), [out.e(2).s(tto{2}(ott)).obwAmp] - mean([out.e(2).s(tto{2}(ott)).obwAmp]), 'o', 'MarkerSize', 2); 
+                    %line at hour
+                    upperlim = max([out.e(2).s(tto{2}(ott)).obwAmp] - mean([out.e(2).s(tto{2}(ott)).obwAmp]));
+                    plot([[out.info.ld] [out.info.ld]], [-upperlim upperlim], 'k-', 'Linewidth', 2);  
+                    
+                    
+                    subplot(212); hold on;  title('zAmp');     % Dark to light plot  zAmp      
+                    ztt = find([out.e(2).s(ttz{2}).timcont]/(60*60) > lighttimes(j) & [out.e(2).s(ttz{2}).timcont]/(60*60) <= lighttimes(j+2));
+                    plot(([out.e(2).s(ttz{2}(ztt)).timcont]/(60*60)) - lighttimes(j), [out.e(2).s(ttz{2}(ztt)).zAmp] - mean([out.e(2).s(ttz{2}(ztt)).zAmp]), 'o', 'MarkerSize', 2); 
+                   
+                    upperlim = max([out.e(2).s(ttz{2}(ztt)).zAmp] - mean([out.e(2).s(ttz{2}(ztt)).zAmp]));
+                    plot([[out.info.ld] [out.info.ld]], [-upperlim upperlim], 'k-', 'Linewidth', 2); 
+                    drawnow;
+            end
+            
+        end         
+         
+     end
+     
+end
+            
