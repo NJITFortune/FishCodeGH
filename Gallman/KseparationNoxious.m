@@ -197,7 +197,11 @@ end
 
 for j = 1:length(xlines)-1
     
-    xlines(j) 
+    xtim = xlines(j) >= out.timcont & out.timcont > xlines(j+1);
+    
+    
+    
+    
     
 end    
 
