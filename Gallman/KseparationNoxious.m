@@ -199,10 +199,12 @@ m = input('Are you happy with these lines?, Y/N [Y]:','s');
     end
 end
 
+%%
+
 
 for j = 1:length(xlines)-1
     
-    xtim = xlines(j) >= out.timcont & out.timcont > xlines(j+1);
+    xtim = find(xlines(j) < out.timcont && out.timcont <= xlines(j+1));
     
     High freq fish
     hifish1 = [out(xtim).e1hiamp] > [out(xtim).e2hiamp];
