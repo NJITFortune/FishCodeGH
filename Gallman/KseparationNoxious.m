@@ -177,6 +177,8 @@ linkaxes(axs, 'x');
 
 %% set boundaries
 
+xlines = ginput(100); %clicking enter ends after the number of clicks you want
+plot
 
 
 
