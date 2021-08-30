@@ -194,7 +194,7 @@ fprintf("Click a region where one fish one fish.\n");
            lofish = 2;
            LOratio = mean([out(floor(xx(1)):ceil(xx(2))).e1loamp] ./ [out(floor(xx(1)):ceil(xx(2))).e2loamp]);
         else
-           loish = 1;
+           lofish = 1;
            LOratio = mean([out(floor(xx(1)):ceil(xx(2))).e2loamp] ./ [out(floor(xx(1)):ceil(xx(2))).e1loamp]);
         end
 
