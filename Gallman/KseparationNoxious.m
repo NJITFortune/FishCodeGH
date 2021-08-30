@@ -188,14 +188,18 @@ figure(25); hold on;
         plot([xlines, xlines]', [0, max([out.e1loamp])], 'k-')
 
 %%your code here
-m = input('Are you happy with these lines?, Yes/No [Y]:','s')
-    if m=='Yes'
+m = input('Are you happy with these lines?, Y/N [Y]:','s');
+    if m == 'Y'
        break
     end
 end
 
 
-
+for j = 1:length(xlines)-1
+    
+    xlines(j) 
+    
+end    
 
  %% extract amplitude data for each tube
 % 
