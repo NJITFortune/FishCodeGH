@@ -172,7 +172,8 @@ figure(25); clf; %by tube - color is always the same fish
         
         hold off
         legend('High frequency fish', 'Low frequency fish');
-        
+  
+linkaxes(axs, 'x');       
 
 %% extract amplitude data for each tube
 
