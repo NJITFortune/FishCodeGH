@@ -184,7 +184,7 @@ xlines = ginput(100); %clicking enter ends after the number of clicks you want
  
 figure(25); hold on;
     axs(1) = subplot(211); hold on;
-        plot([xlines, xlines], [0, max([out.e1loamp])], 'k-'); 
+        plot(xlines, [0, max([out.e1loamp])], 'k-'); 
     
 
 
