@@ -165,10 +165,13 @@ figure(4);clf;hold on;
 %         plot([out.e1loamp], 'b'); plot([out.e2loamp], 'r');
         
 figure(25); clf; %by tube - color is always the same fish
-    subplot(211); hold on; %fish one - higher freq
+    axs(1) = subplot(211); hold on; %fish one - higher freq
         plot([out.e1hiamp], 'b'); plot([out.e1loamp], 'r');
-    subplot(212); hold on; %fish two - lower freq
-        plot([out.e2hiamp], 'b'); plot([out.e2loamp], 'r');        
+    axs(2)= subplot(212); hold on; %fish two - lower freq
+        plot([out.e2hiamp], 'b'); plot([out.e2loamp], 'r');   
+        
+        hold off
+        legend('High frequency fish', 'Low frequency fish');
         
 
 %% extract amplitude data for each tube
