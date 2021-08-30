@@ -184,7 +184,7 @@ linkaxes(axs, 'x');
  
 figure(25); hold on;
     axs(1) = subplot(211); hold on;
-        plot([xlines', xlines'], [0, max([out.e1loamp])], 'k-'); 
+        plot([xlines', xlines']', [0, max([out.e1loamp])], 'k-'); 
     
 
 
