@@ -183,7 +183,8 @@ xlines = ginput(100); %clicking enter ends after the number of clicks you want
  %plot boundaries to check
  
 figure(25); hold on;
-    axs(1) = subplot(211);
+    axs(1) = subplot(211); hold on;
+        plot([xlines, xlines], [o max( 
     
 
 
