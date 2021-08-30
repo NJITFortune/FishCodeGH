@@ -183,21 +183,21 @@ fprintf("Click a region where one fish one fish.\n");
     xxx = floor(xx(1)):ceil(xx(2));
     
     % Which tube is the high fish occupying
-        if mean([out(xxx).e2hiamp]) > mean([out(floor(xx(1)):ceil(xx(2))).e1hiamp])
+        if mean([out(xxx).e2hiamp]) > mean([out(xxx).e1hiamp])
            hifish = 2;
-           HIratio = mean([out(floor(xx(1)):ceil(xx(2))).e1hiamp] ./ [out(floor(xx(1)):ceil(xx(2))).e2hiamp]);
+           HIratio = mean([out(xxx).e1hiamp] ./ [out(xxx).e2hiamp]);
         else
            hifish = 1;
-           HIratio = mean([out(floor(xx(1)):ceil(xx(2))).e2hiamp] ./ [out(floor(xx(1)):ceil(xx(2))).e1hiamp]);
+           HIratio = mean([out(xxx).e2hiamp] ./ [out(xxx).e1hiamp]);
         end
 
     % Which tube is the low fish occupying
-        if mean([out(floor(xx(1)):ceil(xx(2))).e2loamp]) > mean([out(floor(xx(1)):ceil(xx(2))).e1loamp])
+        if mean([out(xxx).e2loamp]) > mean([out(xxx).e1loamp])
            lofish = 2;
-           LOratio = mean([out(floor(xx(1)):ceil(xx(2))).e1loamp] ./ [out(floor(xx(1)):ceil(xx(2))).e2loamp]);
+           LOratio = mean([out(xxx).e1loamp] ./ [out(xxx).e2loamp]);
         else
            lofish = 1;
-           LOratio = mean([out(floor(xx(1)):ceil(xx(2))).e2loamp] ./ [out(floor(xx(1)):ceil(xx(2))).e1loamp]);
+           LOratio = mean([out(xxx).e2loamp] ./ [out(xxx).e1loamp]);
         end
 
 %% set boundaries
