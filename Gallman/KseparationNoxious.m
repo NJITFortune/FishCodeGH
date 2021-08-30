@@ -188,9 +188,9 @@ figure(25); hold on;
         plot([xlines, xlines]', [0, max([out.e1loamp])], 'k-')
 
 %%your code here
-m=input('Do you want to continue, Y/N [Y]:','s')
-    if m=='N'
-    break
+m = input('Are you happy with these lines?, Yes/No [Y]:','s')
+    if m=='Yes'
+       break
     end
 end
 
