@@ -2,7 +2,7 @@
 %% Prep
     Fs = 40000; %sample rate
     freqs = [350 550]; %freq range of typical eigen EOD
-    userfilespec = 'Eigen12LDB-07-30*'; %file names
+    userfilespec = 'Eigen*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
     %day count starts at 0
@@ -183,9 +183,14 @@ while(1)
 
  %plot boundaries to check
  
-figure(25); hold on;
-    axs(1) = subplot(211); hold on;
-        plot([xlines, xlines]', [0, max([out.e1loamp])], 'k-')
+ figure(25); clf; %by tube - color is always the same fish
+    axs(1) = subplot(211); title('Tube 1'); hold on; %fish one - higher freq
+        plot([out.e1hiamp], 'b'); plot([out.e1loamp], 'r');
+        plot([xlines, xlines]', [0, max([out.e1loamp])], 'k-');
+    axs(2)= subplot(212); title('Tube 2'); hold on; %fish two - lower freq
+        plot([out.e2hiamp], 'b'); plot([out.e2loamp], 'r');   
+        plot([xlines, xlines]', [0, max([out.e2loamp])], 'k-');
+
 
 %%your code here
 m = input('Are you happy with these lines?, Y/N [Y]:','s');
@@ -226,14 +231,17 @@ for j = 1:length(xlines)-1
     length(lofish2)
     
     if length(lofish1) > length(lofish2)
+        lofish = lofish1;
         e1fishamp = lofish1;
     else
         e2fishamp = lofish2;
+        lofish = lofish2;
     end
     
-    
-    
 end    
+
+figure(26); clf; hold on;
+
 
  %% extract amplitude data for each tube
 % 
