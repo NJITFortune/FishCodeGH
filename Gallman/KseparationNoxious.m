@@ -176,7 +176,8 @@ figure(25); clf; %by tube - color is always the same fish
 linkaxes(axs, 'x');      
 
 %% set boundaries
-
+while(1)
+    
 %get boundaries by clicking on graph?
 [xlines, ~] = ginput(100); %clicking enter ends after the number of clicks you want
 
@@ -184,12 +185,14 @@ linkaxes(axs, 'x');
  
 figure(25); hold on;
     axs(1) = subplot(211); hold on;
-        plot([xlines, xlines]', [0, max([out.e1loamp])], 'k-'); 
+        plot([xlines, xlines]', [0, max([out.e1loamp])], 'k-')
 
-        
-        
-    
-
+%%your code here
+m=input('Do you want to continue, Y/N [Y]:','s')
+    if m=='N'
+    break
+    end
+end
 
 
 
