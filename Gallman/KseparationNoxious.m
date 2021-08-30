@@ -177,7 +177,8 @@ linkaxes(axs, 'x');
 
 %% Amplitude ratio
 
-
+fprintf("Click a region where one fish one fish.\n");
+    [xx, ~] = ginput(2);
 
 
 
