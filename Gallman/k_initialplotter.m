@@ -52,7 +52,7 @@ ax(4) = subplot(515); hold on; title('light transitions');
 % Add feedingtimes, if we have them... 
 
     if ~isempty(out.info.feedingtimes)
-        subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
+       ax(1) = subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
     end
      
 % Add social times, if we have them...    
@@ -70,7 +70,7 @@ ax(4) = subplot(515); hold on; title('light transitions');
             darkon = out.info.luz(out.info.luz < 0);
             
             %plot
-            ax(1) = subplot(515); hold on;
+            ax(4) = subplot(515); hold on;
             plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
             plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
     end    
