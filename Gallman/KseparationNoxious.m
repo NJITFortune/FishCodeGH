@@ -180,8 +180,10 @@ linkaxes(axs, 'x');
 fprintf("Click a region where one fish one fish.\n");
     [xx, ~] = ginput(2);
 
+    xxx = floor(xx(1)):ceil(xx(2));
+    
     % Which tube is the high fish occupying
-        if mean([out(floor(xx(1)):ceil(xx(2))).e2hiamp]) > mean([out(floor(xx(1)):ceil(xx(2))).e1hiamp])
+        if mean([out(xxx).e2hiamp]) > mean([out(floor(xx(1)):ceil(xx(2))).e1hiamp])
            hifish = 2;
            HIratio = mean([out(floor(xx(1)):ceil(xx(2))).e1hiamp] ./ [out(floor(xx(1)):ceil(xx(2))).e2hiamp]);
         else
