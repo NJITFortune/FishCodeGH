@@ -175,6 +175,14 @@ figure(25); clf; %by tube - color is always the same fish
   
 linkaxes(axs, 'x');      
 
+%% Amplitude ratio
+
+
+
+
+
+
+
 %% set boundaries
 while(1)
     
