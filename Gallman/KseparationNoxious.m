@@ -181,10 +181,22 @@ fprintf("Click a region where one fish one fish.\n");
     [xx, ~] = ginput(2);
 
     % Which tube is the high fish occupying
-        
+        if mean([out(floor(xx(1)):ceil(xx(2))).e2hiamp]) > mean([out(floor(xx(1)):ceil(xx(2))).e1hiamp])
+           hifish = 2;
+           HIratio = mean([out(floor(xx(1)):ceil(xx(2))).e1hiamp] ./ [out(floor(xx(1)):ceil(xx(2))).e2hiamp]);
+        else
+           hifish = 1;
+           HIratio = mean([out(floor(xx(1)):ceil(xx(2))).e2hiamp] ./ [out(floor(xx(1)):ceil(xx(2))).e1hiamp]);
+        end
 
-
-
+    % Which tube is the low fish occupying
+        if mean([out(floor(xx(1)):ceil(xx(2))).e2loamp]) > mean([out(floor(xx(1)):ceil(xx(2))).e1loamp])
+           lofish = 2;
+           LOratio = mean([out(floor(xx(1)):ceil(xx(2))).e1loamp] ./ [out(floor(xx(1)):ceil(xx(2))).e2loamp]);
+        else
+           loish = 1;
+           LOratio = mean([out(floor(xx(1)):ceil(xx(2))).e2loamp] ./ [out(floor(xx(1)):ceil(xx(2))).e1loamp]);
+        end
 
 %% set boundaries
 while(1)
