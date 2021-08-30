@@ -177,8 +177,9 @@ linkaxes(axs, 'x');
 
 %% set boundaries
 
-%
-
+%get boundaries by clicking on graph?
+xlines = ginput(100); %clicking enter ends after the number of clicks you want
+ %
 
 
 
