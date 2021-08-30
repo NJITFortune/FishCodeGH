@@ -199,7 +199,37 @@ for j = 1:length(xlines)-1
     
     xtim = xlines(j) >= out.timcont & out.timcont > xlines(j+1);
     
+    High freq fish
+    hifish1 = [out(xtim).e1hiamp] > [out(xtim).e2hiamp];
+    hifish1 = [out(hifish1).e1hiamp];
+    hifish2 = [out(xtim).e2hiamp] > [out(xtim).e1hiamp];
+    hifish2 = [out(hifish2).e2hiamp];
     
+    length(hifish1)
+    length(hifish2)
+    
+    if length(hifish1) > length(hifish2)
+        hifish = hifish1;
+        e1fishamp = hifish1;
+    else
+        e2fishamp = hifish2;
+        hifish = hifish2;
+    end
+    
+%Low freq fish
+    lofish1 = [out(xtim).e1loamp] > [out(xtim).e2loamp];
+    lofish1 = [out(lofish1).e1loamp];
+    lofish2 = [out(xtim).e2loamp] > [out(xtim).e1loamp];
+    lofish2 = [out(lofish2).e2loamp];
+   
+    length(lofish1)
+    length(lofish2)
+    
+    if length(lofish1) > length(lofish2)
+        e1fishamp = lofish1;
+    else
+        e2fishamp = lofish2;
+    end
     
     
     
