@@ -204,9 +204,9 @@ end
 
 for j = 1:length(xlines)-1
     
-    xtim = out.timcont >= xlines(j) & out.timcont < xlines(j+1);
+    xtim = [out.timcont] >= xlines(j) & [out.timcont] < xlines(j+1);
     
-    High freq fish
+%High freq fish
     hifish1 = [out(xtim).e1hiamp] > [out(xtim).e2hiamp];
     hifish1 = [out(hifish1).e1hiamp];
     hifish2 = [out(xtim).e2hiamp] > [out(xtim).e1hiamp];
