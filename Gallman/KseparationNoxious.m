@@ -170,7 +170,7 @@ figure(25); clf; %by tube - color is always the same fish
     axs(2)= subplot(212); title('Tube 2'); hold on; %fish two - lower freq
         plot([out.e2hiamp], 'b'); plot([out.e2loamp], 'r');   
         
-        hold off
+        
         legend('High frequency fish', 'Low frequency fish');
   
 linkaxes(axs, 'x');      
@@ -179,9 +179,12 @@ linkaxes(axs, 'x');
 
 %get boundaries by clicking on graph?
 xlines = ginput(100); %clicking enter ends after the number of clicks you want
- %
 
-
+ %plot boundaries to check
+ 
+figure(25); hold on;
+    axs(1) = subplot(211);
+    
 
 
 
