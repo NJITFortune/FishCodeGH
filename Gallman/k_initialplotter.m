@@ -70,7 +70,7 @@ ax(4) = subplot(515); hold on; title('light transitions');
             darkon = out.info.luz(out.info.luz < 0);
             
             %plot
-            subplot(515); hold on;
+            ax(1) = subplot(515); hold on;
             plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
             plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
     end    
