@@ -178,13 +178,13 @@ linkaxes(axs, 'x');
 %% set boundaries
 
 %get boundaries by clicking on graph?
-xlines = ginput(100); %clicking enter ends after the number of clicks you want
+[xlines, ~] = ginput(100); %clicking enter ends after the number of clicks you want
 
  %plot boundaries to check
  
 figure(25); hold on;
     axs(1) = subplot(211); hold on;
-        plot(xlines, [0, max([out.e1loamp])], 'k-'); 
+        plot([xlines, xlines], [0, max([out.e1loamp])], 'k-'); 
     
 
 
