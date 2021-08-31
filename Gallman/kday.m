@@ -45,7 +45,9 @@ for j = 1:length(lighttimeslong)-1
                lighttrim(j) = lighttimeslong(j);
             end
             
-             trimluz = lighttrim(j) ~= 0;     
+             if lighttrim(j) ~= 0  
+                trimluz = in.info.luz(j);   
+             end
         end 
 end
 
