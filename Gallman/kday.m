@@ -45,11 +45,14 @@ for j = 1:length(lighttimeslong)-1
                lighttrim(j) = lighttimeslong(j);
             end
             
-             if lighttrim(j) ~= 0  
+             if lighttrim(j) ~= 0 == 1
                 trimluz(j) = in.info.luz(j);   
              end
         end 
 end
+
+
+
 
 lighttimes = lighttrim(lighttrim > 0);
 
@@ -343,15 +346,15 @@ figure(104); clf; hold on;
     %siney = samp1*sin(2 * pi * pkfrq1 * (obwxx-obwxx(1)));
      
    
-for j = 1:length(day)-1
-    
-    if day(1).daysquare1(1) < 0 %if we start with dark
-        rect(j).pos = [day(j).darksqx(end) day(j).darksquare1(end) ld 2*day(j+1).lightsquare1(1)];
-    else %we start with light
-        rect(j).pos = [day(j+1).darksqx(end) day(j+1).darksquare1(end) ld 2*day(j).lightsquare1(1)];
-    end
-    
-end    
+% for j = 1:length(day)-1
+%     
+%     if day(1).daysquare1(1) < 0 %if we start with dark
+%         rect(j).pos = [day(j).darksqx(end) day(j).darksquare1(end) ld 2*day(j+1).lightsquare1(1)];
+%     else %we start with light
+%         rect(j).pos = [day(j+1).darksqx(end) day(j+1).darksquare1(end) ld 2*day(j).lightsquare1(1)];
+%     end
+%     
+% end    
     
     
     
