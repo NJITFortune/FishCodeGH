@@ -361,7 +361,7 @@ axs(1) = subplot(211); hold on; title('Channel 1');
     %plot on top of detrended spline
   % rectangle('Position', rect.pos, 'FaceColor', 'y');
   % plot([day(2).darksqx], [day(2).darksquare1], 'yo', 'LineWidth', 3);
-   rectangle('Position', [day(2).darksqx(end) day(2).darksquare1(end) ld 2*day(1).lightsquare1(1)], 'FaceColor', 'y');
+%   rectangle('Position', [day(2).darksqx(end) day(2).darksquare1(end) ld 2*day(1).lightsquare1(1)], 'FaceColor', 'y');
    plot([day.obwdayx], [day.daysquare1], 'k-', 'LineWidth', 2);
    %plot(obwxx1, siney*0.9, '-', 'LineWidth', 3);
    plot(obwxx, lighty * max(abs(dtobwyy1)), 'k-', 'MarkerSize', 4);
