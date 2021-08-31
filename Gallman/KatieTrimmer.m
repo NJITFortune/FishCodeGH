@@ -28,9 +28,9 @@ figure (1); hold on; title('sumfftAmp');
     [x, ~] = ginput(2);
     
     
-    tt = [in(1).s.timcont]/(60*60) > x(1) & [in(1).s.timcont]/(60*60) < x(2);
+    tt = [in(1).s.timcont]/(60*60) > x(1) && [in(1).s.timcont]/(60*60) < x(2);
             out(1).s = in(1).s(tt);
-    tt = [in(2).s.timcont]/(60*60) > x(1) & [in(2).s.timcont]/(60*60) < x(2);
+    tt = [in(2).s.timcont]/(60*60) > x(1) && [in(2).s.timcont]/(60*60) < x(2);
             out(2).s = in(2).s(tt);
             
 end            
