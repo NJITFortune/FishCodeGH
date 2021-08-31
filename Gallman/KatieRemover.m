@@ -9,13 +9,13 @@ figure(1); clf;
     histogram([in(k).s.obwAmp], 100); hold on;
     
     %Lower lim
-    fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
+    %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
     [cutofffreqL, ~]  = ginput(1);
     plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow; 
     
     %Upper lim
-    fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
+    %fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
     [cutofffreqH, ~]  = ginput(1);
     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow; 
@@ -29,13 +29,13 @@ figure(1); clf;
     histogram([in(k).s.zAmp], 100); hold on;
     
     %Lower lim
-    fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
+    %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
     [cutofffreqL, ~]  = ginput(1);
     plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow;   
     
     %Upper lim
-    fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
+    %fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
     [cutofffreqH, ~]  = ginput(1);
     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow; 
@@ -50,13 +50,13 @@ figure(1); clf;
     histogram([in(k).s.peakfftAmp], 100); hold on;
     
     %Lower lim
-    fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
+    %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
     [cutofffreqL, ~]  = ginput(1);
     plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow;    
     
     %Upper lim
-    fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
+    %fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
     [cutofffreqH, ~]  = ginput(1);
     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow; 
@@ -71,13 +71,13 @@ figure(1); clf;
     histogram([in(k).s.sumfftAmp], 100); hold on;
     
     %Lower lim
-    fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
+    %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
     [cutofffreqL, ~]  = ginput(1);
     plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow;    
     
      %Upper lim
-    fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
+    %fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
     [cutofffreqH, ~]  = ginput(1);
     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow; 
