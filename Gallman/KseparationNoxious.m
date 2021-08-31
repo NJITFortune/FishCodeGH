@@ -202,6 +202,9 @@ fprintf("Click a region where one fish one fish.\n");
            LOratio = mean([out(xxx).e2loamp] ./ [out(xxx).e1loamp]);
         end
 
+        %thresholding
+        
+        
 % %% set boundaries
 % while(1)
 %     
