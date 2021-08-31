@@ -419,7 +419,7 @@ figure(68); clf;
                    otx = find(obwxx >= lighttimes(j-1) & obwxx < lighttimes(j+1)); 
 
                    plot(obwxx(otx) - obwxx(otx(1)), dtobwyy2(otx));
-                   plot([[in.info.ld] [in.info.ld]], [-samp1 samp1], 'k-', 'Linewidth', 2); 
+                   plot([[in.info.ld] [in.info.ld]], [-samp2 samp2], 'k-', 'Linewidth', 2); 
 
                    avgresp2(j/2, :) = dtobwyy2(otx);
 
