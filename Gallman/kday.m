@@ -407,8 +407,11 @@ figure(68); clf;
         plot(obwxx(otx) - obwxx(otx(1)), mavgresp1, 'k', 'LineWidth', 3);
         plot([[in.info.ld] [in.info.ld]], [-samp1 samp1], 'k-', 'Linewidth', 2); 
 
-%channel 2 
-    subplot(221); hold on;
+
+        
+ figure(69); clf;       
+    %channel 2 
+    subplot(211); hold on;
  
      for j = 2:2:length(lighttimes)-1
 
@@ -423,7 +426,7 @@ figure(68); clf;
      end
  
     
-     subplot(222); hold on;
+     subplot(212); hold on;
         tt = obwxx(otx) - obwxx(otx(1));
         tt = [tt tt(end:-1:1)];
         mavgresp2 = mean(avgresp2);
