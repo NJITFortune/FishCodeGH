@@ -5,7 +5,7 @@ close all;
 %% Preparations
 
 % All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
-    tto{1} = 1:length([out.e(1).s.timcont]); % tto is indices for obwAmp
+    tto{1} = 1:length([out.e(2).s.timcont]); % tto is indices for obwAmp
     tto{2} = tto{1};
 
     ttz{1} = tto{1}; % ttz is indices for zAmp
