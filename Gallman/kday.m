@@ -43,11 +43,10 @@ for j = 1:length(lighttimeslong)-1
             
             if all(lighttim(1) >= lighttimeslong(j) & lighttim(1) < lighttimeslong(j) + ld/2)        
                lighttrim(j) = lighttimeslong(j);
+               trimluz(j) = in.info.luz(j);  
             end
             
-             while lighttrim(j) ~= 0 == 1
-                trimluz(j) = in.info.luz(j);   
-             end
+             
         end 
 end
 
