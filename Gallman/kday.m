@@ -45,14 +45,7 @@ for j = 1:length(lighttimeslong)-1
                lighttrim(j) = lighttimeslong(j);
             end
             
-            
-            
-%             if length(ll(j+1).ott) > 2 * length(ll(j).ott)
-%                lighttrim(j) = 0;
-%             elseif length(ott) > 80
-%                lighttrim(j) = lighttimeslong(j);
-%             end
-%             
+             trimluz = lighttrim(j) ~= 0;     
         end 
 end
 
