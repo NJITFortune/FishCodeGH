@@ -50,8 +50,8 @@ for j = 1:length(lighttimeslong)-1
         end 
 end
 
-test = find(trimluz);
-
+nonzeroluz = find(trimluz);
+newluz = in.info.luz(nonzeroluz);
 
 lighttimes = lighttrim(lighttrim > 0);
 
