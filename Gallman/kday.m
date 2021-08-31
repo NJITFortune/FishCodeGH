@@ -50,7 +50,7 @@ for j = 1:length(lighttimeslong)-1
         end 
 end
 
-
+test = find(trimluz);
 
 
 lighttimes = lighttrim(lighttrim > 0);
