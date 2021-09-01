@@ -185,9 +185,11 @@ figure(25); clf; %by tube - color is always the same fish
     axs(3)= subplot(413); title('t2/t1'); hold on;
         plot([out.timcont], [out.e2loamp] ./ [out.e1loamp], 'mo')
         plot([out.timcont], [out.e2hiamp] ./ [out.e1hiamp], 'co')
+        plot([out(1).timcont out(end).timcont], [2.5 2.5], 'k')
     axs(4)= subplot(414); title('t1/t2'); hold on;
         plot([out.timcont], [out.e1loamp] ./ [out.e2loamp], 'mo')
         plot([out.timcont], [out.e1hiamp] ./ [out.e2hiamp], 'co')
+        plot([out(1).timcont out(end).timcont], [2.5 2.5], 'k')
         
         
         legend('High frequency fish', 'Low frequency fish');
