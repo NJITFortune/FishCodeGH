@@ -2,7 +2,7 @@
 %% Prep
     Fs = 40000; %sample rate
     freqs = [350 550]; %freq range of typical eigen EOD
-    userfilespec = 'Eigen12LDB-07-22*'; %file names
+    userfilespec = 'Eigen12LDB*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
     %day count starts at 0
@@ -78,6 +78,17 @@ rango = abs(currhifreq - currlofreq)+5; % Freq range in Hz for change in fish fr
     tmp = fftmachine(data2, Fs);
         [out(1).e2hiamp, ~] = max(tmp.fftdata(tmp.fftfreq > currhifreq-rango & tmp.fftfreq < currhifreq+rango));
         [out(1).e2loamp, ~] = max(tmp.fftdata(tmp.fftfreq > currlofreq-rango & tmp.fftfreq < currlofreq+rango));
+        
+        
+%define time for j = 1
+ % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
+    hour = str2double(iFiles(1).name(numstart:numstart+1)); %numstart based on time stamp text location
+    minute = str2double(iFiles(1).name(numstart+3:numstart+4));
+    second = str2double(iFiles(1).name(numstart+6:numstart+7));
+    
+% There are 86400 seconds in a day.
+    out(1).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400);
+    out(1).tim24 = (hour*60*60) + (minute*60) + second;
 
 %% Loop through the rest of the datums
 
