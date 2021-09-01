@@ -191,7 +191,9 @@ figure(25); clf; %by tube - color is always the same fish
         plot([out.timcont], [out.e1hiamp] ./ [out.e2hiamp], 'co')
         plot([out(1).timcont out(end).timcont], [2.5 2.5], 'k')
         
-        
+intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5 & [out.e2hiamp] ./ [out.e1hiamp] < 2.5);
+        plot([out(intube1hi).timcont], [out(intube1hi).e1hiamp] ./ [out(intube1hi).e2hiamp], 'b.');
+    
         legend('High frequency fish', 'Low frequency fish');
   
 linkaxes(axs, 'x');      
