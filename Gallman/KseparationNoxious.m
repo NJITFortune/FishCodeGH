@@ -168,7 +168,7 @@ figure(4);clf;hold on;
         
 figure(25); clf; %by tube - color is always the same fish
     axs(1) = subplot(211); title('Tube 1'); hold on; %fish one - higher freq
-        plot([out.e1hiamp], 'b.', 'MarkerSize', 10); plot([out.e1loamp], 'r.', 'MarkerSize', 10);
+        plot(timcont, [out.e1hiamp], 'b.', 'MarkerSize', 10); plot([out.e1loamp], 'r.', 'MarkerSize', 10);
     axs(2)= subplot(212); title('Tube 2'); hold on; %fish two - lower freq
         plot([out.e2hiamp], 'b.', 'MarkerSize', 10); plot([out.e2loamp], 'r.', 'MarkerSize', 10);   
         
