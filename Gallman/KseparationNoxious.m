@@ -179,6 +179,28 @@ linkaxes(axs, 'x');
 
 %% Amplitude ratio
 
+% find "definitely in the tube" moments from the data
+
+% E1 threshold.
+fprintf("Click threshold in top panel (tube 1).\n");
+    [~, yy] = ginput(1);
+
+    hh1IDX = find([out.e1hiamp] > yy);
+    hl1IDX = find([out.e1loamp] > yy);
+    
+fprintf("Found %i HI fish and %i LO fish above threshold in tube 1.\n", length(hh1IDX), length(hl1IDX));
+
+% E2 threshold.
+fprintf("Click threshold in bottom panel (tube 2).\n");
+    [~, yy] = ginput(1);
+
+    hh2IDX = find([out.e2hiamp] > yy);
+    hl2IDX = find([out.e2loamp] > yy);
+    
+fprintf("Found %i HI fish and %i LO fish above threshold in tube 1.\n", length(hh2IDX), length(hl2IDX));
+
+
+
 fprintf("Click a region where one fish one fish.\n");
     [xx, ~] = ginput(2);
 
@@ -205,6 +227,9 @@ fprintf("Click a region where one fish one fish.\n");
         %thresholding
         
         
+        
+        
+%%        
 % %% set boundaries
 % while(1)
 %     
