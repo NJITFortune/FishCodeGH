@@ -208,8 +208,10 @@ fprintf("Click threshold in bottom panel (tube 2).\n");
     hh2IDX = find([out.e2hiamp] > yy);
     hl2IDX = find([out.e2loamp] > yy);
     
-fprintf("Found %i HI fish and %i LO fish above threshold in tube 1.\n", length(hh2IDX), length(hl2IDX));
+fprintf("Found %i HI fish and %i LO fish above threshold in tube 2.\n", length(hh2IDX), length(hl2IDX));
 
+%check to make sure data is from only one tube
+intersect(
 
 
 fprintf("Click a region where one fish one fish.\n");
