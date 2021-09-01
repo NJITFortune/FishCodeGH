@@ -178,10 +178,16 @@ figure(4);clf;hold on;
 %         plot([out.e1loamp], 'b'); plot([out.e2loamp], 'r');
 %%        
 figure(25); clf; %by tube - color is always the same fish
-    axs(1) = subplot(211); title('Tube 1'); hold on; %fish one - higher freq
+    axs(1) = subplot(411); title('Tube 1'); hold on; %fish one - higher freq
         plot([out.timcont], [out.e1hiamp], 'b.', 'MarkerSize', 10); plot([out.timcont], [out.e1loamp], 'r.', 'MarkerSize', 10);
-    axs(2)= subplot(212); title('Tube 2'); hold on; %fish two - lower freq
+    axs(2)= subplot(412); title('Tube 2'); hold on; %fish two - lower freq
         plot([out.timcont], [out.e2hiamp], 'b.', 'MarkerSize', 10); plot([out.timcont], [out.e2loamp], 'r.', 'MarkerSize', 10);   
+    axs(3)= subplot(413); title('t2/t1'); hold on;
+        plot([out.timcont], [out.e2loamp] ./ [out.e1loamp], 'mo')
+        plot([out.timcont], [out.e2hiamp] ./ [out.e1hiamp], 'co')
+    axs(4)= subplot(414); title('t1/t2'); hold on;
+        plot([out.timcont], [out.e1loamp] ./ [out.e2loamp], 'mo')
+        plot([out.timcont], [out.e1hiamp] ./ [out.e2hiamp], 'co')
         
         
         legend('High frequency fish', 'Low frequency fish');
