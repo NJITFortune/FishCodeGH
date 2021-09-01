@@ -211,7 +211,7 @@ fprintf("Click threshold in bottom panel (tube 2).\n");
 fprintf("Found %i HI fish and %i LO fish above threshold in tube 2.\n", length(hh2IDX), length(hl2IDX));
 
 %check to make sure data is from only one tube
-intersect(
+intersect(hh1IDX, hh2IDX
 
 
 fprintf("Click a region where one fish one fish.\n");
