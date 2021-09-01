@@ -193,7 +193,7 @@ linkaxes(axs, 'x');
 % find "definitely in the tube" moments from the data
 
 
-while(1)
+
 % E1 threshold.
 fprintf("Click threshold in top panel (tube 1).\n");
     [~, yy] = ginput(1);
@@ -216,11 +216,6 @@ fprintf("Found %i HI fish and %i LO fish above threshold in tube 2.\n", length(h
 hhshared = intersect(hh1IDX, hh2IDX);
 hlshared = intersect(hl1IDX, hl2IDX);
 
-
-    if hhshared ~= 0 || hlshared ~=0
-       break
-    end
-end
 
 fprintf("Click a region where one fish one fish.\n");
     [xx, ~] = ginput(2);
