@@ -176,7 +176,7 @@ figure(4);clf;hold on;
 %         plot([out.e1hiamp], 'b'); plot([out.e2hiamp], 'r');
 %     subplot(212); hold on; %fish two - lower freq
 %         plot([out.e1loamp], 'b'); plot([out.e2loamp], 'r');
-        
+%%        
 figure(25); clf; %by tube - color is always the same fish
     axs(1) = subplot(211); title('Tube 1'); hold on; %fish one - higher freq
         plot([out.timcont], [out.e1hiamp], 'b.', 'MarkerSize', 10); plot([out.timcont], [out.e1loamp], 'r.', 'MarkerSize', 10);
@@ -193,7 +193,7 @@ linkaxes(axs, 'x');
 % find "definitely in the tube" moments from the data
 
 
-
+while(1)
 % E1 threshold.
 fprintf("Click threshold in top panel (tube 1).\n");
     [~, yy] = ginput(1);
@@ -216,6 +216,11 @@ fprintf("Found %i HI fish and %i LO fish above threshold in tube 2.\n", length(h
 hhshared = intersect(hh1IDX, hh2IDX);
 hlshared = intersect(hl1IDX, hl2IDX);
 
+
+    if hhshared ~= 0 || hlshared ~=0
+       break
+    end
+end
 
 fprintf("Click a region where one fish one fish.\n");
     [xx, ~] = ginput(2);
