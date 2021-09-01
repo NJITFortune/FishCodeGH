@@ -186,13 +186,19 @@ figure(25); clf; %by tube - color is always the same fish
         plot([out.timcont], [out.e2loamp] ./ [out.e1loamp], 'mo')
         plot([out.timcont], [out.e2hiamp] ./ [out.e1hiamp], 'co')
         plot([out(1).timcont out(end).timcont], [2.5 2.5], 'k')
+        
+        intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
+        intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
+        plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp] ./ [out(intube2hi).e1hiamp], 'b.');
+        plot([out(intube2lo).timcont], [out(intube2lo).e2loamp] ./ [out(intube2lo).e1loamp], 'r.');
+
     axs(4)= subplot(414); title('t1/t2'); hold on;
         plot([out.timcont], [out.e1loamp] ./ [out.e2loamp], 'mo')
         plot([out.timcont], [out.e1hiamp] ./ [out.e2hiamp], 'co')
         plot([out(1).timcont out(end).timcont], [2.5 2.5], 'k')
         
-        intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5 & [out.e2hiamp] ./ [out.e1hiamp] < 2.5);
-        intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5 & [out.e2loamp] ./ [out.e1loamp] < 2.5);
+        intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
+        intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
         plot([out(intube1hi).timcont], [out(intube1hi).e1hiamp] ./ [out(intube1hi).e2hiamp], 'b.');
         plot([out(intube1lo).timcont], [out(intube1lo).e1loamp] ./ [out(intube1lo).e2loamp], 'r.');
     
