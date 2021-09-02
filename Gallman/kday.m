@@ -1,6 +1,6 @@
 
 
-clearvars -except kg & k 
+clearvars -except kg
 
 figure(101); clf; hold on;
 
