@@ -33,27 +33,27 @@ ReFs = 10;  %resample once every minute (Usually 60)
 %% trim luz to data
 lighttimeslong = abs(in.info.luz);
 
-for j = 1:length(lighttimeslong)-1
-        
-        %is there data between j and j+1?    
-        if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslong(j+1)),1))  
-            ott = find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslong(j+1)); 
-           lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
-           ld = [in.info.ld];
-            
-            if all(lighttim(1) >= lighttimeslong(j) & lighttim(1) < lighttimeslong(j) + ld/2)        
-               lighttrim(j) = lighttimeslong(j);
-               trimluz(j) = in.info.luz(j);  
-            end
-            
-             
-        end 
-end
-
-nonzeroluz = find(trimluz);
-newluz = in.info.luz(nonzeroluz);
-
-lighttimes = lighttrim(lighttrim > 0);
+% for j = 1:length(lighttimeslong)-1
+%         
+%         %is there data between j and j+1?    
+%         if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslong(j+1)),1))  
+%             ott = find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslong(j+1)); 
+%            lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
+%            ld = [in.info.ld];
+%             
+%             if all(lighttim(1) >= lighttimeslong(j) & lighttim(1) < lighttimeslong(j) + ld/2)        
+%                lighttrim(j) = lighttimeslong(j);
+%                trimluz(j) = in.info.luz(j);  
+%             end
+%             
+%              
+%         end 
+% end
+% 
+% nonzeroluz = find(trimluz);
+% newluz = in.info.luz(nonzeroluz);
+% 
+% lighttimes = lighttrim(lighttrim > 0);
 
 %% cspline by light epoch
 %if luz is +/- , take data from luz - in initial plotter
