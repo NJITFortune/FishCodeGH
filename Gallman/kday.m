@@ -183,11 +183,13 @@ figure(103); clf; hold on;
     plot(pf1, py1, '-', 'MarkerSize', 3);
     plot(pkfrq1, pkAmp1, '*', 'MarkerSize', 5);
     plot([1/(ld*2) 1/(ld*2)], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
+    plot([1/(12*2) 1/(12*2)], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
     
     subplot(212); hold on; title('Channel 2');
     plot(pf2, py1, '-', 'MarkerSize', 3);
     plot(pkfrq1, pkAmp1, '*', 'MarkerSize', 5);
     plot([1/(ld*2) 1/(ld*2)], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
+    plot([1/(12*2) 1/(12*2)], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
     
     %yaxis on log scale
      set(gca,'yscale', 'log');
