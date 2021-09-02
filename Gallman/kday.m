@@ -32,7 +32,7 @@ ReFs = 10;  %resample once every minute (Usually 60)
             end
 %% trim luz to data
 % lighttimeslong = abs(in.info.luz);
-
+lighttimes = abs(in.info.luz);
 % for j = 1:length(lighttimeslong)-1
 %         
 %         %is there data between j and j+1?    
