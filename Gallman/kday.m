@@ -9,7 +9,8 @@ p = 0.7;
 ReFs = 10;  %resample once every minute (Usually 60)
 % Usage: k_initialplotter(kg(#));
 
-
+%% Prep
+ld = [in.info.ld];
 
 %outliers
     % Prepare the data with outliers
@@ -32,14 +33,14 @@ ReFs = 10;  %resample once every minute (Usually 60)
             end
 %% trim luz to data
 % lighttimeslong = abs(in.info.luz);
-lighttimes = abs(in.info.luz);
+% 
 % for j = 1:length(lighttimeslong)-1
 %         
 %         %is there data between j and j+1?    
 %         if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslong(j+1)),1))  
 %             ott = find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslong(j+1)); 
 %            lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
-%            ld = [in.info.ld];
+%       
 %             
 %             if all(lighttim(1) >= lighttimeslong(j) & lighttim(1) < lighttimeslong(j) + ld/2)        
 %                lighttrim(j) = lighttimeslong(j);
@@ -54,6 +55,7 @@ lighttimes = abs(in.info.luz);
 % newluz = in.info.luz(nonzeroluz);
 % 
 % lighttimes = lighttrim(lighttrim > 0);
+lighttimes = abs(in.info.luz);
 
 %% cspline by light epoch
 %if luz is +/- , take data from luz - in initial plotter
