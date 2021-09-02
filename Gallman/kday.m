@@ -31,7 +31,7 @@ ReFs = 10;  %resample once every minute (Usually 60)
                 ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
             end
 %% trim luz to data
-lighttimeslong = abs(in.info.luz);
+% lighttimeslong = abs(in.info.luz);
 
 % for j = 1:length(lighttimeslong)-1
 %         
