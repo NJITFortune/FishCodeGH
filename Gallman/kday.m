@@ -43,15 +43,14 @@ for j = 1:length(lighttimeslong)-1
             
             if all(lighttim(1) >= lighttimeslong(j) & lighttim(1) < lighttimeslong(j) + ld/2)        
                lighttrim(j) = lighttimeslong(j);
-               trimluz(j) = in.info.luz(j);  
+               
             end
             
              
         end 
 end
 
-nonzeroluz = find(trimluz);
-newluz = in.info.luz(nonzeroluz);
+
 
 lighttimes = lighttrim(lighttrim > 0);
 
