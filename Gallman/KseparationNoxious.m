@@ -274,7 +274,8 @@ fprintf("Click a region where one fish one fish.\n");
         [~, sortidx] = sort([intube2hi intube1hi]);
         
         
-        intubeHi = [out(intube1hi).e1hiamp] 
+        intubeHi = [out(intube1hi).e2hiamp out(intube1hi).e1hiamp];
+        intubeHi = intubeHi(sortidx);
         intubeLo
 %%        
 % %% set boundaries
