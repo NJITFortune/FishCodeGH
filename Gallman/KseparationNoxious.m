@@ -262,9 +262,20 @@ fprintf("Click a region where one fish one fish.\n");
 
         %thresholding
         
+%% Assign amplitude data to fish
+
+        intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
+        intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
+
+        
+        intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
+        intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
+        
+        [~, sortidx] = sort([intube2hi intube1hi]);
         
         
-        
+        intubeHi = [out(intube1hi).e1hiamp] 
+        intubeLo
 %%        
 % %% set boundaries
 % while(1)
