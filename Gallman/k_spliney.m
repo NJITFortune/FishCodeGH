@@ -8,5 +8,6 @@ ReFs = 10;
 %ReFs = 60;  %resample once every minute
 
             spliney = csaps(x, y, p);
-            xx = x(1):1/ReFs:x(end);
+            %resample new x values based on light/dark 
+            xx = lightx(1):1/ReFs:lightx(end);
             yy = fnval(xx, spliney);
