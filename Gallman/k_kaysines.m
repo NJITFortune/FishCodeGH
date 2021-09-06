@@ -33,12 +33,13 @@ ld = [in.info.ld];
             end
 %% trim luz to data
 lighttimeslong = abs(in.info.luz);
+lighttrim = 
 
 for j = 1:length(lighttimeslong)-1
         
         %is there data between j and j+1?    
         if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslong(j+1)),1))  
-            ott = find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslong(j+1)); 
+            ott = [in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslong(j+1); 
            lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
       
             %if there is more than half of the data in the luz epoch 
