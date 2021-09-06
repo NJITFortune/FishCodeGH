@@ -75,7 +75,7 @@ end
 
 %luz vector 
 lighttimes = lighttrim(lighttrim > 0);
-dayxx = lighttimes(1):1/ReFs:lighttimes(end);
+
 
 %% cspline entire data set
 
@@ -84,17 +84,21 @@ dayxx = lighttimes(1):1/ReFs:lighttimes(end);
       %only need single x vector for each amplitude since we resample over
       %the same interval
       
+      %resample time evenly across days
+      kay(j).dayxx = lighttimes(1):1/ReFs:lighttimes(end);
       
-      dayxx = lighttimes(1):1/ReFs:lighttimes(end);
+      %estimate new yvalues for exvery x value
+      %obw only for now
       
-      spliney = csaps(x, y, p);
+            spliney = csaps([in.e(j).s(tto{j}(obtt)).timcont]/(60*60), [in.e(j).s(tto{j}(obtt)).obwAmp], p);
             %resample new x values based on light/dark
-            yy = fnval(xx, spliney);
-      
+            obwyy = fnval(kay(j).dayxx, spliney);
+            %
+      dtobwyy = detrend(obwyy,6,'SamplePoints',kay(j).obwxx);
       
       %obw
       [kay(j).xx, obwyy] = k_splighty([in.e(j).s(tto{j}(obtt)).timcont]/(60*60) , [in.e(j).s(tto{j}(obtt)).obwAmp], lighttimes);
-      dtobwyy = detrend(obwyy,6,'SamplePoints',kay(j).obwxx);
+      
       
 %       %zAmp
 %       [kay(j).zAmpxx, kay(j).zAmpyy] = k_splighty([in.e(j).s(ttz{j}).timcont]/(60*60) , [in.e(j).s(ttz{j}).zAmp], lighttimes);
