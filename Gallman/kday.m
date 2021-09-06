@@ -108,6 +108,8 @@ subplot(211); hold on; title('Channel 1');
 subplot(212); hold on; title('Channel 2');
     plot(obwtim2, obwdata2, '.', 'MarkerSize', 3);
     plot(obwxx, obwyy2, '-', 'LineWidth', 3);
+    
+   
 
 %conclusion is its better to spline all at once
 
