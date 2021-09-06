@@ -289,3 +289,4 @@ fprintf("Click a region where one fish one fish.\n");
 %% Plot fish against light/temp
 
 
+figure(1); clf; 
