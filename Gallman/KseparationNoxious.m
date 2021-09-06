@@ -290,3 +290,28 @@ fprintf("Click a region where one fish one fish.\n");
 
 
 figure(1); clf; 
+
+    
+    ax(1) = subplot(411); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
