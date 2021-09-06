@@ -292,12 +292,20 @@ fprintf("Click a region where one fish one fish.\n");
 figure(1); clf; 
 
     
-    ax(1) = subplot(411); hold on; 
+    ax(1) = subplot(311); hold on; 
         yyaxis right; plot(Hitimcont, intubeHi, '.');
         yyaxis left; plot(Lotimcont, intubeLo, '.');
 
-
-
+        legend('High frequency fish', 'Low frequency fish');
+        
+    ax(2) = subplot(312); hold on;
+        yyaxis right; plot(Hitimcont, out(Hisortidx).hifreq, '.'); plot(Lotimcont, out(Losortidx).lofreq, '.');
+        yyaxis left; plot(out.timcont, out.temp, '.');
+    
+        legend('High frequency fish', 'Low frequency fish', 'Temperature');
+    
+    ax(3) = subplot(313); hold on;
+        
 
 
 
