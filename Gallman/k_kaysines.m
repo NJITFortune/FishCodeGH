@@ -85,6 +85,14 @@ lighttimes = lighttrim(lighttrim > 0);
       %only need single x vector for each amplitude since we resample over
       %the same interval
       
+      
+      
+      
+      spliney = csaps(x, y, p);
+            %resample new x values based on light/dark
+            yy = fnval(xx, spliney);
+      
+      
       %obw
       [kay(j).xx, obwyy] = k_splighty([in.e(j).s(tto{j}(obtt)).timcont]/(60*60) , [in.e(j).s(tto{j}(obtt)).obwAmp], lighttimes);
       dtobwyy = detrend(obwyy,6,'SamplePoints',kay(j).obwxx);
