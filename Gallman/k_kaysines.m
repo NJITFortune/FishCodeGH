@@ -31,6 +31,14 @@ ld = [in.info.ld];
                 ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
                 ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
             end
+            
+            
+%good data range - poweridx
+
+
+
+
+
 %% trim luz to data - Generate lighttimes
 lighttimeslong = abs(in.info.luz);
 lighttrim = zeros(1, length(lighttimeslong)-1);
