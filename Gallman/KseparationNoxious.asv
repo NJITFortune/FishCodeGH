@@ -275,12 +275,18 @@ fprintf("Click a region where one fish one fish.\n");
         
     %Data over indicies for each fish
         %high freq fish amp
-        [~, sortidx] = sort([intube2hi intube1hi]);
+        [~, Hisortidx] = sort([intube2hi intube1hi]);
         intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
-        intubeHi = intubeHi(sortidx);
+        Hitim = 
+        intubeHi = intubeHi(Hisortidx);
         
         
-        intubeLo
+        %low freq fish amp
+        [~, Losortidx] = sort([intube2lo intube1lo]);
+        intubeHi = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
+        intubeLo = intubeLo(Losortidx);
+        
+        
 %%        
 % %% set boundaries
 % while(1)
