@@ -292,7 +292,9 @@ fprintf("Click a region where one fish one fish.\n");
 figure(1); clf; 
 
     
-    ax(1) = subplot(411); hold on; title('Hi freq fish
+    ax(1) = subplot(411); hold on; 
+        yyaxis right; plot(Hitimcont, intubeHi, '.');
+        yyaxis left; plot(Lotimcont, intubeLo, '.');
 
 
 
