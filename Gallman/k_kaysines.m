@@ -82,9 +82,11 @@ lighttimes = lighttrim(lighttrim > 0);
 
  for j = 2:-1:1
       %light = [in.e(1).s(tto{1}).light];
+      %only need single x vector for each amplitude since we resample over
+      %the same interval
       
       %obw
-      [kay(j).obwxx, obwyy] = k_splighty([in.e(j).s(tto{j}(obtt)).timcont]/(60*60) , [in.e(j).s(tto{j}(obtt)).obwAmp], lighttimes);
+      [kay(j).xx, obwyy] = k_splighty([in.e(j).s(tto{j}(obtt)).timcont]/(60*60) , [in.e(j).s(tto{j}(obtt)).obwAmp], lighttimes);
       dtobwyy = detrend(obwyy,6,'SamplePoints',kay(j).obwxx);
       
 %       %zAmp
