@@ -264,182 +264,28 @@ fprintf("Click a region where one fish one fish.\n");
         
 %% Assign amplitude data to fish
 
+    %Indicies when each fish was in each tube
+        %when each fish was in tube 2
         intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
         intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
 
-        
+        %when each fish was in tube 2
         intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
         intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
         
-        [~, sortidx] = sort([intube2hi intube1hi]);
+    %Data over indicies for each fish
+        %high freq fish amp
+        [~, Hisortidx] = sort([intube2hi intube1hi]);
+        intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
+        intubeHi = intubeHi(Hisortidx);
+        Hitimcont = [out(Hisortidx).timcont];
         
+        %low freq fish amp
+        [~, Losortidx] = sort([intube2lo intube1lo]);
+        intubeHi = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
+        intubeLo = intubeLo(Losortidx);
+        Lotimcont = [out(Losortidx).timcont];
         
-        intubeHi = [out(intube2hi).e2hiamp out(intube1hi).e1hiamp];
-        intubeHi = intubeHi(sortidx);
-        intubeLo
-%%        
-% %% set boundaries
-% while(1)
-%     
-% %get boundaries by clicking on graph?
-% [xlines, ~] = ginput(100); %clicking enter ends after the number of clicks you want
-% 
-%  %plot boundaries to check
-%  
-%  figure(25); clf; %by tube - color is always the same fish
-%     axs(1) = subplot(211); title('Tube 1'); hold on; %fish one - higher freq
-%         plot([out.e1hiamp], 'b'); plot([out.e1loamp], 'r');
-%         plot([xlines, xlines]', [0, max([out.e1loamp])], 'k-');
-%     axs(2)= subplot(212); title('Tube 2'); hold on; %fish two - lower freq
-%         plot([out.e2hiamp], 'b'); plot([out.e2loamp], 'r');   
-%         plot([xlines, xlines]', [0, max([out.e2loamp])], 'k-');
-% 
-% 
-% %%your code here
-% m = input('Are you happy with these lines?, Y/N [Y]:','s');
-%     if m == 'Y'
-%        break
-%     end
-% end
-% 
-% %%
-% 
-% 
-% for j = 1:length(xlines)-1
-%     
-%     xtim = [out.timcont] >= xlines(j) & [out.timcont] < xlines(j+1);
-%     
-% %High freq fish
-%     hifish1 = [out(xtim).e1hiamp] > [out(xtim).e2hiamp];
-%     hifish1 = [out(hifish1).e1hiamp];
-%     hifish2 = [out(xtim).e2hiamp] > [out(xtim).e1hiamp];
-%     hifish2 = [out(hifish2).e2hiamp];
-%     
-%     length(hifish1)
-%     length(hifish2)
-%     
-%     if length(hifish1) > length(hifish2)
-%         hifish = hifish1;
-%         e1fishamp = hifish1;
-%     else
-%         e2fishamp = hifish2;
-%         hifish = hifish2;
-%     end
-%     
-% %Low freq fish
-%     lofish1 = [out(xtim).e1loamp] > [out(xtim).e2loamp];
-%     lofish1 = [out(lofish1).e1loamp];
-%     lofish2 = [out(xtim).e2loamp] > [out(xtim).e1loamp];
-%     lofish2 = [out(lofish2).e2loamp];
-%    
-%     length(lofish1)
-%     length(lofish2)
-%     
-%     if length(lofish1) > length(lofish2)
-%         lofish = lofish1;
-%         e1fishamp = lofish1;
-%     else
-%         e2fishamp = lofish2;
-%         lofish = lofish2;
-%     end
-%     
-% end    
-% 
-% figure(26); clf; hold on;
-% 
-% 
-%  %% extract amplitude data for each tube
-% % 
-% % %amplitude by frequency
-% %     %loamp is lowfreq fish, name not releated to amp
-% % 
-% % %by tube
-% % %electrode 1
-% %     e1hi = [out([out.e1hiamp] > [out.e1loamp]).e1hiamp];
-% %     e1lo = [out([out.e1loamp] > [out.e1hiamp]).e1loamp];
-% %     
-% %     length(e1hi)
-% %     length(e1lo)
-% %     
-% %     if length(e1hi) > length(e1lo)
-% %         e1tubeamp = e1hi;
-% %     else
-% %         e1tubeamp = e1lo;
-% %     end
-% % 
-% % %%
-% %     
-% % %amplitude by frequency
-% %     %loamp is lowfreq fish, name not releated to amp
-% % 
-% % %by tube
-% % %electrode 2
-% %     e2hi = [out([out.e2hiamp] > [out.e2loamp]).e2hiamp];
-% %     e2lo = [out([out.e2loamp] > [out.e2hiamp]).e2loamp];
-% %     
-% %     length(e2hi)
-% %     length(e2lo)
-% %     
-% %     if length(e2hi) > length(e2lo)
-% %         e2tubeamp = e2hi;
-% %     else
-% %         e2tubeamp = e2lo;
-% %     end    
-% %     
-% % %%    
-% %         
-% % %High freq fish
-% %     hifish1 = [out.e1hiamp] > [out.e2hiamp];
-% %     hifish1 = [out(hifish1).e1hiamp];
-% %     hifish2 = [out.e2hiamp] > [out.e1hiamp];
-% %     hifish2 = [out(hifish2).e2hiamp];
-% %     
-% %     length(hifish1)
-% %     length(hifish2)
-% %     
-% %     if length(hifish1) > length(hifish2)
-% %         e1fishamp = hifish1;
-% %     else
-% %         e2fishamp = hifish2;
-% %     end
-% %     
-% % %Low freq fish
-% %     lofish1 = [out.e1loamp] > [out.e2loamp];
-% %     lofish1 = [out(lofish1).e1loamp];
-% %     lofish2 = [out.e2loamp] > [out.e1loamp];
-% %     lofish2 = [out(lofish2).e2loamp];
-% %    
-% %     length(lofish1)
-% %     length(lofish2)
-% %     
-% %     if length(lofish1) > length(lofish2)
-% %         e1fishamp = lofish1;
-% %     else
-% %         e2fishamp = lofish2;
-% %     end
-% %  
-% %     
-% % %%    
-% %     
-% %     
-% %     
-% %     
-% %    e1tim = [out(e1amp).timcont];
-% %    e2tim = [out(e2amp).timcont];
-% %     
-% % %Make sure its not wonky
-% % figure(7); clf; title('High freq fish')
-% %     subplot(411); hold on; %fish one - higher freq
-% %         plot([out.timcont],[out.e1hiamp], 'b.'); plot([out.timcont],[out.e2hiamp], 'r.');
-% %         %plot([out.timcont], movmean([out.e1hiamp], 5), 'b-');
-% %     subplot(412); hold on;
-% %         plot(e1tim, e1amp); 
-% %     subplot(413); hold on; %fish two - lower freq
-% %         plot([out.timcont],[out.e1loamp], 'b.'); plot([out.timcont],[out.e2loamp], 'r.');  
-% %     subplot(414); hold on;
-% %         plot(e2tim, e2amp); 
-% %         
-% %     
-% %         
-% % 
-% %         
+%% Plot fish against light/temp
+
+
