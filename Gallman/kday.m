@@ -39,7 +39,7 @@ for j = 1:length(lighttimeslong)-1
         %is there data between j and j+1?    
         if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslong(j+1)),1))  
             ott = find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslong(j+1)); 
-           lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
+           lighttim = [in.e(1).s((ott)).timcont]/(60*60);
             length(lighttim)
             
             if all(lighttim(1) >= lighttimeslong(j) & lighttim(1) < lighttimeslong(j) + ld/2)        
