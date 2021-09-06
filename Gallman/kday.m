@@ -368,3 +368,15 @@ figure(68); clf;
         plot(obwxx(otx) - obwxx(otx(1)), mavgresp2, 'k', 'LineWidth', 3);
         plot([[in.info.ld] [in.info.ld]], [-samp2 samp2], 'k-', 'Linewidth', 2); 
 
+%% Would you like to subsample a new range?
+
+%Question yes or no
+    %if yes 
+        %ginput new range from cspline fit graph
+    %if anything else
+        %kill
+    %end
+
+
+
+
