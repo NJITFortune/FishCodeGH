@@ -110,7 +110,8 @@ lighttimes = lighttrim(lighttrim > 0);
 
       end
       
-      %how do i invert the light/dark to dark/light
+      %how do i invert the light/dark to dark/light?
+      %need another explanation of the indexing on this one
       
             
  end           
