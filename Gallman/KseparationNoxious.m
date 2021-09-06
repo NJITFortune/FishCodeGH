@@ -308,7 +308,7 @@ figure(1); clf;
         plot([out.timcont], [out.light]);
         
         
-linkaxes
+linkaxes(ax, 'x');
 
 
 
