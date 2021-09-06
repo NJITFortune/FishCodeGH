@@ -305,7 +305,10 @@ figure(1); clf;
         legend('High frequency fish', 'Low frequency fish', 'Temperature');
     
     ax(3) = subplot(313); hold on;
+        plot([out.timcont], [out.light]);
         
+        
+linkaxes
 
 
 
