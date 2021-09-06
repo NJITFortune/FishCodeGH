@@ -86,7 +86,7 @@ lighttimes = lighttrim(lighttrim > 0);
       %the same interval
       
       
-      
+      dayxx = lighttimes(1):1/ReFs:lighttimes(end);
       
       spliney = csaps(x, y, p);
             %resample new x values based on light/dark
