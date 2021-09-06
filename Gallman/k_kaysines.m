@@ -36,9 +36,23 @@ ld = [in.info.ld];
 %good data range - poweridx
 
 
+    %Sample dataset by poweridx 
+            %poweridx-window of good data to analyze [start end]  
 
+            if isempty(in.info.poweridx) %if there are no values in poweridx []
+               obtt = 1:length([in.e(1).s(tto{1}).timcont]/(60*60)); %use the entire data set to perform the analysis
+            else %if there are values in poweridx [X1 X2]
+                %perform the analysis between the poweridx values
+                obtt = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
+            end
+            
+            %is the tto{1} necessary after we define obtt? - test.
 
-
+        %create data variables of poweridx 
+        obwdata1 = [in.e(1).s(tto{1}(obtt)).obwAmp]; 
+        obwtim1 = [in.e(1).s(tto{1}(obtt)).timcont]/(60*60);
+        
+        
 %% trim luz to data - Generate lighttimes
 lighttimeslong = abs(in.info.luz);
 lighttrim = zeros(1, length(lighttimeslong)-1);
@@ -46,9 +60,9 @@ lighttrim = zeros(1, length(lighttimeslong)-1);
 for j = 1:length(lighttimeslong)-1
         
         %is there data between j and j+1?    
-        if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslong(j+1)),1))  
-            ott = [in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslong(j+1); 
-           lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
+        if ~isempty(find([in.e(1).s(tto{1}(obtt)).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}(obtt)).timcont]/(60*60) < (lighttimeslong(j+1)),1))  
+            ott = [in.e(1).s(tto{1}(obtt)).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}(obtt)).timcont]/(60*60) < lighttimeslong(j+1); 
+           lighttim = [in.e(1).s(ott).timcont]/(60*60);
       
             %if there is more than half of the data in the luz epoch 
             if all(lighttim(1) >= lighttimeslong(j) & lighttim(1) < lighttimeslong(j) + ld/2) 
@@ -70,7 +84,7 @@ lighttimes = lighttrim(lighttrim > 0);
       %light = [in.e(1).s(tto{1}).light];
       
       %obw
-      [kay(j).obwxx, obwyy] = k_splighty([in.e(j).s(tto{j}).timcont]/(60*60) , [in.e(j).s(tto{j}).obwAmp], lighttimes);
+      [kay(j).obwxx, obwyy] = k_splighty([in.e(j).s(tto{j}(obtt)).timcont]/(60*60) , [in.e(j).s(tto{j}(obtt)).obwAmp], lighttimes);
       dtobwyy = detrend(obwyy,6,'SamplePoints',kay(j).obwxx);
       
 %       %zAmp
