@@ -2,7 +2,7 @@
 %% Prep
     Fs = 40000; %sample rate
     freqs = [275 550]; %freq range of typical eigen EOD
-    userfilespec = 'Eigen12LDB-08-11*'; %file names
+    userfilespec = 'Eigen*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
     %day count starts at 0
