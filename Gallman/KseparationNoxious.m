@@ -313,7 +313,7 @@ figure(1); clf;
     
     ax(4) = subplot(414); hold on;
         plot([out(2:end).timcont], [out.light]);
-        
+        ylim([-1, 6]);
         
 linkaxes(ax, 'x');
 
