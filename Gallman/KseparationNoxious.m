@@ -282,14 +282,21 @@ hlshared
         %high freq fish amp
         [~, Hisortidx] = sort([intube2hi intube1hi]);
         intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
-        intubeHi = intubeHi(Hisortidx);
-        Hitimcont = [out(Hisortidx).timcont];
+        out.intubeHi = intubeHi(Hisortidx);
+        out.Hitimcont = [out(Hisortidx).timcont];
         
         %low freq fish amp
         [~, Losortidx] = sort([intube2lo intube1lo]);
         intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
-        intubeLo = intubeLo(Losortidx);
-        Lotimcont = [out(Losortidx).timcont];
+        out.intubeLo = intubeLo(Losortidx);
+        out.Lotimcont = [out(Losortidx).timcont];
+        
+        %frequency
+        out.Hifreq = [out(Hisortidx).hifreq];
+        out.Lofreq = [out(Losortidx).lofreq];
+    
+    
+    
         
 %% Plot fish against light/temp
 
@@ -298,7 +305,7 @@ figure(1); clf;
 
     
     ax(1) = subplot(411); hold on; 
-        yyaxis right; plot(Hitimcont, intubeHi, '.');
+        yyaxis right; plot(out.Hitimcont, intubeHi, '.');
         yyaxis left; plot(Lotimcont, intubeLo, '.');
 
         legend('High frequency fish', 'Low frequency fish');
