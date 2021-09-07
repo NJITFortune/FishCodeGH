@@ -280,21 +280,20 @@ linkaxes(axs, 'x');
         
     %Data over indicies for each fish
         %high freq fish amp
-        [~, Hisortidx] = sort([intube2hi intube1hi]);
+        [out.HItimidx, Hisortidx] = sort([intube2hi intube1hi]);
         intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
-        %intubeHi = intubeHi(Hisortidx);
-        out(Hisortidx).Hiobw = intubeHi;
-        %out.Hitimcont = [out(Hisortidx).timcont];
+        
+        for j = 1:length(intubeHi)
+            out(Hisortidx(j)).Hiobw = intubeHi(j);
+        end
         
         %low freq fish amp
-        [~, Losortidx] = sort([intube2lo intube1lo]);
+        [out.LOtimidx, Losortidx] = sort([intube2lo intube1lo]);
         intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
-        %out.intubeLo = intubeLo(Losortidx);
-        %out.Lotimcont = [out(Losortidx).timcont];
-        
-        %frequency
-        %out.Hifreq = [out(Hisortidx).hifreq];
-        %out.Lofreq = [out(Losortidx).lofreq];
+       
+        for j = 1:length(intubeLo)
+            out(Losortidx(j)).Loobw = intubeLo(j);
+        end
     
         
     
@@ -302,44 +301,44 @@ linkaxes(axs, 'x');
 %% Plot fish against light/temp
 
 
-figure(1); clf; 
-
-    
-    ax(1) = subplot(411); hold on; 
-        yyaxis right; plot([out.Hitimcont], [out.intubeHi], '.');
-        yyaxis left; plot([out.Lotimcont], [out.intubeLo], '.');
-
-        legend('High frequency fish', 'Low frequency fish');
-        
-    ax(2) = subplot(412); hold on;
-        yyaxis right; plot([out(Hisortidx).timcont], [out(Hisortidx).hifreq], '.'); 
-        yyaxis left; plot([out(Losortidx).timcont], [out(Losortidx).lofreq], '.');
-        
-    
-    ax(3) = subplot(413); hold on; 
-            plot([out(2:end).timcont], [out.temp], '.');
-    
-    ax(4) = subplot(414); hold on;
-        plot([out(2:end).timcont], [out.light]);
-        ylim([-1, 6]);
-        
-linkaxes(ax, 'x');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% figure(1); clf; 
+% 
+%     
+%     ax(1) = subplot(411); hold on; 
+%         yyaxis right; plot([out], [out.intubeHi], '.');
+%         yyaxis left; plot([out.Lotimcont], [out.intubeLo], '.');
+% 
+%         legend('High frequency fish', 'Low frequency fish');
+%         
+%     ax(2) = subplot(412); hold on;
+%         yyaxis right; plot([out(Hisortidx).timcont], [out(Hisortidx).hifreq], '.'); 
+%         yyaxis left; plot([out(Losortidx).timcont], [out(Losortidx).lofreq], '.');
+%         
+%     
+%     ax(3) = subplot(413); hold on; 
+%             plot([out(2:end).timcont], [out.temp], '.');
+%     
+%     ax(4) = subplot(414); hold on;
+%         plot([out(2:end).timcont], [out.light]);
+%         ylim([-1, 6]);
+%         
+% linkaxes(ax, 'x');
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
