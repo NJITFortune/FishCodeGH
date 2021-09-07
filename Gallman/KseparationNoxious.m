@@ -287,13 +287,25 @@ linkaxes(axs, 'x');
         for j = 1:length(intubeHi)
             out(j).Hiobw(:) = intubeHi(Hisortidx(j));
             out(j).Hitimobw(:) = [out(Hisortidx(j)).timcont]/60*60;
+            out(j).HIfreq(:) = [out(Hisortidx(j)).hifreq];
+        end
+        
+        %low freq fish amp
+        [~, Losortidx] = sort([intube2lo intube1lo]);
+        intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
+        Loobw = intubeLo(Losortidx); 
+        
+        for j = 1:length(intubeLo)
+            out(j).Loobw(:) = intubeLo(Losortidx(j));
+            out(j).Lotimobw(:) = [out(Losortidx(j)).timcont]/60*60;
+            out(j).LOfreq(:) = [out(Hisortidx(j)).lofreq];
         end
         
         
-   figure(102); 
+        
+        
    
-        plot([out.Hitimobw], [out.Hiobw], '.');
-        %eric this doesn't work
+        %eric this doesn't work...
 %         [out.HItimidx, Hisortidx] = sort([intube2hi intube1hi]);
 %         intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
 %         
@@ -320,14 +332,14 @@ figure(1); clf;
 
     
     ax(1) = subplot(411); hold on; 
-        yyaxis right; plot([out(out.Hitimidx).timcont], [out.Hiobw], '.');
-        yyaxis left; plot([out(out.LOtimidx).timcont], [out.intubeLo], '.');
+        yyaxis right; plot([out.Hitimobw], [out.Hiobw], '.');
+        yyaxis left; plot([out.Lotimobw], [out.Loobw], '.');
 
         legend('High frequency fish', 'Low frequency fish');
         
     ax(2) = subplot(412); hold on;
-        yyaxis right; plot([out(out.Hitimidx).timcont], [out(out.Hitimidx).hifreq], '.'); 
-        yyaxis left; plot([out(out.Lotimidx).timcont], [out(out.Lotimidx).lofreq], '.');
+        yyaxis right; plot([out.Hitimobw], [out.Hifreq], '.'); 
+        yyaxis left; plot([out.Lotimobw], [out.Lofreq], '.');
         
     
     ax(3) = subplot(413); hold on; 
