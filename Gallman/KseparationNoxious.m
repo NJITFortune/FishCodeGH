@@ -282,8 +282,8 @@ linkaxes(axs, 'x');
         %high freq fish amp
         [~, Hisortidx] = sort([intube2hi intube1hi]);
         intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
-        intubeHi = intubeHi(Hisortidx);
-        out.Hiobw = intubeHi;
+        %intubeHi = intubeHi(Hisortidx);
+
         out.Hitimcont = [out(Hisortidx).timcont];
         
         %low freq fish amp
