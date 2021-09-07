@@ -1,4 +1,4 @@
-function out = KseparationNoxious(userfilespec)
+%function out = KseparationNoxious(userfilespec)
 %% Prep
     Fs = 40000; %sample rate
     freqs = [275 550]; %freq range of typical eigen EOD
