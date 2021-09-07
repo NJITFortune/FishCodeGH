@@ -301,7 +301,7 @@ figure(1); clf;
         legend('High frequency fish', 'Low frequency fish');
         
     ax(2) = subplot(312); hold on;
-        yyaxis right; plot(Hitimcont, out(Hisortidx).hifreq, '.'); plot(Lotimcont, out(Losortidx).lofreq, '.');
+        yyaxis right; plot(Hitimcont, out(Hisortidx).hifreq, '.'); 
         yyaxis left; plot(out.timcont, out.temp, '.');
     
         legend('High frequency fish', 'Low frequency fish', 'Temperature');
