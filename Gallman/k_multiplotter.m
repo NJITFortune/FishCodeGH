@@ -4,7 +4,7 @@ figure(1); clf;
 
     
     ax(1) = subplot(411); hold on; 
-        yyaxis right; plot([out.Hitimcont], [out.intubeHi], '.');
+        yyaxis right; plot([out(], [out.intubeHi], '.');
         yyaxis left; plot([out.Lotimcont], [out.intubeLo], '.');
 
         legend('High frequency fish', 'Low frequency fish');
