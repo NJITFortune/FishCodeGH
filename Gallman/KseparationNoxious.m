@@ -280,11 +280,12 @@ linkaxes(axs, 'x');
         
     %Data over indicies for each fish
         %high freq fish amp
-        [out.HItimidx, Hisortidx] = sort([intube2hi intube1hi]);
+        [HItimidx, Hisortidx] = sort([intube2hi intube1hi]);
         intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
         
         for j = 1:length(intubeHi)
             out(Hisortidx(j)).Hiobw = intubeHi(j);
+            out(HItimidx(j)).HItimidx = 
         end
         
         %low freq fish amp
