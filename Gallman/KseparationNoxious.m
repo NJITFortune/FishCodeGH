@@ -216,29 +216,29 @@ linkaxes(axs, 'x');
 
 
 
-% E1 threshold.
-fprintf("Click threshold in top panel (tube 1).\n");
-    [~, yy] = ginput(1);
-
-    hh1IDX = find([out.e1hiamp] > yy);
-    hl1IDX = find([out.e1loamp] > yy);
-    
-fprintf("Found %i HI fish and %i LO fish above threshold in tube 1.\n", length(hh1IDX), length(hl1IDX));
-
-% E2 threshold.
-fprintf("Click threshold in bottom panel (tube 2).\n");
-    [~, yy] = ginput(1);
-
-    hh2IDX = find([out.e2hiamp] > yy);
-    hl2IDX = find([out.e2loamp] > yy);
-    
-fprintf("Found %i HI fish and %i LO fish above threshold in tube 2.\n", length(hh2IDX), length(hl2IDX));
-
-%check to make sure data is from only one tube
-hhshared = intersect(hh1IDX, hh2IDX);
-hhshared
-hlshared = intersect(hl1IDX, hl2IDX);
-hlshared
+% % E1 threshold.
+% fprintf("Click threshold in top panel (tube 1).\n");
+%     [~, yy] = ginput(1);
+% 
+%     hh1IDX = find([out.e1hiamp] > yy);
+%     hl1IDX = find([out.e1loamp] > yy);
+%     
+% fprintf("Found %i HI fish and %i LO fish above threshold in tube 1.\n", length(hh1IDX), length(hl1IDX));
+% 
+% % E2 threshold.
+% fprintf("Click threshold in bottom panel (tube 2).\n");
+%     [~, yy] = ginput(1);
+% 
+%     hh2IDX = find([out.e2hiamp] > yy);
+%     hl2IDX = find([out.e2loamp] > yy);
+%     
+% fprintf("Found %i HI fish and %i LO fish above threshold in tube 2.\n", length(hh2IDX), length(hl2IDX));
+% 
+% %check to make sure data is from only one tube
+% hhshared = intersect(hh1IDX, hh2IDX);
+% hhshared
+% hlshared = intersect(hl1IDX, hl2IDX);
+% hlshared
 
    
 
@@ -283,7 +283,7 @@ hlshared
         [~, Hisortidx] = sort([intube2hi intube1hi]);
         intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
         intubeHi = intubeHi(Hisortidx);
-        out.Hiobw = [intubeHi];
+        out.Hiobw = intubeHi;
         out.Hitimcont = [out(Hisortidx).timcont];
         
         %low freq fish amp
