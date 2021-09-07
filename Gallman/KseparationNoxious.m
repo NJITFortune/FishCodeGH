@@ -284,7 +284,7 @@ hlshared
         
         %low freq fish amp
         [~, Losortidx] = sort([intube2lo intube1lo]);
-        intubeHi = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
+        intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
         intubeLo = intubeLo(Losortidx);
         Lotimcont = [out(Losortidx).timcont];
         
