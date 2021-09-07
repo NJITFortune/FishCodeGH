@@ -338,8 +338,8 @@ figure(1); clf;
         legend('High frequency fish', 'Low frequency fish');
         
     ax(2) = subplot(412); hold on;
-        yyaxis right; plot([out.Hitimobw], [out.Hifreq], '.'); 
-        yyaxis left; plot([out.Lotimobw], [out.Lofreq], '.');
+        yyaxis right; plot([out.Hitimobw], [out.HIfreq], '.'); 
+        yyaxis left; plot([out.Lotimobw], [out.LOfreq], '.');
         
     
     ax(3) = subplot(413); hold on; 
