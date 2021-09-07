@@ -52,8 +52,8 @@ lighttimeslong = abs(in.info.luz);
 for j = 1:length(lighttimeslong)-1
         
         %is there data between j and j+1?    
-        if ~isempty(find([in.e(1).s(tto{1}(pdix)).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}(pdix)).timcont]/(60*60) < (lighttimeslong(j+1)),1))  
-            ott = find([in.e(1).s(tto{1}(pdix)).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}(pdix)).timcont]/(60*60) < lighttimeslong(j+1)); 
+        if ~isempty(find([in.e(1).s(tto{1}(pidx)).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}(pidx)).timcont]/(60*60) < (lighttimeslong(j+1)),1))  
+            ott = find([in.e(1).s(tto{1}(pidx)).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}(pidx)).timcont]/(60*60) < lighttimeslong(j+1)); 
            lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
             length(lighttim)
             
@@ -78,9 +78,9 @@ lighttimes = lighttrim(lighttrim > 0);
 
 %channel 1
 %create data variables
-    obwdata1 = [in.e(1).s(tto{1}(pdix)).obwAmp]; 
-    obwtim1 = [in.e(1).s(tto{1}(pdix)).timcont]/(60*60);
-    light = [in.e(1).s(tto{1}(pdix)).light];
+    obwdata1 = [in.e(1).s(tto{1}(pidx)).obwAmp]; 
+    obwtim1 = [in.e(1).s(tto{1}(pidx)).timcont]/(60*60);
+    light = [in.e(1).s(tto{1}(pidx)).light];
     
         %summarize data
             %ppform of cubic smoothing spline
@@ -97,8 +97,8 @@ lighttimes = lighttrim(lighttrim > 0);
 
 %channel 2
 %create data variables
-    obwdata2 = [in.e(2).s(tto{2}(pdix)).obwAmp]; 
-    obwtim2 = [in.e(2).s(tto{2}(pdix)).timcont]/(60*60);
+    obwdata2 = [in.e(2).s(tto{2}(pidx)).obwAmp]; 
+    obwtim2 = [in.e(2).s(tto{2}(pidx)).timcont]/(60*60);
     
     
         %summarize data
