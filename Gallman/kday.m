@@ -44,7 +44,7 @@ ld = [in.info.ld];
                pidx = 1:length([in.e(1).s(tto{1}).timcont]/(60*60)); %use the entire data set to perform the analysis
             else %if there are values in poweridx [X1 X2]
                 %perform the analysis between the poweridx values
-                pidx = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
+               pidx = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
             end
 %% trim luz to data
 lighttimeslong = abs(in.info.luz);
