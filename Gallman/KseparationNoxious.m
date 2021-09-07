@@ -89,7 +89,10 @@ rango = abs(currhifreq - currlofreq)+5; % Freq range in Hz for change in fish fr
 % There are 86400 seconds in a day.
     out(1).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400);
     out(1).tim24 = (hour*60*60) + (minute*60) + second;
-
+    
+%light and temp for j = 1
+    out(1).temp = mean(data(1,tempchan));
+    out(1).light = mean(data(1,lightchan));
 %% Loop through the rest of the datums
 
 for j=2:length(iFiles)
