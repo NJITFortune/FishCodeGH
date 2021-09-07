@@ -306,10 +306,10 @@ figure(1); clf;
         
     
     ax(3) = subplot(413); hold on; 
-            plot([out.timcont], [out.temp], '.');
+            plot([out(2:end).timcont], [out.temp], '.');
     
     ax(4) = subplot(414); hold on;
-        plot([out.timcont], [out.light]);
+        plot([out(2:end).timcont], [out.light]);
         
         
 linkaxes(ax, 'x');
