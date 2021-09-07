@@ -316,10 +316,10 @@ figure(1); clf;
         
     
     ax(3) = subplot(413); hold on; 
-            plot([out(2:end).timcont], [out.temp], '.');
+            plot([out.timcont], [out.temp], '.');
     
     ax(4) = subplot(414); hold on;
-        plot([out(2:end).timcont], [out.light]);
+        plot([out.timcont], [out.light]);
         ylim([-1, 6]);
         
 linkaxes(ax, 'x');
