@@ -1,7 +1,7 @@
 function out = KseparationNoxious(userfilespec)
 %% Prep
     Fs = 40000; %sample rate
-    freqs = [350 550]; %freq range of typical eigen EOD
+    freqs = [300 550]; %freq range of typical eigen EOD
     userfilespec = 'Eigen12LDB-08-11*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
