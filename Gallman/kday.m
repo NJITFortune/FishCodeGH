@@ -31,14 +31,29 @@ ld = [in.info.ld];
                 ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
                 ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
             end
+            
+            
+            
+            %good data range - poweridx
+
+
+    %Sample dataset by poweridx 
+            %poweridx-window of good data to analyze [start end]  
+
+            if isempty(in.info.poweridx) %if there are no values in poweridx []
+               pidx = 1:length([in.e(1).s(tto{1}).timcont]/(60*60)); %use the entire data set to perform the analysis
+            else %if there are values in poweridx [X1 X2]
+                %perform the analysis between the poweridx values
+                pidx = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
+            end
 %% trim luz to data
 lighttimeslong = abs(in.info.luz);
 
 for j = 1:length(lighttimeslong)-1
         
         %is there data between j and j+1?    
-        if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslong(j+1)),1))  
-            ott = find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslong(j+1)); 
+        if ~isempty(find([in.e(1).s(tto{1}(pdix)).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}(pdix)).timcont]/(60*60) < (lighttimeslong(j+1)),1))  
+            ott = find([in.e(1).s(tto{1}(pdix)).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}(pdix)).timcont]/(60*60) < lighttimeslong(j+1)); 
            lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
             length(lighttim)
             
@@ -63,9 +78,9 @@ lighttimes = lighttrim(lighttrim > 0);
 
 %channel 1
 %create data variables
-    obwdata1 = [in.e(1).s(tto{1}).obwAmp]; 
-    obwtim1 = [in.e(1).s(tto{1}).timcont]/(60*60);
-    light = [in.e(1).s(tto{1}).light];
+    obwdata1 = [in.e(1).s(tto{1}(pdix)).obwAmp]; 
+    obwtim1 = [in.e(1).s(tto{1}(pdix)).timcont]/(60*60);
+    light = [in.e(1).s(tto{1}(pdix)).light];
     
         %summarize data
             %ppform of cubic smoothing spline
@@ -82,8 +97,8 @@ lighttimes = lighttrim(lighttrim > 0);
 
 %channel 2
 %create data variables
-    obwdata2 = [in.e(2).s(tto{2}).obwAmp]; 
-    obwtim2 = [in.e(2).s(tto{2}).timcont]/(60*60);
+    obwdata2 = [in.e(2).s(tto{2}(pdix)).obwAmp]; 
+    obwtim2 = [in.e(2).s(tto{2}(pdix)).timcont]/(60*60);
     
     
         %summarize data
