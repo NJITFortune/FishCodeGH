@@ -286,8 +286,13 @@ linkaxes(axs, 'x');
         
         for j = 1:length(intubeHi)
             out(j).Hiobw(:) = intubeHi(Hisortidx(j));
+            out(j).Hitimobw(:) = [out(Hisortidx(j)).timcont]/60*60;
         end
         
+        
+   figure(102); 
+   
+        plot([out.Hitimobw], [out.Hiobw], '.');
         %eric this doesn't work
 %         [out.HItimidx, Hisortidx] = sort([intube2hi intube1hi]);
 %         intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
