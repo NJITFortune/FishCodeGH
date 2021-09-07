@@ -1,7 +1,7 @@
-%function out = KseparationNoxious(userfilespec)
+function out = KseparationNoxious(userfilespec)
 %% Prep
     Fs = 40000; %sample rate
-    freqs = [300 550]; %freq range of typical eigen EOD
+    freqs = [275 550]; %freq range of typical eigen EOD
     userfilespec = 'Eigen12LDB-08-11*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
@@ -283,18 +283,18 @@ linkaxes(axs, 'x');
         [~, Hisortidx] = sort([intube2hi intube1hi]);
         intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
         %intubeHi = intubeHi(Hisortidx);
-
-        out.Hitimcont = [out(Hisortidx).timcont];
+        out(Hisortidx).Hiobw = intubeHi;
+        %out.Hitimcont = [out(Hisortidx).timcont];
         
         %low freq fish amp
         [~, Losortidx] = sort([intube2lo intube1lo]);
         intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
-        out.intubeLo = intubeLo(Losortidx);
-        out.Lotimcont = [out(Losortidx).timcont];
+        %out.intubeLo = intubeLo(Losortidx);
+        %out.Lotimcont = [out(Losortidx).timcont];
         
         %frequency
-        out.Hifreq = [out(Hisortidx).hifreq];
-        out.Lofreq = [out(Losortidx).lofreq];
+        %out.Hifreq = [out(Hisortidx).hifreq];
+        %out.Lofreq = [out(Losortidx).lofreq];
     
         
     
