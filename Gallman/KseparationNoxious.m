@@ -176,7 +176,8 @@ figure(4);clf;hold on;
 %         plot([out.e1hiamp], 'b'); plot([out.e2hiamp], 'r');
 %     subplot(212); hold on; %fish two - lower freq
 %         plot([out.e1loamp], 'b'); plot([out.e2loamp], 'r');
-%%        
+%% plot
+
 figure(25); clf; %by tube - color is always the same fish
     axs(1) = subplot(411); title('Tube 1'); hold on; %fish one - higher freq
         plot([out.timcont], [out.e1hiamp], 'b.', 'MarkerSize', 10); plot([out.timcont], [out.e1loamp], 'r.', 'MarkerSize', 10);
@@ -232,33 +233,34 @@ fprintf("Found %i HI fish and %i LO fish above threshold in tube 2.\n", length(h
 
 %check to make sure data is from only one tube
 hhshared = intersect(hh1IDX, hh2IDX);
+hhshared
 hlshared = intersect(hl1IDX, hl2IDX);
-
+hlshared
 
    
 
-fprintf("Click a region where one fish one fish.\n");
-    [xx, ~] = ginput(2);
-
-    xxx = floor(xx(1)):ceil(xx(2));
-    
-    % Which tube is the high fish occupying
-        if mean([out(xxx).e2hiamp]) > mean([out(xxx).e1hiamp])
-           hifish = 2;
-           HIratio = mean([out(xxx).e1hiamp] ./ [out(xxx).e2hiamp]);
-        else
-           hifish = 1;
-           HIratio = mean([out(xxx).e2hiamp] ./ [out(xxx).e1hiamp]);
-        end
-
-    % Which tube is the low fish occupying
-        if mean([out(xxx).e2loamp]) > mean([out(xxx).e1loamp])
-           lofish = 2;
-           LOratio = mean([out(xxx).e1loamp] ./ [out(xxx).e2loamp]);
-        else
-           lofish = 1;
-           LOratio = mean([out(xxx).e2loamp] ./ [out(xxx).e1loamp]);
-        end
+% fprintf("Click a region where one fish one fish.\n");
+%     [xx, ~] = ginput(2);
+% 
+%     xxx = floor(xx(1)):ceil(xx(2));
+%     
+%     % Which tube is the high fish occupying
+%         if mean([out(xxx).e2hiamp]) > mean([out(xxx).e1hiamp])
+%            hifish = 2;
+%            HIratio = mean([out(xxx).e1hiamp] ./ [out(xxx).e2hiamp]);
+%         else
+%            hifish = 1;
+%            HIratio = mean([out(xxx).e2hiamp] ./ [out(xxx).e1hiamp]);
+%         end
+% 
+%     % Which tube is the low fish occupying
+%         if mean([out(xxx).e2loamp]) > mean([out(xxx).e1loamp])
+%            lofish = 2;
+%            LOratio = mean([out(xxx).e1loamp] ./ [out(xxx).e2loamp]);
+%         else
+%            lofish = 1;
+%            LOratio = mean([out(xxx).e2loamp] ./ [out(xxx).e1loamp]);
+%         end
 
         %thresholding
         
