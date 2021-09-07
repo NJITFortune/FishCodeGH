@@ -31,11 +31,7 @@ ld = [in.info.ld];
                 ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
                 ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
             end
-            
-            
-            
-            %good data range - poweridx
-
+           
 
     %Sample dataset by poweridx 
             %poweridx-window of good data to analyze [start end]  
@@ -54,8 +50,8 @@ for j = 1:length(lighttimeslong)-1
         %is there data between j and j+1?    
         if ~isempty(find([in.e(1).s(tto{1}(pidx)).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}(pidx)).timcont]/(60*60) < (lighttimeslong(j+1)),1))  
             ott = find([in.e(1).s(tto{1}(pidx)).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}(pidx)).timcont]/(60*60) < lighttimeslong(j+1)); 
-           lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
-            length(lighttim)
+            lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
+          
             
             if all(lighttim(1) >= lighttimeslong(j) & lighttim(1) < lighttimeslong(j) + ld/2)        
                lighttrim(j) = lighttimeslong(j);
