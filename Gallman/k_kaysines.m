@@ -4,7 +4,7 @@ function out = k_kaysines(in, channel)
 %out = kay(k).e.
 figure(101); clf; hold on;
 
-in = kg(27);
+
 p = 0.7;
 ReFs = 10;  %resample once every minute (Usually 60)
 % Usage: k_initialplotter(kg(#));
