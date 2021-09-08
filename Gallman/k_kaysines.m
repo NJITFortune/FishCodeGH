@@ -84,7 +84,7 @@ if channel == 1
       
             spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
             %resample new x values based on light/dark
-            obwyy = fnval(out(1).dayxx, spliney);
+            obwyy = fnval(out(1).obwxx, spliney);
             %detrend ydata
             dtobwyy = detrend(obwyy,6,'SamplePoints', out(1).obwxx);
       
@@ -114,7 +114,7 @@ else
 
                     spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
                     %resample new x values based on light/dark
-                    obwyy = fnval(out(2).dayxx, spliney);
+                    obwyy = fnval(out(2).obwxx, spliney);
                     %detrend ydata
                     dtobwyy = detrend(obwyy,6,'SamplePoints', out(2).obwxx);
 
