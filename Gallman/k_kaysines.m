@@ -77,7 +77,7 @@ lighttimes = lighttrim(lighttrim > 0);
  
 if channel == 1
     
-      out(1).dayxx = lighttimes(1):1/ReFs:lighttimes(end);
+      out(1).obwxx = lighttimes(1):1/ReFs:lighttimes(end);
       
       %estimate new yvalues for every x value
       %obw only for now
@@ -107,7 +107,7 @@ if channel == 1
 else
     
         
-        out(2).dayxx = lighttimes(1):1/ReFs:lighttimes(end);
+        out(2).obwxx = lighttimes(1):1/ReFs:lighttimes(end);
 
               %estimate new yvalues for every x value
               %obw only for now
