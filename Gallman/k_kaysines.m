@@ -2,7 +2,6 @@ function out = k_kaysines(in, channel)
 
 %in = kg(k)
 %out = kay(k).e.
-figure(101); clf; hold on;
 
 
 p = 0.7;
