@@ -132,7 +132,7 @@ else
 
               end
 
-out = out(~isempty(out));
+
 
 end
 
