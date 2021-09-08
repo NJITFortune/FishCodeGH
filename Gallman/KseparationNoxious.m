@@ -286,7 +286,7 @@ linkaxes(axs, 'x');
         
         for j = 1:length(intubeHi)
             out(j).Hiobw(:) = intubeHi(Hisortidx(j));
-            out(j).Hitimobw(:) = [out(Hisortidx(j)).timcont]/60*60;
+            out(j).Hitimobw(:) = [out(Hisortidx(j)).timcont]/(60*60);
             out(j).HIfreq(:) = [out(Hisortidx(j)).hifreq];
         end
         
@@ -297,7 +297,7 @@ linkaxes(axs, 'x');
         
         for j = 1:length(intubeLo)
             out(j).Loobw(:) = intubeLo(Losortidx(j));
-            out(j).Lotimobw(:) = [out(Losortidx(j)).timcont]/60*60;
+            out(j).Lotimobw(:) = [out(Losortidx(j)).timcont]/(60*60);
             out(j).LOfreq(:) = [out(Losortidx(j)).lofreq];
         end
         
