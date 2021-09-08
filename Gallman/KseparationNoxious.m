@@ -343,10 +343,10 @@ figure(1); clf;
         
     
     assx(3) = subplot(413); hold on; 
-            plot([out.timcont], [out.temp], '.');
+            plot([out.timcont]/(60*60), [out.temp], '.');
     
     assx(4) = subplot(414); hold on;
-        plot([out.timcont], [out.light]);
+        plot([out.timcont]/(60*60), [out.light]);
         ylim([-1, 6]);
         
 linkaxes(assx, 'x');
