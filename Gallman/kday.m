@@ -49,18 +49,19 @@ ld = [in.info.ld];
             
             
 %% trim luz to data
-lighttimeslong = abs(in.info.luz(pidx1));
+lighttimeslong = abs(in.info.luz);
+lighttimeslesslong = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
 
-for j = 1:length(lighttimeslong)-1
+for j = 1:length(lighttimeslesslong)-1
         
         %is there data between j and j+1?    
-        if ~isempty(find([in.e(1).s(tto{1}(pidx1)).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}(pidx1)).timcont]/(60*60) < (lighttimeslong(j+1)),1))  
-            ott = find([in.e(1).s(tto{1}(pidx1)).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}(pidx1)).timcont]/(60*60) < lighttimeslong(j+1)); 
+        if ~isempty(find([in.e(1).s(tto{1}(pidx1)).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}(pidx1)).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
+            ott = find([in.e(1).s(tto{1}(pidx1)).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}(pidx1)).timcont]/(60*60) < lighttimeslesslong(j+1)); 
             lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
             length(lighttim);
             
-            if all(lighttim(1) >= lighttimeslong(j) & lighttim(1) < lighttimeslong(j) + ld/2)        
-               lighttrim(j) = lighttimeslong(j);
+            if all(lighttim(1) >= lighttimeslesslong(j) & lighttim(1) < lighttimeslesslong(j) + ld/2)        
+               lighttrim(j) = lighttimeslesslong(j);
               
             end
             
