@@ -77,16 +77,16 @@ lighttimes = lighttrim(lighttrim > 0);
  
 if channel == 1
     
-      out(1).obwxx = lighttimes(1):1/ReFs:lighttimes(end);
+      out.obwxx = lighttimes(1):1/ReFs:lighttimes(end);
       
       %estimate new yvalues for every x value
       %obw only for now
       
             spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
             %resample new x values based on light/dark
-            obwyy = fnval(out(1).obwxx, spliney);
+            obwyy = fnval(out.obwxx, spliney);
             %detrend ydata
-            dtobwyy = detrend(obwyy,6,'SamplePoints', out(1).obwxx);
+            dtobwyy = detrend(obwyy,6,'SamplePoints', out.obwxx);
       
       
 %separate into days
@@ -94,20 +94,20 @@ if channel == 1
       for jj = 2:2:length(lighttimes)-1
 
 
-                   otx = find(out(1).obwxx >= lighttimes(jj-1) & out(1).obwxx < lighttimes(jj+1)); 
+                   otx = find(out.obwxx >= lighttimes(jj-1) & out.obwxx < lighttimes(jj+1)); 
                     
-                   out(1).sinobw(jj) = dtobwyy(otx);
+                   out(jj).dtobwyy(:) = dtobwyy(otx);
                    
-                   out(1).tim = out(1).obwxx(otx) - out(1).obwxx(otx(1));
+                   out(jj).tim(:) = out(1).obwxx(otx) - out(1).obwxx(otx(1));
                   
-                   out(1).avgresp(jj/2, :) = dtobwyy(otx);
+                   out(jj).avgresp(jj/2, :) = dtobwyy(otx);
 
       end
       
 else
     
         
-        out(2).obwxx = lighttimes(1):1/ReFs:lighttimes(end);
+        out.obwxx = lighttimes(1):1/ReFs:lighttimes(end);
 
               %estimate new yvalues for every x value
               %obw only for now
@@ -116,7 +116,7 @@ else
                     %resample new x values based on light/dark
                     obwyy = fnval(out(2).obwxx, spliney);
                     %detrend ydata
-                    dtobwyy = detrend(obwyy,6,'SamplePoints', out(2).obwxx);
+                    dtobwyy = detrend(obwyy,6,'SamplePoints', out.obwxx);
 
 
         %separate into days
@@ -124,12 +124,12 @@ else
               for jj = 2:2:length(lighttimes)-1
 
 
-                           otx = find(out(2).obwxx >= lighttimes(jj-1) & out(2).obwxx < lighttimes(jj+1)); 
+                           otx = find(out.obwxx >= lighttimes(jj-1) & out.obwxx < lighttimes(jj+1)); 
 
-                           out(2).sinobw(jj) = dtobwyy(otx);
-                           out(2).tim = out(2).obwxx(otx) - out(2).obwxx(otx(1));
+                           out(jj).dtobwyy(:) = dtobwyy(otx);
+                           out.tim = out.obwxx(otx) - out.obwxx(otx(1));
 
-                           out(2).avgresp(jj/2, :) = dtobwyy(otx);
+                           out(jj).avgresp(jj/2, :) = dtobwyy(otx);
 
               end
 
