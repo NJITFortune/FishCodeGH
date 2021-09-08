@@ -298,7 +298,7 @@ linkaxes(axs, 'x');
         for j = 1:length(intubeLo)
             out(j).Loobw(:) = intubeLo(Losortidx(j));
             out(j).Lotimobw(:) = [out(Losortidx(j)).timcont]/60*60;
-            out(j).LOfreq(:) = [out(Hisortidx(j)).lofreq];
+            out(j).LOfreq(:) = [out(Losortidx(j)).lofreq];
         end
         
         
