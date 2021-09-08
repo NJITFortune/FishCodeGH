@@ -84,7 +84,7 @@ lighttimes = lighttrim(lighttrim > 0);
       %resample time evenly across days
       kay(j).dayxx = lighttimes(1):1/ReFs:lighttimes(end);
       
-      %estimate new yvalues for exvery x value
+      %estimate new yvalues for every x value
       %obw only for now
       
             spliney = csaps([in.e(j).s(tto{j}(pidx)).timcont]/(60*60), [in.e(j).s(tto{j}(pidx)).obwAmp], p);
