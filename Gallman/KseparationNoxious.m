@@ -273,13 +273,15 @@ figure(987); clf; hold on;
     %Indicies when each fish was in each tube
         %when each fish was in tube 2
         intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
-            plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], '.');
+            plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], 'b.');
         intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
-            plot([out(intube2lo).timcont], [out(intube2lo).e2loamp], '.');
+            plot([out(intube2lo).timcont], [out(intube2lo).e2loamp], 'm.');
 
         %when each fish was in tube 2
         intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
-        intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
+             plot([out(intube1hi).timcont], [out(intube1hi).e1hiamp], 'bo');
+       intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
+            plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'm.');
         
     %Data over indicies for each fish
         %high freq fish amp
