@@ -269,10 +269,13 @@ linkaxes(axs, 'x');
         
 %% Assign amplitude data to fish
 
+figure(987); clf; hold on;
     %Indicies when each fish was in each tube
         %when each fish was in tube 2
         intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
+            plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], '.');
         intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
+            plot([out(intube2lo).timcont], [out(intubeloi).e2loamp], '.');
 
         %when each fish was in tube 2
         intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
