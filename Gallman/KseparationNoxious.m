@@ -289,7 +289,7 @@ figure(987); clf; hold on;
         %intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
          intubeHi = [out.e2hiamp, out.e1hiamp];
         
-        for j = 1:length(intubeHi)
+        for j = 1:length(Hisortidx)
             out(j).Hiobw(:) = intubeHi(Hisortidx(j));
             out(j).Hitimobw(:) = [out(Hisortidx(j)).timcont]/(60*60);
             out(j).HIfreq(:) = [out(Hisortidx(j)).hifreq];
