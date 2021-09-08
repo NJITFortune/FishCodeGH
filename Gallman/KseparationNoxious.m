@@ -285,7 +285,7 @@ figure(987); clf; hold on;
         
     %Data over indicies for each fish
         %high freq fish amp
-        [~, Hisortidx] = sort([intube2hi intube1hi]);
+        [Hisortidx, ~] = sort([intube2hi intube1hi]);
         intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
         Hiobw = intubeHi(Hisortidx); 
         
@@ -296,7 +296,7 @@ figure(987); clf; hold on;
         end
         
         %low freq fish amp
-        [~, Losortidx] = sort([intube2lo intube1lo]);
+        [Losortidx, ~] = sort([intube2lo intube1lo]);
         intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
         Loobw = intubeLo(Losortidx); 
         
