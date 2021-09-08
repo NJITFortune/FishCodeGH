@@ -74,13 +74,8 @@ lighttimes = lighttrim(lighttrim > 0);
 
 %% cspline entire data set
 
- for j = 2:-1:1
-      %light = [in.e(1).s(tto{1}).light];
-      %only need single x vector for each amplitude since we resample over
-      %the same interval
-      
-      %resample time evenly across days
-      kay(j).dayxx = lighttimes(1):1/ReFs:lighttimes(end);
+ 
+      e(1).dayxx = lighttimes(1):1/ReFs:lighttimes(end);
       
       %estimate new yvalues for every x value
       %obw only for now
@@ -106,7 +101,7 @@ lighttimes = lighttrim(lighttrim > 0);
       end
       
             
- end           
+        
 
 
 
