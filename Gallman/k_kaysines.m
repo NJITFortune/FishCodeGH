@@ -98,7 +98,7 @@ if channel == 1
                     
                    out(jj).dtobwyy(:) = dtobwyy(otx);
                    
-                   out(jj).tim(:) = obwxx(otx) - obwxx(otx(1));
+                   out.tim(:) = obwxx(otx) - obwxx(otx(1));
                   
                    out(jj).avgresp(jj/2, :) = dtobwyy(otx);
 
