@@ -36,14 +36,14 @@ ld = [in.info.ld];
     %Sample dataset by poweridx 
             %poweridx-window of good data to analyze [start end]  
 
-            if isempty(in.info.poweridx) %if there are no values in poweridx []
+            %if isempty(in.info.poweridx) %if there are no values in poweridx []
                pidx1 = 1:length([in.e(1).s(tto{1}).timcont]/(60*60)); %use the entire data set to perform the analysis
                pidx2 = 1:length([in.e(2).s(tto{2}).timcont]/(60*60));
-            else %if there are values in poweridx [X1 X2]
-                %perform the analysis between the poweridx values
-               pidx1 = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
-               pidx2 = find([in.e(2).s(tto{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{2}).timcont]/(60*60) < in.info.poweridx(2));
-            end
+%             else %if there are values in poweridx [X1 X2]
+%                 %perform the analysis between the poweridx values
+%                pidx1 = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
+%                pidx2 = find([in.e(2).s(tto{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{2}).timcont]/(60*60) < in.info.poweridx(2));
+%             end
             
             
             
