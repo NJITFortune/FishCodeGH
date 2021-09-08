@@ -50,11 +50,15 @@ ld = [in.info.ld];
             
 %% trim luz to data
 
-%fit light vector to power idx
 lighttimeslong = abs(in.info.luz);
-lighttimesidx = find(lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2));
-lighttimeslesslong = lighttimeslong(lighttimesidx);
 
+    %fit light vector to power idx
+    if isempty(in.info.poweridx) %if there are no values in poweridx []
+        lighttimeslesslong = lighttimeslong;
+    else
+        lighttimesidx = find(lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2));
+        lighttimeslesslong = lighttimeslong(lighttimesidx);
+    end
 
 %only take times for light vector that have data
 for j = 1:length(lighttimeslesslong)-1
@@ -69,8 +73,7 @@ for j = 1:length(lighttimeslesslong)-1
                lighttrim(j) = lighttimeslesslong(j);
               
             end
-            
-             
+         
         end 
 end
 
