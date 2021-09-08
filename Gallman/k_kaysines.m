@@ -77,16 +77,16 @@ lighttimes = lighttrim(lighttrim > 0);
  
 if channel == 1
     
-      out.obwxx = lighttimes(1):1/ReFs:lighttimes(end);
+      obwxx = lighttimes(1):1/ReFs:lighttimes(end);
       
       %estimate new yvalues for every x value
       %obw only for now
       
             spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
             %resample new x values based on light/dark
-            obwyy = fnval(out.obwxx, spliney);
+            obwyy = fnval(obwxx, spliney);
             %detrend ydata
-            dtobwyy = detrend(obwyy,6,'SamplePoints', out.obwxx);
+            dtobwyy = detrend(obwyy,6,'SamplePoints', obwxx);
       
       
 %separate into days
@@ -94,7 +94,7 @@ if channel == 1
       for jj = 2:2:length(lighttimes)-1
 
 
-                   otx = find([out.obwxx] >= lighttimes(jj-1) & [out.obwxx] < lighttimes(jj+1)); 
+                   otx = find(obwxx >= lighttimes(jj-1) & obwxx < lighttimes(jj+1)); 
                     
                    out(jj).dtobwyy(:) = dtobwyy(otx);
                    
@@ -107,16 +107,16 @@ if channel == 1
 else
     
         
-        out.obwxx = lighttimes(1):1/ReFs:lighttimes(end);
+        obwxx = lighttimes(1):1/ReFs:lighttimes(end);
 
               %estimate new yvalues for every x value
               %obw only for now
 
                     spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
                     %resample new x values based on light/dark
-                    obwyy = fnval(out.obwxx, spliney);
+                    obwyy = fnval(obwxx, spliney);
                     %detrend ydata
-                    dtobwyy = detrend(obwyy,6,'SamplePoints', out.obwxx);
+                    dtobwyy = detrend(obwyy,6,'SamplePoints', obwxx);
 
 
         %separate into days
@@ -124,7 +124,7 @@ else
               for jj = 2:2:length(lighttimes)-1
 
 
-                           otx = find([out.obwxx] >= lighttimes(jj-1) & [out.obwxx] < lighttimes(jj+1)); 
+                           otx = find(obwxx >= lighttimes(jj-1) & obwxx < lighttimes(jj+1)); 
 
                            out(jj).dtobwyy(:) = dtobwyy(otx);
                            out.tim = out.obwxx(otx) - out.obwxx(otx(1));
