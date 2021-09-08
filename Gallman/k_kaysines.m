@@ -94,7 +94,7 @@ if channel == 1
       for jj = 2:2:length(lighttimes)-1
 
 
-                   otx = find(out.obwxx >= lighttimes(jj-1) & out.obwxx < lighttimes(jj+1)); 
+                   otx = find([out.obwxx] >= lighttimes(jj-1) & [out.obwxx] < lighttimes(jj+1)); 
                     
                    out(jj).dtobwyy(:) = dtobwyy(otx);
                    
