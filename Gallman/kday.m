@@ -49,10 +49,14 @@ ld = [in.info.ld];
             
             
 %% trim luz to data
+
+%fit light vector to power idx
 lighttimeslong = abs(in.info.luz);
 lighttimesidx = find(lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2));
 lighttimeslesslong = lighttimeslong(lighttimesidx);
 
+
+%only take times for light vector that have data
 for j = 1:length(lighttimeslesslong)-1
         
         %is there data between j and j+1?    
@@ -71,10 +75,8 @@ for j = 1:length(lighttimeslesslong)-1
 end
 
 
-
+%take all cells with values and make a new vector
 lighttimes = lighttrim(lighttrim > 0);
-
-
 
 
 %% cspline entire data set
