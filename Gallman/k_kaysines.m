@@ -12,6 +12,7 @@ ReFs = 10;  %resample once every minute (Usually 60)
 %% Prep
 ld = [in.info.ld];
 
+
 %outliers
     % Prepare the data with outliers
 
@@ -32,19 +33,7 @@ ld = [in.info.ld];
                 ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
             end
             
-            
-%good data range - poweridx
 
-
-    %Sample dataset by poweridx 
-            %poweridx-window of good data to analyze [start end]  
-
-            if isempty(in.info.poweridx) %if there are no values in poweridx []
-               pidx = 1:length([in.e(1).s(tto{1}).timcont]/(60*60)); %use the entire data set to perform the analysis
-            else %if there are values in poweridx [X1 X2]
-                %perform the analysis between the poweridx values
-                pidx = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
-            end
             
            
         
@@ -52,26 +41,34 @@ ld = [in.info.ld];
 %% trim luz to data - Generate lighttimes
 lighttimeslong = abs(in.info.luz);
 
-lighttrim = zeros(1, length(lighttimeslong)-1);
+    %fit light vector to power idx
+    if isempty(in.info.poweridx) %if there are no values in poweridx []
+        lighttimeslesslong = lighttimeslong;
+    else
+        lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
+        lighttimeslesslong = lighttimeslong(lighttimesidx);
+    end
 
-for j = 1:length(lighttimeslong)-1
+    
+%only take times for light vector that have data
+for j = 1:length(lighttimeslesslong)-1
         
         %is there data between j and j+1?    
-        if ~isempty(find([in.e(1).s(tto{1}(pidx)).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}(pidx)).timcont]/(60*60) < (lighttimeslong(j+1)),1))  
-            ott = [in.e(1).s(tto{1}(pidx)).timcont]/(60*60) >= lighttimeslong(j) & [in.e(1).s(tto{1}(pidx)).timcont]/(60*60) < lighttimeslong(j+1); 
-           lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
-      
-            %if there is more than half of the data in the luz epoch 
-            if all(lighttim(1) >= lighttimeslong(j) & lighttim(1) < lighttimeslong(j) + ld/2) 
-               %keep abs(luz) values for light vector 
-               lighttrim(j) = lighttimeslong(j);
-            end
+        if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
+            ott = [in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslesslong(j+1); 
+            lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
+            length(lighttim);
             
+            if all(lighttim(1) >= lighttimeslesslong(j) & lighttim(1) < lighttimeslesslong(j) + ld/2)        
+               lighttrim(j) = lighttimeslesslong(j);
+              
+            end
+         
         end 
 end
 
 
-%luz vector 
+%take all cells with values and make a new vector
 lighttimes = lighttrim(lighttrim > 0);
 
 
