@@ -331,23 +331,23 @@ linkaxes(axs, 'x');
 figure(1); clf; 
 
     
-    ax(1) = subplot(411); hold on; 
-        yyaxis right; plot([out.Hitimobw], [out.Hiobw], '.');
-        yyaxis left; plot([out.Lotimobw], [out.Loobw], '.');
+    assx(1) = subplot(411); hold on; 
+        plot([out.Hitimobw], [out.Hiobw], '.');
+        plot([out.Lotimobw], [out.Loobw], '.');
 
         legend('High frequency fish', 'Low frequency fish');
         
-    ax(2) = subplot(412); hold on;
-        yyaxis right; plot([out.Hitimobw], [out.HIfreq], '.'); 
-        yyaxis left; plot([out.Lotimobw], [out.LOfreq], '.');
+    assx(2) = subplot(412); hold on;
+        plot([out.Hitimobw], [out.HIfreq], '.'); 
+        plot([out.Lotimobw], [out.LOfreq], '.');
         
     
-    ax(3) = subplot(413); hold on; 
+    assx(3) = subplot(413); hold on; 
             plot([out.timcont], [out.temp], '.');
     
-    ax(4) = subplot(414); hold on;
+    assx(4) = subplot(414); hold on;
         plot([out.timcont], [out.light]);
         ylim([-1, 6]);
         
-linkaxes(ax, 'x');
+linkaxes(assx, 'x');
 
