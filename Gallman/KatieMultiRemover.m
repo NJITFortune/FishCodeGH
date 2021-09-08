@@ -3,7 +3,7 @@ function out = KatieMultiRemover(in)
 % OBW        
 figure(1); clf;
 
-    histogram([in.intubeHi], 100); hold on;
+    histogram([in.Hiobw], 100); hold on;
     
     %Lower lim
     %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
@@ -23,7 +23,7 @@ figure(1); clf;
     
 figure(1); clf;
 
-    histogram([in.intubeLo], 100); hold on;
+    histogram([in.Loobw], 100); hold on;
     
     %Lower lim
     %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
