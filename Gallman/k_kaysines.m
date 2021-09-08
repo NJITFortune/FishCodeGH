@@ -132,7 +132,7 @@ else
 
               end
 
-
+out = out(out>0);
 
 end
 
