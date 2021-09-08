@@ -35,13 +35,13 @@ ld = [in.info.ld];
 
     %Sample dataset by poweridx 
             %poweridx-window of good data to analyze [start end]  
-
-            if isempty(in.info.poweridx) %if there are no values in poweridx []
-               pidx = 1:length([in.e(1).s(tto{1}).timcont]/(60*60)); %use the entire data set to perform the analysis
-            else %if there are values in poweridx [X1 X2]
-                %perform the analysis between the poweridx values
-               pidx = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
-            end
+pidx = 1:length([in.e(1).s(tto{1}).timcont]/(60*60));
+%             if isempty(in.info.poweridx) %if there are no values in poweridx []
+%                pidx = 1:length([in.e(1).s(tto{1}).timcont]/(60*60)); %use the entire data set to perform the analysis
+%             else %if there are values in poweridx [X1 X2]
+%                 %perform the analysis between the poweridx values
+%                pidx = find([in.e(1).s(tto{1}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(tto{1}).timcont]/(60*60) < in.info.poweridx(2));
+%             end
 %% trim luz to data
 lighttimeslong = abs(in.info.luz);
 
