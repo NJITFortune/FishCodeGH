@@ -47,9 +47,6 @@ ld = [in.info.ld];
             end
             
            
-        %create data variables of poweridx 
-        obwdata1 = [in.e(1).s(tto{1}(pidx)).obwAmp]; 
-        obwtim1 = [in.e(1).s(tto{1}(pidx)).timcont]/(60*60);
         
         
 %% trim luz to data - Generate lighttimes
@@ -96,7 +93,6 @@ lighttimes = lighttrim(lighttrim > 0);
             %detrend ydata
             dtobwyy = detrend(obwyy,6,'SamplePoints',kay(j).obwxx);
       
-    
       
 %separate into days
       for jj = 2:2:length(lighttimes)-1
