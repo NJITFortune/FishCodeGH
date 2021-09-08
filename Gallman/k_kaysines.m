@@ -98,7 +98,7 @@ if channel == 1
                     
                    out(jj).dtobwyy(:) = dtobwyy(otx);
                    
-                   out(jj).tim(:) = out(1).obwxx(otx) - out(1).obwxx(otx(1));
+                   out(jj).tim(:) = obwxx(otx) - obwxx(otx(1));
                   
                    out(jj).avgresp(jj/2, :) = dtobwyy(otx);
 
@@ -127,7 +127,7 @@ else
                            otx = find(obwxx >= lighttimes(jj-1) & obwxx < lighttimes(jj+1)); 
 
                            out(jj).dtobwyy(:) = dtobwyy(otx);
-                           out.tim = out.obwxx(otx) - out.obwxx(otx(1));
+                           out.tim = obwxx(otx) - obwxx(otx(1));
 
                            out(jj).avgresp(jj/2, :) = dtobwyy(otx);
 
