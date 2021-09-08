@@ -1,7 +1,7 @@
-function kay = k_kaysines(in)
+function out = k_kaysines(in, channel)
 
-%in = kg(k).e(j);
-%out = kg(k).e.
+%in = kg(k)
+%out = kay(k).e.
 figure(101); clf; hold on;
 
 in = kg(27);
@@ -75,16 +75,18 @@ lighttimes = lighttrim(lighttrim > 0);
 %% cspline entire data set
 
  
-      e(1).dayxx = lighttimes(1):1/ReFs:lighttimes(end);
+if channel == 1
+    
+      out(1).dayxx = lighttimes(1):1/ReFs:lighttimes(end);
       
       %estimate new yvalues for every x value
       %obw only for now
       
-            spliney = csaps([in.e(j).s(tto{j}(pidx)).timcont]/(60*60), [in.e(j).s(tto{j}(pidx)).obwAmp], p);
+            spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
             %resample new x values based on light/dark
-            obwyy = fnval(kay(j).dayxx, spliney);
+            obwyy = fnval(out(1).dayxx, spliney);
             %detrend ydata
-            dtobwyy = detrend(obwyy,6,'SamplePoints',kay(j).obwxx);
+            dtobwyy = detrend(obwyy,6,'SamplePoints', out(1).obwxx);
       
       
 %separate into days
@@ -92,21 +94,45 @@ lighttimes = lighttrim(lighttrim > 0);
       for jj = 2:2:length(lighttimes)-1
 
 
-                   otx = find(kay(j).obwxx >= lighttimes(jj-1) & kay(j).obwxx < lighttimes(jj+1)); 
+                   otx = find(out(1).obwxx >= lighttimes(jj-1) & out(1).obwxx < lighttimes(jj+1)); 
                     
-                   kay(j).sinobw(jj) = dtobwyy(otx);
+                   out(1).sinobw(jj) = dtobwyy(otx);
                   
-                   kay(j).avgresp(jj/2, :) = dtobwyy(otx);
+                   out(1).avgresp(jj/2, :) = dtobwyy(otx);
 
       end
       
-            
+else
+    
         
+        out(2).dayxx = lighttimes(1):1/ReFs:lighttimes(end);
+
+              %estimate new yvalues for every x value
+              %obw only for now
+
+                    spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
+                    %resample new x values based on light/dark
+                    obwyy = fnval(out(2).dayxx, spliney);
+                    %detrend ydata
+                    dtobwyy = detrend(obwyy,6,'SamplePoints', out(2).obwxx);
+
+
+        %separate into days
+        %always starts with dark?
+              for jj = 2:2:length(lighttimes)-1
+
+
+                           otx = find(out(2).obwxx >= lighttimes(jj-1) & out(2).obwxx < lighttimes(jj+1)); 
+
+                           out(2).sinobw(jj) = dtobwyy(otx);
+
+                           out(2).avgresp(jj/2, :) = dtobwyy(otx);
+
+              end
 
 
 
-
-
+end
 
 
    
