@@ -84,44 +84,44 @@ linkaxes(ax, 'x');
 %% 24 hour plot 
 % tim24 based off of computer midnight
 
-figure(2); clf; 
-    set(gcf, 'Position', [300 100 2*560 2*420]);
-
-xa(1) = subplot(511); hold on; title('sumfftAmp');
-    plot([out.e(2).s(ttsf{2}).tim24]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
-    plot([out.e(1).s(ttsf{1}).tim24]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.');
-
-xa(2) = subplot(512); hold on; title('zAmp');
-    plot([out.e(2).s(ttz{2}).tim24]/(60*60), [out.e(2).s(ttz{2}).zAmp], '.');
-    plot([out.e(1).s(ttz{1}).tim24]/(60*60), [out.e(1).s(ttz{1}).zAmp], '.');
-   
-xa(3) = subplot(513); hold on; title('obwAmp');
-    plot([out.e(2).s(tto{2}).tim24]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
-    plot([out.e(1).s(tto{1}).tim24]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
-    
-xa(4) = subplot(514); hold on; title('frequency (black) and temperature (red)'); 
-    yyaxis right; plot([out.e(2).s.tim24]/(60*60), -[out.e(2).s.temp], '.');
-    yyaxis left; ylim([200 800]);
-        plot([out.e(2).s.tim24]/(60*60), [out.e(2).s.fftFreq], '.', 'Markersize', 8);      
-    
-xa(5) = subplot(515); hold on; title('light transitions');
-    plot([out.e(2).s.tim24]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
-    xlabel('24 Hour');
-    ylim([-1, 6]);
-
-linkaxes(xa, 'x'); xlim([0 24]); 
-
-        subplot(5,1,1); 
-            plot([5 5], [0, max([out.e(1).s.sumfftAmp])], 'y', 'LineWidth', 4); 
-            plot([17 17], [0, max([out.e(1).s.sumfftAmp])], 'k', 'LineWidth', 4);
-        subplot(5,1,2); 
-            plot([5 5], [0, max([out.e(1).s.zAmp])], 'y', 'LineWidth', 4); 
-            plot([17 17], [0, max([out.e(1).s.zAmp])], 'k', 'LineWidth', 4);
-        subplot(5,1,3); 
-            plot([5 5], [0, max([out.e(1).s.obwAmp])], 'y', 'LineWidth', 4); 
-            plot([17 17], [0, max([out.e(1).s.obwAmp])], 'k', 'LineWidth', 4);
-
-                    drawnow;
+% figure(2); clf; 
+%     set(gcf, 'Position', [300 100 2*560 2*420]);
+% 
+% xa(1) = subplot(511); hold on; title('sumfftAmp');
+%     plot([out.e(2).s(ttsf{2}).tim24]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
+%     plot([out.e(1).s(ttsf{1}).tim24]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.');
+% 
+% xa(2) = subplot(512); hold on; title('zAmp');
+%     plot([out.e(2).s(ttz{2}).tim24]/(60*60), [out.e(2).s(ttz{2}).zAmp], '.');
+%     plot([out.e(1).s(ttz{1}).tim24]/(60*60), [out.e(1).s(ttz{1}).zAmp], '.');
+%    
+% xa(3) = subplot(513); hold on; title('obwAmp');
+%     plot([out.e(2).s(tto{2}).tim24]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
+%     plot([out.e(1).s(tto{1}).tim24]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
+%     
+% xa(4) = subplot(514); hold on; title('frequency (black) and temperature (red)'); 
+%     yyaxis right; plot([out.e(2).s.tim24]/(60*60), -[out.e(2).s.temp], '.');
+%     yyaxis left; ylim([200 800]);
+%         plot([out.e(2).s.tim24]/(60*60), [out.e(2).s.fftFreq], '.', 'Markersize', 8);      
+%     
+% xa(5) = subplot(515); hold on; title('light transitions');
+%     plot([out.e(2).s.tim24]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
+%     xlabel('24 Hour');
+%     ylim([-1, 6]);
+% 
+% linkaxes(xa, 'x'); xlim([0 24]); 
+% 
+%         subplot(5,1,1); 
+%             plot([5 5], [0, max([out.e(1).s.sumfftAmp])], 'y', 'LineWidth', 4); 
+%             plot([17 17], [0, max([out.e(1).s.sumfftAmp])], 'k', 'LineWidth', 4);
+%         subplot(5,1,2); 
+%             plot([5 5], [0, max([out.e(1).s.zAmp])], 'y', 'LineWidth', 4); 
+%             plot([17 17], [0, max([out.e(1).s.zAmp])], 'k', 'LineWidth', 4);
+%         subplot(5,1,3); 
+%             plot([5 5], [0, max([out.e(1).s.obwAmp])], 'y', 'LineWidth', 4); 
+%             plot([17 17], [0, max([out.e(1).s.obwAmp])], 'k', 'LineWidth', 4);
+% 
+%                     drawnow;
 
 %% Light/Dark Plot 
 
