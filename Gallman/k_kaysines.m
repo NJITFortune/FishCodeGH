@@ -95,6 +95,7 @@ lighttimes = lighttrim(lighttrim > 0);
       
       
 %separate into days
+%always starts with dark?
       for jj = 2:2:length(lighttimes)-1
 
 
@@ -105,9 +106,6 @@ lighttimes = lighttrim(lighttrim > 0);
                    kay(j).avgresp(jj/2, :) = dtobwyy(otx);
 
       end
-      
-      %how do i invert the light/dark to dark/light?
-      %need another explanation of the indexing on this one
       
             
  end           
