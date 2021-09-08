@@ -316,7 +316,7 @@ figure(1); clf;
     
     assx(1) = subplot(411); hold on; 
         plot([out.Hitimobw], [out.Hiobw], '.');
-        plot([out.Lotimobw]/(60*60), [out.Loobw], '.');
+        plot([out.Lotimobw], [out.Loobw], '.');
 
         legend('High frequency fish', 'Low frequency fish');
         
