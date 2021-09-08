@@ -50,7 +50,8 @@ ld = [in.info.ld];
             
 %% trim luz to data
 lighttimeslong = abs(in.info.luz);
-lighttimeslesslong = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
+lighttimesidx = find(lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2));
+lightimeslesslong = lighttimeslong(lighttimesidx);
 
 for j = 1:length(lighttimeslesslong)-1
         
