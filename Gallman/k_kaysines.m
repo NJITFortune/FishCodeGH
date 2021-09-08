@@ -114,7 +114,7 @@ else
 
                     spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
                     %resample new x values based on light/dark
-                    obwyy = fnval(out(2).obwxx, spliney);
+                    obwyy = fnval(out.obwxx, spliney);
                     %detrend ydata
                     dtobwyy = detrend(obwyy,6,'SamplePoints', out.obwxx);
 
@@ -124,7 +124,7 @@ else
               for jj = 2:2:length(lighttimes)-1
 
 
-                           otx = find(out.obwxx >= lighttimes(jj-1) & out.obwxx < lighttimes(jj+1)); 
+                           otx = find([out.obwxx] >= lighttimes(jj-1) & [out.obwxx] < lighttimes(jj+1)); 
 
                            out(jj).dtobwyy(:) = dtobwyy(otx);
                            out.tim = out.obwxx(otx) - out.obwxx(otx(1));
