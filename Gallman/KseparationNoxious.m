@@ -287,7 +287,6 @@ figure(987); clf; hold on;
         %high freq fish amp
         [Hisortidx, ~] = sort([intube2hi intube1hi]);
         intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
-        Hiobw = intubeHi(Hisortidx); 
         
         for j = 1:length(intubeHi)
             out(j).Hiobw(:) = intubeHi(Hisortidx(j));
