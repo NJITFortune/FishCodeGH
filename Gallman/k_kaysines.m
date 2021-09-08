@@ -51,6 +51,7 @@ ld = [in.info.ld];
         
 %% trim luz to data - Generate lighttimes
 lighttimeslong = abs(in.info.luz);
+
 lighttrim = zeros(1, length(lighttimeslong)-1);
 
 for j = 1:length(lighttimeslong)-1
