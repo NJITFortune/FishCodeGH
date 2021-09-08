@@ -306,29 +306,7 @@ figure(987); clf; hold on;
             out(j).LOfreq(:) = [out(Losortidx(j)).lofreq];
         end
         
-        
-        
-        
    
-        %eric this doesn't work...
-%         [out.HItimidx, Hisortidx] = sort([intube2hi intube1hi]);
-%         intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
-%         
-%         for j = 1:length(intubeHi)
-%             out(Hisortidx(j)).Hiobw = intubeHi(j);
-%             out(HItimidx(j)).HItimidx = 
-%         end
-%         
-%         %low freq fish amp
-%         [out.LOtimidx, Losortidx] = sort([intube2lo intube1lo]);
-%         intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
-%        
-%         for j = 1:length(intubeLo)
-%             out(Losortidx(j)).Loobw = intubeLo(j);
-%         end
-    
-        
-    
         
 %% Plot fish against light/temp
 
@@ -337,8 +315,8 @@ figure(1); clf;
 
     
     assx(1) = subplot(411); hold on; 
-        plot([out(Hisortidx).timcont]/(60*60), [out.Hiobw], '.');
-        plot([out(Losortidx).timcont]/(60*60), [out.Loobw], '.');
+        plot([out.Hitimobw], [out.Hiobw], '.');
+        plot([out.Lotimobw]/(60*60), [out.Loobw], '.');
 
         legend('High frequency fish', 'Low frequency fish');
         
