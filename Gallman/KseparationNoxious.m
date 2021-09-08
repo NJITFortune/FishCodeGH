@@ -297,10 +297,10 @@ figure(987); clf; hold on;
         
         %low freq fish amp
         [Losortidx, ~] = sort([intube2lo intube1lo]);
-        intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
-        Loobw = intubeLo(Losortidx); 
+        %intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
+       intubeLo = [out.e2loamp, out.e1loamp];
         
-        for j = 1:length(intubeLo)
+        for j = 1:length(Losortidx)
             out(j).Loobw(:) = intubeLo(Losortidx(j));
             out(j).Lotimobw(:) = [out(Losortidx(j)).timcont]/(60*60);
             out(j).LOfreq(:) = [out(Losortidx(j)).lofreq];
