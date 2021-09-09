@@ -10,8 +10,8 @@ figure(1); clf; hold on; title('power at daylength in hours');
  %plot data
       axs(1) = subplot(211); hold on; 
         for j = 1:length(in)
-            plot(in(j).tim, in(j).mavgresp);
-            forcalcmean(j,:) = in(j).mavgresp;
+            plot(in(j).tim, in(j).mavgresp / max(abs(in(j).mavgresp - mean(in(j).mavgresp))));
+            forcalcmean(j,:) = in(j).mavgresp / max(abs(in(j).mavgresp - mean(in(j).mavgresp)));
         end
             plot(in(1).tim, mean(forcalcmean), 'k', 'LineWidth', 3);
             plot([k k], ylim, 'k-');
