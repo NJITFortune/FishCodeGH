@@ -22,7 +22,7 @@ figure(1); clf; hold on; title('power at daylength in hours');
             tt = [in(1).tim];
             tt = [tt, tt(end:-1:1)];
             kavgresp = mean(forcalcmean);
-            kstd = std(kavgresp);
+            kstd = std(forcalcmean);
             
         
         
