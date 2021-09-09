@@ -220,77 +220,6 @@ figure(103); clf; hold on;
      set(gca,'yscale', 'log');
     
     
-
-% %% resample light times without spline
-% 
-% %define ylim for light square wave
-% lightamp1 = max(dtobwyy1);
-% lightamp2 = max(dtobwyy2);
-% 
-% for j = 1:length(lighttimes)-1
-%     
-%     if in.info.luz(j) > 0  % Light side
-%         
-%         if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimes(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimes(j+1),1))    
-%             
-%             ott = find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimes(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimes(j+1)); 
-%         
-%             %is there enough data to do analysis?
-%             if length(ott) > 10
-% %                obwtim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
-% %                light = [in.e(1).s(tto{1}(ott)).light];
-% 
-%                %resample x
-%                day(j).obwdayx = lighttimes(j):1/ReFs:lighttimes(j+1)-1/ReFs;
-%                
-%                %channel 1 amp
-%                day(j).daysquare1 = lightamp1 * (ones(1, length(day(j).obwdayx)));     
-%                day(j).lightsquare1 = lightamp1 * (ones(1, length(day(j).obwdayx))); 
-%                
-%                %channel 2 amp
-%                day(j).daysquare2 = lightamp2 * (ones(1, length(day(j).obwdayx)));     
-%                day(j).lightsquare2 = lightamp2 * (ones(1, length(day(j).obwdayx))); 
-%                
-%                day(j).lightsqx = lighttimes(j):1/ReFs:lighttimes(j+1)-1/ReFs;
-%             end 
-%             
-%         end 
-%         
-%     else %dark side
-%         
-%         if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimes(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimes(j+1),1))    
-%             
-%             ott = find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimes(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimes(j+1)); 
-%         
-%             %is there enough data to do analysis?
-%             if length(ott) > 10
-% %                obwtim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
-% %                light = [in.e(1).s(tto{1}(ott)).light];
-% 
-%                %resample x
-%                day(j).obwdayx = lighttimes(j):1/ReFs:lighttimes(j+1)-1/ReFs;
-%                
-%                %channel1 amp
-%                day(j).daysquare1 = -lightamp1 * (ones(1, length(day(j).obwdayx)));  
-%                day(j).darksquare1 = -lightamp1 * (ones(1, length(day(j).obwdayx))); 
-%                
-%                %channel 2 amp
-%                day(j).daysquare2 = -lightamp2 * (ones(1, length(day(j).obwdayx)));  
-%                day(j).darksquare2 = -lightamp2 * (ones(1, length(day(j).obwdayx))); 
-%                
-%                day(j).darksqx = lighttimes(j):1/ReFs:lighttimes(j+1)-1/ReFs;
-%             end 
-%         end
-%         
-%     end
-%     
-% end
-%  
-% % figure(222); 
-% % plot([day.obwdayx], [day.daysquare], '-');
-% 
-% 
-% %figure(27); hold on; for j=1:length(out); plot(out(j).obwdayy); end;
 %% light squares based on light spline
 lightamp1 = max(dtobwyy1);
 
@@ -322,34 +251,17 @@ figure(104); clf; hold on;
     samp2 = max(abs(dtobwyy2));
     %siney = samp1*sin(2 * pi * pkfrq1 * (obwxx-obwxx(1)));
      
-   
-% for j = 1:length(day)-1
-%     
-%     if day(1).daysquare1(1) < 0 %if we start with dark
-%         rect(j).pos = [day(j).darksqx(end) day(j).darksquare1(end) ld 2*day(j+1).lightsquare1(1)];
-%     else %we start with light
-%         rect(j).pos = [day(j+1).darksqx(end) day(j+1).darksquare1(end) ld 2*day(j).lightsquare1(1)];
-%     end
-%     
-% end    
     
     
     
 axs(1) = subplot(211); hold on; title('Channel 1');
-    %plot on top of detrended spline
-  % rectangle('Position', rect.pos, 'FaceColor', 'y');
-  % plot([day(2).darksqx], [day(2).darksquare1], 'yo', 'LineWidth', 3);
-%   rectangle('Position', [day(2).darksqx(end) day(2).darksquare1(end) ld 2*day(1).lightsquare1(1)], 'FaceColor', 'y');
-   %plot([day.obwdayx], [day.daysquare1], 'k-', 'LineWidth', 2);
-   %plot(obwxx1, siney*0.9, '-', 'LineWidth', 3);
+ 
    plot(obwxx, day1, 'k-', 'LineWidth', 2);
    plot(obwxx, lighty * max(abs(dtobwyy1)), 'k-', 'MarkerSize', 4);
    plot(obwxx, dtobwyy1, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
    
 axs(2) =subplot(212); hold on; title('Channel 2');
-    %plot on top of detrended spline
-%   plot([day.obwdayx], [day.daysquare2], 'k-', 'LineWidth', 2);
-   %plot(obwxx1, siney*0.9, '-', 'LineWidth', 3);
+   
    plot(obwxx, day2, 'k-', 'LineWidth', 2);
    plot(obwxx, lighty * max(abs(dtobwyy2)), 'k-', 'MarkerSize', 4);
    plot(obwxx, dtobwyy2, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
