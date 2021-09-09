@@ -338,8 +338,9 @@ axs(1) = subplot(211); hold on; title('Channel 1');
    
 axs(2) =subplot(212); hold on; title('Channel 2');
     %plot on top of detrended spline
-   plot([day.obwdayx], [day.daysquare2], 'k-', 'LineWidth', 2);
+%   plot([day.obwdayx], [day.daysquare2], 'k-', 'LineWidth', 2);
    %plot(obwxx1, siney*0.9, '-', 'LineWidth', 3);
+   plot(obwxx, day, 'k-', 'LineWidth', 2);
    plot(obwxx, lighty * max(abs(dtobwyy2)), 'k-', 'MarkerSize', 4);
    plot(obwxx, dtobwyy2, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
    
