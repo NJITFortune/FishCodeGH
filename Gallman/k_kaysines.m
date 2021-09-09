@@ -103,7 +103,7 @@ if channel == 1
       out.mavgresp = mean(avgresp);
              
       
-else
+else %channel = 2
     
         
         obwxx = lighttimes(1):1/ReFs:lighttimes(end);
