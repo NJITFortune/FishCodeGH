@@ -296,9 +296,19 @@ lightamp1 = max(dtobwyy1);
 
    for j = 1:length(lighty)
        if lighty(j) > 0
-          day(j) = lightamp1;
+          day1(j) = lightamp1;
        else
-          day(j) = -lightamp1;
+          day1(j) = -lightamp1;
+       end
+   end
+   
+lightamp2 = max(dtobwyy2);
+
+   for j = 1:length(lighty)
+       if lighty(j) > 0
+          day2(j) = lightamp2;
+       else
+          day2(j) = -lightamp2;
        end
    end
 
@@ -332,7 +342,7 @@ axs(1) = subplot(211); hold on; title('Channel 1');
 %   rectangle('Position', [day(2).darksqx(end) day(2).darksquare1(end) ld 2*day(1).lightsquare1(1)], 'FaceColor', 'y');
    %plot([day.obwdayx], [day.daysquare1], 'k-', 'LineWidth', 2);
    %plot(obwxx1, siney*0.9, '-', 'LineWidth', 3);
-   plot(obwxx, day, 'k-', 'LineWidth', 2);
+   plot(obwxx, day1, 'k-', 'LineWidth', 2);
    plot(obwxx, lighty * max(abs(dtobwyy1)), 'k-', 'MarkerSize', 4);
    plot(obwxx, dtobwyy1, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
    
@@ -340,7 +350,7 @@ axs(2) =subplot(212); hold on; title('Channel 2');
     %plot on top of detrended spline
 %   plot([day.obwdayx], [day.daysquare2], 'k-', 'LineWidth', 2);
    %plot(obwxx1, siney*0.9, '-', 'LineWidth', 3);
-   plot(obwxx, day, 'k-', 'LineWidth', 2);
+   plot(obwxx, day2, 'k-', 'LineWidth', 2);
    plot(obwxx, lighty * max(abs(dtobwyy2)), 'k-', 'MarkerSize', 4);
    plot(obwxx, dtobwyy2, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
    
