@@ -127,8 +127,6 @@ else %channel = 2
 
                            otx = find(obwxx >= lighttimes(jj-1) & obwxx < lighttimes(jj+1)); 
 
-                           
-                           
                            avgresp(jj/2, :) = dtobwyy(otx);
 
               end
