@@ -1,4 +1,4 @@
-function [tim, mavgresp] = k_kaysines(in, channel)
+function out = k_kaysines(in, channel)
 
 %in = kg(k)
 %out = kay(k).e.
@@ -99,12 +99,11 @@ if channel == 1
 
       end
       
-%       out.tim = obwxx(otx) - obwxx(otx(1));
-%       out.mavgresp = mean(avgresp);
-%              
+      out.tim = obwxx(otx) - obwxx(otx(1));
+      out.mavgresp = mean(avgresp);
+             
       
-      tim = obwxx(otx) - obwxx(otx(1));
-      mavgresp = mean(avgresp);
+      
       
 else %channel = 2
     
