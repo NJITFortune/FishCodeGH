@@ -4,7 +4,7 @@ function k_kayplotter(in)
 
 figure(1); clf; hold on; title('power at daylength in hours');
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
-    set(gcf, 'Position', [0 0 W L]);
+    
     
     
  %plot data
