@@ -333,7 +333,7 @@ figure(68); clf; title('trial hour - channel 1');
     %total duration
     fulllighttime = lighttimes(end)-lighttimes(1);
     %number of 12 hour transistion over duration
-    cycnum = ceil(fulllighttime/12)+2;
+    cycnum = ceil(fulllighttime/12)+1;
     %time index - basically the same as j = 1:length(cycnum);
     timz = 1:1:cycnum;
     %generate new 12 hour light vector
@@ -429,7 +429,7 @@ figure(70); clf; title('12 hour - channel 1');
    
     for j = 2:2:length(twelvelight)-1
 
-              if length((obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1))) >= length(ot1)
+              if length((obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1))) == length(ot1)
                    otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
                    
                    plot(obwxx(otx) - obwxx(otx(1)), dtobwyy1(otx));
