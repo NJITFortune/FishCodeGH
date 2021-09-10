@@ -342,12 +342,14 @@ figure(68); clf; title('trial hour - channel 1');
 %create light square wave
     for j = 1:2:length(twelvelight)
         if light(1) < 0
-           twelveluz = - twelvelight(j);
+           twelveluzneg(j, :) = - twelvelight(j);
+           twelveluzpos(j+1, :) = twelvelight(j+1);
         else
-           twelveluz = - twelvelight(j+1);
+           twelveluzneg(j+1, :) = - twelvelight(j+1);
+           twelveluzpos(j, :) = twelvelight(j);
         end
     end
-
+twleveluz = twelveluzneg + twelveluzpos;
 
 %% plot spline vs 12 
 figure(104); clf; hold on;
