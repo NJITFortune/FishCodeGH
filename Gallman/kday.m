@@ -445,8 +445,8 @@ figure(70); clf; title('12 hour - channel 1');
     subplot(212); hold on;
         tt = obwxx(otx) - obwxx(otx(1));
         tt = [tt tt(end:-1:1)];
-        mavgresp1 = mean(avgresp1);
-        savgresp1 = std(avgresp1);
+        mavgresp1 = mean(twavgresp1);
+        savgresp1 = std(twavgresp1);
 
         fill(tt, [mavgresp1+savgresp1 mavgresp1(end:-1:1)-savgresp1(end:-1:1)], 'c');
         plot(obwxx(otx) - obwxx(otx(1)), mavgresp1, 'k', 'LineWidth', 3);
@@ -461,22 +461,22 @@ figure(70); clf; title('12 hour - channel 1');
  
      for j = 2:2:length(twelvelight)-1
 
-               
+               if length((obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1))) == length(ot1)
                    otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
 
                    plot(obwxx(otx) - obwxx(otx(1)), dtobwyy2(otx));
                    plot([[in.info.ld] [in.info.ld]], [-samp2 samp2], 'k-', 'Linewidth', 2); 
 
-                   avgresp2(j/2, :) = dtobwyy2(otx);
-
+                   twavgresp2(j/2, :) = dtobwyy2(otx);
+               end
      end
  
     
      subplot(212); hold on;
         tt = obwxx(otx) - obwxx(otx(1));
         tt = [tt tt(end:-1:1)];
-        mavgresp2 = mean(avgresp2);
-        savgresp2 = std(avgresp2);
+        mavgresp2 = mean(twavgresp2);
+        savgresp2 = std(twavgresp2);
 
         fill(tt, [mavgresp2+savgresp2 mavgresp2(end:-1:1)-savgresp2(end:-1:1)], 'c');
         plot(obwxx(otx) - obwxx(otx(1)), mavgresp2, 'k', 'LineWidth', 3);
