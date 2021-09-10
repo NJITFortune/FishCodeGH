@@ -327,133 +327,133 @@ figure(68); clf; title('trial hour - channel 1');
         plot(obwxx(otx) - obwxx(otx(1)), mavgresp2, 'k', 'LineWidth', 3);
         plot([[in.info.ld] [in.info.ld]], [-samp2 samp2], 'k-', 'Linewidth', 2); 
 
-%% Generate 12 hour light vector
-
-%create new light vector
-    %total duration
-    fulllighttime = lighttimes(end)-lighttimes(1);
-    %number of 12 hour transistion over duration
-    cycnum = ceil(fulllighttime/12);
-    %time index - basically the same as j = 1:length(cycnum);
-    timz = 1:1:cycnum;
-    %generate new 12 hour light vector
-    twelvelight(timz) = lighttimes(1) + (12*(timz-1)); 
-    
-%create light square wave
-    for j = 1:length(twelvelight)
-        if lighty(1) < 0
-           if mod(j,2) == 1 
-              twelveluz(j, :) = -(twelvelight(j)); 
-           else
-              twelveluz(j, :) = twelvelight(j); 
-           end
-        else
-           if mod(j,2) == 1 
-              twelveluz(j, :) = twelvelight(j); 
-           else
-              twelveluz(j, :) = -(twelvelight(j)); 
-           end
-        end
-    end
-twelveluz
-
-%% plot spline vs 12 
-figure(104); clf; hold on;
-
-    %make sine wave
-        %define amplitude
-    samp1 = max(abs(dtobwyy1));
-    samp2 = max(abs(dtobwyy2));
-    %siney = samp1*sin(2 * pi * pkfrq1 * (obwxx-obwxx(1)));
-     
-    
-axs(1) = subplot(211); hold on; title('Channel 1');
- 
-   plot(obwxx, day1, 'k-', 'LineWidth', 2);
-   plot(obwxx, lighty * max(abs(dtobwyy1)), 'k-', 'MarkerSize', 4);
-   plot(obwxx, dtobwyy1, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
-   
-axs(2) =subplot(212); hold on; title('Channel 2');
-   
-   plot(obwxx, day2, 'k-', 'LineWidth', 2);
-   plot(obwxx, lighty * max(abs(dtobwyy2)), 'k-', 'MarkerSize', 4);
-   plot(obwxx, dtobwyy2, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
-   
-linkaxes(axs, 'x'); 
-       
-    
-%% separate into 24 hour days
-    
-figure(70); clf; title('12 hour - channel 1');
-  
-%Channel 1
-   subplot(211); hold on; 
-   
-    for j = 2:2:length(twelvelight)-1
-
-
-                   otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
-
-                   plot(obwxx(otx) - obwxx(otx(1)), dtobwyy1(otx));
-                   plot([[in.info.ld] [in.info.ld]], [-samp1 samp1], 'k-', 'Linewidth', 2); 
-                  
-                   avgresp1(j/2, :) = dtobwyy1(otx);
-
-    end
-
-
-
-    subplot(212); hold on;
-        tt = obwxx(otx) - obwxx(otx(1));
-        tt = [tt tt(end:-1:1)];
-        mavgresp1 = mean(avgresp1);
-        savgresp1 = std(avgresp1);
-
-        fill(tt, [mavgresp1+savgresp1 mavgresp1(end:-1:1)-savgresp1(end:-1:1)], 'c');
-        plot(obwxx(otx) - obwxx(otx(1)), mavgresp1, 'k', 'LineWidth', 3);
-        plot([[in.info.ld] [in.info.ld]], [-samp1 samp1], 'k-', 'Linewidth', 2); 
-
-
-        
- figure(71); clf; title('12 hour - channel 2');
-       
-    %channel 2 
-    subplot(211); hold on;
- 
-     for j = 2:2:length(twelvelight)-1
-
-
-                   otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
-
-                   plot(obwxx(otx) - obwxx(otx(1)), dtobwyy2(otx));
-                   plot([[in.info.ld] [in.info.ld]], [-samp2 samp2], 'k-', 'Linewidth', 2); 
-
-                   avgresp2(j/2, :) = dtobwyy2(otx);
-
-     end
- 
-    
-     subplot(212); hold on;
-        tt = obwxx(otx) - obwxx(otx(1));
-        tt = [tt tt(end:-1:1)];
-        mavgresp2 = mean(avgresp2);
-        savgresp2 = std(avgresp2);
-
-        fill(tt, [mavgresp2+savgresp2 mavgresp2(end:-1:1)-savgresp2(end:-1:1)], 'c');
-        plot(obwxx(otx) - obwxx(otx(1)), mavgresp2, 'k', 'LineWidth', 3);
-        plot([[in.info.ld] [in.info.ld]], [-samp2 samp2], 'k-', 'Linewidth', 2); 
-
-
-    
-        
-
-
-
-
-
-
-
-
-
-
-
+% %% Generate 12 hour light vector
+% 
+% %create new light vector
+%     %total duration
+%     fulllighttime = lighttimes(end)-lighttimes(1);
+%     %number of 12 hour transistion over duration
+%     cycnum = ceil(fulllighttime/12);
+%     %time index - basically the same as j = 1:length(cycnum);
+%     timz = 1:1:cycnum;
+%     %generate new 12 hour light vector
+%     twelvelight(timz) = lighttimes(1) + (12*(timz-1)); 
+%     
+% %create light square wave
+%     for j = 1:length(twelvelight)
+%         if lighty(1) < 0
+%            if mod(j,2) == 1 
+%               twelveluz(j, :) = -(twelvelight(j)); 
+%            else
+%               twelveluz(j, :) = twelvelight(j); 
+%            end
+%         else
+%            if mod(j,2) == 1 
+%               twelveluz(j, :) = twelvelight(j); 
+%            else
+%               twelveluz(j, :) = -(twelvelight(j)); 
+%            end
+%         end
+%     end
+% twelveluz
+% 
+% %% plot spline vs 12 
+% figure(104); clf; hold on;
+% 
+%     %make sine wave
+%         %define amplitude
+%     samp1 = max(abs(dtobwyy1));
+%     samp2 = max(abs(dtobwyy2));
+%     %siney = samp1*sin(2 * pi * pkfrq1 * (obwxx-obwxx(1)));
+%      
+%     
+% axs(1) = subplot(211); hold on; title('Channel 1');
+%  
+%    plot(obwxx, day1, 'k-', 'LineWidth', 2);
+%    plot(obwxx, lighty * max(abs(dtobwyy1)), 'k-', 'MarkerSize', 4);
+%    plot(obwxx, dtobwyy1, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
+%    
+% axs(2) =subplot(212); hold on; title('Channel 2');
+%    
+%    plot(obwxx, day2, 'k-', 'LineWidth', 2);
+%    plot(obwxx, lighty * max(abs(dtobwyy2)), 'k-', 'MarkerSize', 4);
+%    plot(obwxx, dtobwyy2, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
+%    
+% linkaxes(axs, 'x'); 
+%        
+%     
+% %% separate into 24 hour days
+%     
+% figure(70); clf; title('12 hour - channel 1');
+%   
+% %Channel 1
+%    subplot(211); hold on; 
+%    
+%     for j = 2:2:length(twelvelight)-1
+% 
+% 
+%                    otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
+% 
+%                    plot(obwxx(otx) - obwxx(otx(1)), dtobwyy1(otx));
+%                    plot([[in.info.ld] [in.info.ld]], [-samp1 samp1], 'k-', 'Linewidth', 2); 
+%                   
+%                    avgresp1(j/2, :) = dtobwyy1(otx);
+% 
+%     end
+% 
+% 
+% 
+%     subplot(212); hold on;
+%         tt = obwxx(otx) - obwxx(otx(1));
+%         tt = [tt tt(end:-1:1)];
+%         mavgresp1 = mean(avgresp1);
+%         savgresp1 = std(avgresp1);
+% 
+%         fill(tt, [mavgresp1+savgresp1 mavgresp1(end:-1:1)-savgresp1(end:-1:1)], 'c');
+%         plot(obwxx(otx) - obwxx(otx(1)), mavgresp1, 'k', 'LineWidth', 3);
+%         plot([[in.info.ld] [in.info.ld]], [-samp1 samp1], 'k-', 'Linewidth', 2); 
+% 
+% 
+%         
+%  figure(71); clf; title('12 hour - channel 2');
+%        
+%     %channel 2 
+%     subplot(211); hold on;
+%  
+%      for j = 2:2:length(twelvelight)-1
+% 
+% 
+%                    otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
+% 
+%                    plot(obwxx(otx) - obwxx(otx(1)), dtobwyy2(otx));
+%                    plot([[in.info.ld] [in.info.ld]], [-samp2 samp2], 'k-', 'Linewidth', 2); 
+% 
+%                    avgresp2(j/2, :) = dtobwyy2(otx);
+% 
+%      end
+%  
+%     
+%      subplot(212); hold on;
+%         tt = obwxx(otx) - obwxx(otx(1));
+%         tt = [tt tt(end:-1:1)];
+%         mavgresp2 = mean(avgresp2);
+%         savgresp2 = std(avgresp2);
+% 
+%         fill(tt, [mavgresp2+savgresp2 mavgresp2(end:-1:1)-savgresp2(end:-1:1)], 'c');
+%         plot(obwxx(otx) - obwxx(otx(1)), mavgresp2, 'k', 'LineWidth', 3);
+%         plot([[in.info.ld] [in.info.ld]], [-samp2 samp2], 'k-', 'Linewidth', 2); 
+% 
+% 
+%     
+%         
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
