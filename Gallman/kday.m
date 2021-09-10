@@ -268,7 +268,8 @@ linkaxes(axs, 'x');
    
 %% separate to individual epochs
 
-figure(68); clf; 
+figure(68); clf; title('trial hour - channel 1');
+  
   
 %Channel 1
    subplot(211); hold on; 
@@ -299,7 +300,7 @@ figure(68); clf;
 
 
         
- figure(69); clf;       
+ figure(69); clf;  title('trial hour - channel 2');     
     %channel 2 
     subplot(211); hold on;
  
@@ -328,13 +329,79 @@ figure(68); clf;
 
 %% Generate 12 hour epochs
 
-fulllighttime = lighttimes(end)-lighttimes(1);
+%create new light vector
+    %total duration
+    fulllighttime = lighttimes(end)-lighttimes(1);
+    %number of 12 hour transistion over duration
+    cycnum = ceil(fulllighttime/12);
+    %time index - basically the same as j = 1:length(cycnum);
+    timz = 1:1:cycnum;
+    %generate new 12 hour light vector
+    twelvelight(timz) = lighttimes(1) + (12*(timz-1)); 
 
-cycnum = ceil(fulllighttime/12);
 
-timz = 1:1:cycnum;
+%separate into 24 hour days
+    
+figure(70); clf; title('12 hour - channel 1');
+  
+%Channel 1
+   subplot(211); hold on; 
+   
+    for j = 2:2:length(twelvelight)-1
 
-twelvelight(timz) = lighttimes(1) + (12*(timz-1)); %without for-loop
+
+                   otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
+
+                   plot(obwxx(otx) - obwxx(otx(1)), dtobwyy1(otx));
+                   plot([[in.info.ld] [in.info.ld]], [-samp1 samp1], 'k-', 'Linewidth', 2); 
+                  
+                   avgresp1(j/2, :) = dtobwyy1(otx);
+
+    end
+
+
+
+    subplot(212); hold on;
+        tt = obwxx(otx) - obwxx(otx(1));
+        tt = [tt tt(end:-1:1)];
+        mavgresp1 = mean(avgresp1);
+        savgresp1 = std(avgresp1);
+
+        fill(tt, [mavgresp1+savgresp1 mavgresp1(end:-1:1)-savgresp1(end:-1:1)], 'c');
+        plot(obwxx(otx) - obwxx(otx(1)), mavgresp1, 'k', 'LineWidth', 3);
+        plot([[in.info.ld] [in.info.ld]], [-samp1 samp1], 'k-', 'Linewidth', 2); 
+
+
+        
+ figure(71); clf; title('12 hour - channel 2');
+       
+    %channel 2 
+    subplot(211); hold on;
+ 
+     for j = 2:2:length(twelvelight)-1
+
+
+                   otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
+
+                   plot(obwxx(otx) - obwxx(otx(1)), dtobwyy2(otx));
+                   plot([[in.info.ld] [in.info.ld]], [-samp2 samp2], 'k-', 'Linewidth', 2); 
+
+                   avgresp2(j/2, :) = dtobwyy2(otx);
+
+     end
+ 
+    
+     subplot(212); hold on;
+        tt = obwxx(otx) - obwxx(otx(1));
+        tt = [tt tt(end:-1:1)];
+        mavgresp2 = mean(avgresp2);
+        savgresp2 = std(avgresp2);
+
+        fill(tt, [mavgresp2+savgresp2 mavgresp2(end:-1:1)-savgresp2(end:-1:1)], 'c');
+        plot(obwxx(otx) - obwxx(otx(1)), mavgresp2, 'k', 'LineWidth', 3);
+        plot([[in.info.ld] [in.info.ld]], [-samp2 samp2], 'k-', 'Linewidth', 2); 
+
+
     
         
 
