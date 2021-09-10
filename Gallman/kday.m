@@ -356,13 +356,24 @@ figure(68); clf; title('trial hour - channel 1');
         end
     end
 
-    
+%channel 1
     for j = 1:length(twelveluz)-1
        
             if twelveluz(j) < 0
-               twelvesqu(j).dark(:) = -lightamp1;
+               twelvesqu1(j).dark(:) = -lightamp1;
             else
-               twelvesqu(j).light(:) = lightamp1;
+               twelvesqu1(j).light(:) = lightamp1;
+            end
+      
+    end    
+    
+%channel 2
+    for j = 1:length(twelveluz)-1
+       
+            if twelveluz(j) < 0
+               twelvesqu2(j).dark(:) = -lightamp2;
+            else
+               twelvesqu2(j).light(:) = lightamp2;
             end
       
     end    
@@ -379,14 +390,14 @@ figure(104); clf; hold on;
     
 axs(1) = subplot(211); hold on; title('Channel 1');
  
-   plot(obwxx, day1, 'k-', 'LineWidth', 2);
-   plot(obwxx, lighty * max(abs(dtobwyy1)), 'k-', 'MarkerSize', 4);
+   plot(obwxx, twelvesqu1, 'k-', 'LineWidth', 2);
+   
    plot(obwxx, dtobwyy1, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
    
 axs(2) =subplot(212); hold on; title('Channel 2');
    
-   plot(obwxx, day2, 'k-', 'LineWidth', 2);
-   plot(obwxx, lighty * max(abs(dtobwyy2)), 'k-', 'MarkerSize', 4);
+   plot(obwxx, twelvesqu2, 'k-', 'LineWidth', 2);
+  
    plot(obwxx, dtobwyy2, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
    
 linkaxes(axs, 'x'); 
