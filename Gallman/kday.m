@@ -425,7 +425,7 @@ figure(70); clf; title('12 hour - channel 1');
 %Channel 1
    subplot(211); hold on; 
    
-   ot1(1) = find(obwxx >= twelvelight(1) & obwxx < twelvelight(3));
+   ot1 = find(obwxx >= twelvelight(1) & obwxx < twelvelight(3));
    
     for j = 2:2:length(twelvelight)-1
 
