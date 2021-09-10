@@ -355,7 +355,7 @@ figure(68); clf; title('trial hour - channel 1');
            end
         end
     end
-twleveluz
+twelveluz
 
 %% plot spline vs 12 
 figure(104); clf; hold on;
