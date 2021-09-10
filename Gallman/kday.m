@@ -357,17 +357,16 @@ figure(68); clf; title('trial hour - channel 1');
     end
 
 %channel 1
+
+fake12light = -lightamp * ones(1,length(obwxx));
+
+
     for j = 1:length(twelveluz)-1
-        otw = find(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1));
-        points = obwxx(otw);
         
-       for jj = 1:length(points)
-            if twelveluz(j) < 0
-               twelvesqu1(j).day(jj,:) = -lightamp1;
-            else
-               twelvesqu1(j).day(jj,:) = lightamp1;
-            end
-       end
+        if twelveluz(j) > 0       
+            fake12light(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = lightamp;            
+        end
+        
     end    
     
 
