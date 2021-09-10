@@ -252,8 +252,6 @@ figure(104); clf; hold on;
     %siney = samp1*sin(2 * pi * pkfrq1 * (obwxx-obwxx(1)));
      
     
-    
-    
 axs(1) = subplot(211); hold on; title('Channel 1');
  
    plot(obwxx, day1, 'k-', 'LineWidth', 2);
@@ -328,14 +326,17 @@ figure(68); clf;
         plot(obwxx(otx) - obwxx(otx(1)), mavgresp2, 'k', 'LineWidth', 3);
         plot([[in.info.ld] [in.info.ld]], [-samp2 samp2], 'k-', 'Linewidth', 2); 
 
-%% Would you like to subsample a new range?
+%% Generate 12 hour epochs
 
-%Question yes or no
-    %if yes 
-        %ginput new range from cspline fit graph
-    %if anything else
-        %kill
-    %end
+fulllighttime = lighttimes(end)-lighttimes(1);
+
+twelvetime = 
+
+
+
+
+
+
 
 
 
