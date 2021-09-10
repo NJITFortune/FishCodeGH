@@ -358,25 +358,18 @@ figure(68); clf; title('trial hour - channel 1');
 
 %channel 1
     for j = 1:length(twelveluz)-1
-       
+        otw = find(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1));
+        points = obwxx(otw);
+        
+       for jj = 1:length(points)
             if twelveluz(j) < 0
-               twelvesqu1(j).dark(:) = -lightamp1;
+               twelvesqu1(jj).dark(:) = -lightamp1;
             else
-               twelvesqu1(j).light(:) = lightamp1;
+               twelvesqu1(jj).light(:) = lightamp1;
             end
-      
+       end
     end    
     
-%channel 2
-    for j = 1:length(twelveluz)-1
-       
-            if twelveluz(j) < 0
-               twelvesqu2(j).dark(:) = -lightamp2;
-            else
-               twelvesqu2(j).light(:) = lightamp2;
-            end
-      
-    end    
 
 %% plot spline vs 12 
 figure(104); clf; hold on;
