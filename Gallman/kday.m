@@ -333,7 +333,7 @@ figure(68); clf; title('trial hour - channel 1');
     %total duration
     fulllighttime = lighttimes(end)-lighttimes(1);
     %number of 12 hour transistion over duration
-    cycnum = ceil(fulllighttime/12);
+    cycnum = ceil(fulllighttime/12)+1;
     %time index - basically the same as j = 1:length(cycnum);
     timz = 1:1:cycnum;
     %generate new 12 hour light vector
