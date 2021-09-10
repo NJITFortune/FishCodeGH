@@ -358,13 +358,13 @@ figure(68); clf; title('trial hour - channel 1');
 
 %channel 1
 
-fake12light = -lightamp * ones(1,length(obwxx));
+fake12light = -lightamp1 * ones(1,length(obwxx));
 
 
     for j = 1:length(twelveluz)-1
         
         if twelveluz(j) > 0       
-            fake12light(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = lightamp;            
+            fake12light(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = lightamp1;            
         end
         
     end    
