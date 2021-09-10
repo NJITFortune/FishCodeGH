@@ -332,7 +332,9 @@ fulllighttime = lighttimes(end)-lighttimes(1);
 
 cycnum = fulllighttime/12;
 
-twelvetime = 
+    
+        
+
 
 
 
