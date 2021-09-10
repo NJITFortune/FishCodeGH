@@ -371,7 +371,7 @@ fake12light = zeros(1,length(obwxx));
         
     end    
     
-fake12light = fake12light(obwxx < twelveluz(end)); 
+% fake12light = fake12light(obwxx < twelveluz(end)); 
 
 %% plot spline vs 12 
 figure(104); clf; hold on;
