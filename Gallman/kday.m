@@ -333,6 +333,8 @@ fulllighttime = lighttimes(end)-lighttimes(1);
 cycnum = ceil(fulllighttime/12);
 
 timz = 1:1:cycnum;
+
+twelvelight(timz) = lighttimes(1) + (12*(timz-1)); %without for-loop
     
         
 
