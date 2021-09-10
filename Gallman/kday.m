@@ -360,7 +360,7 @@ figure(68); clf; title('trial hour - channel 1');
     for j = 1:length(twelveluz)-1
         otw = find(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1));
         for jj = 1:length(otw)
-            if twelveluz < 0
+            if twelveluz(j) < 0
                twelvesqu(jj) = -lightamp1;
             else
                twelvesqu(jj) = lightamp1;
