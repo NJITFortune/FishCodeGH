@@ -332,6 +332,7 @@ fulllighttime = lighttimes(end)-lighttimes(1);
 
 cycnum = ceil(fulllighttime/12);
 
+timz = 1:1:cycnum;
     
         
 
