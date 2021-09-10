@@ -327,7 +327,7 @@ figure(68); clf; title('trial hour - channel 1');
         plot(obwxx(otx) - obwxx(otx(1)), mavgresp2, 'k', 'LineWidth', 3);
         plot([[in.info.ld] [in.info.ld]], [-samp2 samp2], 'k-', 'Linewidth', 2); 
 
-%% Generate 12 hour epochs
+%% Generate 12 hour light vector
 
 %create new light vector
     %total duration
@@ -338,9 +338,41 @@ figure(68); clf; title('trial hour - channel 1');
     timz = 1:1:cycnum;
     %generate new 12 hour light vector
     twelvelight(timz) = lighttimes(1) + (12*(timz-1)); 
+    
+%create light square wave
+    for j = 1:2:length(twelvelight)
+        if light(1) < 0
+           twelvelight(j) = - 
+            
+    end
 
 
-%separate into 24 hour days
+%% plot spline vs 12 
+figure(104); clf; hold on;
+
+    %make sine wave
+        %define amplitude
+    samp1 = max(abs(dtobwyy1));
+    samp2 = max(abs(dtobwyy2));
+    %siney = samp1*sin(2 * pi * pkfrq1 * (obwxx-obwxx(1)));
+     
+    
+axs(1) = subplot(211); hold on; title('Channel 1');
+ 
+   plot(obwxx, day1, 'k-', 'LineWidth', 2);
+   plot(obwxx, lighty * max(abs(dtobwyy1)), 'k-', 'MarkerSize', 4);
+   plot(obwxx, dtobwyy1, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
+   
+axs(2) =subplot(212); hold on; title('Channel 2');
+   
+   plot(obwxx, day2, 'k-', 'LineWidth', 2);
+   plot(obwxx, lighty * max(abs(dtobwyy2)), 'k-', 'MarkerSize', 4);
+   plot(obwxx, dtobwyy2, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
+   
+linkaxes(axs, 'x'); 
+       
+    
+%% separate into 24 hour days
     
 figure(70); clf; title('12 hour - channel 1');
   
