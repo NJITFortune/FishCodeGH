@@ -427,7 +427,7 @@ figure(70); clf; title('12 hour - channel 1');
    
    ot1 = find(obwxx >= twelvelight(1) & obwxx < twelvelight(3));
    
-    for j = 2:2:length(twelvelight)-1
+    for j = 2:2:length(twelvelight)-2
 
               if length((obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1))) >= length(ot1)
                    otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
