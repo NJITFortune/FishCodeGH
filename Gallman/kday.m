@@ -363,9 +363,9 @@ figure(68); clf; title('trial hour - channel 1');
         
        for jj = 1:length(points)
             if twelveluz(j) < 0
-               twelvesqu1(j).day(jj,:) = -lightamp1;
+               twelvesqu1(j).light(jj,:) = -lightamp1;
             else
-               twelvesqu1(j).day(jj,:) = lightamp1;
+               twelvesqu1(j).dark(jj,:) = lightamp1;
             end
        end
     end    
