@@ -340,13 +340,13 @@ figure(68); clf; title('trial hour - channel 1');
     twelvelight(timz) = lighttimes(1) + (12*(timz-1)); 
     
 %create light square wave
-    for j = 1:2:length(twelvelight)
-        if light(1) > 0
-           twelveluzneg(j, :) = - twelvelight(j);
-           twelveluzpos(j+1, :) = twelvelight(j+1);
+    for j = 2:2:length(twelvelight)
+        if light(1) < 0
+           twelveluz(j-1).neg( :) = - twelvelight(j-1);
+           twelveluz(j).pos( :) = twelvelight(j);
         else
-           twelveluzneg(j+1, :) = - twelvelight(j+1);
-           twelveluzpos(j, :) = twelvelight(j);
+           twelveluz(j).neg( :) = - twelvelight(j);
+           twelveluz(j-1).pos(:) = twelvelight(j-1);
         end
     end
 twleveluz = twelveluzneg + twelveluzpos;
