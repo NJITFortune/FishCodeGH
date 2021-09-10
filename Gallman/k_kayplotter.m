@@ -1,4 +1,4 @@
-function k_kayplotter(in, k)
+function k_kayplotter(in, ld)
 
 %in = kay
 
