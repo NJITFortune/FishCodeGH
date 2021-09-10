@@ -341,7 +341,7 @@ figure(68); clf; title('trial hour - channel 1');
     
 %create light square wave
     for j = 1:length(twelvelight)
-        if light(1) < 0
+        if lighty(1) < 0
            if mod(j,2) == 1 
               twelveluz(j, :) = -(twelvelight(j)); 
            else
