@@ -67,7 +67,7 @@ for j = 1:length(lighttimeslesslong)-1
         if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
             ott = find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslesslong(j+1)); 
             lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
-            length(lighttim);
+            
             
             if all(lighttim(1) >= lighttimeslesslong(j) & lighttim(1) < lighttimeslesslong(j) + ld/2)        
                lighttrim(j) = lighttimeslesslong(j);
@@ -363,9 +363,9 @@ figure(68); clf; title('trial hour - channel 1');
         
        for jj = 1:length(points)
             if twelveluz(j) < 0
-               twelvesqu1(j).light(jj,:) = -lightamp1;
+               twelvesqu1(j)(jj,:) = -lightamp1;
             else
-               twelvesqu1(j).dark(jj,:) = lightamp1;
+               twelvesqu1(j).(jj,:) = lightamp1;
             end
        end
     end    
