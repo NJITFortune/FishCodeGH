@@ -435,7 +435,7 @@ figure(70); clf; title('12 hour - channel 1');
                    plot(obwxx(otx) - obwxx(otx(1)), dtobwyy1(otx));
                    plot([[in.info.ld] [in.info.ld]], [-samp1 samp1], 'k-', 'Linewidth', 2); 
                   
-                   avgresp1(j/2, :) = dtobwyy1(otx);
+                   twavgresp1(j/2, :) = dtobwyy1(otx);
               end
 
     end
