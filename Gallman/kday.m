@@ -330,6 +330,8 @@ figure(68); clf;
 
 fulllighttime = lighttimes(end)-lighttimes(1);
 
+cycnum = fulllighttime/12;
+
 twelvetime = 
 
 
