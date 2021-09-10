@@ -432,8 +432,6 @@ figure(70); clf; title('12 hour - channel 1');
               if length((obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1))) >= length(ot1)
                    otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
                    
-                  
-                   
                    plot(obwxx(otx) - obwxx(otx(1)), dtobwyy1(otx));
                    plot([[in.info.ld] [in.info.ld]], [-samp1 samp1], 'k-', 'Linewidth', 2); 
                   
