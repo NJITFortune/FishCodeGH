@@ -383,7 +383,7 @@ figure(104); clf; hold on;
     
 axs(1) = subplot(211); hold on; title('Channel 1');
  
-   plot(obwxx, twelvesqu1, 'k-', 'LineWidth', 2);
+   plot(obwxx, twelvesqu1.day, 'k-', 'LineWidth', 2);
    
    plot(obwxx, dtobwyy1, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
    
