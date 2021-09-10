@@ -359,15 +359,15 @@ figure(68); clf; title('trial hour - channel 1');
 %channel 1
 
 %fake12light = zeros(1,length(obwxx));
-fake12light = lightamp1*ones(1,length(obwxx));
+fake12light1 = lightamp1*ones(1,length(obwxx));
 
 
     for j = 1:length(twelveluz)-1
         
         if twelveluz(j) > 0       
-            fake12light(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = lightamp1;
+            fake12light1(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = lightamp1;
         else
-            fake12light(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = -lightamp1;
+            fake12light1(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = -lightamp1;
         end
         
     end    
@@ -378,15 +378,15 @@ fake12light = lightamp1*ones(1,length(obwxx));
 %channel 2
 
 %fake12light = zeros(1,length(obwxx));
-fake12light = lightamp2*ones(1,length(obwxx));
+fake12light2 = lightamp2*ones(1,length(obwxx));
 
 
     for j = 1:length(twelveluz)-1
         
         if twelveluz(j) > 0       
-            fake12light(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = lightamp2;
+            fake12light2(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = lightamp2;
         else
-            fake12light(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = -lightamp2;
+            fake12light2(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = -lightamp2;
         end
         
     end    
@@ -405,13 +405,13 @@ figure(104); clf; hold on;
     
 axs(1) = subplot(211); hold on; title('Channel 1');
  
-   plot(obwxx, fake12light, 'k-', 'LineWidth', 2);
+   plot(obwxx, fake12light1, 'k-', 'LineWidth', 2);
    
    plot(obwxx, dtobwyy1, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
    
 axs(2) =subplot(212); hold on; title('Channel 2');
    
-   plot(obwxx, twelvesqu2, 'k-', 'LineWidth', 2);
+   plot(obwxx, fake12light2, 'k-', 'LineWidth', 2);
   
    plot(obwxx, dtobwyy2, '.-', 'MarkerSize', 10, 'LineWidth', 2); 
    
