@@ -372,6 +372,25 @@ fake12light = lightamp1*ones(1,length(obwxx));
         
     end    
     
+   
+% fake12light = fake12light(obwxx < twelveluz(end)); 
+
+%channel 2
+
+%fake12light = zeros(1,length(obwxx));
+fake12light = lightamp2*ones(1,length(obwxx));
+
+
+    for j = 1:length(twelveluz)-1
+        
+        if twelveluz(j) > 0       
+            fake12light(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = lightamp2;
+        else
+            fake12light(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = -lightamp2;
+        end
+        
+    end    
+    
 % fake12light = fake12light(obwxx < twelveluz(end)); 
 
 %% plot spline vs 12 
