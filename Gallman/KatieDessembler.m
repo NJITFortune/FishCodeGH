@@ -1,4 +1,4 @@
-function out  = KatieAssembler(userfilespec, Fs, numstart)
+function out  = KatieDessembler(in)
 % This function reads the original data collection files
 % It filters the data and saves it into a single structure
 % Performs these analyses: OBW, zAMP
@@ -8,41 +8,20 @@ function out  = KatieAssembler(userfilespec, Fs, numstart)
 %
 
 % This should not change, but if for some reason...
-tempchan = 3; % Either 4 or 3
-lightchan = 4; % Either 5 or 4
 
-daycount = 0;
-
-
-%% SET UP 
-% Get the list of files to be analyzed  
-        iFiles = dir(userfilespec);
-               
-% Set up filters
-        % High pass filter cutoff frequency
-            highp = 200;
-            [b,a] = butter(5, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
-        % Low pass filter cutoff frequency
-            lowp = 2000;    
-            [f,e] = butter(5, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
-                    
-% How much of the sample that we will use (each sample is 1 second)  
-% This is important because the fish moves
-        SampleWindw = 0.250; % 250 ms window
         
 % Fish limit frequencies for OBW calculation (unlikely to be changed)
         topFreqOBW = 800;
         botFreqOBW = 300;
 
-out(1).s(length(iFiles)).Fs = Fs;
-out(1).s(length(iFiles)).name = [];
+
         
         
 %% CYCLE THROUGH EVERY FILE IN DIRECTORY
 
     ff = waitbar(0, 'Cycling through files.');
 
-for k = 1:length(iFiles)
+for k = 1:length(in.)
        
      waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
 
