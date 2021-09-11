@@ -17,47 +17,23 @@ function out  = KatieDessembler(in)
 
         
         
-%% CYCLE THROUGH EVERY FILE IN DIRECTORY
+%% divide into trials of 48 hours
 
-    ff = waitbar(0, 'Cycling through files.');
-
+for j = 1:2 % Perform analyses on the two channels     
+    
+    numotrials = ([in(j).s.timcont]/(60*60))/48 + 1;
     
     
-for k = 1:length([in.s.timcont])
-       
-     waitbar(k/[in.s.timcont], ff, 'Assembling', 'modal');
+    for k = 1:length(numotrials)-1
 
-    
+             %divide into trial of 48 hours
+             trialwindowidx = find([in(j).s.timcont] >= numotrials(k) & [in(j).s.timcont] < numotrials(k+1));
 
-        for j = 1:2 % Perform analyses on the two channels
-        
-            % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
-            [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
-            data4analysis = data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j);            
-            
-            % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            
-            % OBW
-            [~,~,~,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
-            % zAmp
-            out(j).s(k).zAmp = k_zAmp(data4analysis);
-            % FFT Machine
-            [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
-        
-      
-            out(j).s(k).light = mean(data(:,lightchan));
-            out(j).s(k).temp = mean(data(:,tempchan));
-    
-            
-        % There are 86400 seconds in a day.
-        out(j).s(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
-        out(j).s(k).tim24 = (hour*60*60) + (minute*60) + second;
-        
-        end
-        
-end
+             out(j).trial(k).readydata = [in(j).s.
 
-        pause(1); close(ff);
+    end
+
+end        pause(1); close(ff);
         
 
  
