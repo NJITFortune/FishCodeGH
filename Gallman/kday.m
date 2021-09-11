@@ -450,7 +450,7 @@ figure(70); clf; title('12 hour - channel 1');
 
         fill(tt, [mavgresp1+savgresp1 mavgresp1(end:-1:1)-savgresp1(end:-1:1)], 'c');
         plot(obwxx(otx) - obwxx(otx(1)), mavgresp1, 'k', 'LineWidth', 3);
-        plot([12 12, [-samp1 samp1], 'k-', 'Linewidth', 2); 
+        plot([12 12], [-samp1 samp1], 'k-', 'Linewidth', 2); 
 
 
         
