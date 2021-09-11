@@ -40,8 +40,8 @@ figure(2); clf; hold on; title('24hour day');
  %plot data
       axs(1) = subplot(211); hold on; 
         for j = 1:length(in)
-            plot(in(j).tim, in(j).mavgresp / max(abs(in(j).mavgresp - mean(in(j).mavgresp))));
-            forcalcmean(j,:) = in(j).mavgresp / max(abs(in(j).mavgresp - mean(in(j).mavgresp)));
+            plot(in(j).tim, in(j).twelvemavgresp / max(abs(in(j).twelvemavgresp- mean(in(j).twelvemavgresp))));
+            forcalcmean(j,:) = in(j).twelvemavgresp / max(abs(in(j).twelvemavgresp - mean(in(j).twelvemavgresp)));
         end
             plot(in(1).tim, mean(forcalcmean), 'k', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-','Linewidth', 2);
