@@ -166,7 +166,7 @@ if channel == 1
     end
 
               out.twelvetim = obwxx(otx) - obwxx(otx(1));
-              out.twelbemavgresp = mean(twavgresp);
+              out.twelvemavgresp = mean(twavgresp);
 
 
 
@@ -190,5 +190,5 @@ else    %channel 2
      end
  
               out.twelvetim = obwxx(otx) - obwxx(otx(1));
-              out.twelbemavgresp = mean(twavgresp);
+              out.twelvemavgresp = mean(twavgresp);
 end
