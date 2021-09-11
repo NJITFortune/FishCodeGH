@@ -18,7 +18,7 @@ figure(1); clf; hold on; title('trial hour day');
             xlim([0, in(1).tim(end)]);
        
         %prep for fig   
-            %calculate mean and sd of kay
+            %calculate mean and sd of kay, 
             tt = [in(1).tim];
             tt = [tt, tt(end:-1:1)];
             kavgresp = mean(forcalcmean);
