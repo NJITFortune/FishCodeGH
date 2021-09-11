@@ -5,8 +5,6 @@ function k_kayplotter(in, ld)
 figure(1); clf; hold on; title('trial hour day');
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
     
-    
-    
  %plot data
       axs(1) = subplot(211); hold on; 
         for j = 1:length(in)
@@ -33,7 +31,7 @@ figure(1); clf; hold on; title('trial hour day');
  linkaxes(axs, 'x'); 
         
 %% imposed 12 hour cycle
-figure(2); clf; hold on; title('24hour day');
+figure(12); clf; hold on; title('24hour day');
 %set(figure(1),'Units','normalized','Position',[0 0 .5 .5]); 
     
     
