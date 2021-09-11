@@ -43,8 +43,8 @@ figure(12); clf; hold on; title('24hour day');
             twforcalcmean(j,:) = in(j).twelvemavgresp / max(abs(in(j).twelvemavgresp - mean(in(j).twelvemavgresp)));
         end
             plot(in(1).twelvetim, mean(twforcalcmean), 'k', 'LineWidth', 3);
-            plot([ld ld], ylim, 'k-','Linewidth', 2);
-            xlim([0, in(1).tim(end)]);
+            plot([12 12], ylim, 'k-','Linewidth', 2);
+            xlim([0, in(1).twelvetim(end)]);
        
         %prep for fig   
             %calculate mean and sd of kay
@@ -56,7 +56,7 @@ figure(12); clf; hold on; title('24hour day');
       ax(2) = subplot(212); hold on; 
         fill(tt, [kavgresp+kstd, kavgresp(end:-1:1)-kstd(end:-1:1)], 'c');
         plot(in(1).twelvetim, kavgresp, 'k', 'LineWidth', 3);
-        plot([ld ld], ylim, 'k-', 'Linewidth', 2); 
-        xlim([0, in(1).tim(end)]);
+        plot([12 12], ylim, 'k-', 'Linewidth', 2); 
+        xlim([0, in(1).twelvetim(end)]);
         
  linkaxes(ax, 'x');
