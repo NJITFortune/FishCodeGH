@@ -27,9 +27,13 @@ for j = 1:2 % Perform analyses on the two channels
     for jj = 1:length(numotrials)-1
 
              %divide into trial of 48 hours
-             trialwindowidx = [in(j).s.timcont] >= numotrials(jj) & [in(j).s.timcont] < numotrials(jj+1);
+             trialwindowidx = [in(j).s.timcont]/(60*60) >= numotrials(jj) & [in(j).s.timcont]/(60*60) < numotrials(jj+1);
 
              trial(jj).in(j).s.readydata = [in(j).s(trialwindowidx).normdata4analysis];
+             trial(jj).in(j).s.timcont = [in(j).s(trialwindowidx).timcont];
+             trial(jj).in(j).s.light = [in(j).s(trialwindowidx).light];
+             trial(jj).in(j).s.temp = [in(j).s(trialwindowidx).temp];
+             
              
              for k = 1:length([trial(jj).in(j).s.readydata])
                 % OBW
