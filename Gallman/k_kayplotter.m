@@ -29,7 +29,8 @@ figure(1); clf; hold on; title('trial hour day');
         plot(in(1).tim, kavgresp, 'k', 'LineWidth', 3);
         plot([ld ld], ylim, 'k-', 'Linewidth', 2); 
         xlim([0, in(1).tim(end)]);
-  
+
+ linkaxes(axs, 'x'); 
         
 %% imposed 12 hour cycle
 figure(2); clf; hold on; title('24hour day');
@@ -38,24 +39,26 @@ figure(2); clf; hold on; title('24hour day');
     
     
  %plot data
-      axs(1) = subplot(211); hold on; 
+      ax(1) = subplot(211); hold on; 
         for j = 1:length(in)
-            plot(in(j).tim, in(j).twelvemavgresp / max(abs(in(j).twelvemavgresp- mean(in(j).twelvemavgresp))));
-            forcalcmean(j,:) = in(j).twelvemavgresp / max(abs(in(j).twelvemavgresp - mean(in(j).twelvemavgresp)));
+            plot(in(j).twelvetim, in(j).twelvemavgresp / max(abs(in(j).twelvemavgresp- mean(in(j).twelvemavgresp))));
+            twforcalcmean(j,:) = in(j).twelvemavgresp / max(abs(in(j).twelvemavgresp - mean(in(j).twelvemavgresp)));
         end
-            plot(in(1).tim, mean(forcalcmean), 'k', 'LineWidth', 3);
+            plot(in(1).twelvetim, mean(twforcalcmean), 'k', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-','Linewidth', 2);
             xlim([0, in(1).tim(end)]);
        
         %prep for fig   
             %calculate mean and sd of kay
-            tt = [in(1).tim];
+            tt = [in(1).twelvetim];
             tt = [tt, tt(end:-1:1)];
-            kavgresp = mean(forcalcmean);
-            kstd = std(forcalcmean);   
+            kavgresp = mean(twforcalcmean);
+            kstd = std(twforcalcmean);   
         
-      axs(2) = subplot(212); hold on; 
+      ax(2) = subplot(212); hold on; 
         fill(tt, [kavgresp+kstd, kavgresp(end:-1:1)-kstd(end:-1:1)], 'c');
         plot(in(1).tim, kavgresp, 'k', 'LineWidth', 3);
         plot([ld ld], ylim, 'k-', 'Linewidth', 2); 
         xlim([0, in(1).tim(end)]);
+        
+ linkaxes(ax, 'x');
