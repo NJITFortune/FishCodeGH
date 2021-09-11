@@ -32,7 +32,12 @@ for j = 1:2 % Perform analyses on the two channels
              trial(jj).in(j).s.readydata = [in(j).s(trialwindowidx).normdata4analysis];
              
              for k = 1:length([trial(jj).in(j).s.readydata])
-                 
+                % OBW
+                [~,~,~,trial(jj).in(j).s(k).obwAmp] = obw([trial(jj).in(j).s(k).readydata], Fs, [botFreqOBW topFreqOBW]);
+                % zAmp
+                out(j).s(k).zAmp = k_zAmp(data4analysis);
+                % FFT Machine
+                [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
              end
 
     end
