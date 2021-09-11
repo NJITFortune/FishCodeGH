@@ -160,7 +160,7 @@ if channel == 1
                    
                   otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
                    
-                   twavgresp1(j/2, :) = dtobwyy1(otx);
+                   twavgresp1(j/2, :) = dtobwyy(otx);
               end
 
     end
@@ -184,7 +184,7 @@ else    %channel 2
                   
                    otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
 
-                   twavgresp2(j/2, :) = dtobwyy2(otx);
+                   twavgresp2(j/2, :) = dtobwyy(otx);
                    
                end
      end
