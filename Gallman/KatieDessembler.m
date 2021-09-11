@@ -24,16 +24,20 @@ for j = 1:2 % Perform analyses on the two channels
     numotrials = ([in(j).s.timcont]/(60*60))/48 + 1;
     
     
-    for k = 1:length(numotrials)-1
+    for jj = 1:length(numotrials)-1
 
              %divide into trial of 48 hours
-             trialwindowidx = find([in(j).s.timcont] >= numotrials(k) & [in(j).s.timcont] < numotrials(k+1));
+             trialwindowidx = [in(j).s.timcont] >= numotrials(jj) & [in(j).s.timcont] < numotrials(jj+1);
 
-             out(j).trial(k).readydata = [in(j).s.
+             trial(jj).in(j).s.readydata = [in(j).s(trialwindowidx).normdata4analysis];
+             
+             for k = 1:length([trial(jj).in(j).s.readydata])
+                 
+             end
 
     end
 
-end        pause(1); close(ff);
+end       
         
 
  
