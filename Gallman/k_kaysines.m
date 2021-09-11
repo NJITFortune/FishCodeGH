@@ -133,7 +133,7 @@ end
 %% impose fake 12:12 cycle 
 %check for underlying 24 hour rhythm
 
-%% Generate 12 hour light vector
+% Generate 12 hour light vector
 
 %create new light vector
     %total duration
@@ -145,55 +145,4 @@ end
     %generate new 12 hour light vector
     twelvelight(timz) = lighttimes(1) + (12*(timz-1)); 
     
-%create light square wave
-    for j = 1:length(twelvelight)
-        if lighty(1) < 0
-           if mod(j,2) == 0 
-              twelveluz(j, :) = -(twelvelight(j)); 
-           else
-              twelveluz(j, :) = twelvelight(j); 
-           end
-        else
-           if mod(j,2) == 0 
-              twelveluz(j, :) = twelvelight(j); 
-           else
-              twelveluz(j, :) = -(twelvelight(j)); 
-           end
-        end
-    end
 
-%channel 1
-
-%fake12light = zeros(1,length(obwxx));
-fake12light1 = lightamp1*ones(1,length(obwxx));
-
-
-    for j = 1:length(twelveluz)-1
-        
-        if twelveluz(j) > 0       
-            fake12light1(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = lightamp1;
-        else
-            fake12light1(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = -lightamp1;
-        end
-        
-    end    
-    
-   
-% fake12light = fake12light(obwxx < twelveluz(end)); 
-
-%channel 2
-
-%fake12light = zeros(1,length(obwxx));
-fake12light2 = lightamp2*ones(1,length(obwxx));
-
-
-    for j = 1:length(twelveluz)-1
-        
-        if twelveluz(j) > 0       
-            fake12light2(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = lightamp2;
-        else
-            fake12light2(obwxx >= twelvelight(j) & obwxx < twelvelight(j+1)) = -lightamp2;
-        end
-        
-    end    
-   
