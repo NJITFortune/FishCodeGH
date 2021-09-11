@@ -145,4 +145,60 @@ end
     %generate new 12 hour light vector
     twelvelight(timz) = lighttimes(1) + (12*(timz-1)); 
     
+%% separate into 24 hour days
+    
+figure(70); clf; title('12 hour - channel 1');
+  
+if channel == 1
+   subplot(211); hold on; 
+   
+   ot1 = find(obwxx >= twelvelight(1) & obwxx < twelvelight(3));
+   
+    for j = 2:2:length(twelvelight)-2
 
+              if length((obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1))) >= length(ot1)
+                   otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
+                   
+                   plot(obwxx(otx) - obwxx(otx(1)), dtobwyy1(otx));
+                   plot([12 12], [-samp1 samp1], 'k-', 'Linewidth', 2); 
+                  
+                   twavgresp1(j/2, :) = dtobwyy1(otx);
+              end
+
+    end
+
+              out.tim = obwxx(otx) - obwxx(otx(1));
+              out.mavgresp = mean(avgresp);
+
+
+
+   
+        
+ figure(71); clf; title('12 hour - channel 2');
+       
+else    %channel 2 
+    subplot(211); hold on;
+ 
+     for j = 2:2:length(twelvelight)-2
+
+               if length((obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1))) >= length(ot1)
+                   otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
+
+                   plot(obwxx(otx) - obwxx(otx(1)), dtobwyy2(otx));
+                   plot([12 12], [-samp2 samp2], 'k-', 'Linewidth', 2); 
+
+                   twavgresp2(j/2, :) = dtobwyy2(otx);
+               end
+     end
+ 
+    
+     subplot(212); hold on;
+        tt = obwxx(otx) - obwxx(otx(1));
+        tt = [tt tt(end:-1:1)];
+        mavgresp2 = mean(twavgresp2);
+        savgresp2 = std(twavgresp2);
+
+        fill(tt, [mavgresp2+savgresp2 mavgresp2(end:-1:1)-savgresp2(end:-1:1)], 'c');
+        plot(obwxx(otx) - obwxx(otx(1)), mavgresp2, 'k', 'LineWidth', 3);
+        plot([12 12], [-samp2 samp2], 'k-', 'Linewidth', 2); 
+end
