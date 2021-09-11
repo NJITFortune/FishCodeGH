@@ -1,4 +1,4 @@
-function out  = KatieDessembler(in)
+function out  = KatieDessembler(in, Fs)
 % This function reads the original data collection files
 % It filters the data and saves it into a single structure
 % Performs these analyses: OBW, zAMP
@@ -35,7 +35,7 @@ for j = 1:2 % Perform analyses on the two channels
                 % OBW
                 [~,~,~,trial(jj).in(j).s(k).obwAmp] = obw([trial(jj).in(j).s(k).readydata], Fs, [botFreqOBW topFreqOBW]);
                 % zAmp
-                out(j).s(k).zAmp = k_zAmp(data4analysis);
+                trial(jj).in(j).s(k).zAmp = k_zAmp(data4analysis);
                 % FFT Machine
                 [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
              end
