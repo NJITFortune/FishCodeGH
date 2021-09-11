@@ -433,7 +433,7 @@ figure(70); clf; title('12 hour - channel 1');
                    otx = find(obwxx >= twelvelight(j-1) & obwxx < twelvelight(j+1)); 
                    
                    plot(obwxx(otx) - obwxx(otx(1)), dtobwyy1(otx));
-                   plot([[in.info.ld] [in.info.ld]], [-samp1 samp1], 'k-', 'Linewidth', 2); 
+                   plot([in.info.ld in.info.ld], [-samp1 samp1], 'k-', 'Linewidth', 2); 
                   
                    twavgresp1(j/2, :) = dtobwyy1(otx);
               end
@@ -450,7 +450,7 @@ figure(70); clf; title('12 hour - channel 1');
 
         fill(tt, [mavgresp1+savgresp1 mavgresp1(end:-1:1)-savgresp1(end:-1:1)], 'c');
         plot(obwxx(otx) - obwxx(otx(1)), mavgresp1, 'k', 'LineWidth', 3);
-        plot([[in.info.ld] [in.info.ld]], [-samp1 samp1], 'k-', 'Linewidth', 2); 
+        plot([12 12, [-samp1 samp1], 'k-', 'Linewidth', 2); 
 
 
         
