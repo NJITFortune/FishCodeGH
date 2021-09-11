@@ -31,11 +31,7 @@ ld = [in.info.ld];
                 ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
                 ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
             end
-            
-
-            
-           
-        
+         
         
 %% trim luz to data - Generate lighttimes
 lighttimeslong = abs(in.info.luz);
@@ -101,9 +97,7 @@ if channel == 1
       
       out.tim = obwxx(otx) - obwxx(otx(1));
       out.mavgresp = mean(avgresp);
-             
-      
-      
+     
       
 else %channel = 2
     
@@ -134,9 +128,8 @@ else %channel = 2
               out.tim = obwxx(otx) - obwxx(otx(1));
               out.mavgresp = mean(avgresp);
              
-
-
 end
 
-
+%% impose fake 12:12 cycle 
+%check for underlying 24 hour rhythm
    
