@@ -243,7 +243,7 @@ lightamp2 = max(dtobwyy2);
 
 
 %% plot spline vs light
-figure(104); clf; hold on;
+figure(103); clf; hold on;
 
     %make sine wave
         %define amplitude
