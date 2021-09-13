@@ -94,8 +94,10 @@ end
 
 for k = length(iFiles):-1:1
     for j = 1:2
-        RMS = rms([out(j).s.data4analysis]);
-        out(j).s(k).normdata4analysis = [out(j).s(k).data4analysis] - RMS;
+        % Normalized against RMS
+        out(j).s(k).nRMS = [out(j).s(k).data4analysis] / rms([out(j).s.data4analysis]);
+        out(j).s(k).nRAW = [out(j).s(k).data4analysis] / max(abs([out(j).s.data4analysis]));
+
     end
 end
 
