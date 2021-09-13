@@ -1,4 +1,4 @@
-function out  = KatieDessembler(in)
+function out = KatieDessembler(in)
 
            
         
