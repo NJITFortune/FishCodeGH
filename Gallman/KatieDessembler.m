@@ -1,4 +1,4 @@
-function trial  = KatieDessembler(in, Fs)
+function trial  = KatieDessembler(in)
 
            
         
@@ -25,7 +25,6 @@ for j = 1:2 % Perform analyses on the two channels
              trial(jj).in(j).s.timcont = [in(j).s(trialwindowidx).timcont];
              trial(jj).in(j).s.light = [in(j).s(trialwindowidx).light];
              trial(jj).in(j).s.temp = [in(j).s(trialwindowidx).temp];
-             
              
              
     end
