@@ -19,7 +19,7 @@ for j = 1:2 % Perform analyses on the two channels
              trial(jj).in(j).s(:).obwAmp = [in(j).s(trialwindowidx).obwAmp];
              trial(jj).in(j).s(:).zAmp = [in(j).s(trialwindowidx).zAmp];
              trial(jj).in(j).s(:).sumfftAmp = [in(j).s(trialwindowidx).sumfftAmp];
-             trial(jj).in(j).s(:).fftFreqAmp = [in(j).s(trialwindowidx).fftFreqAmp];
+             trial(jj).in(j).s(:).fftFreq = [in(j).s(trialwindowidx).fftFreq];
              
              %variables
              trial(jj).in(j).s.timcont = [in(j).s(trialwindowidx).timcont];
