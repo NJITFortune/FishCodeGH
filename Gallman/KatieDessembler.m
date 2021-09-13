@@ -19,6 +19,7 @@ for j = 1:2 % Perform analyses on the two channels
              trial(jj).in(j).s.obwAmp = [in(j).s(trialwindowidx).obwAmp];
              trial(jj).in(j).s.zAmp = [in(j).s(trialwindowidx).zAmp];
              
+             
              %variables
              trial(jj).in(j).s.timcont = [in(j).s(trialwindowidx).timcont];
              trial(jj).in(j).s.light = [in(j).s(trialwindowidx).light];
