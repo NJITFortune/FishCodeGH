@@ -1,7 +1,6 @@
 function trial  = KatieDessembler(in, Fs)
-% 
 
-
+           
         
         
 %% divide into trials of 48 hours
