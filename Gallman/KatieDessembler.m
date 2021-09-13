@@ -1,4 +1,4 @@
-function trial  = KatieDessembler(in)
+function out  = KatieDessembler(in)
 
            
         
