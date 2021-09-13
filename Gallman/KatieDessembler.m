@@ -1,7 +1,4 @@
-function out = KatieDessembler(in)
-
-           
-        
+function out = KatieDessembler(in)     
         
 %% divide into trials of 48 hours
 
@@ -32,7 +29,9 @@ for j = 1:2
              
         end
 
-end       
+end     
+
+end
         
 
  
