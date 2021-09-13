@@ -7,7 +7,7 @@ function trial  = KatieDessembler(in)
 
 for j = 1:2 % Perform analyses on the two channels     
     
-    numoperiods = ([in(j).s.timcont]/(60*60))/48 + 1
+    numoperiods = (ceil([in(j).s(end).timcont]/(60*60)) / 48) + 1
     
     
     for jj = 1:length(numoperiods)-1
