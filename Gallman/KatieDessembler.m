@@ -14,7 +14,6 @@ for j = 1:2
     
         for jj = 1:length(numoperiods)-1
     
-        
 
              %divide into trial of 48 hours
              trialwindowidx = [in(j).s.timcont]/(60*60) >= twoday(jj) & [in(j).s.timcont]/(60*60) < twoday(jj+1);
