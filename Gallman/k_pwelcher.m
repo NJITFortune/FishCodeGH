@@ -69,6 +69,7 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
             %evaluate the csplined values of y for the new equally spaced values of x
             o.obw(1).y = fnval(o.obw(1).x, spliney);
+            o.obw(1).y = o.obw(1).yr - mean(o.obw(1).yr);
             
     %Channel 2
    
@@ -98,7 +99,7 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
             spliney = csaps(ztim1, zdata1, p);
             o.z(1).x = ztim1(1):1/ReFs:ztim1(end);
             o.z(1).yr = fnval(o.z(1).x, spliney);
-            o.z(1).y = o.z(1).yr - 
+            o.z(1).y = o.z(1).yr - mean(o.z(1).yr);
             
     %Channel 2
     
@@ -113,6 +114,7 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
             spliney = csaps(ztim2, zdata2, p);
             o.z(2).x = ztim2(1):1/ReFs:ztim2(end);
             o.z(2).y = fnval(o.z(2).x, spliney);
+            o.z(2).y = o.z(2).yr - mean(o.z(2).yr);
 
     %SUMAMP - FFT
     %Channel 1
@@ -128,6 +130,7 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
             spliney = csaps(sffttim1, sfftdata1, p);
             o.sfft(1).x = sffttim1(1):1/ReFs:sffttim1(end);
             o.sfft(1).y = fnval(o.sfft(1).x, spliney);
+            o.sfft(1).y = o.sfft(1).yr - mean(o.sfft(1).yr);
             
     if ~isempty(in.info.poweridx)
         st2 = find([in.e(1).s(ttsf{2}).timcont]/(60*60) > in.info.poweridx(1) & [in.e(1).s(ttsf{2}).timcont]/(60*60) < in.info.poweridx(2));
@@ -140,7 +143,7 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
             spliney = csaps(sffttim2, sfftdata2, p);
             o.sfft(2).x = sffttim2(2):1/ReFs:sffttim2(end);
             o.sfft(2).y = fnval(o.sfft(2).x, spliney);
-            
+            o.sfft(2).y = o.sfft(2).yr - mean(o.sfft(2).yr);
             
 %% Run fft (pwelch)
 
