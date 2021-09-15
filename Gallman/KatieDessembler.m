@@ -2,8 +2,13 @@ function out = KatieDessembler(in)
         
 %% Setup
 
-    lengthofsample = (in(1).s(end).timcont]/(60*60)) - ([in(1).s(1).timcont]/(60*60));
-    numoperiods = (ceil([in(1).s(end).timcont]/(60*60)) / 48) + 1;
+    perd = 48; % default length is 48 hours
+    if 
+
+
+    lengthofsample = (in(1).s(end).timcont/(60*60)) - ([in(1).s(1).timcont]/(60*60));
+    
+    numoperiods = 1 + ceil(lengthofsample / 48); % of periods
     timz = 1:1:numoperiods;
     %generate new 12 hour light vector
     twoday(timz) = [in(1).s(1).timcont]/(60*60) + (48*(timz-1)); 
