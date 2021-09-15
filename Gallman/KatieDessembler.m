@@ -46,9 +46,13 @@ function out = KatieDessembler(in)
         end     
 
 
-figure(1); clf; hold on; 
-    for k= 1:length(out); 
+figure(1); clf;  
+    
+    for k= 1:length(out) 
+        ax(1) = subplot(211); hold on;
         plot(out(k).e(1).timcont/3600, out(k).e(1).obwAmp); 
+        ax(2) = subplot(212); hold on;
+        plot(out(k).e(2).timcont/3600, out(k).e(2).obwAmp); 
     end
 
 
