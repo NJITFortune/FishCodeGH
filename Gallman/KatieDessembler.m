@@ -46,7 +46,11 @@ function out = KatieDessembler(in)
         end     
 
 
-        
+figure(1); clf; hold on; 
+    for k= 1:length(out); 
+        plot(out(k).e(1).timcont/3600, out(k).e(1).obwAmp); 
+    end
+
 
  
  
