@@ -35,13 +35,13 @@ ReFs = 10;  %resample once every minute (Usually 60)
 ld = in.info.ld;
 lighttimeslong = abs(in.info.luz);
 %fit light vector to power idx
-    if isempty(in.info.poweridx) %if there are no values in poweridx []
+%     if isempty(in.info.poweridx) %if there are no values in poweridx []
         lighttimeslesslong = lighttimeslong;
-    else
-        lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
-        lighttimeslesslong = lighttimeslong(lighttimesidx);
-    end
-    
+%     else
+%         lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
+%         lighttimeslesslong = lighttimeslong(lighttimesidx);
+%     end
+%     
 for j = 1:length(lighttimeslesslong)-1
         
         %is there data between j and j+1?    
