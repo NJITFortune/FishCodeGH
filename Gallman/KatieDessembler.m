@@ -39,7 +39,14 @@ function out = KatieDessembler(in, orgidx)
 %% only take times for light vector that have data
 
 lighttimeslong = abs(in.info.luz);
-
+%fit light vector to power idx
+    if isempty(in.info.poweridx) %if there are no values in poweridx []
+        lighttimeslesslong = lighttimeslong;
+    else
+        lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
+        lighttimeslesslong = lighttimeslong(lighttimesidx);
+    end
+    
 for j = 1:length(lighttimeslesslong)-1
         
         %is there data between j and j+1?    
