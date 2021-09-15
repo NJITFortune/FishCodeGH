@@ -49,7 +49,7 @@ function out = KatieDessembler(in)
 
 
 
-%% Plot raw data
+%% Plot raw trial data
 
 figure(1); clf;  
 
