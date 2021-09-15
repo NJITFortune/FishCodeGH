@@ -5,6 +5,10 @@ function out = KatieDessembler(in, orgidx)
 
 %% Setup
 
+%define spline parameters
+p = 0.7;
+ReFs = 10;  %resample once every minute (Usually 60)
+
 %outliers
     % Prepare the data with outliers
 
