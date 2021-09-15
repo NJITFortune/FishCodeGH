@@ -38,6 +38,7 @@ function out = KatieDessembler(in, orgidx)
     
 %% only take times for light vector that have data
 
+lighttimeslong = abs(in.info.luz);
 
 for j = 1:length(lighttimeslesslong)-1
         
