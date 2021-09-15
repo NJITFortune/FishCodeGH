@@ -36,7 +36,7 @@ function out = KatieDessembler(in)
              out(jj).e(j).fftFreq = [in.e(j).s(timidx).fftFreq];
              
              % Time and treatment 
-             out(jj).e(j).timcont = [in.e(j).s(timidx).timcont] - in.e(j).s(timidx(1)).timcont;
+             out(jj).e(j).timcont = [in.e(j).s(timidx).timcont] - in.e(j).s(timidx(1)).timcont + 1;
              out(jj).e(j).light = [in.e(j).s(timidx).light];
              out(jj).e(j).temp = [in.e(j).s(timidx).temp];
              
