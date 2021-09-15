@@ -1,6 +1,6 @@
-function out = KatieDessembler(in)     
-% Usage: out = KatieDessembler(in)
-% where in = kg(#)
+function out = KatieDessembler(in, orgidx)     
+% Usage: out = KatieDessembler(in(orgidx), orgidx)
+% Example: out = KatieDessembler(in(orgidx), orgidx)
 % And out is something...
 
 %% Setup
@@ -40,6 +40,8 @@ function out = KatieDessembler(in)
              out(jj).e(j).light = [in.e(j).s(timidx).light];
              out(jj).e(j).temp = [in.e(j).s(timidx).temp];
              
+             out(jj).ld = in.info.ld; 
+             out(jj).kg = orgidx; % idx for kg
              
             end
 
@@ -66,7 +68,6 @@ figure(1); clf;
     end
 
     linkaxes(ax, 'x'); xlim([0 maxlen]);
- 
  
  
  
