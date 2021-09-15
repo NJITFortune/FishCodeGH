@@ -101,7 +101,9 @@ lighttimes = lighttrim(lighttrim > 0);
     %perdsex = perd * 60 * 60; % perd in seconds, for convenience since timcont is in seconds
 
     % How many samples available?
-    lengthofsampleHOURS = (xx(end) - xx(1))    
+    xx(end)
+    xx(1)
+    lengthofsampleHOURS = (xx(end) - xx(1));    
     % How many integer periods
     numoperiods = floor(lengthofsampleHOURS / perd); % of periods
     
