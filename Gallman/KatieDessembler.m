@@ -74,6 +74,7 @@ lighttimes = lighttrim(lighttrim > 0);
             yy = fnval(xx, spliney);
             %detrend ydata
             k(j).dtobwyy = detrend(yy,6,'SamplePoints', xx);
+            k(j).dtobwyy = yy;
             
             %zAmp
             spliney = csaps([in.e(j).s(ttz{j}).timcont]/(60*60), [in.e(j).s(ttz{j}).zAmp], p);
@@ -88,7 +89,6 @@ lighttimes = lighttrim(lighttrim > 0);
             yy = fnval(xx, spliney);
             %detrend ydata
             k(j).dtsfftyy = detrend(yy,6,'SamplePoints', xx);
-            
             
      end
     
