@@ -5,6 +5,27 @@ function out = KatieDessembler(in, orgidx)
 
 %% Setup
 
+%outliers
+    % Prepare the data with outliers
+
+            tto{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
+            tto{2} = tto{1};
+
+            ttz{1} = tto{1}; % ttz is indices for zAmp
+            ttz{2} = tto{1};
+
+            ttsf{1} = tto{1}; % ttsf is indices for sumfftAmp
+            ttsf{2} = tto{1};
+    % Prepare the data without outliers
+
+            % If we have removed outliers via KatieRemover, get the indices...    
+            if ~isempty(in.idx) 
+                tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
+                ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
+                ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+            end
+         
+%define sample range
     perd = 48; % default length is 48 hours
     perd = perd - rem(perd, in.info.ld);       
     
@@ -15,9 +36,7 @@ function out = KatieDessembler(in, orgidx)
     % How many integer periods
     numoperiods = floor(lengthofsampleHOURS / perd); % of periods
     
-    timz = 1:1:numoperiods;
-    %generate new 12 hour light vector
-    twoday(timz) = [in.e(1).s(1).timcont]/(60*60) + (48*(timz-1)); 
+   
 
 %% Make spline data    
    xx = lighttimes(1):1/ReFs:lighttimes(end);
