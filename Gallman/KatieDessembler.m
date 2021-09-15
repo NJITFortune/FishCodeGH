@@ -75,14 +75,14 @@ lighttimes = lighttrim(lighttrim > 0);
    xx = lighttimes(1):1/ReFs:lighttimes(end);
       
       %estimate new yvalues for every x value
-      %obw only for now
+     for j = 1:2
       
-            spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
+            spliney = csaps([in.e(j).s(tto{j}).timcont]/(60*60), [in.e(j).s(tto{j}).obwAmp], p);
             %resample new x values based on light/dark
             obwyy = fnval(obwxx, spliney);
             %detrend ydata
             dtobwyy = detrend(obwyy,6,'SamplePoints', obwxx);
-
+     end
     
 %% Divide into trials 
     
