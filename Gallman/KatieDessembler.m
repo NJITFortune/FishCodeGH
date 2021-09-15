@@ -29,16 +29,7 @@ ReFs = 10;  %resample once every minute (Usually 60)
                 ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
             end
          
-%define sample range
-    perd = 48; % default length is 48 hours
-    perd = perd - rem(perd, in.info.ld);       
-    
-    perdsex = perd * 60 * 60; % perd in seconds, for convenience since timcont is in seconds
 
-    % How many samples available?
-    lengthofsampleHOURS = (in.e(1).s(end).timcont/(60*60)) - (in.e(1).s(1).timcont/(60*60));    
-    % How many integer periods
-    numoperiods = floor(lengthofsampleHOURS / perd); % of periods
     
 %% only take times for light vector that have data
 
@@ -77,31 +68,59 @@ lighttimes = lighttrim(lighttrim > 0);
       %estimate new yvalues for every x value
      for j = 1:2
       
+            %obw
             spliney = csaps([in.e(j).s(tto{j}).timcont]/(60*60), [in.e(j).s(tto{j}).obwAmp], p);
             %resample new x values based on light/dark
-            obwyy = fnval(obwxx, spliney);
+            yy = fnval(xx, spliney);
             %detrend ydata
-            dtobwyy = detrend(obwyy,6,'SamplePoints', obwxx);
+            k(j).dtobwyy = detrend(yy,6,'SamplePoints', xx);
+            
+            %zAmp
+            spliney = csaps([in.e(j).s(ttz{j}).timcont]/(60*60), [in.e(j).s(ttz{j}).zAmp], p);
+            %resample new x values based on light/dark
+            yy = fnval(xx, spliney);
+            %detrend ydata
+            k(j).dtzyy = detrend(yy,6,'SamplePoints', xx);
+            
+            %fftAmp
+            spliney = csaps([in.e(j).s(ttsf{j}).timcont]/(60*60), [in.e(j).s(ttsf{j}).sumfftAmp], p);
+            %resample new x values based on light/dark
+            yy = fnval(xx, spliney);
+            %detrend ydata
+            k(j).dtsfftyy = detrend(yy,6,'SamplePoints', xx);
+            
+            
      end
     
 %% Divide into trials 
+
+%define sample range
+    perd = 48; % default length is 48 hours
+    perd = perd - rem(perd, in.info.ld);       
+    
+    %perdsex = perd * 60 * 60; % perd in seconds, for convenience since timcont is in seconds
+
+    % How many samples available?
+    lengthofsampleHOURS = (xx(end) - xx(1));    
+    % How many integer periods
+    numoperiods = floor(lengthofsampleHOURS / perd); % of periods
     
         for jj = 1:numoperiods
     
             % indices for our sample window of perd hours
-            timidx = find([in.e(1).s.timcont] > in.e(1).s(1).timcont + ((jj-1)*perdsex) & ...
-                [in.e(1).s.timcont] < in.e(1).s(1).timcont + (jj*perdsex));
+            timidx = find(xx > xx(1) + ((jj-1)*perd) & ...
+                xx < xx(1) + (jj*perd));
             
             for j = 1:2
             
              % Data   
-             out(jj).e(j).obwAmp = [in.e(j).s(timidx).obwAmp];
-             out(jj).e(j).zAmp = [in.e(j).s(timidx).zAmp];
-             out(jj).e(j).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
+             out(jj).e(j).obwAmp = k(j).dtobwyy(timidx);
+             out(jj).e(j).obwAmp = k(j).dtzyy(timidx);
+             out(jj).e(j).sumfftAmp =  k(j).dtsfftyy(timidx);
              out(jj).e(j).fftFreq = [in.e(j).s(timidx).fftFreq];
              
              % Time and treatment 
-             out(jj).e(j).timcont = [in.e(j).s(timidx).timcont] - in.e(j).s(timidx(1)).timcont + 1;
+             out(jj).e(j).timcont = xx(timidx) - xx(timidx(1)) + 1;
              out(jj).e(j).light = [in.e(j).s(timidx).light];
              out(jj).e(j).temp = [in.e(j).s(timidx).temp];
              
