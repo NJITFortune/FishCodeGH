@@ -42,7 +42,7 @@ end
         
 %% Plot raw trial data
 
-figure(1); clf;  
+figure(2); clf;  
 
     maxlen = 0;
 
