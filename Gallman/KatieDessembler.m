@@ -44,6 +44,8 @@ function out = KatieDessembler(in)
             end
 
         end     
+        
+%% generate within-trial averages? 
 
 
 figure(1); clf;  
