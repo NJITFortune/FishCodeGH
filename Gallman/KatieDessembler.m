@@ -3,7 +3,7 @@ function out = KatieDessembler(in)
 %% Setup
 
     perd = 48; % default length is 48 hours
-    if 
+    if rem(in(1).ld
 
 
     lengthofsample = (in(1).s(end).timcont/(60*60)) - ([in(1).s(1).timcont]/(60*60));
