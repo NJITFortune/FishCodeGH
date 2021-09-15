@@ -20,7 +20,16 @@ function out = KatieDessembler(in, orgidx)
     twoday(timz) = [in.e(1).s(1).timcont]/(60*60) + (48*(timz-1)); 
 
 %% Make spline data    
-
+   xx = lighttimes(1):1/ReFs:lighttimes(end);
+      
+      %estimate new yvalues for every x value
+      %obw only for now
+      
+            spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
+            %resample new x values based on light/dark
+            obwyy = fnval(obwxx, spliney);
+            %detrend ydata
+            dtobwyy = detrend(obwyy,6,'SamplePoints', obwxx);
 
     
 %% Divide into trials 
