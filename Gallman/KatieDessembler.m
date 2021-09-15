@@ -19,7 +19,11 @@ function out = KatieDessembler(in, orgidx)
     %generate new 12 hour light vector
     twoday(timz) = [in.e(1).s(1).timcont]/(60*60) + (48*(timz-1)); 
 
-%% divide into trials 
+%% Make spline data    
+
+
+    
+%% Divide into trials 
     
         for jj = 1:numoperiods
     
