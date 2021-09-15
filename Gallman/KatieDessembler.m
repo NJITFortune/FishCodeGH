@@ -115,7 +115,7 @@ lighttimes = lighttrim(lighttrim > 0);
             
              % Data   
              out(jj).e(j).obwAmp = k(j).dtobwyy(timidx);
-             out(jj).e(j).obwAmp = k(j).dtzyy(timidx);
+             out(jj).e(j).zAmp = k(j).dtzyy(timidx);
              out(jj).e(j).sumfftAmp =  k(j).dtsfftyy(timidx);
              out(jj).e(j).fftFreq = [in.e(j).s(timidx).fftFreq];
              
@@ -133,9 +133,10 @@ lighttimes = lighttrim(lighttrim > 0);
         
 %% generate within-trial averages? 
 
+      %Arent we treating this independently? Take the average across all
+      %trial of ld?
 
-
-%% Plot raw trial data
+%% Plot trial data
 
 figure(1); clf;  
 
@@ -143,11 +144,11 @@ figure(1); clf;
 
     for k= 1:length(out) 
         ax(1) = subplot(211); hold on;
-        plot(out(k).e(1).timcont/3600, out(k).e(1).obwAmp); 
+        plot(out(k).e(1).timcont, out(k).e(1).obwAmp); 
         ax(2) = subplot(212); hold on;
-        plot(out(k).e(2).timcont/3600, out(k).e(2).obwAmp); 
+        plot(out(k).e(2).timcont, out(k).e(2).obwAmp); 
         
-        maxlen = max([maxlen out(k).e(1).timcont(end)/3600]);
+        maxlen = max([maxlen out(k).e(1).timcont(end)]);
         
     end
 
