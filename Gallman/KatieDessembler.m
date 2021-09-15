@@ -48,6 +48,9 @@ function out = KatieDessembler(in)
 %% generate within-trial averages? 
 
 
+
+%% Plot raw data
+
 figure(1); clf;  
 
     maxlen = 0;
