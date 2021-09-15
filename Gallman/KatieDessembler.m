@@ -48,7 +48,6 @@ for j = 1:length(lighttimeslesslong)-1
         if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
             ott = [in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslesslong(j+1); 
             lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
-            length(lighttim);
             
             if all(lighttim(1) >= lighttimeslesslong(j) & lighttim(1) < lighttimeslesslong(j) + ld/2)        
                lighttrim(j) = lighttimeslesslong(j);
@@ -63,9 +62,10 @@ end
 lighttimes = lighttrim(lighttrim > 0);   
 
 %% Make spline data    
+
    xx = lighttimes(1):1/ReFs:lighttimes(end);
       
-      %estimate new yvalues for every x value
+     % estimate new y values for every x value
      for j = 1:2
       
             %obw
@@ -101,7 +101,7 @@ lighttimes = lighttrim(lighttrim > 0);
     %perdsex = perd * 60 * 60; % perd in seconds, for convenience since timcont is in seconds
 
     % How many samples available?
-    lengthofsampleHOURS = (xx(end) - xx(1));    
+    lengthofsampleHOURS = (xx(end) - xx(1))    
     % How many integer periods
     numoperiods = floor(lengthofsampleHOURS / perd); % of periods
     
