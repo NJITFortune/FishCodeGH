@@ -32,7 +32,7 @@ ReFs = 10;  %resample once every minute (Usually 60)
 
     
 %% only take times for light vector that have data
-
+ld = in.info.ld;
 lighttimeslong = abs(in.info.luz);
 %fit light vector to power idx
     if isempty(in.info.poweridx) %if there are no values in poweridx []
@@ -96,7 +96,7 @@ lighttimes = lighttrim(lighttrim > 0);
 
 %define sample range
     perd = 48; % default length is 48 hours
-    perd = perd - rem(perd, in.info.ld);       
+    perd = perd - rem(perd, ld);       
     
     %perdsex = perd * 60 * 60; % perd in seconds, for convenience since timcont is in seconds
 
