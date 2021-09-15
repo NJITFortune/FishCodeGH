@@ -97,7 +97,8 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
     ztim1 = [in.e(1).s(ttz{1}(tz1)).timcont]/(60*60);
             spliney = csaps(ztim1, zdata1, p);
             o.z(1).x = ztim1(1):1/ReFs:ztim1(end);
-            o.z(1).y = fnval(o.z(1).x, spliney);
+            o.z(1).yr = fnval(o.z(1).x, spliney);
+            o.z(1).y = o.z(1).yr - 
             
     %Channel 2
     
