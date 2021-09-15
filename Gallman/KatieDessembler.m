@@ -1,17 +1,24 @@
 function out = KatieDessembler(in)     
         
-%% divide into trials of 48 hours
+%% Setup
 
-for j = 1:2
-    
+    lengthofsample = (in(1).s(end).timcont]/(60*60)) - ([in(1).s(1).timcont]/(60*60));
     numoperiods = (ceil([in(1).s(end).timcont]/(60*60)) / 48) + 1;
     timz = 1:1:numoperiods;
     %generate new 12 hour light vector
     twoday(timz) = [in(1).s(1).timcont]/(60*60) + (48*(timz-1)); 
+
+
+
+
+%% divide into trials of 48 hours
+
+
+    
     
         for jj = 1:length(numoperiods)-1
     
-
+for j = 1:2
              %divide into trial of 48 hours
              trialwindowidx = [in(j).s.timcont]/(60*60) >= twoday(jj) & [in(j).s.timcont]/(60*60) < twoday(jj+1);
 
