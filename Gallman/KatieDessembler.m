@@ -16,7 +16,7 @@ for j = 1:2
              trialwindowidx = [in(j).s.timcont]/(60*60) >= twoday(jj) & [in(j).s.timcont]/(60*60) < twoday(jj+1);
 
              %amplitude data
-             out.e(j).s.obwAmp = [in(j).s(trialwindowidx).obwAmp];
+             out(jj).e(j).s.obwAmp = [in(j).s(trialwindowidx).obwAmp];
              out(jj).e(j).s.zAmp = [in(j).s(trialwindowidx).zAmp];
              out(jj).e(j).s.sumfftAmp = [in(j).s(trialwindowidx).sumfftAmp];
              out(jj).e(j).s.fftFreq = [in(j).s(trialwindowidx).fftFreq];
