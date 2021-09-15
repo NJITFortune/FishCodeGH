@@ -122,7 +122,7 @@ lighttimes = lighttrim(lighttrim > 0);
 
 
 %plot against cspline of inidividual epochs
-figure(101); 
+figure(101);clf; 
 
 subplot(211); hold on; title('Channel 1');
     plot(obwtim1, obwdata1, '.', 'MarkerSize', 3);
