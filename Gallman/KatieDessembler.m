@@ -1,49 +1,49 @@
 function out = KatieDessembler(in)     
-        
+% Usage: out = KatieDessembler(in)
+% where in = kg(#)
+% And out is something...
+
 %% Setup
 
     perd = 48; % default length is 48 hours
-    if rem(perd, kg.info.ld) ~= 0
-        
-    end
-
-
-    lengthofsample = (in(1).s(end).timcont/(60*60)) - ([in(1).s(1).timcont]/(60*60));
+    perd = perd - rem(perd, in.info.ld);       
     
-    numoperiods = 1 + ceil(lengthofsample / 48); % of periods
+    perdsex = perd * 60 * 60; % perd in seconds, for convenience since timcont is in seconds
+
+    % How many samples available?
+    lengthofsampleHOURS = (in.e(1).s(end).timcont/(60*60)) - (in.e(1).s(1).timcont/(60*60));    
+    % How many integer periods
+    numoperiods = floor(lengthofsampleHOURS / perd); % of periods
+    
     timz = 1:1:numoperiods;
     %generate new 12 hour light vector
-    twoday(timz) = [in(1).s(1).timcont]/(60*60) + (48*(timz-1)); 
+    twoday(timz) = [in.e(1).s(1).timcont]/(60*60) + (48*(timz-1)); 
 
-
-
-
-%% divide into trials of 48 hours
-
-
+%% divide into trials 
     
+        for jj = 1:numoperiods
     
-        for jj = 1:length(numoperiods)-1
-    
-for j = 1:2
-             %divide into trial of 48 hours
-             trialwindowidx = [in(j).s.timcont]/(60*60) >= twoday(jj) & [in(j).s.timcont]/(60*60) < twoday(jj+1);
-
-             %amplitude data
-             out(jj).e(j).obwAmp = [in(j).s(trialwindowidx).obwAmp];
-             out(jj).e(j).zAmp = [in(j).s(trialwindowidx).zAmp];
-             out(jj).e(j).sumfftAmp = [in(j).s(trialwindowidx).sumfftAmp];
-             out(jj).e(j).fftFreq = [in(j).s(trialwindowidx).fftFreq];
+            % indices for our sample window of perd hours
+            timidx = find([in.e(1).s.timcont] > in.e(1).s(1).timcont + ((jj-1)*perdsex) & ...
+                [in.e(1).s.timcont] < in.e(1).s(1).timcont + (jj*perdsex));
+            
+            for j = 1:2
+            
+             % Data   
+             out(jj).e(j).obwAmp = [in.e(j).s(timidx).obwAmp];
+             out(jj).e(j).zAmp = [in.e(j).s(timidx).zAmp];
+             out(jj).e(j).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
+             out(jj).e(j).fftFreq = [in.e(j).s(timidx).fftFreq];
              
-             %variables
-             out(jj).e(j).s(:).timcont = [in(j).s(trialwindowidx).timcont];
-             out(jj).e(j).s(:).light = [in(j).s(trialwindowidx).light];
-             out(jj).e(j).s(:).temp = [in(j).s(trialwindowidx).temp];
+             % Time and treatment 
+             out(jj).e(j).timcont = [in.e(j).s(timidx).timcont];
+             out(jj).e(j).light = [in.e(j).s(timidx).light];
+             out(jj).e(j).temp = [in.e(j).s(timidx).temp];
              
              
-        end
+            end
 
-end     
+        end     
 
 
         
