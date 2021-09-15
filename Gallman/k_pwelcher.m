@@ -68,7 +68,7 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
             %fortune doesn't like linspace... I think he does it to confuse me
             o.obw(1).x = obwtim1(1):1/ReFs:obwtim1(end);
             %evaluate the csplined values of y for the new equally spaced values of x
-            o.obw(1).y = fnval(o.obw(1).x, spliney);
+            o.obw(1).yr = fnval(o.obw(1).x, spliney);
             o.obw(1).y = o.obw(1).yr - mean(o.obw(1).yr);
             
     %Channel 2
@@ -83,7 +83,8 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
     obwtim2 = [in.e(1).s(tto{2}(obt2)).timcont]/(60*60);
             spliney = csaps(obwtim2, obwdata2, p);
             o.obw(2).x = obwtim2(1):1/ReFs:obwtim2(end);
-            o.obw(2).y = fnval(o.obw(2).x, spliney);
+            o.obw(2).yr = fnval(o.obw(2).x, spliney);
+            o.obw(2).y = o.obw(2).yr - mean(o.obw(2).yr);
             
     %ZAMP
     %Channel 1
@@ -113,7 +114,7 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
     ztim2 = [in.e(1).s(ttz{2}(tz2)).timcont]/(60*60);
             spliney = csaps(ztim2, zdata2, p);
             o.z(2).x = ztim2(1):1/ReFs:ztim2(end);
-            o.z(2).y = fnval(o.z(2).x, spliney);
+            o.z(2).yr = fnval(o.z(2).x, spliney);
             o.z(2).y = o.z(2).yr - mean(o.z(2).yr);
 
     %SUMAMP - FFT
@@ -129,7 +130,7 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
     sffttim1 = [in.e(1).s(ttsf{1}(st1)).timcont]/(60*60);
             spliney = csaps(sffttim1, sfftdata1, p);
             o.sfft(1).x = sffttim1(1):1/ReFs:sffttim1(end);
-            o.sfft(1).y = fnval(o.sfft(1).x, spliney);
+            o.sfft(1).yr = fnval(o.sfft(1).x, spliney);
             o.sfft(1).y = o.sfft(1).yr - mean(o.sfft(1).yr);
             
     if ~isempty(in.info.poweridx)
@@ -142,7 +143,7 @@ function [freq, pwr] = k_pwelcher(in, ReFs, p, hourperiod, channel)
     sffttim2 = [in.e(1).s(ttsf{2}(st2)).timcont]/(60*60);
             spliney = csaps(sffttim2, sfftdata2, p);
             o.sfft(2).x = sffttim2(2):1/ReFs:sffttim2(end);
-            o.sfft(2).y = fnval(o.sfft(2).x, spliney);
+            o.sfft(2).yr = fnval(o.sfft(2).x, spliney);
             o.sfft(2).y = o.sfft(2).yr - mean(o.sfft(2).yr);
             
 %% Run fft (pwelch)
