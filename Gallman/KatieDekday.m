@@ -311,6 +311,8 @@ end
     
 %trial Dark/Light averages
  
+    lightidx = find(lighttimes <= out.xx(end));
+    lighttimes = lighttimes(lightidx);
     %add one to lighttimes to prevent data loss from logical indexing
     figure; plot(diff(lighttimes));
 
