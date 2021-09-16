@@ -365,10 +365,8 @@ end
             figure(51); clf; hold on; title('sumfft');
                 sax(1) = subplot(211); hold on; title('detrended sumfft');
                 
-                jj
-                length(mout(jj).tt)
                 
-                    plot(mout(jj).tt, normavgdtsumfftresp(jj), 'Color', clrs(jj, :), 'LineWidth', 3); %normalized
+                    plot(mout(jj).tt(1,:), normavgdtsumfftresp(jj,:), 'Color', clrs(jj, :), 'LineWidth', 3); %normalized
                     plot([ld ld], ylim, 'k-','Linewidth', 2);
                     
            
