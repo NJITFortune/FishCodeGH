@@ -126,7 +126,7 @@ figure(101);clf;
 
 subplot(211); hold on; title('Channel 1');
     plot(obwtim1, obwdata1, '.', 'MarkerSize', 3);
-    plot(obwxx, obwyy1, '.', 'LineWidth', 3);
+    plot(obwxx, obwyy1, '-', 'LineWidth', 3);
     
 subplot(212); hold on; title('Channel 2');
     plot(obwtim2, obwdata2, '.', 'MarkerSize', 3);
