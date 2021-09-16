@@ -319,7 +319,7 @@ end
 
           for kk = 2:2:length(lighttimes)-1
 
-              dayidx = find(out(jj).xx >= lighttimes(kk-1) & out(jj).xx < lighttimes(kk+1));
+              dayidx = find(out(jj).xx >= lighttimes(kk-1) & out(jj).xx <= lighttimes(kk+1));
 
               %separate into days
                 %always starts with dark
