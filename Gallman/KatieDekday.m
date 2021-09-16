@@ -338,21 +338,21 @@ end
             normavgdtzresp(jj, :) = mout(jj).dtzavg / max(abs(mout(jj).dtzavg- mean(mout(jj).dtzavg)));
             normavgdtobwresp(jj, :) = mout(jj).dtobwavg / max(abs(mout(jj).dtobwavg - mean(mout(jj).dtobwavg)));
 
-            %not detrended
-            mavgsumfftresp(jj, :) = mean(mout(jj).sumfftavg);
-            mavgzresp(jj, :) = mean(mout(jj).zavg);
-            mavgobwresp(jj, :) = mean(mout(jj).obwavg);
+%             %not detrended
+%             mavgsumfftresp(jj, :) = mean(mout(jj).sumfftavg);
+%             mavgzresp(jj, :) = mean(mout(jj).zavg);
+%             mavgobwresp(jj, :) = mean(mout(jj).obwavg);
             
         %calculate standard deviation for each trial
             %detrended
-            stdavgdtsumfftresp(jj, :) = std(mout(jj).dtsumfftavg);
-            stdavgdtzresp(jj, :) = std(mout(jj).dtzavg);
-            stdavgdtobwresp(jj, :) = std(mout(jj).dtobwavg);
-
-            %not detrended
-            stdavgsumfftresp(jj, :) = std(mout(jj).sumfftavg);
-            stdmavgzresp(jj, :) = std(mout(jj).zavg);
-            stdmavgobwresp(jj, :) = std(mout(jj).obwavg);
+%             stdavgdtsumfftresp(jj, :) = std(mout(jj).dtsumfftavg);
+%             stdavgdtzresp(jj, :) = std(mout(jj).dtzavg);
+%             stdavgdtobwresp(jj, :) = std(mout(jj).dtobwavg);
+% 
+%             %not detrended
+%             stdavgsumfftresp(jj, :) = std(mout(jj).sumfftavg);
+%             stdmavgzresp(jj, :) = std(mout(jj).zavg);
+%             stdmavgobwresp(jj, :) = std(mout(jj).obwavg);
             
         %plot by trial
             %sumfft
