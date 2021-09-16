@@ -65,7 +65,7 @@ end
 
 % take all cells with values and make a new vector
 lighttimes = lighttrim(lighttrim > 0);
-lighttimes(end+1) = 273;
+
 
 %% cspline entire data set
 
