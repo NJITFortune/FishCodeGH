@@ -335,7 +335,7 @@ end
                 mout(jj).obwavg(kk/2, :) = obwyy(dayidx);
                 
                 %create time idex for stardard deviation plot fill
-                tt = out(jj).tim(dayidx) - out(jj).tim(dayidx(1));
+                tt = out(jj).timcont(dayidx) - out(jj).timcont(dayidx(1));
                 ttstd = [tt tt(end:-1:1)];
                 
           end
