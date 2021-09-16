@@ -243,26 +243,32 @@ end
     figure(49); clf; hold on;
     
         xa(1) = subplot(311); hold on; title('sumfft');
-            plot(xx,sumfftyy,'Color',[109 185 226]/255,'DisplayName','Input data')
+            plot(xx, sumfftyy, 'Color', [109 185 226]/255, 'DisplayName', 'Input data')
             hold on
-            plot(xx,out.dtsumfftAmp,'LineWidth', 1.5, 'DisplayName','Detrended data')
-            plot(xx,sumfftyy-dtsumfftyy,'Color', [217 83 25]/255, 'LineWidth', 1, 'DisplayName','Trend')
+            for jj = 1:length(out)
+            plot(out(jj).xx, out(jj).dtsumfftAmp,'LineWidth', 1.5, 'DisplayName','Detrended data')
+            end
+            plot(xx, sumfftyy-dtsumfftyy, 'Color', [217 83 25]/255, 'LineWidth', 1, 'DisplayName','Trend')
             hold off
             legend
         
         xa(2) = subplot(312); hold on; title('zAmp');
-            plot(xx,zyy,'Color',[109 185 226]/255,'DisplayName','Input data')
+            plot(xx, zyy, 'Color', [109 185 226]/255, 'DisplayName', 'Input data')
             hold on
-            plot(xx,out.dtzAmp,'LineWidth', 1.5, 'DisplayName','Detrended data')
-            plot(xx,zyy-dtzyy,'Color', [217 83 25]/255, 'LineWidth', 1, 'DisplayName','Trend')
+            for jj = 1:length(out)
+            plot(out(jj).xx, out(jj).dtzAmp, 'LineWidth', 1.5, 'DisplayName','Detrended data')
+            end
+            plot(xx, zyy-dtzyy, 'Color', [217 83 25]/255, 'LineWidth', 1, 'DisplayName','Trend')
             hold off
             legend
          
         xa(3) = subplot(313); hold on; title('obw');
             plot(xx,obwyy,'Color',[109 185 226]/255,'DisplayName','Input data')
             hold on
-            plot(xx,out.dtobwAmp,'LineWidth', 1.5, 'DisplayName','Detrended data')
-            plot(xx,obwyy-dtobwyy,'Color', [217 83 25]/255, 'LineWidth', 1, 'DisplayName','Trend')
+            for jj = 1:length(out)
+            plot(out(jj).xx, out(jj).dtobwAmp, 'LineWidth', 1.5, 'DisplayName', 'Detrended data')
+            end
+            plot(xx, obwyy-dtobwyy, 'Color', [217 83 25]/255, 'LineWidth', 1, 'DisplayName','Trend')
             hold off
             legend
             
