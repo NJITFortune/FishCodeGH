@@ -313,6 +313,7 @@ end
  out(end).xx(end)
     lightidx = find(lighttimes <= out(end).xx(end));
     lighttimes = lighttimes(lightidx);
+lighttimes
     %add one to lighttimes to prevent data loss from logical indexing
     figure; plot(diff(lighttimes));
 
