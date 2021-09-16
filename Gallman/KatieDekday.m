@@ -334,14 +334,14 @@ end
                 mout(jj).zavg(kk/2, :) = zyy(dayidx);
                 mout(jj).obwavg(kk/2, :) = obwyy(dayidx);
                 
-                
-                
-                
           end
-                %create time idex for stardard deviation plot fill
-                mout.tt = out(jj).timcont(dayidx) - out(jj).timcont(dayidx(1));
+                
     end
-
+    
+    %create time idex for stardard deviation plot fill
+    mout.tt = out.timcont(dayidx) - out.timcont(dayidx(1));
+                
+                
     clrs = cool(length(mout));
     for jj = 1:length(mout)
         
@@ -371,7 +371,7 @@ end
             %sumfft
             figure(51); clf; hold on; title('sumfft');
                 sax(1) = subplot(211); hold on; title('detrended sumfft');
-                    plot(mout(jj).tt, normavgdtsumfftresp(jj), 'Color', clrs(jj, :), 'LineWidth', 3); %normalized
+                    plot(mout.tt, normavgdtsumfftresp(jj), 'Color', clrs(jj, :), 'LineWidth', 3); %normalized
                     plot([ld ld], ylim, 'k-','Linewidth', 2);
                     
            
