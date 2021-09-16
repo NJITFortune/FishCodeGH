@@ -311,7 +311,7 @@ end
     
 %trial Dark/Light averages
  out(end).xx(end)
-    lightidx = find(lighttimes <= out(end).xx(end));
+    lightidx = find(lighttimes <= ceil(out(end).xx(end)));
     lighttimes = lighttimes(lightidx);
 
     %add one to lighttimes to prevent data loss from logical indexing
