@@ -342,7 +342,7 @@ end
         
     end
      tt = out(1).timcont(dayidx) - out(1).timcont(dayidx(1));
-     length(tt)
+     %length(tt)
               
     
                 
