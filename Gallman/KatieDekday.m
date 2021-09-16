@@ -339,7 +339,7 @@ end
         
           %create time idex for stardard deviation plot fill
           mout(jj).tt = out(jj).timcont(dayidx) - out(jj).timcont(dayidx(1));
-          length(mout.tt)      
+          length(mout(jj).tt)      
     end
     
     
