@@ -333,6 +333,7 @@ end
                 mout(jj).sumfftavg(kk/2, :) = sumfftyy(dayidx);
                 mout(jj).zavg(kk/2, :) = zyy(dayidx);
                 mout(jj).obwavg(kk/2, :) = obwyy(dayidx);
+                mout(jj).tt(kk/2, :) = out(jj).timcont(dayidx);
                 
                 
           end
