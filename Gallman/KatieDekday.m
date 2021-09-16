@@ -312,7 +312,7 @@ end
 %trial Dark/Light averages
  
     %add one to lighttimes to prevent data loss from logical indexing
-    lighttimes = lighttimes +2;
+    lighttimes = lighttimes ;
 
     %divide each trial into days
     for jj = 1:length(out) 
