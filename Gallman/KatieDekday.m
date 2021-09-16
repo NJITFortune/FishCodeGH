@@ -310,10 +310,11 @@ end
  
     
 %trial Dark/Light averages
- out(end).xx(end)
+
     lightidx = find(lighttimes <= ceil(out(end).xx(end)));
     lighttimes = lighttimes(lightidx);
-lighttimes(end+1) = lighttimes(end) + ld;
+    lighttimes
+
 
     %add one to lighttimes to prevent data loss from logical indexing
     figure; plot(diff(lighttimes));
