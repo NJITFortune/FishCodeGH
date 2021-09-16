@@ -312,14 +312,14 @@ end
 %trial Dark/Light averages
  
     %add one to lighttimes to prevent data loss from logical indexing
-    lighttimes = lighttimes ;
+    figure; plot(diff(lighttimes));
 
     %divide each trial into days
     for jj = 1:length(out) 
 
           for kk = 2:2:length(lighttimes)-1
 
-              dayidx = find(out(jj).xx > lighttimes(kk-1) & out(jj).xx <= lighttimes(kk+1));
+              dayidx = find(out(jj).xx >= lighttimes(kk-1) & out(jj).xx < lighttimes(kk+1));
 
               %separate into days
                 %always starts with dark
