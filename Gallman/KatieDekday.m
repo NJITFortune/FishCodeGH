@@ -334,12 +334,12 @@ end
                 mout(jj).zavg(kk/2, :) = zyy(dayidx);
                 mout(jj).obwavg(kk/2, :) = obwyy(dayidx);
                 
-                %create time idex for stardard deviation plot fill
-                mout(jj).tt = out(jj).timcont(dayidx) - out(jj).timcont(dayidx(1));
+                
                 
                 
           end
-
+                %create time idex for stardard deviation plot fill
+                mout(jj).tt = out(jj).timcont(dayidx) - out(jj).timcont(dayidx(1));
     end
 
     clrs = cool(length(mout));
