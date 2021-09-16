@@ -355,8 +355,8 @@ end
         %normalize amplitude for each trial
             %detrended
             normavgdtsumfftresp(jj, :) = mout(jj).dtsumfftavg / max(abs(mout(jj).dtsumfftavg-mean(mout(jj).sumfftavg)));
-            normavgdtzresp(jj, :) = mout(jj).dtzavg ./ max(abs(mout(jj).dtzavg- mean(mout(jj).dtzavg)));
-            normavgdtobwresp(jj, :) = mout(jj).dtobwavg ./ max(abs(mout(jj).dtobwavg - mean(mout(jj).dtobwavg)));
+            normavgdtzresp(jj, :) = mout(jj).dtzavg / max(abs(mout(jj).dtzavg- mean(mout(jj).dtzavg)));
+            normavgdtobwresp(jj, :) = mout(jj).dtobwavg / max(abs(mout(jj).dtobwavg - mean(mout(jj).dtobwavg)));
 
             
         %plot by trial
