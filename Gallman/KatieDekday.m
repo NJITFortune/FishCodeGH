@@ -177,7 +177,7 @@ end
              out(jj).sumfftAmp = sumfftyy(timidx);
              
             % Time and treatment 
-             out(jj).timcont = xx(timidx) - xx(timidx(1)) + 1;
+             out(jj).timcont = xx(timidx) - xx(timidx(1)) ;
              out(jj).xx = xx(timidx);
              
              if channel == 1
