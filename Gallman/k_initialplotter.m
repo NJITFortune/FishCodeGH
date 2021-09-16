@@ -51,7 +51,7 @@ ax(5) = subplot(515); hold on; title('light transitions');
         
 % Add feedingtimes, if we have them... 
 
-    if ~isempty([out.info.feedingtimes])
+    if ~isempty(out.info.feedingtimes)
        ax(1) = subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
     end
      
