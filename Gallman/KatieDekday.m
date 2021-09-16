@@ -319,7 +319,7 @@ end
 
           for kk = 2:2:length(lighttimes)-1
 
-              dayidx = find(out(jj).timcont >= lighttimes(kk-1) & out(jj).timcont < lighttimes(kk+1)); 
+              dayidx = find(out(jj).xx >= lighttimes(kk-1) & out(jj).xx < lighttimes(kk+1)); 
 
               %separate into days
                 %always starts with dark
@@ -338,8 +338,8 @@ end
         
           %create time idex for stardard deviation plot fill
           length(dayidx)
-          length(out(jj).timcont(dayidx))
-                mout(jj).tt = out(jj).timcont(dayidx);
+          length(out(jj).xx(dayidx))
+                mout(jj).tt = out(jj).xx(dayidx);
             length(mout(jj).tt)
                 
     end
