@@ -354,7 +354,7 @@ end
         
         %normalize amplitude for each trial
             %detrended
-            normavgdtsumfftresp(jj, :) = mout(jj).dtsumfftavg ./ max(abs(mout(jj).dtsumfftavg-mean(mout(jj).sumfftavg)));
+            normavgdtsumfftresp(jj, :) = mout(jj).dtsumfftavg / max(abs(mout(jj).dtsumfftavg-mean(mout(jj).sumfftavg)));
             normavgdtzresp(jj, :) = mout(jj).dtzavg ./ max(abs(mout(jj).dtzavg- mean(mout(jj).dtzavg)));
             normavgdtobwresp(jj, :) = mout(jj).dtobwavg ./ max(abs(mout(jj).dtobwavg - mean(mout(jj).dtobwavg)));
 
@@ -365,6 +365,8 @@ end
             figure(51); clf; hold on; title('sumfft');
                 sax(1) = subplot(211); hold on; title('detrended sumfft');
                 
+                jj
+                length(mout(jj).tt)
                 
                     plot(mout(jj).tt, normavgdtsumfftresp(jj), 'Color', clrs(jj, :), 'LineWidth', 3); %normalized
                     plot([ld ld], ylim, 'k-','Linewidth', 2);
