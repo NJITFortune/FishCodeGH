@@ -178,6 +178,7 @@ end
              
             % Time and treatment 
              out(jj).timcont = xx(timidx) - xx(timidx(1)) + 1;
+             out(jj).xx = xx(timidx);
              
              if channel == 1
                  out(jj).light = [in.e(1).s(timidx).light];
@@ -211,7 +212,7 @@ end
             %spline fit
             plot(xx, sumfftyy, '-', 'LineWidth', 3);
             for jj = 1:length(out)
-            plot([in.e(1).s.timcont], out(jj).sumfftAmp, '.', 'MarkerSize', 3);
+            plot(out(jj).xx, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
             end
         
         axs(2) = subplot(312); hold on; title('zAmp');
@@ -219,14 +220,18 @@ end
             plot(ztimOG, zAmpOG, '.', 'MarkerSize', 3);
             %spline fit
             plot(xx, zyy, '-', 'LineWidth', 3);
-            plot(xx, out.zAmp, '.', 'MarkerSize', 3);
+            for jj = 1:length(out)
+            plot(out(jj).xx, out(jj).zAmp, '.', 'MarkerSize', 3);
+            end
          
         axs(3) = subplot(313); hold on; title('obwAmp');
             %raw data
             plot(obwtimOG, obwAmpOG, '.', 'MarkerSize', 3);
             %spline fit
             plot(xx, obwyy, '-', 'LineWidth', 3);
-            plot(xx, out.obwAmp, '.', 'MarkerSize', 3);
+            for jj = 1:length(out)
+            plot(out(jj).xx, out(jj).obwAmp, '.', 'MarkerSize', 3);
+            end
             
     linkaxes(axs, 'x');
     
