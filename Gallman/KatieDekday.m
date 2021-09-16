@@ -351,31 +351,15 @@ end
         
         %for kk = 
         
-        %calculate average amplitude for each trial
+        %normalize amplitude for each trial
             %detrended
             normavgdtsumfftresp(jj, :) = mout(jj).dtsumfftavg / max(abs(mout(jj).dtsumfftavg-mean(mout(jj).sumfftavg)));
             normavgdtzresp(jj, :) = mout(jj).dtzavg / max(abs(mout(jj).dtzavg- mean(mout(jj).dtzavg)));
             normavgdtobwresp(jj, :) = mout(jj).dtobwavg / max(abs(mout(jj).dtobwavg - mean(mout(jj).dtobwavg)));
 
-%             %not detrended
-%             mavgsumfftresp(jj, :) = mean(mout(jj).sumfftavg);
-%             mavgzresp(jj, :) = mean(mout(jj).zavg);
-%             mavgobwresp(jj, :) = mean(mout(jj).obwavg);
-            
-        %calculate standard deviation for each trial
-            %detrended
-%             stdavgdtsumfftresp(jj, :) = std(mout(jj).dtsumfftavg);
-%             stdavgdtzresp(jj, :) = std(mout(jj).dtzavg);
-%             stdavgdtobwresp(jj, :) = std(mout(jj).dtobwavg);
-% 
-%             %not detrended
-%             stdavgsumfftresp(jj, :) = std(mout(jj).sumfftavg);
-%             stdmavgzresp(jj, :) = std(mout(jj).zavg);
-%             stdmavgobwresp(jj, :) = std(mout(jj).obwavg);
             
         %plot by trial
-        length(mout(jj).tt)
-        length(normavgdtsumfftresp(jj))
+       
             %sumfft
             figure(51); clf; hold on; title('sumfft');
                 sax(1) = subplot(211); hold on; title('detrended sumfft');
