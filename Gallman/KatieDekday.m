@@ -335,7 +335,7 @@ end
                 mout(jj).obwavg(kk/2, :) = obwyy(dayidx);
                 
                 %create time idex for stardard deviation plot fill
-                tt(jj, :) = out(jj).timcont(dayidx) - out(jj).timcont(dayidx(1));
+                mout(jj).tt(kk/2, :) = out(jj).timcont(dayidx) - out(jj).timcont(dayidx(1));
                 
                 
           end
@@ -371,23 +371,23 @@ end
             %sumfft
             figure(51); clf; hold on; title('sumfft');
                 sax(1) = subplot(211); hold on; title('detrended sumfft');
-                    plot(tt(jj), normavgdtsumfftresp(jj), 'Color', clrs(jj, :), 'LineWidth', 3); %normalized
+                    plot(mout(jj).tt, normavgdtsumfftresp(jj), 'Color', clrs(jj, :), 'LineWidth', 3); %normalized
                     plot([ld ld], ylim, 'k-','Linewidth', 2);
                     
            
             figure(52); clf; hold on; title('zAmp');
                 zax(1) = subplot(211); hold on; title('detrended zAmp');
-                    plot(tt, normavgdtzresp(jj), 'Color', clrs(jj, :), 'LineWidth', 3); %normalized
+                    plot(mout(jj).tt, normavgdtzresp(jj), 'Color', clrs(jj, :), 'LineWidth', 3); %normalized
                     plot([ld ld], ylim, 'k-','Linewidth', 2);
                     
                     
            figure(53); clf; hold on; title('obwAmp');
                 wax(1) = subplot(211); hold on; title('detrended obw');
-                    plot(tt, normavgdtobwresp(jj), 'Color', clrs(jj, :), 'LineWidth', 3); %normalized
+                    plot(mout(jj).tt, normavgdtobwresp(jj), 'Color', clrs(jj, :), 'LineWidth', 3); %normalized
                     plot([ld ld], ylim, 'k-','Linewidth', 2);
                     
     end
-            ttstd = [tt tt(end:-1:1)];
+            ttstd = [mout.tt mout.tt(end:-1:1)];
     
             %sumfft
             meanormavgdtsumfftresp = mean(normavgdtsumfftresp);
