@@ -212,7 +212,7 @@ end
             %spline fit
             plot(xx, sumfftyy, '-', 'LineWidth', 3);
             for jj = 1:length(out)
-            plot(out(jj).xx, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
+                plot(out(jj).xx, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
             end
         
         axs(2) = subplot(312); hold on; title('zAmp');
@@ -221,7 +221,7 @@ end
             %spline fit
             plot(xx, zyy, '-', 'LineWidth', 3);
             for jj = 1:length(out)
-            plot(out(jj).xx, out(jj).zAmp, '.', 'MarkerSize', 3);
+                plot(out(jj).xx, out(jj).zAmp, '.', 'MarkerSize', 3);
             end
          
         axs(3) = subplot(313); hold on; title('obwAmp');
@@ -230,7 +230,7 @@ end
             %spline fit
             plot(xx, obwyy, '-', 'LineWidth', 3);
             for jj = 1:length(out)
-            plot(out(jj).xx, out(jj).obwAmp, '.', 'MarkerSize', 3);
+                plot(out(jj).xx, out(jj).obwAmp, '.', 'MarkerSize', 3);
             end
             
     linkaxes(axs, 'x');
@@ -246,7 +246,7 @@ end
             plot(xx, sumfftyy, 'Color', [109 185 226]/255, 'DisplayName', 'Input data')
             hold on
             for jj = 1:length(out)
-            plot(out(jj).xx, out(jj).dtsumfftAmp,'LineWidth', 1.5, 'DisplayName','Detrended data')
+                plot(out(jj).xx, out(jj).dtsumfftAmp,'LineWidth', 1.5, 'DisplayName','Detrended data')
             end
             plot(xx, sumfftyy-dtsumfftyy, 'Color', [217 83 25]/255, 'LineWidth', 1, 'DisplayName','Trend')
             hold off
@@ -256,7 +256,7 @@ end
             plot(xx, zyy, 'Color', [109 185 226]/255, 'DisplayName', 'Input data')
             hold on
             for jj = 1:length(out)
-            plot(out(jj).xx, out(jj).dtzAmp, 'LineWidth', 1.5, 'DisplayName','Detrended data')
+                plot(out(jj).xx, out(jj).dtzAmp, 'LineWidth', 1.5, 'DisplayName','Detrended data')
             end
             plot(xx, zyy-dtzyy, 'Color', [217 83 25]/255, 'LineWidth', 1, 'DisplayName','Trend')
             hold off
@@ -266,7 +266,7 @@ end
             plot(xx,obwyy,'Color',[109 185 226]/255,'DisplayName','Input data')
             hold on
             for jj = 1:length(out)
-            plot(out(jj).xx, out(jj).dtobwAmp, 'LineWidth', 1.5, 'DisplayName', 'Detrended data')
+                plot(out(jj).xx, out(jj).dtobwAmp, 'LineWidth', 1.5, 'DisplayName', 'Detrended data')
             end
             plot(xx, obwyy-dtobwyy, 'Color', [217 83 25]/255, 'LineWidth', 1, 'DisplayName','Trend')
             hold off
