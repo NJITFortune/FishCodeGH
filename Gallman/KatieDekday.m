@@ -339,7 +339,7 @@ end
         
           %create time idex for stardard deviation plot fill
           mout(jj).tt = out(jj).timcont(dayidx) - out(jj).timcont(dayidx(1));
-                
+          length(mout.tt)      
     end
     
     
@@ -347,6 +347,8 @@ end
                 
     clrs = cool(length(mout));
     for jj = 1:length(mout)
+        
+        %for kk = 
         
         %calculate average amplitude for each trial
             %detrended
