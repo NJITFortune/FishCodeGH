@@ -162,7 +162,7 @@ end
         for jj = 1:numoperiods
     
             % indices for our sample window of perd hours
-            timidx = find(xx > xx(1) + ((jj-1)*perd) & xx < xx(1) + (jj*perd));
+            timidx = find(xx >= xx(1) + ((jj-1)*perd) & xx < xx(1) + (jj*perd));
             
             
             % Data   
