@@ -210,7 +210,9 @@ end
             plot(sumffttimOG, sumfftAmpOG, '.', 'MarkerSize', 3);
             %spline fit
             plot(xx, sumfftyy, '-', 'LineWidth', 3);
-            plot(xx, out.sumfftAmp, '.', 'MarkerSize', 3);
+            for jj = 1:length(out)
+            plot(xx, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
+            end
         
         axs(2) = subplot(312); hold on; title('zAmp');
             %raw data
