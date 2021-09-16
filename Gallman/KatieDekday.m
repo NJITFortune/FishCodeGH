@@ -212,7 +212,7 @@ end
             %spline fit
             plot(xx, sumfftyy, 'k-.', 'LineWidth', 3);
             for jj = 1:length(out)
-                plot(out(jj).xx, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
+                plot(out(jj).xx, out(jj).sumfftAmp, '-', 'LineWidth', 3);
             end
         
         axs(2) = subplot(312); hold on; title('zAmp');
