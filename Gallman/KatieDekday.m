@@ -335,8 +335,8 @@ end
                 mout(jj).obwavg(kk/2, :) = obwyy(dayidx);
                 
                 %create time idex for stardard deviation plot fill
-                tt = out(jj).timcont(dayidx) - out(jj).timcont(dayidx(1));
-                ttstd = [tt tt(end:-1:1)];
+                tt(jj, :) = out(jj).timcont(dayidx) - out(jj).timcont(dayidx(1));
+                
                 
           end
 
@@ -387,6 +387,8 @@ end
                     plot([ld ld], ylim, 'k-','Linewidth', 2);
                     
     end
+            ttstd = [tt tt(end:-1:1)];
+    
             %sumfft
             meanormavgdtsumfftresp = mean(normavgdtsumfftresp);
             stdavgdtsumfftresp = std(normavgdtsumfftresp);
