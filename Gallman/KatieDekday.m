@@ -210,7 +210,7 @@ end
             %raw data
             plot(sumffttimOG, sumfftAmpOG, '.', 'MarkerSize', 3);
             %spline fit
-            plot(xx, sumfftyy, '-.', 'LineWidth', 3, 'k');
+            plot(xx, sumfftyy, 'k-.', 'LineWidth', 3);
             for jj = 1:length(out)
                 plot(out(jj).xx, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
             end
