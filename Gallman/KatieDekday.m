@@ -370,6 +370,8 @@ end
 %             stdmavgobwresp(jj, :) = std(mout(jj).obwavg);
             
         %plot by trial
+        length(mout(jj).tt)
+        length(normavgdtsumfftresp(jj))
             %sumfft
             figure(51); clf; hold on; title('sumfft');
                 sax(1) = subplot(211); hold on; title('detrended sumfft');
