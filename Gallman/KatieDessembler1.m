@@ -16,8 +16,8 @@ function out = KatieDessembler1(in, orgidx)
 
 % Construct splines and get lightimes
 
-[xx1, obwyy1, zyy1, sumfftyy1, lighttimes] = makeSplines(in, 1);
-[xx2, obwyy2, zyy2, sumfftyy2, ~] = makeSplines(in, 2);
+[xx(1,:), obwyy1(1,:), zyy1(1,:), sumfftyy1(1,:), lighttimes] = makeSplines(in, 1);
+[xx(2,:), obwyy2(2,:), zyy2(2,:), sumfftyy2(2,:), ~] = makeSplines(in, 2);
 
 % Make a time base that starts and ends on lighttimes     
 
@@ -78,10 +78,38 @@ figure(2); clf;
 %% Make trials from the spline data
 
 
-% for jj = 1:numoperiods
-%     
-%     startperdidx = find(xx1 >= xx1(1)
-%     
-%     
-% end
+for jj = 1:numoperiods
+    
+    for j = 1:2
+        
+            timidx = find(xx(j,:) > xx(j,1) + ((jj-1) * perd) & ...
+               xx(j,:) < xx(j,1) + (jj * perd));
+           
+             % Data   
+             out(jj).e(j).SobwAmp = obwyy(timidx);
+             out(jj).e(j).SzAmp = zyy(timidx);
+             out(jj).e(j).SsumfftAmp = sumfftyy(timidx);
+             
+             % Time  
+             out(jj).e(j).Stimcont = xx(j,timidx) - xx(j,timidx(1));          
+           
+    end
+    
+end
+
+figure(3); clf;  
+
+    maxlen = 0;
+
+    for k= 1:length(out) 
+        xax(1) = subplot(211); hold on;
+        plot(out(k).e(1).xx, out(k).e(1).SobwAmp, '.'); 
+        xax(2) = subplot(212); hold on;
+        plot(out(k).e(2).xx, out(k).e(2).SobwAmp, '.'); 
+        
+        maxlen = max([maxlen out(k).e(1).xx(end)]);        
+    end
+
+    linkaxes(xax, 'x'); xlim([0 maxlen]);
+
 
