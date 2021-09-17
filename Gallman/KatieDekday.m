@@ -145,7 +145,6 @@ else %channel = 2
 end
 
 
-    
 %% Divide into trials 
 
 %define sample range
@@ -233,8 +232,7 @@ end
                 plot(out(jj).xx, out(jj).obwAmp, '.', 'MarkerSize', 3);
             end
             
-    linkaxes(axs, 'x');
-    
+    linkaxes(axs, 'x');    
     
 %detrending
 
@@ -313,11 +311,11 @@ end
 
     lightidx = find(lighttimes <= out(end).xx(end));
     lighttimes = lighttimes(lightidx);
-    lighttimes
+    
 %     
     intervl = ld * 2 * ReFs;
 
-
+numberofLDinatrial = 5;
     %add one to lighttimes to prevent data loss from logical indexing
     figure; plot(diff(lighttimes));
 
