@@ -166,8 +166,13 @@ for j=1:length(trial)
     subplot(211); hold on; title('channel 1');
         mtrial(j,:) = zeros(1,length(trial(j).tim));
         for k=1:length(trial(j).day)
-            mtrial(j,:) = mtrial(j,:) + ((trial(j).day(k).e(1).SobwAmp - mean(trial(j).day(k).e(1).SobwAmp)) / max(abs(trial(j).day(k).e(1).SobwAmp - mean(trial(j).day(k).e(1).SobwAmp))));
+            % Normalize 0 to 1
+            tmpnormdata = trial(j).day(k).e(1).SobwAmp - min(trial(j).day(k).e(1).SobwAmp); % set floor to zero
+            tmpnormdata = tmpnormdata / max(tmpnormdata); % set max to 1
+            
+            mtrial(j,:) = mtrial(j,:) + tmpnormdata;
         end
+        
         mtrial(j,:) = mtrial(j,:) / length(trial(j).day);
         plot(trial(j).tim, mtrial(j,:));
         
