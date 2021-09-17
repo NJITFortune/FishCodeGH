@@ -87,7 +87,7 @@ for jj = 1:numoperiods
     for j = 1:2
              
             % Get the index for the start of the current period (xx is time)
-            timidx = find(xx(j,:) > xx(j,1) + ((jj-1) * perd), 1);
+            timidx = find(xx(j,:) > xx(j,1) + ((jj-1) * perd), 1)
             % Get the rest of the indices for the trial  
             timidx = timidx:timidx + (perd*ReFs)-1;
 
