@@ -76,10 +76,10 @@ figure(2); clf;
     
     
 
-for jj = 1:numoperiods
-    
-    startperdidx = find(xx1 >= xx1(1)
-    
-    
-end
+% for jj = 1:numoperiods
+%     
+%     startperdidx = find(xx1 >= xx1(1)
+%     
+%     
+% end
 
