@@ -133,7 +133,7 @@ for jj = length(out):-1:1 % For each trial
         for j = 1:2 % Electrodes
         
         % Get the index of the start time of the trial
-        dayidx = find(out(jj).e(j).Stimcont > (k-1) * (ld*2), 1); % k-1 so that we start at zero
+        dayidx = find(out(jj).e(j).Stimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
         
         % Get the datums
         trial(jj).day(k).e(j).SobwAmp = out(jj).e(j).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
