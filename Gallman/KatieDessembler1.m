@@ -36,6 +36,7 @@ for jj = 1:numoperiods
             % indices for our sample window of perd hours
             timidx = find(timcont > timcont(1) + ((jj-1)*perd) & ...
                timcont < timcont(1) + (jj*perd));
+           length(timidx)
             
             for j = 1:2
             
