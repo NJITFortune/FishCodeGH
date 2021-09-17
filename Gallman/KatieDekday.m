@@ -308,12 +308,14 @@ end
 
     linkaxes(ax, 'x'); xlim([0 maxlen]);
  
-    +
+    
 %trial Dark/Light averages
 
     lightidx = find(lighttimes <= ceil(out(end).xx(end)));
     lighttimes = lighttimes(lightidx);
     lighttimes
+    
+    interval = ld*2*ReFs;
 
 
     %add one to lighttimes to prevent data loss from logical indexing
