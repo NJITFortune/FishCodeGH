@@ -26,7 +26,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     % How many trials available?
     lengthofsampleHOURS = timcont(end) - timcont(1);    
     % How many integer trials in dataset
-    numotrials = floor(lengthofsampleHOURS / perd) % of trials
+    numotrials = floor(lengthofsampleHOURS / perd); % of trials
 
 
 
