@@ -10,7 +10,7 @@ function [out, trial] = KatieDessembler1(in, orgidx)
     perdsex = perd * 60 * 60; % perd in seconds, for convenience since timcont is in seconds
 
     % How many trials available?
-    lengthofsampleHOURS = (in.e(1).s(end).timcont/(60*60)) - (in.e(1).s(1).timcont/(60*60));    
+    lengthofsampleHOURS = (in.e(1).s(end).timcont/(60*60)) - (in.e(1).s(1).timcont/(60*60))    
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / perd) % of trials
 
