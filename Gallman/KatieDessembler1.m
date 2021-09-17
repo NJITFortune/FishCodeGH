@@ -75,6 +75,8 @@ figure(2); clf;
 % This is not necessary.  
     
     
+%% Make trials from the spline data
+
 
 % for jj = 1:numoperiods
 %     
