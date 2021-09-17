@@ -1,4 +1,4 @@
-function out = KatieDessembler1(in, orgidx)     
+function [out, trial] = KatieDessembler1(in, orgidx)     
 % Usage: out = KatieDessembler(in(orgidx), orgidx)
 % Example: out = KatieDessembler(in(orgidx), orgidx)
 % And out is something...
