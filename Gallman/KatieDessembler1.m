@@ -13,8 +13,15 @@ function out = KatieDessembler1(in, orgidx)
     lengthofsampleHOURS = (in.e(1).s(end).timcont/(60*60)) - (in.e(1).s(1).timcont/(60*60));    
     % How many integer trials in dataset
     numoperiods = floor(lengthofsampleHOURS / perd); % of periods
-    
-    timcont = [in.e(1).s.timcont];
+
+% Construct splines and get lightimes
+
+[xx1, obwyy1, zyy1, sumfftyy1, lighttimes] = makeSplines(in, 1);
+[xx2, obwyy2, zyy2, sumfftyy2, ~] = makeSplines(in, 2);
+
+% Make a time base that starts and ends on lighttimes     
+
+    timcont = [in.e(1).s.timcont] / (60*60);
     timcont = timcont(timcont >= lighttimes(1) & timcont < lighttimes(end));
     
 
@@ -23,8 +30,8 @@ function out = KatieDessembler1(in, orgidx)
 for jj = 1:numoperiods
     
             % indices for our sample window of perd hours
-            timidx = find([in.e(1).s.timcont] > in.e(1).s(1).timcont + ((jj-1)*perdsex) & ...
-                [in.e(1).s.timcont] < in.e(1).s(1).timcont + (jj*perdsex));
+            timidx = find(timcont > timcont(1) + ((jj-1)*perd) & ...
+               timcont < timcont(1) + (jj*perd));
             
             for j = 1:2
             
@@ -68,11 +75,6 @@ figure(2); clf;
 % This is not necessary.  
     
     
-%% Construct splines
-
-[xx1, obwyy1, zyy1, sumfftyy1] = makeSplines(in, 1);
-[xx2, obwyy2, zyy2, sumfftyy2] = makeSplines(in, 2);
-
 
 for jj = 1:numoperiods
     
