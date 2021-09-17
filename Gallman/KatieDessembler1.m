@@ -156,21 +156,21 @@ for j=1:length(trial)
     end
 end
 
-subplot(211); title('All days across all samples');
+
 
 % Plot means of trials
-figure(28); clf; 
+figure(28); clf; title('All days across all samples');
 
 for j=1:length(trial) 
     
-    subplot(211); hold on;
+    subplot(211); hold on; title('channel 1');
         mtrial(j,:) = zeros(1,length(trial(j).tim));
         for k=1:length(trial(j).day)
             mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(1).SobwAmp;
         end
         plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
         
-    subplot(212); hold on;
+    subplot(212); hold on; title('channel 1');
         mtrial(j,:) = zeros(1,length(trial(j).tim));
         for k=1:length(trial(j).day)
             mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(2).SobwAmp;
@@ -178,6 +178,28 @@ for j=1:length(trial)
         plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
     
 end
+
+
+figure(29); clf; title('Average day by trial');
+
+    
+for j=1:length(trial) 
+    
+    subplot(211); hold on; title('channel 1');
+        mtrial(j,:) = zeros(1,length(trial(j).tim));
+        for k=1:length(trial(j).day)
+            mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(1).SobwAmp;
+            mtrial(j,: = mtrial(j,:) - max(abs(
+        end
+        plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
         
-subplot(211); title('Average day by trial');
+    subplot(212); hold on; title('channel 1');
+        mtrial(j,:) = zeros(1,length(trial(j).tim));
+        for k=1:length(trial(j).day)
+            mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(2).SobwAmp;
+        end
+        plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
+    
+end
+
 
