@@ -5,7 +5,7 @@ function [out, trial] = KatieDessembler1(in, orgidx)
 
 % define sample range
     perd = 48; % default length is 48 hours
-    %perd = perd - rem(perd, in.info.ld);  % If not integer divisible, take fewer samples to not go over     
+    perd = perd - rem(perd, in.info.ld);  % If not integer divisible, take fewer samples to not go over     
     
     perdsex = perd * 60 * 60; % perd in seconds, for convenience since timcont is in seconds
 
