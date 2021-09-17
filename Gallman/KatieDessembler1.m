@@ -16,8 +16,10 @@ function out = KatieDessembler1(in, orgidx)
 
 % Construct splines and get lightimes
 
-[xx(1,:), obwyy(1,:), zyy(1,:), sumfftyy(1,:), lighttimes] = makeSplines(in, 1);
-[xx(2,:), obwyy(2,:), zyy(2,:), sumfftyy(2,:), ~] = makeSplines(in, 2);
+ReFs = 10;  % Sample rate for splines
+
+[xx(1,:), obwyy(1,:), zyy(1,:), sumfftyy(1,:), lighttimes] = makeSplines(in, 1, ReFs);
+[xx(2,:), obwyy(2,:), zyy(2,:), sumfftyy(2,:), ~] = makeSplines(in, 2, ReFs);
 
 % Make a time base that starts and ends on lighttimes     
 
@@ -25,6 +27,8 @@ function out = KatieDessembler1(in, orgidx)
     timcont = timcont(timcont >= lighttimes(1) & timcont < lighttimes(end));
     
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
+
+
 
 %% Cycle to chop raw data into trials  
 
@@ -114,7 +118,7 @@ figure(3); clf;
 
 %% Make days from spline trials 
 
-for jj = 1:length(out) % For each trial
+for jj = length(out):-1:1 % For each trial
     
     howmanydaysintrial = perd / (ld*2);
     howmanysamplesinaday = ld * 2 * ReFs;
@@ -123,8 +127,13 @@ for jj = 1:length(out) % For each trial
 
         for j = 1:2 % Electrodes
         
-        day(k).e(j).SobwAmp = out(jj).e(j).SobwAmp(out(jj).e(j).Stimcont > howmanydaysintrial*k*ld*2
+        dayidx = find(out(jj).e(j).Stimcont > howmanydaysintrial*k*ld*2, 1);            
+        trial(jj).day(k).e(j).SobwAmp = out(jj).e(j).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
+        
+        end
         
     end
+
+    trial(jj).tim = ReFs:ReFs:howmanysamplesinaday*howmanysamplesinaday;
     
 end
