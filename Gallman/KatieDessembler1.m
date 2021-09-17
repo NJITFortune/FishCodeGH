@@ -1,7 +1,7 @@
 function [out, trial] = KatieDessembler1(in, orgidx)     
-% Usage: out = KatieDessembler(in(orgidx), orgidx)
-% Example: out = KatieDessembler(in(orgidx), orgidx)
-% And out is something...
+% Usage: [out, trial] = KatieDessembler(in(orgidx), orgidx)
+% Example: [out, trial] = KatieDessembler(kg(1), 1)
+% Out is raw data, trial is spline data
 
 % define sample range
     perd = 48; % default length is 48 hours
@@ -134,6 +134,8 @@ for jj = length(out):-1:1 % For each trial
         
         dayidx = find(out(jj).e(j).Stimcont > k * (ld*2), 1);            
         trial(jj).day(k+1).e(j).SobwAmp = out(jj).e(j).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
+        trial(jj).day(k+1).e(j).SzAmp = out(jj).e(j).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
+        trial(jj).day(k+1).e(j).SsumfftAmp = out(jj).e(j).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
         
         end
         
