@@ -159,7 +159,7 @@ end
 
 
 % Plot means of trials
-figure(28); clf; title('All days across all samples');
+figure(28); clf; 
 
 for j=1:length(trial) 
     
@@ -180,7 +180,7 @@ for j=1:length(trial)
 end
 
 
-figure(29); clf; title('Average day by trial');
+figure(29); clf; 
 
     
 for j=1:length(trial) 
