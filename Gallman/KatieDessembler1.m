@@ -60,7 +60,7 @@ end
         
 %% Plot raw trial data
 
-figure(2); clf;  title('Raw data for each trial');
+figure(2); clf;  
 
     maxlen = 0;
 
@@ -74,6 +74,7 @@ figure(2); clf;  title('Raw data for each trial');
     end
 
     linkaxes(ax, 'x'); xlim([0 maxlen]);
+    subplot(211); title('Raw data for each trial');
 
 %% Make days so we can plot raw data by days 
 
