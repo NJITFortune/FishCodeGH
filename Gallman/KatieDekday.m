@@ -311,8 +311,8 @@ end
     
 %trial Dark/Light averages
 
-%     lightidx = find(lighttimes <= ceil(out(end).xx(end)));
-%     lighttimes = lighttimes(lightidx);
+    lightidx = find(lighttimes <= ceil(out(end).xx(end)));
+    lighttimes = lighttimes(lightidx);
 %     
     intervl = ld * 2 * ReFs;
 
@@ -331,6 +331,8 @@ end
                 %always starts with dark
                 
                 %detrended
+                length(dtsumfftyy)
+                dayidx
                 mout(jj).dtsumfftavg(kk/2, :) = dtsumfftyy(dayidx:dayidx+intervl);
                 mout(jj).dtzavg(kk/2, :) = dtzyy(dayidx:dayidx+intervl);
                 mout(jj).dtobwavg(kk/2, :) = dtobwyy(dayidx:dayidx+intervl);
