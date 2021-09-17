@@ -123,14 +123,19 @@ figure(3); clf;
 
 for jj = length(out):-1:1 % For each trial
     
+    % Divide by daylength to get the number of days in the trial
     howmanydaysintrial = floor(perd / (ld*2));
+    % This is the number of sample in a day
     howmanysamplesinaday = ld * 2 * ReFs;
     
     for k = 1:howmanydaysintrial % Each day in a trial
 
         for j = 1:2 % Electrodes
         
-        dayidx = find(out(jj).e(j).Stimcont > (k-1) * (ld*2), 1);            
+        % Get the index of the start time of the trial
+        dayidx = find(out(jj).e(j).Stimcont > (k-1) * (ld*2), 1); % k-1 so that we start at zero
+        
+        % Get the datums
         trial(jj).day(k).e(j).SobwAmp = out(jj).e(j).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
         trial(jj).day(k).e(j).SzAmp = out(jj).e(j).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
         trial(jj).day(k).e(j).SsumfftAmp = out(jj).e(j).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
@@ -138,8 +143,8 @@ for jj = length(out):-1:1 % For each trial
         end
         
     end
-
-    trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+        % Make a time sequence for the datums
+        trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
     
 end
 
