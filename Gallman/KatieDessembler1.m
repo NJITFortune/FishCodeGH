@@ -60,7 +60,7 @@ end
         
 %% Plot raw trial data
 
-figure(2); clf;  
+figure(2); clf;  title('Raw data for each trial');
 
     maxlen = 0;
 
@@ -104,7 +104,7 @@ for jj = 1:numoperiods
     
 end
 
-figure(3); clf;  
+figure(3); clf; title('Splines for each trial');
 
     maxlen = 0;
 
@@ -142,7 +142,7 @@ for jj = length(out):-1:1 % For each trial
 end
 
 % Plot all days
-figure(27); clf; 
+figure(27); clf; title('All days in sample');
 
 for j=1:length(trial) 
     for k=1:length(trial(j).day)
@@ -155,7 +155,7 @@ end
 
 
 % Plot means of trials
-figure(28); clf; 
+figure(28); clf; title('Average day by trial');
 
 for j=1:length(trial) 
     
