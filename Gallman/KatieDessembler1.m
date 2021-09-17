@@ -168,16 +168,21 @@ for j=1:length(trial)
         for k=1:length(trial(j).day)
             mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(1).SobwAmp;
         end
-        plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
+        mtrial(j,:) = mtrial(j,:) / length(trial(j).day);
+        plot(trial(j).tim, mtrial(j,:));
         
-    subplot(212); hold on; title('channel 2');
-        mtrial(j,:) = zeros(1,length(trial(j).tim));
-        for k=1:length(trial(j).day)
-            mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(2).SobwAmp;
-        end
-        plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
-    
+%     subplot(212); hold on; title('channel 2');
+%         mtrial(j,:) = zeros(1,length(trial(j).tim));
+%         for k=1:length(trial(j).day)
+%             mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(2).SobwAmp;
+%         end
+%         plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
+%     
 end
+
+% Mean of means
+
+    meanofmeans = sum(mtrial
 
 
 figure(29); clf; 
