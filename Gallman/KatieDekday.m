@@ -313,9 +313,8 @@ end
 
     lightidx = find(lighttimes <= ceil(out(end).xx(end)));
     lighttimes = lighttimes(lightidx);
-    lighttimes
     
-    interval = ld*2*ReFs;
+    intervl = ld * 2 * ReFs;
 
 
     %add one to lighttimes to prevent data loss from logical indexing
@@ -326,28 +325,25 @@ end
 
           for kk = 2:2:length(lighttimes)-1
 
-              dayidx = find(out(jj).xx >= lighttimes(kk-1) & out(jj).xx < lighttimes(kk+1));
+              dayidx = find(out(jj).xx >= lighttimes(kk-1), 1);
 
               %separate into days
                 %always starts with dark
                 
                 %detrended
-                mout(jj).dtsumfftavg(kk/2, :) = dtsumfftyy(dayidx);
-                mout(jj).dtzavg(kk/2, :) = dtzyy(dayidx);
-                mout(jj).dtobwavg(kk/2, :) = dtobwyy(dayidx);
+                mout(jj).dtsumfftavg(kk/2, :) = dtsumfftyy(dayidx:dayidx+intervl);
+                mout(jj).dtzavg(kk/2, :) = dtzyy(dayidx:dayidx+intervl);
+                mout(jj).dtobwavg(kk/2, :) = dtobwyy(dayidx:dayidx+intervl);
 
                 %not detrended
-                mout(jj).sumfftavg(kk/2, :) = sumfftyy(dayidx);
-                mout(jj).zavg(kk/2, :) = zyy(dayidx);
-                mout(jj).obwavg(kk/2, :) = obwyy(dayidx);
+                mout(jj).sumfftavg(kk/2, :) = sumfftyy(dayidx:dayidx+intervl);
+                mout(jj).zavg(kk/2, :) = zyy(dayidx:dayidx+intervl);
+                mout(jj).obwavg(kk/2, :) = obwyy(dayidx:dayidx+intervl);
                                 
           end
         
           %create time idex for stardard deviation plot fill
-          length(dayidx)
-          length(out(jj).xx(dayidx))
-                mout(jj).tt = out(jj).xx(dayidx);
-            length(mout(jj).tt)
+                mout(jj).tt = out(jj).xx(dayidx:dayidx+intervl);
                 
     end
      tt = out(1).timcont(dayidx) - out(1).timcont(dayidx(1));
