@@ -139,7 +139,15 @@ for jj = length(out):-1:1 % For each trial
 end
 
 % Plot days
+figure(27); clf; 
 
-for j=1:length(trail); for k=1:length(trail(j).day); plot(trail(j).day(k).e(1).SobwAmp+(k*0.01)); end; end
+for j=1:length(trial) 
+    for k=1:length(trial(j).day)
+        subplot(211); hold on;
+            plot(trail(j).tim, trial(j).day(k).e(1).SobwAmp); 
+        subplot(212); hold on;
+            plot(trail(j).tim, trial(j).day(k).e(2).SobwAmp); 
+    end
+end
 
 
