@@ -127,8 +127,8 @@ for jj = length(out):-1:1 % For each trial
 
         for j = 1:2 % Electrodes
         
-        dayidx = find(out(jj).e(j).Stimcont > howmanydaysintrial*k*ld*2, 1)            
-        trial(jj).day(k).e(j).SobwAmp = out(jj).e(j).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
+        dayidx = find(out(jj).e(j).Stimcont > howmanydaysintrial*k*ld*2, 1);            
+        trial(jj).day(k+1).e(j).SobwAmp = out(jj).e(j).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
         
         end
         
