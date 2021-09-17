@@ -189,7 +189,7 @@ for j=1:length(trial)
         mtrial(j,:) = zeros(1,length(trial(j).tim));
         for k=1:length(trial(j).day)
             mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(1).SobwAmp;
-            mtrial(j,: = mtrial(j,:) - max(abs(
+            mtrial(j,: = mtrial(j,:) / max(abs(mtrial(j,:)
         end
         plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
         
