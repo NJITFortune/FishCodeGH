@@ -86,9 +86,12 @@ for jj = 1:numoperiods
     
     for j = 1:2
         
-            timidx = find(xx(j,:) > xx(j,1) + ((jj-1) * perd) & ...
-               xx(j,:) < xx(j,1) + (jj * perd));
-           
+%            timidx = find(xx(j,:) > xx(j,1) + ((jj-1) * perd) & ...
+%               xx(j,:) < xx(j,1) + (jj * perd));
+                
+            timidx = find(xx(j,:) > xx(j,1) + ((jj-1) * perd), 1);
+            timidx = timidx:timidx + (perd*ReFs);
+
              % Data   
              out(jj).e(j).SobwAmp = obwyy(j,timidx);
              out(jj).e(j).SzAmp = zyy(j,timidx);
