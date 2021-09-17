@@ -195,7 +195,7 @@ for j=1:length(trial)
         trialmean = mean(mtrial);
         trialstd = std(mtrial);
         tt = trial(1).tim;
-        tt = 
+        tt = [tt tt(end:-1:1)];
         
         plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
         
