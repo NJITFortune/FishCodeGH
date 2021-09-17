@@ -5,13 +5,13 @@ function out = KatieDessembler1(in, orgidx)
 
 %define sample range
     perd = 48; % default length is 48 hours
-    perd = perd - rem(perd, in.info.ld);       
+    perd = perd - rem(perd, in.info.ld);  % If not integer divisible, take fewer samples to not go over     
     
     perdsex = perd * 60 * 60; % perd in seconds, for convenience since timcont is in seconds
 
-    % How many samples available?
+    % How many trials available?
     lengthofsampleHOURS = (in.e(1).s(end).timcont/(60*60)) - (in.e(1).s(1).timcont/(60*60));    
-    % How many integer periods
+    % How many integer trials in dataset
     numoperiods = floor(lengthofsampleHOURS / perd); % of periods
     
 for jj = 1:numoperiods
