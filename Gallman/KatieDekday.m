@@ -311,9 +311,9 @@ end
     
 %trial Dark/Light averages
 
-    lightidx = find(lighttimes <= ceil(out(end).xx(end)));
-    lighttimes = lighttimes(lightidx);
-    
+%     lightidx = find(lighttimes <= ceil(out(end).xx(end)));
+%     lighttimes = lighttimes(lightidx);
+%     
     intervl = ld * 2 * ReFs;
 
 
