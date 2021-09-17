@@ -134,6 +134,6 @@ for jj = length(out):-1:1 % For each trial
         
     end
 
-    trial(jj).tim = ReFs:ReFs:howmanysamplesinaday*howmanysamplesinaday;
+    trial(jj).tim = ReFs:ReFs:howmanysamplesinaday*ReFs;
     
 end
