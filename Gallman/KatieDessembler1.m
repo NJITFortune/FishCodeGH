@@ -90,7 +90,8 @@ for jj = 1:numoperiods
             timidx = find(xx(j,:) > xx(j,1) + ((jj-1) * perd), 1);
             % Get the rest of the indices for the trial  
             timidx = timidx:timidx + (perd*ReFs)-1;
-            timidx(end)
+            
+            if length(obwyy(j,:)) >= length(timidx)
              % Data   
              out(jj).e(j).SobwAmp = obwyy(j,timidx);
              out(jj).e(j).SzAmp = zyy(j,timidx);
@@ -98,7 +99,7 @@ for jj = 1:numoperiods
              
              % Time  
              out(jj).e(j).Stimcont = xx(j,timidx) - xx(j,timidx(1)); % Time starting at zero          
-           
+            end
     end
     
 end
