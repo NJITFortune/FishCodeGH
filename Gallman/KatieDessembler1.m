@@ -103,11 +103,11 @@ figure(3); clf;
 
     for k= 1:length(out) 
         xax(1) = subplot(211); hold on;
-        plot(out(k).e(1).xx, out(k).e(1).SobwAmp, '.'); 
+        plot(out(k).e(1).Stimcont, out(k).e(1).SobwAmp, '.'); 
         xax(2) = subplot(212); hold on;
-        plot(out(k).e(2).xx, out(k).e(2).SobwAmp, '.'); 
+        plot(out(k).e(2).Stimcont, out(k).e(2).SobwAmp, '.'); 
         
-        maxlen = max([maxlen out(k).e(1).xx(end)]);        
+        maxlen = max([maxlen out(k).e(1).Stimcont(end)]);        
     end
 
     linkaxes(xax, 'x'); xlim([0 maxlen]);
