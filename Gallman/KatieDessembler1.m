@@ -3,7 +3,7 @@ function out = KatieDessembler1(in, orgidx)
 % Example: out = KatieDessembler(in(orgidx), orgidx)
 % And out is something...
 
-%define sample range
+% define sample range
     perd = 48; % default length is 48 hours
     perd = perd - rem(perd, in.info.ld);  % If not integer divisible, take fewer samples to not go over     
     
@@ -24,6 +24,7 @@ function out = KatieDessembler1(in, orgidx)
     timcont = [in.e(1).s.timcont] / (60*60);
     timcont = timcont(timcont >= lighttimes(1) & timcont < lighttimes(end));
     
+ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 %% Cycle to chop raw data into trials  
 
@@ -115,8 +116,15 @@ figure(3); clf;
 
 for jj = 1:length(out) % For each trial
     
-    howmanydaysintrial 
+    howmanydaysintrial = perd / (ld*2);
+    howmanysamplesinaday = ld * 2 * ReFs;
     
-    for j = 1:
+    for k = 0:howmanydaysintrial-1 % Each day in a trial
 
-
+        for j = 1:2 % Electrodes
+        
+        day(k).e(j).SobwAmp = out(jj).e(j).SobwAmp(out(jj).e(j).Stimcont > howmanydaysintrial*k*ld*2
+        
+    end
+    
+end
