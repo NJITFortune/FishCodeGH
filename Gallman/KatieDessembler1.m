@@ -91,7 +91,7 @@ for jj = 1:numoperiods
             % Get the rest of the indices for the trial  
             timidx = timidx:timidx + (perd*ReFs)-1;
             
-            if length(obwyy(j,:)) >= length(timidx)
+            if obwyy(j,end) >= timidx(end)
              % Data   
              out(jj).e(j).SobwAmp = obwyy(j,timidx);
              out(jj).e(j).SzAmp = zyy(j,timidx);
