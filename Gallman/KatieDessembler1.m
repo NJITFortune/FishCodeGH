@@ -137,3 +137,9 @@ for jj = length(out):-1:1 % For each trial
     trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
     
 end
+
+% Plot days
+
+for j=1:length(trail); for k=1:length(trail(j).day); plot(trail(j).day(k).e(1).SobwAmp+(k*0.01)); end; end
+
+
