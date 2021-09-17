@@ -16,8 +16,8 @@ function out = KatieDessembler1(in, orgidx)
 
 % Construct splines and get lightimes
 
-[xx(1,:), obwyy1(1,:), zyy1(1,:), sumfftyy1(1,:), lighttimes] = makeSplines(in, 1);
-[xx(2,:), obwyy2(2,:), zyy2(2,:), sumfftyy2(2,:), ~] = makeSplines(in, 2);
+[xx(1,:), obwyy(1,:), zyy(1,:), sumfftyy(1,:), lighttimes] = makeSplines(in, 1);
+[xx(2,:), obwyy(2,:), zyy(2,:), sumfftyy(2,:), ~] = makeSplines(in, 2);
 
 % Make a time base that starts and ends on lighttimes     
 
@@ -86,9 +86,9 @@ for jj = 1:numoperiods
                xx(j,:) < xx(j,1) + (jj * perd));
            
              % Data   
-             out(jj).e(j).SobwAmp = obwyy(timidx);
-             out(jj).e(j).SzAmp = zyy(timidx);
-             out(jj).e(j).SsumfftAmp = sumfftyy(timidx);
+             out(jj).e(j).SobwAmp = obwyy(j,timidx);
+             out(jj).e(j).SzAmp = zyy(j,timidx);
+             out(jj).e(j).SsumfftAmp = sumfftyy(j,timidx);
              
              % Time  
              out(jj).e(j).Stimcont = xx(j,timidx) - xx(j,timidx(1));          
