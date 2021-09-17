@@ -161,7 +161,7 @@ for j=1:length(trial)
             plot(trial(j).tim, trial(j).day(k).e(2).SobwAmp); 
     end
 end
-
+subplot(211); title('Every day cycle');
 
 
 % Plot means of trials
