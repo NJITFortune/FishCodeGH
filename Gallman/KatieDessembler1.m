@@ -29,7 +29,6 @@ ReFs = 10;  % Sample rate for splines
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 
-
 %% Cycle to chop raw data into trials  
 
 for jj = 1:numoperiods
@@ -86,11 +85,10 @@ figure(2); clf;
 for jj = 1:numoperiods
     
     for j = 1:2
-        
-%            timidx = find(xx(j,:) > xx(j,1) + ((jj-1) * perd) & ...
-%               xx(j,:) < xx(j,1) + (jj * perd));
-                
+             
+            % Get the index for the start of the current period (xx is time)
             timidx = find(xx(j,:) > xx(j,1) + ((jj-1) * perd), 1);
+            % Get the rest of the indices for the trial  
             timidx = timidx:timidx + (perd*ReFs);
 
              % Data   
@@ -99,7 +97,7 @@ for jj = 1:numoperiods
              out(jj).e(j).SsumfftAmp = sumfftyy(j,timidx);
              
              % Time  
-             out(jj).e(j).Stimcont = xx(j,timidx) - xx(j,timidx(1));          
+             out(jj).e(j).Stimcont = xx(j,timidx) - xx(j,timidx(1)); % Time starting at zero          
            
     end
     
