@@ -15,7 +15,7 @@ function out = KatieDessembler1(in, orgidx)
     numoperiods = floor(lengthofsampleHOURS / perd); % of periods
     
     timcont = [in.e(1).s.timcont];
-    in.e(1).s.timcont
+    timcont = timcont(timcont >= lighttimes(1) & timcont < lighttimes(end));
     
 
 %% Cycle to chop raw data into trials  
