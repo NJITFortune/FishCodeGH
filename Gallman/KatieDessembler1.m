@@ -153,7 +153,7 @@ figure(27); clf; for j=1:length(trial)
     end
 end
 
-subplot(211); title('All days in sample');
+subplot(211); title('All days across all samples');
 
 % Plot means of trials
 figure(28); clf; 
