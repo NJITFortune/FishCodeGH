@@ -120,7 +120,7 @@ figure(3); clf;
 
 for jj = length(out):-1:1 % For each trial
     
-    howmanydaysintrial = perd / (ld*2);
+    howmanydaysintrial = floor(perd / (ld*2));
     howmanysamplesinaday = ld * 2 * ReFs;
     
     for k = 0:howmanydaysintrial-1 % Each day in a trial
