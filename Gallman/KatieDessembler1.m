@@ -20,8 +20,8 @@ ReFs = 10;  % Sample rate for splines
 
 [xx(1,:), obwyy(1,:), zyy(1,:), sumfftyy(1,:), lighttimes] = makeSplines(in, 1, ReFs);
 [xx(2,:), obwyy(2,:), zyy(2,:), sumfftyy(2,:), ~] = makeSplines(in, 2, ReFs);
-xx(1:1)
-xx(1:end)
+xx(1,1)
+xx(1,end)
 % Make a time base that starts and ends on lighttimes     
 
     timcont = [in.e(1).s.timcont] / (60*60);
