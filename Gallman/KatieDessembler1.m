@@ -141,7 +141,7 @@ for jj = length(out):-1:1 % For each trial
     
 end
 
-% Plot days
+% Plot all days
 figure(27); clf; 
 
 for j=1:length(trial) 
@@ -155,4 +155,26 @@ for j=1:length(trial)
     end
 end
 
+
+% Plot means of trials
+figure(28); clf; 
+
+for j=1:length(trial) 
+    
+    subplot(211); hold on;
+        mtrial(j,:) = zeros(1,length(trial(j).tim));
+        for k=1:length(trial(j).day)
+            mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(1).SobwAmp;
+        end
+        plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
+        
+    subplot(212); hold on;
+        mtrial(j,:) = zeros(1,length(trial(j).tim));
+        for k=1:length(trial(j).day)
+            mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(2).SobwAmp;
+        end
+        plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
+    
+end
+        
 
