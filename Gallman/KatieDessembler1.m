@@ -14,6 +14,9 @@ function out = KatieDessembler1(in, orgidx)
     % How many integer trials in dataset
     numoperiods = floor(lengthofsampleHOURS / perd); % of periods
     
+    timcont = [in.e(1).s.timcont];
+    in.e(1).s.timcont
+    
 
 %% Cycle to chop raw data into trials  
 
