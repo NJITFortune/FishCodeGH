@@ -170,9 +170,10 @@ for j=1:length(trial)
             tmpnormdata = trial(j).day(k).e(1).SobwAmp - min(trial(j).day(k).e(1).SobwAmp); % set floor to zero
             tmpnormdata = tmpnormdata / max(tmpnormdata); % set max to 1
             
+            % add current day to previous day(s)
             mtrial(j,:) = mtrial(j,:) + tmpnormdata;
         end
-        
+        % To get average across days, divide by number of days
         mtrial(j,:) = mtrial(j,:) / length(trial(j).day);
         plot(trial(j).tim, mtrial(j,:));
         
@@ -187,7 +188,7 @@ end
 
 % Mean of means
 
-    meanofmeans = mean(mtrial);
+    meanofmeans = mean(mtrial); % Takes the mean of the means for a day from each trial 
     plot(trial(j).tim, meanofmeans, 'k', 'LineWidth', 3);
 
 % 
