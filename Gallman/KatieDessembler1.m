@@ -14,6 +14,9 @@ function out = KatieDessembler1(in, orgidx)
     % How many integer trials in dataset
     numoperiods = floor(lengthofsampleHOURS / perd); % of periods
     
+
+%% Cycle to chop raw data into trials  
+
 for jj = 1:numoperiods
     
             % indices for our sample window of perd hours
@@ -52,13 +55,26 @@ figure(2); clf;
         ax(2) = subplot(212); hold on;
         plot(out(k).e(2).timcont/3600, out(k).e(2).obwAmp, '.'); 
         
-        maxlen = max([maxlen out(k).e(1).timcont(end)/3600]);
-        
+        maxlen = max([maxlen out(k).e(1).timcont(end)/3600]);        
     end
 
     linkaxes(ax, 'x'); xlim([0 maxlen]);
+
+%% Make days so we can plot raw data by days 
+
+% This is not necessary.  
+    
     
 %% Construct splines
 
+[xx1, obwyy1, zyy1, sumfftyy1] = makeSplines(in, 1);
+[xx2, obwyy2, zyy2, sumfftyy2] = makeSplines(in, 2);
+
+
+for jj = 1:numoperiods
     
- 
+    startperdidx = find(xx1 >= xx1(1)
+    
+    
+end
+
