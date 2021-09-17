@@ -121,13 +121,13 @@ figure(3); clf;
 for jj = length(out):-1:1 % For each trial
     
     howmanydaysintrial = floor(perd / (ld*2));
-    howmanysamplesinaday = ld * 2 * ReFs
+    howmanysamplesinaday = ld * 2 * ReFs;
     
     for k = 0:howmanydaysintrial-1 % Each day in a trial
 
         for j = 1:2 % Electrodes
         
-        dayidx = find(out(jj).e(j).Stimcont > howmanydaysintrial*k*ld*2, 1);            
+        dayidx = find(out(jj).e(j).Stimcont > howmanydaysintrial*k*ld*2, 1)            
         trial(jj).day(k).e(j).SobwAmp = out(jj).e(j).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
         
         end
