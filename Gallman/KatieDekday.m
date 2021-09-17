@@ -325,14 +325,15 @@ end
 
           for kk = 2:2:length(lighttimes)-1
 
+              out(jj).xx(end)
+              lighttimes(kk-1)
               dayidx = find(out(jj).xx >= lighttimes(kk-1), 1);
 
               %separate into days
                 %always starts with dark
                 
                 %detrended
-                length(dtsumfftyy)
-                dayidx
+                
                 mout(jj).dtsumfftavg(kk/2, :) = dtsumfftyy(dayidx:dayidx+intervl);
                 mout(jj).dtzavg(kk/2, :) = dtzyy(dayidx:dayidx+intervl);
                 mout(jj).dtobwavg(kk/2, :) = dtobwyy(dayidx:dayidx+intervl);
