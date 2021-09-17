@@ -57,4 +57,8 @@ figure(2); clf;
     end
 
     linkaxes(ax, 'x'); xlim([0 maxlen]);
+    
+%% Construct splines
+
+    
  
