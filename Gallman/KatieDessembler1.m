@@ -182,7 +182,8 @@ end
 
 % Mean of means
 
-    meanofmeans = sum(mtrial
+    meanofmeans = mean(mtrial);
+    plot(plot(trial(j).tim, meanofmeans, 'k', 'LineWidth', 3);
 
 
 figure(29); clf; 
