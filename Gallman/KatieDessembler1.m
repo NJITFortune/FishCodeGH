@@ -166,7 +166,7 @@ for j=1:length(trial)
     subplot(211); hold on; title('channel 1');
         mtrial(j,:) = zeros(1,length(trial(j).tim));
         for k=1:length(trial(j).day)
-            mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(1).SobwAmp;
+            mtrial(j,:) = mtrial(j,:) + (trial(j).day(k).e(1).SobwAmp)/max(abs(trial(j).day(k).e(1).SobwAmp - mean(trial(j).day(k).e(1).SobwAmp)));
         end
         mtrial(j,:) = mtrial(j,:) / length(trial(j).day);
         plot(trial(j).tim, mtrial(j,:));
