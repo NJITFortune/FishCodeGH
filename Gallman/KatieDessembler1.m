@@ -105,7 +105,7 @@ for jj = 1:numoperiods
     
 end
 
-figure(3); clf; title('Splines for each trial');
+figure(3); clf; 
 
     maxlen = 0;
 
@@ -119,6 +119,7 @@ figure(3); clf; title('Splines for each trial');
     end
 
     linkaxes(xax, 'x'); xlim([0 maxlen]);
+    subplot(211); title('Splines for each trial');
 
 %% Make days from spline trials 
 
@@ -143,9 +144,7 @@ for jj = length(out):-1:1 % For each trial
 end
 
 % Plot all days
-figure(27); clf; title('All days in sample');
-
-for j=1:length(trial) 
+figure(27); clf; for j=1:length(trial) 
     for k=1:length(trial(j).day)
         subplot(211); hold on;
             plot(trial(j).tim, trial(j).day(k).e(1).SobwAmp); 
@@ -154,9 +153,10 @@ for j=1:length(trial)
     end
 end
 
+subplot(211); title('All days in sample');
 
 % Plot means of trials
-figure(28); clf; title('Average day by trial');
+figure(28); clf; 
 
 for j=1:length(trial) 
     
@@ -176,4 +176,5 @@ for j=1:length(trial)
     
 end
         
+subplot(211); title('Average day by trial');
 
