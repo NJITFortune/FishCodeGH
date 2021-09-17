@@ -77,7 +77,6 @@ figure(2); clf;
     
 %% Make trials from the spline data
 
-
 for jj = 1:numoperiods
     
     for j = 1:2
@@ -111,5 +110,13 @@ figure(3); clf;
     end
 
     linkaxes(xax, 'x'); xlim([0 maxlen]);
+
+%% Make days from spline trials 
+
+for jj = 1:length(out) % For each trial
+    
+    howmanydaysintrial 
+    
+    for j = 1:
 
 
