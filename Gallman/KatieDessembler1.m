@@ -12,7 +12,7 @@ function [out, trial] = KatieDessembler1(in, orgidx)
     % How many trials available?
     lengthofsampleHOURS = (in.e(1).s(end).timcont/(60*60)) - (in.e(1).s(1).timcont/(60*60));    
     % How many integer trials in dataset
-    numoperiods = floor(lengthofsampleHOURS / perd); % of periods
+    numotrials = floor(lengthofsampleHOURS / perd) % of trials
 
 % Construct splines and get lightimes
 
@@ -31,7 +31,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 %% Cycle to chop raw data into trials  
 
-for jj = 1:numoperiods
+for jj = 1:numotrials
     
             % indices for our sample window of perd hours
             timidx = find(timcont > timcont(1) + ((jj-1)*perd) & ...
@@ -82,7 +82,7 @@ figure(2); clf;
     
 %% Make trials from the spline data
 
-for jj = 1:numoperiods
+for jj = 1:numotrials
     
     for j = 1:2
              
