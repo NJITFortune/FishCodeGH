@@ -146,7 +146,8 @@ for jj = length(out):-1:1 % For each trial
 end
 
 % Plot all days
-figure(27); clf; for j=1:length(trial) 
+figure(27); clf; 
+for j=1:length(trial) 
     for k=1:length(trial(j).day)
         subplot(211); hold on;
             plot(trial(j).tim, trial(j).day(k).e(1).SobwAmp); 
