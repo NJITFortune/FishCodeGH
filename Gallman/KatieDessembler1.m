@@ -144,9 +144,9 @@ figure(27); clf;
 for j=1:length(trial) 
     for k=1:length(trial(j).day)
         subplot(211); hold on;
-            plot(trail(j).tim, trial(j).day(k).e(1).SobwAmp); 
+            plot(trial(j).tim, trial(j).day(k).e(1).SobwAmp); 
         subplot(212); hold on;
-            plot(trail(j).tim, trial(j).day(k).e(2).SobwAmp); 
+            plot(trial(j).tim, trial(j).day(k).e(2).SobwAmp); 
     end
 end
 
