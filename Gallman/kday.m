@@ -279,7 +279,7 @@ figure(68); clf; title('trial hour - channel 1');
    
     lengthofsampleHOURS = obwxx(end) - obwxx(1);    
     daysinasample = floor(lengthofsampleHOURS/(ld*2));
-    
+    howmanysamplesinaday = ld * 2 * ReFs;
    
     for j = 1:length(daysinasample)
         
