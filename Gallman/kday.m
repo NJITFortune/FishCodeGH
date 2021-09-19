@@ -275,18 +275,20 @@ figure(68); clf; title('trial hour - channel 1');
   
 %Channel 1
  
+%    
+%     lengthofsampleHOURS = obwxx(end) - obwxx(1);    
+%     daysinasample = floor(lengthofsampleHOURS/(ld*2));
+%     howmanysamplesinaday = ld * 2 * ReFs;
    
-   
-    lengthofsampleHOURS = obwxx(end) - obwxx(1);    
-    daysinasample = floor(lengthofsampleHOURS/(ld*2));
-    howmanysamplesinaday = ld * 2 * ReFs;
-   
-    for k = 1:length(daysinasample)
+    for j = 2:2:length(lighttimes)-1
+
+
+                   otx = find(obwxx >= lighttimes(j-1) & obwxx < lighttimes(j+1)); 
         
-         dayidx = find(obwxx >= (k-1) * (ld*2) & obwxx < k * (ld*2)); % k-1 so that we start at zero
+         
         
-                   avgresp1(k, :) = dtobwyy1(dayidx);  
-                   otx = dayidx
+                   avgresp1(j/2, :) = dtobwyy1(otx);  
+                 
                    plot(obwxx(otx) - obwxx(otx(1)), dtobwyy1(otx));
                    plot([[in.info.ld] [in.info.ld]], [-samp1 samp1], 'k-', 'Linewidth', 2); 
                   
