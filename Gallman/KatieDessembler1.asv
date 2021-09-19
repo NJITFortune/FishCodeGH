@@ -1,4 +1,4 @@
-function [out, trial] = KatieDessembler1(in, channel)     
+function [out, trial] = KatieDessembler1(in, orgidx)     
 % Usage: [out, trial] = KatieDessembler(in(orgidx), orgidx)
 % Example: [out, trial] = KatieDessembler(kg(1), 1)
 % Out is raw data, trial is spline data
@@ -7,9 +7,10 @@ function [out, trial] = KatieDessembler1(in, channel)
 ReFs = 10;  % Sample rate for splines
 
 for j = 1:2
-[xx(j, :), obwyy(j, :), zyy(j, :), sumfftyy(j, :), lighttimes(j, :)] = makeSplines(in,j, ReFs);
+[xx(j, :), obwyy(j, :), zyy(j, :), sumfftyy(j, :), luztimes] = k_spliner(in,j, ReFs);
 end
 
+lighttimes = abs(luztimes);
 % Make a time base that starts and ends on lighttimes 
     %necessary to compare spline with raw data
 
@@ -168,10 +169,24 @@ figure(28); clf;
 for j=1:length(trial) 
     
     subplot(211); hold on; title('channel 1');
-        mtrial(j,:) = zeros(1,length(trial(j).tim));
+        mtrial1(j,:) = zeros(1,length(trial(j).tim));
         for k=1:length(trial(j).day)
             % Normalize 0 to 1
             tmpnormdata = trial(j).day(k).e(1).SobwAmp - min(trial(j).day(k).e(1).SobwAmp); % set floor to zero
+            tmpnormdata = tmpnormdata / max(tmpnormdata); % set max to 1
+            
+            % add current day to previous day(s)
+            mtrial1(j,:) = mtrial1(j,:) + tmpnormdata;
+        end
+        % To get average across days, divide by number of days
+        mtrial1(j,:) = mtrial1(j,:) / length(trial(j).day);
+        plot(trial(j).tim, mtrial1(j,:));
+        
+    subplot(212); hold on; title('channel 2');
+        mtrial(j,:) = zeros(1,length(trial(j).tim));
+        for k=1:length(trial(j).day)
+            % Normalize 0 to 1
+            tmpnormdata = trial(j).day(k).e(2).SobwAmp - min(trial(j).day(k).e(2).SobwAmp); % set floor to zero
             tmpnormdata = tmpnormdata / max(tmpnormdata); % set max to 1
             
             % add current day to previous day(s)
@@ -180,20 +195,12 @@ for j=1:length(trial)
         % To get average across days, divide by number of days
         mtrial(j,:) = mtrial(j,:) / length(trial(j).day);
         plot(trial(j).tim, mtrial(j,:));
-        
-%     subplot(212); hold on; title('channel 2');
-%         mtrial(j,:) = zeros(1,length(trial(j).tim));
-%         for k=1:length(trial(j).day)
-%             mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(2).SobwAmp;
-%         end
-%         plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
-%     
 end
 
 % Mean of means
 
-    meanofmeans = mean(mtrial); % Takes the mean of the means for a day from each trial 
-    plot(trial(j).tim, meanofmeans, 'k', 'LineWidth', 3);
+    meanofmeans1 = mean(mtrial1); % Takes the mean of the means for a day from each trial 
+    plot(trial(j).tim, meanofmeans1, 'k', 'LineWidth', 3);
 
 % 
 % figure(29); clf; 
