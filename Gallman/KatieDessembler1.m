@@ -10,7 +10,7 @@ for j = 1:2
 [xx(j, :), obwyy(j, :), zyy(j, :), sumfftyy(j, :), luztimes(j,:)] = k_spliner(in,j, ReFs);
 end
 
-lighttimes = abs(luztimes(1,:);
+lighttimes = abs(luztimes(1,:));
 % Make a time base that starts and ends on lighttimes 
     %necessary to compare spline with raw data
 
@@ -203,7 +203,7 @@ end
     plot(trial(j).tim, meanofmeans1, 'k', 'LineWidth', 3);
  subplot(212); hold on;
      meanofmeans2 = mean(mtrial2); % Takes the mean of the means for a day from each trial 
-    plot(trial(j).tim, meanofmeans12, 'k', 'LineWidth', 3);
+    plot(trial(j).tim, meanofmeans2, 'k', 'LineWidth', 3);
 % 
 % figure(29); clf; 
 % 
