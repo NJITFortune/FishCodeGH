@@ -35,7 +35,7 @@ for jj = 1:numotrials
             timidx = find(timcont > timcont(1) + ((jj-1)*perd) & ...
                timcont < timcont(1) + (jj*perd));
             
-            for j = 1:2
+            j = channel;
             
              % Data   
              out(jj).e(j).obwAmp = [in.e(j).s(timidx).obwAmp];
@@ -51,7 +51,7 @@ for jj = 1:numotrials
              out(jj).ld = in.info.ld; 
              %out(jj).kg = orgidx; % idx for kg
              
-            end
+           
 
 end   
 
@@ -60,7 +60,7 @@ end
 
 for jj = 1:numotrials
     
-    for j = 1:2
+    j = channel;
              
             % Get the index for the start of the current period (xx is time)
             timidx = find(xx(j,:) > xx(j,1) + ((jj-1) * perd), 1);
@@ -76,7 +76,7 @@ for jj = 1:numotrials
              % Time  
              out(jj).e(j).Stimcont = xx(j,timidx) - xx(j,timidx(1)); % Time starting at zero          
             end
-    end
+    
     
 end
 
@@ -85,27 +85,28 @@ end
 
 figure(48); clf;  
 
- ax(1) = subplot(211); title('Raw data for each trial'); hold on;
+ 
     maxlen = 0;
 
-    for k= 1:length(out) 
+    for k = 1:length(out) 
+      subplot(211); hold on; title('spline vs raw data');
+      
+      subplot(211); hold on; title('spline vs trial data');
+        plot(out(k).e(channel).timcont/3600, out(k).e(channel).obwAmp, '.'); 
+        plot(out(k).e(channel).Stimcont, out(k).e(channel).SobwAmp, '.', 'MarkerSize', 3); 
         
-        plot(out(k).e(1).timcont/3600, out(k).e(1).obwAmp, '.'); 
-        ax(2) = subplot(212); hold on;
-        plot(out(k).e(2).timcont/3600, out(k).e(2).obwAmp, '.'); 
-        
-        maxlen = max([maxlen out(k).e(1).timcont(end)/3600]);        
+        maxlen = max([maxlen out(k).e(channel).timcont(end)/3600]);        
     end
 
     linkaxes(ax, 'x'); xlim([0 maxlen]);
-    subplot(211); title('Raw data for each trial');
+   
 
 %spline data
 figure(49); clf; 
 
     maxlen = 0;
 
-    for k= 1:length(out) 
+    for k = 1:length(out) 
         xax(1) = subplot(211); hold on;
         plot(out(k).e(1).Stimcont, out(k).e(1).SobwAmp, '.'); 
         xax(2) = subplot(212); hold on;
