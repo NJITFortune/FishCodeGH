@@ -44,7 +44,8 @@ for jj = 1:numotrials
              out(jj).e(j).fftFreq = [in.e(j).s(timidx).fftFreq];
              
              % Time and treatment 
-             out(jj).e(j).timcont = [in.e(j).s(timidx).timcont] - in.e(j).s(timidx(1)).timcont + 1;
+             out(jj).e(j).timcont = [in.e(j).s(timidx).timcont] - in.e(j).s(timidx(1)).timcont; %+1
+             out(jj).e(j).entiretimcont = [in.e(j).s(timidx).timcont];
              out(jj).e(j).light = [in.e(j).s(timidx).light];
              out(jj).e(j).temp = [in.e(j).s(timidx).temp];
              
@@ -74,7 +75,8 @@ for jj = 1:numotrials
              out(jj).e(j).SsumfftAmp = sumfftyy(j,timidx);
              
              % Time  
-             out(jj).e(j).Stimcont = xx(j,timidx) - xx(j,timidx(1)); % Time starting at zero          
+             out(jj).e(j).Stimcont = xx(j,timidx) - xx(j,timidx(1)); % Time starting at zero  
+             out(jj).e(j).Sentiretimcont = xx(j,timidx);
             end
     
     
@@ -90,8 +92,10 @@ figure(48); clf;
 
     for k = 1:length(out) 
       subplot(211); hold on; title('spline vs raw data');
-      
-      subplot(211); hold on; title('spline vs trial data');
+        plot(out(k).e(channel).entiretimcont/3600, out(k).e(channel).obwAmp, '.'); 
+        plot(out(k).e(channel).Sentiretimcont, out(k).e(channel).SobwAmp, '.', 'MarkerSize', 3); 
+        
+      subplot(212); hold on; title('spline vs trial data');
         plot(out(k).e(channel).timcont/3600, out(k).e(channel).obwAmp, '.'); 
         plot(out(k).e(channel).Stimcont, out(k).e(channel).SobwAmp, '.', 'MarkerSize', 3); 
         
@@ -100,22 +104,5 @@ figure(48); clf;
 
     linkaxes(ax, 'x'); xlim([0 maxlen]);
    
-
-%spline data
-figure(49); clf; 
-
-    maxlen = 0;
-
-    for k = 1:length(out) 
-        xax(1) = subplot(211); hold on;
-        plot(out(k).e(1).Stimcont, out(k).e(1).SobwAmp, '.'); 
-        xax(2) = subplot(212); hold on;
-        plot(out(k).e(2).Stimcont, out(k).e(2).SobwAmp, '.'); 
-        
-        maxlen = max([maxlen out(k).e(1).Stimcont(end)]);        
-    end
-
-    linkaxes(xax, 'x'); xlim([0 maxlen]);
-    subplot(211); title('Splines for each trial');
 
 
