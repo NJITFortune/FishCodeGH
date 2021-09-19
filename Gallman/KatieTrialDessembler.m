@@ -108,7 +108,7 @@ figure(48); clf;
         maxlen = max([maxlen out(k).timcont(end)/3600]);        
     end
 
-    linkaxes(ax, 'x'); xlim([0 maxlen]);
+     xlim([0 maxlen]);
    
 
 
