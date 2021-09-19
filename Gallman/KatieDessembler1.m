@@ -164,7 +164,7 @@ for j=1:length(trial)
             tmpnormdata = tmpnormdata / max(tmpnormdata); % set max to 1
             mday1(j,:) = mday1(j,:) + tmpnormdata;
             
-            plot(trial(j).tim, tmpnormdata 
+            plot(trial(j).tim, tmpnormdata);
             
             
         subplot(212); hold on;
