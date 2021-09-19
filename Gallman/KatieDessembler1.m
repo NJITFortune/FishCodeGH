@@ -160,9 +160,9 @@ for j=1:length(trial)
     for k=1:length(trial(j).day)
         
         subplot(211); hold on;
-            tmpnormdata = trial(j).day(k).e(1).SobwAmp - min(trial(j).day(k).e(1).SobwAmp); % set floor to zero
-            tmpnormdata = tmpnormdata / max(tmpnormdata); % set max to 1
-            mday1(j,:) = mday1(j,:) + tmpnormdata;
+%             tmpnormdata = trial(j).day(k).e(1).SobwAmp - min(trial(j).day(k).e(1).SobwAmp); % set floor to zero
+%             tmpnormdata = tmpnormdata / max(tmpnormdata); % set max to 1
+%             mday1(j,:) = mday1(j,:) + tmpnormdata;
             
             plot(trial(j).tim, trial(j).day(k).e(1).SobwAmp); 
         subplot(212); hold on;
