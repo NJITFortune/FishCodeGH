@@ -53,9 +53,9 @@ for j = 1:length(lighttimeslesslong)-1
             length(lighttim);
             
             %ensures that we start on the first full lighttime
-            if all(lighttim(1) >= lighttimeslesslong(j) & lighttim(1) < lighttimeslesslong(j) + ld/2)        
+            if all(lighttim(1) >= lighttimeslesslong(j) & lighttim(1) < lighttimeslesslong(j) + ld/2)  
                lighttrim(j) = lighttimeslesslong(j);
-              
+              luztimes(j) = in.info.luz(j);
             end
          
         end 
@@ -64,6 +64,7 @@ end
 
 % take all cells with values and make a new vector
 lighttimes = lighttrim(lighttrim > 0);
+luztimes = luztimes(lighttrim > 0);
 %add back the light time we subtracted 
 lighttimes(end +1) = lighttimes(end) + ld;
 
