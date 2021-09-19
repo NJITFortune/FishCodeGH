@@ -44,7 +44,8 @@ for jj = 1:numotrials
              out(jj).e(j).fftFreq = [in.e(j).s(timidx).fftFreq];
              
              % Time and treatment 
-             out(jj).e(j).timcont = [in.e(j).s(timidx).timcont] - in.e(j).s(timidx(1)).timcont + 1;
+             out(jj).e(j).timcont = [in.e(j).s(timidx).timcont] - in.e(j).s(timidx(1)).timcont; %+1
+             out(jj).e(j).entiretimcont = [in.e(j).s(timidx).timcont];
              out(jj).e(j).light = [in.e(j).s(timidx).light];
              out(jj).e(j).temp = [in.e(j).s(timidx).temp];
              
@@ -88,11 +89,14 @@ figure(48); clf;
  
     maxlen = 0;
 
-    for jj= 1:length(out) 
+    for k = 1:length(out) 
+      subplot(211); hold on; title('spline vs raw data');
+        plot(out(k).e(channel).timcont/3600, out(k).e(channel).obwAmp, '.'); 
+        plot(out(k).e(channel).Stimcont, out(k).e(channel).SobwAmp, '.', 'MarkerSize', 3); 
         
-      
-        plot(out(jj).e(channel).timcont/3600, out(jj).e(channel).obwAmp, '.'); 
-        plot(out(jj).e(channel).Stimcont, out().e(channel).SobwAmp, '.', 'MarkerSize', 3); 
+      subplot(211); hold on; title('spline vs trial data');
+        plot(out(k).e(channel).timcont/3600, out(k).e(channel).obwAmp, '.'); 
+        plot(out(k).e(channel).Stimcont, out(k).e(channel).SobwAmp, '.', 'MarkerSize', 3); 
         
         maxlen = max([maxlen out(k).e(channel).timcont(end)/3600]);        
     end
@@ -105,7 +109,7 @@ figure(49); clf;
 
     maxlen = 0;
 
-    for k= 1:length(out) 
+    for k = 1:length(out) 
         xax(1) = subplot(211); hold on;
         plot(out(k).e(1).Stimcont, out(k).e(1).SobwAmp, '.'); 
         xax(2) = subplot(212); hold on;
