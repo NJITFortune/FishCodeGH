@@ -111,10 +111,11 @@ figure(49); clf;
 
 lightsq = lightamp2*ones(1,length(out(1).Stimcont));
 
+lightlines = floor(perd/ld);
 
-
-
- for kk = 1:length(out(1).timcont/3600)
+ for kk = 1:length(lightlines)
+     
+     
      
      
      
