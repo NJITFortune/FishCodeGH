@@ -107,7 +107,10 @@ figure(48); clf; hold on; title('spline vs raw data');
      xlim([0 maxlen]);
      
 figure(49); clf;  
-lightsq = 
+
+
+lightsq = lightamp2*ones(1,length(out(1).Stimcont));
+
 
  for kk = 1:length(out(1).timcont/3600)
      
