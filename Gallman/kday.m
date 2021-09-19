@@ -281,7 +281,7 @@ figure(68); clf; title('trial hour - channel 1');
     daysinasample = floor(lengthofsampleHOURS/(ld*2));
     howmanysamplesinaday = ld * 2 * ReFs;
    
-    for j = 1:length(daysinasample)
+    for k = 1:length(daysinasample)
         
          dayidx = find(obwxx > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
         
