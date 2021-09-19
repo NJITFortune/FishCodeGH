@@ -154,23 +154,21 @@ end
 figure(27); clf; 
 for j=1:length(trial) 
     
-    mday1(j,:) = zeros(1,length(trial(j).tim));
-    mday2(j,:) = zeros(1,length(trial(j).tim));
+    
+   
     
     for k=1:length(trial(j).day)
         
         subplot(211); hold on;
-            tmpnormdata = trial(j).day(k).e(1).SobwAmp - min(trial(j).day(k).e(1).SobwAmp); % set floor to zero
-            tmpnormdata = tmpnormdata / max(tmpnormdata); % set max to 1
-            mday1(j,:) = mday1(j,:) + tmpnormdata;
+          
             
-            plot(trial(j).tim, tmpnormdata); 
+            plot(trial(j).tim, trial(j).day(k).e(1).SobwAmp); 
+            
+            
         subplot(212); hold on;
-            tmpnormdata = trial(j).day(k).e(2).SobwAmp - min(trial(j).day(k).e(2).SobwAmp); % set floor to zero
-            tmpnormdata = tmpnormdata / max(tmpnormdata); % set max to 1
-            mday2(j,:) = mday2(j,:) + tmpnormdata;
             
-            plot(trial(j).tim, tmpnormdata); 
+            
+            plot(trial(j).tim, trial(j).day(k).e(2).SobwAmp); 
     end
     
      % To get average across days, divide by number of days
