@@ -1,4 +1,4 @@
-function [out, trial] = KatieDessembler1(in, channel)     
+function [out, trial] = KatieDessembler1(in, orgidx)     
 % Usage: [out, trial] = KatieDessembler(in(orgidx), orgidx)
 % Example: [out, trial] = KatieDessembler(kg(1), 1)
 % Out is raw data, trial is spline data
