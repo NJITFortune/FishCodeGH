@@ -178,11 +178,11 @@ for j=1:length(trial)
      % To get average across days, divide by number of days
         mday1(j,:) = mday1(j,:) / length(trial(j).day);
         subplot(211); hold on;
-        plot(trial(j).tim, mday1(j,:), 'k-', 'Linewidth', 2);
+        plot(trial(j).tim, mday1(j,:), 'k-', 'Linewidth', 1);
         
         mday2(j,:) = mday2(j,:) / length(trial(j).day);
         subplot(212); hold on;
-        plot(trial(j).tim, mday2(j,:), 'k-', 'Linewidth', 2);
+        plot(trial(j).tim, mday2(j,:), 'k-', 'Linewidth', 1);
     
     
 end
@@ -230,6 +230,19 @@ end
  subplot(212); hold on;
      meanofmeans2 = mean(mtrial2); % Takes the mean of the means for a day from each trial 
     plot(trial(j).tim, meanofmeans2, 'k', 'LineWidth', 3);
+    
+    
+figure(27); hold on;
+subplot(211); hold on; 
+    meanofmeans1 = mean(mtrial1); % Takes the mean of the means for a day from each trial 
+    plot(trial(j).tim, meanofmeans1, 'k', 'LineWidth', 3);
+ subplot(212); hold on;
+     meanofmeans2 = mean(mtrial2); % Takes the mean of the means for a day from each trial 
+    plot(trial(j).tim, meanofmeans2, 'k', 'LineWidth', 3);
+
+
+
+
 % 
 % figure(29); clf; 
 % 
