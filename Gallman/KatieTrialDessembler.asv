@@ -35,7 +35,7 @@ for jj = 1:numotrials
             timidx = find(timcont > timcont(1) + ((jj-1)*perd) & ...
                timcont < timcont(1) + (jj*perd));
             
-            for j = 1:2
+            j = channel;
             
              % Data   
              out(jj).e(j).obwAmp = [in.e(j).s(timidx).obwAmp];
@@ -51,7 +51,7 @@ for jj = 1:numotrials
              out(jj).ld = in.info.ld; 
              %out(jj).kg = orgidx; % idx for kg
              
-            end
+           
 
 end   
 
@@ -60,7 +60,7 @@ end
 
 for jj = 1:numotrials
     
-    for j = 1:2
+    j = channel;
              
             % Get the index for the start of the current period (xx is time)
             timidx = find(xx(j,:) > xx(j,1) + ((jj-1) * perd), 1);
@@ -76,7 +76,7 @@ for jj = 1:numotrials
              % Time  
              out(jj).e(j).Stimcont = xx(j,timidx) - xx(j,timidx(1)); % Time starting at zero          
             end
-    end
+    
     
 end
 
@@ -85,12 +85,12 @@ end
 
 figure(48); clf;  
 
- subplot(211); title('Raw data for each trial');
+ ax(1) = subplot(211); title('Raw data for each trial'); hold on;
     maxlen = 0;
 
     for k= 1:length(out) 
-        ax(1) = subplot(211); hold on;
-        plot(out(k).e(1).timcont/3600, out(k).e(1).obwAmp, '.'); 
+        
+        plot(out(k).e(chan).timcont/3600, out(k).e(1).obwAmp, '.'); 
         ax(2) = subplot(212); hold on;
         plot(out(k).e(2).timcont/3600, out(k).e(2).obwAmp, '.'); 
         
