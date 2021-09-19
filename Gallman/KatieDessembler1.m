@@ -180,7 +180,7 @@ for j=1:length(trial)
         
         mday2(j,:) = mday2(j,:) / length(trial(j).day);
         subplot(212); hold on;
-        plot(trial(j).tim, mday2(j,:), 'k-', 'Linewidth', 3));
+        plot(trial(j).tim, mday2(j,:), 'k-', 'Linewidth', 3);
     
     
 end
