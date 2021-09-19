@@ -176,11 +176,11 @@ for j=1:length(trial)
      % To get average across days, divide by number of days
         mday1(j,:) = mday1(j,:) / length(trial(j).day);
         subplot(211); hold on;
-        plot(trial(j).tim, mday1(j,:));
+        plot(trial(j).tim, mday1(j,:), 'k-', 'Linewidth', 3);
         
         mday2(j,:) = mday2(j,:) / length(trial(j).day);
         subplot(212); hold on;
-        plot(trial(j).tim, mday2(j,:));
+        plot(trial(j).tim, mday2(j,:), 'k-', 'Linewidth', 3));
     
     
 end
