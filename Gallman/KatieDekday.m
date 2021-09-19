@@ -45,7 +45,7 @@ lighttimeslong = abs(in.info.luz);
     end
 
     
-%only take times for light vector that have data
+%only take times for light vectors that have data
 for j = 1:length(lighttimeslesslong)-1
         
         %is there data between j and j+1?    
