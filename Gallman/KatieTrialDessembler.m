@@ -105,4 +105,4 @@ figure(48); clf;
     linkaxes(ax, 'x'); xlim([0 maxlen]);
    
 
-
+%convert light data into squares
