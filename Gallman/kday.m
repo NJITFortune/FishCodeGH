@@ -276,6 +276,9 @@ figure(68); clf; title('trial hour - channel 1');
 %Channel 1
    subplot(211); hold on; 
    
+   
+   
+   
     for j = 2:2:length(lighttimes)-1
 
 
