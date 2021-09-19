@@ -286,7 +286,7 @@ figure(68); clf; title('trial hour - channel 1');
          dayidx = find(obwxx > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
         
        
-
+dayidx:dayidx+howmanysamplesinaday-1
 
                    otx = find(obwxx >= lighttimes(j-1) & obwxx < lighttimes(j+1)); 
 
