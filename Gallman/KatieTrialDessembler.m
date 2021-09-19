@@ -109,19 +109,8 @@ figure(48); clf; hold on; title('spline vs raw data');
 figure(49); clf;  
 
 
-% lightsq = lightamp2*ones(1,length(out(1).Stimcont));
-% 
-% lightlines = floor(perd/ld);
-% 
-%  for kk = 1:length(lightlines)
-%      
-%      
-%      
-%      
-%      
-%      
-%  end    
-  
+ 
+   maxlen = 0;
 
     for k = 1:length(out) 
        
@@ -131,10 +120,10 @@ figure(49); clf;
       subplot(212); hold on; title('spline vs trial data');
         plot(out(k).Stimcont, out(k).SobwAmp, '.', 'MarkerSize', 3); 
         
-        %maxlen = max([maxlen out(k).timcont(end)/3600]);        
+        maxlen = max([maxlen out(k).timcont(end)/3600]);        
     end
 
-     %xlim([0 maxlen]);
+     xlim([0 maxlen]);
    
 
 
