@@ -1,33 +1,30 @@
-function [out, trial] = KatieDessembler1(in, orgidx)     
+function [out, trial] = KatieDessembler1(in, channel)     
 % Usage: [out, trial] = KatieDessembler(in(orgidx), orgidx)
 % Example: [out, trial] = KatieDessembler(kg(1), 1)
 % Out is raw data, trial is spline data
-
-% define sample range
-    perd = 48; % default length is 48 hours
-    %perd = perd - rem(perd, in.info.ld);  % If not integer divisible, take fewer samples to not go over     
-    
-    perdsex = perd * 60 * 60; % perd in seconds, for convenience since timcont is in seconds
-
-% Construct splines and get lightimes
+%% Take spline estimate of raw data
 
 ReFs = 10;  % Sample rate for splines
 
-[xx(1,:), obwyy(1,:), zyy(1,:), sumfftyy(1,:), lighttimes] = makeSplines(in, 1, ReFs);
-[xx(2,:), obwyy(2,:), zyy(2,:), sumfftyy(2,:), ~] = makeSplines(in, 2, ReFs);
+[xx, obwyy, zyy, sumfftyy, lighttimes] = makeSplines(in,channel, ReFs);
 
-% Make a time base that starts and ends on lighttimes     
+
+% Make a time base that starts and ends on lighttimes 
+    %necessary to compare spline with raw data
 
     timcont = [in.e(1).s.timcont] / (60*60);
     timcont = timcont(timcont >= lighttimes(1) & timcont < lighttimes(end));
     
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
+%% Define trial period
 
+% define sample range
+    perd = 48; % default length is 48 hours
+    %perd = perd - rem(perd, in.info.ld);  % If not integer divisible, take fewer samples to not go over     
     % How many trials available?
     lengthofsampleHOURS = timcont(end) - timcont(1);    
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / perd); % of trials
-
 
 
 %% Cycle to chop raw data into trials  
