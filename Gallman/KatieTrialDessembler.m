@@ -1,5 +1,6 @@
-function out = KatieTrialDessembler(in, channel)  
-
+%function out = KatieTrialDessembler(in, channel)  
+in = kg(2);
+channel = 1;
 % Out is raw data, trial is spline data
 %% Take spline estimate of raw data
 
@@ -109,14 +110,13 @@ figure(48); clf;
     linkaxes(ax, 'x'); xlim([0 maxlen]);
    
 
-%convert light data into squares
 
-figure(49); clf; 
-
-     for k = 1:length(out) 
-         
-        subplot(211); hold on; title('spline vs light');
-        
-         subplot(212); hold on; title('spline vs trial light');
-    
+% figure(49); clf; 
+% 
+%      for k = 1:length(out) 
+%          
+%         subplot(211); hold on; title('spline vs light');
+%         
+%          subplot(212); hold on; title('spline vs trial light');
+%     
 
