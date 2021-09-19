@@ -1,8 +1,10 @@
-function [out, trial] = KatieDessembler1(in, orgidx)     
+%function [out, trial] = KatieDessembler1(in, orgidx)     
 % Usage: [out, trial] = KatieDessembler(in(orgidx), orgidx)
 % Example: [out, trial] = KatieDessembler(kg(1), 1)
 % Out is raw data, trial is spline data
 %% Take spline estimate of raw data
+
+in = kg(1);
 
 ReFs = 10;  % Sample rate for splines
 
@@ -51,7 +53,7 @@ for jj = 1:numotrials
              out(jj).e(j).temp = [in.e(j).s(timidx).temp];
              
              out(jj).ld = in.info.ld; 
-             out(jj).kg = orgidx; % idx for kg
+             %out(jj).kg = orgidx; % idx for kg
              
             end
 
