@@ -1,12 +1,14 @@
-function out = KatieTrialDessembler(in, channel)  
-
+%function out = KatieTrialDessembler(in, channel)  
+in = kg(2);
+channel = 1;
 % Out is raw data, trial is spline data
 %% Take spline estimate of raw data
 
 ReFs = 10;  % Sample rate for splines
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
-[xx, obwyy, zyy, sumfftyy, luztimes] = makeSplines(in,channel, ReFs);
+
+[xx, obwyy, zyy, sumfftyy, luztimes] = k_spliner(in,channel, ReFs);
 
 lighttimes = abs(luztimes);
 %add back the light time we subtracted 
@@ -42,16 +44,16 @@ for jj = 1:numotrials
             j = channel;
             
              % Data   
-             out(jj).e(j).obwAmp = [in.e(j).s(timidx).obwAmp];
-             out(jj).e(j).zAmp = [in.e(j).s(timidx).zAmp];
-             out(jj).e(j).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
-             out(jj).e(j).fftFreq = [in.e(j).s(timidx).fftFreq];
+             out(jj).obwAmp = [in.e(j).s(timidx).obwAmp];
+             out(jj).zAmp = [in.e(j).s(timidx).zAmp];
+             out(jj).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
+             out(jj).fftFreq = [in.e(j).s(timidx).fftFreq];
              
              % Time and treatment 
-             out(jj).e(j).timcont = [in.e(j).s(timidx).timcont] - in.e(j).s(timidx(1)).timcont; %+1
-             out(jj).e(j).entiretimcont = [in.e(j).s(timidx).timcont];
-             out(jj).e(j).light = [in.e(j).s(timidx).light];
-             out(jj).e(j).temp = [in.e(j).s(timidx).temp];
+             out(jj).timcont = [in.e(j).s(timidx).timcont] - in.e(j).s(timidx(1)).timcont; %+1
+             out(jj).entiretimcont = [in.e(j).s(timidx).timcont];
+             out(jj).light = [in.e(j).s(timidx).light];
+             out(jj).temp = [in.e(j).s(timidx).temp];
              
              out(jj).ld = in.info.ld; 
              %out(jj).kg = orgidx; % idx for kg
@@ -65,22 +67,22 @@ end
 
 for jj = 1:numotrials
     
-    j = channel;
+    
              
             % Get the index for the start of the current period (xx is time)
-            timidx = find(xx(j,:) > xx(j,1) + ((jj-1) * perd), 1);
+            timidx = find(xx > xx(1) + ((jj-1) * perd), 1);
             % Get the rest of the indices for the trial  
             timidx = timidx:timidx + (perd*ReFs)-1;
             
-            if length(obwyy(j,:)) >= timidx(end)
+            if length(obwyy) >= timidx(end)
              % Data   
-             out(jj).e(j).SobwAmp = obwyy(j,timidx);
-             out(jj).e(j).SzAmp = zyy(j,timidx);
-             out(jj).e(j).SsumfftAmp = sumfftyy(j,timidx);
+             out(jj).SobwAmp = obwyy(timidx);
+             out(jj).SzAmp = zyy(timidx);
+             out(jj).SsumfftAmp = sumfftyy(timidx);
              
              % Time  
-             out(jj).e(j).Stimcont = xx(j,timidx) - xx(j,timidx(1)); % Time starting at zero  
-             out(jj).e(j).Sentiretimcont = xx(j,timidx);
+             out(jj).Stimcont = xx(timidx) - xx(timidx(1)); % Time starting at zero  
+             out(jj).Sentiretimcont = xx(timidx);
             end
     
     
@@ -96,26 +98,26 @@ figure(48); clf;
 
     for k = 1:length(out) 
       subplot(211); hold on; title('spline vs raw data');
-        plot(out(k).e(channel).entiretimcont/3600, out(k).e(channel).obwAmp, '.'); 
-        plot(out(k).e(channel).Sentiretimcont, out(k).e(channel).SobwAmp, '.', 'MarkerSize', 3); 
+        plot(out(k).entiretimcont/3600, out(k).obwAmp, '.'); 
+        plot(out(k).Sentiretimcont, out(k).SobwAmp, '.', 'MarkerSize', 3); 
         
       subplot(212); hold on; title('spline vs trial data');
-        plot(out(k).e(channel).timcont/3600, out(k).e(channel).obwAmp, '.'); 
-        plot(out(k).e(channel).Stimcont, out(k).e(channel).SobwAmp, '.', 'MarkerSize', 3); 
+        plot(out(k).timcont/3600, out(k).obwAmp, '.'); 
+        plot(out(k).Stimcont, out(k).SobwAmp, '.', 'MarkerSize', 3); 
         
-        maxlen = max([maxlen out(k).e(channel).timcont(end)/3600]);        
+        maxlen = max([maxlen out(k).timcont(end)/3600]);        
     end
 
     linkaxes(ax, 'x'); xlim([0 maxlen]);
    
 
 
-figure(49); clf; 
-
-     for k = 1:length(out) 
-         
-        subplot(211); hold on; title('spline vs light');
-        
-         subplot(212); hold on; title('spline vs trial light');
-    
+% figure(49); clf; 
+% 
+%      for k = 1:length(out) 
+%          
+%         subplot(211); hold on; title('spline vs light');
+%         
+%          subplot(212); hold on; title('spline vs trial light');
+%     
 
