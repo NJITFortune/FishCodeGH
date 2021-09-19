@@ -6,7 +6,7 @@
 
 clearvars -except kg
 
-in = kg(1);
+in = kg(6);
 
 
 ReFs = 10;  % Sample rate for splines
