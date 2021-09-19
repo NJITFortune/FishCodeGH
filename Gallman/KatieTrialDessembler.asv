@@ -91,10 +91,24 @@ end
 %% Plot to check
 %raw data
 
-figure(48); clf;  
+figure(48); clf; hold on; title('spline vs raw data');
 
  
     maxlen = 0;
+
+    for k = 1:length(out) 
+      
+        plot(out(k).entiretimcont/3600, out(k).obwAmp, '.'); 
+        plot(out(k).Sentiretimcont, out(k).SobwAmp, 'k-', 'LineWidth', 3); 
+        
+        maxlen = max([maxlen out(k).entiretimcont(end)/3600]);        
+    end
+
+     xlim([0 maxlen]);
+     
+figure(49); clf;  
+
+  
 
     for k = 1:length(out) 
       subplot(211); hold on; title('spline vs raw data');
@@ -108,7 +122,7 @@ figure(48); clf;
         maxlen = max([maxlen out(k).timcont(end)/3600]);        
     end
 
-    linkaxes(ax, 'x'); xlim([0 maxlen]);
+     xlim([0 maxlen]);
    
 
 
