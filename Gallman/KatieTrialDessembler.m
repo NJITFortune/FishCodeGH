@@ -106,3 +106,13 @@ figure(48); clf;
    
 
 %convert light data into squares
+
+figure(49); clf; 
+
+     for k = 1:length(out) 
+         
+        subplot(211); hold on; title('spline vs light');
+        
+         subplot(212); hold on; title('spline vs trial light');
+    
+
