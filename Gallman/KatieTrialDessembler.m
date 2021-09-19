@@ -131,10 +131,10 @@ figure(49); clf;
       subplot(212); hold on; title('spline vs trial data');
         plot(out(k).Stimcont, out(k).SobwAmp, '.', 'MarkerSize', 3); 
         
-        maxlen = max([maxlen out(k).timcont(end)/3600]);        
+        %maxlen = max([maxlen out(k).timcont(end)/3600]);        
     end
 
-     xlim([0 maxlen]);
+     %xlim([0 maxlen]);
    
 
 
