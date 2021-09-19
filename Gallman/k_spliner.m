@@ -74,7 +74,7 @@ lighttimes(end +1) = lighttimes(end) + ld;
  
 if channel == 1
     
-    xx = lighttimes(1):1/ReFs:lighttimes(end)/ReFs;
+    xx = lighttimes(1):1/ReFs:lighttimes(end);
       
       %estimate new yvalues for every x value
       
