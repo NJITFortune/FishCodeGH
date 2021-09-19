@@ -63,10 +63,10 @@ end
 
 
 % take all cells with values and make a new vector
-%lighttimes = lighttrim(lighttrim > 0);
+lighttimes = lighttrim(lighttrim > 0);
 luztimes = luztimes(lighttrim > 0);
 %add back the light time we subtracted 
-%lighttimes(end +1) = lighttimes(end) + ld;
+lighttimes(end +1) = lighttimes(end) + ld;
 
 
 %% cspline entire data set
