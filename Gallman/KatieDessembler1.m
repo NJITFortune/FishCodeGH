@@ -169,33 +169,41 @@ figure(28); clf;
 for j=1:length(trial) 
     
     subplot(211); hold on; title('channel 1');
-        mtrial(j,:) = zeros(1,length(trial(j).tim));
+        mtrial1(j,:) = zeros(1,length(trial(j).tim));
         for k=1:length(trial(j).day)
             % Normalize 0 to 1
             tmpnormdata = trial(j).day(k).e(1).SobwAmp - min(trial(j).day(k).e(1).SobwAmp); % set floor to zero
             tmpnormdata = tmpnormdata / max(tmpnormdata); % set max to 1
             
             % add current day to previous day(s)
-            mtrial(j,:) = mtrial(j,:) + tmpnormdata;
+            mtrial1(j,:) = mtrial1(j,:) + tmpnormdata;
         end
         % To get average across days, divide by number of days
-        mtrial(j,:) = mtrial(j,:) / length(trial(j).day);
-        plot(trial(j).tim, mtrial(j,:));
+        mtrial1(j,:) = mtrial1(j,:) / length(trial(j).day);
+        plot(trial(j).tim, mtrial1(j,:));
         
-%     subplot(212); hold on; title('channel 2');
-%         mtrial(j,:) = zeros(1,length(trial(j).tim));
-%         for k=1:length(trial(j).day)
-%             mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(2).SobwAmp;
-%         end
-%         plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
-%     
+    subplot(212); hold on; title('channel 2');
+        mtrial2(j,:) = zeros(1,length(trial(j).tim));
+        for k=1:length(trial(j).day)
+            % Normalize 0 to 1
+            tmpnormdata = trial(j).day(k).e(2).SobwAmp - min(trial(j).day(k).e(2).SobwAmp); % set floor to zero
+            tmpnormdata = tmpnormdata / max(tmpnormdata); % set max to 1
+            
+            % add current day to previous day(s)
+            mtrial2(j,:) = mtrial2(j,:) + tmpnormdata;
+        end
+        % To get average across days, divide by number of days
+        mtrial2(j,:) = mtrial2(j,:) / length(trial(j).day);
+        plot(trial(j).tim, mtrial2(j,:));
 end
 
 % Mean of means
-
-    meanofmeans = mean(mtrial); % Takes the mean of the means for a day from each trial 
-    plot(trial(j).tim, meanofmeans, 'k', 'LineWidth', 3);
-
+ subplot(211); hold on; 
+    meanofmeans1 = mean(mtrial1); % Takes the mean of the means for a day from each trial 
+    plot(trial(j).tim, meanofmeans1, 'k', 'LineWidth', 3);
+ subplot(212); hold on;
+     meanofmeans2 = mean(mtrial2); % Takes the mean of the means for a day from each trial 
+    plot(trial(j).tim, meanofmeans12, 'k', 'LineWidth', 3);
 % 
 % figure(29); clf; 
 % 
