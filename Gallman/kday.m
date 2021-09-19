@@ -81,7 +81,7 @@ end
 %take all cells with values and make a new vector
 lighttimes = lighttrim(lighttrim > 0);
 %add back the light time we subtracted 
-lighttimes(end +1) = lighttimes(end) + ld;
+%lighttimes(end +1) = lighttimes(end) + ld;
 
 
 %% cspline entire data set
@@ -276,7 +276,7 @@ figure(68); clf; title('trial hour - channel 1');
 %Channel 1
    subplot(211); hold on; 
    
-    for j = 2:2:length(lighttimes)-2
+    for j = 2:2:length(lighttimes)-1
 
 
                    otx = find(obwxx >= lighttimes(j-1) & obwxx < lighttimes(j+1)); 
