@@ -293,7 +293,7 @@ figure(68); clf; title('trial hour - channel 1');
                    
 
     end
-    subplot(211); hold on; 
+   
 
     subplot(212); hold on;
         tt = obwxx(otx) - obwxx(otx(1));
