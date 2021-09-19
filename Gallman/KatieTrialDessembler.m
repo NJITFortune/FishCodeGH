@@ -4,9 +4,13 @@ function out = KatieTrialDessembler(in, channel)
 %% Take spline estimate of raw data
 
 ReFs = 10;  % Sample rate for splines
+ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
-[xx, obwyy, zyy, sumfftyy, lighttimes] = makeSplines(in,channel, ReFs);
+[xx, obwyy, zyy, sumfftyy, luztimes] = makeSplines(in,channel, ReFs);
 
+lighttimes = abs(luztimes);
+%add back the light time we subtracted 
+lighttimes(end +1) = lighttimes(end) + ld;
 
 % Make a time base that starts and ends on lighttimes 
     %necessary to compare spline with raw data
@@ -14,7 +18,7 @@ ReFs = 10;  % Sample rate for splines
     timcont = [in.e(1).s.timcont] / (60*60);
     timcont = timcont(timcont >= lighttimes(1) & timcont < lighttimes(end));
     
-ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
+
 %% Define trial period
 
 % define sample range
