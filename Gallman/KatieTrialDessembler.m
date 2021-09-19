@@ -82,7 +82,26 @@ end
 
 %% Plot to check
 %raw data
-figure(3); clf; 
+
+figure(48); clf;  
+
+ ax(1) = subplot(211); title('Raw data for each trial'); hold on;
+    maxlen = 0;
+
+    for k= 1:length(out) 
+        
+        plot(out(k).e(1).timcont/3600, out(k).e(1).obwAmp, '.'); 
+        ax(2) = subplot(212); hold on;
+        plot(out(k).e(2).timcont/3600, out(k).e(2).obwAmp, '.'); 
+        
+        maxlen = max([maxlen out(k).e(1).timcont(end)/3600]);        
+    end
+
+    linkaxes(ax, 'x'); xlim([0 maxlen]);
+    subplot(211); title('Raw data for each trial');
+
+%spline data
+figure(49); clf; 
 
     maxlen = 0;
 
