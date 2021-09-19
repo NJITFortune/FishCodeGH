@@ -1,5 +1,5 @@
 
-function [xx, obwyy, zyy, sumfftyy, lighttimes] =  k_spliner(in, channel, ReFs)
+function [xx, obwyy, zyy, sumfftyy, luztimes] =  k_spliner(in, channel, ReFs)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -63,10 +63,10 @@ end
 
 
 % take all cells with values and make a new vector
-lighttimes = lighttrim(lighttrim > 0);
+%lighttimes = lighttrim(lighttrim > 0);
 luztimes = luztimes(lighttrim > 0);
 %add back the light time we subtracted 
-lighttimes(end +1) = lighttimes(end) + ld;
+%lighttimes(end +1) = lighttimes(end) + ld;
 
 
 %% cspline entire data set
