@@ -7,7 +7,7 @@ function [out, trial] = KatieDessembler1(in, orgidx)
 ReFs = 10;  % Sample rate for splines
 
 for j = 1:2
-[xx(j, :), obwyy(j, :), zyy(j, :), sumfftyy(j, :), lighttimes(j, :)] = makeSplines(in,j, ReFs);
+[xx(j, :), obwyy(j, :), zyy(j, :), sumfftyy(j, :), lighttimes(j, :)] = k_spliner(in,j, ReFs);
 end
 
 % Make a time base that starts and ends on lighttimes 
