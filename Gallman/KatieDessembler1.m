@@ -6,8 +6,9 @@ function [out, trial] = KatieDessembler1(in, channel)
 
 ReFs = 10;  % Sample rate for splines
 
-[xx, obwyy, zyy, sumfftyy, lighttimes] = makeSplines(in,channel, ReFs);
-
+for j = 1:2
+[xx(j, :), obwyy(j, :), zyy(j, :), sumfftyy(j, :), lighttimes(j, :)] = makeSplines(in,j, ReFs);
+end
 
 % Make a time base that starts and ends on lighttimes 
     %necessary to compare spline with raw data
