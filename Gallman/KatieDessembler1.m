@@ -16,6 +16,7 @@ for j = 1:2
 end
 
 lighttimes = abs(luztimes(1,:));
+
 % Make a time base that starts and ends on lighttimes 
     %necessary to compare spline with raw data
 
