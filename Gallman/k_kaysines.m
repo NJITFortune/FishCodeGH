@@ -2,7 +2,7 @@ function out = k_kaysines(in, channel)
 
 %in = kg(k)
 %out = kay(k).e.
-
+clearvars -except kg
 
 p = 0.7;
 ReFs = 10;  %resample once every minute (Usually 60)
