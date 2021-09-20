@@ -19,7 +19,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
     
-
+lighttimes
     timcont = [in.e(1).s.timcont] / (60*60);
     timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
 %     
@@ -33,7 +33,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     lengthofsampleHOURS = timcont(end) - timcont(1);    
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / perd); % of trials
-    numotrials
+   
 
 % %testing timidx
 % timz = 1:1:numotrials+1;
