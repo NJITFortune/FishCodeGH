@@ -33,6 +33,11 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / perd); % of trials
 
+%testing timidx
+timz = 1:1:numotrials
+
+
+
 %% Divide data into trials
 
 %raw data
