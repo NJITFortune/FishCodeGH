@@ -31,6 +31,7 @@ p = 0.7;
          
         
 %% trim luz to data - Generate lighttimes
+in = kg(9);
 lighttimeslong = abs(in.info.luz);
 
     %fit light vector to power idx
@@ -47,9 +48,9 @@ lighttimeslong = abs(in.info.luz);
 for j = 1:length(lighttimeslesslong)-1
         
         %is there data between j and j+1?    
-        if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
-            ott = [in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslesslong(j+1); 
-            lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
+        if ~isempty(find([in.e(1).s(ttz{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(ttz{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
+            ott = [in.e(1).s(ttz{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(ttz{1}).timcont]/(60*60) < lighttimeslesslong(j+1); 
+            lighttim = [in.e(1).s(ttz{1}(ott)).timcont]/(60*60);
             length(lighttim);
             
             %ensures that we start on the first full lighttime
