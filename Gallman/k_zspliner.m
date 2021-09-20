@@ -43,7 +43,7 @@ lighttimeslong = abs(in.info.luz);
         lighttimeslesslong = lighttimeslong(lighttimesidx);
     end
 
-    lighttimeslesslong
+   
 %only take times for light vectors that have data
 for j = 1:length(lighttimeslesslong)-1
         
@@ -68,7 +68,7 @@ lighttimes = lighttrim(lighttrim > 0);
 %luztimes = luztimes(1,lighttrim > 0);
 %add back the light time we subtracted 
 lighttimes(end +1) = lighttimes(end) + ld;
-
+lighttimes
 
 %% cspline entire data set
 
