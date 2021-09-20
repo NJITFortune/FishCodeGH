@@ -104,7 +104,7 @@ figure(48); clf; title('spline vs raw data');hold on;
        % maxlen = max([maxlen out(k).entiretimcont/3600]);        
     end
 
-     xlim([0 maxlen]);
+     %xlim([0 maxlen]);
      
 figure(49); clf;  
 
