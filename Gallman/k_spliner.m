@@ -64,7 +64,7 @@ end
 
 % take all cells with values and make a new vector
 lighttimes = lighttrim(lighttrim > 0);
-luztimes = luztimes(lighttrim > 0);
+luztimes = luztimes(1,lighttrim > 0);
 %add back the light time we subtracted 
 lighttimes(end +1) = lighttimes(end) + ld;
 
