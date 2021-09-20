@@ -51,13 +51,13 @@ for j = 1:length(lighttimeslesslong)-1
         if ~isempty(find([in.e(1).s(ttz{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(ttz{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
             ott = [in.e(1).s(ttz{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(ttz{1}).timcont]/(60*60) < lighttimeslesslong(j+1); 
             lighttim = [in.e(1).s(ttz{1}(ott)).timcont]/(60*60);
-            length(lighttim);
+            
             
             %ensures that we start on the first full lighttime
-            if all(lighttim(1) >= lighttimeslesslong(j) & lighttim(1) < lighttimeslesslong(j) + ld/2)  
+           % if all(lighttim(1) >= lighttimeslesslong(j) & lighttim(1) < lighttimeslesslong(j) + ld/2)  
                lighttrim(j) = lighttimeslesslong(j);
               % luztimes(j) = in.info.luz(j);
-            end
+           % end
          
         end 
 end
