@@ -16,8 +16,9 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 % %add back the light time we subtracted 
 % lighttimes(end +1) = lighttimes(end) + ld;
 
-Make a time base that starts and ends on lighttimes 
-    necessary to compare spline with raw data
+%Make a time base that starts and ends on lighttimes 
+    %necessary to define length of data
+    
 
     timcont = [in.e(1).s.timcont] / (60*60);
     timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
@@ -49,8 +50,11 @@ for jj = 1:numotrials
 %             % indices for our sample window of perd hours
 %             timidx = find(timcont >= timcont(1) + ((jj-1)*perd) & ...
 %                timcont < timcont(1) + (jj*perd));
+
             j = channel;
             timcont = [in.e(j).s.timcont]/3600;
+                %timcont needs to have the same indicies as the rest of the
+                %data
             % indices for our sample window of perd hours
             timidx = find(timcont >= lighttimes(1) + ((jj-1)*perd) & ...
             timcont < lighttimes(1) + (jj*perd));
