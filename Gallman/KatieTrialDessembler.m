@@ -30,11 +30,11 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     perd = 48; % default length is 48 hours
     %perd = perd - rem(perd, in.info.ld);  % If not integer divisible, take fewer samples to not go over     
     % How many trials available?
-    lengthofsampleHOURS = timcont(end) - timcont(1); 
-     lengthofsampleHOURS = 96
+    lengthofsampleHOURS = lighttimes(end) - lighttimes(1); 
+    %lengthofsampleHOURS = timcont(end) - timcont(1); 
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / perd); % of trials
-   numotrials
+
 
 % %testing timidx
 % timz = 1:1:numotrials+1;
