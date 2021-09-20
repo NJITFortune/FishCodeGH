@@ -8,7 +8,7 @@ clearvars -except kg
 
 in = kg(8);
 
-
+ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 ReFs = 10;  % Sample rate for splines
 
 for j = 1:2
@@ -16,6 +16,8 @@ for j = 1:2
 end
 
 lighttimes = abs(luztimes(1,:));
+%add back the light time we subtracted 
+lighttimes(end +1) = lighttimes(end) + ld;
 
 % Make a time base that starts and ends on lighttimes 
     %necessary to compare spline with raw data
@@ -23,7 +25,7 @@ lighttimes = abs(luztimes(1,:));
     timcont = [in.e(1).s.timcont] / (60*60);
     timcont = timcont(timcont >= lighttimes(1) & timcont < lighttimes(end));
     
-ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
+
 %% Define trial period
 
 % define sample range
