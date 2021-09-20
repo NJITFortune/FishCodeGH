@@ -42,7 +42,7 @@ lighttimeslong = abs(in.info.luz);
         lighttimeslesslong = lighttimeslong(lighttimesidx);
     end
 
-    
+    lighttimeslesslong
 %only take times for light vectors that have data
 for j = 1:length(lighttimeslesslong)-1
         
