@@ -1,4 +1,4 @@
-function out = KatieTrialDessembler(in, channel)  
+function out = KatieTrialDessembler(in, channel, orgidx)  
 %clearvars -except kg
 
 % in = kg(97);
