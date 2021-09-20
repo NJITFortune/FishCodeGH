@@ -78,7 +78,7 @@ if channel == 1
       
       %estimate new yvalues for every x value
       
-            obw
+            %obw
             spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
             %resample new x values based on light/dark
             obwyy = fnval(xx, spliney);
