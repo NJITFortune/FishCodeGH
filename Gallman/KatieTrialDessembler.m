@@ -1,7 +1,7 @@
 %function out = KatieTrialDessembler(in, channel)  
 clearvars -except kg
 
-in = kg(8);
+in = kg(101);
 channel = 1;
 % Out is raw data, trial is spline data
 %% Take spline estimate of raw data
@@ -18,10 +18,10 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 % Make a time base that starts and ends on lighttimes 
     %necessary to compare spline with raw data
-
-    timcont = [in.e(1).s.timcont] / (60*60);
-    timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
-    
+% 
+%     timcont = [in.e(1).s.timcont] / (60*60);
+%     timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
+%     
 
 %% Define trial period
 
@@ -49,11 +49,11 @@ for jj = 1:numotrials
 %             % indices for our sample window of perd hours
 %             timidx = find(timcont >= timcont(1) + ((jj-1)*perd) & ...
 %                timcont < timcont(1) + (jj*perd));
-   j = channel;
+            j = channel;
             timcont = [in.e(j).s.timcont]/3600;
             % indices for our sample window of perd hours
             timidx = find(timcont >= lighttimes(1) + ((jj-1)*perd) & ...
-           timcont < lighttimes(1) + (jj*perd));
+            timcont < lighttimes(1) + (jj*perd));
 
 
 %             % Get the index for the start of the current period (xx is time)
