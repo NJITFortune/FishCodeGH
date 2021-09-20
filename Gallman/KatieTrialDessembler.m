@@ -38,7 +38,7 @@ lighttimes(end +1) = lighttimes(end) + ld;
 for jj = 1:numotrials
     
             % indices for our sample window of perd hours
-            timidx = find(timcont > timcont(1) + ((jj-1)*perd) & ...
+            timidx = find(timcont >= timcont(1) + ((jj-1)*perd) & ...
                timcont < timcont(1) + (jj*perd));
             
             j = channel;
