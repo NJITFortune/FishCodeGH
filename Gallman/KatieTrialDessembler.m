@@ -91,7 +91,7 @@ end
 %% Plot to check
 %raw data
 
-figure(48); clf; hold on; title('spline vs raw data');
+figure(48); clf; title('spline vs raw data');hold on; 
 
  
    % maxlen = 0;
