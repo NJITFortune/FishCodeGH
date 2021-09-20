@@ -33,10 +33,6 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / perd); % of trials
 
-    if length(numotrials) <= 1
-        numotrials = numotrials +1;
-
-    end
 
 % %testing timidx
 % timz = 1:1:numotrials+1;
