@@ -33,10 +33,15 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / perd); % of trials
 
-%testing timidx
-timz = 1:1:numotrials+1;
-%generate new  light vector
-    triallength(timz) = lighttimes(1) + (perd*(timz-1)); 
+    if length(numotrials) <= 1
+        numotrials = numotrials +1;
+
+    end
+
+% %testing timidx
+% timz = 1:1:numotrials+1;
+% %generate new  light vector
+%     triallength(timz) = lighttimes(1) + (perd*(timz-1)); 
 
 
 %% Divide data into trials
