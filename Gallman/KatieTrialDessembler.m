@@ -82,7 +82,7 @@ for jj = 1:numotrials
              out(jj).temp = [in.e(j).s(timidx).temp];
              
              out(jj).ld = in.info.ld; 
-             %out(jj).kg = orgidx; % idx for kg
+             out(jj).kg = orgidx; % idx for kg
              
            
 
