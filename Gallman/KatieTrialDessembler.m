@@ -78,19 +78,19 @@ for jj = 1:numotrials
     
              
             % Get the index for the start of the current period (xx is time)
-            timidx = find(xx > xx(1) + ((jj-1) * perd), 1);
+            Stimidx = find(xx > xx(1) + ((jj-1) * perd), 1);
             % Get the rest of the indices for the trial  
-            timidx = timidx:timidx + (perd*ReFs)-1;
+            Stimidx = Stimidx:Stimidx + (perd*ReFs)-1;
             
-            if length(obwyy) >= timidx(end)
+            if length(obwyy) >= Stimidx(end)
              % Data   
-             out(jj).SobwAmp = obwyy(timidx);
-             out(jj).SzAmp = zyy(timidx);
-             out(jj).SsumfftAmp = sumfftyy(timidx);
+             out(jj).SobwAmp = obwyy(Stimidx);
+             out(jj).SzAmp = zyy(Stimidx);
+             out(jj).SsumfftAmp = sumfftyy(Stimidx);
              
              % Time  
-             out(jj).Stimcont = xx(timidx) - xx(timidx(1)); % Time starting at zero  
-             out(jj).Sentiretimcont = xx(timidx);
+             out(jj).Stimcont = xx(Stimidx) - xx(Stimidx(1)); % Time starting at zero  
+             out(jj).Sentiretimcont = xx(Stimidx);
             end
     
     
