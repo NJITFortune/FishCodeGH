@@ -10,7 +10,7 @@ ReFs = 10;  % Sample rate for splines
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 
-[xx, zyy, sumfftyy, lighttimes] = k_spliner(in,channel, ReFs);
+[xx, zyy, sumfftyy, lighttimes] = k_zspliner(in,channel, ReFs);
 
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
