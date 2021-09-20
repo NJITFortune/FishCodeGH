@@ -248,33 +248,3 @@ subplot(211); hold on;
 
 
 
-% 
-% figure(29); clf; 
-% 
-%     
-% for j=1:length(trial) 
-%     
-%     subplot(211); hold on; title('channel 1');
-%         mtrial(j,:) = zeros(1,length(trial(j).tim));
-%         for k=1:length(trial(j).day)
-%             mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(1).SobwAmp;
-%             mtrial(j,:) = mtrial(j,:) / max(abs(mtrial(j,:)-mean(mtrial(j,:))));
-%         end
-%         
-%         trialmean = mean(mtrial);
-%         trialstd = std(mtrial);
-%         tt = trial(1).tim;
-%         tt = [tt tt(end:-1:1)];
-%         
-%         plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
-%         
-%     subplot(212); hold on; title('channel 1');
-%         mtrial(j,:) = zeros(1,length(trial(j).tim));
-%         for k=1:length(trial(j).day)
-%             mtrial(j,:) = mtrial(j,:) + trial(j).day(k).e(2).SobwAmp;
-%         end
-%         plot(trial(j).tim, mtrial(j,:) / length(trial(j).day));
-%     
-% end
-% 
-% 
