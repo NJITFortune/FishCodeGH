@@ -1,5 +1,5 @@
 
-function [xx, obwyy, zyy, sumfftyy, lighttimes] =  k_spliner(in, channel, ReFs)
+function [xx, zyy, sumfftyy, lighttimes] =  k_zspliner(in, channel, ReFs)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -78,15 +78,7 @@ if channel == 1
       
       %estimate new yvalues for every x value
       
-            %obw
-            spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
-            %resample new x values based on light/dark
-            obwyy = fnval(xx, spliney);
-            %detrend ydata
-            dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
-            %raw data variables
-                obwtimOG = [in.e(1).s(tto{1}).timcont]/(60*60);
-                obwAmpOG = [in.e(1).s(tto{1}).obwAmp];
+            
 %       
             %zAmp
             spliney = csaps([in.e(1).s(ttz{1}).timcont]/(60*60), [in.e(1).s(ttz{1}).zAmp], p);
@@ -114,14 +106,7 @@ else %channel = 2
 
       %estimate new yvalues for every x value
              
-            %obw
-            spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
-            %resample new x values based on light/dark
-            obwyy = fnval(xx, spliney);
-            %detrend ydata
-            dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
-                obwtimOG = [in.e(2).s(tto{2}).timcont]/(60*60);
-                obwAmpOG = [in.e(2).s(tto{2}).obwAmp];
+            
                     
             %zAmp
             spliney = csaps([in.e(2).s(ttz{2}).timcont]/(60*60), [in.e(2).s(ttz{2}).zAmp], p);
