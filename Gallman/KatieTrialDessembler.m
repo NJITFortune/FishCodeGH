@@ -49,7 +49,7 @@ for jj = 1:numotrials
 %             % indices for our sample window of perd hours
 %             timidx = find(timcont >= timcont(1) + ((jj-1)*perd) & ...
 %                timcont < timcont(1) + (jj*perd));
-
+   j = channel;
             timcont = [in.e(j).s.timcont]/3600;
             % indices for our sample window of perd hours
             timidx = find(timcont >= lighttimes(1) + ((jj-1)*perd) & ...
@@ -61,7 +61,7 @@ for jj = 1:numotrials
 %             % Get the rest of the indices for the trial  
 %             timidx = timidx:timidx + (perd*ReFs)-1;
             
-            j = channel;
+         
             
            
              % Data   
