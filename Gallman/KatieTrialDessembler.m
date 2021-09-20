@@ -113,6 +113,14 @@ for jj = 1:numotrials
     
 end
 
+
+%normalize spline data
+for k = 1:length(out) 
+    
+    
+    
+    
+end 
 %% Plot to check
 %raw data
 
