@@ -40,8 +40,8 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 for jj = 1:numotrials
     
             % indices for our sample window of perd hours
-            timidx = find(timcont >= timcont(1) + ((jj-1)*perd) & ...
-               timcont < timcont(1) + (jj*perd));
+            timidx = timcont >= timcont(1) + ((jj-1)*perd) & ...
+               timcont < timcont(1) + (jj*perd);
 
 %             % Get the index for the start of the current period (xx is time)
 %             timidx = find(timcont > timcont(1) + ((jj-1) * perd), 1);
