@@ -20,7 +20,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     %necessary to compare spline with raw data
 
     timcont = [in.e(1).s.timcont] / (60*60);
-    timcont = timcont(timcont >= lighttimes(1) & timcont < lighttimes(end));
+    timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
     
 
 %% Define trial period
@@ -40,7 +40,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 for jj = 1:numotrials
     
             % indices for our sample window of perd hours
-            timidx = find(timcont > timcont(1) + ((jj-1)*perd) & ...
+            timidx = find(timcont >= timcont(1) + ((jj-1)*perd) & ...
                timcont < timcont(1) + (jj*perd));
 
 %             % Get the index for the start of the current period (xx is time)
