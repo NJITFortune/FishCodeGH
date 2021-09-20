@@ -113,13 +113,24 @@ for jj = 1:numotrials
     
 end
 
-
+out.normSzamp = zeros(1,length(out(1).SzAmp));
+out.normSsumfftAmp = zeros(1,length(out(1).SzAmp));
 %normalize spline data
-for k = 1:length(out) 
+for jj = 1:length(out) 
     
     
-    
-    
+    for k=1:length(out(1).SzAmp)
+        
+        subplot(211); hold on;
+            tmpnormdata = out(jj).Szamp(k) - min(out(jj).Szamp(k)); % set floor to zero
+            tmpnormdata = tmpnormdata / max(tmpnormdata); % set max to 1
+            out(j,:) = normSzamp(j,:) + tmpnormdata;
+            
+            tmpnormdata = out(jj).Szamp(k) - min(out(jj).Szamp(k)); % set floor to zero
+            tmpnormdata = tmpnormdata / max(tmpnormdata); % set max to 1
+            out(j,:) = normSzamp(j,:) + tmpnormdata;
+            
+    end
 end 
 %% Plot to check
 %raw data
