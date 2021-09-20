@@ -31,7 +31,7 @@ p = 0.7;
          
         
 %% trim luz to data - Generate lighttimes
-in = kg(9);
+
 lighttimeslong = abs(in.info.luz);
 
     %fit light vector to power idx
