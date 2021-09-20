@@ -69,7 +69,7 @@ for jj = 1:numotrials
             
            
              % Data   
-             out(jj).obwAmp = [in.e(j).s(timidx).obwAmp];
+             %out(jj).obwAmp = [in.e(j).s(timidx).obwAmp];
              out(jj).zAmp = [in.e(j).s(timidx).zAmp];
              out(jj).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
              out(jj).fftFreq = [in.e(j).s(timidx).fftFreq];
