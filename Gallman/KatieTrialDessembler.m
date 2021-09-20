@@ -1,6 +1,6 @@
 %function out = KatieTrialDessembler(in, channel)  
 in = kg(8);
-channel = 2;
+channel = 1;
 % Out is raw data, trial is spline data
 %% Take spline estimate of raw data
 
