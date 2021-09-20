@@ -6,7 +6,7 @@
 
 clearvars -except kg
 
-in = kg(2);
+in = kg(8);
 
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 ReFs = 10;  % Sample rate for splines
@@ -16,6 +16,7 @@ for j = 1:2
 end
 
 lighttimes = abs(luztimes(1,:));
+lighttimes
 %add back the light time we subtracted 
 lighttimes(end +1) = lighttimes(end) + ld;
 
