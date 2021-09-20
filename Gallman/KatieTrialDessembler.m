@@ -16,11 +16,11 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 % %add back the light time we subtracted 
 % lighttimes(end +1) = lighttimes(end) + ld;
 
-% Make a time base that starts and ends on lighttimes 
-    %necessary to compare spline with raw data
-% 
-%     timcont = [in.e(1).s.timcont] / (60*60);
-%     timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
+Make a time base that starts and ends on lighttimes 
+    necessary to compare spline with raw data
+
+    timcont = [in.e(1).s.timcont] / (60*60);
+    timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
 %     
 
 %% Define trial period
