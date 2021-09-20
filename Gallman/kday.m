@@ -285,14 +285,11 @@ figure(68); clf; title('trial hour - channel 1');
 
                    otx = find(obwxx >= lighttimes(j-1) & obwxx < lighttimes(j+1)); 
         
-         
-        
-                   avgresp1(j/2, :) = dtobwyy1(otx);  
                  
                    plot(obwxx(otx) - obwxx(otx(1)), dtobwyy1(otx));
                    plot([[in.info.ld] [in.info.ld]], [-samp1 samp1], 'k-', 'Linewidth', 2); 
                   
-                   
+                    avgresp1(j/2, :) = dtobwyy1(otx);  
 
     end
    
