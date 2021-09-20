@@ -39,12 +39,18 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 for jj = 1:numotrials
     
-            % indices for our sample window of perd hours
-            timidx = find(timcont >= timcont(1) + ((jj-1)*perd) & ...
-               timcont < timcont(1) + (jj*perd));
+%             % indices for our sample window of perd hours
+%             timidx = find(timcont >= timcont(1) + ((jj-1)*perd) & ...
+%                timcont < timcont(1) + (jj*perd));
+
+            % Get the index for the start of the current period (xx is time)
+            timidx = find(timcont > timcont(1) + ((jj-1) * perd), 1);
+            % Get the rest of the indices for the trial  
+            timidx = timidx:timidx + (perd*ReFs)-1;
             
             j = channel;
             
+           
              % Data   
              out(jj).obwAmp = [in.e(j).s(timidx).obwAmp];
              out(jj).zAmp = [in.e(j).s(timidx).zAmp];
