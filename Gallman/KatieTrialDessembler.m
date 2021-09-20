@@ -94,14 +94,14 @@ end
 figure(48); clf; hold on; title('spline vs raw data');
 
  
-    maxlen = 0;
+   % maxlen = 0;
 
     for k = 1:length(out) 
       
         plot(out(k).entiretimcont/3600 , out(k).obwAmp, '.'); 
-       % plot(out(k).Sentiretimcont, out(k).SobwAmp, 'k-', 'LineWidth', 3); 
+        plot(out(k).Sentiretimcont, out(k).SobwAmp, 'k-', 'LineWidth', 3); 
         
-        maxlen = max([maxlen out(k).entiretimcont/3600]);        
+       % maxlen = max([maxlen out(k).entiretimcont/3600]);        
     end
 
      xlim([0 maxlen]);
