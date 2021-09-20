@@ -50,18 +50,20 @@ ax(5) = subplot(515); hold on; title('light transitions');
     xlabel('Continuous');
         
 % Add feedingtimes, if we have them... 
-
+   if isfield(out.info.feedingtimes)
     if ~isempty(out.info.feedingtimes)
        ax(1) = subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
     end
-     
-% Add social times, if we have them...    
+   end  
+% Add social times, if we have them... 
+   if isfield(out.info.socialtimes)
     if ~isempty(out.info.socialtimes)   
         ax(2) = subplot(512); plot([abs(out.info.socialtimes)' abs(out.info.socialtimes)']', [0 max([out.e(1).s.zAmp])], 'g-', 'LineWidth', 2, 'MarkerSize', 10);
     end  
-
+   end
     
 % Add light transitions times to check luz
+   if isfield(out.info.luz)
     if  ~isempty(out.info.luz)
         
         %luz by transition type
@@ -74,7 +76,7 @@ ax(5) = subplot(515); hold on; title('light transitions');
             plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
             plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
     end    
-
+   end
 linkaxes(ax, 'x'); 
 
 
