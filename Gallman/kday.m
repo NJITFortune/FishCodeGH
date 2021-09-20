@@ -270,11 +270,11 @@ linkaxes(axs, 'x');
    
 %% separate to individual epochs
 
-figure(68); clf; title('trial hour - channel 1');
+figure(68); clf; title('trial hour - channel 1'); hold on;
   
   
 %Channel 1
- 
+ subplot(211); hold on;
 %    
 %     lengthofsampleHOURS = obwxx(end) - obwxx(1);    
 %     daysinasample = floor(lengthofsampleHOURS/(ld*2));
