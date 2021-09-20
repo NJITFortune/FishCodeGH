@@ -6,7 +6,7 @@
 
 clearvars -except kg
 
-in = kg(16);
+in = kg(17);
 
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 ReFs = 10;  % Sample rate for splines
