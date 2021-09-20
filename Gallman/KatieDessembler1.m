@@ -12,13 +12,13 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 ReFs = 10;  % Sample rate for splines
 
 for j = 1:2
-[xx(j, :), obwyy(j, :), zyy(j, :), sumfftyy(j, :), luztimes(j,:)] = k_spliner(in,j, ReFs);
+[xx(j, :), obwyy(j, :), zyy(j, :), sumfftyy(j, :), lighttimes(j,:)] = k_spliner(in,j, ReFs);
 end
 
-lighttimes = abs(luztimes(1,:));
+%lighttimes = abs(luztimes(1,:));
 lighttimes
 %add back the light time we subtracted 
-lighttimes(end +1) = lighttimes(end) + ld;
+%lighttimes(end +1) = lighttimes(end) + ld;
 
 % Make a time base that starts and ends on lighttimes 
     %necessary to compare spline with raw data
