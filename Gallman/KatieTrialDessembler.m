@@ -36,7 +36,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %testing timidx
 timz = 1:1:numotrials;
 %generate new  light vector
-    triallength(timz) = lighttimes(1) + (12*(timz-1)); 
+    triallength(timz) = lighttimes(1) + (perd*(timz-1)); 
 
 
 %% Divide data into trials
