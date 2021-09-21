@@ -27,7 +27,8 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %% Define trial period
 
 % define sample range
-    perd = 48; % default length is 48 hours
+perd = triallength;
+    %perd = 48; % default length is 48 hours
     %perd = perd - rem(perd, in.info.ld);  % If not integer divisible, take fewer samples to not go over     
     % How many trials available?
     lengthofsampleHOURS = lighttimes(end) - lighttimes(1); 
@@ -82,7 +83,7 @@ for jj = 1:numotrials
              out(jj).temp = [in.e(j).s(timidx).temp];
              
              out(jj).ld = in.info.ld; 
-             out(jj).kg = orgidx; % idx for kg
+             %out(jj).kg = orgidx; % idx for kg
              
            
 
