@@ -115,7 +115,7 @@ for jj = 1:numotrials
 end
 
 %% Plot to check
-raw data
+%raw data
 
 figure(48); clf; title('spline vs raw data');hold on; 
 
