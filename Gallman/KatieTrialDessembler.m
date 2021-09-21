@@ -11,7 +11,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 
 [xx, obwyy, zyy, sumfftyy, lighttimes] = k_spliner(in,channel, ReFs);
-
+lighttimes
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
 % lighttimes(end +1) = lighttimes(end) + ld;
