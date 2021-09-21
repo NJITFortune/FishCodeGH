@@ -1,5 +1,5 @@
 %function out = KatieTrialDessembler(in, channel, orgidx)  
-% clearvars -except kg
+clearvars -except kg
 % 
  in = kg(3);
 channel = 1;
