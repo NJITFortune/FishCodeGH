@@ -11,7 +11,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 
 [xx, obwyy, zyy, sumfftyy, lighttimes] = k_spliner(in,channel, ReFs);
-lighttimes
+%lighttimes
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
 % lighttimes(end +1) = lighttimes(end) + ld;
@@ -117,48 +117,48 @@ end
 %% Plot to check
 %raw data
 
-figure(48); clf; title('spline vs raw data');hold on; 
-
- 
-   % maxlen = 0;
-
-    for k = 1:length(out) 
-      
-        plot(out(k).entiretimcont/3600 , out(k).sumfftAmp, '.'); 
-        plot(out(k).Sentiretimcont, out(k).SsumfftAmp, 'k-', 'LineWidth', 3); 
-        
-       % maxlen = max([maxlen out(k).entiretimcont/3600]);        
-    end
-
-     %xlim([0 maxlen]);
-     
-figure(49); clf;  
-
-
- 
-   maxlen = 0;
-
-    for k = 1:length(out) 
-       
-      subplot(211); hold on; title('spline vs raw data');
-         plot(out(k).timcont/3600, out(k).sumfftAmp, '.'); 
-        
-      subplot(212); hold on; title('spline vs trial data');
-        plot(out(k).Stimcont, out(k).SsumfftAmp, '.', 'MarkerSize', 3); 
-        
-        maxlen = max([maxlen out(k).timcont(end)/3600]);        
-    end
-
-     xlim([0 maxlen]);
-   
-
-
-% figure(49); clf; 
+% figure(48); clf; title('spline vs raw data');hold on; 
 % 
-%      for k = 1:length(out) 
-%          
-%         subplot(211); hold on; title('spline vs light');
+%  
+%    % maxlen = 0;
+% 
+%     for k = 1:length(out) 
+%       
+%         plot(out(k).entiretimcont/3600 , out(k).sumfftAmp, '.'); 
+%         plot(out(k).Sentiretimcont, out(k).SsumfftAmp, 'k-', 'LineWidth', 3); 
 %         
-%          subplot(212); hold on; title('spline vs trial light');
-%     
-
+%        % maxlen = max([maxlen out(k).entiretimcont/3600]);        
+%     end
+% 
+%      %xlim([0 maxlen]);
+%      
+% figure(49); clf;  
+% 
+% 
+%  
+%    maxlen = 0;
+% 
+%     for k = 1:length(out) 
+%        
+%       subplot(211); hold on; title('spline vs raw data');
+%          plot(out(k).timcont/3600, out(k).sumfftAmp, '.'); 
+%         
+%       subplot(212); hold on; title('spline vs trial data');
+%         plot(out(k).Stimcont, out(k).SsumfftAmp, '.', 'MarkerSize', 3); 
+%         
+%         maxlen = max([maxlen out(k).timcont(end)/3600]);        
+%     end
+% 
+%      xlim([0 maxlen]);
+%    
+% 
+% 
+% % figure(49); clf; 
+% % 
+% %      for k = 1:length(out) 
+% %          
+% %         subplot(211); hold on; title('spline vs light');
+% %         
+% %          subplot(212); hold on; title('spline vs trial light');
+% %     
+% 
