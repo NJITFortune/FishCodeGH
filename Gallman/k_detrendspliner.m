@@ -87,8 +87,8 @@ if channel == 1
             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
             %extract trend 
             normobwyytrend = 1./(obwyy - dtobwyy);
-            tnormobwyy = obwyy .* normobwyytrend;
-            %tnormobwyy = obwyy * mean(normobwyytrend);    
+            %tnormobwyy = obwyy .* normobwyytrend;
+            tnormobwyy = obwyy * mean(normobwyytrend);    
             
       
             %zAmp
