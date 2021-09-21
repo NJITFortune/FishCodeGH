@@ -1,5 +1,5 @@
 
-function [xx,obwyy, zyy, sumfftyy, lighttimes] =  k_spliner(in, channel, ReFs)
+function [xx, obwyy, zyy, sumfftyy, lighttimes] =  k_spliner(in, channel, ReFs)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
