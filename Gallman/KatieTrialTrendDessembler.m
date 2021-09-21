@@ -1,4 +1,4 @@
-function out = KatieTrialTrendDessembler(in, channel, orgidx)  
+function out = KatieTrialTrendDessembler(in, channel, triallength)  
 % clearvars -except kg
 % 
 %  in = kg(56);
