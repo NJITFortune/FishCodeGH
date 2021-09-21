@@ -10,7 +10,7 @@ function [freq, pwr] = k_welches(in, hourperiod, ReFs)
 % %fftmachine
 % f = fftmachine(o.z(1).y - mean(o.z(1).y), ReFs, 3); 
 %pwelch
-L = length(in.SzAmp); 
+L = length(in.SobwAmp); 
 NFFT = 2^nextpow2(L)/2;
 %NFFT = 8192;
 FreqRange = 0.002:0.0001:0.2;
@@ -18,7 +18,7 @@ FreqRange = 0.002:0.0001:0.2;
 
 
     %generate fft
-    [pxx,pf] = pwelch(in.SzAmp, NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+    [pxx,pf] = pwelch(in.SobwAmp, NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
     %populate values 
     zwelch = [pxx', pf'];
     colNames = {'pxx','pfreq'};
