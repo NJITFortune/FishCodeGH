@@ -162,4 +162,3 @@ end
 % %          subplot(212); hold on; title('spline vs trial light');
 % %     
 % 
-end
