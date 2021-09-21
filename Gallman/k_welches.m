@@ -1,4 +1,4 @@
-function [freq, pwr] = k_welches(in, hourperiod)
+function [freq, pwr] = k_welches(in, hourperiod, ReFs)
 %in = output from KatieTrialDessembler 
 
 
@@ -18,7 +18,7 @@ FreqRange = 0.002:0.0001:0.2;
 
 
     %generate fft
-    [pxx,pf] = pwelch(in.zyy, NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+    [pxx,pf] = pwelch(in.SzAmp, NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
     %populate values 
     zwelch = [pxx', pf'];
     colNames = {'pxx','pfreq'};
