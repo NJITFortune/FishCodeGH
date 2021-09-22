@@ -110,8 +110,10 @@ while k <= length(iFiles)
     out(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
     out(k).tim24 = (hour*60*60) + (minute*60) + second;
     
-    if k > 1 && ((hour*60*60) + (minute*60) + second) < out(k-1).tim24
+    if k > 1
+        if((hour*60*60) + (minute*60) + second) < out(k-1).tim24
         daycount = daycount + 1;
+        end
     end
     k = k+1;
     
