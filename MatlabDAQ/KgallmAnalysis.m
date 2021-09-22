@@ -124,6 +124,9 @@ end
 %% Plot the data for fun
 
 % Continuous data plot
+length([out.timcont])
+length([out.Ch1sumAmp])
+
 figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
