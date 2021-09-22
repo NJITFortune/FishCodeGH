@@ -110,10 +110,8 @@ while k <= length(iFiles)
     out(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
     out(k).tim24 = (hour*60*60) + (minute*60) + second;
     
-    if k > 1
-        if((hour*60*60) + (minute*60) + second) < out(k-1).tim24
+    if k > 1 && out(k-1).tim24 > ((hour*60*60) + (minute*60) + second) 
         daycount = daycount + 1;
-        end
     end
     k = k+1;
     
@@ -133,8 +131,7 @@ figure(1); clf;
 ax(1) = subplot(411); hold on; title('fft');
     plot([out.timcont]/(60*60), [out.Ch1sumAmp], '.');
     plot([out.timcont]/(60*60), [out.Ch2sumAmp], '.');
-    %ylim([0.1, 2]);
-   % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
+   
 
 ax(2) = subplot(412); hold on; title('zero xings');
     plot([out.timcont]/(60*60), [out.Ch1zAmp], '.');
