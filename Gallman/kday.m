@@ -308,7 +308,7 @@ figure(68); clf; title('trial hour - channel 1'); hold on;
         
  figure(69); clf;  title('trial hour - channel 2');     
     %channel 2 
-    subplot(211); hold on;
+    asd(1) = subplot(211); hold on;
  
      for j = 2:2:length(lighttimes)-1
 
@@ -323,7 +323,7 @@ figure(68); clf; title('trial hour - channel 1'); hold on;
      end
  
     
-     subplot(212); hold on;
+     asd(2) = subplot(212); hold on;
         tt = obwxx(otx) - obwxx(otx(1));
         tt = [tt tt(end:-1:1)];
         mavgresp2 = mean(avgresp2);
@@ -463,7 +463,7 @@ figure(70); clf; title('12 hour - channel 1');
  figure(71); clf; title('12 hour - channel 2');
        
     %channel 2 
-    subplot(211); hold on;
+    asd(3) = subplot(211); hold on;
  
      for j = 2:2:length(twelvelight)-2
 
@@ -478,7 +478,7 @@ figure(70); clf; title('12 hour - channel 1');
      end
  
     
-     subplot(212); hold on;
+     asd(4) = subplot(212); hold on;
         tt = obwxx(otx) - obwxx(otx(1));
         tt = [tt tt(end:-1:1)];
         mavgresp2 = mean(twavgresp2);
@@ -488,7 +488,7 @@ figure(70); clf; title('12 hour - channel 1');
         plot(obwxx(otx) - obwxx(otx(1)), mavgresp2, 'k', 'LineWidth', 3);
         plot([12 12], [-samp2 samp2], 'k-', 'Linewidth', 2); 
 
-
+linkaxes(asd, 'y');
     
         
 
