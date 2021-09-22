@@ -18,7 +18,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
-    
+    xx(2) - xx(1)
 
     timcont = [in.e(1).s.timcont] / (60*60);
     timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
