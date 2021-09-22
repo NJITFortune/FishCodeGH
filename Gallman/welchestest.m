@@ -3,6 +3,8 @@
 
 start = kg(2);
 
+ReFs = 10;
+
 hourperiod = 12;
 
 in = KatieTrialTrendDessembler(start, 1, 48);
