@@ -1,6 +1,8 @@
 %function [freq, pwr] = k_welches(in, hourperiod, ReFs)
 %in = output from KatieTrialDessembler 
 
+clearvars -except kg
+
 start = kg(1);
 
 ReFs = 10;
