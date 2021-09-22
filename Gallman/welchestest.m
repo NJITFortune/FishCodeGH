@@ -19,7 +19,7 @@ hourfreq = in.ld;
 % %fftmachine
 % f = fftmachine(o.z(1).y - mean(o.z(1).y), ReFs, 3); 
 %pwelch
-L = length(in(j).SsumfftAmp); 
+L = length(in(jj).SsumfftAmp); 
 NFFT = 2^nextpow2(L)/2;
 %NFFT = 8192;
 FreqRange = 0.002:0.0001:0.2;
@@ -35,7 +35,7 @@ FreqRange = 0.002:0.0001:0.2;
     
     
     %populate values 
-    zwelch = [power(jj)', powerfreq(jj)'];
+    zwelch = [power', powerfreq'];
     colNames = {'pxx','pfreq'};
     pw(1).SsumfftAmp = array2table(zwelch,'VariableNames',colNames);
     
