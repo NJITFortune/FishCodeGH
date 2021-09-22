@@ -52,7 +52,7 @@ FreqRange = 0.002:0.0001:0.2;
   
   plot(pxx, pf, '-', 'MarkerSize', 3);
   
-  plot(1/(2*hourperiod), pwr, 'b*', 'MarkerSize', 5);
+  plot(1/(2*hourperiod), pwr, 'b*', 'MarkerSize', 5); xlim([0 0.2]);
   %max power
   plot(pkfrq1, pkAmp1, 'r*', 'MarkerSize', 5);
   %ld
@@ -61,7 +61,8 @@ FreqRange = 0.002:0.0001:0.2;
   plot([(1/(2*hourperiod) - range/2), (1/(2*hourperiod) + range/2)], [btAmp1, pkAmp1], 'b-', 'LineWidth', 0.25);
   
 
-
+%yaxis on log scale
+     set(gca,'yscale', 'log');
 
 
 
