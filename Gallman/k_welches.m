@@ -22,7 +22,7 @@ FreqRange = 0.002:0.0001:0.2;
     %populate values 
     zwelch = [pxx', pf'];
     colNames = {'pxx','pfreq'};
-    pw(1).zAmp = array2table(zwelch,'VariableNames',colNames);
+    pw(1).SsumfftAmp = array2table(zwelch,'VariableNames',colNames);
     
     %find peak at given frequency
     range = 0.002;
