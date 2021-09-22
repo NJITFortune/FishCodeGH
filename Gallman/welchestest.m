@@ -19,7 +19,7 @@ hourfreq = in.ld;
 % %fftmachine
 % f = fftmachine(o.z(1).y - mean(o.z(1).y), ReFs, 3); 
 %pwelch
-L = length(in.SsumfftAmp); 
+L = length(in(j).SsumfftAmp); 
 NFFT = 2^nextpow2(L)/2;
 %NFFT = 8192;
 FreqRange = 0.002:0.0001:0.2;
