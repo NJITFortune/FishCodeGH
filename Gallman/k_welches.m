@@ -32,8 +32,8 @@ FreqRange = 0.002:0.0001:0.2;
         pwr = hourpeak(1);
         
         
-   
-    end
+  %% plot to check range
+  
 
 
 
