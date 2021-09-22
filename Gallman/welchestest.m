@@ -5,7 +5,7 @@ clearvars -except kg
 
 start = kg(1);
 
-ReFs = 5;
+ReFs = 20;
 
 hourperiod = 12;
 
