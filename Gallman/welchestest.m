@@ -9,7 +9,7 @@ ReFs = 10;
 
 hourperiod = 12;
 
-in = KatieTrialTrendDessembler(start, 1, 48);
+in = KatieTrialDessembler(start, 1, 48);
 
 for jj = 1:length(in)
 
