@@ -48,7 +48,8 @@ FreqRange = 0.002:0.0001:0.2;
   plot([1/(hourfreq*2) 1/(hourfreq*2)], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
   plot([(1/(2*hourperiod) - range/2), (1/(2*hourperiod) + range/2), [btAmp1, pkAmp1], 'b-', 'LineWidth', 0.25);
   
-
+    %yaxis on log scale
+     set(gca,'yscale', 'log');
 
 
 
