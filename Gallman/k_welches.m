@@ -27,7 +27,7 @@ FreqRange = 0.002:0.0001:0.2;
     %find peak at given frequency
     range = 0.002;
     xfreq(1) = 1/(2*hourfreq);
-    hourpeak(1) = mean(pw(1).zAmp.pxx(pw(1).zAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(1).zAmp.pfreq < ((1/(2*hourperiod) + range/2))));
+    hourpeak(1) = mean(pw(1).SsumfftAmp.pxx(pw(1).SsumfftAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(1).SsumfftAmp.pfreq < ((1/(2*hourperiod) + range/2))));
         freq = xfreq(1);
         pwr = hourpeak(1);
         
