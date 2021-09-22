@@ -52,7 +52,7 @@ FreqRange = 0.002:0.0001:0.2;
   %fft
   plot(powerfreq, power, '-', 'MarkerSize', 3);
   %max power
-  plot(pkfrq1, pkAmp1, 'r*', 'MarkerSize', 5); xlim([0 0.2]);
+  plot(pkfrq1, pkAmp1, 'r*', 'MarkerSize', 5); 
   
   %plot(in.Stimcont, in.SsumfftAmp, '.', 'MarkerSize', 3); 
   
