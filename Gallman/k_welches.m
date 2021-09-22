@@ -19,6 +19,10 @@ FreqRange = 0.002:0.0001:0.2;
 
     %generate fft
     [pxx,pf] = pwelch(in.SsumfftAmp, NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+    %calculate peak freq
+    
+    
+    
     %populate values 
     zwelch = [pxx', pf'];
     colNames = {'pxx','pfreq'};
@@ -37,7 +41,8 @@ FreqRange = 0.002:0.0001:0.2;
   figure(34); clf; hold on;
   
   plot(pxx, pf, '-', 'MarkerSize', 3);
-  plot((1/(2*hourperiod), pwr, 
+  plot((1/(2*hourperiod), pwr, '*', 'MarkerSize', 5);
+  
 
 
 
