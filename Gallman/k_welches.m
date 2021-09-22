@@ -2,7 +2,8 @@ function [freq, pwr] = k_welches(in, hourperiod, ReFs)
 %in = output from KatieTrialDessembler 
 
 
-
+hourperiod
+hourfreq = in.ld
 %% Run fft (pwelch)
 
 
