@@ -7,7 +7,8 @@ hourperiod = 12;
 
 in = KatieTrialTrendDessembler(start, 1, 48);
 
-in = in(1);
+for jj = 1:length(in)
+
 
 hourfreq = in.ld;
 
@@ -26,24 +27,24 @@ FreqRange = 0.002:0.0001:0.2;
 
 
     %generate fft
-    [power, powerfreq] = pwelch([in.SsumfftAmp], NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+    [power, powerfreq] = pwelch([in(jj).SsumfftAmp], NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
     %calculate peak freq
     [pkAm1, pkIDX1] = max(power);
     [btAmp1, btIDX1] = min(power);
     pkfrq1 = powerfreq(pkIDX1);
     
     
-%     %populate values 
-%     zwelch = [power', powerfreq'];
-%     colNames = {'pxx','pfreq'};
-%     pw(1).SsumfftAmp = array2table(zwelch,'VariableNames',colNames);
-%     
-%     %find peak at given frequency
-%     range = 0.002; % 
-%     xfreq(1) = 1/(2*hourfreq);
-%     hourpeak(1) = mean(pw(1).SsumfftAmp.pxx(pw(1).SsumfftAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(1).SsumfftAmp.pfreq < ((1/(2*hourperiod) + range/2))));
-%         freq = xfreq(1);
-%         pwr = hourpeak(1);
+    %populate values 
+    zwelch = [power(jj)', powerfreq(jj)'];
+    colNames = {'pxx','pfreq'};
+    pw(1).SsumfftAmp = array2table(zwelch,'VariableNames',colNames);
+    
+    %find peak at given frequency
+    range = 0.002; % 
+    xfreq(1) = 1/(2*hourfreq);
+    hourpeak(1) = mean(pw(1).SsumfftAmp.pxx(pw(1).SsumfftAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(1).SsumfftAmp.pfreq < ((1/(2*hourperiod) + range/2))));
+        freq = xfreq(1);
+        pwr = hourpeak(1);
         
         
   %% plot to check range
@@ -69,5 +70,5 @@ FreqRange = 0.002:0.0001:0.2;
      set(gca,'yscale', 'log');
 
 
-
+end
 
