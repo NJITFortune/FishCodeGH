@@ -51,7 +51,7 @@ FreqRange = 0.002:0.0001:0.2;
   
   figure(34); clf; hold on;
   %fft
-  plot(powerfreq(jj), power(jj), '-', 'MarkerSize', 3);
+  plot(pw(jj).powerfreq, pw(jj).power, '-', 'MarkerSize', 3);
   %max power
   plot(pkfrq1, pkAmp1, 'r*', 'MarkerSize', 5); 
   
