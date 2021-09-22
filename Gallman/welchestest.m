@@ -31,9 +31,9 @@ FreqRange = 0.002:0.0001:0.2;
     %generate fft
     [pw(jj).power, pw(jj).powerfreq] = pwelch([in(jj).SsumfftAmp], NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
     %calculate peak freq
-    [pkAm1, pkIDX1] = max(pw(jj).power);
+    [pw(jj).pkAm1, pkIDX1] = max(pw(jj).power);
     [btAmp1, btIDX1] = min(pw(jj).power);
-    pkfrq1 = powerfreq(pkIDX1);
+    pw(jj).pkfrq1 = pw(jj).powerfreq(pkIDX1);
     
     
     %populate values 
@@ -56,7 +56,7 @@ FreqRange = 0.002:0.0001:0.2;
   %fft
   plot(pw(jj).powerfreq, pw(jj).power, '-', 'MarkerSize', 3);
   %max power
-  plot(pkfrq1, pkAmp1, 'r*', 'MarkerSize', 5); 
+  plot(pw(jj).pkfrq1, pw(jj).pkAmp1, 'r*', 'MarkerSize', 5); 
   
   %plot(in.Stimcont, in.SsumfftAmp, '.', 'MarkerSize', 3); 
   
