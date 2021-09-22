@@ -40,6 +40,8 @@ for k = 1:length(iFiles)
     second = str2num(iFiles(k).name(numstart+6:numstart+7));
     
     if k > 1 
+        (hour*60*60) + (minute*60) + second)
+        out(k-1).tim24
         if ((hour*60*60) + (minute*60) + second) < out(k-1).tim24 
             daycount = daycount + 1;
         end
