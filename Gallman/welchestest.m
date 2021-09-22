@@ -27,7 +27,7 @@ FreqRange = 0.002:0.0001:0.2;
 
 
     %generate fft
-    [power, powerfreq] = pwelch([in(jj).SsumfftAmp], NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+    [power(jj), powerfreq(jj)] = pwelch([in(jj).SsumfftAmp], NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
     %calculate peak freq
     [pkAm1, pkIDX1] = max(power);
     [btAmp1, btIDX1] = min(power);
@@ -35,29 +35,29 @@ FreqRange = 0.002:0.0001:0.2;
     
     
     %populate values 
-    zwelch = [power', powerfreq'];
+    zwelch = [power(jj)', powerfreq(jj)'];
     colNames = {'pxx','pfreq'};
-    pw(1).SsumfftAmp = array2table(zwelch,'VariableNames',colNames);
+    pw(jj).SsumfftAmp = array2table(zwelch,'VariableNames',colNames);
     
     %find peak at given frequency
     range = 0.002; % 
     xfreq(1) = 1/(2*hourfreq);
-    hourpeak(1) = mean(pw(1).SsumfftAmp.pxx(pw(1).SsumfftAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(1).SsumfftAmp.pfreq < ((1/(2*hourperiod) + range/2))));
+    hourpeak(1) = mean(pw(jj).SsumfftAmp.pxx(pw(jj).SsumfftAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(jj).SsumfftAmp.pfreq < ((1/(2*hourperiod) + range/2))));
         freq = xfreq(1);
-        pwr = hourpeak(1);
+        pwr(jj) = hourpeak(1);
         
         
   %% plot to check range
   
   figure(34); clf; hold on;
   %fft
-  plot(powerfreq, power, '-', 'MarkerSize', 3);
+  plot(powerfreq(jj), power(jj), '-', 'MarkerSize', 3);
   %max power
   plot(pkfrq1, pkAmp1, 'r*', 'MarkerSize', 5); 
   
   %plot(in.Stimcont, in.SsumfftAmp, '.', 'MarkerSize', 3); 
   
-  plot(1/(2*hourperiod), pwr, 'b*', 'MarkerSize', 5); 
+  plot(1/(2*hourperiod), pwr(jj), 'b*', 'MarkerSize', 5); 
   
   %ld
   plot([1/(hourfreq*2) 1/(hourfreq*2)], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
