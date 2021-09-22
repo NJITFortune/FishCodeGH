@@ -20,8 +20,8 @@ FreqRange = 0.002:0.0001:0.2;
     %generate fft
     [pxx,pf] = pwelch(in.SsumfftAmp, NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
     %calculate peak freq
-    [pkAmp1, pkIDX1] = max(py1);
-        [btAmp1, btIDX1] = min(py1);
+    [pkAmp1, pkIDX1] = max(pxx);
+        [btAmp1, btIDX1] = min(pxx);
         pkfrq1 = pf1(pkIDX1);
     
     
