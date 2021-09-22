@@ -35,6 +35,14 @@ while k <= length(iFiles)
     eval(['load ' iFiles(k).name]);
 
     
+    hour = str2num(iFiles(k).name(numstart:numstart+1)); %numstart based on time stamp text location
+    minute = str2num(iFiles(k).name(numstart+3:numstart+4));
+    second = str2num(iFiles(k).name(numstart+6:numstart+7));
+    
+    if k > 1 && ((hour*60*60) + (minute*60) + second) < out(k-1).tim24 
+        daycount = daycount + 1;
+    end
+    
     % Get EOD amplitudes for each channel
     for j = length(dataChans):-1:1
 
@@ -99,21 +107,13 @@ while k <= length(iFiles)
     out(k).light = mean(data(:,lightchan));
     out(k).temp = mean(data(:,tempchan));
     
-% Add time stamps (in seconds) relative to computer midnight
- 
-    hour = str2num(iFiles(k).name(numstart:numstart+1)); %numstart based on time stamp text location
-    minute = str2num(iFiles(k).name(numstart+3:numstart+4));
-    second = str2num(iFiles(k).name(numstart+6:numstart+7));
-    
-    if k > 1 && ((hour*60*60) + (minute*60) + second) < out(k-1).tim24 
-        daycount = daycount + 1;
-    end
-    
+
+   
         % There are 86400 seconds in a day.
     out(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
     out(k).tim24 = (hour*60*60) + (minute*60) + second;
     
-    
+   
     
     k = k+1;
     
