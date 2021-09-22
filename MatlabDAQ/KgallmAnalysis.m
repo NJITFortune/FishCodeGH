@@ -34,9 +34,6 @@ while k <= length(iFiles)
 
     eval(['load ' iFiles(k).name]);
 
-    if k > 1 &&  ((hour*60*60) + (minute*60) + second) < out(k-1).tim24 
-        daycount = daycount + 1;
-    end
     
     % Get EOD amplitudes for each channel
     for j = length(dataChans):-1:1
@@ -113,7 +110,10 @@ while k <= length(iFiles)
     out(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
     out(k).tim24 = (hour*60*60) + (minute*60) + second;
     
-   
+    if k > 1 && ((hour*60*60) + (minute*60) + second) < out(k-1).tim24 
+        daycount = daycount + 1;
+    end
+    
     k = k+1;
     
 
