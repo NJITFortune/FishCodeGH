@@ -54,6 +54,8 @@ FreqRange = 0.002:0.0001:0.2;
   %max power
   plot(pkfrq1, pkAmp1, 'r*', 'MarkerSize', 5);
   
+  plot(in.
+  
  % plot(1/(2*hourperiod), pwr, 'b*', 'MarkerSize', 5); xlim([0 0.2]);
   
   %ld
