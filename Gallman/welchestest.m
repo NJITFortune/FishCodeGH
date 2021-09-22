@@ -31,7 +31,7 @@ FreqRange = 0.002:0.0001:0.4;
 
 
     %generate fft
-    [pw(jj).power, pw(jj).powerfreq] = pwelch([in(jj).SsumfftAmp], NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+    [pw(jj).power, pw(jj).powerfreq] = pwelch([in(jj).SsumfftAmp]-mean([in(jj).SsumfftAmp]), NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
     %calculate peak freq
     [pw(jj).pkAmp1, pkIDX1] = max(pw(jj).power);
     [btAmp1, btIDX1] = min(pw(jj).power);
