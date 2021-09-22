@@ -104,15 +104,16 @@ while k <= length(iFiles)
     hour = str2num(iFiles(k).name(numstart:numstart+1)); %numstart based on time stamp text location
     minute = str2num(iFiles(k).name(numstart+3:numstart+4));
     second = str2num(iFiles(k).name(numstart+6:numstart+7));
-
+    
+    if k > 1 && ((hour*60*60) + (minute*60) + second) < out(k-1).tim24 
+        daycount = daycount + 1;
+    end
     
         % There are 86400 seconds in a day.
     out(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
     out(k).tim24 = (hour*60*60) + (minute*60) + second;
     
-    if k > 1 & ((hour*60*60) + (minute*60) + second) < out(k-1).tim24 
-        daycount = daycount + 1;
-    end
+    
     
     k = k+1;
     
