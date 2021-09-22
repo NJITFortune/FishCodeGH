@@ -43,7 +43,8 @@ FreqRange = 0.002:0.0001:0.2;
   figure(34); clf; hold on;
   
   plot(pxx, pf, '-', 'MarkerSize', 3);
-  plot((1/(2*hourperiod), pwr, '*', 'MarkerSize', 5);
+  plot(1/(2*hourperiod), pwr, 'b*', 'MarkerSize', 5);
+  plot(pkfrq1, pkAmp1, 'r*', 'MarkerSize', 5);
   
 
 
