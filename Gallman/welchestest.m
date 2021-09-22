@@ -33,33 +33,34 @@ FreqRange = 0.002:0.0001:0.2;
     pkfrq1 = powerfreq(pkIDX1);
     
     
-    %populate values 
-    zwelch = [power', powerfreq'];
-    colNames = {'pxx','pfreq'};
-    pw(1).SsumfftAmp = array2table(zwelch,'VariableNames',colNames);
-    
-    %find peak at given frequency
-    range = 0.002; % 
-    xfreq(1) = 1/(2*hourfreq);
-    hourpeak(1) = mean(pw(1).SsumfftAmp.pxx(pw(1).SsumfftAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(1).SsumfftAmp.pfreq < ((1/(2*hourperiod) + range/2))));
-        freq = xfreq(1);
-        pwr = hourpeak(1);
+%     %populate values 
+%     zwelch = [power', powerfreq'];
+%     colNames = {'pxx','pfreq'};
+%     pw(1).SsumfftAmp = array2table(zwelch,'VariableNames',colNames);
+%     
+%     %find peak at given frequency
+%     range = 0.002; % 
+%     xfreq(1) = 1/(2*hourfreq);
+%     hourpeak(1) = mean(pw(1).SsumfftAmp.pxx(pw(1).SsumfftAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(1).SsumfftAmp.pfreq < ((1/(2*hourperiod) + range/2))));
+%         freq = xfreq(1);
+%         pwr = hourpeak(1);
         
         
   %% plot to check range
   
   figure(34); clf; hold on;
-  
+  %fft
   plot(power, powerfreq, '-', 'MarkerSize', 3);
-  
-  plot(1/(2*hourperiod), pwr, 'b*', 'MarkerSize', 5); xlim([0 0.2]);
   %max power
   plot(pkfrq1, pkAmp1, 'r*', 'MarkerSize', 5);
-  %ld
-  plot([1/(hourfreq*2) 1/(hourfreq*2)], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
-  %freq range for hour period
-  plot([(1/(2*hourperiod) - range/2), (1/(2*hourperiod) + range/2)], [btAmp1, pkAmp1], 'b-', 'LineWidth', 0.25);
   
+ % plot(1/(2*hourperiod), pwr, 'b*', 'MarkerSize', 5); xlim([0 0.2]);
+  
+  %ld
+%   plot([1/(hourfreq*2) 1/(hourfreq*2)], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
+%   %freq range for hour period
+%   plot([(1/(2*hourperiod) - range/2), (1/(2*hourperiod) + range/2)], [btAmp1, pkAmp1], 'b-', 'LineWidth', 0.25);
+%   
 
 %yaxis on log scale
      set(gca,'yscale', 'log');
