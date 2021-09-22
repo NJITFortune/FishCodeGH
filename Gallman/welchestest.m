@@ -50,13 +50,13 @@ FreqRange = 0.002:0.0001:0.2;
   
   figure(34); clf; hold on;
   %fft
-%   plot(power, powerfreq, '-', 'MarkerSize', 3);
-%   %max power
-%   plot(pkfrq1, pkAmp1, 'r*', 'MarkerSize', 5);
+  plot(power, powerfreq, '-', 'MarkerSize', 3);
+  %max power
+  plot(pkfrq1, pkAmp1, 'r*', 'MarkerSize', 5); xlim([0 0.2]);
   
-  plot(in.Stimcont, in.SsumfftAmp, '.', 'MarkerSize', 3); 
+  %plot(in.Stimcont, in.SsumfftAmp, '.', 'MarkerSize', 3); 
   
- % plot(1/(2*hourperiod), pwr, 'b*', 'MarkerSize', 5); xlim([0 0.2]);
+ % plot(1/(2*hourperiod), pwr, 'b*', 'MarkerSize', 5); 
   
   %ld
 %   plot([1/(hourfreq*2) 1/(hourfreq*2)], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
