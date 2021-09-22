@@ -27,7 +27,7 @@ FreqRange = 0.002:0.0001:0.2;
 
 
     %generate fft
-    [power(jj), powerfreq(jj)] = pwelch([in(jj).SsumfftAmp], NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+    [pw(jj).power, pw(jj).powerfreq] = pwelch([in(jj).SsumfftAmp], NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
     %calculate peak freq
     [pkAm1, pkIDX1] = max(power);
     [btAmp1, btIDX1] = min(power);
@@ -35,7 +35,7 @@ FreqRange = 0.002:0.0001:0.2;
     
     
     %populate values 
-    zwelch = [power(jj)', powerfreq(jj)'];
+    zwelch = [pw(jj).power', pw(jj).powerfreq'];
     colNames = {'pxx','pfreq'};
     pw(jj).SsumfftAmp = array2table(zwelch,'VariableNames',colNames);
     
