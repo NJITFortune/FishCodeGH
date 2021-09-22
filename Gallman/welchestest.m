@@ -26,7 +26,7 @@ FreqRange = 0.002:0.0001:0.2;
 
 
     %generate fft
-    [power, powerfreq] = pwelch(in.SsumfftAmp, NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
+    [power, powerfreq] = pwelch([in.SsumfftAmp], NFFT, floor(NFFT*0.99), FreqRange, ReFs);  
     %calculate peak freq
     [pkAm1, pkIDX1] = max(power);
     [btAmp1, btIDX1] = min(power);
@@ -50,7 +50,7 @@ FreqRange = 0.002:0.0001:0.2;
   
   figure(34); clf; hold on;
   %fft
-  plot(power, powerfreq, '-', 'MarkerSize', 3);
+  plot(powerfreq, power, '-', 'MarkerSize', 3);
   %max power
   plot(pkfrq1, pkAmp1, 'r*', 'MarkerSize', 5); xlim([0 0.2]);
   
