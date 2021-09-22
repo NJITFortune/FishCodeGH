@@ -36,7 +36,8 @@ FreqRange = 0.002:0.0001:0.2;
   
   figure(34); clf; hold on;
   
-  plot(pxx, pf, 
+  plot(pxx, pf, '-', 'MarkerSize', 3);
+  plot(
 
 
 
