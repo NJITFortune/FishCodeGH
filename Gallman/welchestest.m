@@ -26,7 +26,8 @@ hourfreq = in.ld;
 L = length(in(jj).SsumfftAmp); 
 NFFT = 2^nextpow2(L)/2;
 %NFFT = 8192;
-FreqRange = 0.002:0.0001:0.4;
+% FreqRange = 0.002:0.0001:0.2;
+FreqRange = 0.002:0.002:0.2;
 
 
 
