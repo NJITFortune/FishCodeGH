@@ -25,7 +25,7 @@ FreqRange = 0.002:0.0001:0.2;
     pw(1).SsumfftAmp = array2table(zwelch,'VariableNames',colNames);
     
     %find peak at given frequency
-    range = 0.002;
+    range = 0.002; % 
     xfreq(1) = 1/(2*hourfreq);
     hourpeak(1) = mean(pw(1).SsumfftAmp.pxx(pw(1).SsumfftAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(1).SsumfftAmp.pfreq < ((1/(2*hourperiod) + range/2))));
         freq = xfreq(1);
