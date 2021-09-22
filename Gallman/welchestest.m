@@ -1,13 +1,13 @@
 %function [freq, pwr] = k_welches(in, hourperiod, ReFs)
 %in = output from KatieTrialDessembler 
 
-start = kg(1);
+start = kg(2);
 
 hourperiod = 12;
 
 in = KatieTrialTrendDessembler(start, 1, 48);
 
-%in = in(1);
+in = in(1);
 
 hourfreq = in.ld;
 
