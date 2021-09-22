@@ -46,10 +46,10 @@ FreqRange = 0.002:0.0001:0.2;
         freq = xfreq(1);
         pwr(jj) = hourpeak(1);
         
-end       
+   
   %% plot to check range
  
-for jj = 1:length(in)  
+ 
   figure(34); clf; hold on;
   %fft
   plot(pw(jj).powerfreq, pw(jj).power, '-', 'MarkerSize', 3);
