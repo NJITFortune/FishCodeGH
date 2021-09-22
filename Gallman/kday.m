@@ -2,7 +2,7 @@
 
 clearvars -except kg
 
-figure(101); clf; hold on;
+figure(2); clf; hold on;
 
 in = kg(1);
 p = 0.5;
