@@ -34,6 +34,9 @@ FreqRange = 0.002:0.0001:0.2;
         
   %% plot to check range
   
+  figure(34); clf; hold on;
+  
+  plot(
 
 
 
