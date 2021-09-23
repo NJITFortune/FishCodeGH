@@ -11,7 +11,7 @@ hourperiod = 12;
 
 in = KatieTrialTrendDessembler(start, 1, 48, ReFs);
 
-for jj = 1:length(in)
+for jj = 1%1:length(in)
 
 
 hourfreq = in.ld;
