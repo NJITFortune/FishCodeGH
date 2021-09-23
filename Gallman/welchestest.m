@@ -11,7 +11,10 @@ hourperiod = 12;
 
 in = KatieTrialTrendDessembler(start, 1, 48, ReFs);
 
-dataformama = in(1);
+ampdataformama = in(1).SsumfftAmp;
+timdataformmama = in(1).timcont
+
+
 
 for jj = 1%1:length(in)
 
