@@ -26,6 +26,10 @@ hourfreq = in.ld;
 %Analysis zAMp
 % %fftmachine
 % f = fftmachine(o.z(1).y - mean(o.z(1).y), ReFs, 3); 
+fftReFs
+
+
+
 
 %pwelch
 L = length(in(jj).SsumfftAmp); 
