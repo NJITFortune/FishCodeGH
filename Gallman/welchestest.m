@@ -5,11 +5,13 @@ clearvars -except kg
 
 start = kg(2);
 
-ReFs = 5;
+ReFs = 10;
 
 hourperiod = 12;
 
 in = KatieTrialTrendDessembler(start, 1, 48, ReFs);
+
+dataformama = in(1);
 
 for jj = 1%1:length(in)
 
