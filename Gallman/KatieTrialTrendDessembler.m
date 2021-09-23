@@ -1,4 +1,4 @@
-function out = KatieTrialTrendDessembler(in, channel, triallength)  
+function out = KatieTrialTrendDessembler(in, channel, triallength, ReFs)  
 % clearvars -except kg
 % 
 %  in = kg(56);
@@ -6,7 +6,7 @@ function out = KatieTrialTrendDessembler(in, channel, triallength)
 % % Out is raw data, trial is spline data
 %% Take spline estimate of raw data
 
-ReFs = 10;  % Sample rate for splines
+%ReFs = 10;  % Sample rate for splines
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 
