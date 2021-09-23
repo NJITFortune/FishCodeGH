@@ -14,7 +14,6 @@ in = KatieTrialTrendDessembler(start, 1, 48, ReFs);
 ampdataformama = in(1).SsumfftAmp;
 timdataformmama = in(1).Stimcont;
 dataformama = [timdataformmama, ampdataformama];
-plot(dataformama)
 
 
 
