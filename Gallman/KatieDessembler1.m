@@ -6,7 +6,7 @@
 
 clearvars -except kg
 
-in = kg(57);
+in = kg(59);
 
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 ReFs = 10;  % Sample rate for splines
@@ -30,7 +30,7 @@ lighttimes
 %% Define trial period
 
 % define sample range
-    perd = 48; % default length is 48 hours
+    perd = 96; % default length is 48 hours
     %perd = perd - rem(perd, in.info.ld);  % If not integer divisible, take fewer samples to not go over     
     % How many trials available?
     lengthofsampleHOURS = timcont(end) - timcont(1);    

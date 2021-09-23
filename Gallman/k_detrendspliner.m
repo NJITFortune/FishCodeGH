@@ -1,5 +1,5 @@
 
-function [xx, obwyy, zyy, sumfftyy, lighttimes] =  k_spliner(in, channel, ReFs)
+function [xx, tnormobwyy, tnormzyy, tnormsumfftyy, lighttimes] =  k_detrendspliner(in, channel, ReFs)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -82,29 +82,38 @@ if channel == 1
             spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
             %resample new x values based on light/dark
             obwyy = fnval(xx, spliney);
+            
             %detrend ydata
             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
-            %raw data variables
-                obwtimOG = [in.e(1).s(tto{1}).timcont]/(60*60);
-                obwAmpOG = [in.e(1).s(tto{1}).obwAmp];
+            %extract trend 
+            normobwyytrend = 1./(obwyy - dtobwyy);
+            tnormobwyy = obwyy .* normobwyytrend;
+            %tnormobwyy = obwyy * mean(normobwyytrend);    
+            
       
             %zAmp
             spliney = csaps([in.e(1).s(ttz{1}).timcont]/(60*60), [in.e(1).s(ttz{1}).zAmp], p);
             %resample new x values based on light/dark
             zyy = fnval(xx, spliney);
+            
             %detrend ydata
             dtzyy = detrend(zyy,6,'SamplePoints', xx);
-                ztimOG = [in.e(1).s(ttz{1}).timcont]/(60*60);
-                zAmpOG = [in.e(1).s(ttz{1}).zAmp]; 
+            %extract trend 
+            normzyytrend = 1./(zyy - dtzyy);
+            tnormzyy = obwyy .* normzyytrend;
+                
             
             %sumfft
             spliney = csaps([in.e(1).s(ttsf{1}).timcont]/(60*60), [in.e(1).s(ttsf{1}).sumfftAmp], p);
             %resample new x values based on light/dark
             sumfftyy = fnval(xx, spliney);
+            
             %detrend ydata
             dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
-                sumffttimOG = [in.e(1).s(ttsf{1}).timcont]/(60*60);
-                sumfftAmpOG = [in.e(1).s(ttsf{1}).sumfftAmp]; 
+            %extract trend 
+            normsumfftyytrend = 1./(sumfftyy - dtsumfftyy);
+            tnormsumfftyy = sumfftyy .* normsumfftyytrend;
+               
      
       
 else %channel = 2
@@ -114,32 +123,38 @@ else %channel = 2
 
       %estimate new yvalues for every x value
              
-            %obw
+           %obw
             spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
             %resample new x values based on light/dark
             obwyy = fnval(xx, spliney);
+            
             %detrend ydata
             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
-                obwtimOG = [in.e(2).s(tto{2}).timcont]/(60*60);
-                obwAmpOG = [in.e(2).s(tto{2}).obwAmp];
+            %extract trend 
+            normobwyytrend = 1./(obwyy - dtobwyy);
+            tnormobwyy = obwyy .* normobwyytrend;
                     
-            %zAmp
+           %zAmp
             spliney = csaps([in.e(2).s(ttz{2}).timcont]/(60*60), [in.e(2).s(ttz{2}).zAmp], p);
             %resample new x values based on light/dark
             zyy = fnval(xx, spliney);
+            
             %detrend ydata
             dtzyy = detrend(zyy,6,'SamplePoints', xx);
-                ztimOG = [in.e(2).s(ttz{2}).timcont]/(60*60);
-                zAmpOG = [in.e(2).s(ttz{2}).zAmp]; 
+            %extract trend 
+            normzyytrend = 1./(zyy - dtzyy);
+            tnormzyy = obwyy .* normzyytrend;
             
-            %sumfft
+           %sumfft
             spliney = csaps([in.e(2).s(ttsf{2}).timcont]/(60*60), [in.e(2).s(ttsf{2}).sumfftAmp], p);
             %resample new x values based on light/dark
             sumfftyy = fnval(xx, spliney);
+            
             %detrend ydata
             dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
-                sumffttimOG = [in.e(2).s(ttsf{2}).timcont]/(60*60);
-                sumfftAmpOG = [in.e(2).s(ttsf{2}).sumfftAmp]; 
+            %extract trend 
+            normsumfftyytrend = 1./(sumfftyy - dtsumfftyy);
+            tnormsumfftyy = sumfftyy .* normsumfftyytrend;
             
           
 

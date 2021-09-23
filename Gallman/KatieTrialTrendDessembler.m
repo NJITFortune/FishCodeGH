@@ -1,8 +1,8 @@
-function out = KatieTrialDessembler(in, channel, triallength)  
-%clearvars -except kg
+function out = KatieTrialTrendDessembler(in, channel, triallength)  
+% clearvars -except kg
 % 
-% in = kg(49);
-% channel = 2;
+%  in = kg(56);
+%  channel = 1;
 % % Out is raw data, trial is spline data
 %% Take spline estimate of raw data
 
@@ -10,15 +10,14 @@ ReFs = 10;  % Sample rate for splines
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 
-[xx, obwyy, zyy, sumfftyy, lighttimes] = k_spliner(in,channel, ReFs);
-%lighttimes
+[xx, obwyy, zyy, sumfftyy, lighttimes] = k_detrendspliner(in,channel, ReFs);
+
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
 % lighttimes(end +1) = lighttimes(end) + ld;
 
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
-    
 
     timcont = [in.e(1).s.timcont] / (60*60);
     timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
@@ -27,8 +26,8 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %% Define trial period
 
 % define sample range
-perd = triallength; %in hours
-  %  perd = 96; % default length is 48 hours
+perd = triallength;
+    %perd = 48; % default length is 48 hours
     %perd = perd - rem(perd, in.info.ld);  % If not integer divisible, take fewer samples to not go over     
     % How many trials available?
     lengthofsampleHOURS = lighttimes(end) - lighttimes(1); 
@@ -115,9 +114,9 @@ for jj = 1:numotrials
     
 end
 
-% %% Plot to check
-% %raw data
-% 
+%% Plot to check
+%raw data
+
 % figure(48); clf; title('spline vs raw data');hold on; 
 % 
 %  
