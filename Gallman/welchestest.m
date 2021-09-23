@@ -11,12 +11,7 @@ hourperiod = 12;
 
 in = KatieTrialTrendDessembler(start, 1, 48, ReFs);
 
-dataformama.amp = in(1).SsumfftAmp;
-dataformama.tim = in(1).Stimcont;
-
-
-% dataformama = [timdataformmama, ampdataformama];
-% plot(in(1).Stimcont, in(1).SsumfftAmp);
+in = in(1);
 
 %%
 
