@@ -11,9 +11,9 @@ hourperiod = 12;
 
 in = KatieTrialTrendDessembler(start, 1, 48, ReFs);
 
-ampdataformama = in(1);
+in = in(1);
 
-
+%%
 
 for jj = 1%1:length(in)
 
