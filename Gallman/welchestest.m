@@ -87,7 +87,7 @@ FreqRange = 0.002:0.002:0.2;
 %     
 %somewhere in the middle
 fs = 60; %in Hz - cycles per sec
-nfft = 1000*length(in(jj).SsumfftAmp);
+nfft = 2000*length(in(jj).SsumfftAmp);
 npts = length(in(jj).SsumfftAmp); %480;
 data = in.SsumfftAmp - 1;
 datalessmean = data - mean(data);
