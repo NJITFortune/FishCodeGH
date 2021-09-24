@@ -89,7 +89,7 @@ FreqRange = 0.002:0.002:0.2;
 fs = 60; %in Hz - cycles per sec
 nfft = 1000*length(in(jj).SsumfftAmp);
 npts = length(in(jj).SsumfftAmp); %480;
-data = in.SsumfftAmp;
+data = in.SsumfftAmp - 1;
 datalessmean = data - mean(data);
 
         [pxx, f] = pwelch(data, hamming(npts), [], nfft, fs);
