@@ -85,6 +85,15 @@ x = data - 1; %this gets rid of the dc offset
     hpeakIDX = f > (triallengthhours/(2*hourperiod) - range/2) & f < (triallengthhours/(2*hourperiod) + range/2);
     hourpeak = mean(pxx(hpeakIDX));
     
+%somewhere in the middle
+fs = 10/3600; %in Hz - cycles per sec
+nfft = length(in(jj).SsumfftAmp);
+npts = length(in(jj).SsumfftAmp); %480;
+data = in.SsumfftAmp;
+datalessmean = data - mean(data);
+
+        [pxx, f] = pwelch(datalessmean, hamming(npts), [], nfft, fs);
+    
     
  %% plot to check mama
  
@@ -93,11 +102,11 @@ x = data - 1; %this gets rid of the dc offset
     %fft created by pwelch
     plot(f, pxx, '-', 'MarkerSize', 3); xlim([0,7]); %ylim([0, 10]);
     %peak amp fft power
-    plot(pkfreq1, pkAmp1, 'r*', 'MarkerSize', 5); 
+    %plot(pkfreq1, pkAmp1, 'r*', 'MarkerSize', 5); 
     %24 hour power
-    plot(triallengthhours/(2*hourperiod), hourpeak, 'b*', 'MarkerSize', 5); 
+   % plot(triallengthhours/(2*hourperiod), hourpeak, 'b*', 'MarkerSize', 5); 
     %line at hour freq of interest
-    plot([timfreq timfreq], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
+    %plot([timfreq timfreq], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
     
     
     
