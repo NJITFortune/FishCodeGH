@@ -92,7 +92,7 @@ npts = length(in(jj).SsumfftAmp); %480;
 data = in.SsumfftAmp;
 datalessmean = data - mean(data);
 
-        [pxx, f] = pwelch(datalessmean, hamming(npts), [], nfft, fs);
+        [pxx, f] = pwelch(data, hamming(npts), [], nfft, fs);
             %find the amp peak with the greatest fft power
         [pkAmp1, pkIDX1] = max(pxx);
         %find the freq of the max peak
