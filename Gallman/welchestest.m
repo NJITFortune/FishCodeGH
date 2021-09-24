@@ -3,7 +3,7 @@
 
 clearvars -except kg
 
-start = kg(2);
+start = kg(28);
 
 ReFs = 60;
 
