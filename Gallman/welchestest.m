@@ -29,15 +29,12 @@ hourfreq = in.ld;
 fftReFs
 
 
-
-
-%pwelch
+%pwelch eric
 L = length(in(jj).SsumfftAmp); 
 NFFT = 2^nextpow2(L)/2;
 %NFFT = 8192;
 % FreqRange = 0.002:0.0001:0.2;
 FreqRange = 0.002:0.002:0.2;
-
 
 
     %generate fft
@@ -46,6 +43,12 @@ FreqRange = 0.002:0.002:0.2;
     [pw(jj).pkAmp1, pkIDX1] = max(pw(jj).power);
     [btAmp1, btIDX1] = min(pw(jj).power);
     pw(jj).pkfrq1 = pw(jj).powerfreq(pkIDX1);
+    
+    
+    
+%pwelch mama
+
+
     
     
     %populate values 
