@@ -94,7 +94,7 @@ x = data - 1; %this gets rid of the dc offset
     %peak amp fft power
     plot(pkfreq1, pkAmp1, 'r*', 'MarkerSize', 5); 
     %24 hour power
-    plot(fs/(2*hourperiod), hourpeak, 'b*', 'MarkerSize', 5); 
+    plot(triallengthhours/(2*hourperiod), hourpeak, 'b*', 'MarkerSize', 5); 
     %line at hour freq of interest
     plot([timfreq timfreq], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
     
