@@ -60,9 +60,11 @@ FreqRange = 0.002:0.002:0.2;
 fs = length(in(jj).SsumfftAmp); %480;
 nfft = length(in(jj).SsumfftAmp); %480;
 npts = length(in(jj).SsumfftAmp); %480;
+hourperiod = hourperiod*3600;
 data = in(1).SsumfftAmp;
 x = data - 1; %this gets rid of the dc offset
 [pxx,f] = pwelch(x,hamming(npts),[],nfft,fs);
+
 
 
 %values for plotting peaks at points of interest    
@@ -77,7 +79,7 @@ x = data - 1; %this gets rid of the dc offset
     
     %find fft power of amp at a given time frequency
     range = 0.002;
-    timfreq = 1/(2*hourfreq);
+    timfreq = 1/(2*(hourfreq*3600));
     hpeakIDX = f > (1/(2*hourperiod) - range/2) & f < (1/(2*hourperiod) + range/2);
     hourpeak = mean(pxx(hpeakIDX));
     
