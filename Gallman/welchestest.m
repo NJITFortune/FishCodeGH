@@ -86,7 +86,7 @@ x = data - 1; %this gets rid of the dc offset
     hourpeak = mean(pxx(hpeakIDX));
     
 %somewhere in the middle
-fs = 10/3600; %in Hz - cycles per sec
+fs = 10; %in Hz - cycles per sec
 nfft = length(in(jj).SsumfftAmp);
 npts = length(in(jj).SsumfftAmp); %480;
 data = in.SsumfftAmp;
