@@ -27,6 +27,7 @@ hourfreq = in.ld;
 % %fftmachine
 % f = fftmachine(o.z(1).y - mean(o.z(1).y), ReFs, 3); 
 ReFs = 10;
+triallengthhours = 48;
 
 
 %pwelch eric
@@ -79,8 +80,8 @@ x = data - 1; %this gets rid of the dc offset
     
     %find fft power of amp at a given time frequency
     range = 0.002;
-    timfreq = fs/(2*hourfreq);
-    hpeakIDX = f > (fs/(2*hourperiod) - range/2) & f < (fs/(2*hourperiod) + range/2);
+    timfreq = triallengthhours/(2*hourfreq);
+    hpeakIDX = f > (triallengthhours/(2*hourperiod) - range/2) & f < (triallengthhours/(2*hourperiod) + range/2);
     hourpeak = mean(pxx(hpeakIDX));
     
     
