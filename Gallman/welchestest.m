@@ -85,7 +85,18 @@ x = in(1)-1; %this gets rid of the dc offset
  
  figure(33); clf; hold on;
  
- plot(
+    %fft created by pwelch
+    plot(f, pxx, '-', 'MarkerSize', 3);
+    %peak amp fft power
+    plot(pkfreq1, pkAmp1, 'r*', 'MarkerSize', 5); 
+    %24 hour power
+    plot(1/(2*hourperiod), hourpeak, 'b*', 'MarkerSize', 5); 
+    %line at hour freq of interest
+    plot([1/(hourfreq*2) 1/(hourfreq*2)], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
+    
+    
+    
+ 
  
     
     
