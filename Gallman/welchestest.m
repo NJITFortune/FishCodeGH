@@ -44,13 +44,6 @@ FreqRange = 0.002:0.002:0.2;
     [btAmp1, btIDX1] = min(pw(jj).power);
     pw(jj).pkfrq1 = pw(jj).powerfreq(pkIDX1);
     
-    
-    
-%pwelch mama
-
-
-    
-    
     %populate values 
     zwelch = [pw(jj).power', pw(jj).powerfreq'];
     colNames = {'pxx','pfreq'};
@@ -62,9 +55,44 @@ FreqRange = 0.002:0.002:0.2;
     hourpeak(1) = mean(pw(jj).SsumfftAmp.pxx(pw(jj).SsumfftAmp.pfreq > (1/(2*hourperiod) - range/2) & pw(jj).SsumfftAmp.pfreq < ((1/(2*hourperiod) + range/2))));
         freq = xfreq(1);
         pwr(jj) = hourpeak(1);
+    
+%pwelch mama
+fs = length(in(jj).SsumfftAmp); %480;
+nfft = length(in(jj).SsumfftAmp); %480;
+npts = length(in(jj).SsumfftAmp); %480;
+x = in(1)-1; %this gets rid of the dc offset
+[pxx,f] = pwelch(x,hamming(npts),[],nfft,fs);
+
+
+%values for plotting peaks at points of interest    
+    %find the amp peak with the greatest fft power
+    [pkAmp1, pkIDX1] = max(pxx);
+    %find the freq of the max peak
+    pkfreq1 = f(pkIDX1);
+    
+    %find the lowest fft power for plotting lines
+    [btAmp1, btIDX1] = min(pxx);
+    
+    
+    %find fft power of amp at a given time frequency
+    range = 0.002;
+    timfreq = 1/(2*hourfreq);
+    hpeakIDX = f > (1/(2*hourperiod) - range/2) & f < (1/(2*hourperiod) + range/2);
+    hourpeak = mean(pxx(hpeakIDX));
+    
+    
+ %% plot to check mama
+ 
+ figure(33); clf; hold on;
+ 
+    
+    
+
+    
+    
         
    
-  %% plot to check range
+  %% plot to check range eric
  
  
   figure(34); clf; hold on;
