@@ -100,7 +100,7 @@ datalessmean = data - mean(data);
  figure(33); clf; hold on;
  
     %fft created by pwelch
-    plot(f, pxx, '-', 'MarkerSize', 3); xlim([0,0.2]); %ylim([0, 10]);
+    plot(f, pxx, '-', 'MarkerSize', 3); xlim([0,0.02]); %ylim([0, 10]);
     %peak amp fft power
     %plot(pkfreq1, pkAmp1, 'r*', 'MarkerSize', 5); 
     %24 hour power
