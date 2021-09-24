@@ -5,7 +5,7 @@ clearvars -except kg
 
 start = kg(28);
 
-ReFs = 10/3600;
+ReFs = 10;
 
 hourperiod = 12;
 
@@ -17,7 +17,7 @@ in = in(1);
 
 for jj = 1%1:length(in)
 
-
+ReFs = 10/3600;
 hourfreq = in.ld;
 
 %% Run fft (pwelch)
