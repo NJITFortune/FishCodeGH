@@ -61,7 +61,7 @@ fs = length(in(jj).SsumfftAmp); %480;
 nfft = length(in(jj).SsumfftAmp); %480;
 npts = length(in(jj).SsumfftAmp); %480;
 data = in(1);
-x = data-1; %this gets rid of the dc offset
+x = data; %this gets rid of the dc offset
 [pxx,f] = pwelch(x,hamming(npts),[],nfft,fs);
 
 
