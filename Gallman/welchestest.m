@@ -5,7 +5,7 @@ clearvars -except kg
 
 start = kg(28);
 
-ReFs = 10;
+ReFs = 10/3600;
 
 hourperiod = 12;
 
@@ -58,7 +58,8 @@ FreqRange = 0.002:0.002:0.2;
         pwr(jj) = hourpeak(1);
     
 %pwelch mama
-fs = length(in(jj).SsumfftAmp); %480;
+%fs = length(in(jj).SsumfftAmp); %480;
+fs = 10/3600;
 nfft = length(in(jj).SsumfftAmp); %480;
 npts = length(in(jj).SsumfftAmp); %480;
 hourperiod = hourperiod*3600;
