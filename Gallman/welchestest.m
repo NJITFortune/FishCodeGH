@@ -79,8 +79,8 @@ x = data - 1; %this gets rid of the dc offset
     
     %find fft power of amp at a given time frequency
     range = 0.002;
-    timfreq = 1/(2*(hourfreq*3600));
-    hpeakIDX = f > (1/(2*hourperiod) - range/2) & f < (1/(2*hourperiod) + range/2);
+    timfreq = fs/(2*hourfreq);
+    hpeakIDX = f > (fs/(2*hourperiod) - range/2) & f < (fs/(2*hourperiod) + range/2);
     hourpeak = mean(pxx(hpeakIDX));
     
     
@@ -89,7 +89,7 @@ x = data - 1; %this gets rid of the dc offset
  figure(33); clf; hold on;
  
     %fft created by pwelch
-    plot(f, pxx, '-', 'MarkerSize', 3); xlim([0,5]); %ylim([0, 10]);
+    plot(f, pxx, '-', 'MarkerSize', 3); xlim([0,7]); %ylim([0, 10]);
     %peak amp fft power
     plot(pkfreq1, pkAmp1, 'r*', 'MarkerSize', 5); 
     %24 hour power
