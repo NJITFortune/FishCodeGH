@@ -87,7 +87,7 @@ x = data - 1; %this gets rid of the dc offset
  figure(33); clf; hold on;
  
     %fft created by pwelch
-    plot(f, pxx, '-', 'MarkerSize', 3);
+    plot(f, pxx, '-', 'MarkerSize', 3); xlim([0,5]); ylim([0, 10]);
     %peak amp fft power
     plot(pkfreq1, pkAmp1, 'r*', 'MarkerSize', 5); 
     %24 hour power
