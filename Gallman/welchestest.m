@@ -85,6 +85,8 @@ x = in(1)-1; %this gets rid of the dc offset
  
  figure(33); clf; hold on;
  
+ plot(
+ 
     
     
 
