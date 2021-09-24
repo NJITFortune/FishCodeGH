@@ -57,34 +57,34 @@ FreqRange = 0.002:0.002:0.2;
         freq = xfreq(1);
         pwr(jj) = hourpeak(1);
     
-%pwelch mama
-%fs = length(in(jj).SsumfftAmp); %480;
-fs = 10/3600;
-nfft = length(in(jj).SsumfftAmp); %480;
-npts = length(in(jj).SsumfftAmp); %480;
-hourperiod = hourperiod*3600;
-data = in(1).SsumfftAmp;
-x = data - 1; %this gets rid of the dc offset
-[pxx,f] = pwelch(x,hamming(npts),[],nfft,fs);
-
-
-
-%values for plotting peaks at points of interest    
-    %find the amp peak with the greatest fft power
-    [pkAmp1, pkIDX1] = max(pxx);
-    %find the freq of the max peak
-    pkfreq1 = f(pkIDX1);
+% %pwelch mama
+% %fs = length(in(jj).SsumfftAmp); %480;
+% fs = 10/3600;
+% nfft = length(in(jj).SsumfftAmp); %480;
+% npts = length(in(jj).SsumfftAmp); %480;
+% hourperiod = hourperiod*3600;
+% data = in(1).SsumfftAmp;
+% x = data - 1; %this gets rid of the dc offset
+% [pxx,f] = pwelch(x,hamming(npts),[],nfft,fs);
+% 
+% 
+% 
+% %values for plotting peaks at points of interest    
+%     %find the amp peak with the greatest fft power
+%     [pkAmp1, pkIDX1] = max(pxx);
+%     %find the freq of the max peak
+%     pkfreq1 = f(pkIDX1);
+%     
+%     %find the lowest fft power for plotting lines
+%     [btAmp1, btIDX1] = min(pxx);
     
-    %find the lowest fft power for plotting lines
-    [btAmp1, btIDX1] = min(pxx);
     
-    
-    %find fft power of amp at a given time frequency
-    range = 0.002;
-    timfreq = triallengthhours/(2*hourfreq);
-    hpeakIDX = f > (triallengthhours/(2*hourperiod) - range/2) & f < (triallengthhours/(2*hourperiod) + range/2);
-    hourpeak = mean(pxx(hpeakIDX));
-    
+%     %find fft power of amp at a given time frequency
+%     range = 0.002;
+%     timfreq = triallengthhours/(2*hourfreq);
+%     hpeakIDX = f > (triallengthhours/(2*hourperiod) - range/2) & f < (triallengthhours/(2*hourperiod) + range/2);
+%     hourpeak = mean(pxx(hpeakIDX));
+%     
 %somewhere in the middle
 fs = 10; %in Hz - cycles per sec
 nfft = length(in(jj).SsumfftAmp);
@@ -93,7 +93,21 @@ data = in.SsumfftAmp;
 datalessmean = data - mean(data);
 
         [pxx, f] = pwelch(datalessmean, hamming(npts), [], nfft, fs);
+            %find the amp peak with the greatest fft power
+        [pkAmp1, pkIDX1] = max(pxx);
+        %find the freq of the max peak
+        pkfreq1 = f(pkIDX1);
+
+        %find the lowest fft power for plotting lines
+        [btAmp1, btIDX1] = min(pxx);
+        
+        %find fft power of amp at a given time frequency
+    range = 0.002;
+    timfreq = 1/(2*hourfreq);
+    hpeakIDX = f > (1/(2*hourperiod) - range/2) & f < (1/(2*hourperiod) + range/2);
+    hourpeak = mean(pxx(hpeakIDX));
     
+
     
  %% plot to check mama
  
@@ -102,11 +116,11 @@ datalessmean = data - mean(data);
     %fft created by pwelch
     plot(f, pxx, '-', 'MarkerSize', 3); xlim([0,0.5]); %ylim([0, 10]);
     %peak amp fft power
-    %plot(pkfreq1, pkAmp1, 'r*', 'MarkerSize', 5); 
+    plot(1/(2*hourfreq), pkAmp1, 'r*', 'MarkerSize', 5); 
     %24 hour power
-   % plot(triallengthhours/(2*hourperiod), hourpeak, 'b*', 'MarkerSize', 5); 
+    plot(1/(2*hourperiod), hourpeak, 'b*', 'MarkerSize', 5); 
     %line at hour freq of interest
-    %plot([timfreq timfreq], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
+    plot([timfreq timfreq], [btAmp1, pkAmp1], 'k-', 'LineWidth', 0.25);
     
     
     
