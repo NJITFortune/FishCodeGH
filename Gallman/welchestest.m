@@ -5,7 +5,7 @@ clearvars -except kg
 
 start = kg(28);
 
-ReFs = 60;
+ReFs = 10;
 
 hourperiod = 12;
 
@@ -86,13 +86,13 @@ FreqRange = 0.002:0.002:0.2;
 %     hourpeak = mean(pxx(hpeakIDX));
 %     
 %somewhere in the middle
-fs = 60; %in Hz - cycles per sec
+fs = 10; %in Hz - cycles per sec
 nfft = 100*length(in(jj).SsumfftAmp);
 npts = length(in(jj).SsumfftAmp); %480;
 data = in.SsumfftAmp - 1;
 datalessmean = data - mean(data);
 
-        [pxx, f] = pwelch(data, hamming(npts), [], nfft, fs);
+        [pxx, f] = pwelch(datalessmean, hamming(npts), [], nfft, fs);
             %find the amp peak with the greatest fft power
         [pkAmp1, pkIDX1] = max(pxx);
         %find the freq of the max peak
