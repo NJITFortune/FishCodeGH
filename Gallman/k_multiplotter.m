@@ -31,7 +31,7 @@ figure(1); clf;
     
         
     ax(2) = subplot(412); hold on;
-        plot([out(Hisortidx).timcont], [out(Hisortidx).hifreq], '.'); 
+        plot([out.Hitimobw], [out.HIfreq], '.'); 
         left; plot([out(Losortidx).timcont], [out(Losortidx).lofreq], '.');
         
     
