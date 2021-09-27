@@ -46,23 +46,23 @@ function trial = KatieDayDessembler(out, ReFs)
 
                 %fill temporary vector with data from each day 
                 mday(j,:) = mday(j,:) + trial(j).day(k).SobwAmp;
-                subplot(211);
+                subplot(211); title('Days');
                 plot(trial(j).tim, trial(j).day(k).SobwAmp);
 
         end
 
          % To get average across days, divide by number of days
             mday(j,:) = mday(j,:) / length(trial(j).day);
-            subplot(212); hold on;
-            plot(trial(j).tim, mday(j,:), 'k-', 'Linewidth', 1);
+            subplot(212); hold on; title('Day average by trial');
+            plot(trial(j).tim, mday(j,:), '-', 'Linewidth', 1);
 
     end
     
     % Mean of means
  
     subplot(212); hold on;
-     meanofmeans2 = mean(mtrial2); % Takes the mean of the means for a day from each trial 
-    plot(trial(j).tim, meanofmeans2, 'k', 'LineWidth', 3);
+     meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
+    plot(trial(j).tim, meanofmeans, 'k-', 'LineWidth', 3);
     
 
     
@@ -70,23 +70,22 @@ function trial = KatieDayDessembler(out, ReFs)
  figure(28); clf; hold on; 
     for j=1:length(trial) 
 
-        %create temporary vector to calculate mean by trial
-        mday(j,:) = zeros(1,length(trial(j).tim));
-
+        
 
         for k=1:length(trial(j).day)
+            
 
                 %fill temporary vector with data from each day 
-                mday(j,:) = mday(j,:) + trial(j).day(k).SobwAmp;
+                allday(k,:) = allday(k,:) + trial(j).day(k).SobwAmp;
                 subplot(211);
                 plot(trial(j).tim, trial(j).day(k).SobwAmp);
 
         end
 
          % To get average across days, divide by number of days
-            mday(j,:) = mday(j,:) / length(trial(j).day);
+            allday(k,:) = allday(k,:) / length(allday(k,:));
             subplot(212);
-            plot(trial(j).tim, mday(j,:), 'k-', 'Linewidth', 1);
+            plot(trial(j).tim, allday(k,:), 'k-', 'Linewidth', 1);
 
 
     end
