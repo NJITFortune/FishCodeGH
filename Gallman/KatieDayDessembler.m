@@ -30,3 +30,59 @@ function trial = KatieDayDessembler(out, ReFs)
             trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
 
     end
+    
+ %% plot to check
+
+ %all days
+ %average day by trial
+ figure(27); clf; hold on; title('Day average by trial');
+    for j=1:length(trial) 
+
+        %create temporary vector to calculate mean by trial
+        mday(j,:) = zeros(1,length(trial(j).tim));
+
+
+        for k=1:length(trial(j).day)
+
+                %fill temporary vector with data from each day 
+                mday(j,:) = mday(j,:) + trial(j).day(k).SobwAmp;
+                subplot(211);
+                plot(trial(j).tim, trial(j).day(k).SobwAmp);
+
+        end
+
+         % To get average across days, divide by number of days
+            mday(j,:) = mday(j,:) / length(trial(j).day);
+            subplot(212);
+            plot(trial(j).tim, mday(j,:), 'k-', 'Linewidth', 1);
+
+
+    end
+
+    
+    
+ figure(28); clf; hold on; 
+    for j=1:length(trial) 
+
+        %create temporary vector to calculate mean by trial
+        mday(j,:) = zeros(1,length(trial(j).tim));
+
+
+        for k=1:length(trial(j).day)
+
+                %fill temporary vector with data from each day 
+                mday(j,:) = mday(j,:) + trial(j).day(k).SobwAmp;
+                subplot(211);
+                plot(trial(j).tim, trial(j).day(k).SobwAmp);
+
+        end
+
+         % To get average across days, divide by number of days
+            mday(j,:) = mday(j,:) / length(trial(j).day);
+            subplot(212);
+            plot(trial(j).tim, mday(j,:), 'k-', 'Linewidth', 1);
+
+
+    end
+
+
