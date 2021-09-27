@@ -86,7 +86,7 @@ perd = triallength;
 
 
     for k = 1:length(day)
-        mday(k,:) = zeros(1, length(day.tim));
+        mday(k,:) = zeros(1, length(day(1).tim));
         plot(day.tim, day(k).SobwAmp);
         mday(k,:) = mday(k,:) + day(k).SobwAmp;
     end
@@ -100,7 +100,7 @@ perd = triallength;
 
 
     for k = 1:length(day)
-        mday(k,:) = zeros(1, length(day.tim));
+        mday(k,:) = zeros(1, length(day(1).tim));
         plot(day(k).timcont, day(k).obwAmp);
         mday(k,:) = mday(k,:) + day(k).obwAmp;
     end
