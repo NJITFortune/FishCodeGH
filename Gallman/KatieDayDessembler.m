@@ -46,7 +46,7 @@ function trial = KatieDayDessembler(out, ReFs)
 
                 %fill temporary vector with data from each day 
                 mday(j,:) = mday(j,:) + trial(j).day(k).SobwAmp;
-                subplot(211); title('Days');
+                subplot(211); hold on; title('Days');
                 plot(trial(j).tim, trial(j).day(k).SobwAmp);
 
         end
