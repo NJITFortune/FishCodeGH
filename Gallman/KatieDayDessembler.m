@@ -54,20 +54,20 @@ perd = triallength;
                 timidx = find(timcont >= lighttimes(1) + (kk-1) * (ld*2) & timcont < lighttimes(1) + (kk) * (ld*2));
 
                 day(kk).obwAmp = [in.e(j).s(timidx).obwAmp];
-                day(kk).zAmp = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).zAmp];
-                day(kk).sumfft = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).sumfftAmp];
-                day(kk).timcont = timcont(dayidx:dayidx+howmanysamplesinaday-1);
+                day(kk).zAmp = [in.e(j).s(timidx).zAmp];
+                day(kk).sumfft = [in.e(j).s(timidx).sumfftAmp];
+                day(kk).timcont = timcont(timidx);
     end
 
 %spline data
     for k = 1:howmanysamplesinaday
 
     %         % Get the index of the start time of the day
-                dayidx = find(xx > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
+                dayidx = find(xx > xx(1) + (k-1) * (ld*2) & xx < xx(1) + kk*(ld*2)); % k-1 so that we start at zero
 
-                day(k).SobwAmp = obwyy(dayidx:dayidx+howmanysamplesinaday-1);
-                day(k).SzAmp = zyy(dayidx:dayidx+howmanysamplesinaday-1);
-                day(k).Ssumfftyy = sumfftyy(dayidx:dayidx+howmanysamplesinaday-1);
+                day(k).SobwAmp = obwyy(dayidx);
+                day(k).SzAmp = zyy(dayidx);
+                day(k).Ssumfftyy = sumfftyy(dayidx);
                 
     end
     
