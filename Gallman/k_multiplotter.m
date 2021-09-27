@@ -2,6 +2,15 @@ function k_multiplotter(out)
 %% preparations
 %indicies for fish/tube data
 
+    out.idx(1).Hiobw = intube1hi;
+    out.idx(2).Hiobw = intube2hi;
+    out.idx(1).Loobw = intube1lo;
+    out.idx(2).Loobw = intube2lo;
+    
+    hitube{1} = 1:length(
+    
+            
+
 
 
 
