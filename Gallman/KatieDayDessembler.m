@@ -44,17 +44,17 @@ perd = triallength;
 %% Divide data into days
 
 %raw data
-    for kk = 1:howmanysamplesinaday
-
-                j = channel;
-    %         % Get the index of the start time of the trial
-                dayidx = find(timcont > (kk-1) * (ld*2), 1) -1; % k-1 so that we start at zero
-
-                day(kk).obwAmp = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).obwAmp];
-                day(kk).zAmp = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).zAmp];
-                day(kk).sumfft = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).sumfftAmp];
-                day(kk).timcont = timcont(dayidx:dayidx+howmanysamplesinaday-1);
-    end
+%     for kk = 1:howmanysamplesinaday
+% 
+%                 j = channel;
+%     %         % Get the index of the start time of the trial
+%                 dayidx = find(timcont > (kk-1) * (ld*2), 1) -1; % k-1 so that we start at zero
+% 
+%                 day(kk).obwAmp = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).obwAmp];
+%                 day(kk).zAmp = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).zAmp];
+%                 day(kk).sumfft = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).sumfftAmp];
+%                 day(kk).timcont = timcont(dayidx:dayidx+howmanysamplesinaday-1);
+%     end
 
 %spline data
     for k = 1:howmanysamplesinaday
