@@ -53,11 +53,17 @@ function trial = KatieDayDessembler(out, ReFs)
 
          % To get average across days, divide by number of days
             mday(j,:) = mday(j,:) / length(trial(j).day);
-            subplot(212);
+            subplot(212); hold on;
             plot(trial(j).tim, mday(j,:), 'k-', 'Linewidth', 1);
 
-
     end
+    
+    % Mean of means
+ 
+    subplot(212); hold on;
+     meanofmeans2 = mean(mtrial2); % Takes the mean of the means for a day from each trial 
+    plot(trial(j).tim, meanofmeans2, 'k', 'LineWidth', 3);
+    
 
     
     
