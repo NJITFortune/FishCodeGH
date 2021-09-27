@@ -1,4 +1,4 @@
-function trial = KatieDayDessembler(in, channel, triallength, ReFs)
+function day = KatieDayDessembler(in, channel, triallength, ReFs)
 %% Take spline estimate of raw data
 
 %ReFs = 10;  % Sample rate for splines
@@ -28,8 +28,12 @@ perd = triallength;
     lengthofsampleHOURS = lighttimes(end) - lighttimes(1); 
     %lengthofsampleHOURS = timcont(end) - timcont(1); 
     % How many integer trials in dataset
-    numotrials = floor(lengthofsampleHOURS / perd); % of trials
-
+    %numotrials = floor(lengthofsampleHOURS / perd); % of trials
+    
+    % Divide by daylength to get the number of days in the trial
+        howmanydaysintrial = floor(perd / (ld*2));
+        % This is the number of sample in a day
+        howmanysamplesinaday = ld * 2 * ReFs;
 
 % %testing timidx
 % timz = 1:1:numotrials+1;
@@ -37,168 +41,69 @@ perd = triallength;
 %     triallength(timz) = lighttimes(1) + (perd*(timz-1)); 
 
 
-%% Divide data into trials
+%% Divide data into days
 
 %raw data
+    for kk = 1:howmanysamplesinaday
 
-for jj = 1:numotrials
-    
-%             % indices for our sample window of perd hours
-%             timidx = find(timcont >= timcont(1) + ((jj-1)*perd) & ...
-%                timcont < timcont(1) + (jj*perd));
+                j = channel;
+    %         % Get the index of the start time of the trial
+                dayidx = find(timcont > (kk-1) * (ld*2), 1) -1; % k-1 so that we start at zero
 
-            j = channel;
-            timcont = [in.e(j).s.timcont]/3600;
-                %timcont needs to have the same indicies as the rest of the
-                %data
-            % indices for our sample window of perd hours
-            timidx = find(timcont >= lighttimes(1) + ((jj-1)*perd) & ...
-            timcont < lighttimes(1) + (jj*perd));
-
-
-%             % Get the index for the start of the current period (xx is time)
-%             timidx = find(timcont > timcont(1) + ((jj-1) * perd), 1);
-%             % Get the rest of the indices for the trial  
-%             timidx = timidx:timidx + (perd*ReFs)-1;
-            
-         
-            
-           
-             % Data   
-             out(jj).obwAmp = [in.e(j).s(timidx).obwAmp];
-             out(jj).zAmp = [in.e(j).s(timidx).zAmp];
-             out(jj).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
-             out(jj).fftFreq = [in.e(j).s(timidx).fftFreq];
-             
-             % Time and treatment 
-             out(jj).timcont = [in.e(j).s(timidx).timcont] - in.e(j).s(timidx(1)).timcont; %+1
-             out(jj).entiretimcont = [in.e(j).s(timidx).timcont];
-             out(jj).light = [in.e(j).s(timidx).light];
-             out(jj).temp = [in.e(j).s(timidx).temp];
-             
-             out(jj).ld = in.info.ld; 
-             %out(jj).kg = orgidx; % idx for kg
-             
-           
-
-end   
-
+                day(k).obwAmp = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).obwAmp];
+                day(k).zAmp = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).zAmp];
+                day(k).sumfft = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).sumfftAmp];
+                day(k).timcont = timcont(dayidx:dayidx+howmanysamplesinaday-1);
+    end
 
 %spline data
+    for k = 1:howmanysamplesinaday
 
-for jj = 1:numotrials
-    
-    
-             
-            % Get the index for the start of the current period (xx is time)
-            Stimidx = find(xx > xx(1) + ((jj-1) * perd), 1);
-            % Get the rest of the indices for the trial  
-            Stimidx = Stimidx:Stimidx + (perd*ReFs)-1;
-            
-            if length(zyy) >= Stimidx(end)
-             % Data   
-             out(jj).SobwAmp = obwyy(Stimidx);
-             out(jj).SzAmp = zyy(Stimidx);
-             out(jj).SsumfftAmp = sumfftyy(Stimidx);
-             
-             % Time  
-             out(jj).Stimcont = xx(Stimidx) - xx(Stimidx(1)); % Time starting at zero  
-             out(jj).Sentiretimcont = xx(Stimidx);
-            end
-    
-    
-end
-%above copied from KatieTrialTrendDessembler
+    %         % Get the index of the start time of the trial
+                dayidx = find(xx > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
 
-%% divide trials into days
-
-
-    for jj = length(out):-1:1 % For each trial
-        
-        ld = out(jj).ld;
-
-        % Divide by daylength to get the number of days in the trial
-        howmanydaysintrial = floor(perd / (ld*2));
-        % This is the number of sample in a day
-        howmanysamplesinaday = ld * 2 * ReFs;
-
-        for k = 1:howmanydaysintrial % Each day in a trial
-
-
-            % Get the index of the start time of the trial
-            dayidx = find(out(jj).Stimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
-
-            % Get the datums
-            trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
-            trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
-            trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
-
-           
-
-        end
-            % Make a time sequence for the datums (easier than extracting from
-            % xx...)
-            trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
-
+                day(k).SobwAmp = obwyy(dayidx:dayidx+howmanysamplesinaday-1);
+                day(k).SzAmp = zyy(dayidx:dayidx+howmanysamplesinaday-1);
+                day(k).Ssumfftyy = sumfftyy(dayidx:dayidx+howmanysamplesinaday-1);
+                
     end
     
+    % Make a time sequence for the datums (easier than extracting from
+            % xx...)
+            day.tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+
+
+
  %% plot to check
 
  %all days
- %average day by trial
- figure(27); clf; hold on; title('Day average by trial');
-    for j=1:length(trial) 
-
-        %create temporary vector to calculate mean by trial
-        mday(j,:) = zeros(1,length(trial(j).tim));
+    %spline
+ figure(27); clf; hold on; title('Day average spline');
+    
 
 
-        for k=1:length(trial(j).day)
-
-                %fill temporary vector with data from each day 
-                mday(j,:) = mday(j,:) + trial(j).day(k).SobwAmp;
-                subplot(211); hold on; title('Days');
-                plot(trial(j).tim, trial(j).day(k).SobwAmp);
-
-        end
-
-         % To get average across days, divide by number of days
-            mday(j,:) = mday(j,:) / length(trial(j).day);
-            subplot(212); hold on; title('Day average by trial');
-            plot(trial(j).tim, mday(j,:), '-', 'Linewidth', 1);
-
+    for k = 1:length(day)
+        mday(k,:) = zeros(1, length(day.tim));
+        plot(day.tim, day(k).SobwAmp);
+        mday(k,:) = mday(k,:) + day(k).SobwAmp;
     end
     
-    % Mean of means
+        mday(k,:) = mday(k,:) / length(day);
+        plot(day.tim, mday(k,:), 'k-', 'LineWidth', 3);
  
-    subplot(212); hold on;
-     meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
-    plot(trial(j).tim, meanofmeans, 'k-', 'LineWidth', 3);
+        
+ figure(28); clf; hold on; title('Day average raw');
     
 
-    
-    
-%  figure(28); clf; hold on; 
-%     for j=1:length(trial) 
-% 
-%         
-% 
-%         for k=1:length(trial(j).day)
-%             
-% 
-%                 %fill temporary vector with data from each day 
-%                 allday(k,:) = allday(k,:) + trial(j).day(k).SobwAmp;
-%                 subplot(211);
-%                 plot(trial(j).tim, trial(j).day(k).SobwAmp);
-% 
-%         end
-% 
-%          % To get average across days, divide by number of days
-%             allday(k,:) = allday(k,:) / length(allday(k,:));
-%             subplot(212);
-%             plot(trial(j).tim, allday(k,:), 'k-', 'Linewidth', 1);
-% 
-% 
-%     end
-% 
 
+    for k = 1:length(day)
+        mday(k,:) = zeros(1, length(day.tim));
+        plot(day(k).timcont, day(k).obwAmp);
+        mday(k,:) = mday(k,:) + day(k).obwAmp;
+    end
+    
+        mday(k,:) = mday(k,:) / length(day);
+        plot(day.timcont, mday(k,:), 'k-', 'LineWidth', 3);
+    
+    
+  
