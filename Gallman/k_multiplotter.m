@@ -7,7 +7,7 @@ function k_multiplotter(out)
     out.idx(1).Loobw = intube1lo;
     out.idx(2).Loobw = intube2lo;
     
-    hitube{1} = 1:length(
+    hitube{1} = out.idx(1).Hiobw
     
             
 
