@@ -15,7 +15,7 @@ figure(1); clf;
 
     
     ax(1) = subplot(411); hold on; 
-        plot([out(hitube{1}).timcont], 
+        plot([out(hitube{1}).timcont], out(hitube{1}).e1hiamp
 
         legend('High frequency fish', 'Low frequency fish');
         
