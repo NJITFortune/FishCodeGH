@@ -67,27 +67,27 @@ function trial = KatieDayDessembler(out, ReFs)
 
     
     
- figure(28); clf; hold on; 
-    for j=1:length(trial) 
-
-        
-
-        for k=1:length(trial(j).day)
-            
-
-                %fill temporary vector with data from each day 
-                allday(k,:) = allday(k,:) + trial(j).day(k).SobwAmp;
-                subplot(211);
-                plot(trial(j).tim, trial(j).day(k).SobwAmp);
-
-        end
-
-         % To get average across days, divide by number of days
-            allday(k,:) = allday(k,:) / length(allday(k,:));
-            subplot(212);
-            plot(trial(j).tim, allday(k,:), 'k-', 'Linewidth', 1);
-
-
-    end
-
+%  figure(28); clf; hold on; 
+%     for j=1:length(trial) 
+% 
+%         
+% 
+%         for k=1:length(trial(j).day)
+%             
+% 
+%                 %fill temporary vector with data from each day 
+%                 allday(k,:) = allday(k,:) + trial(j).day(k).SobwAmp;
+%                 subplot(211);
+%                 plot(trial(j).tim, trial(j).day(k).SobwAmp);
+% 
+%         end
+% 
+%          % To get average across days, divide by number of days
+%             allday(k,:) = allday(k,:) / length(allday(k,:));
+%             subplot(212);
+%             plot(trial(j).tim, allday(k,:), 'k-', 'Linewidth', 1);
+% 
+% 
+%     end
+% 
 
