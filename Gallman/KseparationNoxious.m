@@ -283,11 +283,11 @@ figure(987); clf; hold on;
         intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
             plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
             
-%save amplitude data for each tube separately - not calibrated
-    out.Hiobwtube1 = 
-    out.Hiobwtube2
-    out.Loobwtube1
-    out.Loobwtube2
+%save indicies of amplitude data for each tube - not calibrated
+    out.idx(1).Hiobw = intube1hi;
+    out.idx(2).Hiobw = intube2hi;
+    out.idx(1).Loobw = intube1lo;
+    out.idx(2).Loobw = intube2lo;
             
             
 %save amplitude data for each tube by fish            
