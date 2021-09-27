@@ -45,12 +45,17 @@ perd = triallength;
 
 %raw data
     for kk = 1:howmanysamplesinaday
+        
+        timidx = find(timcont >= lighttimes(1) + ((jj-1)*perd) & ...
+            timcont < lighttimes(1) + (jj*perd));
 
                 j = channel;
     %         % Get the index of the start time of the day
                 dayidx = find(timcont > (kk-1) * (ld*2), 1) -1; % k-1 so that we start at zero
+                
+                timidx = find(timcont >= lighttimes(1) + (kk-1) * (ld*2) & timcont < lighttimes(1) + (kk) * (ld*2);
 
-                day(kk).obwAmp = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).obwAmp];
+                day(kk).obwAmp = [in.e(j).s(timidx).obwAmp];
                 day(kk).zAmp = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).zAmp];
                 day(kk).sumfft = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).sumfftAmp];
                 day(kk).timcont = timcont(dayidx:dayidx+howmanysamplesinaday-1);
