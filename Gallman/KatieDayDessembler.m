@@ -50,10 +50,10 @@ perd = triallength;
     %         % Get the index of the start time of the trial
                 dayidx = find(timcont > (kk-1) * (ld*2), 1) -1; % k-1 so that we start at zero
 
-                day(k).obwAmp = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).obwAmp];
-                day(k).zAmp = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).zAmp];
-                day(k).sumfft = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).sumfftAmp];
-                day(k).timcont = timcont(dayidx:dayidx+howmanysamplesinaday-1);
+                day(kk).obwAmp = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).obwAmp];
+                day(kk).zAmp = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).zAmp];
+                day(kk).sumfft = [in.e(j).s(dayidx:dayidx+howmanysamplesinaday-1).sumfftAmp];
+                day(kk).timcont = timcont(dayidx:dayidx+howmanysamplesinaday-1);
     end
 
 %spline data
