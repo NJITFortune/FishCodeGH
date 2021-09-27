@@ -20,25 +20,25 @@ yellow = [0.9290 0.6940 0.1250];
 figure(1); clf; 
 
     
-    ax(1) = subplot(411); hold on; title('High frequency fish');
+    ax(1) = subplot(511); hold on; title('High frequency fish');
         plot([out(hitube{1}).timcont], [out(hitube{1}).e1hiamp], '.', 'Color', teal);
-        plot([out(hitube{2}).timcont], [out(hitube{2}).e1hiamp], '.', 'Color', blue);
+        plot([out(hitube{2}).timcont], [out(hitube{2}).e2hiamp], '.', 'Color', blue);
         
     
-    ax(2) = subplot(412); hold on; title('Low frequency fish');
+    ax(2) = subplot(512); hold on; title('Low frequency fish');
         plot([out(lotube{1}).timcont], [out(lotube{1}).e1loamp], '.','Color', orange);
-        plot([out(lotube{2}).timcont], [out(lotube{2}).e1loamp], '.', 'Color', red);
+        plot([out(lotube{2}).timcont], [out(lotube{2}).e2loamp], '.', 'Color', yellow);
     
         
-    ax(3) = subplot(413); hold on; title('Frequency');
+    ax(3) = subplot(513); hold on; title('Frequency');
         plot([out.Hitimobw], [out.HIfreq], '.','Color', teal); 
         plot([out.Lotimobw], [out.LOfreq], '.','Color', orange); 
         
     
-    ax(3) = subplot(413); hold on; 
-            plot([out.timcont], [out.temp], '.');
+    ax(4) = subplot(514); hold on; title('Temperature');
+            plot([out.timcont], [out.temp], 'r.');
     
-    ax(4) = subplot(414); hold on;
+    ax(5) = subplot(515); hold on;
         plot([out.timcont], [out.light]);
         ylim([-1, 6]);
         
