@@ -30,9 +30,9 @@ figure(1); clf;
         plot([out(lotube{2}).timcont], [out(lotube{2}).e1loamp], '.', 'Color', red);
     
         
-    ax(2) = subplot(412); hold on;
-        plot([out.Hitimobw], [out.HIfreq], '.'); 
-        left; plot([out(Losortidx).timcont], [out(Losortidx).lofreq], '.');
+    ax(3) = subplot(413); hold on; title('Frequency');
+        plot([out.Hitimobw], [out.HIfreq], '.','Color', teal); 
+        plot([out.Lotimobw], [out.LOfreq], '.','Color', orange); 
         
     
     ax(3) = subplot(413); hold on; 
