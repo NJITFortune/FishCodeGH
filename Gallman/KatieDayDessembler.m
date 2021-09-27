@@ -45,7 +45,7 @@ perd = triallength;
 
 %raw data
     for kk = 1:howmanysamplesinaday
-howmanysamplesinaday
+
                 j = channel;
     %         % Get the index of the start time of the day
                 dayidx = find(timcont > (kk-1) * (ld*2), 1) -1; % k-1 so that we start at zero
