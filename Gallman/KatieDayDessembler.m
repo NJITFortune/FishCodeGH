@@ -1,4 +1,4 @@
-function trial = KatieDayDessembler(out, ReFs)
+function trial = KatieDayDessembler(in, channel, triallength, ReFs)
 
     perd = (length(out(1).Stimcont))/ReFs;
 
