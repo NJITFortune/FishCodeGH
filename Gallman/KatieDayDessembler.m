@@ -87,12 +87,12 @@ perd = triallength;
 
     for k = 1:length(day)
         mday(k,:) = zeros(1, length(day(1).tim));
-        plot(day.tim, day(k).SobwAmp);
+        plot(day(k).tim, day(k).SobwAmp);
         mday(k,:) = mday(k,:) + day(k).SobwAmp;
     end
     
         mday(k,:) = mday(k,:) / length(day);
-        plot(day.tim, mday(k,:), 'k-', 'LineWidth', 3);
+        plot(day(k).tim, mday(k,:), 'k-', 'LineWidth', 3);
  
         
  figure(28); clf; hold on; title('Day average raw');
@@ -106,7 +106,7 @@ perd = triallength;
     end
     
         mday(k,:) = mday(k,:) / length(day);
-        plot(day.timcont, mday(k,:), 'k-', 'LineWidth', 3);
+        plot(day(k).timcont, mday(k,:), 'k-', 'LineWidth', 3);
     
     
   
