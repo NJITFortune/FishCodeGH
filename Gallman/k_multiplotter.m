@@ -31,8 +31,8 @@ figure(1); clf;
     
         
     ax(2) = subplot(412); hold on;
-        yyaxis right; plot([out(Hisortidx).timcont], [out(Hisortidx).hifreq], '.'); 
-        yyaxis left; plot([out(Losortidx).timcont], [out(Losortidx).lofreq], '.');
+        plot([out(Hisortidx).timcont], [out(Hisortidx).hifreq], '.'); 
+        left; plot([out(Losortidx).timcont], [out(Losortidx).lofreq], '.');
         
     
     ax(3) = subplot(413); hold on; 
