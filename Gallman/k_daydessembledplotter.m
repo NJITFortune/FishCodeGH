@@ -1,4 +1,4 @@
-function [timforpi, meanoftrialmeans] = k_daydessembledplotter(in)
+function [timforpi, meanoftrialmeans, ld] = k_daydessembledplotter(in)
 %% usage
 %plots output from KatieDayTrialDessember for multiple kgs
 
