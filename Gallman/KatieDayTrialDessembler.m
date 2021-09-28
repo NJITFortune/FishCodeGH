@@ -189,6 +189,7 @@ for k = 1:howmanydaysinsample
             mday(jj,:) = mday(jj,:) / length(trial(jj).day);
             subplot(212); hold on; title('Day average by trial');
             plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
+            plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
     end
     
@@ -210,9 +211,11 @@ figure(28); clf; hold on;
     
         mmday= mean(meanday);
         plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
+        plot([ld ld], ylim, 'k-', 'LineWidth', 1);
         
 figure(29); clf; hold on;
     plot(day(1).tim, mmday);
     plot(trial(jj).tim, meanofmeans);
+    plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
 
