@@ -93,7 +93,7 @@ for k = 1:howmanydaysinsample
 
     for k = 1:length(day)
         plot(day(k).tim, day(k).SobwAmp);
-        mday(k,:) = mday(k,:) + day(k).SobwAmp;
+        meanday(k,:) = day(k).SobwAmp;
     end
     
         mmday(k,:) = mday(k,:) / length(day);
