@@ -89,10 +89,9 @@ for k = 1:howmanydaysinsample
     %spline
  figure(27); clf; hold on; title('Day average spline');
     
- mday(k,:) = zeros(1, length(day(1).tim));
+ 
 
     for k = 1:length(day)
-       % mday(k,:) = zeros(1, length(day(k).tim));
         plot(day(k).tim, day(k).SobwAmp);
         mday(k,:) = mday(k,:) + day(k).SobwAmp;
     end
