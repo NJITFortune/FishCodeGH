@@ -142,6 +142,12 @@ end
 
     end
     
+%% Divide sample into days to compare against trial day means
+
+howmanydaysinsample = floor(lengthofsampleHOURS / (ld*2));
+
+
+    
  %% plot to check
 
  %all days
