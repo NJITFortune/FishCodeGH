@@ -181,6 +181,7 @@ for k = 1:howmanydaysinsample
                 mday(jj,:) = mday(jj,:) + trial(jj).day(k).SobwAmp;
                 subplot(211); hold on; title('Days');
                 plot(trial(jj).tim, trial(jj).day(k).SobwAmp);
+                plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
         end
 
@@ -211,7 +212,7 @@ figure(28); clf; hold on;
         plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
         
 figure(29); clf; hold on;
-    plot(day(1).tim, mmday, 'k-');
+    plot(day(1).tim, mmday);
     plot(trial(jj).tim, meanofmeans);
 
 
