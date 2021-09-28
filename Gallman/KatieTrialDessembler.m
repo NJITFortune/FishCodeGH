@@ -188,12 +188,38 @@ figure(49); clf;
    
 
 
-% figure(49); clf; 
-% 
-%      for k = 1:length(out) 
-%          
-%         subplot(211); hold on; title('spline vs light');
-%         
-%          subplot(212); hold on; title('spline vs trial light');
+%all days
+ %average day by trial
+ figure(27); clf; hold on; title('Day average by trial');
+    for jj=1:length(trial) 
+
+        %create temporary vector to calculate mean by trial
+        mday(jj,:) = zeros(1,length(trial(jj).tim));
+
+
+        for k=1:length(trial(jj).day)
+
+                %fill temporary vector with data from each day 
+                mday(jj,:) = mday(jj,:) + trial(jj).day(k).SobwAmp;
+                subplot(211); hold on; title('Days');
+                plot(trial(jj).tim, trial(jj).day(k).SobwAmp);
+                plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+
+        end
+
+         % To get average across days, divide by number of days
+            mday(jj,:) = mday(jj,:) / length(trial(jj).day);
+            subplot(212); hold on; title('Day average by trial');
+            plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
+            plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+
+    end
+    
+    % Mean of means
+ 
+    subplot(212); hold on;
+     meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
+    plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
+    
 %     
 
