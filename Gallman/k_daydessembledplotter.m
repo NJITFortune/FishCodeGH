@@ -1,4 +1,4 @@
-function k_daydessembledplotter(in)
+function [timforpi, meanoftrialmeans] = k_daydessembledplotter(in)
 %% usage
 %plots output from KatieDayTrialDessember for multiple kgs
 
@@ -54,6 +54,8 @@ ld = in(1).trial(1).ld;
      
     subplot(212); hold on;
     plot(in(1).trial(1).tim, meanoftrialmeans, 'k-', 'LineWidth', 3);
+    
+    timforpi = in(1).trial(1).tim;
    
 
     
