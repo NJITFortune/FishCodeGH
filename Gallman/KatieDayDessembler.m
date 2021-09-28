@@ -65,14 +65,15 @@ perd = triallength;
     %         % Get the index of the start time of the day
                 dayidx = find(xx > xx(1) + (k-1) * (ld*2) & xx < xx(1) + kk*(ld*2)); % k-1 so that we start at zero
 
+                if length(dayidx) >= howmanysamplesinaday
                 day(k).SobwAmp = obwyy(dayidx);
                 day(k).SzAmp = zyy(dayidx);
                 day(k).Ssumfftyy = sumfftyy(dayidx);
                 day(k).tim = xx(dayidx);
+                end
     end
     
-    length(day(end).SobwAmp)
-    length(day(end).tim)
+   
     % Make a time sequence for the datums (easier than extracting from
             % xx...)
           %  day.tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
