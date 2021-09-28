@@ -67,7 +67,7 @@ for k = 1:howmanydaysinsample
     
 
     %         % Get the index of the start time of the day
-                dayidx = find(xx >= xx(1) + (k-1) * (ld*2) & xx < xx(1) + kk*(ld*2)); % k-1 so that we start at zero
+                dayidx = find(xx >= xx(1) + (k-1) * (ld*2) & xx < xx(1) + k*(ld*2)); % k-1 so that we start at zero
 
                 if length(dayidx) >= howmanysamplesinaday
                 day(k).SobwAmp = obwyy(dayidx);
