@@ -99,7 +99,7 @@ for k = 1:howmanydaysinsample
         mday(k,:) = mday(k,:) + day(k).SobwAmp;
     end
     
-        mday(k,:) = mday(k,:) / length(day);
+        mday(k,:) = mday(k,:) / howmanydaysinsample;
         plot(day(k).tim, mday(k,:), 'k-', 'LineWidth', 3);
  
         
