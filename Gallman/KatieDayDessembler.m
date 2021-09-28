@@ -66,6 +66,7 @@ tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
     %         % Get the index of the start time of the day
                 dayidx = find(xx > xx(1) + (k-1) * (ld*2) & xx < xx(1) + kk*(ld*2)); % k-1 so that we start at zero
 
+                dayidx
                 if length(dayidx) >= howmanysamplesinaday
                 day(k).SobwAmp = obwyy(dayidx);
                 day(k).SzAmp = zyy(dayidx);
