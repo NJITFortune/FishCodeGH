@@ -98,7 +98,7 @@ for k = 1:howmanydaysinsample
     end
     
         mday(k,:) = mday(k,:) / length(day);
-        plot(day(1).tim, mday(k,:), 'k-', 'LineWidth', 3);
+        plot(day(1).tim, mday, 'k-', 'LineWidth', 3);
  
         
 %  figure(28); clf; hold on; title('Day average raw');
