@@ -71,8 +71,8 @@ perd = triallength;
                 day(k).tim = xx(dayidx);
     end
     
-    length(day.SobwAmp)
-    length(day.tim)
+    length(day(1).SobwAmp)
+    length(day(1).tim)
     % Make a time sequence for the datums (easier than extracting from
             % xx...)
           %  day.tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
