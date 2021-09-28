@@ -74,7 +74,8 @@ tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
                 end
     end
     
-   
+   length(day(1).tim)
+   length(day(1).SobwAmp)
     % Make a time sequence for the datums (easier than extracting from
             % xx...)
         
