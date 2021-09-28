@@ -77,8 +77,6 @@ for k = 1:howmanydaysinsample
                 end
     end
     
-   length(day(1).tim)
-   length(day(1).SobwAmp)
     % Make a time sequence for the datums (easier than extracting from
             % xx...)
         
@@ -91,7 +89,7 @@ for k = 1:howmanydaysinsample
     %spline
  figure(27); clf; hold on; title('Day average spline');
     
-length(day)
+length(day.tim)
 
     for k = 1:length(day)
         mday(k,:) = zeros(1, length(day(k).tim));
