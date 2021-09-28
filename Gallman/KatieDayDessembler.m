@@ -26,14 +26,15 @@ perd = triallength;
     %perd = perd - rem(perd, in.info.ld);  % If not integer divisible, take fewer samples to not go over     
     % How many trials available?
     lengthofsampleHOURS = lighttimes(end) - lighttimes(1); 
-    %lengthofsampleHOURS = timcont(end) - timcont(1); 
-    % How many integer trials in dataset
-    %numotrials = floor(lengthofsampleHOURS / perd); % of trials
+  
     
     % Divide by daylength to get the number of days in the trial
-        howmanydaysintrial = floor(perd / (ld*2));
+        howmanydaysinsample = floor(lengthofsampleHOURS / (ld*2));
         % This is the number of sample in a day
         howmanysamplesinaday = ld * 2 * ReFs;
+        
+        
+        
 
 % %testing timidx
 % timz = 1:1:numotrials+1;
@@ -44,24 +45,26 @@ perd = triallength;
 %% Divide data into days
 
 %raw data
-    for kk = 1:howmanysamplesinaday
-        
-       
-                j = channel;
-    %         % Get the index of the start time of the day
-                dayidx = find(timcont > (kk-1) * (ld*2), 1) -1; % k-1 so that we start at zero
-                
-                timidx = find(timcont >= lighttimes(1) + (kk-1) * (ld*2) & timcont < lighttimes(1) + (kk) * (ld*2));
-
-                day(kk).obwAmp = [in.e(j).s(timidx).obwAmp];
-                day(kk).zAmp = [in.e(j).s(timidx).zAmp];
-                day(kk).sumfft = [in.e(j).s(timidx).sumfftAmp];
-                day(kk).timcont = timcont(timidx);
-    end
+%     for kk = 1:howmanysamplesinaday
+%         
+%        
+%                 j = channel;
+%     %         % Get the index of the start time of the day
+%                 dayidx = find(timcont > (kk-1) * (ld*2), 1) -1; % k-1 so that we start at zero
+%                 
+%                 timidx = find(timcont >= lighttimes(1) + (kk-1) * (ld*2) & timcont < lighttimes(1) + (kk) * (ld*2));
+% 
+%                 day(kk).obwAmp = [in.e(j).s(timidx).obwAmp];
+%                 day(kk).zAmp = [in.e(j).s(timidx).zAmp];
+%                 day(kk).sumfft = [in.e(j).s(timidx).sumfftAmp];
+%                 day(kk).timcont = timcont(timidx);
+%     end
     
 tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
 %spline data
-    for k = 1:howmanysamplesinaday
+
+for k = 1:howmanydaysinsample
+    
 
     %         % Get the index of the start time of the day
                 dayidx = find(xx >= xx(1) + (k-1) * (ld*2) & xx < xx(1) + kk*(ld*2)); % k-1 so that we start at zero
