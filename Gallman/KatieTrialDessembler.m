@@ -1,7 +1,7 @@
 %function out = KatieTrialDessembler(in, channel, triallength)  
 clearvars -except kg
 
-in = kg(49);
+in = kg(59);
 channel = 1;
 triallength = 48;
 % % Out is raw data, trial is spline data
