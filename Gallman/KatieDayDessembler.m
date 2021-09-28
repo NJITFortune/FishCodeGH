@@ -94,12 +94,12 @@ for k = 1:howmanydaysinsample
 
 
     for k = 1:length(day)
-        mday(k,:) = zeros(1, length(day(k).tim));
+        mday(k,:) = zeros(1, length(day.tim));
         plot(day(k).tim, day(k).SobwAmp);
         mday(k,:) = mday(k,:) + day(k).SobwAmp;
     end
     
-        mday(k,:) = mday(k,:) / howmanydaysinsample;
+        mday(k,:) = mday(k,:) / length(day);
         plot(day(k).tim, mday(k,:), 'k-', 'LineWidth', 3);
  
         
