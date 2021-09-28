@@ -103,18 +103,18 @@ for k = 1:howmanydaysinsample
         plot(day(k).tim, mday(k,:), 'k-', 'LineWidth', 3);
  
         
- figure(28); clf; hold on; title('Day average raw');
-    
-
-
-    for k = 1:length(day)
-        mday(k,:) = zeros(1, length(day(1).tim));
-        plot(day(k).timcont, day(k).obwAmp);
-        mday(k,:) = mday(k,:) + day(k).obwAmp;
-    end
-    
-        mday(k,:) = mday(k,:) / length(day);
-        plot(day(k).timcont, mday(k,:), 'k-', 'LineWidth', 3);
+%  figure(28); clf; hold on; title('Day average raw');
+%     
+% 
+% 
+%     for k = 1:length(day)
+%         mday(k,:) = zeros(1, length(day(1).tim));
+%         plot(day(k).timcont, day(k).obwAmp);
+%         mday(k,:) = mday(k,:) + day(k).obwAmp;
+%     end
+%     
+%         mday(k,:) = mday(k,:) / length(day);
+%         plot(day(k).timcont, mday(k,:), 'k-', 'LineWidth', 3);
     
     
   
