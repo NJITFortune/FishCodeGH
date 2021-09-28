@@ -202,3 +202,16 @@ for k = 1:howmanydaysinsample
     
 figure(28); clf; hold on; 
 
+ for k = 1:length(day)
+        plot(day(k).tim, day(k).SobwAmp);
+        meanday(k,:) = day(k).SobwAmp;
+ end
+    
+        mmday= mean(meanday);
+        plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
+        
+figure(29); clf; hold on;
+    plot(day(1).tim, mmday);
+    plot(trial(jj).tim, meanofmeans);
+
+
