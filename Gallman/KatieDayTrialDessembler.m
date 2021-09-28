@@ -2,7 +2,7 @@
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
-in = kg();
+in = kg(58);
 channel = 1;
 triallength = 48;
 ReFs = 10;
