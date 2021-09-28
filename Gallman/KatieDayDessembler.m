@@ -96,8 +96,8 @@ for k = 1:howmanydaysinsample
         meanday(k,:) = day(k).SobwAmp;
     end
     
-        mmday(k,:) = mday(k,:) / length(day);
-        plot(day(1).tim, mmday(k,:), 'k-', 'LineWidth', 3);
+        mday= mean(meanday);
+        plot(day(1).tim, mday, 'k-', 'LineWidth', 3);
  
         
 %  figure(28); clf; hold on; title('Day average raw');
