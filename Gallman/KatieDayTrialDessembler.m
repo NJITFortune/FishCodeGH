@@ -211,7 +211,7 @@ figure(28); clf; hold on;
         plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
         
 figure(29); clf; hold on;
-    plot(day(1).tim, mmday);
+    plot(day(1).tim, mmday, 'k-');
     plot(trial(jj).tim, meanofmeans);
 
 
