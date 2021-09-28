@@ -69,14 +69,14 @@ perd = triallength;
                 day(k).SobwAmp = obwyy(dayidx);
                 day(k).SzAmp = zyy(dayidx);
                 day(k).Ssumfftyy = sumfftyy(dayidx);
-                day(k).tim = xx(dayidx);
+                %day(k).tim = xx(dayidx);
                 end
     end
     
    
     % Make a time sequence for the datums (easier than extracting from
             % xx...)
-          %  day.tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+         day.tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
 
 
 
