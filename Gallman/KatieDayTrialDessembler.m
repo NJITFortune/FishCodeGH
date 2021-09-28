@@ -146,32 +146,48 @@ end
 
 howmanydaysinsample = floor(lengthofsampleHOURS / (ld*2));
 
+tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+%spline data
 
+for k = 1:howmanydaysinsample
+    
+
+    %         % Get the index of the start time of the day
+                dayidx = find(xx >= xx(1) + (k-1) * (ld*2) & xx < xx(1) + k*(ld*2)); % k-1 so that we start at zero
+
+                if length(dayidx) >= howmanysamplesinaday
+                day(k).SobwAmp = obwyy(dayidx);
+                day(k).SzAmp = zyy(dayidx);
+                day(k).Ssumfftyy = sumfftyy(dayidx);
+                day(k).tim = tim;
+                end
+ end
+    
     
  %% plot to check
 
  %all days
  %average day by trial
  figure(27); clf; hold on; title('Day average by trial');
-    for j=1:length(trial) 
+    for jj=1:length(trial) 
 
         %create temporary vector to calculate mean by trial
-        mday(j,:) = zeros(1,length(trial(j).tim));
+        mday(jj,:) = zeros(1,length(trial(jj).tim));
 
 
-        for k=1:length(trial(j).day)
+        for k=1:length(trial(jj).day)
 
                 %fill temporary vector with data from each day 
-                mday(j,:) = mday(j,:) + trial(j).day(k).SobwAmp;
+                mday(jj,:) = mday(jj,:) + trial(jj).day(k).SobwAmp;
                 subplot(211); hold on; title('Days');
-                plot(trial(j).tim, trial(j).day(k).SobwAmp);
+                plot(trial(jj).tim, trial(jj).day(k).SobwAmp);
 
         end
 
          % To get average across days, divide by number of days
-            mday(j,:) = mday(j,:) / length(trial(j).day);
+            mday(jj,:) = mday(jj,:) / length(trial(jj).day);
             subplot(212); hold on; title('Day average by trial');
-            plot(trial(j).tim, mday(j,:), '-', 'Linewidth', 1);
+            plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
 
     end
     
@@ -179,32 +195,10 @@ howmanydaysinsample = floor(lengthofsampleHOURS / (ld*2));
  
     subplot(212); hold on;
      meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
-    plot(trial(j).tim, meanofmeans, 'k-', 'LineWidth', 3);
+    plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
     
 
     
     
-%  figure(28); clf; hold on; 
-%     for j=1:length(trial) 
-% 
-%         
-% 
-%         for k=1:length(trial(j).day)
-%             
-% 
-%                 %fill temporary vector with data from each day 
-%                 allday(k,:) = allday(k,:) + trial(j).day(k).SobwAmp;
-%                 subplot(211);
-%                 plot(trial(j).tim, trial(j).day(k).SobwAmp);
-% 
-%         end
-% 
-%          % To get average across days, divide by number of days
-%             allday(k,:) = allday(k,:) / length(allday(k,:));
-%             subplot(212);
-%             plot(trial(j).tim, allday(k,:), 'k-', 'Linewidth', 1);
-% 
-% 
-%     end
-% 
+figure(28); clf; hold on; 
 
