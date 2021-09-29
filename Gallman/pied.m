@@ -2,8 +2,8 @@
 %load('/Volumes/Datums/kg/pk.mat');
 
 figure(314); clf; hold on;
+set(
 
- colormap jet
 
     for j = 1:10%10
 
