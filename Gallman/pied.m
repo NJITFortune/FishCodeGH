@@ -5,7 +5,7 @@ figure(314); clf; hold on;
 
 
 
-    for j = 1:5%10
+    for j = 1:7%10
 
         ld(j,:) = pk(j).ld;
         crosshour = (2*pi) / (2 * pk(j).ld);
