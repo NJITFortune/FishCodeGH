@@ -1,5 +1,5 @@
-function k_daydessembledplotter(in)
-%% usage[timforpi, meanoftrialmeans, ld] = 
+function [timforpi, meanoftrialmeans, ld] = k_daydessembledplotter(in)
+%% usage
 %plots output from KatieDayTrialDessember for multiple kgs
 
 %      for j = 1:length(kgidx)
