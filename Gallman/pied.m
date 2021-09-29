@@ -1,8 +1,8 @@
 
 %load('/Volumes/Datums/kg/pk.mat');
 
-figure(314); clf; hold on;
-set(1,'DefaultAxesColorOrder', prism(10));
+close all; figure(314); clf; hold on;
+set(0,'DefaultAxesColorOrder', prism(10));
 
 
     for j = 1:10
