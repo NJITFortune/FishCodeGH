@@ -10,7 +10,7 @@ figure(314); clf; hold on;
       
         ld(j,:) = pk(j).ld;
         crosshour = (2*pi) / (2 * pk(j).ld);
-        plot(pk(j).timforpi .* crosshour, pk(j).meanoftrialmeans .* crosshour, 'Color', cmap);
+        plot(pk(j).timforpi .* crosshour, pk(j).meanoftrialmeans .* crosshour, 'Color', colormap(jet));
         legend(num2str(ld)); 
         legend('AutoUpdate', 'off');
         
