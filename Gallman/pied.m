@@ -2,7 +2,7 @@
 %load('/Volumes/Datums/kg/pk.mat');
 
 figure(314); clf; hold on;
-set(
+set(0,'DefaultAxesColorOrder',summer(9));
 
 
     for j = 1:10%10
