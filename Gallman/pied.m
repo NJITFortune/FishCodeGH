@@ -2,7 +2,7 @@
 %load('/Volumes/Datums/kg/pk.mat');
 
 figure(314); clf; hold on;
-set('DefaultAxesColorOrder', jet(10));
+set(1,'DefaultAxesColorOrder', jet(10));
 
 
     for j = 1:10%10
