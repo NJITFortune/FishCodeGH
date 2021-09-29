@@ -1,11 +1,11 @@
-%function [trial, day] = KatieDayTrialDessembler(in, channel, triallength, ReFs)
+function [trial, day] = KatieDayTrialDessembler(in, channel, triallength, ReFs)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
-in = kg(59);
-channel = 1;
-triallength = 48;
-ReFs = 10;
+% in = kg(59);
+% channel = 1;
+% triallength = 48;
+% ReFs = 10;
 %% Take spline estimate of raw data
 
 %ReFs = 10;  % Sample rate for splines
