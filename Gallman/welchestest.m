@@ -87,7 +87,7 @@ FreqRange = 0.002:0.002:0.2;
 %     
 %somewhere in the middle
 fs = 10; %in Hz - cycles per sec
-nfft = length(in(jj).SsumfftAmp);
+nfft = 8*length(in(jj).SsumfftAmp);
 npts = length(in(jj).SsumfftAmp); %480;
 data = in.SsumfftAmp - 1;
 datalessmean = data - mean(data);
@@ -111,7 +111,7 @@ datalessmean = data - mean(data);
     
  %% plot to check mama
  
- figure(33);  hold on;
+ figure(33); clf;  hold on;
  
     %fft created by pwelch
     plot(f, pxx, 'o-', 'MarkerSize', 8); xlim([0,0.5]); %ylim([0, 10]);
