@@ -4,7 +4,7 @@ clearvars -except kg
 
 %figure(1); clf; hold on;
 
-in = kg(32);
+in = kg(33);
 p = 0.5;
 ReFs = 10;  %resample once every minute (Usually 60)
 % Usage: k_initialplotter(kg(#));
