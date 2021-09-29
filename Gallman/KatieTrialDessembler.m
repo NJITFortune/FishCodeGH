@@ -3,7 +3,7 @@ clearvars -except kg
 
 in = kg(58);
 channel = 1;
-triallength = 48;
+triallength = 40;
 % % Out is raw data, trial is spline data
 %% Take spline estimate of raw data
 
