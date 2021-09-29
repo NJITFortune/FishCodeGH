@@ -11,6 +11,6 @@ figure(314); clf; hold on;
         crosshour = (2*pi) / (2 * pk(j).ld);
         plot(pk(j).timforpi .* crosshour, pk(j).meanoftrialmeans .* crosshour);
         plot([pi pi], ylim, 'k-'); hold on;
-        legend(num2str(ld(j,:)'));
+        legend(num2str(ld'));
 
     end
