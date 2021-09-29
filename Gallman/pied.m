@@ -2,10 +2,10 @@
 %load('/Volumes/Datums/kg/pk.mat');
 
 figure(314); clf; hold on;
-%set(0,'DefaultAxesColorOrder', lines(10));
+set(0,'DefaultAxesColorOrder', jet(10));
 
 
-    for j = 1:10%10
+    for j = 1:10
 
       
         ld(j,:) = pk(j).ld;
