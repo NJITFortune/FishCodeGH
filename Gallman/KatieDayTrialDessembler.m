@@ -4,8 +4,11 @@ function [trial, day] = KatieDayTrialDessembler(in, channel,  ReFs)
 
 % in = kg(59);
 % channel = 1;
-if in.info.ld > 
-triallength = in.info.ld * 4;
+if in.info.ld > 15 
+    triallength = in.info.ld * 2;
+else
+    triallength = in.info.ld * 4;
+end
 % ReFs = 10;
 %% Take spline estimate of raw data
 
