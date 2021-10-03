@@ -2,18 +2,18 @@
 %load('/Volumes/Datums/kg/pk.mat');
 
 close all; figure(314); clf; hold on;
-set(0,'DefaultAxesColorOrder', prism(10));
+set(0,'DefaultAxesColorOrder', prism(9));
 
 
-    for j = 1:10
+    for j = 1:9
 
       
-        ld(j,:) = pk(j).ld;
-        crosshour = (2*pi) / (2 * pk(j).ld);
-        plot(pk(j).timforpi .* crosshour, pk(j).meanoftrialmeans .* crosshour, 'LineWidth', 2);
+        ld(j,:) = ppk(j).ld;
+        crosshour = (2*pi) / (2 * ppk(j).ld);
+        plot((ppk(j).timforpi .* crosshour) - pi, (ppk(j).meanoftrialmeans) , 'LineWidth', 2);
         legend(num2str(ld)); 
         legend('AutoUpdate', 'off');
         
        
     end
- plot([pi pi], ylim, 'k-');
+ plot([0 0], ylim, 'k-');

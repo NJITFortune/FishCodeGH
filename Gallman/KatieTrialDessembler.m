@@ -1,9 +1,9 @@
 %function out = KatieTrialDessembler(in, channel, triallength)  
 clearvars -except kg
 
-in = kg(49);
+in = kg(7);
 channel = 1;
-triallength = 96;
+triallength = 40;
 % % Out is raw data, trial is spline data
 %% Take spline estimate of raw data
 
@@ -154,19 +154,33 @@ for jj = length(out):-1:1 % For each trial
 
 figure(48); clf; title('spline vs raw data');hold on; 
 
- 
+       
    % maxlen = 0;
 
     for k = 1:length(out) 
-      
+        
+        
+        
         plot(out(k).entiretimcont/3600 , out(k).sumfftAmp, '.'); 
         plot(out(k).Sentiretimcont, out(k).SsumfftAmp, 'k-', 'LineWidth', 3); 
         
        % maxlen = max([maxlen out(k).entiretimcont/3600]);        
     end
 
-     %xlim([0 maxlen]);
+   
+     trialend = length(out); 
+
+        lightchangeidx = find(lighttimes < out(trialend).Sentiretimcont(end));
+        lightchange = lighttimes(lightchangeidx);
+        
+        for kk = 1:length(lightchange)
+        plot([lightchange(kk), lightchange(kk)], ylim, 'k-');
+        end
+        
      
+    
+    
+    
 figure(49); clf;  
 
 
