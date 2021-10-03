@@ -7,13 +7,13 @@ clear day
 in = kg(4);
 channel = 2;
 ReFs = 10;
+triallength = 96;
 
-
-if in.info.ld > 15 
-    triallength = in.info.ld * 2;
-else
-    triallength = in.info.ld * 4;
-end
+% if in.info.ld > 15 
+%     triallength = in.info.ld * 2;
+% else
+%     triallength = in.info.ld * 4;
+% end
 % ReFs = 10;
 %% Take spline estimate of raw data
 
