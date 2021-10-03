@@ -1,9 +1,12 @@
-function [trial, day] = KatieDayTrialDessembler(in, channel,  ReFs)
+%function [trial, day] = KatieDayTrialDessembler(in, channel,  ReFs)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
-% in = kg(59);
-% channel = 1;
+in = kg(59);
+channel = 2;
+ReFs = 10;
+
+
 if in.info.ld > 15 
     triallength = in.info.ld * 2;
 else
