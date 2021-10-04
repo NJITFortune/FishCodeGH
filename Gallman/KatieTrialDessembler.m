@@ -169,6 +169,7 @@ figure(48); clf; title('spline vs raw data');hold on;
 
    
      trialend = length(out); 
+     trialend
 
         lightchangeidx = find(lighttimes < out(trialend).Sentiretimcont(end));
         lightchange = in.info.luz(lightchangeidx);
