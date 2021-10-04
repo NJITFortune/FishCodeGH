@@ -171,10 +171,14 @@ figure(48); clf; title('spline vs raw data');hold on;
      trialend = length(out); 
 
         lightchangeidx = find(lighttimes < out(trialend).Sentiretimcont(end));
-        lightchange = lighttimes(lightchangeidx);
+        lightchange = in.info.luz(lightchangeidx);
         
         for kk = 1:length(lightchange)
-        plot([lightchange(kk), lightchange(kk)], ylim, 'k-');
+            if kk < 0
+            plot([lightchange(kk), lightchange(kk)], ylim, 'k-');
+            else % kk > 0
+            plot([lightchange(kk), lightchange(kk)], ylim, 'y-');    
+            end
         end
         
      
