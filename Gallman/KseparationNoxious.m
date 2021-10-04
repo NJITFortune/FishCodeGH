@@ -277,12 +277,20 @@ figure(987); clf; hold on;
         intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
             plot([out(intube2lo).timcont], [out(intube2lo).e2loamp], 'm.');
 
-        %when each fish was in tube 2
+        %when each fish was in tube 1
         intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
              plot([out(intube1hi).timcont], [out(intube1hi).e1hiamp], 'bo');
-       intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
+        intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
             plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
-        
+            
+%save indicies of amplitude data for each tube - not calibrated
+    out.idx(1).Hiobw = intube1hi;
+    out.idx(2).Hiobw = intube2hi;
+    out.idx(1).Loobw = intube1lo;
+    out.idx(2).Loobw = intube2lo;
+            
+            
+%save amplitude data for each tube by fish            
     %Data over indicies for each fish
         %high freq fish amp
         [Hisortidx, ~] = sort([intube2hi intube1hi]);

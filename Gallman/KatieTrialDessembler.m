@@ -1,8 +1,9 @@
-function out = KatieTrialDessembler(in, channel, triallength)  
-%clearvars -except kg
-% 
-% in = kg(49);
-% channel = 2;
+%function out = KatieTrialDessembler(in, channel, triallength)  
+clearvars -except kg
+
+in = kg(4);
+channel = 1;
+triallength = 96;
 % % Out is raw data, trial is spline data
 %% Take spline estimate of raw data
 
@@ -114,52 +115,125 @@ for jj = 1:numotrials
     
     
 end
+%% divide trials into days
 
-% %% Plot to check
-% %raw data
-% 
-% figure(48); clf; title('spline vs raw data');hold on; 
-% 
-%  
-%    % maxlen = 0;
-% 
-%     for k = 1:length(out) 
-%       
-%         plot(out(k).entiretimcont/3600 , out(k).sumfftAmp, '.'); 
-%         plot(out(k).Sentiretimcont, out(k).SsumfftAmp, 'k-', 'LineWidth', 3); 
-%         
-%        % maxlen = max([maxlen out(k).entiretimcont/3600]);        
-%     end
-% 
-%      %xlim([0 maxlen]);
-%      
-% figure(49); clf;  
-% 
-% 
-%  
-%    maxlen = 0;
-% 
-%     for k = 1:length(out) 
-%        
-%       subplot(211); hold on; title('spline vs raw data');
-%          plot(out(k).timcont/3600, out(k).sumfftAmp, '.'); 
-%         
-%       subplot(212); hold on; title('spline vs trial data');
-%         plot(out(k).Stimcont, out(k).SsumfftAmp, '.', 'MarkerSize', 3); 
-%         
-%         maxlen = max([maxlen out(k).timcont(end)/3600]);        
-%     end
-% 
-%      xlim([0 maxlen]);
-%    
-% 
-% 
-% % figure(49); clf; 
-% % 
-% %      for k = 1:length(out) 
-% %          
-% %         subplot(211); hold on; title('spline vs light');
-% %         
-% %          subplot(212); hold on; title('spline vs trial light');
-% %     
-% 
+for jj = length(out):-1:1 % For each trial
+        
+        ld = out(jj).ld;
+
+        % Divide by daylength to get the number of days in the trial
+        howmanydaysintrial = floor(perd / (ld*2));
+        % This is the number of sample in a day
+        howmanysamplesinaday = ld * 2 * ReFs;
+
+        for k = 1:howmanydaysintrial % Each day in a trial
+
+
+            % Get the index of the start time of the trial
+            dayidx = find(out(jj).Stimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
+
+            % Get the datums
+            trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
+            trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
+            trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
+            
+               trial(jj).ld = in.info.ld; 
+
+           
+
+        end
+            % Make a time sequence for the datums (easier than extracting from
+            % xx...)
+            trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+
+end
+    
+
+%% Plot to check
+%raw data
+
+figure(48); clf; title('spline vs raw data');hold on; 
+
+       
+   % maxlen = 0;
+
+    for k = 1:length(out) 
+        
+        
+        
+        plot(out(k).entiretimcont/3600 , out(k).sumfftAmp, '.'); 
+        plot(out(k).Sentiretimcont, out(k).SsumfftAmp, 'k-', 'LineWidth', 3); 
+        
+       % maxlen = max([maxlen out(k).entiretimcont/3600]);        
+    end
+
+   
+     trialend = length(out); 
+
+        lightchangeidx = find(lighttimes < out(trialend).Sentiretimcont(end));
+        lightchange = lighttimes(lightchangeidx);
+        
+        for kk = 1:length(lightchange)
+        plot([lightchange(kk), lightchange(kk)], ylim, 'k-');
+        end
+        
+     
+    
+    
+    
+figure(49); clf;  
+
+
+ 
+   maxlen = 0;
+
+    for k = 1:length(out) 
+       
+      subplot(211); hold on; title('spline vs raw data');
+         plot(out(k).timcont/3600, out(k).sumfftAmp, '.'); 
+        
+      subplot(212); hold on; title('spline vs trial data');
+        plot(out(k).Stimcont, out(k).SsumfftAmp, '.', 'MarkerSize', 3); 
+        
+        maxlen = max([maxlen out(k).timcont(end)/3600]);        
+    end
+
+     xlim([0 maxlen]);
+   
+
+
+%all days
+ %average day by trial
+ figure(27); clf; hold on; title('Day average by trial');
+    for jj=1:length(trial) 
+
+        %create temporary vector to calculate mean by trial
+        mday(jj,:) = zeros(1,length(trial(jj).tim));
+
+
+        for k=1:length(trial(jj).day)
+
+                %fill temporary vector with data from each day 
+                mday(jj,:) = mday(jj,:) + trial(jj).day(k).SobwAmp;
+                subplot(211); hold on; title('Days');
+                plot(trial(jj).tim, trial(jj).day(k).SobwAmp);
+                plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+
+        end
+
+         % To get average across days, divide by number of days
+            mday(jj,:) = mday(jj,:) / length(trial(jj).day);
+            subplot(212); hold on; title('Day average by trial');
+            plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
+            plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+
+    end
+    
+    % Mean of means
+ 
+    subplot(212); hold on;
+     meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
+    plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
+    
+%     
+
