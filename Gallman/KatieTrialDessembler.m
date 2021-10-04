@@ -175,7 +175,7 @@ figure(48); clf; title('spline vs raw data');hold on;
         
         for kk = 1:length(lightchange)
             if lightchange(kk) < 0
-            plot([lightchange(kk), lightchange(kk)], ylim, 'k-');
+            plot([abs(lightchange(kk)), abs(lightchange(kk))], ylim, 'k-');
             else % kk > 0
             plot([lightchange(kk), lightchange(kk)], ylim, 'y-');    
             end
