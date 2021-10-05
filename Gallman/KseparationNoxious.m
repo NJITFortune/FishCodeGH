@@ -217,23 +217,24 @@ linkaxes(axs, 'x');
 figure(987); clf; hold on;
     %Indicies when each fish was in each tube
         %when each fish was in tube 2
-        out.intube2hi(:) = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
+        intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
             plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], 'b.');
-        out.intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
+        intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
             plot([out(intube2lo).timcont], [out(intube2lo).e2loamp], 'm.');
 
         %when each fish was in tube 1
-        out.intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
+        intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
              plot([out(intube1hi).timcont], [out(intube1hi).e1hiamp], 'bo');
-        out.intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
+        intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
             plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
             
+
      
             
 %save amplitude data for each tube by fish            
     %Data over indicies for each fish
         %high freq fish amp
-        [Hisortidx, ~] = sort([out.intube2hi out.intube1hi]);
+        [Hisortidx, ~] = sort([intube2hi intube1hi]);
         %intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
          intubeHi = [out.e2hiamp, out.e1hiamp];
         
@@ -244,7 +245,7 @@ figure(987); clf; hold on;
         end
         
         %low freq fish amp
-        [Losortidx, ~] = sort([out.intube2lo out.intube1lo]);
+        [Losortidx, ~] = sort([intube2lo intube1lo]);
         %intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
        intubeLo = [out.e2loamp, out.e1loamp];
         
