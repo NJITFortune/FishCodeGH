@@ -189,7 +189,7 @@ figure(25); clf; %by tube - color is always the same fish
     axs(3)= subplot(413); title('t2/t1'); hold on;
         plot([out.timcont], [out.e2loamp] ./ [out.e1loamp], 'mo')
         plot([out.timcont], [out.e2hiamp] ./ [out.e1hiamp], 'co')
-        plot([out(1).timcont out(end).timcont], [2.5 2.5], 'k')
+        plot([out.timcont(1) out.timcont(end)], [2.5 2.5], 'k')
         
         intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
         intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
