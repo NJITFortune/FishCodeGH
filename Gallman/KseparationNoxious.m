@@ -229,10 +229,10 @@ figure(987); clf; hold on;
             plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
             
 %save indicies of amplitude data for each tube - not calibrated
-    out.Hiobwidx1 = intube1hi;
-    out.Hiobwidx2 = intube2hi;
-    out.Loobwidx1 = intube1lo;
-    out.Loobwidx2 = intube2lo;
+    out.idx(1).Hiobwidx1 = intube1hi;
+    out.idx(2).Hiobwidx2 = intube2hi;
+    out.idx(1).Loobwidx1 = intube1lo;
+    out.idx(2).Loobwidx2 = intube2lo;
             
             
 %save amplitude data for each tube by fish            
