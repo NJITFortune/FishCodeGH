@@ -3,7 +3,7 @@ function k_multiplotter(out)
 %indicies for fish/tube data
  
     hitube{1} = out.Hiobwidx1;
-    hitube{2} = out.Hiobwidx2;
+    hitube{2} = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
     
     lotube{1} = out.Loobwidx1;
     lotube{2} = out.Loobwidx2;
