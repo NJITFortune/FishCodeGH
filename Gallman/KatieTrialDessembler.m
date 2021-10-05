@@ -1,9 +1,9 @@
 %function out = KatieTrialDessembler(in, channel, triallength)  
 clearvars -except kg
 
-in = kg(58);
-channel = 1;
-triallength = 20;
+in = kg(60);
+channel = 2;
+triallength = 40;
 % % Out is raw data, trial is spline data
 %% Take spline estimate of raw data
 
@@ -11,7 +11,7 @@ ReFs = 10;  % Sample rate for splines
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 
-[xx, obwyy, zyy, sumfftyy, lighttimes] = k_detrendspliner(in,channel, ReFs);
+[xx, obwyy, zyy, sumfftyy, lighttimes] = k_spliner(in,channel, ReFs);
 %lighttimes
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
