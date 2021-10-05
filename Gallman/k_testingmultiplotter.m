@@ -5,7 +5,7 @@ function k_testingmultiplotter(out)
     hitube{1} = out.Hiobwidx1;
     hitube{2} = out.Hiobwidx2;
     
-    lotube{1} = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
+    lotube{1} = out.Loobwidx1;
     lotube{2} = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
     
 %colors
@@ -17,7 +17,7 @@ yellow = [0.9290 0.6940 0.1250];
             
 %% plots
 
-figure(5); clf; 
+figure(6); clf; 
 
     
     ax(1) = subplot(511); hold on; title('High frequency fish');
