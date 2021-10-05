@@ -6,7 +6,7 @@ function k_testingmultiplotter(out)
     hitube{2} = out.Hiobwidx2;
     
     lotube{1} = out.Loobwidx1;
-    lotube{2} = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
+    lotube{2} = out.Loobwidx2;
     
 %colors
 teal = [0.2 0.8 0.8];
