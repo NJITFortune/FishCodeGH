@@ -232,7 +232,7 @@ figure(987); clf; hold on;
     %high freq fish
         for j = 1:length(intube1hi)
 
-            out(j).Hiobwidx1(:) = intube1hi;
+            out(j).Hiobwidx1(:) = intube1hi(j);
 
         end
 
