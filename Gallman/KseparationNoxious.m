@@ -228,10 +228,7 @@ figure(987); clf; hold on;
         intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
             plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
             
-
-
-   
-            
+     
             
 %save amplitude data for each tube by fish            
     %Data over indicies for each fish
