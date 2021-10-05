@@ -210,62 +210,7 @@ figure(25); clf; %by tube - color is always the same fish
   
 linkaxes(axs, 'x');      
 
-%% Amplitude ratio
 
-% find "definitely in the tube" moments from the data
-
-
-
-% % E1 threshold.
-% fprintf("Click threshold in top panel (tube 1).\n");
-%     [~, yy] = ginput(1);
-% 
-%     hh1IDX = find([out.e1hiamp] > yy);
-%     hl1IDX = find([out.e1loamp] > yy);
-%     
-% fprintf("Found %i HI fish and %i LO fish above threshold in tube 1.\n", length(hh1IDX), length(hl1IDX));
-% 
-% % E2 threshold.
-% fprintf("Click threshold in bottom panel (tube 2).\n");
-%     [~, yy] = ginput(1);
-% 
-%     hh2IDX = find([out.e2hiamp] > yy);
-%     hl2IDX = find([out.e2loamp] > yy);
-%     
-% fprintf("Found %i HI fish and %i LO fish above threshold in tube 2.\n", length(hh2IDX), length(hl2IDX));
-% 
-% %check to make sure data is from only one tube
-% hhshared = intersect(hh1IDX, hh2IDX);
-% hhshared
-% hlshared = intersect(hl1IDX, hl2IDX);
-% hlshared
-
-   
-
-% fprintf("Click a region where one fish one fish.\n");
-%     [xx, ~] = ginput(2);
-% 
-%     xxx = floor(xx(1)):ceil(xx(2));
-%     
-%     % Which tube is the high fish occupying
-%         if mean([out(xxx).e2hiamp]) > mean([out(xxx).e1hiamp])
-%            hifish = 2;
-%            HIratio = mean([out(xxx).e1hiamp] ./ [out(xxx).e2hiamp]);
-%         else
-%            hifish = 1;
-%            HIratio = mean([out(xxx).e2hiamp] ./ [out(xxx).e1hiamp]);
-%         end
-% 
-%     % Which tube is the low fish occupying
-%         if mean([out(xxx).e2loamp]) > mean([out(xxx).e1loamp])
-%            lofish = 2;
-%            LOratio = mean([out(xxx).e1loamp] ./ [out(xxx).e2loamp]);
-%         else
-%            lofish = 1;
-%            LOratio = mean([out(xxx).e2loamp] ./ [out(xxx).e1loamp]);
-%         end
-
-        %thresholding
         
 %% Assign amplitude data to fish
 % 
