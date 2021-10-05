@@ -2,11 +2,11 @@ function k_multiplotter(out)
 %% preparations
 %indicies for fish/tube data
  
-    hitube{1} = out.idx(1).Hiobwidx1;
-    hitube{2} = out.idx(2).Hiobwidx2;
+    hitube{1} = out.idx(1).Hiobwidx;
+    hitube{2} = out.idx(2).Hiobwidx;
     
-    lotube{1} = out.idx(1).Loobwidx1;
-    lotube{2} = out.idx(2).Loobwidx2;
+    lotube{1} = out.idx(1).Loobwidx;
+    lotube{2} = out.idx(2).Loobwidx;
     
 %colors
 teal = [0.2 0.8 0.8];
