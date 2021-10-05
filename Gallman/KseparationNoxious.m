@@ -217,7 +217,7 @@ linkaxes(axs, 'x');
 figure(987); clf; hold on;
     %Indicies when each fish was in each tube
         %when each fish was in tube 2
-        out.intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
+        out.intube2hi(:) = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
             plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], 'b.');
         out.intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
             plot([out(intube2lo).timcont], [out(intube2lo).e2loamp], 'm.');
