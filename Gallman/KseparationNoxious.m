@@ -210,135 +210,75 @@ figure(25); clf; %by tube - color is always the same fish
   
 linkaxes(axs, 'x');      
 
-%% Amplitude ratio
 
-% find "definitely in the tube" moments from the data
-
-
-
-% % E1 threshold.
-% fprintf("Click threshold in top panel (tube 1).\n");
-%     [~, yy] = ginput(1);
-% 
-%     hh1IDX = find([out.e1hiamp] > yy);
-%     hl1IDX = find([out.e1loamp] > yy);
-%     
-% fprintf("Found %i HI fish and %i LO fish above threshold in tube 1.\n", length(hh1IDX), length(hl1IDX));
-% 
-% % E2 threshold.
-% fprintf("Click threshold in bottom panel (tube 2).\n");
-%     [~, yy] = ginput(1);
-% 
-%     hh2IDX = find([out.e2hiamp] > yy);
-%     hl2IDX = find([out.e2loamp] > yy);
-%     
-% fprintf("Found %i HI fish and %i LO fish above threshold in tube 2.\n", length(hh2IDX), length(hl2IDX));
-% 
-% %check to make sure data is from only one tube
-% hhshared = intersect(hh1IDX, hh2IDX);
-% hhshared
-% hlshared = intersect(hl1IDX, hl2IDX);
-% hlshared
-
-   
-
-% fprintf("Click a region where one fish one fish.\n");
-%     [xx, ~] = ginput(2);
-% 
-%     xxx = floor(xx(1)):ceil(xx(2));
-%     
-%     % Which tube is the high fish occupying
-%         if mean([out(xxx).e2hiamp]) > mean([out(xxx).e1hiamp])
-%            hifish = 2;
-%            HIratio = mean([out(xxx).e1hiamp] ./ [out(xxx).e2hiamp]);
-%         else
-%            hifish = 1;
-%            HIratio = mean([out(xxx).e2hiamp] ./ [out(xxx).e1hiamp]);
-%         end
-% 
-%     % Which tube is the low fish occupying
-%         if mean([out(xxx).e2loamp]) > mean([out(xxx).e1loamp])
-%            lofish = 2;
-%            LOratio = mean([out(xxx).e1loamp] ./ [out(xxx).e2loamp]);
-%         else
-%            lofish = 1;
-%            LOratio = mean([out(xxx).e2loamp] ./ [out(xxx).e1loamp]);
-%         end
-
-        %thresholding
         
 %% Assign amplitude data to fish
 % 
-% figure(987); clf; hold on;
-%     %Indicies when each fish was in each tube
-%         %when each fish was in tube 2
-%         intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
-%             plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], 'b.');
-%         intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
-%             plot([out(intube2lo).timcont], [out(intube2lo).e2loamp], 'm.');
-% 
-%         %when each fish was in tube 1
-%         intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
-%              plot([out(intube1hi).timcont], [out(intube1hi).e1hiamp], 'bo');
-%         intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
-%             plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
-%             
-% %save indicies of amplitude data for each tube - not calibrated
-%     out.idx(1).Hiobw = intube1hi;
-%     out.idx(2).Hiobw = intube2hi;
-%     out.idx(1).Loobw = intube1lo;
-%     out.idx(2).Loobw = intube2lo;
-%             
-%             
-% %save amplitude data for each tube by fish            
-%     %Data over indicies for each fish
-%         %high freq fish amp
-%         [Hisortidx, ~] = sort([intube2hi intube1hi]);
-%         %intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
-%          intubeHi = [out.e2hiamp, out.e1hiamp];
-%         
-%         for j = 1:length(Hisortidx)
-%             out(j).Hiobw(:) = intubeHi(Hisortidx(j));
-%             out(j).Hitimobw(:) = [out(Hisortidx(j)).timcont]/(60*60);
-%             out(j).HIfreq(:) = [out(Hisortidx(j)).hifreq];
-%         end
-%         
-%         %low freq fish amp
-%         [Losortidx, ~] = sort([intube2lo intube1lo]);
-%         %intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
-%        intubeLo = [out.e2loamp, out.e1loamp];
-%         
-%         for j = 1:length(Losortidx)
-%             out(j).Loobw(:) = intubeLo(Losortidx(j));
-%             out(j).Lotimobw(:) = [out(Losortidx(j)).timcont]/(60*60);
-%             out(j).LOfreq(:) = [out(Losortidx(j)).lofreq];
-%         end
-%         
-%    
-%         
-% %% Plot fish against light/temp
-% 
-% 
-% figure(1); clf; 
-% 
-%     
-%     assx(1) = subplot(411); hold on; 
-%         plot([out.Hitimobw], [out.Hiobw], '.');
-%         plot([out.Lotimobw], [out.Loobw], '.');
-% 
-%         legend('High frequency fish', 'Low frequency fish');
-%         
-%     assx(2) = subplot(412); hold on;
-%         plot([out.Hitimobw], [out.HIfreq], '.'); 
-%         plot([out.Lotimobw], [out.LOfreq], '.');
-%         
-%     
-%     assx(3) = subplot(413); hold on; 
-%             plot([out.timcont]/(60*60), [out.temp], '.');
-%     
-%     assx(4) = subplot(414); hold on;
-%         plot([out.timcont]/(60*60), [out.light]);
-%         ylim([-1, 6]);
-%         
-% linkaxes(assx, 'x');
-% 
+figure(987); clf; hold on;
+    %Indicies when each fish was in each tube
+        %when each fish was in tube 2
+        intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
+            plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], 'b.');
+        intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
+            plot([out(intube2lo).timcont], [out(intube2lo).e2loamp], 'm.');
+
+        %when each fish was in tube 1
+        intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
+             plot([out(intube1hi).timcont], [out(intube1hi).e1hiamp], 'bo');
+        intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
+            plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
+            
+     
+            
+%save amplitude data for each tube by fish            
+    %Data over indicies for each fish
+        %high freq fish amp
+        [Hisortidx, ~] = sort([intube2hi intube1hi]);
+        %intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
+         intubeHi = [out.e2hiamp, out.e1hiamp];
+        
+        for j = 1:length(Hisortidx)
+            out(j).Hiobw(:) = intubeHi(Hisortidx(j));
+            out(j).Hitimobw(:) = [out(Hisortidx(j)).timcont]/(60*60);
+            out(j).HIfreq(:) = [out(Hisortidx(j)).hifreq];
+        end
+        
+        %low freq fish amp
+        [Losortidx, ~] = sort([intube2lo intube1lo]);
+        %intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
+       intubeLo = [out.e2loamp, out.e1loamp];
+        
+        for j = 1:length(Losortidx)
+            out(j).Loobw(:) = intubeLo(Losortidx(j));
+            out(j).Lotimobw(:) = [out(Losortidx(j)).timcont]/(60*60);
+            out(j).LOfreq(:) = [out(Losortidx(j)).lofreq];
+        end
+        
+   
+        
+%% Plot fish against light/temp
+
+
+figure(1); clf; 
+
+    
+    assx(1) = subplot(411); hold on; 
+        plot([out.Hitimobw], [out.Hiobw], '.');
+        plot([out.Lotimobw], [out.Loobw], '.');
+
+        legend('High frequency fish', 'Low frequency fish');
+        
+    assx(2) = subplot(412); hold on;
+        plot([out.Hitimobw], [out.HIfreq], '.'); 
+        plot([out.Lotimobw], [out.LOfreq], '.');
+        
+    
+    assx(3) = subplot(413); hold on; 
+            plot([out.timcont]/(60*60), [out.temp], '.');
+    
+    assx(4) = subplot(414); hold on;
+        plot([out.timcont]/(60*60), [out.light]);
+        ylim([-1, 6]);
+        
+linkaxes(assx, 'x');
+
