@@ -3,10 +3,10 @@ function k_testingmultiplotter(out)
 %indicies for fish/tube data
  
     hitube{1} = out.Hiobwidx1;
-%     hitube{2} = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
-%     
-%     lotube{1} = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
-%     lotube{2} = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
+    hitube{2} = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
+    
+    lotube{1} = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
+    lotube{2} = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
     
 %colors
 teal = [0.2 0.8 0.8];
