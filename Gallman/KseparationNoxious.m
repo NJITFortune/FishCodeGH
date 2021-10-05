@@ -229,15 +229,32 @@ figure(987); clf; hold on;
             plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
             
 %save indicies of amplitude data for each tube - not calibrated
+    %high freq fish
+        for j = 1:length(intube1hi)
 
-for j = 1:length(intube1hi)
-    
-    out(j).idx(1).Hiobwidx1(:) = intube1hi(j);
-    
-end
-    out.idx(2).Hiobwidx2 = intube2hi;
-    out.idx(1).Loobwidx1 = intube1lo;
-    out.idx(2).Loobwidx2 = intube2lo;
+            out(j).idx(1).Hiobwidx1(:) = intube1hi(j);
+
+        end
+
+        for jj = 1:length(intube2hi)
+
+            out(jj).idx(2).Hiobwidx1(:) = intube2hi(jj);
+
+        end
+    %low freq fish
+        for k = 1:length(intube1lo)
+
+            out(k).idx(1).Loobwidx1(:) = intube1lo(k);
+
+        end
+
+        for kk = 1:length(intube2lo)
+
+            out(kk).idx(1).Loobwidx2(:) = intube2lo(kk);
+
+        end
+
+   
             
             
 %save amplitude data for each tube by fish            
