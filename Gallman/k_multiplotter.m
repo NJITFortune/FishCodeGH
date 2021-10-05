@@ -17,7 +17,7 @@ yellow = [0.9290 0.6940 0.1250];
             
 %% plots
 
-figure(1); clf; 
+figure(5); clf; 
 
     
     ax(1) = subplot(511); hold on; title('High frequency fish');
