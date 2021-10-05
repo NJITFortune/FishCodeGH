@@ -2,11 +2,11 @@ function k_multiplotter(out)
 %% preparations
 %indicies for fish/tube data
  
-    hitube{1} = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
-    hitube{2} = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
+    hitube1 = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
+    hitube2 = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
     
-    lotube{1} = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
-    lotube{2} = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
+    lotube1 = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
+    lotube2 = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
     
 %colors
 teal = [0.2 0.8 0.8];
@@ -21,8 +21,8 @@ figure(1); clf;
 
     
     ax(1) = subplot(511); hold on; title('High frequency fish');
-        plot([out(hitube{1}).timcont], [out(hitube{1}).e1hiamp], '.', 'Color', teal);
-        plot([out(hitube{2}).timcont], [out(hitube{2}).e2hiamp], '.', 'Color', blue);
+        plot([out(hitube1).timcont], [out(hitube{1}).e1hiamp], '.', 'Color', teal);
+        plot([out(hitube2).timcont], [out(hitube{2}).e2hiamp], '.', 'Color', blue);
         
     
     ax(2) = subplot(512); hold on; title('Low frequency fish');
