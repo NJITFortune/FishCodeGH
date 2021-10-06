@@ -1,4 +1,4 @@
-function out  = KatieMultiLabeler(in)
+function out = KatieMultiLabeler(in)
 % This function reads the original data collection files
 % It filters the data and saves it into a single structure
 % Performs these analyses: OBW, zAMP
@@ -10,13 +10,13 @@ function out  = KatieMultiLabeler(in)
     
     out.ld = input('Enter the LD schedule: ');
     startim = input('Enter the start time for the experiment: ');
-    out.qual = input('Enter Quality of data (1-3): ');
+    
     out.fishid = input('Enter fish name or identifier: ');
     out.feedingtimes = input('Enter feeding times in hours from start: ');
-    out.socialtimes = input('Enter social times in hours from start (neg = disconnected; pos = connected: ');
+   
     out.poweridx = input('Enter the values of timcont in hours over which to perform power analysis: ');
     
-    
+       
 % LIGHT CYCLE ON/OFF STARTS 
     %caclulate hours when the light changed
         numbercycles = floor(in(1).s(end).timcont/(out.ld*60*60)); %number of cycles in data
