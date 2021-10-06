@@ -6,6 +6,6 @@ plot([out.timcont]/3600, [out.light]);
             ylim([-1, 6]);
             
             
-findchangepts([out.light], 'MaxNumChanges', 20);
+findchangepts([out.light], 'MinThreshold', 2.5);
 
 %plot([out.timcont]/3600, lightchange);
