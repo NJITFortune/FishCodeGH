@@ -6,9 +6,9 @@ function out = KatieMultiLabeler(in)
 %
 % Usage: kg(#).info = KatieLabeler(kg(#).e)
 
-    [~,out.folder,~]=fileparts(pwd);
+   [~,out.folder,~]=fileparts(pwd);
     
-    out.ld = input('Enter the LD schedule: ');
+    %out.ld = input('Enter the LD schedule: ');
     startim = input('Enter the start time for the experiment: ');
     
     out.fishid = input('Enter fish name or identifier: ');
