@@ -8,4 +8,4 @@ plot([out.timcont]/3600, [out.light]);
             
 ipt = findchangepts([out.light], 'MinThreshold', 2.5);
 
-plot([out.timcont]/3600, [out(ipt).light]);
+plot([out(ipt).timcont]/3600, [out(ipt).light]);
