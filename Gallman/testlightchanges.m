@@ -1,25 +1,46 @@
-out = kg2(1).s;
+%function out = KatieTempLabeler(in)
+%in = kg2(k).s
+%out = kg2(k).info
 
+in = kg2(1).s;
+
+
+%plot light
 figure(58); clf; hold on;
 
-plot([out.timcont]/3600, [out.light]);
-            ylim([-1, 6]);
+plot([in.timcont]/3600, [in.temp]);
             
             
-ipt = findchangepts([out.light], 'MinThreshold', 2.5);
+%find idicies where the light changes (threshold of 2.5)            
+risetime([in.temp], [in.timcont]/3600);
 
-for j = 1:length(ipt)
-    
-  
-    
-    changepts(j) = [out(ipt(j)).timcont]/3600;
-    
-    if [out(ipt(j)).light] < 2.5
-        changepts(j) = -changepts(j);
-    end
-end
-    
+%create luz vector for light change times
+    %lights on is +
+    %lights off is -
+% for j = 1:length(ipt)
+%     
+%     changepts(j) = [in(ipt(j)).timcont]/3600;
+%     if [out(ipt(j)).light] < 2.55
+%         changepts(j) = -changepts(j);
+%     end
+%     
+% end
+%     
+% if changepts > 0
+% plot([abs(changepts)' abs(changepts)'], ylim, 'y-');
+% else
+% plot([abs(changepts)' abs(changepts)'], ylim, 'k-');
+% end
+% 
+% %out.luz = changepts;
+% 
+% 
 
 
-plot([abs(changepts)' abs(changepts)'], [-1, 6], 'k-');
 
+
+
+
+
+
+    
