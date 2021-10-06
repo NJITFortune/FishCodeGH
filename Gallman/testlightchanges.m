@@ -12,7 +12,7 @@ plot([in.timcont]/3600, [in.temp]);
             
             
 %find idicies where the light changes (threshold of 2.5)            
-findchangepts([in.temp], 'MinThreshold', 2.5);
+findchangepts([in.temp], 'MinThreshold', 2.4);
 
 %create luz vector for light change times
     %lights on is +
