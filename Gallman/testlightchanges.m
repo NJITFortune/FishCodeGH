@@ -7,3 +7,5 @@ plot([out.timcont]/3600, [out.light]);
             
             
 lightchange = findchangepts([out.light]);
+
+plot([out.timcont]/3600, lightchange);
