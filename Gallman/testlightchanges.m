@@ -20,17 +20,17 @@ ipt = findchangepts([in.temp], 'MinThreshold', 2.55);
 for j = 1:length(ipt)
     
     changepts(j) = [in(ipt(j)).timcont]/3600;
-    if [out(ipt(j)).light] < 2.55
-        changepts(j) = -changepts(j);
-    end
+%     if [out(ipt(j)).light] < 2.55
+%         changepts(j) = -changepts(j);
+%     end
     
 end
     
-if changepts > 0
+% if changepts > 0
 plot([abs(changepts)' abs(changepts)'], ylim, 'y-');
-else
-plot([abs(changepts)' abs(changepts)'], ylim, 'k-');
-end
+% else
+% plot([abs(changepts)' abs(changepts)'], ylim, 'k-');
+% end
 
 %out.luz = changepts;
 
