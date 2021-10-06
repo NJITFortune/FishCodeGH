@@ -47,14 +47,13 @@ linkaxes(ax, 'x');
 figure(6); clf; title('By fish')
 
         axs(1) = subplot(511); hold on; title('High frequency fish');
-            plot([out(hitube{1}).timcont]/3600, [out(hitube{1}).e1hiamp], '.', 'Color', teal);
-            plot([out(hitube{2}).timcont]/3600, [out(hitube{2}).e2hiamp], '.', 'Color', blue);
+            plot([out.Hitimobw], [out.Hiobw], '.', 'Color', teal);
+            
 
 
         axs(2) = subplot(512); hold on; title('Low frequency fish');
-            plot([out(lotube{1}).timcont]/3600, [out(lotube{1}).e1loamp], '.','Color', orange);
-            plot([out(lotube{2}).timcont]/3600, [out(lotube{2}).e2loamp], '.', 'Color', yellow);
-
+            plot([out.Lotimobw], [out.Loobw], '.','Color', orange);
+            
 
         axs(3) = subplot(513); hold on; title('Frequency');
             plot([out.Hitimobw], [out.HIfreq], '.','Color', teal); 
