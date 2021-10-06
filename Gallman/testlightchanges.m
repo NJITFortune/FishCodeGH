@@ -10,7 +10,7 @@ ipt = findchangepts([out.light], 'MinThreshold', 2.5);
 
 for j = 1:length(ipt)
     
-    changepts(j) = [out(ipt).timcont]/3600;
+    changepts(j) = [out(ipt(j)).timcont]/3600;
 end
     
 
