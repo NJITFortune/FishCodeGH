@@ -6,6 +6,6 @@ plot([out.timcont]/3600, [out.light]);
             ylim([-1, 6]);
             
             
-lightchange = findchangepts([out.light]);
+findchangepts([out.light]);
 
-plot([out.timcont]/3600, lightchange);
+%plot([out.timcont]/3600, lightchange);
