@@ -8,5 +8,18 @@ plot([out.timcont]/3600, [out.light]);
             
 ipt = findchangepts([out.light], 'MinThreshold', 2.5);
 
-plot([[out(ipt).light], [out(ipt).light]], [-1, 6], 'k-');
+for j = 1:length(ipt)
+    
+  
+    
+    changepts(j) = [out(ipt(j)).timcont]/3600;
+    
+    if [out(ipt(j)).light] < 2.5
+        changepts(j) = -changepts(j);
+    end
+end
+    
+
+
+plot([abs(changepts)' abs(changepts)'], [-1, 6], 'k-');
 
