@@ -14,6 +14,9 @@ plot([in.timcont]/3600, [in.temp]);
 %find idicies where the light changes (threshold of 2.5)            
 risetime([in.temp], [in.timcont]/3600);
 
+[r, lt, ut] = risetime([in.temp], [in.timcont]/3600);
+
+
 %create luz vector for light change times
     %lights on is +
     %lights off is -
