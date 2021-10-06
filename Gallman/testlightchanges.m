@@ -15,5 +15,5 @@ end
     
 
 
-plot([changepts changepts], [-1, 6], 'k-');
+plot([changepts' changepts'], [-1, 6], 'k-');
 
