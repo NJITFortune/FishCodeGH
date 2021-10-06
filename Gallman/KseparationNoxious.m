@@ -2,7 +2,7 @@ function out = KseparationNoxious(userfilespec)
 %% Prep
     Fs = 40000; %sample rate
     freqs = [250 550]; %freq range of typical eigen EOD
-    userfilespec = 'Eigen*'; %file names
+    userfilespec = 'Eigen12LDB-08-21*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
     %day count starts at 0
@@ -123,7 +123,7 @@ for j=2:length(iFiles)
 % Electrode 1
     tmp1 = fftmachine(data1, Fs);
         tmpidx1h = find(tmp1.fftfreq > midpoint & tmp1.fftfreq < midpoint+rango);
-        [out.e1hiamp(j, :), hifreq1idx] = max(tmp1.fftdata(tmpidx1h));
+        [out.e1hiamp(j), hifreq1idx] = max(tmp1.fftdata(tmpidx1h));
         tmpidx1l = find(tmp1.fftfreq > midpoint-rango & tmp1.fftfreq < midpoint);
         [out.e1loamp(j,:), lofreq1idx] = max(tmp1.fftdata(tmpidx1l));
         
@@ -133,9 +133,9 @@ for j=2:length(iFiles)
 % Electrode 2
     tmp2 = fftmachine(data2, Fs);
         tmpidx2h = find(tmp2.fftfreq > midpoint & tmp2.fftfreq < midpoint+rango);
-        [out.e2hiamp(j,:), hifreq2idx] = max(tmp2.fftdata(tmpidx2h));
+        [out.e2hiamp(j), hifreq2idx] = max(tmp2.fftdata(tmpidx2h));
         tmpidx2l = find(tmp2.fftfreq > midpoint-rango & tmp2.fftfreq < midpoint);
-        [out.e2loamp(j,:), lofreq2idx] = max(tmp2.fftdata(tmpidx2l));
+        [out.e2loamp(j), lofreq2idx] = max(tmp2.fftdata(tmpidx2l));
     
         tmphifreq2 = tmp2.fftfreq(tmpidx2h(hifreq2idx));
         tmplofreq2 = tmp2.fftfreq(tmpidx2l(lofreq2idx));
@@ -153,17 +153,17 @@ for j=2:length(iFiles)
          
         
    %save frequencies  
-    out.hifreq(j, :) = currhifreq;     
-    out.lofreq(j, :) = currlofreq;    
+    out.hifreq(j) = currhifreq;     
+    out.lofreq(j) = currlofreq;    
     
    %save time 
     % There are 86400 seconds in a day.
-    out.timcont(j, :) = (hour*60*60) + (minute*60) + second + (daycount*86400);
-    out.tim24(j, :) = (hour*60*60) + (minute*60) + second;
+    out.timcont(j) = (hour*60*60) + (minute*60) + second + (daycount*86400);
+    out.tim24(j) = (hour*60*60) + (minute*60) + second;
     
    %save light and temp
-   out.light(j, :) = mean(data(:,lightchan));
-   out.temp(j, :) = mean(data(:,tempchan));
+   out.light(j) = mean(data(:,lightchan));
+   out.temp(j) = mean(data(:,tempchan));
        
 end
         
