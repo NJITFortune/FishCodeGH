@@ -1,8 +1,11 @@
 function out = KseparationNoxious(userfilespec)
+%% usage
+%kg2(k).s = out
+%see kgmemulti
 %% Prep
     Fs = 40000; %sample rate
     freqs = [250 550]; %freq range of typical eigen EOD
-    userfilespec = 'Eigen12LDB-08-21*'; %file names
+    userfilespec = 'Eigen*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
     %day count starts at 0
@@ -63,8 +66,8 @@ figure(3); clf; hold on;
             plot(currhifreq, tmp.fftdata(hifreqidx(maxidx)), 'm.', 'MarkerSize', 10);
 
 
-out.hifreq(1) = currhifreq;     
-out.lofreq(1) = currlofreq;    
+out(1).hifreq = currhifreq;     
+out(1).lofreq = currlofreq;    
 
 %midpoint is a check. lo freq can't equal hi freq
 midpoint = currlofreq + ((currhifreq - currlofreq)/2);
@@ -72,12 +75,12 @@ rango = abs(currhifreq - currlofreq)+5; % Freq range in Hz for change in fish fr
 
 % Electrode 1
     tmp = fftmachine(data1, Fs);
-        [out.e1hiamp(1), ~] = max(tmp.fftdata(tmp.fftfreq > currhifreq-rango & tmp.fftfreq < currhifreq+rango));
-        [out.e1loamp(1), ~] = max(tmp.fftdata(tmp.fftfreq > currlofreq-rango & tmp.fftfreq < currlofreq+rango));
+        [out(1).e1hiamp, ~] = max(tmp.fftdata(tmp.fftfreq > currhifreq-rango & tmp.fftfreq < currhifreq+rango));
+        [out(1).e1loamp, ~] = max(tmp.fftdata(tmp.fftfreq > currlofreq-rango & tmp.fftfreq < currlofreq+rango));
 % Electrode 2
     tmp = fftmachine(data2, Fs);
-        [out.e2hiamp(1), ~] = max(tmp.fftdata(tmp.fftfreq > currhifreq-rango & tmp.fftfreq < currhifreq+rango));
-        [out.e2loamp(1), ~] = max(tmp.fftdata(tmp.fftfreq > currlofreq-rango & tmp.fftfreq < currlofreq+rango));
+        [out(1).e2hiamp, ~] = max(tmp.fftdata(tmp.fftfreq > currhifreq-rango & tmp.fftfreq < currhifreq+rango));
+        [out(1).e2loamp, ~] = max(tmp.fftdata(tmp.fftfreq > currlofreq-rango & tmp.fftfreq < currlofreq+rango));
         
         
 %define time for j = 1
@@ -87,12 +90,12 @@ rango = abs(currhifreq - currlofreq)+5; % Freq range in Hz for change in fish fr
     second = str2double(iFiles(1).name(numstart+6:numstart+7));
     
 % There are 86400 seconds in a day.
-    out.timcont(1) = (hour*60*60) + (minute*60) + second + (daycount*86400);
-    out.tim24(1) = (hour*60*60) + (minute*60) + second;
+    out(1).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400);
+    out(1).tim24 = (hour*60*60) + (minute*60) + second;
     
 %light and temp for j = 1
-    out.temp(1) = mean(data(1,tempchan));
-    out.light(1) = mean(data(1,lightchan));
+    out(1).temp = mean(data(1,tempchan));
+    out(1).light = mean(data(1,lightchan));
 %% Loop through the rest of the datums
 
 for j=2:length(iFiles)
@@ -108,7 +111,7 @@ for j=2:length(iFiles)
     minute = str2double(iFiles(j).name(numstart+3:numstart+4));
     second = str2double(iFiles(j).name(numstart+6:numstart+7));
                 
-        if j > 2 && ((hour*60*60) + (minute*60) + second) < out.tim24(j-1)
+        if j > 2 && ((hour*60*60) + (minute*60) + second) < out(j-1).tim24
                daycount = daycount + 1;
         end
     
@@ -123,9 +126,9 @@ for j=2:length(iFiles)
 % Electrode 1
     tmp1 = fftmachine(data1, Fs);
         tmpidx1h = find(tmp1.fftfreq > midpoint & tmp1.fftfreq < midpoint+rango);
-        [out.e1hiamp(j), hifreq1idx] = max(tmp1.fftdata(tmpidx1h));
+        [out(j).e1hiamp, hifreq1idx] = max(tmp1.fftdata(tmpidx1h));
         tmpidx1l = find(tmp1.fftfreq > midpoint-rango & tmp1.fftfreq < midpoint);
-        [out.e1loamp(j,:), lofreq1idx] = max(tmp1.fftdata(tmpidx1l));
+        [out(j).e1loamp, lofreq1idx] = max(tmp1.fftdata(tmpidx1l));
         
         tmphifreq1 = tmp1.fftfreq(tmpidx1h(hifreq1idx));
         tmplofreq1 = tmp1.fftfreq(tmpidx1l(lofreq1idx));
@@ -133,9 +136,9 @@ for j=2:length(iFiles)
 % Electrode 2
     tmp2 = fftmachine(data2, Fs);
         tmpidx2h = find(tmp2.fftfreq > midpoint & tmp2.fftfreq < midpoint+rango);
-        [out.e2hiamp(j), hifreq2idx] = max(tmp2.fftdata(tmpidx2h));
+        [out(j).e2hiamp, hifreq2idx] = max(tmp2.fftdata(tmpidx2h));
         tmpidx2l = find(tmp2.fftfreq > midpoint-rango & tmp2.fftfreq < midpoint);
-        [out.e2loamp(j), lofreq2idx] = max(tmp2.fftdata(tmpidx2l));
+        [out(j).e2loamp, lofreq2idx] = max(tmp2.fftdata(tmpidx2l));
     
         tmphifreq2 = tmp2.fftfreq(tmpidx2h(hifreq2idx));
         tmplofreq2 = tmp2.fftfreq(tmpidx2l(lofreq2idx));
@@ -147,23 +150,23 @@ for j=2:length(iFiles)
         
          figure(101); clf;
             subplot(121); hold on; plot(tmp1.fftfreq, tmp1.fftdata); xlim(freqs); ylim([0 1]);
-                plot(currhifreq, out.e1hiamp(j), 'or'); plot(currlofreq, out.e1loamp(j), 'om'); 
+                plot(currhifreq, out(j).e1hiamp, 'or'); plot(currlofreq, out(j).e1loamp, 'om'); 
             subplot(122); hold on; plot(tmp2.fftfreq, tmp2.fftdata); xlim(freqs); ylim([0 1]);
-                plot(currhifreq, out.e2hiamp(j), 'or'); plot(currlofreq, out.e2loamp(j), 'om'); 
+                plot(currhifreq, out(j).e2hiamp, 'or'); plot(currlofreq, out(j).e2loamp, 'om'); 
          
         
    %save frequencies  
-    out.hifreq(j) = currhifreq;     
-    out.lofreq(j) = currlofreq;    
+    out(j).hifreq = currhifreq;     
+    out(j).lofreq = currlofreq;    
     
    %save time 
     % There are 86400 seconds in a day.
-    out.timcont(j) = (hour*60*60) + (minute*60) + second + (daycount*86400);
-    out.tim24(j) = (hour*60*60) + (minute*60) + second;
+    out(j).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400);
+    out(j).tim24 = (hour*60*60) + (minute*60) + second;
     
    %save light and temp
-   out.light(j) = mean(data(:,lightchan));
-   out.temp(j) = mean(data(:,tempchan));
+   out(j).light = mean(data(:,lightchan));
+   out(j).temp = mean(data(:,tempchan));
        
 end
         
@@ -189,22 +192,22 @@ figure(25); clf; %by tube - color is always the same fish
     axs(3)= subplot(413); title('t2/t1'); hold on;
         plot([out.timcont], [out.e2loamp] ./ [out.e1loamp], 'mo')
         plot([out.timcont], [out.e2hiamp] ./ [out.e1hiamp], 'co')
-        plot([out.timcont(1) out.timcont(end)], [2.5 2.5], 'k')
+        plot([out(1).timcont out(end).timcont], [2.5 2.5], 'k')
         
         intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
         intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
-        plot(out.timcont(intube2hi), out.e2hiamp(intube2hi) ./ out.e1hiamp(intube2hi), 'b.');
-        plot(out.timcont(intube2lo), out.e2loamp(intube2lo) ./ out.e1loamp(intube2lo), 'r.');
+        plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp] ./ [out(intube2hi).e1hiamp], 'b.');
+        plot([out(intube2lo).timcont], [out(intube2lo).e2loamp] ./ [out(intube2lo).e1loamp], 'r.');
 
     axs(4)= subplot(414); title('t1/t2'); hold on;
         plot([out.timcont], [out.e1loamp] ./ [out.e2loamp], 'mo')
         plot([out.timcont], [out.e1hiamp] ./ [out.e2hiamp], 'co')
-        plot([out.timcont(1) out.timcont(end)], [2.5 2.5], 'k')
+        plot([out(1).timcont out(end).timcont], [2.5 2.5], 'k')
         
         intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
         intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
-        plot(out.timcont(intube1hi), out.e1hiamp(intube1hi) ./ out.e2hiamp(intube1hi), 'b.');
-        plot(out.timcont(intube1lo), out.e1loamp(intube1lo) ./ out.e2loamp(intube1lo), 'r.');
+        plot([out(intube1hi).timcont], [out(intube1hi).e1hiamp] ./ [out(intube1hi).e2hiamp], 'b.');
+        plot([out(intube1lo).timcont], [out(intube1lo).e1loamp] ./ [out(intube1lo).e2loamp], 'r.');
     
         legend('High frequency fish', 'Low frequency fish');
   
@@ -218,17 +221,17 @@ figure(987); clf; hold on;
     %Indicies when each fish was in each tube
         %when each fish was in tube 2
         intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
-            plot(out.timcont(intube2hi), out.e2hiamp(intube2hi), 'b.');
+            plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], 'b.');
         intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
-            plot(out.timcont(intube2lo), out.e2loamp(intube2lo), 'm.');
+            plot([out(intube2lo).timcont], [out(intube2lo).e2loamp], 'm.');
 
         %when each fish was in tube 1
         intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
-             plot(out.timcont(intube1hi), out.e1hiamp(intube1hi), 'bo');
+             plot([out(intube1hi).timcont], [out(intube1hi).e1hiamp], 'bo');
         intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
-            plot(out.timcont(intube1lo), out.e1loamp(intube1lo), 'mo');
+            plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
             
-
+            
             
 %save amplitude data for each tube by fish            
     %Data over indicies for each fish
@@ -238,9 +241,9 @@ figure(987); clf; hold on;
          intubeHi = [out.e2hiamp, out.e1hiamp];
         
         for j = 1:length(Hisortidx)
-            out.Hiobw(j,:) = intubeHi(Hisortidx(j));
-            out.Hitimobw(j,:) = out.timcont(Hisortidx(j))/(60*60);
-            out.HIfreq(j,:) = out.hifreq(Hisortidx(j));
+            out(j).Hiobw(:) = intubeHi(Hisortidx(j));
+            out(j).Hitimobw(:) = [out(Hisortidx(j)).timcont]/(60*60);
+            out(j).HIfreq(:) = [out(Hisortidx(j)).hifreq];
         end
         
         %low freq fish amp
@@ -249,9 +252,9 @@ figure(987); clf; hold on;
        intubeLo = [out.e2loamp, out.e1loamp];
         
         for j = 1:length(Losortidx)
-            out.Loobw(j,:) = intubeLo(Losortidx(j));
-            out.Lotimobw(j,:) = out.timcont(Losortidx(j))/(60*60);
-            out.LOfreq(j,:) = out.lofreq(Losortidx(j));
+            out(j).Loobw(:) = intubeLo(Losortidx(j));
+            out(j).Lotimobw(:) = [out(Losortidx(j)).timcont]/(60*60);
+            out(j).LOfreq(:) = [out(Losortidx(j)).lofreq];
         end
         
    
