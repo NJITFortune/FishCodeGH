@@ -16,7 +16,7 @@ for j = 1:length(ipt)
     
     if [out(ipt(j)).light] < 2.5
         changepts(j) = -changepts(j);
-    
+    end
 end
     
 
