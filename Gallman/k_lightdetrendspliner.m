@@ -35,10 +35,16 @@ lighttimeslong = abs(in.info.luz);
 
     %fit light vector to power idx
         %poweridx = good data
+        
     if isempty(in.info.poweridx) %if there are no values in poweridx []
         lighttimeslesslong = lighttimeslong;
+        
     else %take data from within power idx range
-        lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
+        
+       %poweridx normally starts with dark, we need to start with light
+       poweridx1 = in.info.poweridx(1) + ld;
+        
+        lighttimesidx = lighttimeslong > poweridx1 & lighttimeslong < in.info.poweridx(2);
         lighttimeslesslong = lighttimeslong(lighttimesidx);
     end
 
@@ -48,16 +54,10 @@ for j = 1:length(lighttimeslesslong)-1
         
         %is there data between j and j+1?    
         if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
-            ott = [in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslesslong(j+1); 
-            lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
-            
-            
-            %ensures that we start on the first full lighttime
-           % if all(lighttim(1) >= lighttimeslesslong(j) & lighttim(1) < lighttimeslesslong(j) + ld/2)  
-               lighttrim(j) = lighttimeslesslong(j);
-              % luztimes(j) = in.info.luz(j);
-           % end
-         
+            %ott = [in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslesslong(j+1); 
+           
+            lighttrim(j) = lighttimeslesslong(j);
+          
         end 
 end
 
