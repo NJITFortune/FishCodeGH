@@ -201,6 +201,7 @@ for k = 1:howmanydaysinsample
                 %fill temporary vector with data from each day 
                 mday(jj,:) = mday(jj,:) + trial(jj).day(k).SobwAmp;
                 subplot(211); hold on; title('Days');
+                %plot days by trial
                 plot(trial(jj).tim, trial(jj).day(k).SobwAmp);
                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
@@ -209,6 +210,8 @@ for k = 1:howmanydaysinsample
          % To get average across days, divide by number of days
             mday(jj,:) = mday(jj,:) / length(trial(jj).day);
             subplot(212); hold on; title('Day average by trial');
+            
+            %plot trial average
             plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
