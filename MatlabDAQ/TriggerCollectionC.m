@@ -3,11 +3,11 @@
 s = daq.createSession('ni');
 
 % Add and configure Analogue Channels
-    s.addAnalogInputChannel('Dev3', 0, 'voltage'); % EOD data
-    s.addAnalogInputChannel('Dev3', 1, 'voltage'); % EOD data
+    s.addAnalogInputChannel('Dev2', 0, 'voltage'); % EOD data
+    s.addAnalogInputChannel('Dev2', 1, 'voltage'); % EOD data
 %    s.addAnalogInputChannel('Dev2', 2, 'voltage'); % EOD data
-    s.addAnalogInputChannel('Dev3', 3, 'voltage'); % Temp data
-    s.addAnalogInputChannel('Dev3', 4, 'voltage'); % Light data
+    s.addAnalogInputChannel('Dev2', 3, 'voltage'); % Temp data
+    s.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
 
     s.Rate = 40000; %Changed from 20000
     
