@@ -3,7 +3,7 @@
 s = daq.createSession('ni');
 
 % Add and configure Analogue Channels
-    s.addAnalogInputChannel('Dev3', 0, 'voltage'); % EOD data
+    s.addAnalogInputChannel('Dev3T', 0, 'voltage'); % EOD data
     s.addAnalogInputChannel('Dev3', 1, 'voltage'); % EOD data
 %    s.addAnalogInputChannel('Dev2', 2, 'voltage'); % EOD data
     s.addAnalogInputChannel('Dev3', 3, 'voltage'); % Temp data
