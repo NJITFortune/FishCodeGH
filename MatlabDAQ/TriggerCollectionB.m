@@ -1,4 +1,4 @@
-%% Set up the DAQ
+ %% Set up the DAQ
 
 s = daq.createSession('ni');
 
