@@ -1,6 +1,6 @@
 %% Set up the DAQ
 
-ss = daq.createSession('na');
+ss = daq.createSession('ni');
 
 % Add and configure Analogue Channels
     ss.addAnalogInputChannel('Dev2', 0, 'voltage'); % EOD data
