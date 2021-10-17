@@ -12,6 +12,10 @@ dataChans = [1 2];
 tempchan = 3;
 lightchan = 4;    
 
+% Fish limit frequencies for OBW calculation (unlikely to be changed)
+        topFreqOBW = 800;
+        botFreqOBW = 200;
+
 % DATA FILTERING
 % High pass filter cutoff frequency
     highp = 200;
@@ -86,6 +90,11 @@ for k = 1:length(iFiles)
         end
 
         zAmp(j) = mean(amp);
+        
+        data4analysis = data(sampidx);
+        
+         % OBW
+         [~,~,~,obwAmp(j)] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
 
     end % By channel
 
@@ -94,6 +103,8 @@ for k = 1:length(iFiles)
     out(k).Ch1peakFreq = peakFreq(1);
     out(k).Ch1sumAmp = sumAmp(1);
     out(k).Ch1zAmp = zAmp(1);
+    out(k).Ch1obwAmp = obwAmp(1);
+    out(k).Ch2obwAmp = obwAmp(2);
    
 
 
@@ -139,7 +150,10 @@ ax(2) = subplot(412); hold on; title('zero xings');
     plot([out.timcont]/(60*60), [out.Ch1zAmp], '.');
     plot([out.timcont]/(60*60), [out.Ch2zAmp], '.');
     
-    
+
+ax(3) = subplot(413); hold on;  
+    plot([out.timcont]/(60*60), [out.Ch1obwAmp], '.');
+    plot([out.timcont]/(60*60), [out.Ch2obwAmp], '.');
     
     
 
