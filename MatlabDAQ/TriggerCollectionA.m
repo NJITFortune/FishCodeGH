@@ -14,7 +14,7 @@ s = daq('ni');
     s.NotifyWhenDataAvailableExceeds = s.Rate * s.DurationInSeconds;
 
 % Add and configure Trigger    
-    addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
+    addtrigger(s,'External','Dev2/PFI0','StartTrigger');
     %addTriggerConnection(s,'Digital', 'StartTrigger', 'Dev2/PFI0');
      
     s.Connections.TriggerCondition = 'FallingEdge';
