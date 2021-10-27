@@ -30,7 +30,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 figure(34); clf; hold on; 
 
     plot(xx, (obwyy/2)-mean(obwyy/2), '-', 'LineWidth', 3);
-    plot(timcont, (freq/100)-mean(freq/100), '.', 'MarkerSize', 3);
+    plot(timcont, (freq/100)-mean(freq/100), '-', 'LineWidth', 3);
 plot(timcont, tempraw-mean(tempraw), 'r-', 'LineWidth', 1);
 plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
 %xlim([20,120]);
