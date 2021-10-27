@@ -30,5 +30,5 @@ figure(34); clf; hold on;
 
     plot(xx, obwyy, '-', 'LineWidth', 3);
     plot(timcont, obwraw, '.', 'MarkerSize', 3);
-    plot(timcont, tempraw, 'r-', 'LineWidth', 1);
-    plot([temptims temptims], ylim, '-', 'LineWidth', 2);
+%     plot(timcont, tempraw, 'r-', 'LineWidth', 1);
+%     plot([temptims temptims], ylim, '-', 'LineWidth', 2);
