@@ -23,7 +23,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
     obwraw = [in.e(channel).s(timcont >= lighttimes(1) & timcont <= lighttimes(end)).obwAmp];
     tempraw = [in.e(channel).s(timcont >= lighttimes(1) & timcont <= lighttimes(end)).temp];
-    temptims = [in.info.temptims(timcont >= lighttimes(1) & timcont <= lighttimes(end))];
+    temptims = [in.info.temptims];
 %% plot tp check
 
 figure(34); clf; hold on; 
