@@ -14,7 +14,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     %subtracts trend from data
     %uses new time base defined by ReFs
 [xx, obwyy, zyy, sumfftyy, lighttimes] = k_detrendspliner(in,channel, ReFs);
-
+lighttimes(end) = lighttimes(end-1);
 
 %Make a time base of raw data that starts and ends on lighttimes 
     %necessary to define length of data and plot against spline estimate
