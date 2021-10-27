@@ -154,7 +154,12 @@ else %channel = 2
             normsumfftyytrend = 1./(sumfftyy - dtsumfftyy);
             tnormsumfftyy = sumfftyy .* normsumfftyytrend;
             
-          
-
-             
+                       
 end
+%% plot to check spline fit 
+
+%before detrending
+
+
+%after detrending
+
