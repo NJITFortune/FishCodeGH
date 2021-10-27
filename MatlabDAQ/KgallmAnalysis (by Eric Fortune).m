@@ -21,6 +21,10 @@ lightchan = 4;
     [b,a] = butter(5, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
     [f,e] = butter(5, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
 
+% Fish limit frequencies for OBW calculation (unlikely to be changed)
+        topFreqOBW = 800;
+        botFreqOBW = 200;
+
 
 iFiles = dir(userfilespec);
 
@@ -82,10 +86,16 @@ for k = 1:length(iFiles)
         posZs = find(z == 1); 
 
         for kk = 2:length(posZs)
+           %amp(kk-1) = max(filtsig(posZs(kk-1):posZs(kk))) - (min(filtsig(posZs(kk-1):posZs(kk)))); % Max + min of signal for each cycle
            amp(kk-1) = max(filtsig(posZs(kk-1):posZs(kk))) - (min(filtsig(posZs(kk-1):posZs(kk)))); % Max + min of signal for each cycle
         end
 
         zAmp(j) = mean(amp);
+
+        % OBW
+        data4analysis = data(sampidx);
+        [~,~,~,obwAmp(j)] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+
 
     end % By channel
 
@@ -94,6 +104,7 @@ for k = 1:length(iFiles)
     out(k).Ch1peakFreq = peakFreq(1);
     out(k).Ch1sumAmp = sumAmp(1);
     out(k).Ch1zAmp = zAmp(1);
+    out(k).Ch1obwAmp = obwAmp(1);
    
 
 
@@ -101,6 +112,7 @@ for k = 1:length(iFiles)
     out(k).Ch2peakFreq = peakFreq(2);
     out(k).Ch2sumAmp = sumAmp(2);
     out(k).Ch2zAmp = zAmp(2);
+    out(k).Ch2obwAmp = obwAmp(2);
     
    
         
@@ -130,23 +142,28 @@ length([out.Ch1sumAmp])
 figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
-ax(1) = subplot(411); hold on; title('fft');
+ax(1) = subplot(511); hold on; title('fft');
     plot([out.timcont]/(60*60), [out.Ch1sumAmp], '.');
     plot([out.timcont]/(60*60), [out.Ch2sumAmp], '.');
    
 
-ax(2) = subplot(412); hold on; title('zero xings');
+ax(2) = subplot(512); hold on; title('zero xings');
     plot([out.timcont]/(60*60), [out.Ch1zAmp], '.');
     plot([out.timcont]/(60*60), [out.Ch2zAmp], '.');
 
-ax(3) = subplot(413); hold on;
+ax(3) = subplot(513); hold on; title('zero xings');
+    plot([out.timcont]/(60*60), [out.Ch1obwAmp], '.');
+    plot([out.timcont]/(60*60), [out.Ch2obwAmp], '.');
+
+
+ax(4) = subplot(514); hold on;
     yyaxis right; plot([out.timcont]/(60*60), -[out.temp], '.');
     yyaxis left; ylim([200 800]);
         plot([out.timcont]/(60*60), [out.Ch1peakFreq], '.', 'Markersize', 8);
         plot([out.timcont]/(60*60), [out.Ch2peakFreq], '.', 'Markersize', 8);
 %        plot([out.timcont]/(60*60), [out.Ch3peakFreq], '.', 'Ma[brkersize', 8);
     
-ax(4) = subplot(414); hold on;
+ax(5) = subplot(515); hold on;
     plot([out.timcont]/(60*60), [out.light], '.', 'Markersize', 8);
     %plot([out.luz], ztzed, '.-', 'Markersize', 8);
     ylim([-1, 6]);

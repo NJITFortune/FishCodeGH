@@ -1,20 +1,20 @@
 %% Set up the DAQ
 
-s = daq.createSession('ni');
+s = daq('ni');
 
 % Add and configure Analogue Channels
-    s.addAnalogInputChannel('Dev2', 0, 'voltage'); % EOD data
-    s.addAnalogInputChannel('Dev2', 1, 'voltage'); % EOD data
+    s.addinput('Dev2', 0, 'voltage'); % EOD data
+    s.addinput('Dev2', 1, 'voltage'); % EOD data
    % s.addAnalogInputChannel('Dev2', 2, 'voltage'); % EOD data
-    s.addAnalogInputChannel('Dev2', 3, 'voltage'); % Temp data
-    s.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
+    s.addinput('Dev2', 3, 'voltage'); % Temp data
+    s.addinput('Dev2', 4, 'voltage'); % Light data
 
     s.Rate = 40000; %changed from 20000
     s.DurationInSeconds = 1; % 2 seconds seemed like too long
     s.NotifyWhenDataAvailableExceeds = s.Rate * s.DurationInSeconds;
 
 % Add and configure Trigger    
-    addTriggerConnection(s,'External','Dev2/PFI0','StartTrigger');
+    addtrigger(s,'External','Dev2/PFI0','StartTrigger');
     %addTriggerConnection(s,'Digital', 'StartTrigger', 'Dev2/PFI0');
      
     s.Connections.TriggerCondition = 'FallingEdge';
