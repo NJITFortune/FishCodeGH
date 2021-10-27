@@ -28,6 +28,6 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 figure(34); clf; hold on; 
 
     plot(xx, obwyy, '-', 'LineWidth', 3);
-    plot(timcont, obwraw, '.', 'MarkerSize', 3);
+   % plot(timcont, obwraw, '.', 'MarkerSize', 3);
 %     plot(timcont, tempraw, 'r-', 'LineWidth', 1);
 %     plot([temptims temptims], ylim, '-', 'LineWidth', 2);
