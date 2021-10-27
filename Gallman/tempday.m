@@ -31,3 +31,4 @@ figure(34); clf; hold on;
    % plot(timcont, obwraw, '.', 'MarkerSize', 3);
 plot(timcont, tempraw-mean(tempraw), 'r-', 'LineWidth', 1);
 plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
+xlim([0,120]);
