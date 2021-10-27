@@ -1,7 +1,7 @@
 %function out = KatieTrialDessembler(in, channel, triallength)  
 clearvars -except kg
 
-in = kg(56);
+in = kg(14);
 channel = 1;
 triallength = 48;
 % % Out is raw data, trial is spline data
@@ -11,7 +11,7 @@ ReFs = 10;  % Sample rate for splines
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 
-[xx, obwyy, zyy, sumfftyy, lighttimes] = k_lightdetrendspliner(in,channel, ReFs);
+[xx, obwyy, zyy, sumfftyy, lighttimes] = k_spliner(in,channel, ReFs);
 %lighttimes
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
@@ -163,7 +163,7 @@ figure(48); clf; title('spline vs raw data');hold on;
         
         plot(out(k).entiretimcont/3600 , out(k).sumfftAmp, '.'); 
         plot(out(k).Sentiretimcont, out(k).SsumfftAmp, 'k-', 'LineWidth', 3); 
-        
+        plot(out(k).Sentiretimcont(1:end-1), (diff(out(k).SsumfftAmp)*10)+0.5,  'r-', 'LineWidth', 3); 
        % maxlen = max([maxlen out(k).entiretimcont/3600]);        
     end
 
@@ -184,8 +184,7 @@ figure(48); clf; title('spline vs raw data');hold on;
         end
         
      
-    
-    
+
     
 figure(49); clf;  
 

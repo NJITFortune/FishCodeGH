@@ -26,35 +26,51 @@ close all;
 figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
-ax(1) = subplot(511); hold on; title('sumfftAmp - magenta = added worms to tank');
+ax(1) = subplot(611); hold on; title('sumfftAmp - magenta = added worms to tank');
     plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
     plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.');
 
-ax(2) = subplot(512); hold on; title('zAmp - green = social');
+ax(2) = subplot(612); hold on; title('zAmp - green = social');
     plot([out.e(2).s(ttz{2}).timcont]/(60*60), [out.e(2).s(ttz{2}).zAmp], '.');
     plot([out.e(1).s(ttz{1}).timcont]/(60*60), [out.e(1).s(ttz{1}).zAmp], '.');
 
-ax(3) = subplot(513); hold on; title('obwAmp');
+ax(3) = subplot(613); hold on; title('obwAmp');
     plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
     plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
 
-ax(4) = subplot(514); hold on; title('frequency (black) and temperature (red)');   
+ax(4) = subplot(614); hold on; title('frequency (black) and temperature (red)');   
     plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.fftFreq], '.k', 'Markersize', 8);
     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.fftFreq], '.k', 'Markersize', 8);
+  
+    
+ax(5) = subplot(615); hold on; title('temperature');
     plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.temp], '-r', 'Markersize', 8);
     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.temp], '-r', 'Markersize', 8);
-    
-ax(5) = subplot(515); hold on; title('light transitions');
+
+
+ax(6) = subplot(616); hold on; title('light transitions');  
     plot([out.e(2).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
         
-% % Add feedingtimes, if we have them... 
-%    if isfield()
-%     if ~isempty([out.info.feedingtimes])
-%        ax(1) = subplot(511); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
-%     end
-%    end  
+% Add feedingtimes, if we have them... 
+   if isfield(out.info, 'feedingtimes')
+    if ~isempty([out.info.feedingtimes])
+       ax(1) = subplot(611); plot([out.info.feedingtimes' out.info.feedingtimes']', [0 max([out.e(1).s.sumfftAmp])], 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
+    end
+   end  
+
+
+% Add temptimes, if we have them... 
+   if isfield(out.info, 'temptims')
+    if ~isempty([out.info.temptims])
+       ax(5) = subplot(615); 
+       for j = 1:length([out.info.temptims])
+            plot([out.info.temptims(j), out.info.temptims(j)], ylim, 'b-');
+       end         
+    end
+   end  
+
 % % Add social times, if we have them... 
 %    if isfield(out.info.socialtimes)
 %     if ~isempty(out.info.socialtimes)   
@@ -62,8 +78,8 @@ ax(5) = subplot(515); hold on; title('light transitions');
 %     end  
 %    end
     
-% Add light transitions times to check luz
-  
+% Add light transitions times to check luz if we have programmed it
+if isfield(out.info, 'luz')
     if  ~isempty(out.info.luz)
         
         %luz by transition type
@@ -72,11 +88,11 @@ ax(5) = subplot(515); hold on; title('light transitions');
             darkon = out.info.luz(out.info.luz < 0);
             
             %plot
-            ax(5) = subplot(515); hold on;
+            ax(6) = subplot(616); hold on;
             plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
             plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
     end    
-
+end
 linkaxes(ax, 'x'); 
 
 

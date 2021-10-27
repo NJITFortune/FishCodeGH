@@ -1,38 +1,44 @@
 function out = KatieLightLabeler(in)
-%in = kg2(k).s
-%out = kg2(k).info
 
-%plot light
-figure(58); clf; hold on;
+% This function reads the original data collection files
+% It filters the data and saves it into a single structure
+% Performs these analyses: OBW, zAMP
+% Relies on k_zAmp, k_FindMaxWindow, k_fft
+%
+% Usage: kg(#).info = KatieLabeler(kg(#).e)
 
-plot([in.timcont]/3600, [in.light]);
-            ylim([-1, 6]);
+    [~,out.folder,~]=fileparts(pwd);
+    
+    out.ld = input('Enter the LD schedule: ');
+    startim = input('Enter the start time for the experiment: ');
+    out.qual = input('Enter Quality of data (1-3): ');
+    out.fishid = input('Enter fish name or identifier: ');
+    out.feedingtimes = input('Enter feeding times in hours from start: ');
+    out.socialtimes = input('Enter social times in hours from start (neg = disconnected; pos = connected: ');
+    out.poweridx = input('Enter the values of timcont in hours over which to perform power analysis: ');
+    
+    
+% LIGHT CYCLE ON/OFF STARTS 
+    %caclulate hours when the light changed
+        numbercycles = floor(in(1).s(end).timcont/(out.ld*60*60)); %number of cycles in data
+        timz = 1:1:numbercycles;
+        out.luz(timz) = startim + (out.ld*(timz-1)); %without for-loop
+       
             
-%find idicies where the light changes (threshold of 2.5)            
-ipt = findchangepts([in.light], 'MinThreshold', 2.5);
-
-%create luz vector for light change times
-    %lights on is +
-    %lights off is -
-for j = 1:length(ipt)
     
-    changepts(j) = [in(ipt(j)).timcont]/3600;
-    if [out(ipt(j)).light] < 2.5
-        changepts(j) = -changepts(j);
-    end
+    %find the time indicies for the first light cycle
+        lidx = [in(1).s.timcont] < out.luz(2)*(60*60);  
+    %take the mean of the light values in the first cycle
+        meaninitialbright = mean([in(1).s(lidx).light]);
     
-end
+    %Assign negative values to luz when lights were off
+        if meaninitialbright < 2.5 % Lights in initial period were off
+            out.luz(1:2:end) = -out.luz(1:2:end); % Set initial period and every other subseqent  as off
+        else
+            out.luz(2:2:end) = -out.luz(2:2:end); % Set the second period and every other subsequent as off.
+        end
+
     
-if changepts > 0
-plot([abs(changepts)' abs(changepts)'], [-1, 6], 'y-');
-else
-plot([abs(changepts)' abs(changepts)'], [-1, 6], 'k-');
-end
-
-out.luz = changepts;
-
-
-
 
 
 
