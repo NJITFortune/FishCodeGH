@@ -4,7 +4,7 @@ clearvars -except kg
 in = kg(51);
 channel = 1;
 p = 0.5;
-ReFs = 60;  %resample once every minute (Usually 60)
+ReFs = 100;  %resample once every minute (Usually 60)
 
 %% Take spline estimate of entire data set
 
