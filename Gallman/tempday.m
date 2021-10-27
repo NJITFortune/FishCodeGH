@@ -30,4 +30,4 @@ figure(34); clf; hold on;
     plot(xx, obwyy-mean(obwyy), '-', 'LineWidth', 3);
    % plot(timcont, obwraw, '.', 'MarkerSize', 3);
 plot(timcont, tempraw-mean(tempraw), 'r-', 'LineWidth', 1);
-plot([temptims temptims], ylim, '-', 'LineWidth', 2);
+plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
