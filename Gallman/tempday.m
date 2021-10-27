@@ -23,12 +23,14 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     obwraw = [in.e(channel).s(timcont >= lighttimes(1) & timcont <= lighttimes(end)).obwAmp];
     tempraw = [in.e(channel).s(timcont >= lighttimes(1) & timcont <= lighttimes(end)).temp];
     temptims = [in.info.temptims];
+    freq = [in.e(channel).s(timcont >= lighttimes(1) & timcont <= lighttimes(end)).freq];
+
 %% plot tp check
 
 figure(34); clf; hold on; 
 
     plot(xx, (obwyy/2)-mean(obwyy/2), '-', 'LineWidth', 3);
-   % plot(timcont, obwraw, '.', 'MarkerSize', 3);
+    plot(timcont, freq-mean(freq), '.', 'MarkerSize', 3);
 plot(timcont, tempraw-mean(tempraw), 'r-', 'LineWidth', 1);
 plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
 %xlim([20,120]);
