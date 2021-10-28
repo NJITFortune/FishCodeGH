@@ -1,5 +1,5 @@
 
-function [xx, tnormobwyy, tnormzyy, tnormsumfftyy, lighttimes] =  k_tempspliner(in, channel, ReFs)
+function [xx, tnormobwyy, tnormzyy, tnormsumfftyy, lighttimes] =  k_tempspliner(in, channel, ReFs, p)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
