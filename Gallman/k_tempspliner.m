@@ -7,7 +7,7 @@ function [xx, tnormobwyy, tnormzyy, tnormsumfftyy, lighttimes] =  k_tempspliner(
 %just lazy
 ld = [in.info.ld];
 %tightness of spline fit
-p = 0.2;
+p = 0.5;
 
 %outliers
     % Prepare the data with outliers
