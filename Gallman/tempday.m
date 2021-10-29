@@ -57,7 +57,7 @@ end
 figure(777); clf; hold on;
 
 %make average amp by temp day variable
- preavg(kk, :) = zeros(1, length(pday(kk).obw));
+ preavg = zeros(1, length(pday(1).obw));
 
     for kk = 1:length(pday)
         
