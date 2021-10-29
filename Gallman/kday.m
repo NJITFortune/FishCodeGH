@@ -270,11 +270,11 @@ linkaxes(axs, 'x');
    
 %% separate to individual epochs
 
-figure(68); clf; title('trial hour - channel 1'); hold on;
+figure(68); clf; hold on;
   
   
 %Channel 1
- subplot(211); hold on;
+ subplot(211);  hold on;title('trial hour - channel 1'); 
 %    
 %     lengthofsampleHOURS = obwxx(end) - obwxx(1);    
 %     daysinasample = floor(lengthofsampleHOURS/(ld*2));
@@ -426,10 +426,10 @@ linkaxes(axs, 'x');
     
 %% separate into 24 hour days
     
-figure(70); clf; title('12 hour - channel 1');
+figure(70); clf; 
   
 %Channel 1
-   subplot(211); hold on; 
+   subplot(211); hold on; title('12 hour - channel 1');
    
    ot1 = find(obwxx >= twelvelight(1) & obwxx < twelvelight(3));
    
@@ -460,10 +460,10 @@ figure(70); clf; title('12 hour - channel 1');
 
 
         
- figure(71); clf; title('12 hour - channel 2');
+ figure(71); clf; 
        
     %channel 2 
-    asd(3) = subplot(211); hold on;
+    asd(3) = subplot(211); hold on; title('12 hour - channel 2');
  
      for j = 2:2:length(twelvelight)-2
 
