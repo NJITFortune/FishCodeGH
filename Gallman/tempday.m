@@ -41,7 +41,7 @@ figure(34); clf; hold on;
 
 for k = 2:2:length(temptims)-1
     %define index overwhich to divide data
-    tidx = find(timcont >= temptims(k-1) & tim < temptims(k+1));   
+    tidx = find(timcont >= temptims(k-1) & timcont < temptims(k+1));   
 
     out(k).obw(:) = obwyy(tidx);
     out(k).zAmp(:) = zyy(tidx);
