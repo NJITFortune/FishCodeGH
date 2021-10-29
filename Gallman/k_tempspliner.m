@@ -1,5 +1,5 @@
 
-function [xx, tnormobwyy, tnormzyy, tnormsumfftyy, lighttimes] =  k_tempspliner(in, channel, ReFs, p)
+function [xx, tnormobwyy, tnormzyy, tnormsumfftyy, temperaturetimes] =  k_tempspliner(in, channel, ReFs, p)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -31,39 +31,40 @@ ld = [in.info.ld];
          
         
 %% trim luz to data - Generate lighttimes
-lighttimeslong = abs(in.info.luz);
+
+temperaturetimeslong = abs(in.info.temptims);
 
     %fit light vector to power idx
         %poweridx = good data
     if isempty(in.info.poweridx) %if there are no values in poweridx []
-        lighttimeslesslong = lighttimeslong;
+        temperaturetimeslesslong = temperaturetimeslong;
     else %take data from within power idx range
-        lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
-        lighttimeslesslong = lighttimeslong(lighttimesidx);
+        temptimesidx = temperaturetimeslong > in.info.poweridx(1) & temperaturetimeslong < in.info.poweridx(2);
+        temperaturetimeslesslong = temperaturetimeslong(temptimesidx);
     end
 
     
 %only take times for light vectors that have data
-for j = 1:length(lighttimeslesslong)-1
+for j = 1:length(temperaturetimeslesslong)-1
         
         %is there data between j and j+1?    
-       % if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
-            ott = [in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslesslong(j+1); 
-            lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
+       if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= temperaturetimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (temperaturetimeslesslong(j+1)),1))  
+            ott = [in.e(1).s(tto{1}).timcont]/(60*60) >= temperaturetimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < temperaturetimeslesslong(j+1); 
+            
             
             
             %ensures that we start on the first full lighttime
            % if all(lighttim(1) >= lighttimeslesslong(j) & lighttim(1) < lighttimeslesslong(j) + ld/2)  
-               lighttrim(j) = lighttimeslesslong(j);
+               temptrim(j) = temperaturetimeslesslong(j);
               % luztimes(j) = in.info.luz(j);
            % end
          
-        %end 
+        end 
 end
 
 
 % take all cells with values and make a new vector
-lighttimes = lighttrim(lighttrim > 0);
+temperaturetimes = temptrim(temptrim > 0);
 
 
 
@@ -72,7 +73,7 @@ lighttimes = lighttrim(lighttrim > 0);
  
 if channel == 1
     
-    xx = lighttimes(1):1/ReFs:lighttimes(end);
+    xx = temperaturetimes(1):1/ReFs:temperaturetimes(end);
       
       %estimate new yvalues for every x value
       
@@ -117,7 +118,7 @@ if channel == 1
 else %channel = 2
     
         
-    xx = lighttimes(1):1/ReFs:lighttimes(end);
+    xx = temperaturetimes(1):1/ReFs:temperaturetimes(end);
 
       %estimate new yvalues for every x value
              
