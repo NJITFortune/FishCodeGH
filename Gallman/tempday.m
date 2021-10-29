@@ -59,7 +59,7 @@ figure(777); clf; hold on;
 
    % xa(1) = subplot(211); hold on;
            % plot(xx, obwyy, '-', 'LineWidth', 3);
-            plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
+            
 
 %make average amp by temp day variable
 % preavg(kk, :) = zeros(1, length(pday(kk).obw));
@@ -75,7 +75,7 @@ figure(777); clf; hold on;
             %preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
 
         end
-        
+        plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
         
 %linkaxes(xa, 'x');
 
