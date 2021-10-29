@@ -61,11 +61,11 @@ pavg(kk, :) = zeros(1, length(pday));
 
     for kk = 1:length(pday)
         
-        plot(out(kk).daytim, out(kk).obw, 'LineWidth', 2);
-        preavg(kk, :) = preavg(kk, :) + out(kk).obw;
+        plot(pday(kk).daytim, pday(kk).obw, 'LineWidth', 2);
+        preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
 
     end
 
     pavg = preavg/ length(pday);
-    plot(
+    plot(pday(1).daytim, pavg, 'k-');
     
