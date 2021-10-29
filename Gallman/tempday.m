@@ -53,21 +53,23 @@ for k = 2%:2:length(temptims)-1
     
 end
 
+length(pday)
 
-figure(777); clf; hold on;
 
-%make average amp by temp day variable
- preavg = zeros(1, length(pday(1).obw));
-
-    for kk = 1:length(pday)
-        
-       
-        
-        plot(pday(kk).daytim, pday(kk).obw, 'LineWidth', 2);
-        preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
-
-    end
-
-    pavg = preavg/ length(pday);
-    plot(pday(1).daytim, pavg, 'k-');
-    
+% figure(777); clf; hold on;
+% 
+% %make average amp by temp day variable
+%  preavg(kk, :) = zeros(1, length(pday(kk).obw));
+% 
+%     for kk = 1:length(pday)
+%         
+%        
+%         
+%         plot(pday(kk).daytim, pday(kk).obw, 'LineWidth', 2);
+%         preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
+% 
+%     end
+% 
+%     pavg = preavg/ length(pday);
+%     plot(pday(1).daytim, pavg, 'k-');
+%     
