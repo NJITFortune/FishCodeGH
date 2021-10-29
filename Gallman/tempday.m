@@ -51,23 +51,20 @@ for k = 2:2:length(temptims)-2
     
     pday(k).tim(:) = xx(tidx)-xx(tidx(1));
     
-    
-    
-    
 end
 
 
 figure(777); clf; hold on;
 
 
-    xa(1) = subplot(211); hold on;
-            plot(xx, obwyy, '-', 'LineWidth', 3);
+   % xa(1) = subplot(211); hold on;
+           % plot(xx, obwyy, '-', 'LineWidth', 3);
             plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
 
 %make average amp by temp day variable
 % preavg(kk, :) = zeros(1, length(pday(kk).obw));
 
-    xa(2) = subplot(212); hold on; 
+    %xa(2) = subplot(212); hold on; 
     
 
         for kk = 1:length(pday)
@@ -80,7 +77,19 @@ figure(777); clf; hold on;
         end
         
         
-linkaxes(xa, 'x');
+%linkaxes(xa, 'x');
+
+
+figure(778); clf; hold on;
+
+pmean(p, :) = zeros(1, length(pday(p).obw));
+        for p = 1:length(pday)
+
+            plot(pday(p).entiretim, pday(p).obw, 'LineWidth', 2);
+            pmean(p, :) = pmean(p, :) + pday(p).obw;
+            %preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
+
+        end
 
 %     pavg = preavg/ length(pday);
 %     plot(pday(1).daytim, pavg, 'k-');
