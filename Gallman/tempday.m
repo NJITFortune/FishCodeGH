@@ -51,7 +51,7 @@ for k = 2:2:length(temptims)-2
     
     pday(k).tim(:) = xx(tidx)-xx(tidx(1));
     
-    avgresp1(j/2, :) = dtobwyy1(otx);  
+    obwmean(kk/2, :) = obwyy(tidx);  
     
 end
 
