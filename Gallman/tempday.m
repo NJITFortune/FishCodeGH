@@ -57,12 +57,12 @@ end
 figure(777); clf; hold on;
 
 %make average amp by temp day variable
-
+pavg(kk, :) = zeros(1, length(pday));
 
     for kk = 1:length(pday)
         
         plot(pday(kk).daytim, pday(kk).obw, 'LineWidth', 2);
-        preavg(kk, :) = pday(kk).obw;
+        preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
 
     end
 
