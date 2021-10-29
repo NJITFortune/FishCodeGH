@@ -66,5 +66,5 @@ pavg(kk, :) = zeros(1, length(pday));
 
     end
 
-    pavg = preavg/
+    pavg(kk, :) = preavg(kk, :)/ length(pday)
     
