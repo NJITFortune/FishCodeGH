@@ -82,9 +82,9 @@ figure(777); clf; hold on;
 
 figure(778); clf; hold on;
 
-pmean(p, :) = zeros(1, length(pday(p).obw));
-        for p = 1:length(pday)
 
+        for p = 1:length(pday)
+pmean(p, :) = zeros(1, length(pday(p).obw));
             plot(pday(p).entiretim, pday(p).obw, 'LineWidth', 2);
             pmean(p, :) = pmean(p, :) + pday(p).obw;
             %preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
