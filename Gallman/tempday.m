@@ -52,3 +52,11 @@ for k = 2%:2:length(temptims)-1
     
 end
 
+
+figure(777); clf; hold on;
+
+    for kk = 1:length(out)
+        
+        plot(out(kk).entrietim, out(kk).obw, 'LineWidth', 2);
+        
+    end
