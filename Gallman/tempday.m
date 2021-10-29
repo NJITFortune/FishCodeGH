@@ -57,7 +57,7 @@ end
 figure(777); clf; hold on;
 
 %make average amp by temp day variable
-pavg(kk, :) = zeros(1, length(pday));
+
 
     for kk = 1:length(pday)
         
