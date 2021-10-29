@@ -43,12 +43,12 @@ for k = 2%:2:length(temptims)-1
     %define index overwhich to divide data
     tidx = find(timcont >= temptims(k-1) & timcont < temptims(k+1));   
 
-    out(k).obw(:) = obwyy(tidx);
-    out(k).zAmp(:) = zyy(tidx);
-    out(k). sumfft(:) = sumfftyy(tidx);
+    pday(k).obw(:) = obwyy(tidx);
+    pday(k).zAmp(:) = zyy(tidx);
+    pday(k). sumfft(:) = sumfftyy(tidx);
 
-    out(k).entiretim(:) = timcont(tidx);
-    out(k).daytim(:) = timcont(tidx) - timcont(tidx(1));
+    pday(k).entiretim(:) = timcont(tidx);
+    pday(k).daytim(:) = timcont(tidx) - timcont(tidx(1));
     
     
 end
@@ -59,7 +59,7 @@ figure(777); clf; hold on;
 %make average amp by temp day variable
 pmean 
 
-    for kk = 1:length(out)
+    for kk = 1:length(pday.daytim)
         
         plot(out(kk).entrietim, out(kk).obw, 'LineWidth', 2);
         avgresp1(kk/2, :) = dtobwyy1(otx);  
