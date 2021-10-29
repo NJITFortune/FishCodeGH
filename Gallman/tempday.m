@@ -59,7 +59,7 @@ figure(777); clf; hold on;
 %make average amp by temp day variable
 pmean 
 
-    for kk = 1:length(pday.daytim)
+    for kk = 1:length(pday)
         
         plot(out(kk).entrietim, out(kk).obw, 'LineWidth', 2);
         avgresp1(kk/2, :) = dtobwyy1(otx);  
