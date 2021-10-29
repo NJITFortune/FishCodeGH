@@ -43,7 +43,11 @@ for k = 2:length(temptims)+1
     %define index overwhich to divide data
     tidx = find(timcont >= temptims(k-1) & tim < temptims(k+1));   
 
-    
+    out(k).obw(:) = obwyy(tidx);
+    out(k).zAmp(:) = zyy(tidx);
+    out(k). sumfft(:) = sumfftyy(tidx);
+
+    out
     
     
 
