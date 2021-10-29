@@ -4,7 +4,7 @@ clearvars -except kg
 in = kg(51);
 channel = 1;
 p = 0.5;
-ReFs = 1000;  %resample once every minute (Usually 60)
+ReFs = 10;  %resample once every minute (Usually 60)
 
 %% Take spline estimate of entire data set
 
@@ -51,6 +51,8 @@ for k = 2:2:length(temptims)-2
     
     pday(k).tim(:) = xx(tidx)-xx(tidx(1));
     
+    obwLIST(kk/2, :) = obwyy(tidx);  
+    
 end
 
 
@@ -80,16 +82,18 @@ figure(777); clf; hold on;
 %linkaxes(xa, 'x');
 
 
+
 figure(778); clf; hold on;
 
+pmean = zeros(1, length(pday(1).obw));
 
         for p = 1:length(pday)
 
             plot(pday(p).entiretim, pday(p).obw, 'LineWidth', 2);
-            pmean(p, :) = pmean(p, :) + pday(p).obw;
-            %preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
-
+           
         end
+        
+        plot(
 
 %     pavg = preavg/ length(pday);
 %     plot(pday(1).daytim, pavg, 'k-');

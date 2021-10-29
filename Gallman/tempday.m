@@ -92,6 +92,8 @@ pmean = zeros(1, length(pday(1).obw));
             plot(pday(p).entiretim, pday(p).obw, 'LineWidth', 2);
            
         end
+        
+        plot(
 
 %     pavg = preavg/ length(pday);
 %     plot(pday(1).daytim, pavg, 'k-');
