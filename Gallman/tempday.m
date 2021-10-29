@@ -40,4 +40,6 @@ figure(34); clf; hold on;
 %this is going to suck because the temp doesn't change super consistently
 
     for j = 2:length(temptims)
+        
+
     end
