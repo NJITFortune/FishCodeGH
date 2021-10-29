@@ -47,7 +47,7 @@ for k = 2:2:length(temptims)-2
     pday(k).zAmp(:) = zyy(tidx);
     pday(k). sumfft(:) = sumfftyy(tidx);
 
-    pday(k).entiretim(:) = timcont(tidx);
+    pday(k).entiretim(:) = xx(tidx);
    % pday(k).daytim(:) = timcont(tidx) - timcont(tidx(1));
     
     
