@@ -50,13 +50,18 @@ for k = 2%:2:length(temptims)-1
     out(k).entiretim(:) = timcont(tidx);
     out(k).daytim(:) = timcont(tidx) - timcont(tidx(1));
     
+    
 end
 
 
 figure(777); clf; hold on;
 
+%make average amp by temp day variable
+pmean 
+
     for kk = 1:length(out)
         
         plot(out(kk).entrietim, out(kk).obw, 'LineWidth', 2);
-        
+        avgresp1(kk/2, :) = dtobwyy1(otx);  
+
     end
