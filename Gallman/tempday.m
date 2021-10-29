@@ -51,6 +51,8 @@ for k = 2:2:length(temptims)-2
     
     pday(k).tim(:) = xx(tidx)-xx(tidx(1));
     
+    avgresp1(j/2, :) = dtobwyy1(otx);  
+    
 end
 
 
@@ -88,9 +90,7 @@ pmean = zeros(1, length(pday(1).obw));
         for p = 1:length(pday)
 
             plot(pday(p).entiretim, pday(p).obw, 'LineWidth', 2);
-            pmean = pmean + pday(p).obw;
-            %preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
-
+           
         end
 
 %     pavg = preavg/ length(pday);
