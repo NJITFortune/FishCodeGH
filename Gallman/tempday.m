@@ -51,7 +51,7 @@ for k = 2:2:length(temptims)-2
     
     pday(k).tim(:) = xx(tidx)-xx(tidx(1));
     
-    obwmean(kk/2, :) = obwyy(tidx);  
+    obwLIST(kk/2, :) = obwyy(tidx);  
     
 end
 
