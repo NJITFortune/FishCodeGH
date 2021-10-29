@@ -80,8 +80,10 @@ figure(777); clf; hold on;
 %linkaxes(xa, 'x');
 
 
+
 figure(778); clf; hold on;
 
+pmean = zeros(1, length(pday(1).obw));
 
         for p = 1:length(pday)
 
