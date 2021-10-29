@@ -47,8 +47,7 @@ for k = 2:2:length(temptims)+1
     out(k).zAmp(:) = zyy(tidx);
     out(k). sumfft(:) = sumfftyy(tidx);
 
-    out
+    out(k).entiretim(:) = timcont(tidx);
+    out(k).daytim(:) = timcont(tidx) - timcont(tidx(1));
     
-    
-
 end
