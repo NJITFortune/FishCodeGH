@@ -88,7 +88,7 @@ pmean = zeros(1, length(pday(1).obw));
         for p = 1:length(pday)
 
             plot(pday(p).entiretim, pday(p).obw, 'LineWidth', 2);
-            pmean(p, :) = pmean(p, :) + pday(p).obw;
+            pmean = pmean + pday(p).obw;
             %preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
 
         end
