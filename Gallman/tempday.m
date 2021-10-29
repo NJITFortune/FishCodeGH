@@ -33,7 +33,7 @@ figure(34); clf; hold on;
     plot(timcont, (freq/200)-mean(freq/200), 'c-', 'LineWidth', 2);
     plot(timcont, tempraw-mean(tempraw), 'r-', 'LineWidth', 1);
     plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
-    xlim([20,120]);
+   % xlim([20,120]);
 
 %% divide into tempdays
 
