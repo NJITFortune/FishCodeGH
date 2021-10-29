@@ -61,7 +61,7 @@ figure(777); clf; hold on;
 
     for kk = 1:length(pday)
         
-        pavg(kk, :) = zeros(1, length(pday(kk).obw));
+        preavg(kk, :) = zeros(1, length(pday(kk).obw));
         
         plot(pday(kk).daytim, pday(kk).obw, 'LineWidth', 2);
         preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
