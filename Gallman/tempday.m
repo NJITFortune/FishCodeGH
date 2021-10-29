@@ -48,7 +48,10 @@ for k = 2:2:length(temptims)-2
     pday(k). sumfft(:) = sumfftyy(tidx);
 
     pday(k).entiretim(:) = xx(tidx);
-    pday(k).daytim(:) = xx(tidx) - xx(tidx(2));
+    
+    
+    
+    pday(k).daytim(:) = xx(tidx(1));
     
     
 end
