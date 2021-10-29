@@ -39,7 +39,7 @@ figure(34); clf; hold on;
 
 %this is going to suck because the temp doesn't change super consistently
 
-for k = 2:2:length(temptims)
+for k = 2:2:length(temptims)-2
     %define index overwhich to divide data
     tidx = find(timcont >= temptims(k-1) & timcont < temptims(k+1));   
 
@@ -56,17 +56,28 @@ end
 
 figure(777); clf; hold on;
 
+
+    xa(1) = subplot(211); hold on;
+            plot(xx, obwyy, '-', 'LineWidth', 3);
+            plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
+
 %make average amp by temp day variable
 % preavg(kk, :) = zeros(1, length(pday(kk).obw));
 
-    for kk = 1:length(pday)
-        
-       
-        
-        plot(pday(kk).entiretim, pday(kk).obw, 'LineWidth', 2);
-        %preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
+    xa(2) = subplot(212); hold on; 
+    
 
-    end
+        for kk = 1:length(pday)
+
+
+            plot(pday(kk).entiretim, pday(kk).obw, 'LineWidth', 2);
+
+            %preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
+
+        end
+        
+        
+linkaxes(xa, 'x');
 
 %     pavg = preavg/ length(pday);
 %     plot(pday(1).daytim, pavg, 'k-');
