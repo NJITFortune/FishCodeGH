@@ -51,7 +51,7 @@ for k = 2:2:length(temptims)-2
     
     
     
-    tidx
+    
     
     
 end
