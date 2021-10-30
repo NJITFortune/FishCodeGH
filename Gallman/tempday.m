@@ -51,7 +51,6 @@ for k = 2:2:length(temptims)-1
     
     pday(k).tim(:) = xx(tidx)-xx(tidx(1));
     
-    obwLIST(k/2, :) = obwyy(tidx);  
     
 end
 
@@ -90,10 +89,11 @@ figure(778); clf; hold on;
         for p = 1:length(pday)
 
             plot(pday(p).tim, pday(p).obw, 'LineWidth', 2);
+            pmean(p, :) = pday(p).obw;
            
         end
         
-            plot(pday(1).tim, mean(obwLIST), 'k-','LineWidth', 3);
+            %plot(pday(1).tim, , 'k-','LineWidth', 3);
 
 %     pavg = preavg/ length(pday);
 %     plot(pday(1).daytim, pavg, 'k-');
