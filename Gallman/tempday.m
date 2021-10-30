@@ -43,13 +43,13 @@ for k = 2:2:length(temptims)-1
     %define index overwhich to divide data
     tidx = find(xx >= temptims(k-1) & xx < temptims(k+1));   
 
-    pday(k).obw(:) = obwyy(tidx);
-    pday(k).zAmp(:) = zyy(tidx);
-    pday(k). sumfft(:) = sumfftyy(tidx);
+    pday(k/2).obw(:) = obwyy(tidx);
+    pday(k/2).zAmp(:) = zyy(tidx);
+    pday(k/2). sumfft(:) = sumfftyy(tidx);
 
-    pday(k).entiretim(:) = xx(tidx);
+    pday(k/2).entiretim(:) = xx(tidx);
     
-    pday(k).tim(:) = xx(tidx)-xx(tidx(1));
+    pday(k/2).tim(:) = xx(tidx)-xx(tidx(1));
     
     
 end
