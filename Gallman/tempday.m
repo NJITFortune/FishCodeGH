@@ -110,7 +110,7 @@ ptim = zeros(1, length(pday(1).obw));
         end
 
         pmean = pmean / p;
-        plot(ptim, pmean, 'k', 'LineWidth', 15)
+        plot(ptim, pmean, 'k', 'LineWidth', 3)
         
  %% ERIC HELP PLEASE
  
