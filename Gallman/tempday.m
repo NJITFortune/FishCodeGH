@@ -84,14 +84,15 @@ figure(777); clf; hold on;
 
 figure(778); clf; hold on;
 
-pmean = zeros(1, length(pday));
+
+pmean = zeros(1, length(pday(1).obw));
+
 
         for p = 1:length(pday)
 
+
             plot(pday(p).tim, pday(p).obw, 'LineWidth', 2);
-            length(pmean(p, :))
-            length(pday(p).obw)
-            pmean(p,:) = pmean(p, :) + pday(p).obw;
+            pmean = pmean + pday(p).obw;
            
         end
         
