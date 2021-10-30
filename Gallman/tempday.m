@@ -93,6 +93,12 @@ pmean = zeros(1, length(pday));
            
         end
         
-     
-        
+ %% ERIC HELP PLEASE
+ 
+%  Error using  + 
+% Matrix dimensions must agree.
+% 
+% Error in tempday (line 92)
+%             pmean(p,:) = pmean(p, :) + pday(p).obw;
+%         
         
