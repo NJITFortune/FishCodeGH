@@ -84,17 +84,15 @@ figure(777); clf; hold on;
 
 figure(778); clf; hold on;
 
-pmean = zeros(1, length(pday)-1);
+pmean = zeros(1, length(pday));
 
-        for p = 1:length(pday)-1
+        for p = 1:length(pday)
 
             plot(pday(p).tim, pday(p).obw, 'LineWidth', 2);
             pmean(p,:) = pmean(p, :) + pday(p).obw;
            
         end
         
-            %plot(pday(1).tim, , 'k-','LineWidth', 3);
-
-%     pavg = preavg/ length(pday);
-%     plot(pday(1).daytim, pavg, 'k-');
-%     
+     
+        
+        
