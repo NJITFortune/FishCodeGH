@@ -103,13 +103,14 @@ ptim = zeros(1, length(pday(1).obw));
                 if length(pmean) == length(pday(p).obw)
                         pmean = pmean + pday(p).obw;
                 end
+
                 if length(pday(p).tim) > length(ptim)
                     ptim = pday(p).tim;
                 end
            
         end
 
-        pmean = pmean / p;
+        pmean = pmean / length(pday);
         plot(ptim, pmean, 'k', 'LineWidth', 3)
         
  %% ERIC HELP PLEASE
