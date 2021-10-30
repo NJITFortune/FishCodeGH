@@ -89,6 +89,8 @@ pmean = zeros(1, length(pday));
         for p = 1:length(pday)
 
             plot(pday(p).tim, pday(p).obw, 'LineWidth', 2);
+            length(pmean(p, :))
+            length(pday(p).obw)
             pmean(p,:) = pmean(p, :) + pday(p).obw;
            
         end
