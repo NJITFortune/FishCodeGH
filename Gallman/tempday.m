@@ -93,27 +93,26 @@ ptim = zeros(1, length(pday(1).obw));
 
             plot(pday(p).tim, pday(p).obw, 'LineWidth', 2);
 
-%                 if length(pmean) > length(pday(p).obw)
-%                     pmean(1:length(pday(p).obw)) = pmean(1:length(pday(p).obw)) + pday(p).obw;
-%                 end
-%                 if length(pmean) < length(pday(p).obw)
-%                     pmean = pmean + pday(p).obw(1:length(pmean));
-%                     pmean(end+1:length(pday(p).obw)) = pday(p).obw(length(pmean)+1:end);
-%                 end
-%                 if length(pmean) == length(pday(p).obw)
-%                         pmean = pmean + pday(p).obw;
-%                 end
-% 
-%                 if length(pday(p).tim) > length(ptim)
-%                     ptim = pday(p).tim;
-%                 end
+                if length(pmean) > length(pday(p).obw)
+                    pmean(1:length(pday(p).obw)) = pmean(1:length(pday(p).obw)) + pday(p).obw;
+                end
+                if length(pmean) < length(pday(p).obw)
+                    pmean = pmean + pday(p).obw(1:length(pmean));
+                    pmean(end+1:length(pday(p).obw)) = pday(p).obw(length(pmean)+1:end);
+                end
+                if length(pmean) == length(pday(p).obw)
+                        pmean = pmean + pday(p).obw;
+                end
+
+                if length(pday(p).tim) > length(ptim)
+                    ptim = pday(p).tim;
+                end
            
         end
 % 
-%         pmean = pmean / length(pday);
-%         plot(ptim, pmean, 'k', 'LineWidth', 3)
+        pmean = pmean / length(pday);
+        plot(ptim, pmean, 'k', 'LineWidth', 3)
 
-figure; plot(mean(pday(:).obw))
         
  %% ERIC HELP PLEASE
  
