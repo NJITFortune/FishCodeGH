@@ -86,6 +86,7 @@ figure(778); clf; hold on;
 
 
 pmean = zeros(1, length(pday(1).obw));
+ptim = zeros(1, length(pday(1).obw));
 
 
         for p = 1:length(pday)
@@ -102,11 +103,14 @@ pmean = zeros(1, length(pday(1).obw));
                 if length(pmean) == length(pday(p).obw)
                         pmean = pmean + pday(p).obw;
                 end
+                if length(pday(p).tim) > length(ptim)
+                    ptim = pday(p).tim;
+                end
            
         end
 
         pmean = pmean / p;
-        plot()
+        plot(ptim, pmean, 'k', 'LineWidth', 15)
         
  %% ERIC HELP PLEASE
  
