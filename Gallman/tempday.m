@@ -84,7 +84,7 @@ figure(777); clf; hold on;
 
 figure(778); clf; hold on;
 
-pmean = zeros(l, length(pday));
+pmean = zeros(1, length(pday));
 
         for p = 1:length(pday)
 
