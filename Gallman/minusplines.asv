@@ -65,7 +65,7 @@ linkaxes(axs, 'x');
 
 figure(223); clf; hold on; 
 
-    axs(1) = subplot(211); title('raw data'); hold on;
+    xs(1) = subplot(211); title('raw data'); hold on;
 
         plot(obwtimOG, obwAmpOG, '.', 'MarkerSize', 3);
         plot(subobwtim, subobw, '.', 'MarkerSize', 3);
@@ -76,7 +76,7 @@ figure(223); clf; hold on;
         end
      legend('full data set', 'data subset');
    
-    axs(2) = subplot(212); title('spline estimate'); hold on;
+    xs(2) = subplot(212); title('spline estimate'); hold on;
 
         plot(xx, obwyy, 'LineWidth', 3);
         plot(xx, subobwyy, 'LineWidth', 3);
@@ -88,7 +88,7 @@ figure(223); clf; hold on;
         
     legend('full data set', 'data subset');
    
-linkaxes(axs, 'x');
+linkaxes(xs, 'x');
 
 %% does it change the mean estimate?
 
@@ -118,7 +118,7 @@ linkaxes(axs, 'x');
         end
 
          % To get average across days, divide by number of days
-            mday(jj,:) = mday(jj,:) / length(fulltrial(jj).daytim);
+            mday(jj,:) = mday(jj,:) / length(fulltrial(jj));
             subplot(212); hold on; title('Day average by trial');
             plot(fulltrial(jj).daytim, mday(jj,:), '-', 'Linewidth', 1);
             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
@@ -162,7 +162,7 @@ linkaxes(axs, 'x');
  
     subplot(212); hold on;
      submeanofmeans = mean(submday); % Takes the mean of the means for a day from each trial 
-    plot(subtrial(jj).tim, submeanofmeans, 'k-', 'LineWidth', 3);
+    plot(subtrial(jj).daytim, submeanofmeans, 'k-', 'LineWidth', 3);
     
     
  figure(229); clf; title('Day Averages by estimate')
