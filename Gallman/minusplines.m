@@ -118,7 +118,7 @@ linkaxes(xs, 'x');
         end
 
          % To get average across days, divide by number of days
-            mday(jj,:) = mday(jj,:) / length(fulltrial(jj).daytim);
+            mday(jj,:) = mday(jj,:) / length(fulltrial(jj).daytim(k));
             subplot(212); hold on; title('Day average by trial');
             plot(fulltrial(jj).daytim, mday(jj,:), '-', 'Linewidth', 1);
             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
