@@ -177,19 +177,13 @@ trial = k_trialdaydivider(obwtimOG, obwAmpOG, xx, obwyy, ld, lighttimes, ReFs);
 figure(227); clf; title('Day average by fulltrial'); hold on; 
 
 drawnow
-length(trial) 
-pause(2)
-    for jj=1:length(trial) 
 
-jj
-pause(1)
+    for jj=1:length(trial) 
 
         %create temporary vector to calculate mean by trial
         mday(jj,:) = zeros(1,length(trial(jj).daytim));
 
         for k=1:length(trial(jj).daytim)
-
-k
 
                 %fill temporary vector with data from each day 
                 mday(jj,:) = mday(jj,:) + trial(jj).SAmpday(k);
