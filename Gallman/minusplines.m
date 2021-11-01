@@ -65,7 +65,7 @@ linkaxes(axs, 'x');
 
 figure(223); clf; hold on; 
 
-    axs(1) = subplot(211); title('raw data'); hold on;
+    xs(1) = subplot(211); title('raw data'); hold on;
 
         plot(obwtimOG, obwAmpOG, '.', 'MarkerSize', 3);
         plot(subobwtim, subobw, '.', 'MarkerSize', 3);
@@ -76,7 +76,7 @@ figure(223); clf; hold on;
         end
      legend('full data set', 'data subset');
    
-    axs(2) = subplot(212); title('spline estimate'); hold on;
+    xs(2) = subplot(212); title('spline estimate'); hold on;
 
         plot(xx, obwyy, 'LineWidth', 3);
         plot(xx, subobwyy, 'LineWidth', 3);
@@ -88,14 +88,14 @@ figure(223); clf; hold on;
         
     legend('full data set', 'data subset');
    
-linkaxes(axs, 'x');
+linkaxes(xs, 'x');
 
 %% does it change the mean estimate?
 
 %divide data into trials to calculate day means by trial
 
   fulltrial = k_trialdaydivider(obwtimOG, obwAmpOG, xx, obwyy, ld, lighttimes, ReFs);
-  subsettrial = k_trialdaydivider(subobwtim, subobw, xx, subobwyy, ld, lighttimes, ReFs);
+  subtrial = k_trialdaydivider(subobwtim, subobw, xx, subobwyy, ld, lighttimes, ReFs);
   
 %plot
 %FULL TRIAL
