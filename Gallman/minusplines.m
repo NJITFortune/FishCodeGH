@@ -182,6 +182,7 @@ pause(2)
     for jj=1:length(trial) 
 
 jj
+pause(1)
 
         %create temporary vector to calculate mean by trial
         mday(jj,:) = zeros(1,length(trial(jj).daytim));
