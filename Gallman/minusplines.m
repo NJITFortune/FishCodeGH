@@ -162,7 +162,7 @@ linkaxes(xs, 'x');
  
     subplot(212); hold on;
      submeanofmeans = mean(submday); % Takes the mean of the means for a day from each trial 
-    plot(subtrial(jj).tim, submeanofmeans, 'k-', 'LineWidth', 3);
+    plot(subtrial(jj).daytim, submeanofmeans, 'k-', 'LineWidth', 3);
     
     
  figure(229); clf; title('Day Averages by estimate')
