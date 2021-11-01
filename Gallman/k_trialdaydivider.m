@@ -72,7 +72,7 @@ function trial = k_trialdaydivider(rawtim, rawamp, resampledxx, splineyy, ld, li
             
             
             % Get the datums
-            trial(jj).SAmpday(k, :) = trial(jj).SAmp(dayidx:dayidx+howmanysamplesinaday-1);
+            trial(jj).day(k).SAmpday(:) = trial(jj).SAmp(dayidx:dayidx+howmanysamplesinaday-1);
             
 
         end
