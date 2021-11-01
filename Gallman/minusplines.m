@@ -170,11 +170,11 @@ linkaxes(xs, 'x');
             plot(subtrial(jj).daytim, submeanofmeans, 'k-', 'LineWidth', 3);
             
     
- figure(229); clf; title('Day Averages by estimate')
+ figure(229); clf; title('Day Averages by estimate'); hold on;
   
   plot(subtrial(jj).daytim, meanofmeans, 'k-', 'LineWidth', 3);
   plot(subtrial(jj).daytim, submeanofmeans, 'k-', 'LineWidth', 3);
-  legend('full data spline', 'subdata spline');
+    legend('full data spline', 'subdata spline');
   
 %%
 
