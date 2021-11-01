@@ -183,18 +183,18 @@ drawnow
         %create temporary vector to calculate mean by trial
         mday(jj,:) = zeros(1,length(trial(jj).daytim));
 
-        for k=1:length(trial(jj).daytim)
+        for k=1:length(trial(jj).day)
 
                 %fill temporary vector with data from each day 
-                mday(jj,:) = mday(jj,:) + trial(jj).SAmpday(k);
+                mday(jj,:) = mday(jj,:) + trial(jj).day(k).SAmpday;
                 subplot(211); hold on; title('Days');
-                plot(trial(jj).daytim, trial(jj).SAmpday(k));
+                plot(trial(jj).daytim, trial(jj).day(k).SAmpday);
                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
         end
 
          % To get average across days, divide by number of days
-            mday(jj,:) = mday(jj,:) / length(trial(jj).daytim);
+            mday(jj,:) = mday(jj,:) / length(trial(jj).day);
             subplot(212); hold on; title('Day average by trial');
             plot(trial(jj).daytim, mday(jj,:), '-', 'Linewidth', 1);
             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
