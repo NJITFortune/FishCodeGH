@@ -121,7 +121,7 @@ linkaxes(xs, 'x');
             mday(jj,:) = mday(jj,:) / length(fulltrial(jj).daytim);
             subplot(212); hold on; title('Day average by trial');
             plot(fulltrial(jj).daytim, mday(jj,:), '-', 'Linewidth', 1);
-            %plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+            plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
     end
     
