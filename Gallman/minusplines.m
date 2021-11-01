@@ -104,7 +104,7 @@ linkaxes(xs, 'x');
     for jj=1:length(fulltrial) 
 
         %create temporary vector to calculate mean by trial
-        mday(jj,:) = zeros(1,length(fulltrial(jj).day));
+        mday(jj,:) = zeros(1, length(fulltrial(jj).daytim));
 
 
         for k=1:length(fulltrial(jj).day)
@@ -137,7 +137,7 @@ linkaxes(xs, 'x');
     for jj=1:length(subtrial) 
 
         %create temporary vector to calculate mean by trial
-        submday(jj,:) = zeros(1,length(subtrial(jj).day));
+        submday(jj,:) = zeros(1,length(subtrial(jj).daytim));
 
 
         for k=1:length(subtrial(jj).day)
@@ -165,7 +165,7 @@ linkaxes(xs, 'x');
     % Mean of means
  
         subplot(212); hold on;
-        
+
             submeanofmeans = mean(submday); % Takes the mean of the means for a day from each trial 
             plot(subtrial(jj).daytim, submeanofmeans, 'k-', 'LineWidth', 3);
             
