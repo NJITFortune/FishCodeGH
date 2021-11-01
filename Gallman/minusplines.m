@@ -90,113 +90,37 @@ figure(223); clf; hold on;
    
 linkaxes(xs, 'x');
 
-% %% does it change the mean estimate?
-% 
-% %divide data into trials to calculate day means by trial
-% 
-%   fulltrial = k_trialdaydivider(obwtimOG, obwAmpOG, xx, obwyy, ld, lighttimes, ReFs);
-%   subtrial = k_trialdaydivider(subobwtim, subobw, xx, subobwyy, ld, lighttimes, ReFs);
-%   
-% %plot
-% %FULL TRIAL
-% %average day by trial
-%  figure(227); clf; title('Day average by fulltrial'); hold on; 
-%     for jj=1:length(fulltrial) 
-% 
-%         %create temporary vector to calculate mean by trial
-%         mday(jj,:) = zeros(1,length(fulltrial(jj).daytim));
-% 
-% 
-%         for k=1:length(fulltrial(jj).daytim)
-% 
-%                 %fill temporary vector with data from each day 
-%                 mday(jj,:) = mday(jj,:) + fulltrial(jj).SAmpday(k);
-%                 subplot(211); hold on; title('Days');
-%                 plot(fulltrial(jj).daytim, fulltrial(jj).SAmpday(k));
-%                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-% 
-%         end
-% 
-%          % To get average across days, divide by number of days
-%             mday(jj,:) = mday(jj,:) / length(fulltrial(jj).daytim);
-%             subplot(212); hold on; title('Day average by trial');
-%             plot(fulltrial(jj).daytim, mday(jj,:), '-', 'Linewidth', 1);
-%             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-% 
-%     end
-%     
-%     % Mean of means
-%  
-%     subplot(212); hold on;
-%      meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
-%     plot(fulltrial(jj).daytim, meanofmeans, 'k-', 'LineWidth', 3);
-%    
-% %SUB TRIAL
-% %average day by trial
-%  figure(228); clf; title('Day average by subtrial'); hold on; 
-%     for jj=1:length(subtrial) 
-% 
-%         %create temporary vector to calculate mean by trial
-%         submday(jj,:) = zeros(1,length(subtrial(jj).daytim));
-% 
-% 
-%         for k=1:length(subtrial(jj).daytim)
-% 
-%                 %fill temporary vector with data from each day 
-%                 submday(jj,:) = submday(jj,:) + subtrial(jj).SAmpday(k);
-%                 subplot(211); hold on; title('Days');
-%                 plot(subtrial(jj).daytim, subtrial(jj).SAmpday(k));
-%                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-% 
-%         end
-% 
-%          % To get average across days, divide by number of days
-%             submday(jj,:) = submday(jj,:) / length(subtrial(jj).daytim);
-%             subplot(212); hold on; title('Day average by trial');
-%             plot(subtrial(jj).daytim, submday(jj,:), '-', 'Linewidth', 1);
-%             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-% 
-%     end
-%     
-%     % Mean of means
-%  
-%     subplot(212); hold on;
-%      submeanofmeans = mean(submday); % Takes the mean of the means for a day from each trial 
-%     plot(subtrial(jj).daytim, submeanofmeans, 'k-', 'LineWidth', 3);
-%     
-%     
-%  figure(229); clf; title('Day Averages by estimate')
-%   
-%   plot(subtrial(jj).daytim, meanofmeans, 'k-', 'LineWidth', 3);
-%   plot(subtrial(jj).daytim, submeanofmeans, 'k-', 'LineWidth', 3);
-%   legend('full data spline', 'subdata spline');
-%   
-%%
+%% does it change the mean estimate?
 
-trial = k_trialdaydivider(obwtimOG, obwAmpOG, xx, obwyy, ld, lighttimes, ReFs);
-figure(227); clf; title('Day average by fulltrial'); hold on; 
+%divide data into trials to calculate day means by trial
 
-drawnow
-
-    for jj=1:length(trial) 
+  fulltrial = k_trialdaydivider(obwtimOG, obwAmpOG, xx, obwyy, ld, lighttimes, ReFs);
+  subtrial = k_trialdaydivider(subobwtim, subobw, xx, subobwyy, ld, lighttimes, ReFs);
+  
+%plot
+%FULL TRIAL
+%average day by trial
+ figure(227); clf; title('Day average by fulltrial'); hold on; 
+    for jj=1:length(fulltrial) 
 
         %create temporary vector to calculate mean by trial
-        mday(jj,:) = zeros(1,length(trial(jj).daytim));
+        mday(jj,:) = zeros(1,length(fulltrial(jj).day));
 
-        for k=1:length(trial(jj).day)
+
+        for k=1:length(fulltrial(jj).day)
 
                 %fill temporary vector with data from each day 
-                mday(jj,:) = mday(jj,:) + trial(jj).day(k).SAmpday;
+                mday(jj,:) = mday(jj,:) + fulltrial(jj).day(k).SAmpday;
                 subplot(211); hold on; title('Days');
-                plot(trial(jj).daytim, trial(jj).day(k).SAmpday);
+                plot(fulltrial(jj).daytim, fulltrial(jj).day(k).SAmpday);
                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
         end
 
          % To get average across days, divide by number of days
-            mday(jj,:) = mday(jj,:) / length(trial(jj).day);
+            mday(jj,:) = mday(jj,:) / length(fulltrial(jj).day);
             subplot(212); hold on; title('Day average by trial');
-            plot(trial(jj).daytim, mday(jj,:), '-', 'Linewidth', 1);
+            plot(fulltrial(jj).daytim, mday(jj,:), '-', 'Linewidth', 1);
             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
     end
@@ -205,5 +129,86 @@ drawnow
  
     subplot(212); hold on;
      meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
-    plot(trial(jj).daytim, meanofmeans, 'k-', 'LineWidth', 3);
+    plot(fulltrial(jj).daytim, meanofmeans, 'k-', 'LineWidth', 3);
    
+%SUB TRIAL
+%average day by trial
+ figure(228); clf; title('Day average by subtrial'); hold on; 
+    for jj=1:length(subtrial) 
+
+        %create temporary vector to calculate mean by trial
+        submday(jj,:) = zeros(1,length(subtrial(jj).day));
+
+
+        for k=1:length(subtrial(jj).day)
+
+                %fill temporary vector with data from each day 
+                submday(jj,:) = submday(jj,:) + subtrial(jj).day(k).SAmpday;
+
+        subplot(211); hold on; title('Days');
+
+                plot(subtrial(jj).daytim, subtrial(jj).day(k).SAmpday);
+                plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+
+        end
+
+         % To get average across days, divide by number of days
+            submday(jj,:) = submday(jj,:) / length(subtrial(jj).day);
+
+        subplot(212); hold on; title('Day average by trial');
+
+            plot(subtrial(jj).daytim, submday(jj,:), '-', 'Linewidth', 1);
+            plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+
+    end
+    
+    % Mean of means
+ 
+        subplot(212); hold on;
+        
+            submeanofmeans = mean(submday); % Takes the mean of the means for a day from each trial 
+            plot(subtrial(jj).daytim, submeanofmeans, 'k-', 'LineWidth', 3);
+            
+    
+ figure(229); clf; title('Day Averages by estimate')
+  
+  plot(subtrial(jj).daytim, meanofmeans, 'k-', 'LineWidth', 3);
+  plot(subtrial(jj).daytim, submeanofmeans, 'k-', 'LineWidth', 3);
+  legend('full data spline', 'subdata spline');
+  
+%%
+
+% trial = k_trialdaydivider(obwtimOG, obwAmpOG, xx, obwyy, ld, lighttimes, ReFs);
+% figure(227); clf; title('Day average by fulltrial'); hold on; 
+% 
+% drawnow
+% 
+%     for jj=1:length(trial) 
+% 
+%         %create temporary vector to calculate mean by trial
+%         mday(jj,:) = zeros(1,length(trial(jj).daytim));
+% 
+%         for k=1:length(trial(jj).day)
+% 
+%                 %fill temporary vector with data from each day 
+%                 mday(jj,:) = mday(jj,:) + trial(jj).day(k).SAmpday;
+%                 subplot(211); hold on; title('Days');
+%                 plot(trial(jj).daytim, trial(jj).day(k).SAmpday);
+%                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+% 
+%         end
+% 
+%          % To get average across days, divide by number of days
+%             mday(jj,:) = mday(jj,:) / length(trial(jj).day);
+%             subplot(212); hold on; title('Day average by trial');
+%             plot(trial(jj).daytim, mday(jj,:), '-', 'Linewidth', 1);
+%             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+% 
+%     end
+%     
+%     % Mean of means
+%  
+%     subplot(212); hold on;
+%      meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
+%     plot(trial(jj).daytim, meanofmeans, 'k-', 'LineWidth', 3);
+%    
