@@ -100,7 +100,7 @@ linkaxes(xs, 'x');
 %plot
 %FULL TRIAL
 %average day by trial
- figure(227); clf; title('Day average by fulltrial'); hold on; 
+ figure(227); clf; hold on; 
     for jj=1:length(fulltrial) 
 
         %create temporary vector to calculate mean by trial
@@ -131,6 +131,9 @@ linkaxes(xs, 'x');
      meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
     plot(fulltrial(jj).daytim, meanofmeans, 'k-', 'LineWidth', 3);
    
+
+    sgtitle('Day average by fulltrial');
+    
 %SUB TRIAL
 %average day by trial
  figure(228); clf; hold on; 
@@ -170,6 +173,8 @@ linkaxes(xs, 'x');
             plot(subtrial(jj).daytim, submeanofmeans, 'k-', 'LineWidth', 3);
             
         sgtitle('Day average by subtrial');
+
+
  figure(229); clf; title('Day Averages by estimate'); hold on;
   
   plot(subtrial(jj).daytim, meanofmeans,  'LineWidth', 3);
