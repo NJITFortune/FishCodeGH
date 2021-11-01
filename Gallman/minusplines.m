@@ -175,6 +175,11 @@ linkaxes(xs, 'x');
 
 trial = k_trialdaydivider(obwtimOG, obwAmpOG, xx, obwyy, ld, lighttimes, ReFs);
 figure(227); clf; title('Day average by fulltrial'); hold on; 
+
+drawnow
+pause(1);
+fprintf('Made it to here.')
+
     for jj=1:length(trial) 
 
         %create temporary vector to calculate mean by trial
