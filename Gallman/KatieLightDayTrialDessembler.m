@@ -2,7 +2,7 @@
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
-%clearvars -except kg
+clearvars -except kg
 clear trial
 clear day
 in = kg(8);
