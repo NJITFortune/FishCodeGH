@@ -66,7 +66,7 @@ for jj = 1:numotrials
 %                timcont < timcont(1) + (jj*perd));
 
             j = channel;
-            timcont = [in.e(j).s.timcont]/3600;
+           
                 %timcont needs to have the same indicies as the rest of the
                 %data
             % indices for our sample window of perd hours
