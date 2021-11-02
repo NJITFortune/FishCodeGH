@@ -4,6 +4,7 @@ function [trial, day] = KatieDayTrialDessembler(in, channel,  ReFs)
 
 clear trial
 clear day
+
 % in = kg(58);
 % channel = 1;
 % ReFs = 10;
