@@ -120,8 +120,8 @@ for jj = 1:numotrials
             if length(zyy) >= Stimidx(end)
              % Data   
              out(jj).SobwAmp = obwyy(Stimidx);
-             out(jj).SzAmp = zyy(Stimidx);
-             out(jj).SsumfftAmp = sumfftyy(Stimidx);
+%              out(jj).SzAmp = zyy(Stimidx);
+%              out(jj).SsumfftAmp = sumfftyy(Stimidx);
              
              % Time  
              out(jj).Stimcont = xx(Stimidx) - xx(Stimidx(1)); % Time starting at zero  
