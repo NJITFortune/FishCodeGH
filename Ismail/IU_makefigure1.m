@@ -5,12 +5,14 @@ load ~/Downloads/brown2019_04_12_merged.mat
 
 tim = raw_data.interval:raw_data.interval:raw_data.length*raw_data.interval;
 
-clrs = hsv(5);
 
-figure(1); clf; figure(2); clf; 
+
+figure(1); clf; 
 
 numOwaveforms = 50; % tried 50, 100, and 200. Went with 100.
 prePost = [0.0001, 0.0015]; % Time, in seconds, before and after spike time
+
+clrs = hsv(numOwaveforms);
 
 for k = 1:5
 
@@ -23,10 +25,10 @@ for j=1:numOwaveforms
        tim <  spikes_p1.times(listofcodeIDX(j)) + prePost(2));
 
     figure(1); ax(k) = subplot(3,2,k); hold on;
-        plot(tim(tt)-tim(tt(1)), raw_data.values(tt));
+        plot(tim(tt)-tim(tt(1)), raw_data.values(tt), 'Color', clrs(j,:));
 
-    figure(2); hold on;
-        plot(tim(tt)-tim(tt(1)), raw_data.values(tt), 'Color', clrs(k,:));
+    % figure(2); hold on;
+    %    plot(tim(tt)-tim(tt(1)), raw_data.values(tt), 'Color', clrs(k,:));
     
 end
 
