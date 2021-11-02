@@ -35,7 +35,7 @@ end
 end
 
 linkaxes(ax, 'xy'); 
-figure(1); subplot(3,2,1); ylim([-0.08 0.06]);
+figure(1); subplot(2,2,1); ylim([-0.08 0.06]);
 
 
 
