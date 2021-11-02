@@ -68,8 +68,7 @@ for jj = 1:numotrials
 
             j = channel;
            
-                %timcont needs to have the same indicies as the rest of the
-                %data
+               
             % indices for our sample window of perd hours
             timidx = find(timcont >= lighttimes(1) + ((jj-1)*perd) & ...
             timcont < lighttimes(1) + (jj*perd));
