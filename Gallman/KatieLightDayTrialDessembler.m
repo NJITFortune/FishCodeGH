@@ -4,9 +4,9 @@ function [trial, day] = KatieLightDayTrialDessembler(in, channel,  ReFs)
 
 clearvars -except kg lightday1 dark1 in ReFs channel
 
-in = kg(8);
-channel = 1;
-ReFs = 10;
+% in = kg(8);
+% channel = 1;
+% ReFs = 10;
 
 
 if in.info.ld > 15 
