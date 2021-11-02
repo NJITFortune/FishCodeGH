@@ -3,7 +3,7 @@ function trial = k_trialdaydivider(rawtim, rawamp, resampledxx, splineyy, ld, li
 %prep
         %define trial length
 
-            if ld > 15 
+            if ld > 12 
                 triallength = ld * 2;
             else
                 triallength = ld * 4;
