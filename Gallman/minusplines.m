@@ -135,7 +135,6 @@ linkaxes(xs, 'x');
 
     sgtitle('Day average by fulltrial');
     
-clear submday;
     
 %SUB TRIAL
 %average day by trial
