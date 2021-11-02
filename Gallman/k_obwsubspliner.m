@@ -1,5 +1,5 @@
 
-function [xx, subobwyy, lighttimes] =  k_obwsubspliner(in, channel, ReFs)
+function [xx, tnormsubobwyy, lighttimes] =  k_obwsubspliner(in, channel, ReFs)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -142,10 +142,6 @@ else %channel = 2
    subobw = obwAmpOG(obwidx);
    subobwtim = obwtimOG(obwidx);
    
-%detrend ydata
-   dtsubobwtim = detrend(subobwtim,6,'SamplePoints', xx);
-    
-
    
    
 %estimate new spline 
@@ -158,6 +154,11 @@ p = 0.5;
         %resample new x values based on light/dark
         subobwyy = fnval(xx, spliney);
        
+%detrend ydata
+   dtsubobwyy = detrend(subobwyy,6,'SamplePoints', xx);
+   normsubobwyytrend = 1./(subobwyy - dtsubobwyy);
+   tnormsubobwyy = subobwyy .* normsubobwyytrend;
+
 
              
 end
