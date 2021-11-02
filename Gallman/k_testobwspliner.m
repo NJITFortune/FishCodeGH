@@ -113,6 +113,8 @@ else %channel = 2
             spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
             %resample new x values based on light/dark
             obwyy = fnval(xx, spliney);
+            %estimate without resample
+            obwAmp = fnval([in.e(1).s(tto{1}).timcont]/(60*60), spliney);
             %detrend ydata
             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
                 obwtimOG = [in.e(2).s(tto{2}).timcont]/(60*60);
