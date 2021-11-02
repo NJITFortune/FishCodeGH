@@ -142,7 +142,6 @@ end
         
 %take raw data above the spline
    obwidx = find(obwAmpOG > obwAmp);
-   obwidx
    subobw = obwAmpOG(obwidx);
    subobwtim = obwtimOG(obwidx);
    
