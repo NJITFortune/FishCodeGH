@@ -115,7 +115,7 @@ for jj = 1:numotrials
             % Get the rest of the indices for the trial  
             Stimidx = Stimidx:Stimidx + (perd*ReFs)-1;
             
-            if length(zyy) >= Stimidx(end)
+            if length(obwyy) >= Stimidx(end)
              % Data   
              out(jj).SobwAmp = obwyy(Stimidx);
 %              out(jj).SzAmp = zyy(Stimidx);
