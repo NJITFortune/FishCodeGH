@@ -137,7 +137,7 @@ else %channel = 2
                 sumfftAmpOG = [in.e(2).s(ttsf{2}).sumfftAmp]; 
 %% subset raw data            
         
-   obwidx = find(obwAmpOG > obwyy);
+   obwidx = find(obwAmpOG > obwAmp);
    subobw = obwAmpOG(obwidx);
    subobwtim = obwtimOG(obwidx);
    
