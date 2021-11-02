@@ -1,12 +1,12 @@
-%function [trial, day] = KatieDayTrialDessembler(in, channel,  ReFs)
+function [trial, day] = KatieDayTrialDessembler(in, channel,  ReFs)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
-clear trial
-clear day
-in = kg(58);
-channel = 1;
-ReFs = 10;
+% clear trial
+% clear day
+% in = kg(58);
+% channel = 1;
+% ReFs = 10;
 
 
 if in.info.ld > 15 
@@ -66,7 +66,7 @@ for jj = 1:numotrials
 %                timcont < timcont(1) + (jj*perd));
 
             j = channel;
-            timcont = [in.e(j).s.timcont]/3600;
+           
                 %timcont needs to have the same indicies as the rest of the
                 %data
             % indices for our sample window of perd hours
@@ -89,8 +89,8 @@ for jj = 1:numotrials
              out(jj).fftFreq = [in.e(j).s(timidx).fftFreq];
              
              % Time and treatment 
-             out(jj).timcont = [in.e(j).s(timidx).timcont] - in.e(j).s(timidx(1)).timcont; %+1
-             out(jj).entiretimcont = [in.e(j).s(timidx).timcont];
+             out(jj).timcont =timcont(timidx) - timcont(timidx(1)); %+1
+             out(jj).entiretimcont = timcont(timidx);
              out(jj).light = [in.e(j).s(timidx).light];
              out(jj).temp = [in.e(j).s(timidx).temp];
              
@@ -187,9 +187,22 @@ for k = 1:howmanydaysinsample
  %% plot to check
 
  %trials across tims
- figure(26); clf; title('trials across time');  hold on; 
+ figure(26); clf; title('trials across time');  hold on;
  
+    for jj = 1:length(out)
+        
+        plot(out(jj).entiretimcont, out(jj).obwAmp, '.', 'MarkerSize', 3);
+        plot(out(jj).Sentiretimcont, out(jj).SobwAmp, '-', 'LineWidth', 3);
+        
+    end
+    
+    for j = 1:length(lighttimes)
+        
+        plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+    end
+    
  
+ clear mday;
  
  %all days
  %average day by trial
@@ -197,7 +210,7 @@ for k = 1:howmanydaysinsample
     for jj=1:length(trial) 
 
         %create temporary vector to calculate mean by trial
-        mday(jj,:) = zeros(1,length(trial(jj).tim));
+        mday(jj,:) = zeros(1, length(trial(jj).tim));
 
 
         for k=1:length(trial(jj).day)
@@ -225,9 +238,11 @@ for k = 1:howmanydaysinsample
     plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
     
 
-    
+   
     
 figure(28); clf; hold on; 
+
+clear meanday;
 
  for k = 1:length(day)
         plot(day(k).tim, day(k).SobwAmp);
