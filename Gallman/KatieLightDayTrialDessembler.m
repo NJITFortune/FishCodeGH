@@ -5,7 +5,7 @@
 %clearvars -except kg
 clear trial
 clear day
-in = kg(58);
+in = kg(8);
 channel = 1;
 ReFs = 10;
 
