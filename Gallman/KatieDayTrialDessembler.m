@@ -202,13 +202,14 @@ for k = 1:howmanydaysinsample
     end
     
  
+ clear   mday
  %all days
  %average day by trial
  figure(27); clf; hold on; title('Day average by trial');
     for jj=1:length(trial) 
 
         %create temporary vector to calculate mean by trial
-        mday(jj,:) = zeros(1,length(trial(jj).tim));
+        mday(jj,:) = zeros(1, length(trial(jj).tim));
 
 
         for k=1:length(trial(jj).day)
