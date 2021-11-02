@@ -137,9 +137,16 @@ else %channel = 2
                 sumfftAmpOG = [in.e(2).s(ttsf{2}).sumfftAmp]; 
 %% subset raw data            
         
+%take raw data above the spline
    obwidx = find(obwAmpOG > obwyy);
    subobw = obwAmpOG(obwidx);
    subobwtim = obwtimOG(obwidx);
+   
+%detrend ydata
+   dtsubobwtim = detrend(subobwtim,6,'SamplePoints', xx);
+    
+
+   
    
 %estimate new spline 
 p = 0.5;
