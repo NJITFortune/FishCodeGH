@@ -2,11 +2,8 @@ function [trial, day] = KatieLightDayTrialDessembler(in, channel,  ReFs)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
-%clearvars -except kg
-clear trial
-clear day
-clear timcont
-clear lighttimes
+clearvars -except kg
+
 % in = kg(8);
 % channel = 1;
 % ReFs = 10;
