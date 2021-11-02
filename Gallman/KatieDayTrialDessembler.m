@@ -26,8 +26,9 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %[xx, obwyy, zyy, sumfftyy, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
 %above the spline estimate
-%with detrending
-[xx, obwyy, lighttimes] = k_obwsubspliner(in,channel, ReFs);
+[xx, obwyy, obwAmp, obwtimOG, obwAmpOG, lighttimes] =  k_testobwspliner(in, channel, ReFs, p);
+
+
 
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
