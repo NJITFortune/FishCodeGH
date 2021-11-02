@@ -16,15 +16,19 @@ else
     triallength = in.info.ld * 4;
 end
 
-triallength
+%triallength
 % ReFs = 10;
 %% Take spline estimate of raw data
 
 %ReFs = 10;  % Sample rate for splines
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
+%full data set
+%[xx, obwyy, zyy, sumfftyy, lighttimes] = k_lightdetrendspliner(in,channel, ReFs);
 
-[xx, obwyy, zyy, sumfftyy, lighttimes] = k_lightdetrendspliner(in,channel, ReFs);
+%above the spline estimate
+%with detrending
+[xx, obwyy, lighttimes] = k_lightobwsubspliner(in,channel, ReFs);
 
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
