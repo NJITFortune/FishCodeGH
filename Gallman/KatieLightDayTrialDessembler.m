@@ -4,7 +4,7 @@
 
 clearvars -except kg %lightday1 dark1 in ReFs channel
 
-in = kg(58);
+in = kg(19);
 channel = 1;
 ReFs = 10;
 
