@@ -1,5 +1,5 @@
 
-function [xx, subobwyy, lighttimes] =  k_testobwspliner(in, channel, ReFs)
+function [xx, obwyy, obwAmp, obwtimOG, obwAmpOG, lighttimes] =  k_testobwspliner(in, channel, ReFs, p)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -137,20 +137,20 @@ else %channel = 2
                 sumfftAmpOG = [in.e(2).s(ttsf{2}).sumfftAmp]; 
 %% subset raw data            
         
-   obwidx = find(obwAmpOG > obwyy);
-   subobw = obwAmpOG(obwidx);
-   subobwtim = obwtimOG(obwidx);
-   
-%estimate new spline 
-p = 0.5;
-
-  %estimate new yvalues for every x value
-
-        %obw
-        spliney = csaps(subobwtim, subobw, p);
-        %resample new x values based on light/dark
-        subobwyy = fnval(xx, spliney);
-       
+%    obwidx = find(obwAmpOG > obwyy);
+%    subobw = obwAmpOG(obwidx);
+%    subobwtim = obwtimOG(obwidx);
+%    
+% %estimate new spline 
+% p = 0.5;
+% 
+%   %estimate new yvalues for every x value
+% 
+%         %obw
+%         spliney = csaps(subobwtim, subobw, p);
+%         %resample new x values based on light/dark
+%         subobwyy = fnval(xx, spliney);
+%        
 
              
 end
