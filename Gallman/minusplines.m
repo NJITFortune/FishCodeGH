@@ -24,7 +24,7 @@ figure(222); clf; title('spline estimate vs raw data'); hold on;
     
     axs(1) = subplot(211); title('entire data set'); hold on;
 
-        plot(obwtimOG, obwAmpOG, '.', 'MarkerSize', 5);
+        plot(obwtimOG, obwAmpOG, '.', 'MarkerSize', 3);
         plot(xx, obwyy, 'LineWidth', 3);
 
         for j = 1:length(lighttimes)
@@ -53,7 +53,7 @@ p = 0.5;
 
     axs(2) = subplot(212); title('data subset'); hold on;
     
-        plot(subobwtim, subobw, '.', 'MarkerSize', 5);
+        plot(subobwtim, subobw, '.', 'MarkerSize', 3);
         plot(xx, subobwyy, 'LineWidth', 3);
 
         for j = 1:length(lighttimes)
@@ -68,8 +68,8 @@ figure(223); clf; hold on;
 
     xs(1) = subplot(211); title('raw data'); hold on;
 
-        plot(obwtimOG, obwAmpOG, '.', 'MarkerSize', 3);
-        plot(subobwtim, subobw, '.', 'MarkerSize', 3);
+        plot(obwtimOG, obwAmpOG, '.', 'MarkerSize', 5);
+        plot(subobwtim, subobw, '.', 'MarkerSize', 5);
         
 
         for j = 1:length(lighttimes)
