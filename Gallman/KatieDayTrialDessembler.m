@@ -15,7 +15,7 @@ else
     triallength = in.info.ld * 4;
 end
 
-triallength
+%triallength
 % ReFs = 10;
 %% Take spline estimate of raw data
 
