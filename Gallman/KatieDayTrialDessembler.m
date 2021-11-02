@@ -28,7 +28,20 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %above the spline estimate
 [xx, obwyy, obwAmp, obwtimOG, obwAmpOG, lighttimes] =  k_testobwspliner(in, channel, ReFs, p);
 
+% %subset raw data
+   obwidx = find(obwAmpOG > obwAmp);
+   subobw = obwAmpOG(obwidx);
+   subobwtim = obwtimOG(obwidx);
+   
+%estimate new spline 
+p = 0.5;
 
+  %estimate new yvalues for every x value
+
+        %obw
+        spliney = csaps(subobwtim, subobw, p);
+        %resample new x values based on light/dark
+        subobwyy = fnval(xx, spliney);
 
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
