@@ -14,7 +14,7 @@ prePost = [0.0001, 0.0015]; % Time, in seconds, before and after spike time
 
 clrs = lines(numOwaveforms);
 
-for k = 1:5
+for k = 1:4
 
 listofcodeIDX = find(spikes_p1.codes == k);
 
@@ -24,7 +24,7 @@ for j=1:numOwaveforms
    tt = find(tim > spikes_p1.times(listofcodeIDX(j)) - prePost(1) & ...
        tim <  spikes_p1.times(listofcodeIDX(j)) + prePost(2));
 
-    figure(1); ax(k) = subplot(3,2,k); hold on;
+    figure(1); ax(k) = subplot(2,2,k); hold on;
         plot(tim(tt)-tim(tt(1)), raw_data.values(tt), 'Color', clrs(j,:));
 
     % figure(2); hold on;
