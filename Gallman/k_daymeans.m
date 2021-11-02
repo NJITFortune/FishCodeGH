@@ -15,6 +15,7 @@ ld = in(1).trial(1).ld;
  %all days
  %average day by trial
  
+clear  mday;
  
  for j = 1:length(in)
     for jj=1:length(in(j).trial) 
