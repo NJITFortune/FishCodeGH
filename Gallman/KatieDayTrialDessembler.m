@@ -202,7 +202,8 @@ for k = 1:howmanydaysinsample
     end
     
  
- clear   mday
+ clear mday;
+ 
  %all days
  %average day by trial
  figure(27); clf; hold on; title('Day average by trial');
@@ -237,9 +238,11 @@ for k = 1:howmanydaysinsample
     plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
     
 
-    
+   
     
 figure(28); clf; hold on; 
+
+clear meanday;
 
  for k = 1:length(day)
         plot(day(k).tim, day(k).SobwAmp);
