@@ -136,11 +136,12 @@ else %channel = 2
             dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
                 sumffttimOG = [in.e(2).s(ttsf{2}).timcont]/(60*60);
                 sumfftAmpOG = [in.e(2).s(ttsf{2}).sumfftAmp]; 
-                
+
 %% subset raw data            
         
 %take raw data above the spline
    obwidx = find(obwAmpOG > obwAmp);
+   obwidx
    subobw = obwAmpOG(obwidx);
    subobwtim = obwtimOG(obwidx);
    
