@@ -38,6 +38,10 @@ lighttimeslong = abs(in.info.luz);
     if isempty(in.info.poweridx) %if there are no values in poweridx []
         lighttimeslesslong = lighttimeslong;
     else %take data from within power idx range
+        
+         %poweridx normally starts with dark, we need to start with light
+         poweridx1 = in.info.poweridx(1) + ld;
+         
         lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
         lighttimeslesslong = lighttimeslong(lighttimesidx);
     end
