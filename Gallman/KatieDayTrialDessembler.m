@@ -25,7 +25,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %entire data set
 %[xx, obwyy, zyy, sumfftyy, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
-
+[xx, obwyy, lighttimes] =  k_obwsubspliner(in, channel, ReFs);
 
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
