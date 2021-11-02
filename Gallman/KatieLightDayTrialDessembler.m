@@ -91,7 +91,7 @@ for jj = 1:numotrials
              
              % Time and treatment 
              out(jj).timcont = timcont(timidx) - timcont(timidx(1)); %+1
-             out(jj).entiretimcont = timcont;
+             out(jj).entiretimcont = timcont(timidx);
              out(jj).light = [in.e(j).s(timidx).light];
              out(jj).temp = [in.e(j).s(timidx).temp];
              
