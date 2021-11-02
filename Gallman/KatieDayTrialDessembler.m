@@ -23,7 +23,7 @@ end
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 %entire data set
-[xx, obwyy, zyy, sumfftyy, lighttimes] = k_detrendspliner(in,channel, ReFs);
+%[xx, obwyy, zyy, sumfftyy, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
 %above the spline estimate
 %with detrending
