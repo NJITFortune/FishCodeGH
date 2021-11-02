@@ -138,7 +138,7 @@ else %channel = 2
 %% subset raw data            
         
 %take raw data above the spline
-   obwidx = find(obwAmpOG > obwyy);
+   obwidx = find(obwAmpOG > obwAmp);
    subobw = obwAmpOG(obwidx);
    subobwtim = obwtimOG(obwidx);
    
