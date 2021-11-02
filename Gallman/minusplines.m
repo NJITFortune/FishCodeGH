@@ -6,7 +6,7 @@ clearvars -except kg
 %plot like the detrending?
 
 in = kg(10);
-channel = 2;
+channel = 1;
 ReFs = 10;
 p = 0.9;
 
