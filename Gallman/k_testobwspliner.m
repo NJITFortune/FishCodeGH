@@ -1,5 +1,5 @@
 
-function [xx, subobwyy, lighttimes] =  k_obwsubspliner(in, channel, ReFs)
+function [xx, subobwyy, lighttimes] =  k_testobwspliner(in, channel, ReFs)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
