@@ -35,8 +35,10 @@ lighttimeslong = abs(in.info.luz);
 
     %fit light vector to power idx
         %poweridx = good data
+        
     if isempty(in.info.poweridx) %if there are no values in poweridx []
         lighttimeslesslong = lighttimeslong;
+        
     else %take data from within power idx range
         
          %poweridx normally starts with dark, we need to start with light
