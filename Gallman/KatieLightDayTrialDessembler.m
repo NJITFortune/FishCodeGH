@@ -5,6 +5,7 @@ function [trial, day] = KatieLightDayTrialDessembler(in, channel,  ReFs)
 %clearvars -except kg
 clear trial
 clear day
+clear timcont
 % in = kg(8);
 % channel = 1;
 % ReFs = 10;
