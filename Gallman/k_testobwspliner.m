@@ -137,22 +137,22 @@ else %channel = 2
             dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
                 sumffttimOG = [in.e(2).s(ttsf{2}).timcont]/(60*60);
                 sumfftAmpOG = [in.e(2).s(ttsf{2}).sumfftAmp]; 
-%% subset raw data            
-        
-   obwidx = find(obwAmpOG > obwAmp);
-   subobw = obwAmpOG(obwidx);
-   subobwtim = obwtimOG(obwidx);
-   
-%estimate new spline 
-p = 0.5;
-
-  %estimate new yvalues for every x value
-
-        %obw
-        spliney = csaps(subobwtim, subobw, p);
-        %resample new x values based on light/dark
-        subobwyy = fnval(xx, spliney);
-       
+% %% subset raw data            
+%         
+%    obwidx = find(obwAmpOG > obwAmp);
+%    subobw = obwAmpOG(obwidx);
+%    subobwtim = obwtimOG(obwidx);
+%    
+% %estimate new spline 
+% p = 0.5;
+% 
+%   %estimate new yvalues for every x value
+% 
+%         %obw
+%         spliney = csaps(subobwtim, subobw, p);
+%         %resample new x values based on light/dark
+%         subobwyy = fnval(xx, spliney);
+%        
 
              
 end
