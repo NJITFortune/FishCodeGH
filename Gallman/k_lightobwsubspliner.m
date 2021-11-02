@@ -44,7 +44,7 @@ lighttimeslong = abs(in.info.luz);
          %poweridx normally starts with dark, we need to start with light
          poweridx1 = in.info.poweridx(1) + ld;
          
-        lighttimesidx = lighttimeslong > poweridx1(1) & lighttimeslong < poweridx1(2);
+        lighttimesidx = lighttimeslong > poweridx1(1) & lighttimeslong < in.info.poweridx(2);
         lighttimeslesslong = lighttimeslong(lighttimesidx);
     end
 
