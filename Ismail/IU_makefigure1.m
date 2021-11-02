@@ -12,7 +12,7 @@ figure(1); clf;
 numOwaveforms = 50; % tried 50, 100, and 200. Went with 100.
 prePost = [0.0001, 0.0015]; % Time, in seconds, before and after spike time
 
-clrs = jet(numOwaveforms);
+clrs = lines(numOwaveforms);
 
 for k = 1:5
 
