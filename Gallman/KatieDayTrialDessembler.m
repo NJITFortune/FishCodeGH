@@ -4,7 +4,7 @@
 
 clear trial
 clear day
-in = kg(61);
+in = kg(8);
 channel = 1;
 ReFs = 10;
 
