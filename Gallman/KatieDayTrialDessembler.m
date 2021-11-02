@@ -186,6 +186,22 @@ for k = 1:howmanydaysinsample
     
  %% plot to check
 
+ %trials across tims
+ figure(26); clf; title('trials across time');  hold on;
+ 
+    for jj = 1:length(out)
+        
+        plot(out(jj).entiretimcont, out(jj).obwAmp, '.', 'MarkerSize', 3);
+        plot(out(jj).Sentiretimcont, out(jj).SobwAmp, '-', 'LineWidth', 3);
+        
+    end
+    
+    for j = 1:length(lighttimes)
+        
+        plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+    end
+    
+ 
  %all days
  %average day by trial
  figure(27); clf; hold on; title('Day average by trial');
