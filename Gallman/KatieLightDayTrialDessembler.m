@@ -181,8 +181,8 @@ for k = 1:howmanydaysinsample
 
                 if length(dayidx) >= howmanysamplesinaday
                 day(k).SobwAmp = obwyy(dayidx);
-                day(k).SzAmp = zyy(dayidx);
-                day(k).Ssumfftyy = sumfftyy(dayidx);
+%                 day(k).SzAmp = zyy(dayidx);
+%                 day(k).Ssumfftyy = sumfftyy(dayidx);
                 day(k).tim = tim;
                 end
  end
