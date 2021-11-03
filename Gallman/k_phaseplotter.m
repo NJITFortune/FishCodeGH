@@ -75,11 +75,7 @@ ax(5) = subplot(515); hold on; title('temperature');
 
         
 % Add feedingtimes, if we have them... 
-%    if isfield(out.info, 'feedingtimes')
-%     if ~isempty([out.info.feedingtimes])
-%        ax(1) = subplot(611); plot([out.info.feedingtimes' out.info.feedingtimes']', ylim, 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
-%     end
-%    end  
+%   k
 
 
 % Add temptimes, if we have them... 
