@@ -7,10 +7,10 @@ function [timcont, lighttimes, halfday] = KatieTriggers(in)
 % 
 % clear trial
 % clear day
-clearvars -except kg
-in = kg(31);
+% clearvars -except kg
+% in = kg(31);
 channel = 1;
-ReFs = 10;
+% ReFs = 10;
 
 
 

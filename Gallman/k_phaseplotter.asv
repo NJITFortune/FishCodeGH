@@ -48,7 +48,7 @@ ax(2) = subplot(512); hold on; title('triggers per lightchange');
            
          end
     end
-    
+     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
 
 ax(3) = subplot(513); hold on; title('total triggers');
 
@@ -75,7 +75,11 @@ ax(5) = subplot(515); hold on; title('temperature');
 
         
 % Add feedingtimes, if we have them... 
-%   k
+%    if isfield(out.info, 'feedingtimes')
+%     if ~isempty([out.info.feedingtimes])
+%        ax(1) = subplot(611); plot([out.info.feedingtimes' out.info.feedingtimes']', ylim, 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
+%     end
+%    end  
 
 
 % Add temptimes, if we have them... 
@@ -105,11 +109,9 @@ if isfield(out.info, 'luz')
             darkon = out.info.luz(out.info.luz < 0);
             
             %plot
-            ax(1) = subplot(511); hold on;
-            plot([lighton' lighton']', [0 max([out.e(1).s.obwAmp])], 'y-', 'LineWidth', 1.5, 'MarkerSize', 10);
-            plot([abs(darkon)' abs(darkon)']', [0 max([out.e(1).s.obwAmp])], 'k-', 'LineWidth', 1.5, 'MarkerSize', 10);
-
-            
+            ax(6) = subplot(616); hold on;
+            plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
+            plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
     end    
 end
 linkaxes(ax, 'x'); 
