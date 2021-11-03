@@ -52,14 +52,14 @@ for k = 2:length(lighttimes)-1
 
     %         % Get the index of the start time of the day
                 %dayidx = find(timcont >= lighttimes(1) + ((k-1) * (ld)) & timcont < lighttimes(1) + k*ld); % k-1 so that we start at zero
-                dayidx = find(timcont > lighttimes(k-1) & timcont<=lighttimes(k));
+                dayidx = find(timcont > lighttimes(k-1) & timcont <= lighttimes(k));
                % if length(dayidx) >= howmanysamplesinaday %makes sure we only have full days
                 %data
                     for j = channel
                     halfday(k).SobwAmp = [in.e(j).s(dayidx).obwAmp];
-                    halfday(k).SzAmp = [in.e(j).s(dayidx).zAmp];
-                    halfday(k).Ssumfftyy = [in.e(j).s(dayidx).sumfftAmp];
-                 
+%                     halfday(k).SzAmp = [in.e(j).s(dayidx).zAmp];
+%                     halfday(k).Ssumfftyy = [in.e(j).s(dayidx).sumfftAmp];
+%                  
                  
                      % Time and treatment 
                     halfday(k).timcont = timcont(dayidx) - timcont(dayidx(1));
