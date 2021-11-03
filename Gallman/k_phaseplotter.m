@@ -30,12 +30,13 @@ figure(11); clf; hold on;
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
 
-ax(1) = subplot(611); hold on; title('obwAmp');
-    plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
+ax(1) = subplot(511); hold on; title('obwAmp');
+    %plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
     plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
+    plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
 
 
-ax(2) = subplot(612); hold on; title('triggers per lightchange');
+ax(2) = subplot(512); hold on; title('triggers per lightchange');
     
     for k = 1:length(halfday)
 
@@ -47,9 +48,9 @@ ax(2) = subplot(612); hold on; title('triggers per lightchange');
            
          end
     end
-     
+     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
 
-ax(3) = subplot(613); hold on; title('total triggers');
+ax(3) = subplot(513); hold on; title('total triggers');
 
      histogram(timcont, 1000); 
       for kk = 1:length(lighttimes)
@@ -63,20 +64,15 @@ ax(3) = subplot(613); hold on; title('total triggers');
       end
 
 
-ax(4) = subplot(614); hold on; title('frequency (black) and temperature (red)');   
+ax(4) = subplot(514); hold on; title('frequency (black) and temperature (red)');   
     plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.fftFreq], '.k', 'Markersize', 8);
     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.fftFreq], '.k', 'Markersize', 8);
   
     
-ax(5) = subplot(615); hold on; title('temperature');
+ax(5) = subplot(515); hold on; title('temperature');
     plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.temp], '-r', 'Markersize', 8);
     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.temp], '-r', 'Markersize', 8);
 
-
-ax(6) = subplot(616); hold on; title('light transitions');  
-    plot([out.e(2).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
-    ylim([-1, 6]);
-    xlabel('Continuous');
         
 % Add feedingtimes, if we have them... 
    if isfield(out.info, 'feedingtimes')
