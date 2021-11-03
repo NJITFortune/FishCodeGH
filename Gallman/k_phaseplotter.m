@@ -48,7 +48,7 @@ ax(2) = subplot(512); hold on; title('triggers per lightchange');
            
          end
     end
-     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
+    
 
 ax(3) = subplot(513); hold on; title('total triggers');
 
@@ -109,9 +109,7 @@ if isfield(out.info, 'luz')
             plot([lighton' lighton']', [0 max([out.e(1).s.obwAmp])], 'y-', 'LineWidth', 1.5, 'MarkerSize', 10);
             plot([abs(darkon)' abs(darkon)']', [0 max([out.e(1).s.obwAmp])], 'k-', 'LineWidth', 1.5, 'MarkerSize', 10);
 
-            ax(2) = subplot(512); hold on;
-            plot([lighton' lighton']', ylim, 'y-', 'LineWidth', 1.5, 'MarkerSize', 10);
-            plot([abs(darkon)' abs(darkon)']', ylim, 'k-', 'LineWidth', 1.5, 'MarkerSize', 10);
+            
     end    
 end
 linkaxes(ax, 'x'); 
