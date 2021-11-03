@@ -51,7 +51,7 @@ ax(2) = subplot(612); hold on; title('triggers per lightchange');
 
 ax(3) = subplot(613); hold on; title('total triggers');
 
-     histogram(timcont, 100); 
+     histogram(timcont, 1000); 
       for kk = 1:length(lighttimes)
 
             if mod(kk,2) == 1 %if kk is odd plot with a black line
