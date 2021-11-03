@@ -119,6 +119,7 @@ else %channel = 2
             spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
             %resample new x values based on light/dark
             obwyy = fnval(xx, spliney);
+            obwAmp = fnval([in.e(2).s(tto{2}).timcont]/(60*60), spliney);
             %detrend ydata
             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
                 obwtimOG = [in.e(2).s(tto{2}).timcont]/(60*60);
@@ -141,10 +142,11 @@ else %channel = 2
             dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
                 sumffttimOG = [in.e(2).s(ttsf{2}).timcont]/(60*60);
                 sumfftAmpOG = [in.e(2).s(ttsf{2}).sumfftAmp]; 
+end
 %% subset raw data            
         
 %take raw data above the spline
-   obwidx = find(obwAmpOG > obwyy);
+   obwidx = find(obwAmpOG > obwAmp);
    subobw = obwAmpOG(obwidx);
    subobwtim = obwtimOG(obwidx);
    
@@ -167,4 +169,4 @@ p = 0.5;
 
 
              
-end
+
