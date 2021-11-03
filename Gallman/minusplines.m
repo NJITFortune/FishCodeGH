@@ -15,8 +15,8 @@ ld = in.info.ld;
 
 %% Take spline estimate of raw data
 
-[xx, obwyy, obwAmp, obwtimOG, obwAmpOG, lighttimes] =  k_testobwspliner(in, channel, ReFs, p);
-
+[xx, ~, obwAmp, obwtimOG, obwAmpOG, ~] =  k_testobwspliner(in, channel, ReFs, p);
+[subobwtim, subobw, obwyy, lighttimes] =  k_obwminustrend(in, channel, ReFs);
 %[xx, subobwyy, lighttimes] =  k_twotestobwspliner(in, channel, ReFs, p)
 % Plot spline vs raw data
 
@@ -33,22 +33,22 @@ figure(222); clf; title('spline estimate vs raw data'); hold on;
 
 %% spline estimate of raw data above original spline
 
-% %subset raw data
-   obwidx = find(obwAmpOG > obwAmp);
-   subobw = obwAmpOG(obwidx);
-   subobwtim = obwtimOG(obwidx);
-   
-%estimate new spline 
-p = 0.5;
-
-  %estimate new yvalues for every x value
-
-        %obw
-        spliney = csaps(subobwtim, subobw, p);
-        %resample new x values based on light/dark
-        subobwyy = fnval(xx, spliney);
-       
-            
+% % %subset raw data
+%    obwidx = find(obwAmpOG > obwAmp);
+%    subobw = obwAmpOG(obwidx);
+%    subobwtim = obwtimOG(obwidx);
+%    
+% %estimate new spline 
+% p = 0.5;
+% 
+%   %estimate new yvalues for every x value
+% 
+%         %obw
+%         spliney = csaps(subobwtim, subobw, p);
+%         %resample new x values based on light/dark
+%         subobwyy = fnval(xx, spliney);
+%        
+%             
 %plot to check
 
     axs(2) = subplot(212); title('data subset'); hold on;
