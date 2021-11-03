@@ -30,26 +30,27 @@ figure(11); clf; hold on;
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
 
-ax(1) = subplot(613); hold on; title('obwAmp');
+ax(1) = subplot(611); hold on; title('obwAmp');
     plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
     plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
 
 
+ax(2) = subplot(612); hold on; title('triggers per lightchange');
+    
+    for k = 1:length(halfday)
 
- for k = 1:length(halfday)
-    ax(1) = subplot(211); hold on; title('triggers per lightchange');
-     
-     if mod(k,2) == 0
-     histogram(halfday(k).entiretimcont, lighttimes, 'FaceColor', 'k'); 
-        
-     else
-     histogram(halfday(k).entiretimcont, lighttimes, 'FaceColor', 'y'); 
-       
-     end
- end
+         if mod(k,2) == 0
+         histogram(halfday(k).entiretimcont, lighttimes, 'FaceColor', 'k'); 
+            
+         else
+         histogram(halfday(k).entiretimcont, lighttimes, 'FaceColor', 'y'); 
+           
+         end
+    end
      
 
-     ax(2) = subplot(212); hold on; title('total triggers');
+ax(3) = subplot(613); hold on; title('total triggers');
+
      histogram(timcont, 100); 
       for kk = 1:length(lighttimes)
 
@@ -60,10 +61,6 @@ ax(1) = subplot(613); hold on; title('obwAmp');
             end
             
       end
-
- linkaxes(ax, 'x');
-
-
 
 
 ax(4) = subplot(614); hold on; title('frequency (black) and temperature (red)');   
