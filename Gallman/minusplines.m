@@ -16,7 +16,7 @@ ld = in.info.ld;
 %% Take spline estimate of raw data
 
 [xx, ~, obwAmp, obwtimOG, obwAmpOG, ~] =  k_testobwspliner(in, channel, ReFs, p);
-[~, subobw, obwyy, lighttimes] =  k_obwminustrend(in, channel, ReFs);
+[~, subobwyy, obwyy, lighttimes] =  k_obwminustrend(in, channel, ReFs);
 %[xx, subobwyy, lighttimes] =  k_twotestobwspliner(in, channel, ReFs, p)
 % Plot spline vs raw data
 
