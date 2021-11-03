@@ -45,7 +45,7 @@ function out = KatieTempLabeler(in)
     %plots to check
         %plot temp/time
         figure(58); clf; hold on;
-        plot([in(1).s.timcont]/3600, [in.s.temp]);
+        plot([in(1).s.timcont]/3600, [in(1).s.temp]);
                     
                     
         %find idicies where the light changes (threshold of 2.5)  
