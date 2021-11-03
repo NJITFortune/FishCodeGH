@@ -71,92 +71,92 @@ for k = 2:length(lighttimes)-1
     
  %% plot to check
 
-%plot all days of sample on top of eachother 
-figure(28); clf; hold on; 
-    
-    subplot(211); hold on; title('All days');
-        
-        
-             for k = 1:length(halfday)
-                 if mod(k,2) == 1 %if kk is odd
-                    plot(halfday(k).timcont, halfday(k).SobwAmp, '*');
-                 else 
-                    plot(halfday(k).timcont + ld, halfday(k).SobwAmp, '*');
-                 end
-                    
-             end
-            
-        
-        plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-
-    subplot(212); hold on; title('Chronologically')
-
-        for j = 1:length(halfday)
-            plot(halfday(j).entiretimcont, halfday(j).SobwAmp, '*');
-        end
-
-       
-%assuming we start with dark...        
-        for kk = 1:length(lighttimes)
-
-            if mod(kk,2) == 1 %if kk is odd plot with a black line
-            plot([lighttimes(kk), lighttimes(kk)], ylim, 'k-', 'LineWidth', 2);    
-            else %if kk is even plot with a yellow line
-            plot([lighttimes(kk), lighttimes(kk)], ylim, 'y-', 'LineWidth', 2);    
-            end
-            
-        end
-     
- %% how many triggers per half day?
-
- figure(32);clf; hold on;
-
- for k = 1:length(halfday)
-    ax(1) = subplot(211); hold on; title('triggers per lightchange');
-     
-     if mod(k,2) == 0
-     histogram(halfday(k).entiretimcont, lighttimes, 'FaceColor', 'k'); 
-        
-     else
-     histogram(halfday(k).entiretimcont, lighttimes, 'FaceColor', 'y'); 
-       
-     end
- end
-     
-
-     ax(2) = subplot(212); hold on; title('total triggers');
-     histogram(timcont, 100); 
-      for kk = 1:length(lighttimes)
-
-            if mod(kk,2) == 1 %if kk is odd plot with a black line
-            plot([lighttimes(kk), lighttimes(kk)], ylim, 'k-', 'LineWidth', 3);    
-            else %if kk is even plot with a yellow line
-            plot([lighttimes(kk), lighttimes(kk)], ylim, 'y-', 'LineWidth', 3);    
-            end
-            
-      end
-
- linkaxes(ax, 'x');
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% %plot all days of sample on top of eachother 
+% figure(28); clf; hold on; 
+%     
+%     subplot(211); hold on; title('All days');
+%         
+%         
+%              for k = 1:length(halfday)
+%                  if mod(k,2) == 1 %if kk is odd
+%                     plot(halfday(k).timcont, halfday(k).SobwAmp, '*');
+%                  else 
+%                     plot(halfday(k).timcont + ld, halfday(k).SobwAmp, '*');
+%                  end
+%                     
+%              end
+%             
+%         
+%         plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+% 
+%     subplot(212); hold on; title('Chronologically')
+% 
+%         for j = 1:length(halfday)
+%             plot(halfday(j).entiretimcont, halfday(j).SobwAmp, '*');
+%         end
+% 
+%        
+% %assuming we start with dark...        
+%         for kk = 1:length(lighttimes)
+% 
+%             if mod(kk,2) == 1 %if kk is odd plot with a black line
+%             plot([lighttimes(kk), lighttimes(kk)], ylim, 'k-', 'LineWidth', 2);    
+%             else %if kk is even plot with a yellow line
+%             plot([lighttimes(kk), lighttimes(kk)], ylim, 'y-', 'LineWidth', 2);    
+%             end
+%             
+%         end
+%      
+%  %% how many triggers per half day?
+% 
+%  figure(32);clf; hold on;
+% 
+%  for k = 1:length(halfday)
+%     ax(1) = subplot(211); hold on; title('triggers per lightchange');
+%      
+%      if mod(k,2) == 0
+%      histogram(halfday(k).entiretimcont, lighttimes, 'FaceColor', 'k'); 
+%         
+%      else
+%      histogram(halfday(k).entiretimcont, lighttimes, 'FaceColor', 'y'); 
+%        
+%      end
+%  end
+%      
+% 
+%      ax(2) = subplot(212); hold on; title('total triggers');
+%      histogram(timcont, 100); 
+%       for kk = 1:length(lighttimes)
+% 
+%             if mod(kk,2) == 1 %if kk is odd plot with a black line
+%             plot([lighttimes(kk), lighttimes(kk)], ylim, 'k-', 'LineWidth', 3);    
+%             else %if kk is even plot with a yellow line
+%             plot([lighttimes(kk), lighttimes(kk)], ylim, 'y-', 'LineWidth', 3);    
+%             end
+%             
+%       end
+% 
+%  linkaxes(ax, 'x');
+%     
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
 
 
 
