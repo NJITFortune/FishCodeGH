@@ -21,26 +21,50 @@ close all;
         ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
     end
 
+% get variables to plot trigger frequency/tim
+
+
 %% Continuous data plot
 
-figure(1); clf; 
+figure(11); clf; hold on; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
-ax(1) = subplot(611); hold on; title('sumfftAmp - magenta = added worms to tank');
-    plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
-    plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.');
 
-ax(2) = subplot(612); hold on; title('zAmp - green = social');
-    plot([out.e(2).s(ttz{2}).timcont]/(60*60), [out.e(2).s(ttz{2}).zAmp], '.');
-    plot([out.e(1).s(ttz{1}).timcont]/(60*60), [out.e(1).s(ttz{1}).zAmp], '.');
-
-
-
-    
-
-ax(3) = subplot(613); hold on; title('obwAmp');
+ax(1) = subplot(613); hold on; title('obwAmp');
     plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
     plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
+
+
+
+ for k = 1:length(halfday)
+    ax(1) = subplot(211); hold on; title('triggers per lightchange');
+     
+     if mod(k,2) == 0
+     histogram(halfday(k).entiretimcont, lighttimes, 'FaceColor', 'k'); 
+        
+     else
+     histogram(halfday(k).entiretimcont, lighttimes, 'FaceColor', 'y'); 
+       
+     end
+ end
+     
+
+     ax(2) = subplot(212); hold on; title('total triggers');
+     histogram(timcont, 100); 
+      for kk = 1:length(lighttimes)
+
+            if mod(kk,2) == 1 %if kk is odd plot with a black line
+            plot([lighttimes(kk), lighttimes(kk)], ylim, 'k-', 'LineWidth', 3);    
+            else %if kk is even plot with a yellow line
+            plot([lighttimes(kk), lighttimes(kk)], ylim, 'y-', 'LineWidth', 3);    
+            end
+            
+      end
+
+ linkaxes(ax, 'x');
+
+
+
 
 ax(4) = subplot(614); hold on; title('frequency (black) and temperature (red)');   
     plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.fftFreq], '.k', 'Markersize', 8);
