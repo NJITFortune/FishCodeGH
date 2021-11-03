@@ -88,16 +88,16 @@ for jj = 1:numotrials
            
              % Data   
              out(jj).obwAmp = [in.e(j).s(timidx).obwAmp];
-             out(jj).zAmp = [in.e(j).s(timidx).zAmp];
-             out(jj).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
-             out(jj).fftFreq = [in.e(j).s(timidx).fftFreq];
+%              out(jj).zAmp = [in.e(j).s(timidx).zAmp];
+%              out(jj).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
+%              out(jj).fftFreq = [in.e(j).s(timidx).fftFreq];
              
              % Time and treatment 
              out(jj).timcont = timcont(timidx) - timcont(timidx(1)); %+1
              out(jj).entiretimcont = timcont(timidx);
-             out(jj).light = [in.e(j).s(timidx).light];
-             out(jj).temp = [in.e(j).s(timidx).temp];
-             
+%              out(jj).light = [in.e(j).s(timidx).light];
+%              out(jj).temp = [in.e(j).s(timidx).temp];
+%              
              out(jj).ld = in.info.ld; 
              %out(jj).kg = orgidx; % idx for kg
              
@@ -117,12 +117,12 @@ for jj = 1:numotrials
             % Get the rest of the indices for the trial  
             Stimidx = Stimidx:Stimidx + (perd*ReFs)-1;
             
-            if length(zyy) >= Stimidx(end)
+            if length(obwyy) >= Stimidx(end)
              % Data   
              out(jj).SobwAmp = obwyy(Stimidx);
-             out(jj).SzAmp = zyy(Stimidx);
-             out(jj).SsumfftAmp = sumfftyy(Stimidx);
-             
+%              out(jj).SzAmp = zyy(Stimidx);
+%              out(jj).SsumfftAmp = sumfftyy(Stimidx);
+%              
              % Time  
              out(jj).Stimcont = xx(Stimidx) - xx(Stimidx(1)); % Time starting at zero  
              out(jj).Sentiretimcont = xx(Stimidx);
@@ -152,8 +152,8 @@ end
 
             % Get the datums
             trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
-            trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
-            trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
+%             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
+%             trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
             
                trial(jj).ld = in.info.ld; 
 
