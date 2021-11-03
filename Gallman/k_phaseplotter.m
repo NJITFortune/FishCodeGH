@@ -22,7 +22,7 @@ close all;
     end
 
 % get variables to plot trigger frequency/tim
-
+[timcont, lighttimes, halfday] = KatieTriggers(out); 
 
 %% Continuous data plot
 
