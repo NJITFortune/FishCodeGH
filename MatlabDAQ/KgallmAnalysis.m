@@ -91,7 +91,7 @@ for k = 1:length(iFiles)
 
         zAmp(j) = mean(amp);
         
-        data4analysis = data(sampidx);
+        data4analysis = data(sampidx, dataChans(j));
         
          % OBW
          [~,~,~,obwAmp(j)] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
@@ -104,7 +104,7 @@ for k = 1:length(iFiles)
     out(k).Ch1sumAmp = sumAmp(1);
     out(k).Ch1zAmp = zAmp(1);
     out(k).Ch1obwAmp = obwAmp(1);
-    out(k).Ch2obwAmp = obwAmp(2);
+   
    
 
 
@@ -112,7 +112,7 @@ for k = 1:length(iFiles)
     out(k).Ch2peakFreq = peakFreq(2);
     out(k).Ch2sumAmp = sumAmp(2);
     out(k).Ch2zAmp = zAmp(2);
-    
+    out(k).Ch2obwAmp = obwAmp(2);
    
         
     out(k).light = mean(data(:,lightchan));
@@ -138,7 +138,7 @@ end
 length([out.timcont])
 length([out.Ch1sumAmp])
 
-figure(1); clf; 
+figure(2); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
 ax(1) = subplot(511); hold on; title('fft');
@@ -151,7 +151,7 @@ ax(2) = subplot(512); hold on; title('zero xings');
     plot([out.timcont]/(60*60), [out.Ch2zAmp], '.');
     
 
-ax(3) = subplot(513); hold on;  
+ax(3) = subplot(513); hold on;  title('obw'); 
     plot([out.timcont]/(60*60), [out.Ch1obwAmp], '.');
     plot([out.timcont]/(60*60), [out.Ch2obwAmp], '.');
     
