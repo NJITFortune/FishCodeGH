@@ -2,10 +2,10 @@ function [trial, day] = KatieLightDayTrialDessembler(in, channel,  ReFs)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
-%clearvars -except kg
-%clear trial
-%clear day
-% in = kg(41);
+%clearvars -except kg lightday1 dark1 in ReFs channel
+clear trial
+clear day
+% in = kg(8);
 % channel = 1;
 % ReFs = 10;
 
@@ -16,15 +16,19 @@ else
     triallength = in.info.ld * 4;
 end
 
-triallength
+%triallength
 % ReFs = 10;
 %% Take spline estimate of raw data
 
 %ReFs = 10;  % Sample rate for splines
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
+%full data set
+%[xx, obwyy, zyy, sumfftyy, lighttimes] = k_lightdetrendspliner(in,channel, ReFs);
 
-[xx, obwyy, zyy, sumfftyy, lighttimes] = k_lightdetrendspliner(in,channel, ReFs);
+%above the spline estimate
+%with detrending
+[xx, obwyy, lighttimes] = k_lightobwsubspliner(in,channel, ReFs);
 
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
@@ -67,9 +71,8 @@ for jj = 1:numotrials
 %                timcont < timcont(1) + (jj*perd));
 
             j = channel;
-            timcont = [in.e(j).s.timcont]/3600;
-                %timcont needs to have the same indicies as the rest of the
-                %data
+           
+               
             % indices for our sample window of perd hours
             timidx = find(timcont >= lighttimes(1) + ((jj-1)*perd) & ...
             timcont < lighttimes(1) + (jj*perd));
@@ -90,8 +93,8 @@ for jj = 1:numotrials
              out(jj).fftFreq = [in.e(j).s(timidx).fftFreq];
              
              % Time and treatment 
-             out(jj).timcont = [in.e(j).s(timidx).timcont] - in.e(j).s(timidx(1)).timcont; %+1
-             out(jj).entiretimcont = [in.e(j).s(timidx).timcont];
+             out(jj).timcont = timcont(timidx) - timcont(timidx(1)); %+1
+             out(jj).entiretimcont = timcont(timidx);
              out(jj).light = [in.e(j).s(timidx).light];
              out(jj).temp = [in.e(j).s(timidx).temp];
              
@@ -185,63 +188,79 @@ for k = 1:howmanydaysinsample
  end
     
     
- %% plot to check
-
- %all days
- %average day by trial
- figure(27); clf; hold on; title('Day average by trial');
-    for jj=1:length(trial) 
-
-        %create temporary vector to calculate mean by trial
-        mday(jj,:) = zeros(1,length(trial(jj).tim));
-
-
-        for k=1:length(trial(jj).day)
-
-                %fill temporary vector with data from each day 
-                mday(jj,:) = mday(jj,:) + trial(jj).day(k).SobwAmp;
-                subplot(211); hold on; title('Days');
-                %plot days by trial
-                plot(trial(jj).tim, trial(jj).day(k).SobwAmp);
-                plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-
-        end
-
-         % To get average across days, divide by number of days
-            mday(jj,:) = mday(jj,:) / length(trial(jj).day);
-            subplot(212); hold on; title('Day average by trial');
-            
-            %plot trial average
-            plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
-            plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-
-    end
-    
-    % Mean of means
- 
-    subplot(212); hold on;
-     meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
-    plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
-    
-
-    
-    
-figure(28); clf; hold on; 
-
- for k = 1:length(day)
-        plot(day(k).tim, day(k).SobwAmp);
-        meanday(k,:) = day(k).SobwAmp;
- end
-    
-        mmday= mean(meanday);
-        plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
-        plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-        
-figure(29); clf; hold on;
-    plot(day(1).tim, mmday);
-    plot(trial(jj).tim, meanofmeans);
-    plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-    legend('day mean', 'trial mean');
-     legend('boxoff')
-
-
+%  %% plot to check
+% 
+% 
+%  %trials across tims
+%  figure(26); clf; title('trials across time');  hold on;
+%  
+%     for jj = 1:length(out)
+%         
+%         plot(out(jj).entiretimcont, out(jj).obwAmp, '.', 'MarkerSize', 3);
+%         plot(out(jj).Sentiretimcont, out(jj).SobwAmp, '-', 'LineWidth', 3);
+%         
+%     end
+%     
+%     for j = 1:length(lighttimes)
+%         
+%         plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+%     end
+%     
+%  
+%  clear mday;
+%  
+%  %all days
+%  %average day by trial
+%  figure(27); clf; hold on; title('Day average by trial');
+%     for jj=1:length(trial) 
+% 
+%         %create temporary vector to calculate mean by trial
+%         mday(jj,:) = zeros(1, length(trial(jj).tim));
+% 
+% 
+%         for k=1:length(trial(jj).day)
+% 
+%                 %fill temporary vector with data from each day 
+%                 mday(jj,:) = mday(jj,:) + trial(jj).day(k).SobwAmp;
+%                 subplot(211); hold on; title('Days');
+%                 plot(trial(jj).tim, trial(jj).day(k).SobwAmp);
+%                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+% 
+%         end
+% 
+%          % To get average across days, divide by number of days
+%             mday(jj,:) = mday(jj,:) / length(trial(jj).day);
+%             subplot(212); hold on; title('Day average by trial');
+%             plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
+%             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+% 
+%     end
+%     
+%     % Mean of means
+%  
+%     subplot(212); hold on;
+%      meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
+%     plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
+%     
+% 
+%    
+%     
+% figure(28); clf; hold on; 
+% 
+% clear meanday;
+% 
+%  for k = 1:length(day)
+%         plot(day(k).tim, day(k).SobwAmp);
+%         meanday(k,:) = day(k).SobwAmp;
+%  end
+%     
+%         mmday= mean(meanday);
+%         plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
+%         plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+%         
+% figure(29); clf; hold on;
+%     plot(day(1).tim, mmday);
+%     plot(trial(jj).tim, meanofmeans);
+%     plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+%     legend('day mean', 'trial mean');
+%      legend('boxoff')

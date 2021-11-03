@@ -4,8 +4,9 @@ function [trial, day] = KatieDayTrialDessembler(in, channel,  ReFs)
 
 clear trial
 clear day
-% in = kg(4);
-% channel = 2;
+
+% in = kg(58);
+% channel = 1;
 % ReFs = 10;
 
 
@@ -15,15 +16,17 @@ else
     triallength = in.info.ld * 4;
 end
 
-triallength
+%triallength
 % ReFs = 10;
 %% Take spline estimate of raw data
 
 %ReFs = 10;  % Sample rate for splines
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
+%entire data set
+[xx, obwyy, ~, ~, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
-[xx, obwyy, zyy, sumfftyy, lighttimes] = k_detrendspliner(in,channel, ReFs);
+%[xx, obwyy, lighttimes] =  k_obwsubspliner(in, channel, ReFs);
 
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
@@ -66,7 +69,7 @@ for jj = 1:numotrials
 %                timcont < timcont(1) + (jj*perd));
 
             j = channel;
-            timcont = [in.e(j).s.timcont]/3600;
+           
                 %timcont needs to have the same indicies as the rest of the
                 %data
             % indices for our sample window of perd hours
@@ -84,15 +87,15 @@ for jj = 1:numotrials
            
              % Data   
              out(jj).obwAmp = [in.e(j).s(timidx).obwAmp];
-             out(jj).zAmp = [in.e(j).s(timidx).zAmp];
-             out(jj).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
-             out(jj).fftFreq = [in.e(j).s(timidx).fftFreq];
+%              out(jj).zAmp = [in.e(j).s(timidx).zAmp];
+%              out(jj).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
+%              out(jj).fftFreq = [in.e(j).s(timidx).fftFreq];
              
              % Time and treatment 
-             out(jj).timcont = [in.e(j).s(timidx).timcont] - in.e(j).s(timidx(1)).timcont; %+1
-             out(jj).entiretimcont = [in.e(j).s(timidx).timcont];
-             out(jj).light = [in.e(j).s(timidx).light];
-             out(jj).temp = [in.e(j).s(timidx).temp];
+             out(jj).timcont =timcont(timidx) - timcont(timidx(1)); %+1
+             out(jj).entiretimcont = timcont(timidx);
+%              out(jj).light = [in.e(j).s(timidx).light];
+%              out(jj).temp = [in.e(j).s(timidx).temp];
              
              out(jj).ld = in.info.ld; 
              %out(jj).kg = orgidx; % idx for kg
@@ -113,11 +116,11 @@ for jj = 1:numotrials
             % Get the rest of the indices for the trial  
             Stimidx = Stimidx:Stimidx + (perd*ReFs)-1;
             
-            if length(zyy) >= Stimidx(end)
+            if length(obwyy) >= Stimidx(end)
              % Data   
              out(jj).SobwAmp = obwyy(Stimidx);
-             out(jj).SzAmp = zyy(Stimidx);
-             out(jj).SsumfftAmp = sumfftyy(Stimidx);
+%              out(jj).SzAmp = zyy(Stimidx);
+%              out(jj).SsumfftAmp = sumfftyy(Stimidx);
              
              % Time  
              out(jj).Stimcont = xx(Stimidx) - xx(Stimidx(1)); % Time starting at zero  
@@ -148,9 +151,9 @@ end
 
             % Get the datums
             trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
-            trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
-            trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
-            
+%             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
+%             trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
+%             
                trial(jj).ld = in.info.ld; 
 
            
@@ -177,22 +180,40 @@ for k = 1:howmanydaysinsample
 
                 if length(dayidx) >= howmanysamplesinaday
                 day(k).SobwAmp = obwyy(dayidx);
-                day(k).SzAmp = zyy(dayidx);
-                day(k).Ssumfftyy = sumfftyy(dayidx);
+%                 day(k).SzAmp = zyy(dayidx);
+%                 day(k).Ssumfftyy = sumfftyy(dayidx);
                 day(k).tim = tim;
                 end
  end
     
     
- %% plot to check
-
- %all days
+%  %% plot to check
+% 
+%  %trials across tims
+%  figure(26); clf; title('trials across time');  hold on;
+%  
+%     for jj = 1:length(out)
+%         
+%         plot(out(jj).entiretimcont, out(jj).obwAmp, '.', 'MarkerSize', 3);
+%         plot(out(jj).Sentiretimcont, out(jj).SobwAmp, '-', 'LineWidth', 3);
+%         
+%     end
+%     
+%     for j = 1:length(lighttimes)
+%         
+%         plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+%     end
+%     
+%  
+%  clear mday;
+%  
+%  %all days
 %  %average day by trial
 %  figure(27); clf; hold on; title('Day average by trial');
 %     for jj=1:length(trial) 
 % 
 %         %create temporary vector to calculate mean by trial
-%         mday(jj,:) = zeros(1,length(trial(jj).tim));
+%         mday(jj,:) = zeros(1, length(trial(jj).tim));
 % 
 % 
 %         for k=1:length(trial(jj).day)
@@ -220,9 +241,11 @@ for k = 1:howmanydaysinsample
 %     plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
 %     
 % 
-%     
+%    
 %     
 % figure(28); clf; hold on; 
+% 
+% clear meanday;
 % 
 %  for k = 1:length(day)
 %         plot(day(k).tim, day(k).SobwAmp);
@@ -239,5 +262,5 @@ for k = 1:howmanydaysinsample
 %     plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 %     legend('day mean', 'trial mean');
 %      legend('boxoff')
-% 
-% 
+% % 
+% % 

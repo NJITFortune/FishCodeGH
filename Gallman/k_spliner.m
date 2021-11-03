@@ -1,5 +1,5 @@
 
-function [xx, obwyy, zyy, sumfftyy, lighttimes] =  k_spliner(in, channel, ReFs)
+function [xx, obwyy, , lighttimes] =  k_testobwspliner(in, channel, ReFs, p)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -7,7 +7,7 @@ function [xx, obwyy, zyy, sumfftyy, lighttimes] =  k_spliner(in, channel, ReFs)
 %just lazy
 ld = [in.info.ld];
 %tightness of spline fit
-p = 0.7;
+
 
 %outliers
     % Prepare the data with outliers
@@ -48,16 +48,9 @@ for j = 1:length(lighttimeslesslong)-1
         
         %is there data between j and j+1?    
         if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
-            ott = [in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < lighttimeslesslong(j+1); 
-            lighttim = [in.e(1).s(tto{1}(ott)).timcont]/(60*60);
             
-            
-            %ensures that we start on the first full lighttime
-           % if all(lighttim(1) >= lighttimeslesslong(j) & lighttim(1) < lighttimeslesslong(j) + ld/2)  
                lighttrim(j) = lighttimeslesslong(j);
-              % luztimes(j) = in.info.luz(j);
-           % end
-         
+             
         end 
 end
 
