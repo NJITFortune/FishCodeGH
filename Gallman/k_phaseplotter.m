@@ -106,8 +106,8 @@ if isfield(out.info, 'luz')
             
             %plot
             ax(1) = subplot(511); hold on;
-            plot([lighton' lighton']', [0 ylim(2)], 'y-', 'LineWidth', 1.5, 'MarkerSize', 10);
-            plot([abs(darkon)' abs(darkon)']', [0 ylim(2)], 'k-', 'LineWidth', 1.5, 'MarkerSize', 10);
+            plot([lighton' lighton']', [0 max([out.e(1).s.obwAmp])], 'y-', 'LineWidth', 1.5, 'MarkerSize', 10);
+            plot([abs(darkon)' abs(darkon)']', [0 max([out.e(1).s.obwAmp])], 'k-', 'LineWidth', 1.5, 'MarkerSize', 10);
     end    
 end
 linkaxes(ax, 'x'); 
