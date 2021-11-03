@@ -6,7 +6,7 @@ clearvars -except kg
 %plot like the detrending?
 
 in = kg(34);
-channel = 2;
+channel = 1;
 ReFs = 10;
 p = 0.9;
 
@@ -15,8 +15,8 @@ ld = in.info.ld;
 
 %% Take spline estimate of raw data
 
-[xx, obwyy, obwAmp, obwtimOG, obwAmpOG, lighttimes] =  k_testobwspliner(in, channel, ReFs, p);
-%[xx, subobwyy, obwyy, lighttimes] =  k_obwminustrend(in, channel, ReFs);
+[xx, ~, obwAmp, obwtimOG, obwAmpOG, ~] =  k_testobwspliner(in, channel, ReFs, p);
+[subobwtim, subobw, obwyy, lighttimes] =  k_obwminustrend(in, channel, ReFs);
 %[xx, subobwyy, lighttimes] =  k_twotestobwspliner(in, channel, ReFs, p)
 % Plot spline vs raw data
 
