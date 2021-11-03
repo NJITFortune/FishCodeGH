@@ -6,7 +6,7 @@ clearvars -except kg
 %plot like the detrending?
 
 in = kg(34);
-channel = 1;
+channel = 2;
 ReFs = 10;
 p = 0.9;
 
@@ -15,8 +15,8 @@ ld = in.info.ld;
 
 %% Take spline estimate of raw data
 
-[xx, ~, obwAmp, obwtimOG, obwAmpOG, ~] =  k_testobwspliner(in, channel, ReFs, p);
-[~, subobwyy, obwyy, lighttimes] =  k_obwminustrend(in, channel, ReFs);
+[xx, obwyy, obwAmp, obwtimOG, obwAmpOG, lighttimes] =  k_testobwspliner(in, channel, ReFs, p);
+%[xx, subobwyy, obwyy, lighttimes] =  k_obwminustrend(in, channel, ReFs);
 %[xx, subobwyy, lighttimes] =  k_twotestobwspliner(in, channel, ReFs, p)
 % Plot spline vs raw data
 
@@ -43,10 +43,10 @@ p = 0.5;
 
   %estimate new yvalues for every x value
 
-%         %obw
-%         spliney = csaps(subobwtim, subobw, p);
-%         %resample new x values based on light/dark
-%         subobwyy = fnval(xx, spliney);
+        %obw
+        spliney = csaps(subobwtim, subobw, p);
+        %resample new x values based on light/dark
+        subobwyy = fnval(xx, spliney);
        
             
 %plot to check
