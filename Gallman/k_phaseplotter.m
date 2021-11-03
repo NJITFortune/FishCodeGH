@@ -63,7 +63,7 @@ ax(4) = subplot(414); hold on; title('total triggers');
             if mod(kk,2) == 1 %if kk is odd plot with a black line
             plot([lighttimes(kk), lighttimes(kk)], ylim, 'k-', 'LineWidth', 3);    
             else %if kk is even plot with a yellow line
-            plot([lighttimes(kk), lighttimes(kk)], ylim, 'y-', 'LineWidth', 3);    
+            plot([lighttimes(kk), lighttimes(kk)], ylim, 'm-', 'LineWidth', 3);    
             end
             
       end
@@ -100,12 +100,12 @@ if isfield(out.info, 'luz')
             
             %plot
             ax(1) = subplot(411); hold on;
-            plot([lighton' lighton']', [0 max([out.e(1).s.obwAmp])], 'y-', 'LineWidth', 1.5, 'MarkerSize', 10);
+            plot([lighton' lighton']', [0 max([out.e(1).s.obwAmp])], 'm-', 'LineWidth', 1.5, 'MarkerSize', 10);
             plot([abs(darkon)' abs(darkon)']', [0 max([out.e(1).s.obwAmp])], 'k-', 'LineWidth', 1.5, 'MarkerSize', 10);
 
                        
             ax(2) = subplot(412); hold on;
-            plot([lighton' lighton']', ylim, 'y-', 'LineWidth', 1.5, 'MarkerSize', 10);
+            plot([lighton' lighton']', ylim, 'm-', 'LineWidth', 1.5, 'MarkerSize', 10);
             plot([abs(darkon)' abs(darkon)']', ylim, 'k-', 'LineWidth', 1.5, 'MarkerSize', 10);
 
             
