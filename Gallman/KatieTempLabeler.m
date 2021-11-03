@@ -14,19 +14,19 @@ function out = KatieTempLabeler(in)
         %plot light/time
         figure(58); clf; hold on;
         
-        plot([in.s.timcont]/3600, [in.s.light]);
+        plot([in(1).s.timcont]/3600, [in(1).s.light]);
                     ylim([-1, 6]);
                     
         %find idicies where the light changes (threshold of 2.5)            
-        ipt = findchangepts([in.s.light], 'MinThreshold', 2.5);
+        ipt = findchangepts([in(1).s.light], 'MinThreshold', 2.5);
         
         %create luz vector for light change times
             %lights on is +
             %lights off is -
         for j = 1:length(ipt)
             
-            changepts(j) = [in.s(ipt(j)).timcont]/3600;
-            if in.s(ipt(j)).light < 2.5
+            changepts(j) = [in(1).s(ipt(j)).timcont]/3600;
+            if in(1).s(ipt(j)).light < 2.5
                 changepts(j) = -changepts(j);
             end
             
@@ -45,7 +45,7 @@ function out = KatieTempLabeler(in)
     %plots to check
         %plot temp/time
         figure(58); clf; hold on;
-        plot([in.s.timcont]/3600, [in.s.temp]);
+        plot([in(1).s.timcont]/3600, [in(1).s.temp]);
                     
                     
         %find idicies where the light changes (threshold of 2.5)  
@@ -57,8 +57,8 @@ function out = KatieTempLabeler(in)
         %f = falltime
         %l= lowercross
         %u = uppercross
-        [r, lrx, ~, ~, ~] = risetime([in.s.temp], [in.s.timcont]/3600);
-        [f, ~, ufx, ~, ~] = falltime([in.s.temp], [in.s.timcont]/3600);
+        [r, lrx, ~, ~, ~] = risetime([in(1).s.temp], [in(1).s.timcont]/3600);
+        [f, ~, ufx, ~, ~] = falltime([in(1).s.temp], [in(1).s.timcont]/3600);
         
         
         %save rise indicis in center of temp change
