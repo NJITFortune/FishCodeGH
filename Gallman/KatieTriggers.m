@@ -1,5 +1,5 @@
 
-%function out = KatieTriggers(in) 
+function [timcont, lighttimes, halfday] = KatieTriggers(in) 
 
 %function [trial, day] = KatieDayDessembler(in, channel,  ReFs)
 %% usage
@@ -40,11 +40,11 @@ lighttimes = k_lighttimer(in);
 %% Divide sample into days to compare against trial day means
 
 %define length of sample
-lengthofsampleHOURS = lighttimes(end) - lighttimes(1); 
-howmanydaysinsample = floor(lengthofsampleHOURS / (ld));
-howmanysamplesinaday = ld * ReFs;
+% lengthofsampleHOURS = lighttimes(end) - lighttimes(1); 
+% howmanydaysinsample = floor(lengthofsampleHOURS / (ld));
+% howmanysamplesinaday = ld * ReFs;
 
-tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+%tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
 %spline data
 
 for k = 2:length(lighttimes)-1
@@ -123,9 +123,6 @@ figure(28); clf; hold on;
      end
  end
      
-
-
-
 
      ax(2) = subplot(212); hold on; title('total triggers');
      histogram(timcont, 100); 
