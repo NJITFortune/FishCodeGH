@@ -1,5 +1,5 @@
 
-function [xx, obwyy, obwAmp, obwtimOG, obwAmpOG, lighttimes] =  k_testobwspliner(in, channel, ReFs, p)
+function [xx, sumfftyy, fftAmp, sumffttimOG, sumfftAmpOG, lighttimes] =  k_testfftspliner(in, channel, ReFs, p)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -96,6 +96,8 @@ if channel == 1
             spliney = csaps([in.e(1).s(ttsf{1}).timcont]/(60*60), [in.e(1).s(ttsf{1}).sumfftAmp], p);
             %resample new x values based on light/dark
             sumfftyy = fnval(xx, spliney);
+            %estimate without resample
+            fftAmp = fnval([in.e(1).s(ttsf{1}).timcont]/(60*60), spliney);
             %detrend ydata
             dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
                 sumffttimOG = [in.e(1).s(ttsf{1}).timcont]/(60*60);
@@ -133,6 +135,8 @@ else %channel = 2
             spliney = csaps([in.e(2).s(ttsf{2}).timcont]/(60*60), [in.e(2).s(ttsf{2}).sumfftAmp], p);
             %resample new x values based on light/dark
             sumfftyy = fnval(xx, spliney);
+            %estimate without resample
+            fftAmp = fnval([in.e(2).s(ttsf{2}).timcont]/(60*60), spliney);
             %detrend ydata
             dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
                 sumffttimOG = [in.e(2).s(ttsf{2}).timcont]/(60*60);
