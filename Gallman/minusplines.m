@@ -5,7 +5,7 @@ clearvars -except kg
 %tests for spline fitting subtraction
 %plot like the detrending?
 
-in = kg(30);
+in = kg(99);
 channel = 1;
 ReFs = 10;
 p = 0.9;
