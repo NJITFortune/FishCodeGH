@@ -107,7 +107,7 @@ if channel == 1
             %resample new x values based on light/dark
             sumfftyy = fnval(xx, spliney);
             %estimate without resample
-            fftAmp = fnval([in.e(1).s(tto{1}).timcont]/(60*60), spliney);
+            fftAmp = fnval([in.e(1).s(ttsf{1}).timcont]/(60*60), spliney);
             %detrend ydata
             %dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
 
@@ -146,7 +146,7 @@ else %channel = 2
             %resample new x values based on light/dark
             sumfftyy = fnval(xx, spliney);
             %estimate without resample
-            fftAmp = fnval([in.e(2).s(tto{2}).timcont]/(60*60), spliney);
+            fftAmp = fnval([in.e(2).s(ttsf{2}).timcont]/(60*60), spliney);
             %detrend ydata
             %dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
                 sumffttimOG = [in.e(2).s(ttsf{2}).timcont]/(60*60);
@@ -156,6 +156,7 @@ end
 %% subset raw data            
         
 %take raw data above the spline
+
    fftidx = find(sumfftAmpOG > fftAmp);
    subfft = sumfftAmpOG(fftidx);
    subffttim = sumffttimOG(fftidx);
