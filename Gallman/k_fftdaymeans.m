@@ -1,4 +1,4 @@
-function [hourtim, meanoftrialmeans, ld] = k_daymeans(in)
+function [hourtim, meanoftrialmeans, ld] = k_fftdaymeans(in)
 %% usage
 %processes output from KatieDayTrialDessembler.m of kg by hourexp
 %k_daydessembledplotter.m without the plotting
@@ -26,7 +26,7 @@ clear mday;
         for k=1:length(in(j).trial(jj).day)
 
                 %fill temporary vector with data from each day 
-                mday(jj,:) = mday(jj,:) + in(j).trial(jj).day(k).SobwAmp;
+                mday(jj,:) = mday(jj,:) + in(j).trial(jj).day(k).SsumfftAmp;
                
         end
 
