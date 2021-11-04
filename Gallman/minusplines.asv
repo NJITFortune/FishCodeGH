@@ -5,7 +5,7 @@ clearvars -except kg
 %tests for spline fitting subtraction
 %plot like the detrending?
 
-in = kg(57);
+in = kg(2);
 channel = 1;
 ReFs = 10;
 p = 0.9;
@@ -15,9 +15,9 @@ ld = in.info.ld;
 
 %% Take spline estimate of raw data
 
-%[xx, obwyy, obwAmp, obwtimOG, obwAmpOG, lighttimes] =  k_testobwspliner(in, channel, ReFs, p);
+[xx, sumffyy, obwAmp, obwtimOG, obwAmpOG, lighttimes] =  k_testobwspliner(in, channel, ReFs, p);
 
-
+ [xx, sumfftyy, fftAmp, sumffttimOG, sumfftAmpOG, lighttimes] =  k_testfftspliner(in, channel, ReFs, p);
 %[xx, subobwyy, obwyy, lighttimes] =  k_obwminustrend(in, channel, ReFs);
 %[xx, subobwyy, lighttimes] =  k_twotestobwspliner(in, channel, ReFs, p)
 % Plot spline vs raw data
@@ -26,7 +26,7 @@ figure(222); clf; title('spline estimate vs raw data'); hold on;
     
     axs(1) = subplot(211); title('entire data set'); hold on;
 
-        plot(obwtimOG, obwAmpOG, '.', 'MarkerSize', 3);
+        plot(sumffttimOG, sumfftAmpOG, '.', 'MarkerSize', 3);
         plot(xx, obwyy, 'LineWidth', 3);
 
         for j = 1:length(lighttimes)
@@ -36,9 +36,9 @@ figure(222); clf; title('spline estimate vs raw data'); hold on;
 %% spline estimate of raw data above original spline
 
 % %subset raw data
-   obwidx = find(obwAmpOG > obwAmp);
-   subobw = obwAmpOG(obwidx);
-   subobwtim = obwtimOG(obwidx);
+   obwidx = find(sumfftAmpOG > fftAmp);
+   subobw = sumfftAmpOG(obwidx);
+   subobwtim = sumffttimOG(obwidx);
    
 %estimate new spline 
 p = 0.5;
@@ -70,7 +70,7 @@ figure(223); clf; hold on;
 
     xs(1) = subplot(211); title('raw data'); hold on;
 
-        plot(obwtimOG, obwAmpOG, '.', 'MarkerSize', 5);
+        plot(sumffttimOG, sumfftAmpOG, '.', 'MarkerSize', 5);
         plot(subobwtim, subobw, '.', 'MarkerSize', 5);
         
 
@@ -97,7 +97,7 @@ linkaxes(xs, 'x');
 
 %divide data into trials to calculate day means by trial
 
-  fulltrial = k_trialdaydivider(obwtimOG, obwAmpOG, xx, obwyy, ld, lighttimes, ReFs);
+  fulltrial = k_trialdaydivider(sumffttimOG, sumfftAmpOG, xx, obwyy, ld, lighttimes, ReFs);
   subtrial = k_trialdaydivider(subobwtim, subobw, xx, subobwyy, ld, lighttimes, ReFs);
   
 %plot
