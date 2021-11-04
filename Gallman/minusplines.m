@@ -94,6 +94,8 @@ figure(223); clf; hold on;
 linkaxes(xs, 'x');
 
 %% does it change the mean estimate?
+%detrend data for mean plots
+    
 
 %divide data into trials to calculate day means by trial
 
