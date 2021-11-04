@@ -1,5 +1,5 @@
 
-function [xx, tnormsubobwyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs)
+function [xx, tnormsubfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -29,7 +29,9 @@ p = 0.9;
                 ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
             end
          
-        
+%light is a label for whether the subjective day starts with light or with dark
+    %starts with dark = 3
+    %starts with light = 4
 %% trim luz to data - Generate lighttimes
 lighttimeslong = abs(in.info.luz);
 
@@ -38,8 +40,16 @@ lighttimeslong = abs(in.info.luz);
     if isempty(in.info.poweridx) %if there are no values in poweridx []
         lighttimeslesslong = lighttimeslong;
     else %take data from within power idx range
-        lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
-        lighttimeslesslong = lighttimeslong(lighttimesidx);
+
+        if light < 4 %we start with dark
+            lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
+            lighttimeslesslong = lighttimeslong(lighttimesidx);
+        else %we start with light
+            %poweridx normally starts with dark, so we need to add ld to start with light
+            poweridx1 = in.info.poweridx(1) + ld;
+            lighttimesidx = lighttimeslong > poweridx1(1) & lighttimeslong < in.info.poweridx(2);
+            lighttimeslesslong = lighttimeslong(lighttimesidx);
+        end
     end
 
     
@@ -71,31 +81,33 @@ if channel == 1
       
       %estimate new yvalues for every x value
       
-            %obw
-            spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
-            %resample new x values based on light/dark
-            obwyy = fnval(xx, spliney);
-            %estimate without resample
-            obwAmp = fnval([in.e(1).s(tto{1}).timcont]/(60*60), spliney);
-            %detrend ydata
-            dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
-            %raw data variables
-                obwtimOG = [in.e(1).s(tto{1}).timcont]/(60*60);
-                obwAmpOG = [in.e(1).s(tto{1}).obwAmp];
-      
-            %zAmp
-            spliney = csaps([in.e(1).s(ttz{1}).timcont]/(60*60), [in.e(1).s(ttz{1}).zAmp], p);
-            %resample new x values based on light/dark
-            zyy = fnval(xx, spliney);
-            %detrend ydata
-            dtzyy = detrend(zyy,6,'SamplePoints', xx);
-                ztimOG = [in.e(1).s(ttz{1}).timcont]/(60*60);
-                zAmpOG = [in.e(1).s(ttz{1}).zAmp]; 
+%             %obw
+%             spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
+%             %resample new x values based on light/dark
+%             obwyy = fnval(xx, spliney);
+%             %estimate without resample
+%             obwAmp = fnval([in.e(1).s(tto{1}).timcont]/(60*60), spliney);
+%             %detrend ydata
+%             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
+%             %raw data variables
+%                 obwtimOG = [in.e(1).s(tto{1}).timcont]/(60*60);
+%                 obwAmpOG = [in.e(1).s(tto{1}).obwAmp];
+%       
+%             %zAmp
+%             spliney = csaps([in.e(1).s(ttz{1}).timcont]/(60*60), [in.e(1).s(ttz{1}).zAmp], p);
+%             %resample new x values based on light/dark
+%             zyy = fnval(xx, spliney);
+%             %detrend ydata
+%             dtzyy = detrend(zyy,6,'SamplePoints', xx);
+%                 ztimOG = [in.e(1).s(ttz{1}).timcont]/(60*60);
+%                 zAmpOG = [in.e(1).s(ttz{1}).zAmp]; 
             
             %sumfft
             spliney = csaps([in.e(1).s(ttsf{1}).timcont]/(60*60), [in.e(1).s(ttsf{1}).sumfftAmp], p);
             %resample new x values based on light/dark
             sumfftyy = fnval(xx, spliney);
+            %estimate without resample
+            fftAmp = fnval([in.e(1).s(tto{1}).timcont]/(60*60), spliney);
             %detrend ydata
             dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
                 sumffttimOG = [in.e(1).s(ttsf{1}).timcont]/(60*60);
@@ -109,29 +121,31 @@ else %channel = 2
 
       %estimate new yvalues for every x value
              
-            %obw
-            spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
-            %resample new x values based on light/dark
-            obwyy = fnval(xx, spliney);
-            obwAmp = fnval([in.e(2).s(tto{2}).timcont]/(60*60), spliney);
-            %detrend ydata
-            dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
-                obwtimOG = [in.e(2).s(tto{2}).timcont]/(60*60);
-                obwAmpOG = [in.e(2).s(tto{2}).obwAmp];
-                    
-            %zAmp
-            spliney = csaps([in.e(2).s(ttz{2}).timcont]/(60*60), [in.e(2).s(ttz{2}).zAmp], p);
-            %resample new x values based on light/dark
-            zyy = fnval(xx, spliney);
-            %detrend ydata
-            dtzyy = detrend(zyy,6,'SamplePoints', xx);
-                ztimOG = [in.e(2).s(ttz{2}).timcont]/(60*60);
-                zAmpOG = [in.e(2).s(ttz{2}).zAmp]; 
+%             %obw
+%             spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
+%             %resample new x values based on light/dark
+%             obwyy = fnval(xx, spliney);
+%             obwAmp = fnval([in.e(2).s(tto{2}).timcont]/(60*60), spliney);
+%             %detrend ydata
+%             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
+%                 obwtimOG = [in.e(2).s(tto{2}).timcont]/(60*60);
+%                 obwAmpOG = [in.e(2).s(tto{2}).obwAmp];
+%                     
+%             %zAmp
+%             spliney = csaps([in.e(2).s(ttz{2}).timcont]/(60*60), [in.e(2).s(ttz{2}).zAmp], p);
+%             %resample new x values based on light/dark
+%             zyy = fnval(xx, spliney);
+%             %detrend ydata
+%             dtzyy = detrend(zyy,6,'SamplePoints', xx);
+%                 ztimOG = [in.e(2).s(ttz{2}).timcont]/(60*60);
+%                 zAmpOG = [in.e(2).s(ttz{2}).zAmp]; 
             
             %sumfft
             spliney = csaps([in.e(2).s(ttsf{2}).timcont]/(60*60), [in.e(2).s(ttsf{2}).sumfftAmp], p);
             %resample new x values based on light/dark
             sumfftyy = fnval(xx, spliney);
+            %estimate without resample
+            fftAmp = fnval([in.e(2).s(tto{2}).timcont]/(60*60), spliney);
             %detrend ydata
             dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
                 sumffttimOG = [in.e(2).s(ttsf{2}).timcont]/(60*60);
@@ -141,9 +155,9 @@ end
 %% subset raw data            
         
 %take raw data above the spline
-   obwidx = find(obwAmpOG > obwAmp);
-   subobw = obwAmpOG(obwidx);
-   subobwtim = obwtimOG(obwidx);
+   fftidx = find(sumfftAmpOG > fftAmp);
+   subfft = sumfftAmpOG(fftidx);
+   subffttim = sumffttimOG(fftidx);
    
    
    
@@ -153,14 +167,14 @@ p = 0.5;
   %estimate new yvalues for every x value
 
         %obw
-        spliney = csaps(subobwtim, subobw, p);
+        spliney = csaps(subffttim, subfft, p);
         %resample new x values based on light/dark
-        subobwyy = fnval(xx, spliney);
+        subfftyy = fnval(xx, spliney);
        
 %detrend ydata
-   dtsubobwyy = detrend(subobwyy,6,'SamplePoints', xx);
-   normsubobwyytrend = 1./(subobwyy - dtsubobwyy);
-   tnormsubobwyy = subobwyy .* normsubobwyytrend;
+   dtsubfftyy = detrend(subfftyy,6,'SamplePoints', xx);
+   normsubfftyytrend = 1./(subfftyy - dtsubfftyy);
+   tnormsubfftyy = subfftyy .* normsubfftyytrend;
 
 
 
