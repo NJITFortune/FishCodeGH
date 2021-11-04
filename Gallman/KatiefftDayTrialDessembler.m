@@ -2,6 +2,10 @@ function [trial, day] = KatiefftDayTrialDessembler(in, channel,  ReFs, light)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
+%light is a label for whether the subjective day starts with light or with dark
+    %starts with dark = 3
+    %starts with light = 4
+
 clear trial
 clear day
 
@@ -9,7 +13,9 @@ clear day
 % channel = 1;
 % ReFs = 10;
 
+%% prep
 
+% define length of trial 
 if in.info.ld > 15 
     triallength = in.info.ld * 2;
 else
@@ -17,16 +23,15 @@ else
 end
 
 %triallength
-% ReFs = 10;
-%% Take spline estimate of raw data
 
-%ReFs = 10;  % Sample rate for splines
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
+
+%% Take spline estimate of raw data
 
 %entire data set
 %[xx, obwyy, ~, ~, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
-[xx, obwyy, lighttimes] =  k_obwsubspliner(in, channel, ReFs, light);
+[xx, fftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light);
 
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
@@ -41,21 +46,11 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 %% Define trial period
 
-% define sample range
-perd = triallength;
-    %perd = 48; % default length is 48 hours
-    %perd = perd - rem(perd, in.info.ld);  % If not integer divisible, take fewer samples to not go over     
     % How many trials available?
     lengthofsampleHOURS = lighttimes(end) - lighttimes(1); 
     %lengthofsampleHOURS = timcont(end) - timcont(1); 
     % How many integer trials in dataset
-    numotrials = floor(lengthofsampleHOURS / perd); % of trials
-
-
-% %testing timidx
-% timz = 1:1:numotrials+1;
-% %generate new  light vector
-%     triallength(timz) = lighttimes(1) + (perd*(timz-1)); 
+    numotrials = floor(lengthofsampleHOURS / triallength); % of trials
 
 
 %% Divide data into trials
@@ -73,8 +68,8 @@ for jj = 1:numotrials
                 %timcont needs to have the same indicies as the rest of the
                 %data
             % indices for our sample window of perd hours
-            timidx = find(timcont >= lighttimes(1) + ((jj-1)*perd) & ...
-            timcont < lighttimes(1) + (jj*perd));
+            timidx = find(timcont >= lighttimes(1) + ((jj-1)*triallength) & ...
+            timcont < lighttimes(1) + (jj*triallength));
 
 
 %             % Get the index for the start of the current period (xx is time)
@@ -86,9 +81,9 @@ for jj = 1:numotrials
             
            
              % Data   
-             out(jj).obwAmp = [in.e(j).s(timidx).obwAmp];
+             %out(jj).obwAmp = [in.e(j).s(timidx).obwAmp];
 %              out(jj).zAmp = [in.e(j).s(timidx).zAmp];
-%              out(jj).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
+             out(jj).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
 %              out(jj).fftFreq = [in.e(j).s(timidx).fftFreq];
              
              % Time and treatment 
@@ -112,13 +107,13 @@ for jj = 1:numotrials
     
              
             % Get the index for the start of the current period (xx is time)
-            Stimidx = find(xx > xx(1) + ((jj-1) * perd), 1);
+            Stimidx = find(xx > xx(1) + ((jj-1) * triallength), 1);
             % Get the rest of the indices for the trial  
-            Stimidx = Stimidx:Stimidx + (perd*ReFs)-1;
+            Stimidx = Stimidx:Stimidx + (triallength*ReFs)-1;
             
-            if length(obwyy) >= Stimidx(end)
+            if length(fftyy) >= Stimidx(end)
              % Data   
-             out(jj).SobwAmp = obwyy(Stimidx);
+             %out(jj).SobwAmp = fftyy(Stimidx);
 %              out(jj).SzAmp = zyy(Stimidx);
 %              out(jj).SsumfftAmp = sumfftyy(Stimidx);
              
@@ -139,7 +134,7 @@ end
         ld = out(jj).ld;
 
         % Divide by daylength to get the number of days in the trial
-        howmanydaysintrial = floor(perd / (ld*2));
+        howmanydaysintrial = floor(triallength / (ld*2));
         % This is the number of sample in a day
         howmanysamplesinaday = ld * 2 * ReFs;
 
@@ -150,9 +145,9 @@ end
             dayidx = find(out(jj).Stimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
 
             % Get the datums
-            trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
+            %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
 %             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
-%             trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
+            trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
 %             
                trial(jj).ld = in.info.ld; 
 
@@ -179,9 +174,9 @@ for k = 1:howmanydaysinsample
                 dayidx = find(xx >= xx(1) + (k-1) * (ld*2) & xx < xx(1) + k*(ld*2)); % k-1 so that we start at zero
 
                 if length(dayidx) >= howmanysamplesinaday
-                day(k).SobwAmp = obwyy(dayidx);
+%                 day(k).SobwAmp = obwyy(dayidx);
 %                 day(k).SzAmp = zyy(dayidx);
-%                 day(k).Ssumfftyy = sumfftyy(dayidx);
+                day(k).Ssumfftyy = sumfftyy(dayidx);
                 day(k).tim = tim;
                 end
  end
