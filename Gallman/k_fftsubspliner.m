@@ -109,7 +109,8 @@ if channel == 1
             %estimate without resample
             fftAmp = fnval([in.e(1).s(tto{1}).timcont]/(60*60), spliney);
             %detrend ydata
-            dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
+            %dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
+
                 sumffttimOG = [in.e(1).s(ttsf{1}).timcont]/(60*60);
                 sumfftAmpOG = [in.e(1).s(ttsf{1}).sumfftAmp]; 
      
