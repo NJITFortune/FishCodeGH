@@ -3,11 +3,13 @@
 ss = daq.createSession('ni');
 
 % Add and configure Analogue Channels
-    ss.addAnalogInputChannel('Dev2', 0, 'voltage'); % EOD data
-    ss.addAnalogInputChannel('Dev2', 1, 'voltage'); % EOD data
+    %Dev1 on #LovePalace
+    %Dev2 on Minimouse
+    ss.addAnalogInputChannel('Dev1', 0, 'voltage'); % EOD data
+    ss.addAnalogInputChannel('Dev1', 1, 'voltage'); % EOD data
 %    s.addAnalogInputChannel('Dev2', 2, 'voltage'); % EOD data
-    ss.addAnalogInputChannel('Dev2', 3, 'voltage'); % Temp data
-    ss.addAnalogInputChannel('Dev2', 4, 'voltage'); % Light data
+    ss.addAnalogInputChannel('Dev1', 3, 'voltage'); % Temp data
+    ss.addAnalogInputChannel('Dev1', 4, 'voltage'); % Light data
 
     ss.Rate = 40000; %Changed from 20000
     
@@ -15,7 +17,7 @@ ss = daq.createSession('ni');
     ss.NotifyWhenDataAvailableExceeds = ss.Rate * ss.DurationInSeconds;
 
 % Add and configure Trigger    
-    addTriggerConnection(ss,'External','Dev2/PFI0','StartTrigger');
+    addTriggerConnection(ss,'External','Dev1/PFI0','StartTrigger');
     
     ss.Connections.TriggerCondition = 'FallingEdge';
     ss.ExternalTriggerTimeout = 144000;
