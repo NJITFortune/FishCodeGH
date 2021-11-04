@@ -31,7 +31,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %entire data set
 %[xx, obwyy, ~, ~, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
-[xx, fftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light);
+[xx, sumfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light);
 
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
@@ -111,7 +111,7 @@ for jj = 1:numotrials
             % Get the rest of the indices for the trial  
             Stimidx = Stimidx:Stimidx + (triallength*ReFs)-1;
             
-            if length(fftyy) >= Stimidx(end)
+            if length(sumfftyy) >= Stimidx(end)
              % Data   
              %out(jj).SobwAmp = fftyy(Stimidx);
 %              out(jj).SzAmp = zyy(Stimidx);
