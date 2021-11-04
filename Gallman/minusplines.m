@@ -27,7 +27,7 @@ figure(222); clf; title('spline estimate vs raw data'); hold on;
     axs(1) = subplot(211); title('entire data set'); hold on;
 
         plot(sumffttimOG, sumfftAmpOG, '.', 'MarkerSize', 3);
-        plot(xx, obwyy, 'LineWidth', 3);
+        plot(xx, sumfftyy, 'LineWidth', 3);
 
         for j = 1:length(lighttimes)
         plot([lighttimes(j) lighttimes(j)], ylim, 'k-', 'LineWidth', 1);
@@ -81,7 +81,7 @@ figure(223); clf; hold on;
    
     xs(2) = subplot(212); title('spline estimate'); hold on;
 
-        plot(xx, obwyy, 'LineWidth', 3);
+        plot(xx, sumfftyy, 'LineWidth', 3);
         plot(xx, subobwyy, 'LineWidth', 3);
         
         
@@ -97,7 +97,7 @@ linkaxes(xs, 'x');
 
 %divide data into trials to calculate day means by trial
 
-  fulltrial = k_trialdaydivider(sumffttimOG, sumfftAmpOG, xx, obwyy, ld, lighttimes, ReFs);
+  fulltrial = k_trialdaydivider(sumffttimOG, sumfftAmpOG, xx, sumfftyy, ld, lighttimes, ReFs);
   subtrial = k_trialdaydivider(subobwtim, subobw, xx, subobwyy, ld, lighttimes, ReFs);
   
 %plot
