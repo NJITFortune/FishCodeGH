@@ -37,8 +37,8 @@ figure(222); clf; title('spline estimate vs raw data'); hold on;
 
 % %subset raw data
    obwidx = find(sumfftAmpOG > fftAmp);
-   subobw = sumfftAmpOG(obwidx);
-   subobwtim = sumffttimOG(obwidx);
+   subfft = sumfftAmpOG(obwidx);
+   subffttim = sumffttimOG(obwidx);
    
 %estimate new spline 
 p = 0.5;
@@ -46,17 +46,17 @@ p = 0.5;
   %estimate new yvalues for every x value
 
         %obw
-        spliney = csaps(subobwtim, subobw, p);
+        spliney = csaps(subffttim, subfft, p);
         %resample new x values based on light/dark
-        subobwyy = fnval(xx, spliney);
+        subfftyy = fnval(xx, spliney);
        
             
 %plot to check
 
     axs(2) = subplot(212); title('data subset'); hold on;
     
-        plot(subobwtim, subobw, '.', 'MarkerSize', 3);
-        plot(xx, subobwyy, 'LineWidth', 3);
+        plot(subffttim, subfft, '.', 'MarkerSize', 3);
+        plot(xx, subfftyy, 'LineWidth', 3);
 
         for j = 1:length(lighttimes)
         plot([lighttimes(j) lighttimes(j)], ylim, 'k-', 'LineWidth', 1);
@@ -71,7 +71,7 @@ figure(223); clf; hold on;
     xs(1) = subplot(211); title('raw data'); hold on;
 
         plot(sumffttimOG, sumfftAmpOG, '.', 'MarkerSize', 5);
-        plot(subobwtim, subobw, '.', 'MarkerSize', 5);
+        plot(subffttim, subfft, '.', 'MarkerSize', 5);
         
 
         for j = 1:length(lighttimes)
@@ -82,7 +82,7 @@ figure(223); clf; hold on;
     xs(2) = subplot(212); title('spline estimate'); hold on;
 
         plot(xx, sumfftyy, 'LineWidth', 3);
-        plot(xx, subobwyy, 'LineWidth', 3);
+        plot(xx, subfftyy, 'LineWidth', 3);
         
         
         for j = 1:length(lighttimes)
@@ -96,11 +96,20 @@ linkaxes(xs, 'x');
 %% does it change the mean estimate?
 %detrend data for mean plots
     
+   %fulldata
+   dtfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
+   normsumfftyytrend = 1./(sumfftyy - dtfftyy);
+   tnormsumfftyy = sumfftyy .* normsumfftyytrend;
+
+   %subset
+   dtsubfftyy = detrend(subfftyy,6,'SamplePoints', xx);
+   normsubfftyytrend = 1./(subfftyy - dtsubfftyy);
+   tnormsubfftyy = subfftyy .* normsubfftyytrend;
 
 %divide data into trials to calculate day means by trial
 
-  fulltrial = k_trialdaydivider(sumffttimOG, sumfftAmpOG, xx, sumfftyy, ld, lighttimes, ReFs);
-  subtrial = k_trialdaydivider(subobwtim, subobw, xx, subobwyy, ld, lighttimes, ReFs);
+  fulltrial = k_trialdaydivider(sumffttimOG, sumfftAmpOG, xx, tnormsumfftyy, ld, lighttimes, ReFs);
+  subtrial = k_trialdaydivider(subffttim, subfft, xx, tnormsubfftyy, ld, lighttimes, ReFs);
   
 %plot
 %FULL TRIAL
