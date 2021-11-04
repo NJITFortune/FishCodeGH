@@ -115,7 +115,7 @@ for jj = 1:numotrials
              % Data   
              %out(jj).SobwAmp = fftyy(Stimidx);
 %              out(jj).SzAmp = zyy(Stimidx);
-%              out(jj).SsumfftAmp = sumfftyy(Stimidx);
+             out(jj).SsumfftAmp = sumfftyy(Stimidx);
              
              % Time  
              out(jj).Stimcont = xx(Stimidx) - xx(Stimidx(1)); % Time starting at zero  
