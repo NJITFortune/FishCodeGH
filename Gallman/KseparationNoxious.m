@@ -174,7 +174,8 @@ for j=2:length(iFiles)
        
 end
         
-
+    pause(1); close(ff);
+    
 %frequency
 figure(4);clf;hold on; 
         plot([out.hifreq]); plot([out.lofreq]);
