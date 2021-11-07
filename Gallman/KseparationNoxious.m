@@ -102,7 +102,7 @@ ff = waitbar(0, 'Cycling through files.');
 
 for j=2:length(iFiles)
 
-    waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
+    waitbar(j/length(iFiles), ff, 'Assembling', 'modal');
     
     % Load current file
     load(iFiles(j).name, 'data', 'tim');
@@ -175,7 +175,7 @@ for j=2:length(iFiles)
 end
         
     pause(1); close(ff);
-    
+
 %frequency
 figure(4);clf;hold on; 
         plot([out.hifreq]); plot([out.lofreq]);
