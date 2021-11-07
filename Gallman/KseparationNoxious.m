@@ -98,6 +98,8 @@ rango = abs(currhifreq - currlofreq)+5; % Freq range in Hz for change in fish fr
     out(1).light = mean(data(1,lightchan));
 %% Loop through the rest of the datums
 
+ff = waitbar(0, 'Cycling through files.');
+
 for j=2:length(iFiles)
     
     % Load current file
