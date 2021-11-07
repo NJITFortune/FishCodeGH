@@ -241,7 +241,8 @@ figure(987); clf; hold on;
 %save amplitude data for each tube by fish            
     %Data over indicies for each fish
         %high freq fish amp
-        [Hisortidx, ~] = sort([intube2hi intube1hi]);
+        hitube = [intube2hi, intube1hi];
+        [Hisortidx, ~] = sort(hitube);
         %intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
          intubeHi = [out.e2hiamp, out.e1hiamp];
         
