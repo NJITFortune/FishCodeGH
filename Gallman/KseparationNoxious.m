@@ -101,6 +101,8 @@ rango = abs(currhifreq - currlofreq)+5; % Freq range in Hz for change in fish fr
 ff = waitbar(0, 'Cycling through files.');
 
 for j=2:length(iFiles)
+
+    waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
     
     % Load current file
     load(iFiles(j).name, 'data', 'tim');
