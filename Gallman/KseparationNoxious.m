@@ -253,7 +253,8 @@ figure(987); clf; hold on;
         end
         
         %low freq fish amp
-        [Losortidx, ~] = sort([intube2lo intube1lo]);
+        lotube = [intube2lo, intube1lo];
+        [Losortidx, ~] = sort(lotube);
         %intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
        intubeLo = [out.e2loamp, out.e1loamp];
         
