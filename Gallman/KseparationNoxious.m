@@ -240,8 +240,15 @@ figure(987); clf; hold on;
 
 %testing
 
-        out.Hitest = [out(intube1hi).e1hiamp, out(intube2hi).e2hiamp];
-        out.Hitimtest = [out(intube1hi).timcont, out(intube2hi).timcont ];
+amp1 = [out(intube1hi).e1hiamp];
+amp2 = [out(intube2hi).e2hiamp];
+
+tim1 = [out(intube1hi).timcont];
+tim2 = [out(intube2hi).timcont];
+
+
+        out.Hitest = [amp1, amp2];
+        out.Hitimtest = [tim1, tim2];
 
             
 %save amplitude data for each tube by fish            
