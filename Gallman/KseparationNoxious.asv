@@ -237,17 +237,26 @@ figure(987); clf; hold on;
             plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
             
             
+
+%testing
+
+        out.Hitest = [out(intube1hi).e1hiamp, out(intube2hi).e2hiamp];
+        out.Hitimtest
+
+
             
 %save amplitude data for each tube by fish            
     %Data over indicies for each fish
         %high freq fish amp
+        length(intube1hi)
+        length(intube2hi)
+
         hitube = [intube2hi, intube1hi];
-        length(hitube)
         [Hisortidx, ~] = sort(hitube);
-        length(Hisortidx)
+       
         %intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
          intubeHi = [out.e2hiamp, out.e1hiamp];
-         length(intubeHi)
+        
         
         for j = 1:length(Hisortidx)
             out(j).Hiobw(:) = intubeHi(Hisortidx(j));
@@ -259,7 +268,8 @@ figure(987); clf; hold on;
         lotube = [intube2lo, intube1lo];
         [Losortidx, ~] = sort(lotube);
         %intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
-       intubeLo = [out.e2loamp, out.e1loamp];
+        intubeLo = [out.e2loamp, out.e1loamp];
+       
         
         for j = 1:length(Losortidx)
             out(j).Loobw(:) = intubeLo(Losortidx(j));
