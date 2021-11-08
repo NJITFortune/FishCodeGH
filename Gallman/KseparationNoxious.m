@@ -255,6 +255,8 @@ figure(987); clf; hold on;
             out(j).Hitimobw(:) = [out(Hisortidx(j)).timcont]/(60*60);
             out(j).HIfreq(:) = [out(Hisortidx(j)).hifreq];
         end
+
+        length(Hiobw)
         
         %low freq fish amp
         lotube = [intube2lo, intube1lo];
