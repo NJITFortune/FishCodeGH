@@ -237,20 +237,6 @@ figure(987); clf; hold on;
             plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
             
             
-
-%testing
-
-amp1 = [out(intube1hi).e1hiamp];
-amp2 = [out(intube2hi).e2hiamp];
-
-tim1 = [out(intube1hi).timcont];
-tim2 = [out(intube2hi).timcont];
-
-
-        out.Hitest = [amp1, amp2];
-        out.Hitimtest = [tim1, tim2];
-
-            
 %save amplitude data for each tube by fish            
     %Data over indicies for each fish
         %high freq fish amp
