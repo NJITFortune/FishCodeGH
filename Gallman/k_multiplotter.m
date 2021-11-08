@@ -74,9 +74,14 @@ figure(6); clf; title('By fish')
             plot([out.Lotimobw], [out.Loobw], '.','Color', orange);
             
 
-        axs(3) = subplot(513); hold on; title('Frequency');
-            plot([out.Hitimobw], [out.HIfreq], '.','Color', teal); 
-            plot([out.Lotimobw], [out.LOfreq], '.','Color', orange); 
+            axs(3) = subplot(513); hold on; title('Frequency');
+            plot([out.Hitimtest], [out.Hitest], '.','Color', teal); 
+           
+
+
+%         axs(3) = subplot(513); hold on; title('Frequency');
+%             plot([out.Hitimobw], [out.HIfreq], '.','Color', teal); 
+%             plot([out.Lotimobw], [out.LOfreq], '.','Color', orange); 
 
 
         axs(4) = subplot(514); hold on; title('Temperature');
