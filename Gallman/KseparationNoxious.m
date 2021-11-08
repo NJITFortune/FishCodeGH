@@ -249,10 +249,10 @@ figure(987); clf; hold on;
        
         %intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
          intubeHi = [out.e2hiamp, out.e1hiamp];
-         [intubeHiosorted, ~] = sort(intubeHi);
+        
         
         for j = 1:length(Hisortidx)
-            out(j).Hiobw(:) = intubeHiosorted(Hisortidx(j));
+            out(j).Hiobw(:) = intubeHi(Hisortidx(j));
             out(j).Hitimobw(:) = [out(Hisortidx(j)).timcont]/(60*60);
             out(j).HIfreq(:) = [out(Hisortidx(j)).hifreq];
         end
@@ -262,10 +262,10 @@ figure(987); clf; hold on;
         [Losortidx, ~] = sort(lotube);
         %intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
         intubeLo = [out.e2loamp, out.e1loamp];
-        [intubeLosorted, ~] = sort(intubeLo);
+       
         
         for j = 1:length(Losortidx)
-            out(j).Loobw(:) = intubeLosorted(Losortidx(j));
+            out(j).Loobw(:) = intubeLo(Losortidx(j));
             out(j).Lotimobw(:) = [out(Losortidx(j)).timcont]/(60*60);
             out(j).LOfreq(:) = [out(Losortidx(j)).lofreq];
         end
