@@ -1,4 +1,6 @@
-function out = KatieMultiLabeler(in)
+%function out = KatieMultiLabeler(in)
+
+in = kg2(1);
 % Usage: kg(#).info = KatieTempLabeler(kg(#).s)
 %in = kg2(k).s
 %out = kg2(k).info
@@ -89,12 +91,12 @@ function out = KatieMultiLabeler(in)
             plot([out.temptims(j), out.temptims(j)], ylim, 'b-');
         end
    
-%% manual labels
- %enter into command line
-    out.ld = input('Enter the LD schedule: '); %temp code is 99 if constant light or dark
-    out.fishid = input('Enter fish name or identifier: ');
-    out.feedingtimes = input('Enter feeding times in hours from start: ');
-    out.poweridx = input('Enter the values of timcont in hours over which to perform power analysis: ');
-    
+% %% manual labels
+%  %enter into command line
+%     out.ld = input('Enter the LD schedule: '); %temp code is 99 if constant light or dark
+%     out.fishid = input('Enter fish name or identifier: ');
+%     out.feedingtimes = input('Enter feeding times in hours from start: ');
+%     out.poweridx = input('Enter the values of timcont in hours over which to perform power analysis: ');
+%     
 
 
