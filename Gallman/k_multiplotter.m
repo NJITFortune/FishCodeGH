@@ -45,6 +45,10 @@ figure(66); clf; title('By fish'); hold on;
             plot([out.timcont]/3600, [out.light]);
             ylim([-1, 6]);
 
+
+
+
+            
 linkaxes(axs, 'x');
 
 
