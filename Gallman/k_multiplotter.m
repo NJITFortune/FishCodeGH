@@ -35,7 +35,7 @@ figure(66); clf; title('By fish'); hold on;
         plot([out.s(ttlo).LoTim], [out.s(ttlo).LoAmp], '.','Color', orange);
    
 
-    axs(3) = subplot(513); hold on; title('Frequency and Temperature');
+    axs(3) = subplot(513); hold on; title('Frequency ');
         plot([out.s(tthi).HiTim], [out.s(tthi).HIfreq], '.','Color', teal); 
         plot([out.s(ttlo).LoTim], [out.s(ttlo).LOfreq], '.','Color', orange); 
         
