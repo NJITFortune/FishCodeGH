@@ -50,7 +50,7 @@ figure(66); clf; title('By fish'); hold on;
     %additional plot elements - depend on whether user has input info
 
         % Add temptimes, if we have them... 
-        if isfield(out, 'info')
+        if isfield(out.info, 'temptims')
             if ~isempty([out.info.temptims])
                axs(4) = subplot(514); 
                for j = 1:length([out.info.temptims])
@@ -60,7 +60,7 @@ figure(66); clf; title('By fish'); hold on;
         end  
 
         % Add light transitions times to check luz if we have programmed it
-        if isfield(out, 'info')
+        if isfield(out.info, 'luz')
             if  ~isempty(out.info.luz)
                 
                 %luz by transition type
