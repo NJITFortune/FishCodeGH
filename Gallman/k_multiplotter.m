@@ -7,12 +7,14 @@ function k_multiplotter(out)
     ttlo = 1:length([out.LoTim]); % ttlo is indices for LoAmp
 
     
-% If we have removed outliers via KatieRemover, get the indices...    
-    if ~isempty(out.idx)
-        tthi = out.idx.Hiidx; % tthi is indices for HiAmp
-        ttlo = out.idx.Loidx; % ttlo is indices for LoAmp
+% If we have removed outliers via KatieRemover, get the indices... 
+    if isfield(out, 'idx')
+        if ~isempty(out.idx)
+            tthi = out.idx.Hiidx; % tthi is indices for HiAmp
+            ttlo = out.idx.Loidx; % ttlo is indices for LoAmp
+        end
     end
-    
+
 %colors
 teal = [0.2 0.8 0.8];
 %blue = [0 0.4470 0.7410];
