@@ -6,7 +6,6 @@ function k_multiplotter(out)
     tthi = 1:length([out.s.HiTim]); % tthi is indices for HiAmp
     ttlo = 1:length([out.s.LoTim]); % ttlo is indices for LoAmp
 
-    length(tthi)
 
 % If we have removed outliers via KatieRemover, get the indices... 
     if isfield(out, 'idx')
@@ -16,7 +15,6 @@ function k_multiplotter(out)
         end
     end
 
-    length(tthi)
 %colors
 teal = [0.2 0.8 0.8];
 %blue = [0 0.4470 0.7410];
