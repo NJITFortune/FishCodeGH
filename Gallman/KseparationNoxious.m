@@ -237,13 +237,12 @@ figure(987); clf; hold on;
             plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
       
 
-
     %test alternative eric
         %hi frequency fish
             %tube 2
             for j=1:length(intube2hi)
                 out(intube2hi(j)).HiAmp = out(intube2hi(j)).e2hiamp;
-                out(intube2hi(j)).Hitimobw = out(intube2hi(j)).timcont/3600;
+                out(intube2hi(j)).HiTim = out(intube2hi(j)).timcont/3600;
                 out(intube2hi(j)).HIfreq = [out(intube2hi(j)).hifreq];
             end
             %tube 1
