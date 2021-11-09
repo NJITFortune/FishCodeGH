@@ -17,8 +17,8 @@ figure(1); clf;
     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow; 
     
-    out(k).Hiobwidx = find([in.intubeHi] > cutofffreqL & [in.intubeHi] < cutofffreqH);
-    
+    out.Hiobwidx = find([in.intubeHi] > cutofffreqL & [in.intubeHi] < cutofffreqH);
+
     pause(1);
     
     
@@ -38,7 +38,7 @@ figure(1); clf;
     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow; 
     
-    out(k).Loobwidx = find([in.intubeLo] > cutofffreqL & [in.intubeLo] < cutofffreqH);
+    out.Loobwidx = find([in.intubeLo] > cutofffreqL & [in.intubeLo] < cutofffreqH);
     pause(1);
     
 end
