@@ -48,8 +48,15 @@ in = kg2(1);
         %plot temp/time
         figure(58); clf; hold on;
         plot([in(1).s.timcont]/3600, [in(1).s.temp]);
+
                     
-        ginput(2);
+    %click new figure bounds starting from left
+    [x, ~] = ginput(2);
+    
+    
+    tt = find([in(1).s.timcont]/(60*60) > x(1) & [in(1).s.timcont]/(60*60) < x(2));
+            out(1).s = in(1).s(tt);
+   
                     
         %find idicies where the light changes (threshold of 2.5)  
             %autoplots but does not save. Use to check output
