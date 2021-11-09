@@ -51,8 +51,8 @@ figure(5); clf; title('Can we put both tubes together?')
     
         
     ax(3) = subplot(513); hold on; title('Frequency');
-        plot([out.Hitimobw], [out.HIfreq], '.','Color', teal); 
-        plot([out.Lotimobw], [out.LOfreq], '.','Color', orange); 
+        plot([out.HiTim], [out.HIfreq], '.','Color', teal); 
+        plot([out.LoTim], [out.LOfreq], '.','Color', orange); 
         
     
     ax(4) = subplot(514); hold on; title('Temperature');
@@ -67,17 +67,17 @@ linkaxes(ax, 'x');
 figure(6); clf; title('By fish')
 
         axs(1) = subplot(511); hold on; title('High frequency fish');
-            plot([out.Hitimobw], [out.Hiobw], '.', 'Color', teal);
+            plot([out.HiTim], [out.HiAmp], '.', 'Color', teal);
             
 
 
         axs(2) = subplot(512); hold on; title('Low frequency fish');
-            plot([out.Lotimobw], [out.Loobw], '.','Color', orange);
+            plot([out.LoTim], [out.LoAmp], '.','Color', orange);
        
 
         axs(3) = subplot(513); hold on; title('Frequency');
-            plot([out.Hitimobw], [out.HIfreq], '.','Color', teal); 
-            plot([out.Lotimobw], [out.LOfreq], '.','Color', orange); 
+            plot([out.HiTim], [out.HIfreq], '.','Color', teal); 
+            plot([out.LoTim], [out.LOfreq], '.','Color', orange); 
 
 
         axs(4) = subplot(514); hold on; title('Temperature');
