@@ -2,14 +2,14 @@ function k_multiplotter(out)
 %% Preparations
 
 % All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
-    tthi{1} = 1:length([out.HiTim]); % tto is indices for obwAmp
-    ttlo{2} = 1:length([out.LoTim]);
+    tthi = 1:length([out.HiTim]); % tthi is indices for HiAmp
+    ttlo = 1:length([out.LoTim]); % ttlo is indices for LoAmp
 
     
 % If we have removed outliers via KatieRemover, get the indices...    
     if ~isempty(out.idx)
-        tthi{1} = out.idx. % tto is indices for obwAmp
-        ttz{1} = out.idx(1).zidx; ttz{2} = out.idx(2).zidx; % ttz is indices for zAmp
+        tthi{1} = out.idx.Hiidx; % tthi is indices for HiAmp
+        ttlo{1} = out.idx(1).zidx; ttz{2} = out.idx(2).zidx; % ttz is indices for zAmp
         ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
     end
     %%
