@@ -10,7 +10,7 @@ function k_multiplotter(out)
 % If we have removed outliers via KatieRemover, get the indices... 
     if isfield(out, 'idx')
         if ~isempty(out.idx)
-            tthi{1} = out.idx.Hiidx; % tthi is indices for HiAmp
+            tthi = out.idx.Hiidx; % tthi is indices for HiAmp
             ttlo = out.idx.Loidx; % ttlo is indices for LoAmp
         end
     end
