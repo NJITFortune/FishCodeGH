@@ -251,6 +251,19 @@ figure(987); clf; hold on;
                 out(intube1hi(j)).Hitimobw = out(intube1hi(j)).timcont/3600;
             end
 
+        %low frequency fish
+            %tube 2    
+            for j=1:length(intube2lo)
+                out(intube2lo(j)).Loobw = out(intube2lo(j)).e2loamp;
+                out(intube2lo(j)).Lotimobw = out(intube2lo(j)).timcont/3600;
+            end
+            %tube 1
+            for j=1:length(intube1lo)
+                out(intube1lo(j)).Loobw = out(intube1lo(j)).e1loamp;
+                out(intube1lo(j)).Lotimobw = out(intube1lo(j)).timcont/3600;
+            end
+
+
 % %testing - doesn't work. scalar sturcture required...
 % 
 % amp1 = [out(intube1hi).e1hiamp];
@@ -267,38 +280,38 @@ figure(987); clf; hold on;
 %save amplitude data for each tube by fish            
     %Data over indicies for each fish
         %high freq fish amp
-        length(intube1hi)
-        length(intube2hi)
-
-        hitube = [intube2hi, intube1hi];
-
-
-
-        [Hisortidx, ~] = sort(hitube);
-       
-        %intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
-         intubeHi = [out.e2hiamp, out.e1hiamp];
-        
-        
-        for j = 1:length(Hisortidx)
-            out(j).Hiobw(:) = intubeHi(Hisortidx(j));
-            out(j).Hitimobw(:) = [out(Hisortidx(j)).timcont]/(60*60);
-            out(j).HIfreq(:) = [out(Hisortidx(j)).hifreq];
-        end
-        
-        %low freq fish amp
-        lotube = [intube2lo, intube1lo];
-        [Losortidx, ~] = sort(lotube);
-        %intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
-        intubeLo = [out.e2loamp, out.e1loamp];
-       
-        
-        for j = 1:length(Losortidx)
-            out(j).Loobw(:) = intubeLo(Losortidx(j));
-            out(j).Lotimobw(:) = [out(Losortidx(j)).timcont]/(60*60);
-            out(j).LOfreq(:) = [out(Losortidx(j)).lofreq];
-        end
-        
+%         length(intube1hi)
+%         length(intube2hi)
+% 
+%         hitube = [intube2hi, intube1hi];
+% 
+% 
+% 
+%         [Hisortidx, ~] = sort(hitube);
+%        
+%         %intubeHi = [out(intube2hi).e2hiamp, out(intube1hi).e1hiamp];
+%          intubeHi = [out.e2hiamp, out.e1hiamp];
+%         
+%         
+%         for j = 1:length(Hisortidx)
+%             out(j).Hiobw(:) = intubeHi(Hisortidx(j));
+%             out(j).Hitimobw(:) = [out(Hisortidx(j)).timcont]/(60*60);
+%             out(j).HIfreq(:) = [out(Hisortidx(j)).hifreq];
+%         end
+%         
+%         %low freq fish amp
+%         lotube = [intube2lo, intube1lo];
+%         [Losortidx, ~] = sort(lotube);
+%         %intubeLo = [out(intube2lo).e2loamp, out(intube1lo).e1loamp];
+%         intubeLo = [out.e2loamp, out.e1loamp];
+%        
+%         
+%         for j = 1:length(Losortidx)
+%             out(j).Loobw(:) = intubeLo(Losortidx(j));
+%             out(j).Lotimobw(:) = [out(Losortidx(j)).timcont]/(60*60);
+%             out(j).LOfreq(:) = [out(Losortidx(j)).lofreq];
+%         end
+%         
    
         
 %% Plot fish against light/temp
