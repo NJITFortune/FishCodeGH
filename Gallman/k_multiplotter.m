@@ -3,7 +3,7 @@ function k_multiplotter(out)
 
 %outlier removal indicies
 % All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
-    tthi = 1:length([out.s.HiTim]); % tthi is indices for HiAmp
+    tthi = {1:length([out.s.HiTim]}; % tthi is indices for HiAmp
     ttlo{1} = 1:length([out.s.LoTim]); % ttlo is indices for LoAmp
 
 
