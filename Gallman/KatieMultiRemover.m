@@ -18,6 +18,7 @@ figure(1); clf;
     drawnow; 
     
     out(k).Hiobwidx = find([in.intubeHi] > cutofffreqL & [in.intubeHi] < cutofffreqH);
+    
     pause(1);
     
     
