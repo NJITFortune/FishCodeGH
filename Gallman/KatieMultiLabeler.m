@@ -49,6 +49,7 @@ in = kg2(1);
         figure(58); clf; hold on;
         plot([in(1).s.timcont]/3600, [in(1).s.temp]);
                     
+        ginput(2);
                     
         %find idicies where the light changes (threshold of 2.5)  
             %autoplots but does not save. Use to check output
