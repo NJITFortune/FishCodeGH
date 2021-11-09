@@ -244,11 +244,13 @@ figure(987); clf; hold on;
             for j=1:length(intube2hi)
                 out(intube2hi(j)).Hiobw = out(intube2hi(j)).e2hiamp;
                 out(intube2hi(j)).Hitimobw = out(intube2hi(j)).timcont/3600;
+                out(j).HIfreq(:) = [out(intube2hi(j)).hifreq];
             end
             %tube 1
             for j=1:length(intube1hi)
                 out(intube1hi(j)).Hiobw = out(intube1hi(j)).e1hiamp;
                 out(intube1hi(j)).Hitimobw = out(intube1hi(j)).timcont/3600;
+                out(j).HIfreq(:) = [out(intube1hi(j)).hifreq];
             end
 
         %low frequency fish
@@ -256,11 +258,13 @@ figure(987); clf; hold on;
             for j=1:length(intube2lo)
                 out(intube2lo(j)).Loobw = out(intube2lo(j)).e2loamp;
                 out(intube2lo(j)).Lotimobw = out(intube2lo(j)).timcont/3600;
+                out(j).LOfreq(:) = [out(intube2lo(j)).lofreq];
             end
             %tube 1
             for j=1:length(intube1lo)
                 out(intube1lo(j)).Loobw = out(intube1lo(j)).e1loamp;
                 out(intube1lo(j)).Lotimobw = out(intube1lo(j)).timcont/3600;
+                out(j).LOfreq(:) = [out(intube1lo(j)).lofreq];
             end
 
 
