@@ -1,12 +1,18 @@
 function k_multiplotter(out)
-%% preparations
-%indicies for fish/tube data
- 
-    hitube{1} = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
-    hitube{2} = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
+%% Preparations
+
+% All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
+    tthi{1} = 1:length([out.HiTim]); % tto is indices for obwAmp
+    ttlo{2} = 1:length([out.LoTim]);
+
     
-    lotube{1} = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
-    lotube{2} = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
+% If we have removed outliers via KatieRemover, get the indices...    
+    if ~isempty(out.idx)
+        tto{1} = out.idx(1).obwidx; tto{2} = out.idx(2).obwidx; % tto is indices for obwAmp
+        ttz{1} = out.idx(1).zidx; ttz{2} = out.idx(2).zidx; % ttz is indices for zAmp
+        ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+    end
+    %%
     
 %colors
 teal = [0.2 0.8 0.8];
