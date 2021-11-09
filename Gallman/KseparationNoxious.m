@@ -235,11 +235,17 @@ figure(987); clf; hold on;
              plot([out(intube1hi).timcont], [out(intube1hi).e1hiamp], 'bo');
         intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
             plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
-            
+      
+
+
+    %test alternative eric
+        %hi frequency fish
+            %tube 2
             for j=1:length(intube2hi)
                 out(intube2hi(j)).Hiobw = out(intube2hi(j)).e2hiamp;
                 out(intube2hi(j)).Hitimobw = out(intube2hi(j)).timcont/3600;
             end
+            %tube 1
             for j=1:length(intube1hi)
                 out(intube1hi(j)).Hiobw = out(intube1hi(j)).e1hiamp;
                 out(intube1hi(j)).Hitimobw = out(intube1hi(j)).timcont/3600;
