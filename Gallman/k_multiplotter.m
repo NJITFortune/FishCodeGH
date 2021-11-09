@@ -3,7 +3,7 @@ function k_multiplotter(out)
 
 %outlier removal indicies
 % All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
-    tthi{1} = 1:length([out.s.HiTim]); % tthi is indices for HiAmp
+    tthi = 1:length([out.s.HiTim]); % tthi is indices for HiAmp
     ttlo{1} = 1:length([out.s.LoTim]); % ttlo is indices for LoAmp
 
 
@@ -28,7 +28,7 @@ orange = [0.8500 0.3250 0.0980];
 figure(66); clf; title('By fish'); hold on;
 
     axs(1) = subplot(511); hold on; title('High frequency fish');
-        plot([out.s.HiTim], [out.s.HiAmp], '.', 'Color', teal);
+        plot([out.s(tthi{1}).HiTim], [out.s(tthi{1}).HiAmp], '.', 'Color', teal);
         
 
     axs(2) = subplot(512); hold on; title('Low frequency fish');
