@@ -53,12 +53,12 @@ in = kg2(1);
 
                     
     %click new figure bounds starting from left
-%     [x, ~] = ginput(2);
-%     
-%     
-%     tt = find([in.s.timcont]/(60*60) > x(1) & [in.s.timcont]/(60*60) < x(2));
-%             out.s = in.s(tt);
-%    
+    [x, ~] = ginput(2);
+    
+    
+    tt = find([in.s.timcont]/(60*60) > x(1) & [in.s.timcont]/(60*60) < x(2));
+            out.s = in.s(tt);
+   
                     
         %find idicies where the light changes (threshold of 2.5)  
             %autoplots but does not save. Use to check output
@@ -69,8 +69,8 @@ in = kg2(1);
         %f = falltime
         %l= lowercross
         %u = uppercross
-        [r, lrx, ~, ~, ~] = risetime([in.s.temp], [in.s.timcont]/3600);
-        [f, ~, ufx, ~, ~] = falltime([in.s.temp], [in.s.timcont]/3600);
+        [r, lrx, ~, ~, ~] = risetime([in.s(tt).temp], [in.s(tt).timcont]/3600);
+        [f, ~, ufx, ~, ~] = falltime([in.s(tt).temp], [in.s(tt).timcont]/3600);
         
         
         %save rise indicis in center of temp change
