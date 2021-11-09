@@ -29,7 +29,6 @@ figure(66); clf; title('By fish'); hold on;
             plot([out(tthi).HiTim], [out(tthi).HiAmp], '.', 'Color', teal);
             
 
-
         axs(2) = subplot(512); hold on; title('Low frequency fish');
             plot([out(ttlo).LoTim], [out(ttlo).LoAmp], '.','Color', orange);
        
