@@ -15,10 +15,10 @@ function k_multiplotter(out)
     
 %colors
 teal = [0.2 0.8 0.8];
-blue = [0 0.4470 0.7410];
+%blue = [0 0.4470 0.7410];
 
 orange = [0.8500 0.3250 0.0980];
-yellow = [0.9290 0.6940 0.1250];
+%yellow = [0.9290 0.6940 0.1250];
 
 
 %% plots
@@ -34,10 +34,9 @@ figure(66); clf; title('By fish'); hold on;
    
 
     axs(3) = subplot(513); hold on; title('Frequency and Temperature');
-        yyaxis right; plot([out(tthi).HiTim], [out(tthi).HIfreq], '.','Color', teal); 
-        yyaxis right; plot([out(ttlo).LoTim], [out(ttlo).LOfreq], '.','Color', orange); 
-        yyaxis left;   plot([out.timcont]/3600, [out.temp], 'r.');
-
+        plot([out(tthi).HiTim], [out(tthi).HIfreq], '.','Color', teal); 
+        plot([out(ttlo).LoTim], [out(ttlo).LOfreq], '.','Color', orange); 
+        
     axs(4) = subplot(514); hold on; title('Temperature');
             plot([out.timcont]/3600, [out.temp], 'r.');
 
@@ -47,21 +46,32 @@ figure(66); clf; title('By fish'); hold on;
 
         
     %additional plot elements - depend on whether user has input info
-    % Add light transitions times to check luz if we have programmed it
-    if isfield(out.info, 'luz')
-        if  ~isempty(out.info.luz)
-            
-            %luz by transition type
-                %separate by transition type
-                lighton = out.info.luz(out.info.luz > 0);
-                darkon = out.info.luz(out.info.luz < 0);
+
+        % Add temptimes, if we have them... 
+        if isfield(out.info, 'temptims')
+            if ~isempty([out.info.temptims])
+               axs(4) = subplot(514); 
+               for j = 1:length([out.info.temptims])
+                    plot([out.info.temptims(j), out.info.temptims(j)], ylim, 'b-');
+               end         
+            end
+        end  
+
+        % Add light transitions times to check luz if we have programmed it
+        if isfield(out.info, 'luz')
+            if  ~isempty(out.info.luz)
                 
-                %plot
-                axs(5) = subplot(515); hold on;
-                plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
-                plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
-        end    
-    end
+                %luz by transition type
+                    %separate by transition type
+                    lighton = out.info.luz(out.info.luz > 0);
+                    darkon = out.info.luz(out.info.luz < 0);
+                    
+                    %plot
+                    axs(5) = subplot(515); hold on;
+                    plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
+                    plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
+            end    
+        end
 
 
             
