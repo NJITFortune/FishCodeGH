@@ -5,6 +5,8 @@ in = kg2(1);
 %in = kg2(k).s
 %out = kg2(k).info
 
+
+%kg2(k).s.temp
 %% auto labels
 %datafolder name
     %saved in Gallman
@@ -16,19 +18,19 @@ in = kg2(1);
         %plot light/time
         figure(58); clf; hold on;
         
-        plot([in(1).s.timcont]/3600, [in(1).s.light]);
+        plot([in.s.timcont]/3600, [in.s.light]);
                     ylim([-1, 6]);
                     
         %find idicies where the light changes (threshold of 2.5)            
-        ipt = findchangepts([in(1).s.light], 'MinThreshold', 2.5);
+        ipt = findchangepts([in.s.light], 'MinThreshold', 2.5);
         
         %create luz vector for light change times
             %lights on is +
             %lights off is -
         for j = 1:length(ipt)
             
-            changepts(j) = [in(1).s(ipt(j)).timcont]/3600;
-            if in(1).s(ipt(j)).light < 2.5
+            changepts(j) = [in.s(ipt(j)).timcont]/3600;
+            if in.s(ipt(j)).light < 2.5
                 changepts(j) = -changepts(j);
             end
             
@@ -47,16 +49,16 @@ in = kg2(1);
     %plots to check
         %plot temp/time
         figure(58); clf; hold on;
-        plot([in(1).s.timcont]/3600, [in(1).s.temp]);
+        plot([in.s.timcont]/3600, [in.s.temp]);
 
                     
     %click new figure bounds starting from left
-    [x, ~] = ginput(2);
-    
-    
-    tt = find([in(1).s.timcont]/(60*60) > x(1) & [in(1).s.timcont]/(60*60) < x(2));
-            out(1).s = in(1).s(tt);
-   
+%     [x, ~] = ginput(2);
+%     
+%     
+%     tt = find([in.s.timcont]/(60*60) > x(1) & [in.s.timcont]/(60*60) < x(2));
+%             out.s = in.s(tt);
+%    
                     
         %find idicies where the light changes (threshold of 2.5)  
             %autoplots but does not save. Use to check output
@@ -67,8 +69,8 @@ in = kg2(1);
         %f = falltime
         %l= lowercross
         %u = uppercross
-        [r, lrx, ~, ~, ~] = risetime([in(1).s.temp], [in(1).s.timcont]/3600);
-        [f, ~, ufx, ~, ~] = falltime([in(1).s.temp], [in(1).s.timcont]/3600);
+        [r, lrx, ~, ~, ~] = risetime([in.s.temp], [in.s.timcont]/3600);
+        [f, ~, ufx, ~, ~] = falltime([in.s.temp], [in.s.timcont]/3600);
         
         
         %save rise indicis in center of temp change
