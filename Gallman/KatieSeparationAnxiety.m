@@ -1,11 +1,11 @@
 function out = KatieSeparationAnxiety(userfilespec)
 %% usage
 %kg2(k).s = out
-%see kgmemulti
+%see kgme multi
 %% Prep
     Fs = 40000; %sample rate
     freqs = [250 550]; %freq range of typical eigen EOD
-    userfilespec = 'Eigen*'; %file names
+    %userfilespec = 'Eigen*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
     %day count starts at 0
@@ -24,7 +24,7 @@ function out = KatieSeparationAnxiety(userfilespec)
 %% Load data
       
 % Load the first file
-    load(iFiles(1).name, 'data', 'tim');
+    load(iFiles(1).name, 'data');
 
 %% Filter  (Not necessary under this new mthod)      
           
@@ -105,7 +105,7 @@ for j=2:length(iFiles)
     waitbar(j/length(iFiles), ff, 'Assembling', 'modal');
     
     % Load current file
-    load(iFiles(j).name, 'data', 'tim');
+    load(iFiles(j).name, 'data');
     % Filter current data
     data1 = filtfilt(h,g, data(:,1)); % Band pass filter   
     data2 = filtfilt(h,g, data(:,2)); % Band pass filter  
