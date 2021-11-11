@@ -1,7 +1,14 @@
 function out = KatieFishFinder(in)
+%% usage
+%takes raw fft amp data from each tube and assigns it to high and low freq fish
+%kg2(#).fish = KatieFishFinder(kg2(#).s)
 
+%kg2(#).s = KatieSeparationAnxiety('Eigen*');
+
+%% assign amplitude data to fish by frequency
 %figure(987); clf; hold on;
     %Indicies when each fish was in each tube
+    %threshold for ratio at 2.5
         %when each fish was in tube 2
         intube2hi = find([in.e2hiamp] ./ [in.e1hiamp] > 2.5);
             %plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], 'b.');
@@ -32,9 +39,6 @@ function out = KatieFishFinder(in)
             end
 
             
-
-
-
         %low frequency fish
        % out.LoAmp = zeros(1, length(intube2lo));
             %tube 2    
@@ -50,9 +54,7 @@ function out = KatieFishFinder(in)
                 out.los(intube1lo(j)).LOfreq(:) = [in(intube1lo(j)).lofreq];
             end 
             
-            fields = fieldnames(out.his);
-            fields
-            out.his = rmfield(out.his, fields(structfun(@isempty, out.his)));
+            
 %% Plot fish against light/temp
 figure(1); clf; 
 
