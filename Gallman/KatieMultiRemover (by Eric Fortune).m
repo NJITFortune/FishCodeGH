@@ -1,9 +1,10 @@
 function out = KatieMultiRemover(in)
 
+
 % OBW        
 figure(1); clf;
 
-    histogram([in.HiAmp], 100); hold on;
+    histogram([in.his.HiAmp], 100); hold on;
     
     %Lower lim
     %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
@@ -17,14 +18,14 @@ figure(1); clf;
     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow; 
     
-    out.Hiidx = find([in.HiAmp] > cutofffreqL & [in.HiAmp] < cutofffreqH);
+    out.Hiidx = find([in.his.HiAmp] > cutofffreqL & [in.his.HiAmp] < cutofffreqH);
 
     pause(1);
     
     
 figure(1); clf;
 
-    histogram([in.LoAmp], 100); hold on;
+    histogram([in.los.LoAmp], 100); hold on;
     
     %Lower lim
     %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
@@ -38,7 +39,6 @@ figure(1); clf;
     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow; 
     
-    out.Loidx = find([in.LoAmp] > cutofffreqL & [in.LoAmp] < cutofffreqH);
+    out.Loidx = find([in.los.LoAmp] > cutofffreqL & [in.los.LoAmp] < cutofffreqH);
     pause(1);
     
-end
