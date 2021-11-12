@@ -28,7 +28,7 @@ figure(1); clf;
     
 figure(1); clf;
 
-    histogram(in, 100); hold on;
+    histogram([in.LoAmp], 100); hold on;
     
     %Lower lim
     fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
