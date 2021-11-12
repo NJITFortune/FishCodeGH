@@ -18,7 +18,7 @@ figure(1); clf;
     drawnow; 
     
     for j=1:length(in.his)
-         if in(j).his.HiAmp > cutofffreqL & in(j).his.HiAmp < cutofffreqH
+         if in.his(j).HiAmp > cutofffreqL & in.his(j).HiAmp < cutofffreqH
              out(j).Hiidx = j;
          end
     end
@@ -42,7 +42,7 @@ figure(1); clf;
     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow; 
     for j=1:length(in.los)
-         if in(j).los.LoAmp > cutofffreqL & in(j).los.LoAmp < cutofffreqH
+         if in.los(j).LoAmp > cutofffreqL & in.los(j).LoAmp < cutofffreqH
              out(j).Loidx = j;
          end
     end
