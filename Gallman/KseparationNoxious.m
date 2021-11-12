@@ -252,17 +252,6 @@ figure(987); clf; hold on;
                 out(intube1hi(j)).HIfreq = [out(intube1hi(j)).hifreq];
             end
 
-% 
-%                 for k = 1:length(out.HiAmp)
-%                     if isempty(out(k).HiAmp)
-%                        out(k).HiAmp = 0;
-%                        out(k).HiTim = 0;
-%                     end
-%                 end
-% 
-%                 out.HiAmp = out(out.HiAmp > 0).HiAmp;
-%                 out.HiTim= out(out.HiTim > 0).HiTim;
-
         %low frequency fish
             %tube 2    
             for j=1:length(intube2lo)
