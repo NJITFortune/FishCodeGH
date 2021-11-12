@@ -149,8 +149,12 @@ for j=2:length(iFiles)
 
 % Set current frequencies
 
-        currhifreq = mean([tmphifreq1 tmphifreq2]);        
-        currlofreq = mean([tmplofreq1 tmplofreq2]);        
+        %channel 1 is super noisy and channel 2 is clean
+          currhifreq =  tmphifreq2;        
+          currlofreq =  tmplofreq2;  
+
+%         currhifreq = mean([tmphifreq1 tmphifreq2]);        
+%         currlofreq = mean([tmplofreq1 tmplofreq2]);        
         
          figure(101); clf;
             subplot(121); hold on; plot(tmp1.fftfreq, tmp1.fftdata); xlim(freqs); ylim([0 1]);
