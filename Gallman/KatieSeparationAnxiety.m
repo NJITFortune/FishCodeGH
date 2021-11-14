@@ -151,8 +151,8 @@ for j=2:length(iFiles)
 
 currhifreq = tmphifreq2;         
 currlofreq = tmplofreq2;  
-       currhifreq = mean([tmphifreq1 tmphifreq2]);        
-       currlofreq = mean([tmplofreq1 tmplofreq2]);        
+%        currhifreq = mean([tmphifreq1 tmphifreq2]);        
+%        currlofreq = mean([tmplofreq1 tmplofreq2]);        
 
         
         
