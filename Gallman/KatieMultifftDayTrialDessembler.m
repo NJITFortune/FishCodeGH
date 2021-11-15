@@ -31,7 +31,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %entire data set
 %[xx, obwyy, ~, ~, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
-[xx, sumfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light);
+[xx, Hiyy, Loyy, lighttimes] =  k_multifftsubspliner(in, ReFs, light);
 
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
@@ -40,7 +40,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
 
-    timcont = [in.e(1).s.timcont] / (60*60);
+    Hitimcont = [in.e(1).s.timcont] / (60*60);
     timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
 %     
 
@@ -59,14 +59,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 for jj = 1:numotrials
     
-%             % indices for our sample window of perd hours
-%             timidx = find(timcont >= timcont(1) + ((jj-1)*perd) & ...
-%                timcont < timcont(1) + (jj*perd));
 
-            j = channel;
-           
-                %timcont needs to have the same indicies as the rest of the
-                %data
             % indices for our sample window of perd hours
             timidx = find(timcont >= lighttimes(1) + ((jj-1)*triallength) & ...
             timcont < lighttimes(1) + (jj*triallength));
