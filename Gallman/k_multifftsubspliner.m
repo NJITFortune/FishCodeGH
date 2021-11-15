@@ -11,16 +11,16 @@ p = 0.9;
 
 %outlier removal indicies
 % All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
-    tthi = 1:length(out.fish.his); % tthi is indices for HiAmp
-    ttlo = 1:length(out.fish.los); % ttlo is indices for LoAmp
+    tthi = 1:length(in.fish.his); % tthi is indices for HiAmp
+    ttlo = 1:length(in.fish.los); % ttlo is indices for LoAmp
 
  % figure(2); clf; plot(tthi); hold on; 
 
 % If we have removed outliers via KatieRemover, get the indices... 
-    if isfield(out, 'idx')
-        if ~isempty(out.idx)
-            tthi = [out.idx.Hiidx]; % tthi is indices for HiAmp
-            ttlo = [out.idx.Loidx]; % ttlo is indices for LoAmp
+    if isfield(in, 'idx')
+        if ~isempty(in.idx)
+            tthi = [in.idx.Hiidx]; % tthi is indices for HiAmp
+            ttlo = [in.idx.Loidx]; % ttlo is indices for LoAmp
         end
     end
 
@@ -109,8 +109,6 @@ Lolighttimes = lighttrim(lighttrim > 0);
 %luztimes = luztimes(1,lighttrim > 0);
 %add back the light time we subtracted 
 Lolighttimes(end +1) = Lolighttimes(end) + ld;
-
-
 
 %% create easier vector names for raw data
    HiTim = [in.fish.his(tthi).HiTim];
