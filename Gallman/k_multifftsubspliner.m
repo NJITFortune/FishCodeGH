@@ -72,31 +72,14 @@ lighttimes(end +1) = lighttimes(end) + ld;
 
  
 if channel == 1
-    
+
+    %define resample time vector
     xx = lighttimes(1):1/ReFs:lighttimes(end);
       
-      %estimate new yvalues for every x value
+    %estimate new yvalues for every x value
+        %high frequency fish
+         spliney = csaps([in.e(1).s(ttsf{1}).timcont]/(60*60), [in.e(1).s(ttsf{1}).sumfftAmp], p);
       
-%             %obw
-%             spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
-%             %resample new x values based on light/dark
-%             obwyy = fnval(xx, spliney);
-%             %estimate without resample
-%             obwAmp = fnval([in.e(1).s(tto{1}).timcont]/(60*60), spliney);
-%             %detrend ydata
-%             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
-%             %raw data variables
-%                 obwtimOG = [in.e(1).s(tto{1}).timcont]/(60*60);
-%                 obwAmpOG = [in.e(1).s(tto{1}).obwAmp];
-%       
-%             %zAmp
-%             spliney = csaps([in.e(1).s(ttz{1}).timcont]/(60*60), [in.e(1).s(ttz{1}).zAmp], p);
-%             %resample new x values based on light/dark
-%             zyy = fnval(xx, spliney);
-%             %detrend ydata
-%             dtzyy = detrend(zyy,6,'SamplePoints', xx);
-%                 ztimOG = [in.e(1).s(ttz{1}).timcont]/(60*60);
-%                 zAmpOG = [in.e(1).s(ttz{1}).zAmp]; 
             
             %sumfft
             spliney = csaps([in.e(1).s(ttsf{1}).timcont]/(60*60), [in.e(1).s(ttsf{1}).sumfftAmp], p);
