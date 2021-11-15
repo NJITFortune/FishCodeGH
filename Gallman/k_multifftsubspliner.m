@@ -1,5 +1,5 @@
 
-function [xx, tnormsubfftyy, lighttimes] =  k_fftsubspliner(in, , ReFs, light)
+function [xx, Hitnormsubfftyy, Lotnormsubfftyy, lighttimes] =  k_multifftsubspliner(in, ReFs, light)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -129,9 +129,16 @@ p = 0.5;
     Losubfftyy = fnval(xx, spliney);
 
 %% detrend ydata
-   dtsubfftyy = detrend(subfftyy,6,'SamplePoints', xx);
-   normsubfftyytrend = 1./(subfftyy - dtsubfftyy);
-   tnormsubfftyy = subfftyy .* normsubfftyytrend;
+  %subtract trend from data
+    %high frequency fish
+       Hidtsubfftyy = detrend(Hisubfftyy,6,'SamplePoints', xx);
+       Hinormsubfftyytrend = 1./(Hisubfftyy - Hidtsubfftyy);
+       Hitnormsubfftyy = Hisubfftyy .* Hinormsubfftyytrend;
+    
+    %lowfrequency fish
+       Lodtsubfftyy = detrend(Losubfftyy,6,'SamplePoints', xx);
+       Lonormsubfftyytrend = 1./(Losubfftyy - Lodtsubfftyy);
+       Lotnormsubfftyy = Losubfftyy .* Lonormsubfftyytrend;
 
 
 
