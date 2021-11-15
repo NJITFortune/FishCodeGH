@@ -68,6 +68,12 @@ lighttimes = lighttrim(lighttrim > 0);
 lighttimes(end +1) = lighttimes(end) + ld;
 
 
+%% create easier vector names for raw data
+   HiTim = [in.fish.his(tthi).HiTim];
+   HiAmp = [in.fish.his(tthi).HiAmp];
+   LoTim = [in.fish.los(ttlo).LoTim];
+   LoAmp = [in.fish.los(ttlo).LoAmp];
+
 %% cspline entire data set
 
 %define resample time vector
@@ -95,26 +101,35 @@ xx = lighttimes(1):1/ReFs:lighttimes(end);
          Lofftyy = fnval(xx, spliney);
             
 
-%% subset raw data            
+%% subset raw data   
         
 %take raw data above the spline
    %high frequency fish
-   Hfftidx = find(sumfftAmpOG > fftAmp);
-   subfft = sumfftAmpOG(fftidx);
-   subffttim = sumffttimOG(fftidx);
+   Hifftidx = find(HiAmp > HifftAmp);
+   Hisubfft = HiAmp(Hifftidx);
+   Hisubffttim = HiTim(Hifftidx);
    
+   %low frequency fish
+   Lofftidx = find(LoAmp > LofftAmp);
+   Losubfft = LoAmp(Lofftidx);
+   Losubffttim = LoTim(Lofftidx);
    
    
 %estimate new spline 
 p = 0.5;
 
-  %estimate new yvalues for every x value
+%estimate new yvalues for every xx value
+    %high frequency fish
+    spliney = csaps(Hisubffttim, Hisubfft, p);
+    %resample new x values based on light/dark
+    Hisubfftyy = fnval(xx, spliney);
 
-        %obw
-        spliney = csaps(subffttim, subfft, p);
-        %resample new x values based on light/dark
-        subfftyy = fnval(xx, spliney);
-       
+    %low frequency fish
+    spliney = csaps(Losubffttim, Losubfft, p);
+    %resample new x values based on light/dark
+    Losubfftyy = fnval(xx, spliney);
+
+        
 %detrend ydata
    dtsubfftyy = detrend(subfftyy,6,'SamplePoints', xx);
    normsubfftyytrend = 1./(subfftyy - dtsubfftyy);
