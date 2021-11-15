@@ -82,8 +82,6 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
                 
                 if length(Hiyy) >= HiStimidx(end)
                  % Data   
-                 %out(jj).SobwAmp = fftyy(Stimidx);
-    %              out(jj).SzAmp = zyy(Stimidx);
                  out(jj).SsumfftAmp = sumfftyy(Stimidx);
                  
                  % Time  
