@@ -1,5 +1,5 @@
 
-function [xx, Hitnormsubfftyy, Lotnormsubfftyy, lighttimes] =  k_multifftsubspliner(in, ReFs, light)
+function [xx,HiAmp, HiTim, LoAmp, LoTim, Hitnormsubfftyy, Lotnormsubfftyy, lighttimes] =  k_multifftsubspliner(in, ReFs, light)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
