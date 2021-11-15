@@ -9,8 +9,7 @@
 clear trial
 clear day
 
-in = kg2(58);
-channel = 1;
+in = kg2(1);
 ReFs = 10;
 
 %% prep
