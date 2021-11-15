@@ -82,7 +82,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
                 
                 if length(Hiyy) >= HiStimidx(end)
                  % Data   
-                 hout(jj).HiSsumfftAmp = Hiyy(HiStimidx);
+                 hout(jj).HiSAmp = Hiyy(HiStimidx);
                  
                  % Time  
                  hout(jj).HiStimcont = hixx(HiStimidx) - hixx(HiStimidx(1)); % Time starting at zero  
@@ -121,7 +121,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
                 
                 if length(Loyy) >= LoStimidx(end)
                  % Data   
-                 lout(jj).LoSsumfftAmp = Loyy(LoStimidx);
+                 lout(jj).LoSAmp = Loyy(LoStimidx);
                  
                  % Time  
                  lout(jj).LoStimcont = loxx(LoStimidx) - loxx(LoStimidx(1)); % Time starting at zero  
@@ -153,7 +153,7 @@ clear jj;
             % Get the datums
             %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
 %             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
-            hitrial(jj).day(k).HiSsumfftAmp = hout(jj).HiSsumfftAmp(hidayidx:hidayidx+howmanysamplesinaday-1);
+            hitrial(jj).day(k).HiSAmp = hout(jj).HiSsumfftAmp(hidayidx:hidayidx+howmanysamplesinaday-1);
 %             
                hitrial(jj).ld = in.info.ld; 
 
@@ -187,7 +187,7 @@ clear jj;
             % Get the datums
             %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
 %             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
-            lotrial(jj).day(k).LoSsumfftAmp = lout(jj).LoSsumfftAmp(lodayidx:lodayidx+howmanysamplesinaday-1);
+            lotrial(jj).day(k).LoSAmp = lout(jj).LoSsumfftAmp(lodayidx:lodayidx+howmanysamplesinaday-1);
 %             
                lotrial(jj).ld = in.info.ld; 
 
@@ -207,20 +207,33 @@ clear jj;
  %trials across tims
  figure(26); clf; title('trials across time');  hold on;
  
-    ax = subplot(211); title('high frequency fish'); 
+ ax(1) = subplot(211); title('high frequency fish'); 
+    clear jj;
     for jj = 1:length(hout)
         
-        plot(out(jj).entiretimcont, out(jj).obwAmp, '.', 'MarkerSize', 3);
-        plot(out(jj).Sentiretimcont, out(jj).SobwAmp, '-', 'LineWidth', 3);
+        plot(hout(jj).Hientiretimcont, hout(jj).HifftAmp, '.', 'MarkerSize', 3);
+        plot(hout(jj).HiSentiretimcont, hout(jj).HiSAmp, '-', 'LineWidth', 3);
         
     end
     
-    for j = 1:length(lighttimes)
+    for j = 1:length(Hilighttimes)
+        
+        plot([Hilighttimes(j), Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+    end
+ 
+ ax(2) = subplot(212); title('low frequency fish');
+    clear jj;
+    for jj = 1:length(lout)
+        
+        plot(out(jj).Loentiretimcont, out(jj).LofftAmp, '.', 'MarkerSize', 3);
+        plot(out(jj).LoSentiretimcont, out(jj).LoSAmp, '-', 'LineWidth', 3);
+        
+    end
+    
+    for j = 1:length(Lolighttimes)
         
         plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
     end
-    
- 
  clear mday;
  
  %all days
