@@ -82,11 +82,11 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
                 
                 if length(Hiyy) >= HiStimidx(end)
                  % Data   
-                 out(jj).SsumfftAmp = sumfftyy(Stimidx);
+                 hout(jj).HiSsumfftAmp = Hiyy(HiStimidx);
                  
                  % Time  
-                 out(jj).Stimcont = xx(Stimidx) - xx(Stimidx(1)); % Time starting at zero  
-                 out(jj).Sentiretimcont = xx(Stimidx);
+                 hout(jj).HiStimcont = hixx(HiStimidx) - hixx(HiStimidx(1)); % Time starting at zero  
+                 hout(jj).HiSentiretimcont = hixx(HiStimidx);
                 end
     
     
@@ -96,7 +96,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     clear jj;
     for jj = 1:Lonumotrials
         
-    
+        %raw data
                 % indices for our sample window of perd hours
                 Lotimidx = find(Lotimcont >= Lolighttimes(1) + ((jj-1)*triallength) & ...
                 Lotimcont < Lolighttimes(1) + (jj*triallength));
@@ -111,6 +111,22 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
                  lout(jj).Loentiretimcont = Lotimcont(Lotimidx);
                  
                  lout(jj).ld = in.info.ld;  
+
+      
+        %spline data
+                % Get the index for the start of the current period (xx is time)
+                LoStimidx = find(loxx > loxx(1) + ((jj-1) * triallength), 1);
+                % Get the rest of the indices for the trial  
+                LoStimidx = LoStimidx:LoStimidx + (triallength*ReFs)-1;
+                
+                if length(Loyy) >= HiStimidx(end)
+                 % Data   
+                 hout(jj).HiSsumfftAmp = Hiyy(HiStimidx);
+                 
+                 % Time  
+                 hout(jj).HiStimcont = hixx(HiStimidx) - hixx(HiStimidx(1)); % Time starting at zero  
+                 hout(jj).HiSentiretimcont = hixx(HiStimidx);
+                end
     
     end   
 
