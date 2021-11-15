@@ -27,7 +27,7 @@ orange = [0.8500 0.3250 0.0980];
 
 %% plots
 
-figure(67); clf; title('By fish'); hold on;
+figure(66); clf; title('By fish'); hold on;
 
     axs(1) = subplot(511); hold on; title('High frequency fish');
         plot([out.fish.his.HiTim], [out.fish.his.HiAmp], 'k.');
