@@ -31,7 +31,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %entire data set
 %[xx, obwyy, ~, ~, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
-[xx, Hiyy, Loyy, lighttimes] =  k_multifftsubspliner(in, ReFs, light);
+[xx, HiAmp, HiTim, LoAmp, LoTim, Hiyy, Loyy, lighttimes] =  k_multifftsubspliner(in, ReFs, light);
 
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
@@ -40,18 +40,18 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
 
-    Hitimcont = [in.e(1).s.timcont] / (60*60);
-    timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
-%     
+   
+    Hitimcont = HiTim(HiTim >= lighttimes(1) & HiTim <= lighttimes(end));
+    Lotimcont = LoTim(LoTim >= lighttimes(1) & LoTim <= lighttimes(end));
+    
 
 %% Define trial period
 
     % How many trials available?
     lengthofsampleHOURS = lighttimes(end) - lighttimes(1); 
-    %lengthofsampleHOURS = timcont(end) - timcont(1); 
+
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / triallength); % of trials
-
 
 %% Divide data into trials
 
