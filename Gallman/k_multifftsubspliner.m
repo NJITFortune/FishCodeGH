@@ -9,25 +9,21 @@ ld = [in.info.ld];
 %tightness of spline fit
 p = 0.9;
 
-%outliers
-    % Prepare the data with outliers
+%outlier removal indicies
+% All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
+    tthi = 1:length(out.fish.his); % tthi is indices for HiAmp
+    ttlo = 1:length(out.fish.los); % ttlo is indices for LoAmp
 
-            tto{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
-            tto{2} = tto{1};
+ % figure(2); clf; plot(tthi); hold on; 
 
-            ttz{1} = tto{1}; % ttz is indices for zAmp
-            ttz{2} = tto{1};
+% If we have removed outliers via KatieRemover, get the indices... 
+    if isfield(out, 'idx')
+        if ~isempty(out.idx)
+            tthi = [out.idx.Hiidx]; % tthi is indices for HiAmp
+            ttlo = [out.idx.Loidx]; % ttlo is indices for LoAmp
+        end
+    end
 
-            ttsf{1} = tto{1}; % ttsf is indices for sumfftAmp
-            ttsf{2} = tto{1};
-    % Prepare the data without outliers
-
-            % If we have removed outliers via KatieRemover, get the indices...    
-            if ~isempty(in.idx) 
-                tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
-                ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
-                ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
-            end
          
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
