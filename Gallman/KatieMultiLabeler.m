@@ -105,7 +105,8 @@ function out = KatieMultiLabeler(in)
     out.ld = input('Enter the LD schedule: '); %temp code is 99 if constant light or dark
     out.fishid = input('Enter fish name or identifier: ');
     out.feedingtimes = input('Enter feeding times in hours from start: ');
-    out.poweridx = input('Enter the values of timcont in hours over which to perform power analysis: ');
+    out.Hipoweridx = input('Enter the values of timcont in hours over which to perform power analysis on the high frequency fish: ');
+    out.Lopoweridx = input('Enter the values of timcont in hours over which to perform power analysis on the low frequency fish: ');
     
 
 
