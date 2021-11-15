@@ -1,4 +1,4 @@
-function [hitrial, lotrial] = KatieMultifftDayTrialDessembler(in,  ReFs, light)
+%function [hitrial, lotrial] = KatieMultifftDayTrialDessembler(in,  ReFs, light)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
@@ -9,9 +9,9 @@ function [hitrial, lotrial] = KatieMultifftDayTrialDessembler(in,  ReFs, light)
 clear trial
 clear day
 
-% in = kg(58);
-% channel = 1;
-% ReFs = 10;
+in = kg2(58);
+channel = 1;
+ReFs = 10;
 
 %% prep
 
