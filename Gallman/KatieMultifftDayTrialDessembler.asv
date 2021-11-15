@@ -55,28 +55,64 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 %% Divide data into trials
 
-%raw data
+
     %high frequency fish
     for jj = 1:Hinumotrials
-        
+        %raw data
                 % indices for our sample window of perd hours
                 Hitimidx = find(Hitimcont >= Hilighttimes(1) + ((jj-1)*triallength) & ...
                 Hitimcont < Hilighttimes(1) + (jj*triallength));
              
                 
                  % Data   
-                 out(jj).HifftAmp = HiAmp(Hitimidx);
+                 hout(jj).HifftAmp = HiAmp(Hitimidx);
                  
                  
                  % Time and treatment 
-                 out(jj).Hitimcont = Hitimcont(Hitimidx) - Hitimcont(Hitimidx(1)); %+1
-                 out(jj).Hientiretimcont = Hitimcont(Hitimidx);
+                 hout(jj).Hitimcont = Hitimcont(Hitimidx) - Hitimcont(Hitimidx(1)); %+1
+                 hout(jj).Hientiretimcont = Hitimcont(Hitimidx);
                  
-                 out(jj).ld = in.info.ld;  
+                 hout(jj).ld = in.info.ld;  
+
+        %spline data
+                % Get the index for the start of the current period (xx is time)
+                HiStimidx = find(hixx > hixx(1) + ((jj-1) * triallength), 1);
+                % Get the rest of the indices for the trial  
+                HiStimidx = HiStimidx:HiStimidx + (triallength*ReFs)-1;
+                
+                if length(Hiyy) >= HiStimidx(end)
+                 % Data   
+                 out(jj).SsumfftAmp = sumfftyy(Stimidx);
+                 
+                 % Time  
+                 out(jj).Stimcont = xx(Stimidx) - xx(Stimidx(1)); % Time starting at zero  
+                 out(jj).Sentiretimcont = xx(Stimidx);
+                end
+    
     
     end   
 
+    %low frequency fish
+    clear jj;
+    for jj = 1:Lonumotrials
+        
     
+                % indices for our sample window of perd hours
+                Lotimidx = find(Lotimcont >= Lolighttimes(1) + ((jj-1)*triallength) & ...
+                Lotimcont < Lolighttimes(1) + (jj*triallength));
+             
+                
+                 % Data   
+                 lout(jj).LofftAmp = LoAmp(Lotimidx);
+                 
+                 
+                 % Time and treatment 
+                 lout(jj).Lotimcont = Lotimcont(Lotimidx) - lotimcont(Lotimidx(1)); %+1
+                 lout(jj).Loentiretimcont = Lotimcont(Lotimidx);
+                 
+                 lout(jj).ld = in.info.ld;  
+    
+    end   
 
 
 %spline data
