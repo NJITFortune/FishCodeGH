@@ -54,6 +54,9 @@ function out = KatieFishFinder(in)
                 out.los(intube1lo(j)).LOfreq(:) = [in(intube1lo(j)).lofreq];
             end 
             
+
+%% filter by fish frequency
+
             
 %% Plot fish against light/temp
 figure(1); clf; 
