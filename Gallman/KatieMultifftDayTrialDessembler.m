@@ -171,7 +171,7 @@ clear jj;
             % Get the datums
             %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
 %             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
-            hitrial(jj).day(k).HiSAmp = hout(jj).HiSsumfftAmp(hidayidx:hidayidx+howmanysamplesinaday-1);
+            hitrial(jj).day(k).HiSAmp = hout(jj).HiSAmp(hidayidx:hidayidx+howmanysamplesinaday-1);
 %             
                hitrial(jj).ld = in.info.ld; 
 
