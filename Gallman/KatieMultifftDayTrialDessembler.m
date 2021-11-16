@@ -220,7 +220,7 @@ else
     
     
                 % Get the index of the start time of the trial
-                lodayidx = find(hout(jj).HiStimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
+                lodayidx = find(lout(jj).LoStimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
     
                 % Get the datums
                 %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
