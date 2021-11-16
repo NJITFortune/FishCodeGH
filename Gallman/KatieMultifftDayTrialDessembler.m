@@ -1,10 +1,15 @@
-%function [hitrial, lotrial] = KatieMultifftDayTrialDessembler(in,  ReFs, light)
+function [trial] = KatieMultifftDayTrialDessembler(in, ReFs, light)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
+
+%fishfreq is a label for whether we want to take data from the high
+%frequency fish or the low frequency fish
+    %high freq = 1
+    %low freq = 2
 
 clearvars -except kg kg2
 
@@ -14,7 +19,7 @@ ReFs = 10;
 %% prep
 
 % define length of trial 
-if in.info.ld > 15 
+if in.info.ld > 10 
     triallength = in.info.ld * 2;
 else
     triallength = in.info.ld * 4;
