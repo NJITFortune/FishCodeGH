@@ -41,7 +41,9 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     HiAmp = HiAmp(HiTim >= Hilighttimes(1) & HiTim <= Hilighttimes(end));
     Lotimcont = LoTim(LoTim >= Lolighttimes(1) & LoTim <= Lolighttimes(end));
     LoAmp = LoAmp(LoTim >= Lolighttimes(1) & LoTim <= Lolighttimes(end));
-%test plot
+
+
+%spline fit test plot
 figure(87); clf; hold on;
   subplot(211); title('High frequency fish'); hold on; 
     plot(Hitimcont, HiAmp, '.', 'MarkerSize', 3);
@@ -58,9 +60,6 @@ figure(87); clf; hold on;
         plot([Lolighttimes(j), Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
     end
  
-
-
-
 %% Define trial period
 
     % How many trials available?
@@ -71,7 +70,7 @@ figure(87); clf; hold on;
     % How many integer trials in dataset
     Hinumotrials = floor(HilengthofsampleHOURS / triallength); % of trials
     Lonumotrials = floor(LolengthofsampleHOURS / triallength); % of trials
-
+Hinumotrials
 %% Divide data into trials
 
 
