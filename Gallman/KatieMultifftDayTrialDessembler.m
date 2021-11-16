@@ -78,17 +78,7 @@ figure(87); clf; hold on;
 
     end
 
-   
-    
-  
-    
  
-%% Define trial period
-
-    % How many trials available?
-   
-  s
-
 %% Divide data into trials
 
 if fishfreq < 2 %high frequency fish
