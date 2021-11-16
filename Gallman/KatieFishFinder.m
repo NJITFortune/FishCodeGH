@@ -106,7 +106,7 @@ figure(1); clf;
          end
     end
     pause(1);
-end
+
             
 %% Plot fish against light/temp
 figure(1); clf; hold on;
