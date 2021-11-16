@@ -43,8 +43,13 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     LoAmp = LoAmp(LoTim >= Lolighttimes(1) & LoTim <= Lolighttimes(end));
 %test plot
 figure(87); clf; hold on
+   subplot(211);
     plot(Hitimcont, HiAmp);
     plot(Lotimcont, LoAmp);
+   subplot(212);
+    plot(hixx, Hiyy);
+    plot(loxx, Loyy);
+
 
 
 
