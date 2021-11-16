@@ -325,7 +325,7 @@ end
         lomday(jj,:) = zeros(1, length(trial(jj).tim));
 
         clear k;
-        for k = 1:length(lotrial(jj).day)
+        for k = 1:length(trial(jj).day)
 
                 %fill temporary vector with data from each day 
                 lomday(jj,:) = lomday(jj,:) + trial(jj).day(k).LoSAmp;
