@@ -87,19 +87,15 @@ figure(87); clf; hold on;
 
     % How many trials available?
    
-    LolengthofsampleHOURS = Lolighttimes(end) - Lolighttimes(1); 
-
-    % How many integer trials in dataset
-    
-    Lonumotrials = floor(LolengthofsampleHOURS / triallength); % of trials
+  s
 
 %% Divide data into trials
 
 if fishfreq < 2 %high frequency fish
 
  %define trial period   
- HilengthofsampleHOURS = Hilighttimes(end) - Hilighttimes(1); 
- Hinumotrials = floor(HilengthofsampleHOURS / triallength); % of trials
+ HilengthofsampleHOURS = Hilighttimes(end) - Hilighttimes(1); % How many trials available?
+ Hinumotrials = floor(HilengthofsampleHOURS / triallength); %# of trials
     
     for jj = 1:Hinumotrials
         %raw data
@@ -138,8 +134,10 @@ if fishfreq < 2 %high frequency fish
 else 
     %low frequency fish
 
-
-
+    %define trial period 
+    LolengthofsampleHOURS = Lolighttimes(end) - Lolighttimes(1); % How many trials available
+    % How many integer trials in dataset 
+    Lonumotrials = floor(LolengthofsampleHOURS / triallength); % of trial
 
     clear jj;
     for jj = 1:Lonumotrials
@@ -177,78 +175,80 @@ else
                 end
     
     end   
-
+end
 
 %% divide trials into days
 
-%high frequency fish
-clear jj;
-    for jj = length(hout):-1:1 % For each trial
-        
-        ld = hout(jj).ld;
 
-        % Divide by daylength to get the number of days in the trial
-        howmanydaysintrial = floor(triallength / (ld*2));
-        % This is the number of sample in a day
-        howmanysamplesinaday = ld * 2 * ReFs;
-
-        for k = 1:howmanydaysintrial % Each day in a trial
-
-
-            % Get the index of the start time of the trial
-            hidayidx = find(hout(jj).HiStimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
-
-            % Get the datums
-            %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
-%             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
-            hitrial(jj).day(k).HiSAmp = hout(jj).HiSAmp(hidayidx:hidayidx+howmanysamplesinaday-1);
-%             
-               hitrial(jj).ld = in.info.ld; 
-
-           
-
-        end
-            % Make a time sequence for the datums (easier than extracting from
-            % xx...)
-            hitrial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
-
-    end
+if fishfreq < 2 %high frequency fish
+    %high frequency fish
+    clear jj;
+        for jj = length(hout):-1:1 % For each trial
+            
+            ld = hout(jj).ld;
     
-
-%low frequency fish
-clear jj;
-    for jj = length(lout):-1:1 % For each trial
-        
-        ld = lout(jj).ld;
-
-        % Divide by daylength to get the number of days in the trial
-        howmanydaysintrial = floor(triallength / (ld*2));
-        % This is the number of sample in a day
-        howmanysamplesinaday = ld * 2 * ReFs;
-
-        for k = 1:howmanydaysintrial % Each day in a trial
-
-
-            % Get the index of the start time of the trial
-            lodayidx = find(hout(jj).HiStimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
-
-            % Get the datums
-            %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
-%             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
-            lotrial(jj).day(k).LoSAmp = lout(jj).LoSAmp(lodayidx:lodayidx+howmanysamplesinaday-1);
-%             
-               lotrial(jj).ld = in.info.ld; 
-
-           
-
-        end
-            % Make a time sequence for the datums (easier than extracting from
-            % xx...)
-            lotrial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
-
-    end
-
+            % Divide by daylength to get the number of days in the trial
+            howmanydaysintrial = floor(triallength / (ld*2));
+            % This is the number of sample in a day
+            howmanysamplesinaday = ld * 2 * ReFs;
     
+            for k = 1:howmanydaysintrial % Each day in a trial
+    
+    
+                % Get the index of the start time of the trial
+                hidayidx = find(hout(jj).HiStimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
+    
+                % Get the datums
+                %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
+    %             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
+                hitrial(jj).day(k).HiSAmp = hout(jj).HiSAmp(hidayidx:hidayidx+howmanysamplesinaday-1);
+    %             
+                   hitrial(jj).ld = in.info.ld; 
+    
+               
+    
+            end
+                % Make a time sequence for the datums (easier than extracting from
+                % xx...)
+                hitrial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+    
+        end
+        
+else    
+    %low frequency fish
+    clear jj;
+        for jj = length(lout):-1:1 % For each trial
+            
+            ld = lout(jj).ld;
+    
+            % Divide by daylength to get the number of days in the trial
+            howmanydaysintrial = floor(triallength / (ld*2));
+            % This is the number of sample in a day
+            howmanysamplesinaday = ld * 2 * ReFs;
+    
+            for k = 1:howmanydaysintrial % Each day in a trial
+    
+    
+                % Get the index of the start time of the trial
+                lodayidx = find(hout(jj).HiStimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
+    
+                % Get the datums
+                %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
+    %             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
+                trial(jj).day(k).LoSAmp = lout(jj).LoSAmp(lodayidx:lodayidx+howmanysamplesinaday-1);
+    %             
+                   trial(jj).ld = in.info.ld; 
+    
+               
+    
+            end
+                % Make a time sequence for the datums (easier than extracting from
+                % xx...)
+                trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+    
+        end
+
+end    
     
  %% plot to check
 
