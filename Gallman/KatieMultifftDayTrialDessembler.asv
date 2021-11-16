@@ -1,4 +1,4 @@
-function [trial, day] = KatieMultifftDayTrialDessembler(in, channel,  ReFs, light)
+%function [hitrial, lotrial] = KatieMultifftDayTrialDessembler(in,  ReFs, light)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
@@ -9,9 +9,8 @@ function [trial, day] = KatieMultifftDayTrialDessembler(in, channel,  ReFs, ligh
 clear trial
 clear day
 
-% in = kg(58);
-% channel = 1;
-% ReFs = 10;
+in = kg2(1);
+ReFs = 10;
 
 %% prep
 
@@ -39,8 +38,15 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
    
     Hitimcont = HiTim(HiTim >= Hilighttimes(1) & HiTim <= Hilighttimes(end));
+    HiAmp = HiAmp((HiTim >= Hilighttimes(1) & HiTim <= Hilighttimes(end)))
     Lotimcont = LoTim(LoTim >= Lolighttimes(1) & LoTim <= Lolighttimes(end));
     
+%test plot
+figure(87); clf; hold on
+    plot(Hitimcont, HiAmp);
+    plot(Lotimcont, LoAmp);
+
+
 
 %% Define trial period
 
@@ -63,7 +69,6 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
                 Hitimidx = find(Hitimcont >= Hilighttimes(1) + ((jj-1)*triallength) & ...
                 Hitimcont < Hilighttimes(1) + (jj*triallength));
              
-                
                  % Data   
                  hout(jj).HifftAmp = HiAmp(Hitimidx);
                  
@@ -241,6 +246,7 @@ clear jj;
  
  %all days
  %average day by trial
+ %high frequency fish
  figure(27); clf;title('Day average by trial High frequency fish'); hold on; 
  clear jj;
     for jj=1:length(hitrial) 
@@ -270,30 +276,49 @@ clear jj;
     % Mean of means
  
     subplot(212); hold on;
-     meanofmeans = mean(himday); % Takes the mean of the means for a day from each trial 
-    plot(hitrial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
+     himeanofmeans = mean(himday); % Takes the mean of the means for a day from each trial 
+    plot(hitrial(jj).tim, himeanofmeans, 'k-', 'LineWidth', 3);
     
+%low frequency fish
+ figure(28); clf; title('Day average by trial Low frequency fish'); hold on; 
+ clear jj;
+    for jj=1:length(lotrial) 
 
+        %create temporary vector to calculate mean by trial
+        lomday(jj,:) = zeros(1, length(lotrial(jj).tim));
+
+        clear k;
+        for k = 1:length(lotrial(jj).day)
+
+                %fill temporary vector with data from each day 
+                lomday(jj,:) = lomday(jj,:) + lotrial(jj).day(k).LoSAmp;
+                subplot(211); hold on; title('Days');
+                plot(lotrial(jj).tim, lotrial(jj).day(k).LoSAmp);
+                plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+
+        end
+
+         % To get average across days, divide by number of days
+            lomday(jj,:) = lomday(jj,:) / length(lotrial(jj).day);
+            subplot(212); hold on; title('Day average by trial hi frequency fish');
+            plot(lotrial(jj).tim, lomday(jj,:), '-', 'Linewidth', 1);
+            plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+
+    end
+    
+    % Mean of means
+ 
+    subplot(212); hold on;
+     lomeanofmeans = mean(lomday); % Takes the mean of the means for a day from each trial 
+    plot(lotrial(jj).tim, lomeanofmeans, 'k-', 'LineWidth', 3);
    
     
-figure(28); clf; hold on; 
+figure(29); clf; title('trial day means for both fish'); hold on; 
 
-clear meanday;
-
- for k = 1:length(day)
-        plot(day(k).tim, day(k).SobwAmp);
-        meanday(k,:) = day(k).SobwAmp;
- end
-    
-        mmday= mean(meanday);
-        plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
-        plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-        
-figure(29); clf; hold on;
-    plot(day(1).tim, mmday);
-    plot(trial(jj).tim, meanofmeans);
+    plot(hitrial(jj).tim, himeanofmeans);
+    plot(lotrial(jj).tim, lomeanofmeans);
     plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-    legend('day mean', 'trial mean');
+    legend('high frequency fish', 'low frequency fish');
      legend('boxoff')
 % 
 % 
