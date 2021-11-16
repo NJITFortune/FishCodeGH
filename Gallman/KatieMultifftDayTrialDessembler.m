@@ -30,7 +30,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %entire data set
 %[xx, obwyy, ~, ~, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
-[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hiyy, Loyy, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(in, ReFs, light);
+[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hiyy, Hiuntyy, Loyy, Lountyy, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(in, ReFs, light);
 
 
 %Make a time base that starts and ends on lighttimes 
@@ -45,10 +45,10 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 figure(87); clf; hold on;
    subplot(211); hold on;
     plot(Hitimcont, HiAmp, '.', 'MarkerSize', 3);
-    plot(hixx, Hiyy, '-', 'LineWidth', 2);
+    plot(hixx, Hiuntyy, '-', 'LineWidth', 2);
    subplot(212); hold on;
     plot(Lotimcont, LoAmp, '.', 'MarkerSize', 3);
-    plot(loxx, Loyy,'-', 'LineWidth', 2);
+    plot(loxx, Lountyy,'-', 'LineWidth', 2);
  
 
 
