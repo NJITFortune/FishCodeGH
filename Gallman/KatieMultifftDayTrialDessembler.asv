@@ -44,58 +44,63 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 figure(87); clf; hold on;
 
     if fishfreq < 2 %we are looking at data from the high frequency fish
-    
+
+        %get data
         [hixx, ~, HiAmp, HiTim, ~, ~, Hiyy, Hiuntyy,~, ~, Hilighttimes, ~] =  k_multifftsubspliner(in, ReFs, light);
-    
+
+
+        %Make a time base that starts and ends on lighttimes 
+        %necessary to define length of raw data
         Hitimcont = HiTim(HiTim >= Hilighttimes(1) & HiTim <= Hilighttimes(end));
         HiAmp = HiAmp(HiTim >= Hilighttimes(1) & HiTim <= Hilighttimes(end));
+
+        %plot spline fit without detrending to view accuracy
+        plot(Hitimcont, HiAmp, '.', 'MarkerSize', 3);
+        plot(hixx, Hiuntyy, '-', 'LineWidth', 2);
+        for j = 1:length(Hilighttimes)
+            plot([Hilighttimes(j), Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+        end
+
     
     else %we are looking at data from the low frequency fish
     
-    [~, loxx, ~, ~, LoAmp, LoTim, ~, ~, Loyy, Lountyy, ~, Lolighttimes] =  k_multifftsubspliner(in, ReFs, light);
+        [~, loxx, ~, ~, LoAmp, LoTim, ~, ~, Loyy, Lountyy, ~, Lolighttimes] =  k_multifftsubspliner(in, ReFs, light);
     
         Lotimcont = LoTim(LoTim >= Lolighttimes(1) & LoTim <= Lolighttimes(end));
         LoAmp = LoAmp(LoTim >= Lolighttimes(1) & LoTim <= Lolighttimes(end));
+
+        plot(Lotimcont, LoAmp, '.', 'MarkerSize', 3);
+        plot(loxx, Lountyy,'-', 'LineWidth', 2);
+        clear j;
+        for j = 1:length(Lolighttimes)
+            plot([Lolighttimes(j), Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+        end
+
     end
-%Make a time base that starts and ends on lighttimes 
-    %necessary to define length of raw data
 
    
     
+  
     
-
-
-%spline fit test plot
-figure(87); clf; hold on;
-  subplot(211); title('High frequency fish'); hold on; 
-    plot(Hitimcont, HiAmp, '.', 'MarkerSize', 3);
-    plot(hixx, Hiuntyy, '-', 'LineWidth', 2);
-    for j = 1:length(Hilighttimes)
-        plot([Hilighttimes(j), Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-    end
-
-  subplot(212); title('Low frequency fish'); hold on;
-    plot(Lotimcont, LoAmp, '.', 'MarkerSize', 3);
-    plot(loxx, Lountyy,'-', 'LineWidth', 2);
-    clear j;
-    for j = 1:length(Lolighttimes)
-        plot([Lolighttimes(j), Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-    end
  
 %% Define trial period
 
     % How many trials available?
-    HilengthofsampleHOURS = Hilighttimes(end) - Hilighttimes(1); 
+   
     LolengthofsampleHOURS = Lolighttimes(end) - Lolighttimes(1); 
 
     % How many integer trials in dataset
-    Hinumotrials = floor(HilengthofsampleHOURS / triallength); % of trials
+    
     Lonumotrials = floor(LolengthofsampleHOURS / triallength); % of trials
 
 %% Divide data into trials
 
+if fishfreq < 2 %high frequency fish
 
-    %high frequency fish
+ %define trial period   
+ HilengthofsampleHOURS = Hilighttimes(end) - Hilighttimes(1); 
+ Hinumotrials = floor(HilengthofsampleHOURS / triallength); % of trials
+    
     for jj = 1:Hinumotrials
         %raw data
                 % indices for our sample window of perd hours
@@ -130,7 +135,12 @@ figure(87); clf; hold on;
     
     end   
 
+else 
     %low frequency fish
+
+
+
+
     clear jj;
     for jj = 1:Lonumotrials
         
