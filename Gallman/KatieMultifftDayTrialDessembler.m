@@ -6,8 +6,7 @@
     %starts with dark = 3
     %starts with light = 4
 
-clear trial
-clear day
+clearvars -except kg kg2
 
 in = kg2(1);
 ReFs = 10;
