@@ -38,12 +38,13 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
    
     Hitimcont = HiTim(HiTim >= Hilighttimes(1) & HiTim <= Hilighttimes(end));
-    Lotimcont = LoTim(LoTim >= Lolighttimes(1) & LoTim <= Lolighttimes(end));
+    HiAmp = HiAmp(HiTim >= Hilighttimes(1) & HiTim <= Hilighttimes(end));
+    %Lotimcont = LoTim(LoTim >= Lolighttimes(1) & LoTim <= Lolighttimes(end));
     
 %test plot
 figure(87); clf; hold on
     plot(Hitimcont, HiAmp);
-    plot(Lotimcont, LoAmp);
+   %plot(Lotimcont, LoAmp);
 
 
 
