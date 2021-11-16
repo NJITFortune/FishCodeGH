@@ -43,12 +43,20 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     LoAmp = LoAmp(LoTim >= Lolighttimes(1) & LoTim <= Lolighttimes(end));
 %test plot
 figure(87); clf; hold on;
-   subplot(211); title('High frequency fish'); hold on; 
+  subplot(211); title('High frequency fish'); hold on; 
     plot(Hitimcont, HiAmp, '.', 'MarkerSize', 3);
     plot(hixx, Hiuntyy, '-', 'LineWidth', 2);
-   subplot(212); title('Low frequency fish'); hold on;
+    for j = 1:length(Hilighttimes)
+        plot([Hilighttimes(j), Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+    end
+
+  subplot(212); title('Low frequency fish'); hold on;
     plot(Lotimcont, LoAmp, '.', 'MarkerSize', 3);
     plot(loxx, Lountyy,'-', 'LineWidth', 2);
+    clear j;
+    for j = 1:length(Lolighttimes)
+        plot([Lolighttimes(j), Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+    end
  
 
 
