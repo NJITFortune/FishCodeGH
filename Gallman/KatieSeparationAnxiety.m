@@ -148,11 +148,11 @@ for j=2:length(iFiles)
         tmplofreq2 = tmp2.fftfreq(tmpidx2l(lofreq2idx));
 
 % Set current frequencies
-
-currhifreq = tmphifreq2;         
-currlofreq = tmplofreq2;  
-%        currhifreq = mean([tmphifreq1 tmphifreq2]);        
-%        currlofreq = mean([tmplofreq1 tmplofreq2]);        
+% 
+% currhifreq = tmphifreq2;         
+% currlofreq = tmplofreq2;  
+       currhifreq = mean([tmphifreq1 tmphifreq2]);        
+       currlofreq = mean([tmplofreq1 tmplofreq2]);        
 
         
         
