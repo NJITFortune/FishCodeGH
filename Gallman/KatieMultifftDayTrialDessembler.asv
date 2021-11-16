@@ -15,6 +15,9 @@ clearvars -except kg kg2
 
 in = kg2(1);
 ReFs = 10;
+light = 3;
+fishfreq = 1;
+
 
 %% prep
 
@@ -38,17 +41,28 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     %starts with dark = 3
     %starts with light = 4
 
-[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hiyy, Hiuntyy, Loyy, Lountyy, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(in, ReFs, 3);
+figure(87); clf; hold on;
 
-
+    if fishfreq < 2 %we are looking at data from the high frequency fish
+    
+        [hixx, ~, HiAmp, HiTim, ~, ~, Hiyy, Hiuntyy,~, ~, Hilighttimes, ~] =  k_multifftsubspliner(in, ReFs, light);
+    
+        Hitimcont = HiTim(HiTim >= Hilighttimes(1) & HiTim <= Hilighttimes(end));
+        HiAmp = HiAmp(HiTim >= Hilighttimes(1) & HiTim <= Hilighttimes(end));
+    
+    else %we are looking at data from the low frequency fish
+    
+    [~, loxx, ~, ~, LoAmp, LoTim, ~, ~, Loyy, Lountyy, ~, Lolighttimes] =  k_multifftsubspliner(in, ReFs, light);
+    
+        Lotimcont = LoTim(LoTim >= Lolighttimes(1) & LoTim <= Lolighttimes(end));
+        LoAmp = LoAmp(LoTim >= Lolighttimes(1) & LoTim <= Lolighttimes(end));
+    end
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of raw data
 
    
-    Hitimcont = HiTim(HiTim >= Hilighttimes(1) & HiTim <= Hilighttimes(end));
-    HiAmp = HiAmp(HiTim >= Hilighttimes(1) & HiTim <= Hilighttimes(end));
-    Lotimcont = LoTim(LoTim >= Lolighttimes(1) & LoTim <= Lolighttimes(end));
-    LoAmp = LoAmp(LoTim >= Lolighttimes(1) & LoTim <= Lolighttimes(end));
+    
+    
 
 
 %spline fit test plot
