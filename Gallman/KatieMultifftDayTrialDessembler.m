@@ -62,7 +62,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
                 Hitimidx = find(Hitimcont >= Hilighttimes(1) + ((jj-1)*triallength) & ...
                 Hitimcont < Hilighttimes(1) + (jj*triallength));
              
-                
+                Hitimidx
                  % Data   
                  hout(jj).HifftAmp = HiAmp(Hitimidx);
                  
@@ -128,38 +128,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
                 end
     
     end   
-%trials across tims
- figure(26); clf; title('trials across time');  hold on;
- 
- ax(1) = subplot(211); title('high frequency fish'); 
-    clear jj;
-    for jj = 1:length(hout)
-        
-        plot(hout(jj).Hientiretimcont, hout(jj).HifftAmp, '.', 'MarkerSize', 3);
-        plot(hout(jj).HiSentiretimcont, hout(jj).HiSAmp, '-', 'LineWidth', 3);
-        
-    end
-     clear j;
-    for j = 1:length(Hilighttimes)
-        
-        plot([Hilighttimes(j), Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-    end
- 
- ax(2) = subplot(212); title('low frequency fish');
-    clear jj;
-    for jj = 1:length(lout)
-        
-        plot(out(jj).Loentiretimcont, out(jj).LofftAmp, '.', 'MarkerSize', 3);
-        plot(out(jj).LoSentiretimcont, out(jj).LoSAmp, '-', 'LineWidth', 3);
-        
-    end
-     clear j;
-    for j = 1:length(Lolighttimes)
-        
-        plot([Lolighttimes(j), Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-    end
 
- linkaxes(ax, 'x');
 
 %% divide trials into days
 
