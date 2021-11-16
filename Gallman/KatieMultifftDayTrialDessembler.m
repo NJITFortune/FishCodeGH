@@ -29,6 +29,10 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %entire data set
 %[xx, obwyy, ~, ~, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
+%light is a label for whether the subjective day starts with light or with dark
+    %starts with dark = 3
+    %starts with light = 4
+
 [hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hiyy, Hiuntyy, Loyy, Lountyy, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(in, ReFs, 3);
 
 
