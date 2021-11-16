@@ -1,4 +1,4 @@
-function [trial] = KatieMultifftDayTrialDessembler(in, ReFs, light)
+%function [trial] = KatieMultifftDayTrialDessembler(in, ReFs, light)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
