@@ -243,8 +243,8 @@ clear jj;
     clear jj;
     for jj = 1:length(lout)
         
-        plot(out(jj).Loentiretimcont, out(jj).LofftAmp, '.', 'MarkerSize', 3);
-        plot(out(jj).LoSentiretimcont, out(jj).LoSAmp, '-', 'LineWidth', 3);
+        plot(lout(jj).Loentiretimcont, lout(jj).LofftAmp, '.', 'MarkerSize', 3);
+        plot(lout(jj).LoSentiretimcont, lout(jj).LoSAmp, '-', 'LineWidth', 3);
         
     end
      clear j;
