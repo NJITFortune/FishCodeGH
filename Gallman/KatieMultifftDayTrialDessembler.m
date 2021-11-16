@@ -66,11 +66,11 @@ figure(87); clf; hold on;
     HilengthofsampleHOURS = Hilighttimes(end) - Hilighttimes(1); 
     LolengthofsampleHOURS = Lolighttimes(end) - Lolighttimes(1); 
 
-
+  HilengthofsampleHOURS
     % How many integer trials in dataset
     Hinumotrials = floor(HilengthofsampleHOURS / triallength); % of trials
     Lonumotrials = floor(LolengthofsampleHOURS / triallength); % of trials
-Hinumotrials
+
 %% Divide data into trials
 
 
