@@ -27,15 +27,15 @@ function out = KatieFishFinder(in)
         %out.HiAmp = zeros(1, length(intube2hi));
             %tube 2
             for j=1:length(intube2hi)
-                out.his(intube2hi(j)).HiAmp = in(intube2hi(j)).e2hiamp;
-                out.his(intube2hi(j)).HiTim = in(intube2hi(j)).timcont/3600;
-                out.his(intube2hi(j)).HIfreq = [in(intube2hi(j)).hifreq];
+                tout.his(intube2hi(j)).HiAmp1 = in(intube2hi(j)).e2hiamp;
+                tout.his(intube2hi(j)).HiTim1 = in(intube2hi(j)).timcont/3600;
+                tout.his(intube2hi(j)).HIfreq1 = [in(intube2hi(j)).hifreq];
             end
             %tube 1
             for j=1:length(intube1hi)
-                out.his(intube1hi(j)).HiAmp = in(intube1hi(j)).e1hiamp;
-                out.his(intube1hi(j)).HiTim = in(intube1hi(j)).timcont/3600;
-                out.his(intube1hi(j)).HIfreq = [in(intube1hi(j)).hifreq];
+                tout.his(intube1hi(j)).HiAmp1 = in(intube1hi(j)).e1hiamp;
+                tout.his(intube1hi(j)).HiTim1 = in(intube1hi(j)).timcont/3600;
+                tout.his(intube1hi(j)).HIfreq1 = [in(intube1hi(j)).hifreq];
             end
 
             
@@ -43,40 +43,95 @@ function out = KatieFishFinder(in)
        % out.LoAmp = zeros(1, length(intube2lo));
             %tube 2    
             for j=1:length(intube2lo)
-                out.los(intube2lo(j)).LoAmp = in(intube2lo(j)).e2loamp;
-                out.los(intube2lo(j)).LoTim = in(intube2lo(j)).timcont/3600;
-                out.los(intube2lo(j)).LOfreq(:) = [in(intube2lo(j)).lofreq];
+                tout.los(intube2lo(j)).LoAmp1 = in(intube2lo(j)).e2loamp;
+                tout.los(intube2lo(j)).LoTim1 = in(intube2lo(j)).timcont/3600;
+                tout.los(intube2lo(j)).LOfreq1 = [in(intube2lo(j)).lofreq];
             end
             %tube 1
             for j=1:length(intube1lo)
-                out.los(intube1lo(j)).LoAmp = in(intube1lo(j)).e1loamp;
-                out.los(intube1lo(j)).LoTim = in(intube1lo(j)).timcont/3600;
-                out.los(intube1lo(j)).LOfreq(:) = [in(intube1lo(j)).lofreq];
+                tout.los(intube1lo(j)).LoAmp1 = in(intube1lo(j)).e1loamp;
+                tout.los(intube1lo(j)).LoTim1 = in(intube1lo(j)).timcont/3600;
+                tout.los(intube1lo(j)).LOfreq1 = [in(intube1lo(j)).lofreq];
             end 
             
 
 %% filter by fish frequency
+figure(1); clf;
 
+    histogram([tout.his.HIfreq1], 100); hold on;
+    
+    %Lower lim
+    fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
+    [cutofffreqL, ~]  = ginput(1);
+    plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+    drawnow; 
+    
+    %Upper lim
+    fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
+    [cutofffreqH, ~]  = ginput(1);
+    plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+    drawnow; 
+    
+    for j=1:length(tout.his)
+         if tout.his(j).HIfreq1 > cutofffreqL & tout.his(j).HIfreq1 < cutofffreqH
+                out.his(j).HiAmp = tout.his(j).HiAmp1;
+                out.his(j).HiTim = tout.his(j).HiTim1;
+                out.his(j).HIfreq = tout.his(j).HIfreq1;
+         end
+    end
+
+    pause(1);
+    
+    
+figure(1); clf;
+
+    histogram([tout.los.LOfreq1], 100); hold on;
+    
+    %Lower lim
+    fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
+    [cutofffreqL, ~]  = ginput(1);
+    plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+    drawnow; 
+    
+    %Upper lim
+    fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
+    [cutofffreqH, ~]  = ginput(1);
+    plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+    drawnow; 
+    for j=1:length(tout.los)
+         if tout.los(j).LOfreq1 > cutofffreqL & tout.los(j).LOfreq1 < cutofffreqH
+             out.los(j).LoAmp = tout.los(j).LoAmp1;
+             out.los(j).LoTim = tout.los(j).LoTim1;
+             out.los(j).LOfreq = tout.los(j).LOfreq1;
+         end
+    end
+    pause(1);
+end
             
 %% Plot fish against light/temp
-figure(1); clf; 
+figure(1); clf; hold on;
 
     
-    assx(1) = subplot(411); hold on; 
+    assx(1) = subplot(511); hold on; 
+        plot([tout.his.HiTim1], [tout.his.HiAmp1], 'k');
         plot([out.his.HiTim], [out.his.HiAmp], '.');
-        plot([out.los.LoTim], [out.los.LoAmp], '.');
+       
 
-        legend('High frequency fish', 'Low frequency fish');
+    assx(2) = subplot(512); hold on; 
+        plot([tout.los.LoTim1], [tout.los.LoAmp1], 'k.');
+        plot([out.los.LoTim], [out.los.LoAmp], '.');
         
-    assx(2) = subplot(412); hold on;
+    assx(3) = subplot(513); hold on;
+        plot([tout.his.HiTim1], [tout.his.HIfreq1], 'k.'); 
         plot([out.his.HiTim], [out.his.HIfreq], '.'); 
+        plot([tout.los.LoTim1], [tout.los.LOfreq1], '.');
         plot([out.los.LoTim], [out.los.LOfreq], '.');
         
     
-    assx(3) = subplot(413); hold on; 
+    assx(4) = subplot(514); hold on; 
             plot([in.timcont]/(60*60), [in.temp], '.');
     
-    assx(4) = subplot(414); hold on;
+    assx(5) = subplot(515); hold on;
         plot([in.timcont]/(60*60), [in.light]);
         ylim([-1, 6]);
         
