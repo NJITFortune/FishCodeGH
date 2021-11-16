@@ -44,12 +44,12 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %test plot
 figure(87); clf; hold on;
    subplot(211); hold on;
-    plot(Hitimcont, HiAmp);
-    plot(Lotimcont, LoAmp);
+    plot(Hitimcont, HiAmp, '.', 'MarkerSize', 3);
+    plot(hixx, Hiyy, '-', 'LineWidth', 2);
    subplot(212); hold on;
-    plot(hixx, Hiyy);
-    plot(loxx, Loyy);
-
+    plot(Lotimcont, LoAmp, '.', 'MarkerSize', 3);
+    plot(loxx, Loyy,'-', 'LineWidth', 2);
+ 
 
 
 
