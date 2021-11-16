@@ -19,7 +19,7 @@ ReFs = 10;
 %% prep
 
 % define length of trial 
-if in.info.ld > 15 
+if in.info.ld > 10 
     triallength = in.info.ld * 2;
 else
     triallength = in.info.ld * 4;
