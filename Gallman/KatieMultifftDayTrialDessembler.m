@@ -29,7 +29,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %entire data set
 %[xx, obwyy, ~, ~, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
-[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hiyy, Hiuntyy, Loyy, Lountyy, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(in, ReFs, light);
+[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hiyy, Hiuntyy, Loyy, Lountyy, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(in, ReFs, 3);
 
 
 %Make a time base that starts and ends on lighttimes 
