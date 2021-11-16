@@ -107,13 +107,13 @@ figure(1); clf;
     end
     pause(1);
 
-            
+%adapted from KatieMultiFreqRemover.m
 %% Plot fish against light/temp
 figure(1); clf; hold on;
 
     
     assx(1) = subplot(511); hold on; 
-        plot([tout.his.HiTim1], [tout.his.HiAmp1], 'k');
+        plot([tout.his.HiTim1], [tout.his.HiAmp1], 'k.');
         plot([out.his.HiTim], [out.his.HiAmp], '.');
        
 
@@ -124,7 +124,7 @@ figure(1); clf; hold on;
     assx(3) = subplot(513); hold on;
         plot([tout.his.HiTim1], [tout.his.HIfreq1], 'k.'); 
         plot([out.his.HiTim], [out.his.HIfreq], '.'); 
-        plot([tout.los.LoTim1], [tout.los.LOfreq1], '.');
+        plot([tout.los.LoTim1], [tout.los.LOfreq1], 'k.');
         plot([out.los.LoTim], [out.los.LOfreq], '.');
         
     
