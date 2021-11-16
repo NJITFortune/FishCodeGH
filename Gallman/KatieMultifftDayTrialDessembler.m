@@ -295,7 +295,7 @@ end
                 %fill temporary vector with data from each day 
                 himday(jj,:) = himday(jj,:) + trial(jj).day(k).HiSAmp;
                 subplot(211); hold on; title('Days');
-                plot(hitrial(jj).tim, hitrial(jj).day(k).HiSAmp);
+                plot(trial(jj).tim, trial(jj).day(k).HiSAmp);
                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
         end
@@ -338,7 +338,7 @@ end
          % To get average across days, divide by number of days
             lomday(jj,:) = lomday(jj,:) / length(trial(jj).day);
             subplot(212); hold on; title('Day average by trial hi frequency fish');
-            plot(lotrial(jj).tim, lomday(jj,:), '-', 'Linewidth', 1);
+            plot(trial(jj).tim, lomday(jj,:), '-', 'Linewidth', 1);
             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
     end
