@@ -205,7 +205,7 @@ clear jj;
             % Get the datums
             %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
 %             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
-            lotrial(jj).day(k).LoSAmp = lout(jj).LoSsumfftAmp(lodayidx:lodayidx+howmanysamplesinaday-1);
+            lotrial(jj).day(k).LoSAmp = lout(jj).LoSAmp(lodayidx:lodayidx+howmanysamplesinaday-1);
 %             
                lotrial(jj).ld = in.info.ld; 
 
