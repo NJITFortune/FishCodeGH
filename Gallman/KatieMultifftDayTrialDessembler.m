@@ -125,7 +125,7 @@ figure(87); clf; hold on;
                  
                  
                  % Time and treatment 
-                 lout(jj).Lotimcont = Lotimcont(Lotimidx) - lotimcont(Lotimidx(1)); %+1
+                 lout(jj).Lotimcont = Lotimcont(Lotimidx) - Lotimcont(Lotimidx(1)); %+1
                  lout(jj).Loentiretimcont = Lotimcont(Lotimidx);
                  
                  lout(jj).ld = in.info.ld;  
