@@ -16,7 +16,7 @@ clearvars -except kg kg2
 in = kg2(5);
 ReFs = 10;
 light = 3;
-fishfreq = 2;
+fishfreq = 1;
 
 
 %% prep
