@@ -224,7 +224,7 @@ clear jj;
  %trials across tims
  figure(26); clf; title('trials across time');  hold on;
  
- ax(1) = subplot(211); title('high frequency fish'); 
+ %ax(1) = subplot(211); title('high frequency fish'); 
     clear jj;
     for jj = 1:length(hout)
         
@@ -238,21 +238,21 @@ clear jj;
         plot([Hilighttimes(j), Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
     end
  
- ax(2) = subplot(212); title('low frequency fish');
-    clear jj;
-    for jj = 1:length(lout)
-        
-        plot(lout(jj).Loentiretimcont, lout(jj).LofftAmp, '.', 'MarkerSize', 3);
-        plot(lout(jj).LoSentiretimcont, lout(jj).LoSAmp, '-', 'LineWidth', 3);
-        
-    end
-     clear j;
-    for j = 1:length(Lolighttimes)
-        
-        plot([Lolighttimes(j), Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-    end
-
- linkaxes(ax, 'x');
+%  ax(2) = subplot(212); title('low frequency fish');
+%     clear jj;
+%     for jj = 1:length(lout)
+%         
+%         plot(lout(jj).Loentiretimcont, lout(jj).LofftAmp, '.', 'MarkerSize', 3);
+%         plot(lout(jj).LoSentiretimcont, lout(jj).LoSAmp, '-', 'LineWidth', 3);
+%         
+%     end
+%      clear j;
+%     for j = 1:length(Lolighttimes)
+%         
+%         plot([Lolighttimes(j), Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+%     end
+% 
+%  linkaxes(ax, 'x');
 
  clear himday;
  
