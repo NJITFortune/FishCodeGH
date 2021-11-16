@@ -14,7 +14,7 @@ ReFs = 10;
 %% prep
 
 % define length of trial 
-if in.info.ld > 10 
+if in.info.ld > 15 
     triallength = in.info.ld * 2;
 else
     triallength = in.info.ld * 4;
@@ -69,8 +69,6 @@ figure(87); clf; hold on;
     HilengthofsampleHOURS = Hilighttimes(end) - Hilighttimes(1); 
     LolengthofsampleHOURS = Lolighttimes(end) - Lolighttimes(1); 
 
-  HilengthofsampleHOURS
-  triallength
     % How many integer trials in dataset
     Hinumotrials = floor(HilengthofsampleHOURS / triallength); % of trials
     Lonumotrials = floor(LolengthofsampleHOURS / triallength); % of trials
