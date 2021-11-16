@@ -22,7 +22,7 @@ fishfreq = 1;
 %% prep
 
 % define length of trial 
-if in.info.ld > 10 
+if in.info.ld > 15 
     triallength = in.info.ld * 2;
 else
     triallength = in.info.ld * 4;
