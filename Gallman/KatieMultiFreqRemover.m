@@ -1,4 +1,4 @@
-function out = KatieMultiRemover(in)
+function out = KatieMultiFreqRemover(in)
 
 % OBW        
 figure(1); clf;
