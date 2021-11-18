@@ -149,8 +149,8 @@ for j=2:length(iFiles)
 
 % Set current frequencies
 % 
-currhifreq = tmphifreq1;         
-currlofreq = tmplofreq1;  
+% currhifreq = tmphifreq1;         
+% currlofreq = tmplofreq1;  
        currhifreq = mean([tmphifreq1 tmphifreq2]);        
        currlofreq = mean([tmplofreq1 tmplofreq2]);        
 
