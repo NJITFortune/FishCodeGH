@@ -5,7 +5,7 @@ function [xx, tnormsubfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, l
 %in = (kg(#), channel, 10
 %% Prep
 %just lazy
-ld = [in.info.ld];
+%ld = [in.info.ld];
 %tightness of spline fit
 p = 0.9;
 
@@ -69,6 +69,7 @@ end
 lighttimes = lighttrim(lighttrim > 0);
 %luztimes = luztimes(1,lighttrim > 0);
 %add back the light time we subtracted 
+ld = lighttimes(end) - lighttimes(end-1);
 lighttimes(end +1) = lighttimes(end) + ld;
 
 
