@@ -4,7 +4,7 @@ function out = KatieSeparationAnxiety(userfilespec)
 %see kgme multi
 %% Prep
     Fs = 40000; %sample rate
-    freqs = [450 650]; %freq range of typical eigen EOD
+    freqs = [400 650]; %freq range of typical eigen EOD
     %userfilespec = 'Eigen*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
@@ -148,11 +148,11 @@ for j=2:length(iFiles)
         tmplofreq2 = tmp2.fftfreq(tmpidx2l(lofreq2idx));
 
 % Set current frequencies
-% 
-currhifreq = tmphifreq1;         
-currlofreq = tmplofreq1;  
-       currhifreq = mean([tmphifreq1 tmphifreq2]);        
-       currlofreq = mean([tmplofreq1 tmplofreq2]);        
+
+currhifreq = tmphifreq2;         
+currlofreq = tmplofreq2;  
+%        currhifreq = mean([tmphifreq1 tmphifreq2]);        
+%        currlofreq = mean([tmplofreq1 tmplofreq2]);        
 
         
         
