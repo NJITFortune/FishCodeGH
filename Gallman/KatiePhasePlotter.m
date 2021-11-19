@@ -71,6 +71,8 @@ figure(42); clf; title('phase plots by fish'); hold on;
     
  
 linkaxes(ax, 'x');
+
+
                     
                     
                     
