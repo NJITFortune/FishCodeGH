@@ -5,6 +5,7 @@ function [hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hitnormsubfftyy, Hisubfftyy,  
 %in = (kg(#), channel, 10
 %% Prep
 %just lazy
+in
 ld = [in.info.ld];
 %tightness of spline fit
 p = 0.9;
