@@ -37,7 +37,7 @@ figure(42); clf; title('phase plots by fish'); hold on;
                clear j;
                for j = 1:length(one(k).lighttimes)
                    
-                   plot(one(k).lighttimes(j), one(k).lighttimes(j), ylim, 'k-', 'LineWidth', 0.5);
+                   plot([one(k).lighttimes(j), one(k).lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
                end
                 
@@ -50,7 +50,7 @@ figure(42); clf; title('phase plots by fish'); hold on;
                     clear j;
                     for j = 1:length(two(kk).Hilighttimes)
                         
-                        plot(two(kk).Hilighttimes(j), two(kk).Hilighttimes(j), ylim, 'k-', 'LineWidth', 0.5);
+                        plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
                     end
     end
     
@@ -63,7 +63,7 @@ figure(42); clf; title('phase plots by fish'); hold on;
                         clear j;
                         for j = 1:length(two(kkk).Lolighttimes)
                             
-                            plot(two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j), ylim, 'k-', 'LineWidth', 0.5);
+                            plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
                             
                         end
                     
