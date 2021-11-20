@@ -33,7 +33,7 @@ p = 0.9;
     %starts with dark = 3
     %starts with light = 4
 %% trim luz to data - Generate lighttimes
-
+in
 lighttimeslong = abs(in.info.luz);
 
     %fit light vector to power idx
