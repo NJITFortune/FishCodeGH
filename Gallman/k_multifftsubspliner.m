@@ -1,11 +1,14 @@
 
-function [hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hitnormsubfftyy, Hisubfftyy,  Lotnormsubfftyy, Losubfftyy, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(in, ReFs, light)
+%function [hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hitnormsubfftyy, Hisubfftyy,  Lotnormsubfftyy, Losubfftyy, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(in, ReFs, light)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
 %% Prep
 %just lazy
-in
+in = kg2(16);
+ReFs = 10;
+light = 3;
+ 
 %ld = [in.info.ld];
 %tightness of spline fit
 p = 0.9;
@@ -195,11 +198,14 @@ figure(45); clf; hold on;
         plot(hixx, Hisubfftyy, '-');
 
         for j = 1:length(Hilighttimes)
-            plot([Hilighttimes(j), Hilighttimes(j)], ylim, )
-
+            plot([Hilighttimes(j), Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
         end
 
     xs(2) = subplot(212); hold on;
         
         plot(LoTim, LofftAmp, '.');
         plot(lowxx, Losubfftyy, '-');
+
+        for jj = 1:length(Hilighttimes)
+            plot([Lolighttimes(jj), Lolighttimes(jj)], ylim, 'k-', 'LineWidth', 0.5);
+        end
