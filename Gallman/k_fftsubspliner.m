@@ -70,8 +70,8 @@ end
 lighttimes = lighttrim(lighttrim > 0);
 %luztimes = luztimes(1,lighttrim > 0);
 %add back the light time we subtracted 
-ld = lighttimes(end) - lighttimes(end-1);
-lighttimes(end +1) = lighttimes(end) + ld;
+%ld = lighttimes(end) - lighttimes(end-1);
+%lighttimes(end +1) = lighttimes(end) + ld;
 
 
 %% cspline entire data set
