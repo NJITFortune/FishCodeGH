@@ -35,9 +35,10 @@ figure(42); clf; title('phase plots by fish'); hold on;
     for k = 1:length(one)
         
        ax(k) = subplot(10,1,k); hold on; 
+               %plot raw data for each fish
+               plot(one(k).timcont, one(k).fft, '.');
                %plot spline for each fish
                plot(one(k).xx, one(k).fftyy, 'LineWidth', 2);
-               plot(one(k).timcont, one(k).fft, '.')
                %add light transistion times as vertical lines
                clear j;
                for j = 1:length(one(k).lighttimes)
