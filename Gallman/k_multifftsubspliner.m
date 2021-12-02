@@ -1,13 +1,13 @@
 
-%function [hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hitnormsubfftyy, Hisubfftyy,  Lotnormsubfftyy, Losubfftyy, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(in, ReFs, light)
+function [hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hitnormsubfftyy, Hisubfftyy,  Lotnormsubfftyy, Losubfftyy, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(in, ReFs, light)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
 %% Prep
 %just lazy
-in = kg2(18);
-ReFs = 10;
-light = 3;
+% in = kg2(18);
+% ReFs = 10;
+% light = 3;
  
 %ld = [in.info.ld];
 %tightness of spline fit

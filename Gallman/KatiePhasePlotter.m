@@ -24,7 +24,7 @@ ReFs = 10;
  
     for kk = 1:length(multifish124idx)
         
-      [two(kk).hixx, two(kk).loxx, ~, ~, ~, ~, two(kk).Hifftyy, ~,  two(kk).Lofftyy, ~, two(kk).Hilighttimes, two(kk).Lolighttimes] =  k_multifftsubspliner(kg2(multifish124idx(kk)), ReFs, light);
+      [two(kk).hixx, two(kk).loxx, two(kk).HiAmp, two(kk).HiTim, two(kk).LoAmp, two(kk).LoTim, two(kk).Hifftyy, ~,  two(kk).Lofftyy, ~, two(kk).Hilighttimes, two(kk).Lolighttimes] =  k_multifftsubspliner(kg2(multifish124idx(kk)), ReFs, light);
       
     end
     
@@ -55,22 +55,16 @@ figure(42); clf; title('phase plots by fish'); hold on;
     
         
         ax(k +kk) = subplot(12,1,(k +kk)); hold on;
+
+                    plot(two(kk).HiTim, two(kk).HiAmp, '.');
                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2);
                     clear j;
                     for j = 1:length(two(kk).Hilighttimes)
-                        
+
                         plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
                     end
 
-%         ax(k + kk+1) = subplot(12,1,(k + kk+1)); hold on;
-%                     plot(two(kk).loxx, two(kk).Lofftyy,  'LineWidth', 2);
-%                     clear j;
-%                     for j = 1:length(two(kk).Lolighttimes)
-%                         
-%                         plot([two(kk).Lolighttimes(j), two(kk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-%                     end
-
-
+        
     end
     
     for kkk = 1:length(two)
@@ -78,7 +72,8 @@ figure(42); clf; title('phase plots by fish'); hold on;
         a = (k + kk + kkk);
         
         ax(k+ kk + kkk) = subplot(12,1,a); hold on;
-        
+
+                        plot(two(kk).LoTim, two(kk).LoAmp, '.');
                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2);
                         
                         clear j;
