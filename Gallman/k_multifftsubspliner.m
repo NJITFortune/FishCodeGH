@@ -185,5 +185,6 @@ p = 0.5;
        Lonormsubfftyytrend = 1./(Losubfftyy - Lodtsubfftyy);
        Lotnormsubfftyy = Losubfftyy .* Lonormsubfftyytrend;
 
+%% plot to check
 
 
