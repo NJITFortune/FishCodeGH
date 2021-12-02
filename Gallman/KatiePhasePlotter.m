@@ -50,34 +50,34 @@ figure(42); clf; title('phase plots by fish'); hold on;
                 
     end
     
-%     for kk = 1:length(two)
-%         
-%         ax(k + kk) = subplot(10,1,(k + kk)); hold on;
-%                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2);
-%                     clear j;
-%                     for j = 1:length(two(kk).Hilighttimes)
-%                         
-%                         plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-%                     end
-%     end
-%     
-%     for kkk = 1:length(two)
-%         
-%         
-%         
-%         ax(k+ kk + kkk) = subplot(10,1,(k + kk + kkk)); hold on;
-%         
-%                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2);
-%                         
-%                         clear j;
-%                         for j = 1:length(two(kkk).Lolighttimes)
-%                             
-%                             plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-%                             
-%                         end
-%                     
-%     end
-%     
+    for kk = 1:length(two)
+        
+        ax(k + kk) = subplot(10,1,(k + kk)); hold on;
+                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2);
+                    clear j;
+                    for j = 1:length(two(kk).Hilighttimes)
+                        
+                        plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+                    end
+    end
+    
+    for kkk = 1:length(two)
+        
+        
+        
+        ax(k+ kk + kkk) = subplot(10,1,(k + kk + kkk)); hold on;
+        
+                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2);
+                        
+                        clear j;
+                        for j = 1:length(two(kkk).Lolighttimes)
+                            
+                            plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+                            
+                        end
+                    
+    end
+    
  
 linkaxes(ax, 'x');
 
