@@ -6,7 +6,7 @@ function [hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hitnormsubfftyy, Hisubfftyy,  
 %% Prep
 %just lazy
 in
-ld = [in.info.ld];
+%ld = [in.info.ld];
 %tightness of spline fit
 p = 0.9;
 
@@ -67,7 +67,7 @@ end
 Hilighttimes = lighttrim(lighttrim > 0);
 %luztimes = luztimes(1,lighttrim > 0);
 %add back the light time we subtracted 
-Hilighttimes(end +1) = Hilighttimes(end) + ld;
+%Hilighttimes(end +1) = Hilighttimes(end) + ld;
 
 
 %low frequency fish
@@ -109,7 +109,7 @@ end
 Lolighttimes = lighttrim(lighttrim > 0);
 %luztimes = luztimes(1,lighttrim > 0);
 %add back the light time we subtracted 
-Lolighttimes(end +1) = Lolighttimes(end) + ld;
+%Lolighttimes(end +1) = Lolighttimes(end) + ld;
 
 %% create easier vector names for raw data
    HiTim = [in.fish.his(tthi).HiTim];
