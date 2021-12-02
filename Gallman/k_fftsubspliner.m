@@ -54,22 +54,23 @@ lighttimeslong = abs(in.info.luz);
     end
 
     
-%only take times for light vectors that have data
-for j = 1:length(lighttimeslesslong)-1
-        
-        %is there data between j and j+1?    
-        if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
-            
-               lighttrim(j) = lighttimeslesslong(j);
-             
-        end 
-end
+% %only take times for light vectors that have data
+% for j = 1:length(lighttimeslesslong)-1
+%         
+%         %is there data between j and j+1?    
+%         if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
+%             
+%                lighttrim(j) = lighttimeslesslong(j);
+%              
+%         end 
+% end
 
 
 % take all cells with values and make a new vector
 lighttimes = lighttrim(lighttrim > 0);
 %luztimes = luztimes(1,lighttrim > 0);
 %add back the light time we subtracted 
+lighttimes = lighttimeslesslong;
 ld = lighttimes(end) - lighttimes(end-1);
 lighttimes(end +1) = lighttimes(end) + ld;
 
