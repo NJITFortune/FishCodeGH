@@ -63,9 +63,9 @@ figure(42); clf; title('phase plots by fish'); hold on;
     
     for kkk = 1:length(two)
         
+        a = (k + kk + kkk);
         
-        
-        ax(k+ kk + kkk) = subplot(10,1,(k + kk + kkk)); hold on;
+        ax(k+ kk + kkk) = subplot(10,1,a); hold on;
         
                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2);
                         
