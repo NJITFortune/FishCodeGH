@@ -67,7 +67,7 @@ lighttimeslong = abs(in.info.luz);
 
 
 % take all cells with values and make a new vector
-lighttimes = lighttrim(lighttrim > 0);
+%lighttimes = lighttrim(lighttrim > 0);
 %luztimes = luztimes(1,lighttrim > 0);
 %add back the light time we subtracted 
 lighttimes = lighttimeslesslong;
