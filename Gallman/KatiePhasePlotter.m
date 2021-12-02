@@ -51,8 +51,10 @@ figure(42); clf; title('phase plots by fish'); hold on;
     end
     
     for kk = 1:length(two)
+
+        a = (k +kk);
         
-        ax(k + kk) = subplot(10,1,(k + kk)); hold on;
+        ax(a) = subplot(10,1,(a)); hold on;
                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2);
                     clear j;
                     for j = 1:length(two(kk).Hilighttimes)
