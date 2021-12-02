@@ -54,7 +54,7 @@ figure(42); clf; title('phase plots by fish'); hold on;
 
         a = (k +kk);
         
-        ax(a) = subplot(10,1,a)); hold on;
+        ax(a) = subplot(10,1,(a)); hold on;
                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2);
                     clear j;
                     for j = 1:length(two(kk).Hilighttimes)
@@ -62,7 +62,7 @@ figure(42); clf; title('phase plots by fish'); hold on;
                         plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
                     end
 
-        ax(a+1) = subplot(10,1,(a+1)); hold on;
+        ax(k + kk+1) = subplot(10,1,(k + kk+1)); hold on;
                     plot(two(kk).loxx, two(kk).Lofftyy,  'LineWidth', 2);
                     clear j;
                     for j = 1:length(two(kk).Lolighttimes)
