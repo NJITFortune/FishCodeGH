@@ -20,14 +20,14 @@ ReFs = 10;
     end
 
 %% kg2 data index
- multifish124idx = [16 18];
- 
-    for kk = 1:length(multifish124idx)
-        
-      [two(kk).hixx, two(kk).loxx, ~, ~, ~, ~, two(kk).Hifftyy, ~,  two(kk).Lofftyy, ~, two(kk).Hilighttimes, two(kk).Lolighttimes] =  k_multifftsubspliner(kg2(multifish124idx(kk)), ReFs, light);
-      
-    end
-    
+%  multifish124idx = [16 18];
+%  
+%     for kk = 1:length(multifish124idx)
+%         
+%       [two(kk).hixx, two(kk).loxx, ~, ~, ~, ~, two(kk).Hifftyy, ~,  two(kk).Lofftyy, ~, two(kk).Hilighttimes, two(kk).Lolighttimes] =  k_multifftsubspliner(kg2(multifish124idx(kk)), ReFs, light);
+%       
+%     end
+%     
  
 %% plots
 
