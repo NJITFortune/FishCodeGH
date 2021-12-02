@@ -187,4 +187,19 @@ p = 0.5;
 
 %% plot to check
 
+figure(45); clf; hold on;
 
+    xs(1) = subplot(211); hold on;
+        
+        plot(HiTim, HifftAmp, '.');
+        plot(hixx, Hisubfftyy, '-');
+
+        for j = 1:length(Hilighttimes)
+
+            
+        end
+
+    xs(2) = subplot(212); hold on;
+        
+        plot(LoTim, LofftAmp, '.');
+        plot(lowxx, Losubfftyy, '-');
