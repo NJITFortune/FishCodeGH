@@ -13,7 +13,8 @@ ReFs = 10;
     %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
     
     one(k).lighttimes = abs(kg(onefish124idx(k).info.luz));
-    one(k).timecont = kg(onefish124idx(k)
+    one(k).timecont = (kg(onefish124idx(k)).e(1).s.timcont)/3600;
+    one(k).fft = kg(onefish124idx(k)).e(1).s.sumfftAmp;
 
     end
 
@@ -36,7 +37,7 @@ figure(42); clf; title('phase plots by fish'); hold on;
        ax(k) = subplot(10,1,k); hold on; 
                %plot spline for each fish
                %plot(one(k).xx, one(k).fftyy, 'LineWidth', 2);
-               plot()
+               plot(one(k).timcont, one(k).fft, )
                %add light transistion times as vertical lines
                clear j;
                for j = 1:length(one(k).lighttimes)
