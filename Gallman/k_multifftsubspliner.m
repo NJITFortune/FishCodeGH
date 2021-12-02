@@ -204,7 +204,7 @@ figure(45); clf; hold on;
     xs(2) = subplot(212); hold on;
         
         plot(LoTim, LofftAmp, '.');
-        plot(lowxx, Losubfftyy, '-');
+        plot(loxx, Losubfftyy, '-');
 
         for jj = 1:length(Hilighttimes)
             plot([Lolighttimes(jj), Lolighttimes(jj)], ylim, 'k-', 'LineWidth', 0.5);
