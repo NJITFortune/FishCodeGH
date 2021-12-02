@@ -11,7 +11,8 @@ ReFs = 10;
     for k = 1:length(onefish124idx)
 
     %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
-    
+    [one(k).xx, one(k).fftyy, ~] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
+
     one(k).lighttimes = abs(kg(onefish124idx(k)).info.luz);
     one(k).timcont = [kg(onefish124idx(k)).e(1).s.timcont]/3600;
     one(k).fft = [kg(onefish124idx(k)).e(1).s.sumfftAmp];
