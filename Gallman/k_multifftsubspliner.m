@@ -195,8 +195,8 @@ figure(45); clf; hold on;
         plot(hixx, Hisubfftyy, '-');
 
         for j = 1:length(Hilighttimes)
+            plot([Hilighttimes(j), Hilighttimes(j)], ylim, )
 
-            
         end
 
     xs(2) = subplot(212); hold on;
