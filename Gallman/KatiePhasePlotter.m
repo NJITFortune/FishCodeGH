@@ -97,10 +97,10 @@ linkaxes(ax, 'x');
 %exp 1
 %colors
 %single fish
-turq = [.64, .224, .208];
-darkcy = [0 139 139];
+turq = [64/255, 224/255, 208/255];
+darkcy = [0/255, 139/255 139/255];
 %multi fish
-lightsky = [135 206 235];
+lightsky = [135/255 206/255 235/255];
 deepsky = [0 191 255];
 
 figure(43); clf; title('phase plots by fish'); hold on;
