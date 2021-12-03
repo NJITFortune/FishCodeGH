@@ -101,7 +101,7 @@ turq = [64/255, 224/255, 208/255];
 darkcy = [0/255, 139/255 139/255];
 %multi fish
 lightsky = [135/255 206/255 235/255];
-deepsky = [0 191 255];
+deepsky = [0/255 191/255 255/255];
 
 figure(43); clf; title('phase plots by fish'); hold on;
 clear k;
@@ -166,11 +166,11 @@ linkaxes(ax, 'x');
 %exp 2
 %colors
 %single fish
-lightsalmon = [255 160 122];
-salmon = [250 128 114];
+lightsalmon = [255/255 160/255 122/255];
+salmon = [250/255 128/255 114/255];
 %multi fish
-paleV = [219 112 147];
-mediumV = [199 21 133];
+paleV = [219/255 112/255 147/255];
+mediumV = [199/255 21/255 133/255];
 
 figure(44); clf; title('phase plots by fish'); hold on;
 clear k;
