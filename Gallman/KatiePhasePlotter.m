@@ -89,8 +89,20 @@ figure(42); clf; title('phase plots by fish'); hold on;
 linkaxes(ax, 'x');
 
 
+
+
+
+
 %by experiment
 %exp 1
+%colors
+%single fish
+turq = [64 224 208];
+darkcy = [0 139 139];
+%multi fish
+lightsky = [135 206 235];
+deepsky = [0 191 255];
+
 figure(43); clf; title('phase plots by fish'); hold on;
 clear k;
 clear ax;
@@ -98,9 +110,9 @@ clear ax;
         
        ax(k) = subplot(6,1,k);hold on; 
                %plot raw data for each fish
-               plot(one(k).timcont, one(k).fft, '.');
+               plot(one(k).timcont, one(k).fft, '.', 'Color', turq);
                %plot spline for each fish
-               plot(one(k).xx, one(k).fftyy, 'LineWidth', 2);
+               plot(one(k).xx, one(k).fftyy, 'LineWidth', 2, 'Color', darkcy);
                %add light transistion times as vertical lines
                clear j;
                for j = 1:length(one(k).lighttimes)
@@ -117,8 +129,8 @@ clear kk;
         
         ax(k +kk) = subplot(6,1,(k +kk)); hold on;
 
-                    plot(two(kk).HiTim, two(kk).HiAmp, '.');
-                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2);
+                    plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', lightsky);
+                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', deepsky);
                     clear j;
                     for j = 1:length(two(kk).Hilighttimes)
 
@@ -134,8 +146,8 @@ clear kk;
         
         ax(k+ kk + kkk) = subplot(6,1,a); hold on;
 
-                        plot(two(kk).LoTim, two(kk).LoAmp, '.');
-                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2);
+                        plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', lightsky);
+                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', deepsky);
                         
                         clear j;
                         for j = 1:length(two(kkk).Lolighttimes)
@@ -151,7 +163,73 @@ linkaxes(ax, 'x');
                     
                     
                     
+%exp 2
+%colors
+%single fish
+lightsalmon = [255 160 122];
+salmon = [250 128 114];
+%multi fish
+paleV = [219 112 147];
+mediumV = [199 21 133];
+
+figure(44); clf; title('phase plots by fish'); hold on;
+clear k;
+clear ax;
+    for k = 5:8
+        
+       ax(k) = subplot(6,1,k);hold on; 
+               %plot raw data for each fish
+               plot(one(k).timcont, one(k).fft, '.', 'Color', lightsalmon);
+               %plot spline for each fish
+               plot(one(k).xx, one(k).fftyy, 'LineWidth', 2, 'Color', salmon);
+               %add light transistion times as vertical lines
+               clear j;
+               for j = 1:length(one(k).lighttimes)
+                   
+                   plot([one(k).lighttimes(j), one(k).lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+                
+    end
+clear kk;    
+    for kk = 2:2
+
+    
+        
+        ax(k +kk) = subplot(6,1,(k +kk)); hold on;
+
+                    plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', paleV);
+                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', mediumV);
+                    clear j;
+                    for j = 1:length(two(kk).Hilighttimes)
+
+                        plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+                    end
+
+        
+    end
+    clear kkk;
+    for kkk = 2:2
+        
+        a = (k + kk + kkk);
+        
+        ax(k+ kk + kkk) = subplot(6,1,a); hold on;
+
+                        plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', paleV);
+                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', mediumV);
+                        
+                        clear j;
+                        for j = 1:length(two(kkk).Lolighttimes)
+                            
+                            plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+                            
+                        end
                     
+    end
+%     
+ 
+linkaxes(ax, 'x');
+                                       
                     
                     
                     
