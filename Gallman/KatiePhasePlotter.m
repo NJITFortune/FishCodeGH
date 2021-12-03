@@ -97,7 +97,7 @@ linkaxes(ax, 'x');
 %exp 1
 %colors
 %single fish
-turq = [64 224 208];
+turq = [64, 224, 208];
 darkcy = [0 139 139];
 %multi fish
 lightsky = [135 206 235];
