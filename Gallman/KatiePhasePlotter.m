@@ -35,7 +35,7 @@ figure(42); clf; title('phase plots by fish'); hold on;
 
     for k = 1:length(one)
         
-       ax(k) = subplot(15,1,k);hold on; 
+       ax(k) = subplot(16,1,k);hold on; 
                %plot raw data for each fish
                plot(one(k).timcont, one(k).fft, '.');
                %plot spline for each fish
@@ -54,7 +54,7 @@ figure(42); clf; title('phase plots by fish'); hold on;
 
     
         
-        ax(k +kk) = subplot(15,1,(k +kk)); hold on;
+        ax(k +kk) = subplot(16,1,(k +kk)); hold on;
 
                     plot(two(kk).HiTim, two(kk).HiAmp, '.');
                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2);
@@ -71,7 +71,7 @@ figure(42); clf; title('phase plots by fish'); hold on;
         
         a = (k + kk + kkk);
         
-        ax(k+ kk + kkk) = subplot(15,1,a); hold on;
+        ax(k+ kk + kkk) = subplot(16,1,a); hold on;
 
                         plot(two(kk).LoTim, two(kk).LoAmp, '.');
                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2);
