@@ -71,7 +71,6 @@ Hilighttimes = lighttrim(lighttrim > 0);
 %luztimes = luztimes(1,lighttrim > 0);
 %add back the light time we subtracted 
 %Hilighttimes(end +1) = Hilighttimes(end) + ld;
-Hilighttimes
 
 %low frequency fish
 clear lighttimeslesslong;
