@@ -50,7 +50,8 @@ ReFs = 10;
     %raw data for plotting/spline check
     one(k).timcont = [kg(exp1idx(k)).e(1).s.timcont]/3600;
     one(k).timcont1 = one(k).timcont(twidx1);
-    one(k).fft1 = [kg(exp1idx(k)).e(1).s(twidx1).sumfftAmp];
+    one(k).fft = [kg(exp1idx(k)).e(1).s.sumfftAmp];
+    one(k).fft1 = one(k).fft(twidx1);
 
 
     end
