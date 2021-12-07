@@ -17,7 +17,8 @@ for j = 1:length(lighttimes/2)
     
 end
 
-plot(xx(twidx1), fftyy(twidx1);
+figure(23); clf; hold on;
+plot(xx(twidx1), fftyy(twidx1));
 lesslight = lighttimes(twidx1);
 for k = 1:length(lesslight)
     plot([lesslight(k), lesslight(k)], ylim, 'k-');
