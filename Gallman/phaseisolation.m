@@ -48,6 +48,10 @@ ReFs = 10;
     one(k).xx1 = one(k).xx(twidx1);
     one(k).fftyy1 = one(k).fftyy(twidx1);
 
+    %need to save into something
+    fouramp = cc;
+    
+
     %raw data for plotting/spline check
     one(k).timcont = [kg(exp1idx(k)).e(1).s.timcont]/3600;  
     timcontidx = find(one(k).timcont >= one(k).lighttimes(3) & one(k).timcont <= (one(k).lighttimes(3) + 48));
