@@ -76,7 +76,7 @@ figure(25); clf; hold on;
 
    for k = 1:length(one)
         
-       ax(k) = subplot(4,1,k);hold on; 
+       ax(k) = subplot(3,1,k);hold on; 
                %plot raw data for each fish
                plot(one(k).timcont1, one(k).fft1, '.');
                %plot spline for each fish
@@ -91,7 +91,7 @@ figure(25); clf; hold on;
                 
    end
 
-   
+
 
 linkaxes(ax, 'x');
    
