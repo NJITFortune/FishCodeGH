@@ -133,7 +133,7 @@ figure(25); clf; hold on;
 
    for k = 1:length(one)
         
-       ax(k) = subplot(3,1,k);hold on; 
+       ax(k) = subplot(3,1,k); title('expecting 12 dark, get 4'); hold on; 
                %plot raw data for each fish
                plot(one(k).timcont1, one(k).fft1, '.');
                %plot spline for each fish
@@ -176,7 +176,7 @@ figure(29); clf; hold on;
 
    for k = 1:length(one)
         
-       ax(k) = subplot(3,1,k);hold on; 
+       ax(k) = subplot(3,1,k); title('expecting 12 light get 4'); hold on; 
                %plot raw data for each fish
                plot(one(k).timcont2, one(k).fft2, '.');
                %plot spline for each fish
@@ -219,7 +219,7 @@ figure(31); clf; hold on;
 
    for k = 1:length(one)
         
-       ax(k) = subplot(3,1,k);hold on; 
+       ax(k) = subplot(3,1,k);title('expecting 4 hours of dark and get 12'); hold on; 
                %plot raw data for each fish
                plot(one(k).timcont3, one(k).fft3, '.');
                %plot spline for each fish
@@ -263,7 +263,7 @@ figure(34); clf; hold on;
 
    for k = 1:length(one)
         
-       ax(k) = subplot(3,1,k);hold on; 
+       ax(k) = subplot(3,1,k); title('expecting 4 hours of light and get 12'); hold on; 
                %plot raw data for each fish
                plot(one(k).timcont4, one(k).fft4, '.');
                %plot spline for each fish
