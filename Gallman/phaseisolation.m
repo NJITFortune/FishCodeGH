@@ -82,15 +82,21 @@ ReFs = 10;
 %spline tranistion summary plot
 figure(24); clf; title('expecting 12 dark, get 4'); hold on;
 
+mmean = zeros(1, length(one(1).fftyy1));
 %plot all splines on top of eachother
     for k = 1:length(one)
     plot(one(k).xx1, (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1)))), 'LineWidth', 3);
+    mmean = mmean + (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
     end
+
+    plot(one(1).xx1, mmean/3, 'k-','LineWidth', 3);
 %plot light transitions
     for j = 1:length(one(1).lighttimes1)
         plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
       
     end
+
+ 
 
 %individual splines plus raw data    
 figure(25); clf; hold on;
