@@ -133,7 +133,7 @@ figure(25); clf; hold on;
 
    for k = 1:length(one)
         
-       ax(k) = subplot(3,1,k);hold on; 
+       ax(k) = subplot(3,1,k); title('expecting 12 dark, get 4'); hold on; 
                %plot raw data for each fish
                plot(one(k).timcont1, one(k).fft1, '.');
                %plot spline for each fish
@@ -147,10 +147,17 @@ figure(25); clf; hold on;
                end
                 
    end
-
-
-
 linkaxes(ax, 'x');
+ figure(26); clf; hold on;
+
+    plot(one(1).xx1(1:end-1), diff(mmean/3), 'k-','LineWidth', 5);
+    for j = 1:length(one(1).lighttimes1)
+        plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
+      
+    end
+
+
+
 
 
 %% 3rd transistion
@@ -176,7 +183,7 @@ figure(29); clf; hold on;
 
    for k = 1:length(one)
         
-       ax(k) = subplot(3,1,k);hold on; 
+       ax(k) = subplot(3,1,k); title('expecting 12 light get 4'); hold on; 
                %plot raw data for each fish
                plot(one(k).timcont2, one(k).fft2, '.');
                %plot spline for each fish
@@ -190,16 +197,24 @@ figure(29); clf; hold on;
                end
                 
    end
-
-
-
 linkaxes(ax, 'x');
+
+ figure(27); clf; hold on;
+
+plot(one(1).xx2(1:end-1), diff(mmean2/3), 'k-','LineWidth', 5);
+%plot light transitions
+    for j = 1:length(one(1).lighttimes2)
+        plot([one(1).lighttimes2(j), one(1).lighttimes2(j)], ylim, 'k-');
+      
+    end
+
+
    
 %% 2nd transition
 clear ax;
 
 %spline tranistion summary plot
-figure(30); clf; title('expecting 4 get 12'); hold on;
+figure(30); clf; title('expecting 4 hours of dark and get 12'); hold on;
 
 mmean3 = zeros(1, length(one(1).fftyy3));
 %plot all splines on top of eachother
@@ -219,7 +234,7 @@ figure(31); clf; hold on;
 
    for k = 1:length(one)
         
-       ax(k) = subplot(3,1,k);hold on; 
+       ax(k) = subplot(3,1,k);title('expecting 4 hours of dark and get 12'); hold on; 
                %plot raw data for each fish
                plot(one(k).timcont3, one(k).fft3, '.');
                %plot spline for each fish
@@ -235,15 +250,23 @@ figure(31); clf; hold on;
    end
 
 
-
 linkaxes(ax, 'x');
+
+figure(32); clf; hold on;
+    plot(one(1).xx3(1:end-1), diff(mmean3/3), 'k-','LineWidth', 5);
+    %plot light transitions
+    for j = 1:length(one(1).lighttimes3)
+        plot([one(1).lighttimes3(j), one(1).lighttimes3(j)], ylim, 'k-');
+      
+    end
+
 
 %% 4th transition
 
 clear ax;
 
 %spline tranistion summary plot
-figure(33); clf; title('expecting 4 get 12'); hold on;
+figure(33); clf; title('expecting 4 hours of light and get 12'); hold on;
 
 mmean4 = zeros(1, length(one(1).fftyy4));
 %plot all splines on top of eachother
@@ -253,8 +276,8 @@ mmean4 = zeros(1, length(one(1).fftyy4));
     end
     plot(one(1).xx4, mmean4/3, 'k-','LineWidth', 5);
 %plot light transitions
-    for j = 1:length(one(1).lighttimes3)
-        plot([one(1).lighttimes3(j), one(1).lighttimes3(j)], ylim, 'k-');
+    for j = 1:length(one(1).lighttimes4)
+        plot([one(1).lighttimes4(j), one(1).lighttimes4(j)], ylim, 'k-');
       
     end
 
@@ -263,21 +286,24 @@ figure(34); clf; hold on;
 
    for k = 1:length(one)
         
-       ax(k) = subplot(3,1,k);hold on; 
+       ax(k) = subplot(3,1,k); title('expecting 4 hours of light and get 12'); hold on; 
                %plot raw data for each fish
-               plot(one(k).timcont3, one(k).fft3, '.');
+               plot(one(k).timcont4, one(k).fft4, '.');
                %plot spline for each fish
-               plot(one(k).xx3, one(k).fftyy3, 'LineWidth', 3);
+               plot(one(k).xx4, one(k).fftyy4, 'LineWidth', 3);
                %add light transistion times as vertical lines
                clear j;
-               for j = 1:length(one(k).lighttimes3)
+               for j = 1:length(one(k).lighttimes4)
                    
-                   plot([one(k).lighttimes3(j), one(k).lighttimes3(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   plot([one(k).lighttimes4(j), one(k).lighttimes4(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
                end
                 
    end
 
 
-
 linkaxes(ax, 'x');
+
+figure(35); clf; hold on;
+
+    plot(one(1).xx4(1:end-1), diff(mmean4/3), 'k-','LineWidth', 5);
