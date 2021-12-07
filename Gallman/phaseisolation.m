@@ -84,7 +84,7 @@ figure(24); clf; title('expecting 12 dark, get 4'); hold on;
 
 %plot all splines on top of eachother
     for k = 1:length(one)
-    plot(one(k).xx1, one(k).fftyy1, 'LineWidth', 3);
+    plot(one(k).xx1, (one(k).fftyy2 - mean(one(k).fftyy2))/max(abs((one(k).fftyy2 - mean(one(k).fftyy2))), 'LineWidth', 3);
     end
 %plot light transitions
     for j = 1:length(one(1).lighttimes1)
