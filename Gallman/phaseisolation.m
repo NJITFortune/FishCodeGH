@@ -85,7 +85,7 @@ figure(24); clf; title('expecting 12 dark, get 4'); hold on;
 mmean = zeros(1, length(one(1).fftyy1));
 %plot all splines on top of eachother
     for k = 1:length(one)
-    plot(one(k).xx1, (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1)))), 'LineWidth', 3);
+    plot(one(k).xx1, (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1)))), 'LineWidth', 2);
     mmean = mmean + (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
     end
 
@@ -128,10 +128,13 @@ linkaxes(ax, 'x');
 %spline tranistion summary plot
 figure(28); clf; title('expecting 12 light get 4'); hold on;
 
+mmean2 = zeros(1, length(one(1).fftyy2));
 %plot all splines on top of eachother
     for k = 1:length(one)
-    plot(one(k).xx2, (one(k).fftyy2 - mean(one(k).fftyy2))/max(abs((one(k).fftyy2 - mean(one(k).fftyy2)))), 'LineWidth', 3);
+    plot(one(k).xx2, (one(k).fftyy2 - mean(one(k).fftyy2))/max(abs((one(k).fftyy2 - mean(one(k).fftyy2)))), 'LineWidth', 2);
+     mmean2 = mmean2 + (one(k).fftyy2 - mean(one(k).fftyy2))/max(abs((one(k).fftyy2 - mean(one(k).fftyy2))));
     end
+    plot(one(1).xx2, mmean2/3, 'k-','LineWidth', 5);
 %plot light transitions
     for j = 1:length(one(1).lighttimes2)
         plot([one(1).lighttimes2(j), one(1).lighttimes2(j)], ylim, 'k-');
