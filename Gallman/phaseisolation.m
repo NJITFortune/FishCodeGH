@@ -56,7 +56,7 @@ ReFs = 10;
     one(k).fft1 = one(k).fft(timcontidx);
 
 
-    %third transition - expecting 12 hours light, get 4
+  %third transition - expecting 12 hours light, get 4
     twidx2 = find(one(k).xx >= 198 & one(k).xx <= (198 + 48));
     twlightidx2 = find(one(k).lighttimes >= 198 & one(k).lighttimes <= (198 + 48));
     timcontidx2 = find(one(k).timcont >= 198 & one(k).timcont <= (198 + 48));
@@ -70,6 +70,22 @@ ReFs = 10;
     %raw data for plotting/spline check
     one(k).timcont2 = one(k).timcont(timcontidx2);
     one(k).fft2 = one(k).fft(timcontidx2);
+
+
+ %second transition - 4 hours to 12 hours
+    twidx3 = find(one(k).xx >= 113 & one(k).xx <= (114 + 48));
+    twlightidx3 = find(one(k).lighttimes >= 113 & one(k).lighttimes <= (114 + 48));
+    timcontidx3 = find(one(k).timcont >= 113 & one(k).timcont <= (114 + 48));
+
+    %spline
+    one(k).lighttimes3 = one(k).lighttimes(twlightidx3);
+    one(k).xx3 = one(k).xx(twidx3);
+    one(k).fftyy3 = one(k).fftyy(twidx3);
+    
+
+    %raw data for plotting/spline check
+    one(k).timcont3 = one(k).timcont(timcontidx3);
+    one(k).fft3 = one(k).fft(timcontidx3);
 
 
     end
@@ -165,3 +181,45 @@ figure(29); clf; hold on;
 
 linkaxes(ax, 'x');
    
+%% 2nd transition
+clear ax;
+
+%spline tranistion summary plot
+figure(30); clf; title('expecting 4 get 12'); hold on;
+
+mmean3 = zeros(1, length(one(1).fftyy3));
+%plot all splines on top of eachother
+    for k = 1:length(one)
+    plot(one(k).xx3, (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3)))), 'LineWidth', 2);
+     mmean3 = mmean3 + (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3))));
+    end
+    plot(one(1).xx3, mmean3/3, 'k-','LineWidth', 5);
+%plot light transitions
+    for j = 1:length(one(1).lighttimes3)
+        plot([one(1).lighttimes3(j), one(1).lighttimes3(j)], ylim, 'k-');
+      
+    end
+
+%individual splines plus raw data    
+figure(31); clf; hold on;
+
+   for k = 1:length(one)
+        
+       ax(k) = subplot(3,1,k);hold on; 
+               %plot raw data for each fish
+               plot(one(k).timcont3, one(k).fft3, '.');
+               %plot spline for each fish
+               plot(one(k).xx3, one(k).fftyy3, 'LineWidth', 3);
+               %add light transistion times as vertical lines
+               clear j;
+               for j = 1:length(one(k).lighttimes3)
+                   
+                   plot([one(k).lighttimes3(j), one(k).lighttimes3(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+                
+   end
+
+
+
+linkaxes(ax, 'x');
