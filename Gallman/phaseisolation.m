@@ -49,7 +49,7 @@ ReFs = 10;
     one(k).fftyy1 = one(k).fftyy(twidx1);
 
     %need to save into something
-    fouramp = load("Users/eric/Documents/MATLAB/fouramp.mat");
+    load("Users/eric/Documents/MATLAB/fouramp.mat");
     fourtim = zeros(1, length(fouramp));
     fourtim = fourtim(one(1).xx(1):1/length(fouramp):one(1).xx(end));
 
