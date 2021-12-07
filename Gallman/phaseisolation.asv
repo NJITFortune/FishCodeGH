@@ -80,7 +80,7 @@ ReFs = 10;
 %% plots - 1st transistion
 
 %spline tranistion summary plot
-figure(24); clf; hold on;
+figure(24); clf; title('expecting 12 dark, get 4'); hold on;
 
 %plot all splines on top of eachother
     for k = 1:length(one)
@@ -120,11 +120,11 @@ linkaxes(ax, 'x');
 %% 3rd transistion
 
 %spline tranistion summary plot
-figure(28); clf; hold on;
+figure(28); clf; title('expecting 12 light get 4'); hold on;
 
 %plot all splines on top of eachother
     for k = 1:length(one)
-    plot(one(k).xx2, one(k).fftyy2, 'LineWidth', 3);
+    plot(one(k).xx2, (one(k).fftyy2 - mean(one(k).fftyy2)/abs(, 'LineWidth', 3);
     end
 %plot light transitions
     for j = 1:length(one(1).lighttimes2)
@@ -133,7 +133,7 @@ figure(28); clf; hold on;
     end
 
 %individual splines plus raw data    
-figure(25); clf; hold on;
+figure(29); clf; hold on;
 
    for k = 1:length(one)
         
@@ -144,9 +144,9 @@ figure(25); clf; hold on;
                plot(one(k).xx2, one(k).fftyy2, 'LineWidth', 3);
                %add light transistion times as vertical lines
                clear j;
-               for j = 1:length(one(k).lighttimes1)
+               for j = 1:length(one(k).lighttimes2)
                    
-                   plot([one(k).lighttimes1(j), one(k).lighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   plot([one(k).lighttimes2(j), one(k).lighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
                end
                 
