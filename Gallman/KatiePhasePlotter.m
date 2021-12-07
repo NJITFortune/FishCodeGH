@@ -32,7 +32,6 @@ ReFs = 10;
 %% plots
 %all together
 figure(42); clf; title('phase plots by fish'); hold on;
-
     for k = 1:length(one)
         
        ax(k) = subplot(16,1,k);hold on; 
@@ -49,6 +48,7 @@ figure(42); clf; title('phase plots by fish'); hold on;
                end
                 
     end
+    
     
     for kk = 1:length(two)
 
