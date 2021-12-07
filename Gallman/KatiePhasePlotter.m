@@ -88,7 +88,7 @@ figure(42); clf; title('phase plots by fish'); hold on;
  
 linkaxes(ax, 'x');
 
-
+%% by experiment
 
 %by experiment
 %exp 1
@@ -113,7 +113,7 @@ clear k;
 clear ax;
     for k = 1:4
         
-       ax(k) = subplot(6,1,k);hold on; 
+       ax(k) = subplot(6,1,k); title(hold on; 
                %plot raw data for each fish
                plot(one(k).timcont, one(k).fft, '.', 'Color', turq);
                %plot spline for each fish
