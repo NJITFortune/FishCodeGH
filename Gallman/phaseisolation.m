@@ -199,7 +199,7 @@ linkaxes(ax, 'x');
 clear ax;
 
 %spline tranistion summary plot
-figure(30); clf; title('expecting 4 get 12'); hold on;
+figure(30); clf; title('expecting 4 hours of dark and get 12'); hold on;
 
 mmean3 = zeros(1, length(one(1).fftyy3));
 %plot all splines on top of eachother
@@ -243,7 +243,7 @@ linkaxes(ax, 'x');
 clear ax;
 
 %spline tranistion summary plot
-figure(33); clf; title('expecting 4 get 12'); hold on;
+figure(33); clf; title('expecting 4 hours of light and get 12'); hold on;
 
 mmean4 = zeros(1, length(one(1).fftyy4));
 %plot all splines on top of eachother
