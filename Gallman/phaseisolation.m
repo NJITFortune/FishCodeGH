@@ -51,7 +51,7 @@ ReFs = 10;
     %need to save into something
     fouramp = load("Users/eric/Documents/MATLAB/fouramp.mat");
     fourtim = zeros(1, length(fouramp));
-    fourtim = fourtim(one(1).xx(1):one(1).xx(1)+length(fouramp));
+    fourtim = fourtim(one(1).xx(1):1/length(fouramp):one(1).xx(end));
 
 
     %raw data for plotting/spline check
