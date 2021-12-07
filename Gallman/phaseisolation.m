@@ -41,6 +41,7 @@ ReFs = 10;
     %first transistion idx
     twidx1 = find(one(k).xx >= one(k).lighttimes(3) & one(k).xx <= (one(k).lighttimes(3) + 48));
     twlightidx = find(one(k).lighttimes >= one(k).lighttimes(3) & one(k).lighttimes <= (one(k).lighttimes(3) + 48));
+   
     
 
     one(k).lighttimes1 = one(k).lighttimes(twlightidx);
@@ -48,10 +49,11 @@ ReFs = 10;
     one(k).fftyy1 = one(k).fftyy(twidx1);
 
     %raw data for plotting/spline check
-    one(k).timcont = [kg(exp1idx(k)).e(1).s.timcont]/3600;
-    one(k).timcont1 = one(k).timcont(twidx1);
+    one(k).timcont = [kg(exp1idx(k)).e(1).s.timcont]/3600;  
+ timcontidx = find(one(k).timcont >= one(k).lighttimes(3) & one(k).timcont <= (one(k).lighttimes(3) + 48));
+    one(k).timcont1 = one(k).timcont(timcontidx);
     one(k).fft = [kg(exp1idx(k)).e(1).s.sumfftAmp];
-    one(k).fft1 = one(k).fft(twidx1);
+    one(k).fft1 = one(k).fft(timcontidx);
 
 
     end
