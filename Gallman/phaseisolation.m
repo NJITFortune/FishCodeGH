@@ -133,7 +133,7 @@ figure(28); clf; title('expecting 12 light get 4'); hold on;
     end
 
 %individual splines plus raw data    
-figure(25); clf; hold on;
+figure(29); clf; hold on;
 
    for k = 1:length(one)
         
