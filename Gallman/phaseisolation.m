@@ -89,7 +89,7 @@ mmean = zeros(1, length(one(1).fftyy1));
     mmean = mmean + (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
     end
 
-    plot(one(1).xx1, mmean/3, 'k-','LineWidth', 3);
+    plot(one(1).xx1, mmean/3, 'k-','LineWidth', 5);
 %plot light transitions
     for j = 1:length(one(1).lighttimes1)
         plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
