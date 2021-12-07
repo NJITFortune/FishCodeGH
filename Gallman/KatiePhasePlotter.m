@@ -90,76 +90,73 @@ linkaxes(ax, 'x');
 
 
 
+%by experiment
+%exp 1
+%colors
+%single fish
+turq = [64/255, 224/255, 208/255];
+darkcy = [0/255, 139/255 139/255];
+%multi fish
+lightsky = [135/255 206/255 235/255];
+deepsky = [0/255 191/255 255/255];
 
+figure(43); clf; title('phase plots by fish'); hold on;
+clear k;
+clear ax;
+    for k = 1:4
+        
+       ax(k) = subplot(6,1,k);hold on; 
+               %plot raw data for each fish
+               plot(one(k).timcont, one(k).fft, '.', 'Color', turq);
+               %plot spline for each fish
+               plot(one(k).xx, one(k).fftyy, 'LineWidth', 2, 'Color', darkcy);
+               %add light transistion times as vertical lines
+               clear j;
+               for j = 1:length(one(k).lighttimes)
+                   
+                   plot([one(k).lighttimes(j), one(k).lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+                
+    end
+clear kk;    
+    for kk = 1:1
 
+    
+        
+        ax(k +kk) = subplot(6,1,(k +kk)); hold on;
 
-% %by experiment
-% %exp 1
-% %colors
-% %single fish
-% turq = [64/255, 224/255, 208/255];
-% darkcy = [0/255, 139/255 139/255];
-% %multi fish
-% lightsky = [135/255 206/255 235/255];
-% deepsky = [0/255 191/255 255/255];
-% 
-% figure(43); clf; title('phase plots by fish'); hold on;
-% clear k;
-% clear ax;
-%     for k = 1:4
-%         
-%        ax(k) = subplot(6,1,k);hold on; 
-%                %plot raw data for each fish
-%                plot(one(k).timcont, one(k).fft, '.', 'Color', turq);
-%                %plot spline for each fish
-%                plot(one(k).xx, one(k).fftyy, 'LineWidth', 2, 'Color', darkcy);
-%                %add light transistion times as vertical lines
-%                clear j;
-%                for j = 1:length(one(k).lighttimes)
-%                    
-%                    plot([one(k).lighttimes(j), one(k).lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-%                    
-%                end
-%                 
-%     end
-% clear kk;    
-%     for kk = 1:1
-% 
+                    plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', lightsky);
+                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', deepsky);
+                    clear j;
+                    for j = 1:length(two(kk).Hilighttimes)
+
+                        plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+                    end
+
+        
+    end
+    clear kkk;
+    for kkk = 1:1
+        
+        a = (k + kk + kkk);
+        
+        ax(k+ kk + kkk) = subplot(6,1,a); hold on;
+
+                        plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', lightsky);
+                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', deepsky);
+                        
+                        clear j;
+                        for j = 1:length(two(kkk).Lolighttimes)
+                            
+                            plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+                            
+                        end
+                    
+    end
 %     
-%         
-%         ax(k +kk) = subplot(6,1,(k +kk)); hold on;
-% 
-%                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', lightsky);
-%                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', deepsky);
-%                     clear j;
-%                     for j = 1:length(two(kk).Hilighttimes)
-% 
-%                         plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-%                     end
-% 
-%         
-%     end
-%     clear kkk;
-%     for kkk = 1:1
-%         
-%         a = (k + kk + kkk);
-%         
-%         ax(k+ kk + kkk) = subplot(6,1,a); hold on;
-% 
-%                         plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', lightsky);
-%                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', deepsky);
-%                         
-%                         clear j;
-%                         for j = 1:length(two(kkk).Lolighttimes)
-%                             
-%                             plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-%                             
-%                         end
-%                     
-%     end
-% %     
-%  
-% linkaxes(ax, 'x');
+ 
+linkaxes(ax, 'x');
 %                     
 %                     
 %                     
