@@ -8,14 +8,13 @@ light = 3;
 
 
 
-for j = 1:length(lighttimes/2)
+
     
-    if lighttimes(j+1) - lighttimes(j) == 24 & lighttimes(j+3) - lighttimes(j+2) == 4
-        twidx1 = find(xx >= lighttimes(j) & xx <= (lighttimes(j) + 48));
-    end
-        
     
-end
+        twidx1 = find(xx >= lighttimes(3) & xx <= (lighttimes(3) + 48));
+
+    
+
 
 figure(23); clf; hold on;
 plot(xx(twidx1), fftyy(twidx1));
