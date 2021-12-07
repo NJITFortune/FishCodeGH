@@ -68,8 +68,8 @@ ReFs = 10;
     
 
     %raw data for plotting/spline check
-    one(k).timcont1 = one(k).timcont(timcontidx2);
-    one(k).fft1 = one(k).fft(timcontidx2);
+    one(k).timcont2 = one(k).timcont(timcontidx2);
+    one(k).fft2 = one(k).fft(timcontidx2);
 
 
     end
