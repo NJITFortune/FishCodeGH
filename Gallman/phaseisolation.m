@@ -1,4 +1,4 @@
-clearvars -except kg kg2
+%clearvars -except kg kg2
 %% single fish test case
 in = kg(64);
 channel = 1; 
