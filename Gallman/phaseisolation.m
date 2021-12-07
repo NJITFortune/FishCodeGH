@@ -29,7 +29,7 @@ channel = 1;
 ReFs = 10;
 
 %% kg data index
- exp1idx = [64 65 66 67];
+ exp1idx = [64 66 67];
  
  %get the spline estimates for each sample
     for k = 1:length(exp1idx)
@@ -39,8 +39,8 @@ ReFs = 10;
     [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp1idx(k)), channel, ReFs, light);
 
     %first transistion idx
-    %twidx1 = find(one(k).xx >= one(k).lighttimes(3) & one(k).xx <= (one(k).lighttimes(3) + 48));
-    %twlightidx = find(one(k).lighttimes >= one(k).lighttimes(3) & one(k).lighttimes <= (one(k).lighttimes(3) + 48));
+    twidx1 = find(one(k).xx >= one(k).lighttimes(3) & one(k).xx <= (one(k).lighttimes(3) + 48));
+    twlightidx = find(one(k).lighttimes >= one(k).lighttimes(3) & one(k).lighttimes <= (one(k).lighttimes(3) + 48));
     
 
     one(k).lighttimes1 = one(k).lighttimes(twlightidx);
@@ -89,7 +89,9 @@ figure(25); clf; hold on;
                    
                end
                 
-    end
+   end
+
+   
 
 linkaxes(ax, 'x');
    
