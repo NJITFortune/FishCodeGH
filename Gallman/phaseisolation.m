@@ -147,10 +147,17 @@ figure(25); clf; hold on;
                end
                 
    end
-
-
-
 linkaxes(ax, 'x');
+ figure(26); clf; hold on;
+
+    plot(one(1).xx1(1:end-1), diff(mmean/3), 'k-','LineWidth', 5);
+    for j = 1:length(one(1).lighttimes1)
+        plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
+      
+    end
+
+
+
 
 
 %% 3rd transistion
@@ -190,10 +197,18 @@ figure(29); clf; hold on;
                end
                 
    end
-
-
-
 linkaxes(ax, 'x');
+
+ figure(27); clf; hold on;
+
+plot(one(1).xx2(1:end-1), diff(mmean2/3), 'k-','LineWidth', 5);
+%plot light transitions
+    for j = 1:length(one(1).lighttimes2)
+        plot([one(1).lighttimes2(j), one(1).lighttimes2(j)], ylim, 'k-');
+      
+    end
+
+
    
 %% 2nd transition
 clear ax;
@@ -235,8 +250,16 @@ figure(31); clf; hold on;
    end
 
 
-
 linkaxes(ax, 'x');
+
+figure(32); clf; hold on;
+    plot(one(1).xx3(1:end-1), diff(mmean3/3), 'k-','LineWidth', 5);
+    %plot light transitions
+    for j = 1:length(one(1).lighttimes3)
+        plot([one(1).lighttimes3(j), one(1).lighttimes3(j)], ylim, 'k-');
+      
+    end
+
 
 %% 4th transition
 
@@ -279,5 +302,13 @@ figure(34); clf; hold on;
    end
 
 
-
 linkaxes(ax, 'x');
+
+figure(35); clf; hold on;
+
+    plot(one(1).xx4(1:end-1), diff(mmean4/3), 'k-','LineWidth', 5);
+    %plot light transitions
+    for j = 1:length(one(1).lighttimes4)
+        plot([one(1).lighttimes4(j), one(1).lighttimes4(j)], ylim, 'k-');
+      
+    end
