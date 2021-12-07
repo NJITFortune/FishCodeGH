@@ -50,6 +50,7 @@ ReFs = 10;
 
     %need to save into something
     fouramp = load("Users/eric/Documents/MATLAB/fouramp.mat");
+    fourtim = 
 
 
     %raw data for plotting/spline check
