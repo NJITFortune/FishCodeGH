@@ -49,8 +49,9 @@ ReFs = 10;
     one(k).fftyy1 = one(k).fftyy(twidx1);
 
     %need to save into something
-    fouramp = cc;
-    
+    cc
+    cctim = 
+
 
     %raw data for plotting/spline check
     one(k).timcont = [kg(exp1idx(k)).e(1).s.timcont]/3600;  
