@@ -49,7 +49,9 @@ ReFs = 10;
     one(k).fftyy1 = one(k).fftyy(twidx1);
 
     %need to save into something
-    loa
+    fouramp = load("Users/eric/Documents/MATLAB/fouramp.mat");
+    fourtim = zeros(1, length(fouramp));
+    fourtim = fourtim(one(1).xx(1)::one(1).xx(end));
 
 
     %raw data for plotting/spline check
@@ -124,6 +126,7 @@ mmean = zeros(1, length(one(1).fftyy1));
     end
 
     plot(one(1).xx1, mmean/3, 'k-','LineWidth', 5);
+    plot(fourtim, fouramp, 'c-', 'LineWidth', 5);
 %plot light transitions
     for j = 1:length(one(1).lighttimes1)
         plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
