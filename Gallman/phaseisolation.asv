@@ -1,4 +1,4 @@
-clearvars -except kg kg2
+clearvars -except kg kg2 cc
 %% single fish test case
 in = kg(64);
 channel = 1; 
@@ -47,6 +47,10 @@ ReFs = 10;
     one(k).lighttimes1 = one(k).lighttimes(twlightidx1);
     one(k).xx1 = one(k).xx(twidx1);
     one(k).fftyy1 = one(k).fftyy(twidx1);
+
+    %need to save into something
+    loa
+
 
     %raw data for plotting/spline check
     one(k).timcont = [kg(exp1idx(k)).e(1).s.timcont]/3600;  
@@ -307,3 +311,8 @@ linkaxes(ax, 'x');
 figure(35); clf; hold on;
 
     plot(one(1).xx4(1:end-1), diff(mmean4/3), 'k-','LineWidth', 5);
+    %plot light transitions
+    for j = 1:length(one(1).lighttimes4)
+        plot([one(1).lighttimes4(j), one(1).lighttimes4(j)], ylim, 'k-');
+      
+    end
