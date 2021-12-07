@@ -165,6 +165,13 @@ clear kk;
 %     
  
 linkaxes(ax, 'x');
+
+
+
+
+
+
+
 %                     
 %                     
 %                     
