@@ -87,6 +87,20 @@ ReFs = 10;
     one(k).timcont3 = one(k).timcont(timcontidx3);
     one(k).fft3 = one(k).fft(timcontidx3);
 
+  %fourth transition - 4 hours to 12 hours
+    twidx4 = find(one(k).xx >= 294 & one(k).xx <= (294 + 48));
+    twlightidx4 = find(one(k).lighttimes >= 294 & one(k).lighttimes <= (294 + 48));
+    timcontidx4 = find(one(k).timcont >= 294 & one(k).timcont <= (294 + 48));
+
+    %spline
+    one(k).lighttimes4 = one(k).lighttimes(twlightidx4);
+    one(k).xx4 = one(k).xx(twidx4);
+    one(k).fftyy4 = one(k).fftyy(twidx4);
+    
+
+    %raw data for plotting/spline check
+    one(k).timcont4 = one(k).timcont(timcontidx4);
+    one(k).fft4 = one(k).fft(timcontidx4);
 
     end
 
@@ -182,6 +196,7 @@ figure(29); clf; hold on;
 linkaxes(ax, 'x');
    
 %% 2nd transition
+clear ax;
 
 %spline tranistion summary plot
 figure(30); clf; title('expecting 4 get 12'); hold on;
@@ -190,12 +205,12 @@ mmean3 = zeros(1, length(one(1).fftyy3));
 %plot all splines on top of eachother
     for k = 1:length(one)
     plot(one(k).xx3, (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3)))), 'LineWidth', 2);
-     mmean2 = mmean2 + (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3))));
+     mmean3 = mmean3 + (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3))));
     end
-    plot(one(1).xx2, mmean2/3, 'k-','LineWidth', 5);
+    plot(one(1).xx3, mmean3/3, 'k-','LineWidth', 5);
 %plot light transitions
-    for j = 1:length(one(1).lighttimes2)
-        plot([one(1).lighttimes2(j), one(1).lighttimes2(j)], ylim, 'k-');
+    for j = 1:length(one(1).lighttimes3)
+        plot([one(1).lighttimes3(j), one(1).lighttimes3(j)], ylim, 'k-');
       
     end
 
@@ -206,14 +221,58 @@ figure(31); clf; hold on;
         
        ax(k) = subplot(3,1,k);hold on; 
                %plot raw data for each fish
-               plot(one(k).timcont2, one(k).fft2, '.');
+               plot(one(k).timcont3, one(k).fft3, '.');
                %plot spline for each fish
-               plot(one(k).xx2, one(k).fftyy2, 'LineWidth', 3);
+               plot(one(k).xx3, one(k).fftyy3, 'LineWidth', 3);
                %add light transistion times as vertical lines
                clear j;
-               for j = 1:length(one(k).lighttimes2)
+               for j = 1:length(one(k).lighttimes3)
                    
-                   plot([one(k).lighttimes2(j), one(k).lighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   plot([one(k).lighttimes3(j), one(k).lighttimes3(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+                
+   end
+
+
+
+linkaxes(ax, 'x');
+
+%% 4th transition
+
+clear ax;
+
+%spline tranistion summary plot
+figure(33); clf; title('expecting 4 get 12'); hold on;
+
+mmean4 = zeros(1, length(one(1).fftyy4));
+%plot all splines on top of eachother
+    for k = 1:length(one)
+    plot(one(k).xx4, (one(k).fftyy4 - mean(one(k).fftyy4))/max(abs((one(k).fftyy4 - mean(one(k).fftyy4)))), 'LineWidth', 2);
+     mmean4 = mmean4 + (one(k).fftyy4 - mean(one(k).fftyy4))/max(abs((one(k).fftyy4 - mean(one(k).fftyy4))));
+    end
+    plot(one(1).xx4, mmean4/3, 'k-','LineWidth', 5);
+%plot light transitions
+    for j = 1:length(one(1).lighttimes3)
+        plot([one(1).lighttimes3(j), one(1).lighttimes3(j)], ylim, 'k-');
+      
+    end
+
+%individual splines plus raw data    
+figure(34); clf; hold on;
+
+   for k = 1:length(one)
+        
+       ax(k) = subplot(3,1,k);hold on; 
+               %plot raw data for each fish
+               plot(one(k).timcont3, one(k).fft3, '.');
+               %plot spline for each fish
+               plot(one(k).xx3, one(k).fftyy3, 'LineWidth', 3);
+               %add light transistion times as vertical lines
+               clear j;
+               for j = 1:length(one(k).lighttimes3)
+                   
+                   plot([one(k).lighttimes3(j), one(k).lighttimes3(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
                end
                 
