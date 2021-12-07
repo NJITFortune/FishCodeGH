@@ -87,6 +87,20 @@ ReFs = 10;
     one(k).timcont3 = one(k).timcont(timcontidx3);
     one(k).fft3 = one(k).fft(timcontidx3);
 
+  %fourth transition - 4 hours to 12 hours
+    twidx4 = find(one(k).xx >= 113 & one(k).xx <= (114 + 48));
+    twlightidx3 = find(one(k).lighttimes >= 113 & one(k).lighttimes <= (114 + 48));
+    timcontidx3 = find(one(k).timcont >= 113 & one(k).timcont <= (114 + 48));
+
+    %spline
+    one(k).lighttimes3 = one(k).lighttimes(twlightidx3);
+    one(k).xx3 = one(k).xx(twidx3);
+    one(k).fftyy3 = one(k).fftyy(twidx3);
+    
+
+    %raw data for plotting/spline check
+    one(k).timcont3 = one(k).timcont(timcontidx3);
+    one(k).fft3 = one(k).fft(timcontidx3);
 
     end
 
