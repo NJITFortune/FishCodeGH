@@ -49,8 +49,7 @@ ReFs = 10;
     one(k).fftyy1 = one(k).fftyy(twidx1);
 
     %need to save into something
-    cc
-    cctim = 
+    fouramp = load("Users/eric/Documents/MATLAB/fouramp.mat");
 
 
     %raw data for plotting/spline check
