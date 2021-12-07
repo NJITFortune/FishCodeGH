@@ -65,7 +65,7 @@ figure(24); clf; hold on;
 
 %plot all splines on top of eachother
     for k = 1:length(one)
-    plot(one(k).xx1, one(k).fftyy1);
+    plot(one(k).xx1, one(k).fftyy1, 'LineWidth', 3);
     end
 %plot light transitions
     for j = 1:length(one(1).lighttimes1)
@@ -82,7 +82,7 @@ figure(25); clf; hold on;
                %plot raw data for each fish
                plot(one(k).timcont1, one(k).fft1, '.');
                %plot spline for each fish
-               plot(one(k).xx1, one(k).fftyy1, 'LineWidth', 2);
+               plot(one(k).xx1, one(k).fftyy1, 'LineWidth', 3);
                %add light transistion times as vertical lines
                clear j;
                for j = 1:length(one(k).lighttimes1)
