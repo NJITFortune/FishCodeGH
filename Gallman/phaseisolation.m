@@ -77,7 +77,7 @@ ReFs = 10;
 
  
 
-%% plots
+%% plots - 1st transistion
 
 %spline tranistion summary plot
 figure(24); clf; hold on;
@@ -117,7 +117,8 @@ figure(25); clf; hold on;
 linkaxes(ax, 'x');
 
 
-%%
+%% 3rd transistion
+
 %spline tranistion summary plot
 figure(28); clf; hold on;
 
@@ -126,8 +127,8 @@ figure(28); clf; hold on;
     plot(one(k).xx2, one(k).fftyy2, 'LineWidth', 3);
     end
 %plot light transitions
-    for j = 1:length(one(1).lighttimes1)
-        plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
+    for j = 1:length(one(1).lighttimes2)
+        plot([one(1).lighttimes2(j), one(1).lighttimes2(j)], ylim, 'k-');
       
     end
 
@@ -143,9 +144,9 @@ figure(25); clf; hold on;
                plot(one(k).xx2, one(k).fftyy2, 'LineWidth', 3);
                %add light transistion times as vertical lines
                clear j;
-               for j = 1:length(one(k).lighttimes1)
+               for j = 1:length(one(k).lighttimes2)
                    
-                   plot([one(k).lighttimes1(j), one(k).lighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   plot([one(k).lighttimes2(j), one(k).lighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
                end
                 
