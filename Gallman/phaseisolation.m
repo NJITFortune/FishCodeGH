@@ -80,7 +80,7 @@ ReFs = 10;
 %% plots - 1st transistion
 
 %spline tranistion summary plot
-figure(24); clf; hold on;
+figure(24); clf; title('expecting 12 dark, get 4'); hold on;
 
 %plot all splines on top of eachother
     for k = 1:length(one)
@@ -120,7 +120,7 @@ linkaxes(ax, 'x');
 %% 3rd transistion
 
 %spline tranistion summary plot
-figure(28); clf; hold on;
+figure(28); clf; title('expecting 12 light get 4'); hold on;
 
 %plot all splines on top of eachother
     for k = 1:length(one)
