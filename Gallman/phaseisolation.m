@@ -55,15 +55,22 @@ ReFs = 10;
 
 %% plots
 
+%spline tranistion summary plot
 figure(24); clf; hold on;
+
+%plot all splines on top of eachother
     for k = 1:length(one)
     plot(one(k).xx1, one(k).fftyy1);
+    end
+%plot light transitions
+    for j = 1:length(one(1).lighttimes1)
+        plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
+      
+    end
 
+%individual splines plus raw data    
+figure(25); clf; hold on;
 
-for j = 1:length(one(1).lighttimes1)
-    plot([lesslight(j), lesslight(j)], ylim, 'k-');
-    
-end
 
 
 
