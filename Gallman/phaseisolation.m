@@ -38,7 +38,7 @@ ReFs = 10;
     %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
     [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp1idx(k)), channel, ReFs, light);
 
-    %first transistion idx
+    %first transistion idx - expecting 12 dark, get 4
     twidx1 = find(one(k).xx >= one(k).lighttimes(3) & one(k).xx <= (one(k).lighttimes(3) + 48));
     twlightidx = find(one(k).lighttimes >= one(k).lighttimes(3) & one(k).lighttimes <= (one(k).lighttimes(3) + 48));
    
@@ -56,7 +56,14 @@ ReFs = 10;
     one(k).fft1 = one(k).fft(timcontidx);
 
 
+    %third transition - expecting 12 hours light, get 4
+    twidx2 = find(one(k).xx >= one(k).lighttimes(3) & one(k).xx <= (one(k).lighttimes(3) + 48));
+    
+
     end
+
+
+ 
 
 %% plots
 

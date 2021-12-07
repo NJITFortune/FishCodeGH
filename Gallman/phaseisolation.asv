@@ -1,3 +1,4 @@
+clearvars -except kg kg2
 %% single fish test case
 in = kg(64);
 channel = 1; 
@@ -28,7 +29,7 @@ channel = 1;
 ReFs = 10;
 
 %% kg data index
- exp1idx = [64 65 66 67];
+ exp1idx = [64 66 67];
  
  %get the spline estimates for each sample
     for k = 1:length(exp1idx)
@@ -37,9 +38,10 @@ ReFs = 10;
     %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
     [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp1idx(k)), channel, ReFs, light);
 
-    %first transistion idx
+    %first transistion idx - expecting 12 dark, get 4
     twidx1 = find(one(k).xx >= one(k).lighttimes(3) & one(k).xx <= (one(k).lighttimes(3) + 48));
     twlightidx = find(one(k).lighttimes >= one(k).lighttimes(3) & one(k).lighttimes <= (one(k).lighttimes(3) + 48));
+   
     
 
     one(k).lighttimes1 = one(k).lighttimes(twlightidx);
@@ -47,23 +49,58 @@ ReFs = 10;
     one(k).fftyy1 = one(k).fftyy(twidx1);
 
     %raw data for plotting/spline check
-    one(k).timcont = [kg(exp1idx(k)).e(1).s(twidx1).timcont]/3600;
-    one(k).fft = [kg(exp1idx(k)).e(1).s(twidx1).sumfftAmp];
+    one(k).timcont = [kg(exp1idx(k)).e(1).s.timcont]/3600;  
+ timcontidx = find(one(k).timcont >= one(k).lighttimes(3) & one(k).timcont <= (one(k).lighttimes(3) + 48));
+    one(k).timcont1 = one(k).timcont(timcontidx);
+    one(k).fft = [kg(exp1idx(k)).e(1).s.sumfftAmp];
+    one(k).fft1 = one(k).fft(timcontidx);
 
+
+    %third transition - expecting 12 hours light, get 4
+    twidx2 = find(one(k).xx >= one(k).lighttimes(3) & one(k).xx <= (one(k).lighttimes(3) + 48));
+    
 
     end
 
+
+ 
+
 %% plots
 
+%spline tranistion summary plot
 figure(24); clf; hold on;
+
+%plot all splines on top of eachother
     for k = 1:length(one)
-    plot(one(k).xx1, one(k).fftyy1)
-lesslight = lighttimes(twlightidx);
-for k = 1:length(lesslight)
-    plot([lesslight(k), lesslight(k)], ylim, 'k-');
-    
-end
+    plot(one(k).xx1, one(k).fftyy1, 'LineWidth', 3);
+    end
+%plot light transitions
+    for j = 1:length(one(1).lighttimes1)
+        plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
+      
+    end
+
+%individual splines plus raw data    
+figure(25); clf; hold on;
+
+   for k = 1:length(one)
+        
+       ax(k) = subplot(3,1,k);hold on; 
+               %plot raw data for each fish
+               plot(one(k).timcont1, one(k).fft1, '.');
+               %plot spline for each fish
+               plot(one(k).xx1, one(k).fftyy1, 'LineWidth', 3);
+               %add light transistion times as vertical lines
+               clear j;
+               for j = 1:length(one(k).lighttimes1)
+                   
+                   plot([one(k).lighttimes1(j), one(k).lighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+                
+   end
 
 
 
+linkaxes(ax, 'x');
    
