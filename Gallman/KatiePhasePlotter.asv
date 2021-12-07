@@ -88,7 +88,7 @@ figure(42); clf; title('phase plots by fish'); hold on;
  
 linkaxes(ax, 'x');
 
-
+%% by experiment
 
 %by experiment
 %exp 1
@@ -99,17 +99,25 @@ darkcy = [0/255, 139/255 139/255];
 %multi fish
 lightsky = [135/255 206/255 235/255];
 deepsky = [0/255 191/255 255/255];
+%colors
+%single fish
+lightsalmon = [255/255 160/255 122/255];
+salmon = [250/255 128/255 114/255];
+%multi fish
+paleV = [219/255 112/255 147/255];
+mediumV = [199/255 21/255 133/255];
+
 
 figure(43); clf; title('phase plots by fish'); hold on;
 clear k;
 clear ax;
     for k = 1:4
         
-       ax(k) = subplot(6,1,k);hold on; 
+       ax(k) = subplot(6,1,k); title(num2str(onefish124idx(k)));hold on; 
                %plot raw data for each fish
                plot(one(k).timcont, one(k).fft, '.', 'Color', turq);
                %plot spline for each fish
-               plot(one(k).xx, one(k).fftyy, 'LineWidth', 2, 'Color', deepsky);
+               plot(one(k).xx, one(k).fftyy, 'LineWidth', 2, 'Color', mediumV);
                %add light transistion times as vertical lines
                clear j;
                for j = 1:length(one(k).lighttimes)
@@ -127,7 +135,7 @@ clear kk;
         ax(k +kk) = subplot(6,1,(k +kk)); hold on;
 
                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', lightsky);
-                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', darkcy);
+                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', mediumV);
                     clear j;
                     for j = 1:length(two(kk).Hilighttimes)
 
@@ -144,7 +152,7 @@ clear kk;
         ax(k+ kk + kkk) = subplot(6,1,a); hold on;
 
                         plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', lightsky);
-                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', deepsky);
+                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', mediumV);
                         
                         clear j;
                         for j = 1:length(two(kkk).Lolighttimes)

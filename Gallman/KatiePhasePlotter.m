@@ -113,7 +113,7 @@ clear k;
 clear ax;
     for k = 1:4
         
-       ax(k) = subplot(6,1,k); title('num2str(onefish124idx(k)');hold on; 
+       ax(k) = subplot(6,1,k); title(num2str(onefish124idx(k)));hold on; 
                %plot raw data for each fish
                plot(one(k).timcont, one(k).fft, '.', 'Color', turq);
                %plot spline for each fish
