@@ -52,7 +52,7 @@ ReFs = 10;
     load("Users/eric/Documents/MATLAB/fouramp.mat");
     fouramp = cc;
     fourtim = zeros(1, length(fouramp));
-    fourtim = fourtim(one(1).xx(1):0.1:one(1).xx(1)+(length(fouramp)*0.1));
+    fourtim = fourtim(one(1).xx(1):0.1:one(1).xx(1)+((length(fouramp)-1)*0.1));
 
 
     %raw data for plotting/spline check
