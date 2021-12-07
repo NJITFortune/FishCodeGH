@@ -34,7 +34,7 @@ ReFs = 10;
 figure(42); clf; title('phase plots by fish'); hold on;
     for k = 1:length(one)
         
-       ax(k) = subplot(16,1,k);hold on; 
+       ax(k) = subplot(16,1,k); title(num2str(onefish124idx(k))); hold on;
                %plot raw data for each fish
                plot(one(k).timcont, one(k).fft, '.');
                %plot spline for each fish
