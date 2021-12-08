@@ -43,8 +43,8 @@ ReFs = 10;
         load("Users/eric/Documents/MATLAB/twelveamp.mat");
         twelveamp = dd;
         fouramp = cc;
-        fourtim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(fouramp)-1)*0.1);
-        twelvetim1 = one(1).xx1(1):0.1:one(1)xx1(1)+((length(twelveamp)-1)*0.1);
+        fourtim = one(1).xx(1):0.1:one(1).xx(1)+((length(fouramp)-1)*0.1);
+        twelvetim = one(1).xx(1):0.1:one(1).xx(1)+((length(twelveamp)-1)*0.1);
     
 
   %twelve hour to four hour transistions
