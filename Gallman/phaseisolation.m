@@ -32,11 +32,11 @@ ReFs = 10;
  exp2idx = [68 69 70]; %71 is too short for easy coding
  
  %get the spline estimates for each sample
-        for k = 1:length(exp1idx)
+        for k = 1:length(exp2idx)
     
        
         %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
-        [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp1idx(k)), channel, ReFs, light);
+        [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp2idx(k)), channel, ReFs, light);
   
 %need to save into something
         addpath('/Users/eric/Documents/MATLAB');
@@ -66,10 +66,10 @@ ReFs = 10;
     
     
         %raw data for plotting/spline check
-        one(k).timcont = [kg(exp1idx(k)).e(1).s.timcont]/3600;  
+        one(k).timcont = [kg(exp2idx(k)).e(1).s.timcont]/3600;  
         timcontidx = find(one(k).timcont >= one(k).lighttimes(3) & one(k).timcont <= (one(k).lighttimes(3) + 48));
         one(k).timcont1 = one(k).timcont(timcontidx);
-        one(k).fft = [kg(exp1idx(k)).e(1).s.sumfftAmp];
+        one(k).fft = [kg(exp2idx(k)).e(1).s.sumfftAmp];
         one(k).fft1 = one(k).fft(timcontidx);
     
     
@@ -122,7 +122,7 @@ ReFs = 10;
         end
 
 %% multifish data 
-[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(16), ReFs, light);
+[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(18), ReFs, light);
 
 %% plots - 
 salmon = [250/255 128/255 114/255];
