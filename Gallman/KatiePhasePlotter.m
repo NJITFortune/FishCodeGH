@@ -189,7 +189,7 @@ clear k;
 clear ax;
     for k = 5:8
         
-       ax(k) = subplot(6,1,k);hold on; 
+       ax(k) = subplot(8,1,k);hold on; 
                %plot raw data for each fish
                plot(one(k).timcont, one(k).fft, '.', 'Color', lightsalmon);
                %plot spline for each fish
@@ -208,7 +208,7 @@ clear kk;
 
     
         
-        ax(k +kk) = subplot(6,1,(k +kk)); hold on;
+        ax(k +kk) = subplot(8,1,(k +kk)); hold on;
 
                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', paleV);
                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', mediumV);
@@ -225,7 +225,7 @@ clear kk;
         
         a = (k + kk + kkk);
         
-        ax(k+ kk + kkk) = subplot(6,1,a); hold on;
+        ax(k+ kk + kkk) = subplot(8,1,a); hold on;
 
                         plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', paleV);
                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', mediumV);
