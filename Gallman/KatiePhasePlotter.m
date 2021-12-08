@@ -20,7 +20,7 @@ ReFs = 10;
     end
 %% kg data exp2
 
- exp2idx = [ 68 69 70 71];
+ exp2idx = [68 69 70 71];
  
  %get the spline estimates for each sample
  clear k;
