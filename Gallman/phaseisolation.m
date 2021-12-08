@@ -191,7 +191,7 @@ mmean = zeros(1, length(one(1).fftyy1));
     end
 
     plot(one(1).xx1, mmean/3, 'k-','LineWidth', 5);
-    plot(fourtim, fouramp, 'c-', 'LineWidth', 5);
+   
 %plot light transitions
     for j = 1:length(one(1).lighttimes1)
         plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
