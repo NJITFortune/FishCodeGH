@@ -207,14 +207,14 @@ clear ax;
         
        ax(k) = subplot(6,1,k); title(num2str(exp2idx(k))); hold on; 
                %plot raw data for each fish
-               plot(dos(k).timcont, one(k).fft, '.', 'Color', lightsalmon);
+               plot(dos(k).timcont, dos(k).fft, '.', 'Color', lightsalmon);
                %plot spline for each fish
-               plot(one(k).xx, one(k).fftyy, 'LineWidth', 2, 'Color', mediumV);
+               plot(dos(k).xx, dos(k).fftyy, 'LineWidth', 2, 'Color', mediumV);
                %add light transistion times as vertical lines
                clear j;
-               for j = 1:length(one(k).lighttimes)
+               for j = 1:length(dos(k).lighttimes)
                    
-                   plot([one(k).lighttimes(j), one(k).lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   plot([dos(k).lighttimes(j), dos(k).lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
                end
                 
