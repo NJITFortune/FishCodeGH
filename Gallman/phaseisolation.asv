@@ -23,12 +23,12 @@ for k = 1:length(lesslight)
     
 end
 
-%% multiple fish
+%% run for real...
 light = 3;
 channel = 1;
 ReFs = 10;
 
-%% kg data index
+%% kg data index - single fish
  exp1idx = [64 66 67];
  
  %get the spline estimates for each sample
@@ -120,7 +120,8 @@ ReFs = 10;
     
         end
 
- 
+%% multifish data 
+[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(16), ReFs, light);
 
 %% plots - 
 salmon = [250/255 128/255 114/255];
@@ -145,11 +146,17 @@ figure(4); clf; title("the whole enchilada..."); hold on;
             %plot the averages for four and twelve hours - around 1
             plot(fourtim, fouramp, 'c-', 'LineWidth', 3);
             plot(twelvetim, twelveamp, '-', 'LineWidth', 3, 'Color', salmon);
+
         %plot light transitions
             for j = 1:length(one(1).lighttimes)
                 plot([one(1).lighttimes(j), one(1).lighttimes(j)], ylim, 'k-');
               
             end
+
+     xa(2) = subplot(212); title("multiple fish"); hold on;
+
+            plot(hixx, Hifftyy-mean())
+
 
 
 
