@@ -220,7 +220,7 @@ clear ax;
                 
     end
 clear kk;    
-        kk = 2;
+        kk = 3;
 
     
         
@@ -237,7 +237,7 @@ clear kk;
         
  
     clear kkk;
-     kkk = 2;
+     kkk = 3;
         
         
         
