@@ -224,7 +224,7 @@ clear kk;
 
     
         
-        ax(5) = subplot(6,1,5); title(num2str(multifish124idx(k))); hold on;
+        ax(5) = subplot(6,1,5); title(num2str(multifish124idx(kk))); hold on;
 
                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', paleV);
                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', turq);
@@ -241,7 +241,7 @@ clear kk;
         
         
         
-        ax(6) = subplot(6,1,6); title(num2str(multifish124idx(k))); hold on;
+        ax(6) = subplot(6,1,6); title(num2str(multifish124idx(kkk))); hold on;
 
                         plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', paleV);
                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', turq);
