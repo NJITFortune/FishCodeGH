@@ -38,22 +38,25 @@ ReFs = 10;
         %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
         [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp1idx(k)), channel, ReFs, light);
   
+%need to save into something
+        load("Users/eric/Documents/MATLAB/fouramp.mat");
+        load("Users/eric/Documents/MATLAB/twelveamp.mat");
+        twelveamp = dd;
+        fouramp = cc;
+        fourtim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(fouramp)-1)*0.1);
+        twelvetim1 = one(1).xx1(1):0.1:one(1)xx1(1)+((length(twelveamp)-1)*0.1);
+    
+
   %twelve hour to four hour transistions
      %first transistion idx - expecting 12 dark, get 4
         twidx1 = find(one(k).xx >= one(k).lighttimes(3) & one(k).xx <= (one(k).lighttimes(3) + 48));
         twlightidx1 = find(one(k).lighttimes >= one(k).lighttimes(3) & one(k).lighttimes <= (one(k).lighttimes(3) + 48));
        
         
-    
         one(k).lighttimes1 = one(k).lighttimes(twlightidx1);
         one(k).xx1 = one(k).xx(twidx1);
         one(k).fftyy1 = one(k).fftyy(twidx1);
     
-        %need to save into something
-        load("Users/eric/Documents/MATLAB/fouramp.mat");
-        load("Users/eric/Documents/MATLAB/twelveamp.mat");
-        twelveamp = dd;
-        fouramp = cc;
         fourtim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(fouramp)-1)*0.1);
         twelvetim1 = one(1).xx1(1):0.1:one(1)xx1(1)+((length(twelveamp)-1)*0.1);
     
@@ -230,7 +233,7 @@ mmean3 = zeros(1, length(one(1).fftyy3));
 %plot all splines on top of eachother
     for k = 1:length(one)
     plot(one(k).xx3, (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3)))), 'LineWidth', 2);
-     mmean3 = mmean3 + (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3))));
+     mmean3 = mean3 + (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3))));
     end
     plot(one(1).xx3, mmean3/3, 'k-','LineWidth', 5);
 %plot light transitions
