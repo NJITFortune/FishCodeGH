@@ -24,7 +24,7 @@ function out = KatieSeparationAnxiety(userfilespec)
 %% Load data
       
 % Load the first file
-    load(iFiles(1).name, 'data');
+    load(iFiles(2).name, 'data');
 
 %% Filter  (Not necessary under this new mthod)      
           
