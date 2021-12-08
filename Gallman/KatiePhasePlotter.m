@@ -220,11 +220,11 @@ clear ax;
                 
     end
 clear kk;    
-    for kk = 2:2
+        kk = 18
 
     
         
-        ax(k +kk) = subplot(6,1,(k +kk)); hold on;
+        ax(k+kk) = subplot(6,1,(k +kk)); hold on;
 
                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', paleV);
                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', mediumV);
