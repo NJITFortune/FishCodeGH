@@ -34,6 +34,21 @@ ReFs = 10;
     dos(k).fft = [kg(exp2idx(k)).e(1).s.sumfftAmp];
 
     end
+%% kg data exp3 
+%some death happened over thanksgiving...
+exp3idx = [72 74];
+clear k;
+    for k = 1:length(exp3idx)
+
+    %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
+    [tres(k).xx, tres(k).fftyy, ~] =  k_fftsubspliner(kg(exp3idx(k)), channel, ReFs, light);
+
+    tres(k).lighttimes = abs(kg(exp3idx(k)).info.luz);
+    tres(k).timcont = [kg(exp3idx(k)).e(1).s.timcont]/3600;
+    tres(k).fft = [kg(exp3idx(k)).e(1).s.sumfftAmp];
+
+    end
+
 
 %% kg2 data index
  multifish124idx = [16 18 19];
