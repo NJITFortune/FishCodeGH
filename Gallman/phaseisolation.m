@@ -41,8 +41,11 @@ ReFs = 10;
 %need to save into something
         load("Users/eric/Documents/MATLAB/fouramp.mat");
         load("Users/eric/Documents/MATLAB/twelveamp.mat");
-        twelveamp = dd;
-        fouramp = cc;
+        %in 48 hour chunks... not actually that useful
+            %length of kg(64) in hours is 328 = ~ 48 *7
+        twelveamp = [dd dd dd dd dd dd dd];
+        fouramp = [cc cc cc cc cc cc cc];
+
         fourtim = one(1).xx(1):0.1:one(1).xx(1)+((length(fouramp)-1)*0.1);
         twelvetim = one(1).xx(1):0.1:one(1).xx(1)+((length(twelveamp)-1)*0.1);
     
@@ -119,7 +122,22 @@ ReFs = 10;
 
  
 
-%% plots - 1st transistion
+%% plots - 
+figure(4); clf; title("the whole enchilada..."); hold on;
+
+    xa(1) = subplot(211); title("single fish"); hold on;
+
+        %initialize variable to store amp sum to calculate mean
+         allmean = zeros(1, length(one(1).fftyy1));
+
+         %plot all splines on top of eachother
+            for k = 1:length(one)
+            plot(one(k).xx, (one(k).fftyy - mean(one(k).fftyy))/max(abs((one(k).fftyy - mean(one(k).fftyy)))), 'LineWidth', 2);
+            allmean = allmean + (one(k).fftyy - mean(one(k).fftyy))/max(abs((one(k).fftyy - mean(one(k).fftyy))));
+            end
+
+
+%%1st transistion
 
 %spline tranistion summary plot
 figure(24); clf; title('expecting 12 dark, get 4'); hold on;
