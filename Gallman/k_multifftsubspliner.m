@@ -28,7 +28,11 @@ p = 0.9;
         end
     end
 
-         
+%% create easier vector names for raw data
+   HiTim = [in.fish.his(tthi).HiTim];
+   HiAmp = [in.fish.his(tthi).HiAmp];
+   LoTim = [in.fish.los(ttlo).LoTim];
+   LoAmp = [in.fish.los(ttlo).LoAmp];         
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
@@ -99,7 +103,7 @@ lighttimeslong = abs(in.info.luz);
 for j = 1:length(lighttimeslesslong)-1
         
         %is there data between j and j+1?    
-        if ~isempty(find([in.s(ttlo).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
+        if ~isempty(find(LoTim >= lighttimeslesslong(j) & LoTim < (lighttimeslesslong(j+1)),1))  
             
                lighttrim(j) = lighttimeslesslong(j);
              
@@ -113,11 +117,7 @@ Lolighttimes = lighttrim(lighttrim > 0);
 %add back the light time we subtracted 
 %Lolighttimes(end +1) = Lolighttimes(end) + ld;
 
-%% create easier vector names for raw data
-   HiTim = [in.fish.his(tthi).HiTim];
-   HiAmp = [in.fish.his(tthi).HiAmp];
-   LoTim = [in.fish.los(ttlo).LoTim];
-   LoAmp = [in.fish.los(ttlo).LoAmp];
+
 
 %% cspline entire data set
 
