@@ -227,7 +227,7 @@ clear kk;
         ax(5) = subplot(6,1,5); hold on;
 
                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', paleV);
-                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', salmon);
+                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', turq);
                     clear j;
                     for j = 1:length(two(kk).Hilighttimes)
 
@@ -244,7 +244,7 @@ clear kk;
         ax(6) = subplot(6,1,6); hold on;
 
                         plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', paleV);
-                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', salmon);
+                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', turq);
                         
                         clear j;
                         for j = 1:length(two(kkk).Lolighttimes)
