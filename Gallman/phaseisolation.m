@@ -61,7 +61,7 @@ ReFs = 10;
         one(k).fftyy1 = one(k).fftyy(twidx1);
     
         fourtim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(fouramp)-1)*0.1);
-        twelvetim1 = one(1).xx1(1):0.1:one(1)xx1(1)+((length(twelveamp)-1)*0.1);
+        twelvetim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(twelveamp)-1)*0.1);
     
     
         %raw data for plotting/spline check
@@ -165,7 +165,9 @@ figure(4); clf; title("the whole enchilada..."); hold on;
                 plot([Hilighttimes(j), Hilighttimes(j)], ylim, 'k-');
             end
 
-
+            %plot the averages for four and twelve hours - around 1
+            plot(fourtim, fouramp, 'c-', 'LineWidth', 3);
+            plot(twelvetim, twelveamp, '-', 'LineWidth', 3, 'Color', salmon);
 
 
 %% 1st transistion
