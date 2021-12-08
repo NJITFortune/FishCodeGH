@@ -29,7 +29,7 @@ channel = 1;
 ReFs = 10;
 
 %% kg data index - single fish
- exp2idx = [64 66 67];
+ exp2idx = [68 69 70]; %71 is too short for easy coding
  
  %get the spline estimates for each sample
         for k = 1:length(exp1idx)
