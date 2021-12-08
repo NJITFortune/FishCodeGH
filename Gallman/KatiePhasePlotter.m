@@ -18,6 +18,21 @@ ReFs = 10;
     one(k).fft = [kg(onefish124idx(k)).e(1).s.sumfftAmp];
 
     end
+%% kg data exp2
+
+ onefish124idx = [64 65 66 67 68 69 70 71 72 74];
+ 
+ %get the spline estimates for each sample
+    for k = 1:length(onefish124idx)
+
+    %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
+    [one(k).xx, one(k).fftyy, ~] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
+
+    one(k).lighttimes = abs(kg(onefish124idx(k)).info.luz);
+    one(k).timcont = [kg(onefish124idx(k)).e(1).s.timcont]/3600;
+    one(k).fft = [kg(onefish124idx(k)).e(1).s.sumfftAmp];
+
+    end
 
 %% kg2 data index
  multifish124idx = [16 18 19];
@@ -189,7 +204,7 @@ clear k;
 clear ax;
     for k = 5:8
         
-       ax(k) = subplot(8,1,k);hold on; 
+       ax(k) = subplot(6,1,k);hold on; 
                %plot raw data for each fish
                plot(one(k).timcont, one(k).fft, '.', 'Color', lightsalmon);
                %plot spline for each fish
@@ -204,11 +219,11 @@ clear ax;
                 
     end
 clear kk;    
-    for kk = 18
+    for kk = 2:2
 
     
         
-        ax(k +kk) = subplot(8,1,(k +kk)); hold on;
+        ax(k +kk) = subplot(6,1,(k +kk)); hold on;
 
                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', paleV);
                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', mediumV);
@@ -225,7 +240,7 @@ clear kk;
         
         a = (k + kk + kkk);
         
-        ax(k+ kk + kkk) = subplot(8,1,a); hold on;
+        ax(k+ kk + kkk) = subplot(6,1,a); hold on;
 
                         plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', paleV);
                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', mediumV);
