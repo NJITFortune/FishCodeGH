@@ -78,7 +78,7 @@ lighttimes = lighttrim(lighttrim > 0);
 for k = 1:length(lighttimes)
     lighttimes(k) = round(lighttimes(k));
 end
-
+lighttimes
 
 %% cspline entire data set
 
