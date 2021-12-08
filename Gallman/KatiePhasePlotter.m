@@ -205,7 +205,7 @@ clear k;
 clear ax;
     for k = 1:length(dos)
         
-       ax(k) = subplot(6,1,k);hold on; 
+       ax(k) = subplot(6,1,k); title(num2str(exp2idx(k))); hold on; 
                %plot raw data for each fish
                plot(one(k).timcont, one(k).fft, '.', 'Color', lightsalmon);
                %plot spline for each fish
@@ -224,7 +224,7 @@ clear kk;
 
     
         
-        ax(5) = subplot(6,1,5); hold on;
+        ax(5) = subplot(6,1,5); title(num2str(multifish124idx(k))); hold on;
 
                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', paleV);
                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', turq);
@@ -241,7 +241,7 @@ clear kk;
         
         
         
-        ax(6) = subplot(6,1,6); hold on;
+        ax(6) = subplot(6,1,6); title(num2str(multifish124idx(k))); hold on;
 
                         plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', paleV);
                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', turq);
