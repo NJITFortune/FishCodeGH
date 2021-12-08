@@ -20,17 +20,18 @@ ReFs = 10;
     end
 %% kg data exp2
 
- onefish124idx = [64 65 66 67 68 69 70 71 72 74];
+ exp2idx = [ 68 69 70 71];
  
  %get the spline estimates for each sample
+ clear k;
     for k = 1:length(onefish124idx)
 
     %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
-    [one(k).xx, one(k).fftyy, ~] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
+    [dos(k).xx, dos(k).fftyy, ~] =  k_fftsubspliner(kg(exp2idx(k)), channel, ReFs, light);
 
-    one(k).lighttimes = abs(kg(onefish124idx(k)).info.luz);
-    one(k).timcont = [kg(onefish124idx(k)).e(1).s.timcont]/3600;
-    one(k).fft = [kg(onefish124idx(k)).e(1).s.sumfftAmp];
+    dos(k).lighttimes = abs(kg(exp2idx(k)).info.luz);
+    dos(k).timcont = [kg(exp2idx(k)).e(1).s.timcont]/3600;
+    dos(k).fft = [kg(exp2idx(k)).e(1).s.sumfftAmp];
 
     end
 
@@ -202,7 +203,7 @@ mediumV = [199/255 21/255 133/255];
 figure(44); clf; title('phase plots by fish'); hold on;
 clear k;
 clear ax;
-    for k = 5:8
+    for k = 1:length(dos)
         
        ax(k) = subplot(6,1,k);hold on; 
                %plot raw data for each fish
