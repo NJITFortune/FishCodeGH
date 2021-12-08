@@ -114,7 +114,6 @@ ReFs = 10;
     
         end
 
-
  
 
 %% plots - 1st transistion
@@ -126,7 +125,7 @@ mmean = zeros(1, length(one(1).fftyy1));
 %plot all splines on top of eachother
     for k = 1:length(one)
     plot(one(k).xx1, (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1)))), 'LineWidth', 2);
-    mmean = mean + (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
+    mmean = mmean + (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
     end
 
     plot(one(1).xx1, mmean/3, 'k-','LineWidth', 5);
