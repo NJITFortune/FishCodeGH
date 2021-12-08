@@ -284,7 +284,7 @@ mmean3 = zeros(1, length(one(1).fftyy3));
 %plot all splines on top of eachother
     for k = 1:length(one)
     plot(one(k).xx3, (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3)))), 'LineWidth', 2);
-     mmean3 = mean3 + (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3))));
+     mmean3 = mmean3 + (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3))));
     end
     plot(one(1).xx3, mmean3/3, 'k-','LineWidth', 5);
 %plot light transitions
