@@ -132,7 +132,7 @@ clear kk;
 
     
         
-        ax(k +kk) = subplot(6,1,(k +kk)); hold on;
+        ax(k +kk) = subplot(6,1,(k +kk)); title(num2str(multifish124idx(kk))); hold on;
 
                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', lightsky);
                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', mediumV);
