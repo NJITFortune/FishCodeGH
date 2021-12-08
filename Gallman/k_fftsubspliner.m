@@ -73,7 +73,7 @@ lighttimes = lighttrim(lighttrim > 0);
 %ld = lighttimes(end) - lighttimes(end-1);
 %lighttimes(end +1) = lighttimes(end) + ld;
 for k = 1:length(lighttimes)
-    lighttimes = round(lighttimes(k));
+    lighttimes(k) = round(lighttimes(k));
 end
 
 
