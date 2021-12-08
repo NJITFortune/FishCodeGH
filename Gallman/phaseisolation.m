@@ -144,7 +144,7 @@ figure(4); clf; title("the whole enchilada..."); hold on;
             end
 
             %plot the mean
-            plot(one(1).xx1, mmean/3, 'k-','LineWidth', 5);
+            plot(one(1).xx1, allmean/3, 'k-','LineWidth', 5);
 
             %plot the averages for four and twelve hours - around 1
             plot(fourtim, fouramp, 'c-', 'LineWidth', 3);
