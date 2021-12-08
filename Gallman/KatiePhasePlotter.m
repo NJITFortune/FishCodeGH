@@ -209,7 +209,7 @@ clear ax;
                %plot raw data for each fish
                plot(one(k).timcont, one(k).fft, '.', 'Color', lightsalmon);
                %plot spline for each fish
-               plot(one(k).xx, one(k).fftyy, 'LineWidth', 2, 'Color', salmon);
+               plot(one(k).xx, one(k).fftyy, 'LineWidth', 2, 'Color', mediumV);
                %add light transistion times as vertical lines
                clear j;
                for j = 1:length(one(k).lighttimes)
@@ -227,7 +227,7 @@ clear kk;
         ax(5) = subplot(6,1,5); hold on;
 
                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', paleV);
-                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', mediumV);
+                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', salmon);
                     clear j;
                     for j = 1:length(two(kk).Hilighttimes)
 
@@ -244,7 +244,7 @@ clear kk;
         ax(6) = subplot(6,1,6); hold on;
 
                         plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', paleV);
-                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', mediumV);
+                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', salmon);
                         
                         clear j;
                         for j = 1:length(two(kkk).Lolighttimes)
