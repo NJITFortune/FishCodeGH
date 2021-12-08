@@ -209,3 +209,6 @@ figure(45); clf; hold on;
         for jj = 1:length(Lolighttimes)
             plot([Lolighttimes(jj), Lolighttimes(jj)], ylim, 'k-', 'LineWidth', 0.5);
         end
+
+
+ linkaxes(xs, 'x');
