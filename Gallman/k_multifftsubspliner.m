@@ -58,11 +58,11 @@ lighttimeslong = abs(in.info.luz);
 for j = 1:length(lighttimeslesslong)-1
         
         %is there data between j and j+1?    
-        if ~isempty(find([in.s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
+        %if ~isempty(find([in.s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
             
                lighttrim(j) = lighttimeslesslong(j);
              
-        end 
+        %end 
 end
 
 
@@ -99,11 +99,11 @@ lighttimeslong = abs(in.info.luz);
 for j = 1:length(lighttimeslesslong)-1
         
         %is there data between j and j+1?    
-        %if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
+        if ~isempty(find([in.s(ttlo).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
             
                lighttrim(j) = lighttimeslesslong(j);
              
-       % end 
+       end 
 end
 
 
@@ -205,6 +205,6 @@ figure(45); clf; hold on;
         plot(LoTim, LofftAmp, '.');
         plot(loxx, Losubfftyy, '-');
 
-        for jj = 1:length(Hilighttimes)
+        for jj = 1:length(Lolighttimes)
             plot([Lolighttimes(jj), Lolighttimes(jj)], ylim, 'k-', 'LineWidth', 0.5);
         end
