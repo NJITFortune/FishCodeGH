@@ -220,11 +220,11 @@ clear ax;
                 
     end
 clear kk;    
-        kk = 18
+        kk = 18;
 
     
         
-        ax(k+kk) = subplot(6,1,(k +kk)); hold on;
+        ax(5) = subplot(6,1,5); hold on;
 
                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', paleV);
                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', mediumV);
@@ -235,13 +235,13 @@ clear kk;
                     end
 
         
-    end
+ 
     clear kkk;
-    for kkk = 2:2
+     kkk = 18;
         
-        a = (k + kk + kkk);
         
-        ax(k+ kk + kkk) = subplot(6,1,a); hold on;
+        
+        ax(6) = subplot(6,1,6); hold on;
 
                         plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', paleV);
                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', mediumV);
@@ -253,8 +253,7 @@ clear kk;
                             
                         end
                     
-    end
-%     
+    
  
 linkaxes(ax, 'x');
                                        
