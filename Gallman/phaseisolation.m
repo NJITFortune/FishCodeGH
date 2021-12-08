@@ -109,9 +109,10 @@ ReFs = 10;
     
       %fourth transition - 4 hours to 12 hours
         %expecting 4 hours light and get 12
-        twidx4 = find(one(k).xx >= 294 & one(k).xx <= (294 + 48));
-        twlightidx4 = find(one(k).lighttimes >= 294 & one(k).lighttimes <= (294 + 48));
-        timcontidx4 = find(one(k).timcont >= 294 & one(k).timcont <= (294 + 48));
+       xpoint4 = 101;
+        twidx4 = find(one(k).xx >= xpoint4 & one(k).xx <= (xpoint4 + 48));
+        twlightidx4 = find(one(k).lighttimes >= xpoint4 & one(k).lighttimes <= (xpoint4 + 48));
+        timcontidx4 = find(one(k).timcont >= xpoint4 & one(k).timcont <= (xpoint4 + 48));
     
         %spline
         one(k).lighttimes4 = one(k).lighttimes(twlightidx4);
