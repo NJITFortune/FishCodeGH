@@ -32,83 +32,87 @@ ReFs = 10;
  exp1idx = [64 66 67];
  
  %get the spline estimates for each sample
-    for k = 1:length(exp1idx)
-
-   
-    %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
-    [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp1idx(k)), channel, ReFs, light);
-
-    %first transistion idx - expecting 12 dark, get 4
-    twidx1 = find(one(k).xx >= one(k).lighttimes(3) & one(k).xx <= (one(k).lighttimes(3) + 48));
-    twlightidx1 = find(one(k).lighttimes >= one(k).lighttimes(3) & one(k).lighttimes <= (one(k).lighttimes(3) + 48));
-   
+        for k = 1:length(exp1idx)
     
-
-    one(k).lighttimes1 = one(k).lighttimes(twlightidx1);
-    one(k).xx1 = one(k).xx(twidx1);
-    one(k).fftyy1 = one(k).fftyy(twidx1);
-
-    %need to save into something
-    load("Users/eric/Documents/MATLAB/fouramp.mat");
-    fouramp = cc;
-    fourtim = one(1).xx1(1):0.1:one(1).xx1(1)+((length(fouramp)-1)*0.1);
-
-
-    %raw data for plotting/spline check
-    one(k).timcont = [kg(exp1idx(k)).e(1).s.timcont]/3600;  
-    timcontidx = find(one(k).timcont >= one(k).lighttimes(3) & one(k).timcont <= (one(k).lighttimes(3) + 48));
-    one(k).timcont1 = one(k).timcont(timcontidx);
-    one(k).fft = [kg(exp1idx(k)).e(1).s.sumfftAmp];
-    one(k).fft1 = one(k).fft(timcontidx);
-
-
-  %third transition - expecting 12 hours light, get 4
-    twidx2 = find(one(k).xx >= 198 & one(k).xx <= (198 + 48));
-    twlightidx2 = find(one(k).lighttimes >= 198 & one(k).lighttimes <= (198 + 48));
-    timcontidx2 = find(one(k).timcont >= 198 & one(k).timcont <= (198 + 48));
+       
+        %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
+        [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp1idx(k)), channel, ReFs, light);
+  
+  %twelve hour to four hour transistions
+     %first transistion idx - expecting 12 dark, get 4
+        twidx1 = find(one(k).xx >= one(k).lighttimes(3) & one(k).xx <= (one(k).lighttimes(3) + 48));
+        twlightidx1 = find(one(k).lighttimes >= one(k).lighttimes(3) & one(k).lighttimes <= (one(k).lighttimes(3) + 48));
+       
+        
     
-    %spline
-    one(k).lighttimes2 = one(k).lighttimes(twlightidx2);
-    one(k).xx2 = one(k).xx(twidx2);
-    one(k).fftyy2 = one(k).fftyy(twidx2);
+        one(k).lighttimes1 = one(k).lighttimes(twlightidx1);
+        one(k).xx1 = one(k).xx(twidx1);
+        one(k).fftyy1 = one(k).fftyy(twidx1);
     
-
-    %raw data for plotting/spline check
-    one(k).timcont2 = one(k).timcont(timcontidx2);
-    one(k).fft2 = one(k).fft(timcontidx2);
-
-
- %second transition - 4 hours to 12 hours
-    twidx3 = find(one(k).xx >= 113 & one(k).xx <= (114 + 48));
-    twlightidx3 = find(one(k).lighttimes >= 113 & one(k).lighttimes <= (114 + 48));
-    timcontidx3 = find(one(k).timcont >= 113 & one(k).timcont <= (114 + 48));
-
-    %spline
-    one(k).lighttimes3 = one(k).lighttimes(twlightidx3);
-    one(k).xx3 = one(k).xx(twidx3);
-    one(k).fftyy3 = one(k).fftyy(twidx3);
+        %need to save into something
+        load("Users/eric/Documents/MATLAB/fouramp.mat");
+        load("Users/eric/Documents/MATLAB/twelveamp.mat");
+        twelveamp = dd;
+        fouramp = cc;
+        fourtim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(fouramp)-1)*0.1);
+        twelvetim1 = one(1).xx1(1):0.1:one(1)xx1(1)+((length(twelveamp)-1)*0.1);
     
-
-    %raw data for plotting/spline check
-    one(k).timcont3 = one(k).timcont(timcontidx3);
-    one(k).fft3 = one(k).fft(timcontidx3);
-
-  %fourth transition - 4 hours to 12 hours
-    twidx4 = find(one(k).xx >= 294 & one(k).xx <= (294 + 48));
-    twlightidx4 = find(one(k).lighttimes >= 294 & one(k).lighttimes <= (294 + 48));
-    timcontidx4 = find(one(k).timcont >= 294 & one(k).timcont <= (294 + 48));
-
-    %spline
-    one(k).lighttimes4 = one(k).lighttimes(twlightidx4);
-    one(k).xx4 = one(k).xx(twidx4);
-    one(k).fftyy4 = one(k).fftyy(twidx4);
     
-
-    %raw data for plotting/spline check
-    one(k).timcont4 = one(k).timcont(timcontidx4);
-    one(k).fft4 = one(k).fft(timcontidx4);
-
-    end
+        %raw data for plotting/spline check
+        one(k).timcont = [kg(exp1idx(k)).e(1).s.timcont]/3600;  
+        timcontidx = find(one(k).timcont >= one(k).lighttimes(3) & one(k).timcont <= (one(k).lighttimes(3) + 48));
+        one(k).timcont1 = one(k).timcont(timcontidx);
+        one(k).fft = [kg(exp1idx(k)).e(1).s.sumfftAmp];
+        one(k).fft1 = one(k).fft(timcontidx);
+    
+    
+     %third transition - expecting 12 hours light, get 4
+        twidx2 = find(one(k).xx >= 198 & one(k).xx <= (198 + 48));
+        twlightidx2 = find(one(k).lighttimes >= 198 & one(k).lighttimes <= (198 + 48));
+        timcontidx2 = find(one(k).timcont >= 198 & one(k).timcont <= (198 + 48));
+        
+        %spline
+        one(k).lighttimes2 = one(k).lighttimes(twlightidx2);
+        one(k).xx2 = one(k).xx(twidx2);
+        one(k).fftyy2 = one(k).fftyy(twidx2);
+        
+    
+        %raw data for plotting/spline check
+        one(k).timcont2 = one(k).timcont(timcontidx2);
+        one(k).fft2 = one(k).fft(timcontidx2);
+    
+   %four hour to twelve hour transitions 
+     %second transition - 4 hours to 12 hours
+        twidx3 = find(one(k).xx >= 113 & one(k).xx <= (114 + 48));
+        twlightidx3 = find(one(k).lighttimes >= 113 & one(k).lighttimes <= (114 + 48));
+        timcontidx3 = find(one(k).timcont >= 113 & one(k).timcont <= (114 + 48));
+    
+        %spline
+        one(k).lighttimes3 = one(k).lighttimes(twlightidx3);
+        one(k).xx3 = one(k).xx(twidx3);
+        one(k).fftyy3 = one(k).fftyy(twidx3);
+        
+    
+        %raw data for plotting/spline check
+        one(k).timcont3 = one(k).timcont(timcontidx3);
+        one(k).fft3 = one(k).fft(timcontidx3);
+    
+      %fourth transition - 4 hours to 12 hours
+        twidx4 = find(one(k).xx >= 294 & one(k).xx <= (294 + 48));
+        twlightidx4 = find(one(k).lighttimes >= 294 & one(k).lighttimes <= (294 + 48));
+        timcontidx4 = find(one(k).timcont >= 294 & one(k).timcont <= (294 + 48));
+    
+        %spline
+        one(k).lighttimes4 = one(k).lighttimes(twlightidx4);
+        one(k).xx4 = one(k).xx(twidx4);
+        one(k).fftyy4 = one(k).fftyy(twidx4);
+        
+    
+        %raw data for plotting/spline check
+        one(k).timcont4 = one(k).timcont(timcontidx4);
+        one(k).fft4 = one(k).fft(timcontidx4);
+    
+        end
 
 
  
