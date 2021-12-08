@@ -132,12 +132,26 @@ figure(4); clf; title("the whole enchilada..."); hold on;
 
          %plot all splines on top of eachother
             for k = 1:length(one)
+            %normalized to eachother around 0 
             plot(one(k).xx, (one(k).fftyy - mean(one(k).fftyy))/max(abs((one(k).fftyy - mean(one(k).fftyy)))), 'LineWidth', 2);
             allmean = allmean + (one(k).fftyy - mean(one(k).fftyy))/max(abs((one(k).fftyy - mean(one(k).fftyy))));
             end
 
+            %plot the mean
+            plot(one(1).xx1, mmean/3, 'k-','LineWidth', 5);
 
-%%1st transistion
+            %plot the averages for four and twelve hours - around 1
+            plot(fourtim, fouramp, 'c-', 'LineWidth', 3);
+
+        %plot light transitions
+            for j = 1:length(one(1).lighttimes)
+                plot([one(1).lighttimes(j), one(1).lighttimes(j)], ylim, 'k-');
+              
+            end
+
+
+
+%% 1st transistion
 
 %spline tranistion summary plot
 figure(24); clf; title('expecting 12 dark, get 4'); hold on;
