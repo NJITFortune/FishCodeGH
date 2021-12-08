@@ -134,7 +134,7 @@ figure(4); clf; title("the whole enchilada..."); hold on;
     xa(1) = subplot(211); title("single fish"); hold on;
 
         %initialize variable to store amp sum to calculate mean
-         allmean = zeros(1, length(one(3).fftyy));
+         allmean = zeros(1, length(one(1).fftyy));
 
          %plot all splines on top of eachother
             for k = 1:length(one)
