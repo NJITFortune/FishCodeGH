@@ -125,6 +125,8 @@ ReFs = 10;
 
 %% plots - 
 salmon = [250/255 128/255 114/255];
+mediumV = [199/255 21/255 133/255];
+
 
 figure(4); clf; title("the whole enchilada..."); hold on;
 
@@ -155,7 +157,8 @@ figure(4); clf; title("the whole enchilada..."); hold on;
 
      xa(2) = subplot(212); title("multiple fish"); hold on;
 
-            plot(hixx, (Hifftyy-mean(Hifftyy))/max(abs(Hifftyy- mean(Hifftyy))), 'LineWidth', 2, 'Color',
+            plot(hixx, (Hifftyy-mean(Hifftyy))/max(abs(Hifftyy- mean(Hifftyy))), 'LineWidth', 2, 'Color', mediumV);
+            plot(loxx, (Lofftyy-mean(Lofftyy))/max(abs(Lofftyy- mean(Lofftyy))), 'LineWidth', 2, 'Color', mediumV);
 
 
 
