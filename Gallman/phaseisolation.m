@@ -53,6 +53,7 @@ ReFs = 10;
 
   %twelve hour to four hour transistions
      %first transistion idx - expecting 12 dark, get 4
+     xpoint1 = 
         twidx1 = find(one(k).xx >= one(k).lighttimes(3) & one(k).xx <= (one(k).lighttimes(3) + 48));
         twlightidx1 = find(one(k).lighttimes >= one(k).lighttimes(3) & one(k).lighttimes <= (one(k).lighttimes(3) + 48));
        
@@ -74,9 +75,10 @@ ReFs = 10;
     
     
      %third transition - expecting 12 hours light, get 4
-        twidx2 = find(one(k).xx >= 198 & one(k).xx <= (198 + 48));
-        twlightidx2 = find(one(k).lighttimes >= 198 & one(k).lighttimes <= (198 + 48));
-        timcontidx2 = find(one(k).timcont >= 198 & one(k).timcont <= (198 + 48));
+        xpoint2 = 30;
+        twidx2 = find(one(k).xx >= xpoint2 & one(k).xx <= (xpoint2 + 48));
+        twlightidx2 = find(one(k).lighttimes >= xpoint2 & one(k).lighttimes <= (xpoint2 + 48));
+        timcontidx2 = find(one(k).timcont >= xpoint2 & one(k).timcont <= (xpoint2 + 48));
         
         %spline
         one(k).lighttimes2 = one(k).lighttimes(twlightidx2);
