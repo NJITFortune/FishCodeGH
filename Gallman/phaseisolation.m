@@ -92,10 +92,10 @@ ReFs = 10;
     
    %four hour to twelve hour transitions 
      %second transition - expecting 4 of dark and get 12
-     xpoint3 = 
-        twidx3 = find(one(k).xx >= 113 & one(k).xx <= (114 + 48));
-        twlightidx3 = find(one(k).lighttimes >= 113 & one(k).lighttimes <= (114 + 48));
-        timcontidx3 = find(one(k).timcont >= 113 & one(k).timcont <= (114 + 48));
+     xpoint3 = 258;
+        twidx3 = find(one(k).xx >= xpoint3 & one(k).xx <= (xpoint3 + 48));
+        twlightidx3 = find(one(k).lighttimes >= xpoint3 & one(k).lighttimes <= (xpoint3 + 48));
+        timcontidx3 = find(one(k).timcont >= xpoint3 & one(k).timcont <= (xpoint3 + 48));
     
         %spline
         one(k).lighttimes3 = one(k).lighttimes(twlightidx3);
@@ -108,6 +108,7 @@ ReFs = 10;
         one(k).fft3 = one(k).fft(timcontidx3);
     
       %fourth transition - 4 hours to 12 hours
+        %expecting 4 hours light and get 12
         twidx4 = find(one(k).xx >= 294 & one(k).xx <= (294 + 48));
         twlightidx4 = find(one(k).lighttimes >= 294 & one(k).lighttimes <= (294 + 48));
         timcontidx4 = find(one(k).timcont >= 294 & one(k).timcont <= (294 + 48));
