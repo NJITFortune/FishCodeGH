@@ -24,7 +24,7 @@ ReFs = 10;
  
  %get the spline estimates for each sample
  clear k;
-    for k = 1:length(onefish124idx)
+    for k = 1:length(exp2idx)
 
     %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
     [dos(k).xx, dos(k).fftyy, ~] =  k_fftsubspliner(kg(exp2idx(k)), channel, ReFs, light);
