@@ -23,12 +23,12 @@ for k = 1:length(lesslight)
     
 end
 
-%% multiple fish
+%% run for real...
 light = 3;
 channel = 1;
 ReFs = 10;
 
-%% kg data index
+%% kg data index - single fish
  exp1idx = [64 66 67];
  
  %get the spline estimates for each sample
@@ -120,7 +120,8 @@ ReFs = 10;
     
         end
 
- 
+%% multifish data 
+
 
 %% plots - 
 salmon = [250/255 128/255 114/255];
@@ -153,7 +154,7 @@ figure(4); clf; title("the whole enchilada..."); hold on;
             end
 
      xa(2) = subplot(212); title("multiple fish"); hold on;
-     
+
 
 
 
