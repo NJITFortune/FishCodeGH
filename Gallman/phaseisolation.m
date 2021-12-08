@@ -123,6 +123,8 @@ ReFs = 10;
  
 
 %% plots - 
+salmon = [250/255 128/255 114/255];
+
 figure(4); clf; title("the whole enchilada..."); hold on;
 
     xa(1) = subplot(211); title("single fish"); hold on;
@@ -142,12 +144,16 @@ figure(4); clf; title("the whole enchilada..."); hold on;
 
             %plot the averages for four and twelve hours - around 1
             plot(fourtim, fouramp, 'c-', 'LineWidth', 3);
+            plot(twelvetim, twelveamp, '-', 'LineWidth', 3, 'Color', salmon);
 
         %plot light transitions
             for j = 1:length(one(1).lighttimes)
                 plot([one(1).lighttimes(j), one(1).lighttimes(j)], ylim, 'k-');
               
             end
+
+     xa(2) = subplot(212); title("multiple fish"); hold on;
+     
 
 
 
