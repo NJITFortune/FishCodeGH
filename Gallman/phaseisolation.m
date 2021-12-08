@@ -43,7 +43,7 @@ ReFs = 10;
         load("Users/eric/Documents/MATLAB/fouramp.mat");
         load("Users/eric/Documents/MATLAB/twelveamp.mat");
         %in 48 hour chunks... not actually that useful
-            %length of kg(64) in hours is 328 = ~ 48 *7
+            %length of kg(64) in hours is 344 = ~ 48 *7
         twelveamp = [dd dd dd dd dd dd dd];
         fouramp = [cc cc cc cc cc cc cc];
 
