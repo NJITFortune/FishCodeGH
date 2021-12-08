@@ -121,7 +121,7 @@ ReFs = 10;
         end
 
 %% multifish data 
-
+[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(16), ReFs, light);
 
 %% plots - 
 salmon = [250/255 128/255 114/255];
@@ -154,6 +154,8 @@ figure(4); clf; title("the whole enchilada..."); hold on;
             end
 
      xa(2) = subplot(212); title("multiple fish"); hold on;
+
+            plot(hixx, (Hifftyy-mean(Hifftyy))/max(abs(Hifftyy- mean(Hifftyy))), 'LineWidth', 2, 'Color',
 
 
 
