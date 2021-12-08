@@ -53,9 +53,9 @@ ReFs = 10;
 
   %twelve hour to four hour transistions
      %first transistion idx - expecting 12 dark, get 4
-     xpoint1 = 
-        twidx1 = find(one(k).xx >= one(k).lighttimes(3) & one(k).xx <= (one(k).lighttimes(3) + 48));
-        twlightidx1 = find(one(k).lighttimes >= one(k).lighttimes(3) & one(k).lighttimes <= (one(k).lighttimes(3) + 48));
+     xpoint1 = 186;
+        twidx1 = find(one(k).xx >= xpoint1 & one(k).xx <= (xpoint1 + 48));
+        twlightidx1 = find(one(k).lighttimes >= xpoint1 & one(k).lighttimes <= (xpoint1 + 48));
        
         
         one(k).lighttimes1 = one(k).lighttimes(twlightidx1);
@@ -91,7 +91,8 @@ ReFs = 10;
         one(k).fft2 = one(k).fft(timcontidx2);
     
    %four hour to twelve hour transitions 
-     %second transition - 4 hours to 12 hours
+     %second transition - expecting 4 of dark and get 12
+     xpoint3 = 
         twidx3 = find(one(k).xx >= 113 & one(k).xx <= (114 + 48));
         twlightidx3 = find(one(k).lighttimes >= 113 & one(k).lighttimes <= (114 + 48));
         timcontidx3 = find(one(k).timcont >= 113 & one(k).timcont <= (114 + 48));
