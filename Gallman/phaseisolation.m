@@ -156,6 +156,7 @@ figure(4); clf; title("the whole enchilada..."); hold on;
             plot(fourtim, fouramp, 'c-', 'LineWidth', 3);
             plot(twelvetim, twelveamp, '-', 'LineWidth', 3, 'Color', salmon);
             legend('four', 'twelve');
+            legend('AutoUpdate', 'off');
 
         %plot light transitions
             for j = 1:length(one(1).lighttimes)
