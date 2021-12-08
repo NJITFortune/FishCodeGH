@@ -131,7 +131,7 @@ deepsky = [0/255 191/255 255/255];
 
 figure(4); clf; title("the whole enchilada..."); hold on;
 
-    xa(1) = subplot(211); title("single fish"); hold on;
+    xa(1) = subplot(311); title("single fish"); hold on;
 
         %initialize variable to store amp sum to calculate mean
          allmean = zeros(1, length(one(1).fftyy));
@@ -145,10 +145,17 @@ figure(4); clf; title("the whole enchilada..."); hold on;
 
             %plot the mean
             plot(one(1).xx, allmean/3, 'k-','LineWidth', 5);
+            %plot light transitions
+            for j = 1:length(one(1).lighttimes)
+                plot([one(1).lighttimes(j), one(1).lighttimes(j)], ylim, 'k-');
+              
+            end
 
+    xa(2) = subplot(312); title("average day amp"); hold on;
             %plot the averages for four and twelve hours - around 1
             plot(fourtim, fouramp, 'c-', 'LineWidth', 3);
             plot(twelvetim, twelveamp, '-', 'LineWidth', 3, 'Color', salmon);
+            legend('four', 'twelve');
 
         %plot light transitions
             for j = 1:length(one(1).lighttimes)
@@ -156,7 +163,7 @@ figure(4); clf; title("the whole enchilada..."); hold on;
               
             end
 
-     xa(2) = subplot(212); title("multiple fish"); hold on;
+     xa(3) = subplot(313); title("multiple fish"); hold on;
 
             plot(hixx, (Hifftyy-mean(Hifftyy))/max(abs(Hifftyy- mean(Hifftyy))), 'LineWidth', 2, 'Color', mediumV);
             plot(loxx, (Lofftyy-mean(Lofftyy))/max(abs(Lofftyy- mean(Lofftyy))), 'LineWidth', 2, 'Color', deepsky);
@@ -165,10 +172,7 @@ figure(4); clf; title("the whole enchilada..."); hold on;
                 plot([Hilighttimes(j), Hilighttimes(j)], ylim, 'k-');
             end
 
-            %plot the averages for four and twelve hours - around 1
-            plot(fourtim, fouramp, 'c-', 'LineWidth', 3);
-            plot(twelvetim, twelveamp, '-', 'LineWidth', 3, 'Color', salmon);
-
+     linkaxes(xa, 'x');
 
 %% 1st transistion
 
