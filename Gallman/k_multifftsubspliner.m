@@ -79,6 +79,7 @@ Hilighttimes = lighttrim(lighttrim > 0);
 %low frequency fish
 clear lighttimeslesslong;
 clear lighttimesidx;
+clear lighttrim;
 lighttimeslong = abs(in.info.luz);
 
     %fit light vector to power idx
