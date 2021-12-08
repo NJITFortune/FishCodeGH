@@ -29,16 +29,17 @@ channel = 1;
 ReFs = 10;
 
 %% kg data index - single fish
- exp1idx = [64 66 67];
+ exp2idx = [68 69 70]; %71 is too short for easy coding
  
  %get the spline estimates for each sample
-        for k = 1:length(exp1idx)
+        for k = 1:length(exp2idx)
     
        
         %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
-        [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp1idx(k)), channel, ReFs, light);
+        [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp2idx(k)), channel, ReFs, light);
   
 %need to save into something
+        addpath('/Users/eric/Documents/MATLAB');
         load("Users/eric/Documents/MATLAB/fouramp.mat");
         load("Users/eric/Documents/MATLAB/twelveamp.mat");
         %in 48 hour chunks... not actually that useful
@@ -52,8 +53,9 @@ ReFs = 10;
 
   %twelve hour to four hour transistions
      %first transistion idx - expecting 12 dark, get 4
-        twidx1 = find(one(k).xx >= one(k).lighttimes(3) & one(k).xx <= (one(k).lighttimes(3) + 48));
-        twlightidx1 = find(one(k).lighttimes >= one(k).lighttimes(3) & one(k).lighttimes <= (one(k).lighttimes(3) + 48));
+     xpoint1 = 186;
+        twidx1 = find(one(k).xx >= xpoint1 & one(k).xx <= (xpoint1 + 48));
+        twlightidx1 = find(one(k).lighttimes >= xpoint1 & one(k).lighttimes <= (xpoint1 + 48));
        
         
         one(k).lighttimes1 = one(k).lighttimes(twlightidx1);
@@ -61,21 +63,22 @@ ReFs = 10;
         one(k).fftyy1 = one(k).fftyy(twidx1);
     
         fourtim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(fouramp)-1)*0.1);
-        twelvetim1 = one(1).xx1(1):0.1:one(1)xx1(1)+((length(twelveamp)-1)*0.1);
+        twelvetim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(twelveamp)-1)*0.1);
     
     
         %raw data for plotting/spline check
-        one(k).timcont = [kg(exp1idx(k)).e(1).s.timcont]/3600;  
+        one(k).timcont = [kg(exp2idx(k)).e(1).s.timcont]/3600;  
         timcontidx = find(one(k).timcont >= one(k).lighttimes(3) & one(k).timcont <= (one(k).lighttimes(3) + 48));
         one(k).timcont1 = one(k).timcont(timcontidx);
-        one(k).fft = [kg(exp1idx(k)).e(1).s.sumfftAmp];
+        one(k).fft = [kg(exp2idx(k)).e(1).s.sumfftAmp];
         one(k).fft1 = one(k).fft(timcontidx);
     
     
      %third transition - expecting 12 hours light, get 4
-        twidx2 = find(one(k).xx >= 198 & one(k).xx <= (198 + 48));
-        twlightidx2 = find(one(k).lighttimes >= 198 & one(k).lighttimes <= (198 + 48));
-        timcontidx2 = find(one(k).timcont >= 198 & one(k).timcont <= (198 + 48));
+        xpoint2 = 30;
+        twidx2 = find(one(k).xx >= xpoint2 & one(k).xx <= (xpoint2 + 48));
+        twlightidx2 = find(one(k).lighttimes >= xpoint2 & one(k).lighttimes <= (xpoint2 + 48));
+        timcontidx2 = find(one(k).timcont >= xpoint2 & one(k).timcont <= (xpoint2 + 48));
         
         %spline
         one(k).lighttimes2 = one(k).lighttimes(twlightidx2);
@@ -89,6 +92,7 @@ ReFs = 10;
     
    %four hour to twelve hour transitions 
      %second transition - 4 hours to 12 hours
+     xpoint3 = 
         twidx3 = find(one(k).xx >= 113 & one(k).xx <= (114 + 48));
         twlightidx3 = find(one(k).lighttimes >= 113 & one(k).lighttimes <= (114 + 48));
         timcontidx3 = find(one(k).timcont >= 113 & one(k).timcont <= (114 + 48));
@@ -121,17 +125,20 @@ ReFs = 10;
         end
 
 %% multifish data 
-[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(16), ReFs, light);
+[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(18), ReFs, light);
 
 %% plots - 
 salmon = [250/255 128/255 114/255];
+mediumV = [199/255 21/255 133/255];
+deepsky = [0/255 191/255 255/255];
+
 
 figure(4); clf; title("the whole enchilada..."); hold on;
 
-    xa(1) = subplot(211); title("single fish"); hold on;
+    xa(1) = subplot(311); title("single fish"); hold on;
 
         %initialize variable to store amp sum to calculate mean
-         allmean = zeros(1, length(one(1).fftyy1));
+         allmean = zeros(1, length(one(1).fftyy));
 
          %plot all splines on top of eachother
             for k = 1:length(one)
@@ -141,11 +148,19 @@ figure(4); clf; title("the whole enchilada..."); hold on;
             end
 
             %plot the mean
-            plot(one(1).xx1, mmean/3, 'k-','LineWidth', 5);
+            plot(one(1).xx, allmean/3, 'k-','LineWidth', 5);
+            %plot light transitions
+            for j = 1:length(one(1).lighttimes)
+                plot([one(1).lighttimes(j), one(1).lighttimes(j)], ylim, 'k-');
+              
+            end
 
+    xa(2) = subplot(312); title("average day amp"); hold on;
             %plot the averages for four and twelve hours - around 1
             plot(fourtim, fouramp, 'c-', 'LineWidth', 3);
             plot(twelvetim, twelveamp, '-', 'LineWidth', 3, 'Color', salmon);
+            legend('four', 'twelve');
+            legend('AutoUpdate', 'off');
 
         %plot light transitions
             for j = 1:length(one(1).lighttimes)
@@ -153,12 +168,18 @@ figure(4); clf; title("the whole enchilada..."); hold on;
               
             end
 
-     xa(2) = subplot(212); title("multiple fish"); hold on;
-
-            plot(hixx, Hifftyy-mean())
+     xa(3) = subplot(313); title("multiple fish"); hold on;
 
 
+            plot(hixx, (Hifftyy-mean(Hifftyy))/max(abs(Hifftyy- mean(Hifftyy))), 'LineWidth', 2, 'Color', mediumV);
+            plot(loxx, (Lofftyy-mean(Lofftyy))/max(abs(Lofftyy- mean(Lofftyy))), 'LineWidth', 2, 'Color', deepsky);
 
+           
+            for j = 1:length(Hilighttimes)
+                plot([Hilighttimes(j), Hilighttimes(j)], ylim, 'k-');
+            end
+
+     linkaxes(xa, 'x');
 
 %% 1st transistion
 
@@ -173,7 +194,7 @@ mmean = zeros(1, length(one(1).fftyy1));
     end
 
     plot(one(1).xx1, mmean/3, 'k-','LineWidth', 5);
-    plot(fourtim, fouramp, 'c-', 'LineWidth', 5);
+   
 %plot light transitions
     for j = 1:length(one(1).lighttimes1)
         plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
@@ -274,7 +295,7 @@ mmean3 = zeros(1, length(one(1).fftyy3));
 %plot all splines on top of eachother
     for k = 1:length(one)
     plot(one(k).xx3, (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3)))), 'LineWidth', 2);
-     mmean3 = mean3 + (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3))));
+     mmean3 = mmean3 + (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3))));
     end
     plot(one(1).xx3, mmean3/3, 'k-','LineWidth', 5);
 %plot light transitions
