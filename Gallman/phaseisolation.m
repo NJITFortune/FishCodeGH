@@ -39,7 +39,7 @@ ReFs = 10;
         [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp1idx(k)), channel, ReFs, light);
   
 %need to save into something
-
+        addpath('/Users/eric/Documents/MATLAB');
         load("Users/eric/Documents/MATLAB/fouramp.mat");
         load("Users/eric/Documents/MATLAB/twelveamp.mat");
         %in 48 hour chunks... not actually that useful
