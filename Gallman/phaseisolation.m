@@ -110,7 +110,7 @@ exp3idx = [72 74]; %RIP Paco and Cheshire
     
       %fourth transition - 4 hours to 12 hours
         %expecting 4 hours light and get 12
-       xpoint4 = 101;
+       xpoint4 = 270;
         twidx4 = find(one(k).xx >= xpoint4 & one(k).xx <= (xpoint4 + 48));
         twlightidx4 = find(one(k).lighttimes >= xpoint4 & one(k).lighttimes <= (xpoint4 + 48));
         timcontidx4 = find(one(k).timcont >= xpoint4 & one(k).timcont <= (xpoint4 + 48));
@@ -128,7 +128,7 @@ exp3idx = [72 74]; %RIP Paco and Cheshire
         end
 
 %% multifish data 
-[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(18), ReFs, light);
+[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(19), ReFs, light);
 
 %% plots - 
 salmon = [250/255 128/255 114/255];
