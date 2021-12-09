@@ -283,7 +283,7 @@ salmon = [250/255 128/255 114/255];
 paleV = [219/255 112/255 147/255];
 mediumV = [199/255 21/255 133/255];
 
-figure(44); clf; title('phase plots by fish'); hold on;
+figure(45); clf; title('phase plots by fish'); hold on;
 clear k;
 clear ax;
     for k = 1:length(tres)
