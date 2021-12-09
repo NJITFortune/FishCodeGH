@@ -93,7 +93,7 @@ exp3idx = [72 74]; %RIP Paco and Cheshire
     
    %four hour to twelve hour transitions 
      %second transition - expecting 4 of dark and get 12
-     xpoint3 = 258;
+     xpoint3 = 138;
         twidx3 = find(one(k).xx >= xpoint3 & one(k).xx <= (xpoint3 + 48));
         twlightidx3 = find(one(k).lighttimes >= xpoint3 & one(k).lighttimes <= (xpoint3 + 48));
         timcontidx3 = find(one(k).timcont >= xpoint3 & one(k).timcont <= (xpoint3 + 48));
