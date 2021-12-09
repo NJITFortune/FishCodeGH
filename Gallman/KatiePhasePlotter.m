@@ -326,8 +326,8 @@ clear kk;
         
         ax(4) = subplot(414); title(num2str(multifish124idx(kkk))); hold on;
 
-                        plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', paleV);
-                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', turq);
+                        plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', lightsalmon);
+                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', lightsky);
                         
                         clear j;
                         for j = 1:length(two(kkk).Lolighttimes)
