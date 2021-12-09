@@ -272,7 +272,78 @@ clear kk;
  
 linkaxes(ax, 'x');
                                        
+%%                   
+%exp 3
+%colors
+%single fish
+lightsalmon = [255/255 160/255 122/255];
+salmon = [250/255 128/255 114/255];
+%multi fish
+paleV = [219/255 112/255 147/255];
+mediumV = [199/255 21/255 133/255];
+
+figure(44); clf; title('phase plots by fish'); hold on;
+clear k;
+clear ax;
+    for k = 1:length(dos)
+        
+       ax(k) = subplot(6,1,k); title(num2str(exp2idx(k))); hold on; 
+               %plot raw data for each fish
+               plot(dos(k).timcont, dos(k).fft, '.', 'Color', lightsalmon);
+               %plot spline for each fish
+               plot(dos(k).xx, dos(k).fftyy, 'LineWidth', 2, 'Color', mediumV);
+               %add light transistion times as vertical lines
+               clear j;
+               for j = 1:length(dos(k).lighttimes)
+                   
+                   plot([dos(k).lighttimes(j), dos(k).lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+                
+    end
+clear kk;    
+        kk = 2;
+
+    
+        
+        ax(5) = subplot(6,1,5); title(num2str(multifish124idx(kk))); hold on;
+
+                    plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', paleV);
+                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', turq);
+                    clear j;
+                    for j = 1:length(two(kk).Hilighttimes)
+
+                        plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+                    end
+
+        
+ 
+    clear kkk;
+     kkk = 2;
+        
+        
+        
+        ax(6) = subplot(6,1,6); title(num2str(multifish124idx(kkk))); hold on;
+
+                        plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', paleV);
+                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', turq);
+                        
+                        clear j;
+                        for j = 1:length(two(kkk).Lolighttimes)
+                            
+                            plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+                            
+                        end
                     
+    
+ 
+linkaxes(ax, 'x');
+                                       
+                    
+                    
+                    
+                    
+
                     
                     
                     
