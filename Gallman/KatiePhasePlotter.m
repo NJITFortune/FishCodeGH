@@ -274,6 +274,7 @@ linkaxes(ax, 'x');
                                        
 %%                   
 %exp 3
+%exp3idx = [72 74];
 %colors
 %single fish
 lightsalmon = [255/255 160/255 122/255];
@@ -287,7 +288,7 @@ clear k;
 clear ax;
     for k = 1:length(tres)
         
-       ax(k) = subplot(6,1,k); title(num2str(exp2idx(k))); hold on; 
+       ax(k) = subplot(4,1,k); title(num2str(exp3idx(k))); hold on; 
                %plot raw data for each fish
                plot(tres(k).timcont, tres(k).fft, '.', 'Color', turq);
                %plot spline for each fish
@@ -306,7 +307,7 @@ clear kk;
 
     
         
-        ax(5) = subplot(6,1,5); title(num2str(multifish124idx(kk))); hold on;
+        ax(3) = subplot(4,1,kk); title(num2str(multifish124idx(kk))); hold on;
 
                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', lightsalmon);
                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', lightsky);
@@ -323,7 +324,7 @@ clear kk;
         
         
         
-        ax(6) = subplot(6,1,6); title(num2str(multifish124idx(kkk))); hold on;
+        ax(4) = subplot(414); title(num2str(multifish124idx(kkk))); hold on;
 
                         plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', paleV);
                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', turq);
