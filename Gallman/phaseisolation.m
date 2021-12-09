@@ -29,14 +29,15 @@ channel = 1;
 ReFs = 10;
 
 %% kg data index - single fish
- exp2idx = [68 69 70]; %71 is too short for easy coding
- 
+exp3idx = [72 74]; %RIP Paco and Cheshire
+
+ clear k;
  %get the spline estimates for each sample
-        for k = 1:length(exp2idx)
+        for k = 1:length(exp3idx)
     
        
         %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
-        [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp2idx(k)), channel, ReFs, light);
+        [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp3idx(k)), channel, ReFs, light);
   
 %need to save into something
         addpath('/Users/eric/Documents/MATLAB');
