@@ -285,31 +285,31 @@ mediumV = [199/255 21/255 133/255];
 figure(44); clf; title('phase plots by fish'); hold on;
 clear k;
 clear ax;
-    for k = 1:length(dos)
+    for k = 1:length(tres)
         
        ax(k) = subplot(6,1,k); title(num2str(exp2idx(k))); hold on; 
                %plot raw data for each fish
-               plot(dos(k).timcont, dos(k).fft, '.', 'Color', lightsalmon);
+               plot(tres(k).timcont, tres(k).fft, '.', 'Color', turq);
                %plot spline for each fish
-               plot(dos(k).xx, dos(k).fftyy, 'LineWidth', 2, 'Color', mediumV);
+               plot(tres(k).xx, tres(k).fftyy, 'LineWidth', 2, 'Color', lightsalmon);
                %add light transistion times as vertical lines
                clear j;
-               for j = 1:length(dos(k).lighttimes)
+               for j = 1:length(tres(k).lighttimes)
                    
-                   plot([dos(k).lighttimes(j), dos(k).lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   plot([tres(k).lighttimes(j), tres(k).lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
                end
                 
     end
 clear kk;    
-        kk = 2;
+        kk = 3;
 
     
         
         ax(5) = subplot(6,1,5); title(num2str(multifish124idx(kk))); hold on;
 
-                    plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', paleV);
-                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', turq);
+                    plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', lightsalmon);
+                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', lightsky);
                     clear j;
                     for j = 1:length(two(kk).Hilighttimes)
 
@@ -319,7 +319,7 @@ clear kk;
         
  
     clear kkk;
-     kkk = 2;
+     kkk = 3;
         
         
         
