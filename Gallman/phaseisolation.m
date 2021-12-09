@@ -54,7 +54,7 @@ exp3idx = [72 74]; %RIP Paco and Cheshire
 
   %twelve hour to four hour transistions
      %first transistion idx - expecting 12 dark, get 4
-     xpoint1 = 186;
+     xpoint1 = 66;
         twidx1 = find(one(k).xx >= xpoint1 & one(k).xx <= (xpoint1 + 48));
         twlightidx1 = find(one(k).lighttimes >= xpoint1 & one(k).lighttimes <= (xpoint1 + 48));
        
@@ -76,7 +76,7 @@ exp3idx = [72 74]; %RIP Paco and Cheshire
     
     
      %third transition - expecting 12 hours light, get 4
-        xpoint2 = 30;
+        xpoint2 = 198;
         twidx2 = find(one(k).xx >= xpoint2 & one(k).xx <= (xpoint2 + 48));
         twlightidx2 = find(one(k).lighttimes >= xpoint2 & one(k).lighttimes <= (xpoint2 + 48));
         timcontidx2 = find(one(k).timcont >= xpoint2 & one(k).timcont <= (xpoint2 + 48));
