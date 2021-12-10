@@ -17,9 +17,11 @@ exp1idxtwL = [64 66 67]; %65 is too short for easy coding - still good data - us
 exp2idxtwD =   [68 69 70];  
     exp2idx = [68 69 70 71]; %71 is too short for easy coding
 
-    exp1xpoint = [186 30];
+    exp2xpoint = [186 30 258 101];
 
 exp3idx = [72 74]; %RIP Paco and Cheshire
+    exp3xpoint = [
+    
 % %1st transistion
 % twLfrDidx = [64 66 67 68 69 70 71 72 74];
 % %2nd transition
