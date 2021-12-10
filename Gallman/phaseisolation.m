@@ -11,7 +11,7 @@ exp1idx = [64 66 67]; %65 is too short for easy coding - still good data - use l
 exp2idx = [68 69 70 71]; %71 is too short for easy coding
 
 %1st transistion
-firsttransidx = [64 66 67 68 69 70 71 72 74];
+twDfrLidx = [64 66 67 68 69 70 71 72 74];
 secondtransidx = [64 65 66 67 68 69 70 71 72 74];
 thirdtransidx = [64 65 66 67 68 69 70 72 74];
 fourthtransidx = [64 65 66 67 68 69 70 71 72 74];
