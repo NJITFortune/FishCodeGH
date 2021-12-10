@@ -60,7 +60,7 @@ multifish124idx = [16 18 19];
 
   %twelve hour to four hour transistions
      %first transistion idx - expecting 12 dark, get 4
-     xpoint1 = 66;
+     xpoint1= exp1xpoint(1);
         twidx1 = find(one(k).xx >= xpoint1 & one(k).xx <= (xpoint1 + 48));
         twlightidx1 = find(one(k).lighttimes >= xpoint1 & one(k).lighttimes <= (xpoint1 + 48));
        
@@ -79,7 +79,7 @@ multifish124idx = [16 18 19];
     
     
      %third transition - expecting 12 hours light, get 4
-        xpoint2 = 198;
+       xpoint2 = exp1xpoint(2);
         twidx2 = find(one(k).xx >= xpoint2 & one(k).xx <= (xpoint2 + 48));
         twlightidx2 = find(one(k).lighttimes >= xpoint2 & one(k).lighttimes <= (xpoint2 + 48));
         timcontidx2 = find(one(k).timcont >= xpoint2 & one(k).timcont <= (xpoint2 + 48));
@@ -96,7 +96,7 @@ multifish124idx = [16 18 19];
     
    %four hour to twelve hour transitions 
      %second transition - expecting 4 of dark and get 12
-     xpoint3 = 138;
+     xpoint3 = exp1xpoint(3);
         twidx3 = find(one(k).xx >= xpoint3 & one(k).xx <= (xpoint3 + 48));
         twlightidx3 = find(one(k).lighttimes >= xpoint3 & one(k).lighttimes <= (xpoint3 + 48));
         timcontidx3 = find(one(k).timcont >= xpoint3 & one(k).timcont <= (xpoint3 + 48));
