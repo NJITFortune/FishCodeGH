@@ -12,8 +12,8 @@ exp2idx = [68 69 70 71]; %71 is too short for easy coding
 
 %1st transistion
 twLfrDidx = [64 66 67 68 69 70 71 72 74];
-secondtransidx = [64 65 66 67 68 69 70 71 72 74];
-twDfrLtransidx = [64 65 66 67 68 69 70 72 74];
+frLtwDidx = [64 65 66 67 68 69 70 71 72 74];
+twDfrLsidx = [64 65 66 67 68 69 70 72 74];
 fourthtransidx = [64 65 66 67 68 69 70 71 72 74];
 
 %%
