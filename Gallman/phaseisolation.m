@@ -20,7 +20,7 @@ exp2idxtwD =   [68 69 70];
     exp2xpoint = [186 30 258 101];
 
 exp3idx = [72 74]; %RIP Paco and Cheshire
-    exp3xpoint = [
+    exp3xpoint = [66 198 138 270];
     
 % %1st transistion
 % twLfrDidx = [64 66 67 68 69 70 71 72 74];
