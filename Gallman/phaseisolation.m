@@ -21,7 +21,7 @@ exp2idx = [68 69 70 71]; %71 is too short for easy coding
 % %fourth transition
 % frDtwLidx = [64 65 66 67 68 69 70 71 72 74];
 
-
+multifish124idx = [16 18 19];
 
 %%
 
