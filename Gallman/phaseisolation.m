@@ -63,6 +63,7 @@ multifish124idx = [16 18 19];
 [hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(19), ReFs, light);
 
 %% plots - 
+%colors
 salmon = [250/255 128/255 114/255];
 mediumV = [199/255 21/255 133/255];
 deepsky = [0/255 191/255 255/255];
