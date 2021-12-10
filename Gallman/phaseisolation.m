@@ -38,11 +38,11 @@ multifish124idx = [16 18 19];
 %each exp has different indicies
 
 %exp1
- one(k) = k_phaselaser(exp1idx, exp1xpoint, channel, ReFs, light);
+ one= k_phaselaser(exp1idx, exp1xpoint, channel, ReFs, light);
 %exp2
- dos(k) = k_phaselaser(exp1idx, exp1xpoint, channel, ReFs, light);
+ dos = k_phaselaser(exp2idx, exp3xpoint, channel, ReFs, light);
 %exp3
- tres(k)
+ tres = k_phaselaser(exp3idx, exp3xpoint, channel, ReFs, light);
 %%
 %need to save into something
 %         addpath('/Users/eric/Documents/MATLAB');
