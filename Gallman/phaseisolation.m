@@ -6,12 +6,17 @@ channel = 1;
 ReFs = 10;
 
 %% kg data index - single fish
-exp3idx = [72 74]; %RIP Paco and Cheshire
+
+%[xpoint1 xpoint2 xpoint3 xpoint4];
+
 exp1idxtwL = [64 66 67]; %65 is too short for easy coding - still good data - use later
     exp1idx = [64 65 66 67];
+ 
+  [  
+    
 exp2idxtwD =   [68 69 70];  
 exp2idx = [68 69 70 71]; %71 is too short for easy coding
-
+exp3idx = [72 74]; %RIP Paco and Cheshire
 % %1st transistion
 % twLfrDidx = [64 66 67 68 69 70 71 72 74];
 % %2nd transition
@@ -29,11 +34,11 @@ multifish124idx = [16 18 19];
 
  clear k;
  %get the spline estimates for each sample
-        for k = 1:length(exp3idx)
+        for k = 1:length(exp1idx)
     
        
         %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
-        [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp3idx(k)), channel, ReFs, light);
+        [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp1idx(k)), channel, ReFs, light);
   
 %need to save into something
 %         addpath('/Users/eric/Documents/MATLAB');
