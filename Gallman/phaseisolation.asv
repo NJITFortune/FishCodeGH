@@ -1,35 +1,22 @@
 clearvars -except kg kg2 cc
-%% single fish test case
-in = kg(64);
-channel = 1; 
-ReFs = 10;
-light = 3;
 
-[xx, fftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light);
-
-
-
-
-twidx1 = find(xx >= lighttimes(3) & xx <= (lighttimes(3) + 48));
-twlightidx = find(lighttimes >= lighttimes(3) & lighttimes <= (lighttimes(3) + 48));
-    
-
-
-figure(23); clf; hold on;
-plot(xx(twidx1), fftyy(twidx1));
-lesslight = lighttimes(twlightidx);
-for k = 1:length(lesslight)
-    plot([lesslight(k), lesslight(k)], ylim, 'k-');
-    
-end
-
-%% run for real...
+%% make a function?
 light = 3;
 channel = 1;
 ReFs = 10;
 
 %% kg data index - single fish
 exp3idx = [72 74]; %RIP Paco and Cheshire
+exp1idx = [64 66 67]; %65 is too short for easy coding - still good data - use later
+exp2idx = [68 69 70 71]; %71 is too short for easy coding
+
+%1st transistion
+firsttransidx = [64 66 67 68 69 70 71]
+secondtransidx = [64 65 66 67 68 69 70 71]
+thirdtransidx = [64 65 66 67 68 69 70]
+fourthtransidx = [64 65 66 67 68 69 70 71]
+
+%%
 
  clear k;
  %get the spline estimates for each sample
@@ -40,17 +27,17 @@ exp3idx = [72 74]; %RIP Paco and Cheshire
         [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp3idx(k)), channel, ReFs, light);
   
 %need to save into something
-        addpath('/Users/eric/Documents/MATLAB');
-        load("Users/eric/Documents/MATLAB/fouramp.mat");
-        load("Users/eric/Documents/MATLAB/twelveamp.mat");
-        %in 48 hour chunks... not actually that useful
-            %length of kg(64) in hours is 344 = ~ 48 *7
-        twelveamp = [dd dd dd dd dd dd dd];
-        fouramp = [cc cc cc cc cc cc cc];
-
-        fourtim = one(1).xx(1):0.1:one(1).xx(1)+((length(fouramp)-1)*0.1);
-        twelvetim = one(1).xx(1):0.1:one(1).xx(1)+((length(twelveamp)-1)*0.1);
-    
+%         addpath('/Users/eric/Documents/MATLAB');
+%         load("Users/eric/Documents/MATLAB/fouramp.mat");
+%         load("Users/eric/Documents/MATLAB/twelveamp.mat");
+%         %in 48 hour chunks... not actually that useful
+%             %length of kg(64) in hours is 344 = ~ 48 *7
+%         twelveamp = [dd dd dd dd dd dd dd];
+%         fouramp = [cc cc cc cc cc cc cc];
+% 
+%         fourtim = one(1).xx(1):0.1:one(1).xx(1)+((length(fouramp)-1)*0.1);
+%         twelvetim = one(1).xx(1):0.1:one(1).xx(1)+((length(twelveamp)-1)*0.1);
+%     
 
   %twelve hour to four hour transistions
      %first transistion idx - expecting 12 dark, get 4
@@ -63,8 +50,8 @@ exp3idx = [72 74]; %RIP Paco and Cheshire
         one(k).xx1 = one(k).xx(twidx1);
         one(k).fftyy1 = one(k).fftyy(twidx1);
     
-        fourtim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(fouramp)-1)*0.1);
-        twelvetim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(twelveamp)-1)*0.1);
+%         fourtim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(fouramp)-1)*0.1);
+%         twelvetim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(twelveamp)-1)*0.1);
     
     
         %raw data for plotting/spline check
@@ -93,7 +80,7 @@ exp3idx = [72 74]; %RIP Paco and Cheshire
     
    %four hour to twelve hour transitions 
      %second transition - expecting 4 of dark and get 12
-     xpoint3 = 258;
+     xpoint3 = 138;
         twidx3 = find(one(k).xx >= xpoint3 & one(k).xx <= (xpoint3 + 48));
         twlightidx3 = find(one(k).lighttimes >= xpoint3 & one(k).lighttimes <= (xpoint3 + 48));
         timcontidx3 = find(one(k).timcont >= xpoint3 & one(k).timcont <= (xpoint3 + 48));
@@ -110,7 +97,7 @@ exp3idx = [72 74]; %RIP Paco and Cheshire
     
       %fourth transition - 4 hours to 12 hours
         %expecting 4 hours light and get 12
-       xpoint4 = 101;
+       xpoint4 = 270;
         twidx4 = find(one(k).xx >= xpoint4 & one(k).xx <= (xpoint4 + 48));
         twlightidx4 = find(one(k).lighttimes >= xpoint4 & one(k).lighttimes <= (xpoint4 + 48));
         timcontidx4 = find(one(k).timcont >= xpoint4 & one(k).timcont <= (xpoint4 + 48));
@@ -128,7 +115,7 @@ exp3idx = [72 74]; %RIP Paco and Cheshire
         end
 
 %% multifish data 
-[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(18), ReFs, light);
+[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(19), ReFs, light);
 
 %% plots - 
 salmon = [250/255 128/255 114/255];
@@ -160,8 +147,8 @@ figure(4); clf; title("the whole enchilada..."); hold on;
 
     xa(2) = subplot(312); title("average day amp"); hold on;
             %plot the averages for four and twelve hours - around 1
-            plot(fourtim, fouramp, 'c-', 'LineWidth', 3);
-            plot(twelvetim, twelveamp, '-', 'LineWidth', 3, 'Color', salmon);
+%             plot(fourtim, fouramp, 'c-', 'LineWidth', 3);
+%             plot(twelvetim, twelveamp, '-', 'LineWidth', 3, 'Color', salmon);
             legend('four', 'twelve');
             legend('AutoUpdate', 'off');
 
