@@ -7,7 +7,7 @@ ReFs = 10;
 
 %% kg data index - single fish
 exp3idx = [72 74]; %RIP Paco and Cheshire
-
+ exp1idx = [64 66 67]; %65 is too short for easy coding - still good data - use later
 
 %%
 
