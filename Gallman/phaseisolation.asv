@@ -113,7 +113,7 @@ multifish124idx = [16 18 19];
     
       %fourth transition - 4 hours to 12 hours
         %expecting 4 hours light and get 12
-       xpoint4 = 270;
+       xpoint4 = exp1xpoint(4);
         twidx4 = find(one(k).xx >= xpoint4 & one(k).xx <= (xpoint4 + 48));
         twlightidx4 = find(one(k).lighttimes >= xpoint4 & one(k).lighttimes <= (xpoint4 + 48));
         timcontidx4 = find(one(k).timcont >= xpoint4 & one(k).timcont <= (xpoint4 + 48));
