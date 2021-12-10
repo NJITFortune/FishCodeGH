@@ -7,7 +7,11 @@ ReFs = 10;
 
 %% kg data index - single fish
 exp3idx = [72 74]; %RIP Paco and Cheshire
- exp1idx = [64 66 67]; %65 is too short for easy coding - still good data - use later
+exp1idx = [64 66 67]; %65 is too short for easy coding - still good data - use later
+exp2idx = [68 69 70]; %71 is too short for easy coding
+
+%1st transistion
+firsttransidx = 
 
 %%
 
