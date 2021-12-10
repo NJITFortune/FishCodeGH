@@ -34,7 +34,15 @@ exp3idx = [72 74]; %RIP Paco and Cheshire
 multifish124idx = [16 18 19];
 %18 is like 71 - doesnt go in twD
 
+%% divide into phase tranition points by experiment
+%each exp has different indicies
 
+%exp1
+ one(k) = k_phaselaser(exp1idx, exp1xpoint, channel, ReFs, light);
+%exp2
+ dos(k) = k_phaselaser(exp1idx, exp1xpoint, channel, ReFs, light);
+%exp3
+ tres(k)
 %%
 %need to save into something
 %         addpath('/Users/eric/Documents/MATLAB');
@@ -50,86 +58,7 @@ multifish124idx = [16 18 19];
 %     fourtim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(fouramp)-1)*0.1);
 %         twelvetim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(twelveamp)-1)*0.1);
 
- clear k;
- %get the spline estimates for each sample
-        for k = 1:length(exp1idx)
-    
-       
-        [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(exp1idx(k)), channel, ReFs, light);
-  
-
-  %twelve hour to four hour transistions
-     %first transistion idx - expecting 12 dark, get 4
-     xpoint1= exp1xpoint(1);
-        twidx1 = find(one(k).xx >= xpoint1 & one(k).xx <= (xpoint1 + 48));
-        twlightidx1 = find(one(k).lighttimes >= xpoint1 & one(k).lighttimes <= (xpoint1 + 48));
-       
-        
-        one(k).lighttimes1 = one(k).lighttimes(twlightidx1);
-        one(k).xx1 = one(k).xx(twidx1);
-        one(k).fftyy1 = one(k).fftyy(twidx1);
-    
-         
-        %raw data for plotting/spline check
-        one(k).timcont = [kg(exp2idx(k)).e(1).s.timcont]/3600;  
-        timcontidx = find(one(k).timcont >= one(k).lighttimes(3) & one(k).timcont <= (one(k).lighttimes(3) + 48));
-        one(k).timcont1 = one(k).timcont(timcontidx);
-        one(k).fft = [kg(exp2idx(k)).e(1).s.sumfftAmp];
-        one(k).fft1 = one(k).fft(timcontidx);
-    
-    
-     %third transition - expecting 12 hours light, get 4
-       xpoint2 = exp1xpoint(2);
-        twidx2 = find(one(k).xx >= xpoint2 & one(k).xx <= (xpoint2 + 48));
-        twlightidx2 = find(one(k).lighttimes >= xpoint2 & one(k).lighttimes <= (xpoint2 + 48));
-        timcontidx2 = find(one(k).timcont >= xpoint2 & one(k).timcont <= (xpoint2 + 48));
-        
-        %spline
-        one(k).lighttimes2 = one(k).lighttimes(twlightidx2);
-        one(k).xx2 = one(k).xx(twidx2);
-        one(k).fftyy2 = one(k).fftyy(twidx2);
-        
-    
-        %raw data for plotting/spline check
-        one(k).timcont2 = one(k).timcont(timcontidx2);
-        one(k).fft2 = one(k).fft(timcontidx2);
-    
-   %four hour to twelve hour transitions 
-     %second transition - expecting 4 of dark and get 12
-     xpoint3 = exp1xpoint(3);
-        twidx3 = find(one(k).xx >= xpoint3 & one(k).xx <= (xpoint3 + 48));
-        twlightidx3 = find(one(k).lighttimes >= xpoint3 & one(k).lighttimes <= (xpoint3 + 48));
-        timcontidx3 = find(one(k).timcont >= xpoint3 & one(k).timcont <= (xpoint3 + 48));
-    
-        %spline
-        one(k).lighttimes3 = one(k).lighttimes(twlightidx3);
-        one(k).xx3 = one(k).xx(twidx3);
-        one(k).fftyy3 = one(k).fftyy(twidx3);
-        
-    
-        %raw data for plotting/spline check
-        one(k).timcont3 = one(k).timcont(timcontidx3);
-        one(k).fft3 = one(k).fft(timcontidx3);
-    
-      %fourth transition - 4 hours to 12 hours
-        %expecting 4 hours light and get 12
-       xpoint4 = exp1xpoint(4);
-        twidx4 = find(one(k).xx >= xpoint4 & one(k).xx <= (xpoint4 + 48));
-        twlightidx4 = find(one(k).lighttimes >= xpoint4 & one(k).lighttimes <= (xpoint4 + 48));
-        timcontidx4 = find(one(k).timcont >= xpoint4 & one(k).timcont <= (xpoint4 + 48));
-    
-        %spline
-        one(k).lighttimes4 = one(k).lighttimes(twlightidx4);
-        one(k).xx4 = one(k).xx(twidx4);
-        one(k).fftyy4 = one(k).fftyy(twidx4);
-        
-    
-        %raw data for plotting/spline check
-        one(k).timcont4 = one(k).timcont(timcontidx4);
-        one(k).fft4 = one(k).fft(timcontidx4);
-    
-        end
-
+ 
 %% multifish data 
 [hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(19), ReFs, light);
 
