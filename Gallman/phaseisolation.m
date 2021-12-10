@@ -12,10 +12,13 @@ ReFs = 10;
 exp1idxtwL = [64 66 67]; %65 is too short for easy coding - still good data - use later
     exp1idx = [64 65 66 67];
  
-  [42 198 114  
+    exp1xpoint = [42 198 114 294];  
     
 exp2idxtwD =   [68 69 70];  
-exp2idx = [68 69 70 71]; %71 is too short for easy coding
+    exp2idx = [68 69 70 71]; %71 is too short for easy coding
+
+    exp1xpoint = [42 198 114 294];
+
 exp3idx = [72 74]; %RIP Paco and Cheshire
 % %1st transistion
 % twLfrDidx = [64 66 67 68 69 70 71 72 74];
