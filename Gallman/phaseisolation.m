@@ -66,6 +66,8 @@ multifish124idx = [16 18 19];
 %for kk = 1: length(multifish124idx);
 %kk = 1
 multi(1) = k_multiphaselaser(exp1xpoint, multifish124idx(1) , ReFs, light);
+multi(2) = k_multiphaselaser(exp2xpoint, multifish124idx(2) , ReFs, light);
+multi(3) = k_multiphaselaser(exp3xpoint, multifish124idx(3) , ReFs, light);
 
 
 %% plots - 
