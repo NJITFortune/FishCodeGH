@@ -154,8 +154,21 @@ ax(2) = subplot(212); title('multiple fish'); hold on;
         plot(multi(kk).loxx1, (ylo - mean(ylo))/max(abs((ylo - mean(ylo)))), 'LineWidth', 2);
         multimean = multimean + (ylo - mean(ylo))/max(abs((ylo - mean(ylo))));
         
-        
-        
+    end
+    
+    jj = kk *2;
+    
+         plot(multi(1).hixx1, multimean/jj, 'k-','LineWidth', 5);
+    
+%plot light transitions
+clear j;
+    for j = 1:length(multi(1).Hilighttimes1)
+        plot([multi(1).Hilighttimes1(j), multi(1).Hilighttimes1(j)], ylim, 'k-');
+      
+    end
+    
+linkaxes(ax, 'x');
+
 
 %individual splines plus raw data    
 figure(25); clf; hold on;
@@ -189,155 +202,3 @@ linkaxes(ax, 'x');
 
 
 
-%% 3rd transistion
-
-%spline tranistion summary plot
-figure(28); clf; title('expecting 12 light get 4'); hold on;
-
-mmean2 = zeros(1, length(one(1).fftyy2));
-%plot all splines on top of eachother
-    for k = 1:length(one)
-    plot(one(k).xx2, (one(k).fftyy2 - mean(one(k).fftyy2))/max(abs((one(k).fftyy2 - mean(one(k).fftyy2)))), 'LineWidth', 2);
-     mmean2 = mmean2 + (one(k).fftyy2 - mean(one(k).fftyy2))/max(abs((one(k).fftyy2 - mean(one(k).fftyy2))));
-    end
-    plot(one(1).xx2, mmean2/3, 'k-','LineWidth', 5);
-%plot light transitions
-    for j = 1:length(one(1).lighttimes2)
-        plot([one(1).lighttimes2(j), one(1).lighttimes2(j)], ylim, 'k-');
-      
-    end
-
-%individual splines plus raw data    
-figure(29); clf; hold on;
-
-   for k = 1:length(one)
-        
-       ax(k) = subplot(3,1,k); title('expecting 12 light get 4'); hold on; 
-               %plot raw data for each fish
-               plot(one(k).timcont2, one(k).fft2, '.');
-               %plot spline for each fish
-               plot(one(k).xx2, one(k).fftyy2, 'LineWidth', 3);
-               %add light transistion times as vertical lines
-               clear j;
-               for j = 1:length(one(k).lighttimes2)
-                   
-                   plot([one(k).lighttimes2(j), one(k).lighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
-                   
-               end
-                
-   end
-linkaxes(ax, 'x');
-
- figure(27); clf; hold on;
-
-plot(one(1).xx2(1:end-1), diff(mmean2/3), 'k-','LineWidth', 5);
-%plot light transitions
-    for j = 1:length(one(1).lighttimes2)
-        plot([one(1).lighttimes2(j), one(1).lighttimes2(j)], ylim, 'k-');
-      
-    end
-
-
-   
-%% 2nd transition
-clear ax;
-
-%spline tranistion summary plot
-figure(30); clf; title('expecting 4 hours of dark and get 12'); hold on;
-
-mmean3 = zeros(1, length(one(1).fftyy3));
-%plot all splines on top of eachother
-    for k = 1:length(one)
-    plot(one(k).xx3, (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3)))), 'LineWidth', 2);
-     mmean3 = mmean3 + (one(k).fftyy3 - mean(one(k).fftyy3))/max(abs((one(k).fftyy3 - mean(one(k).fftyy3))));
-    end
-    plot(one(1).xx3, mmean3/3, 'k-','LineWidth', 5);
-%plot light transitions
-    for j = 1:length(one(1).lighttimes3)
-        plot([one(1).lighttimes3(j), one(1).lighttimes3(j)], ylim, 'k-');
-      
-    end
-
-%individual splines plus raw data    
-figure(31); clf; hold on;
-
-   for k = 1:length(one)
-        
-       ax(k) = subplot(3,1,k);title('expecting 4 hours of dark and get 12'); hold on; 
-               %plot raw data for each fish
-               plot(one(k).timcont3, one(k).fft3, '.');
-               %plot spline for each fish
-               plot(one(k).xx3, one(k).fftyy3, 'LineWidth', 3);
-               %add light transistion times as vertical lines
-               clear j;
-               for j = 1:length(one(k).lighttimes3)
-                   
-                   plot([one(k).lighttimes3(j), one(k).lighttimes3(j)], ylim, 'k-', 'LineWidth', 0.5);
-                   
-               end
-                
-   end
-
-
-linkaxes(ax, 'x');
-
-figure(32); clf; hold on;
-    plot(one(1).xx3(1:end-1), diff(mmean3/3), 'k-','LineWidth', 5);
-    %plot light transitions
-    for j = 1:length(one(1).lighttimes3)
-        plot([one(1).lighttimes3(j), one(1).lighttimes3(j)], ylim, 'k-');
-      
-    end
-
-
-%% 4th transition
-
-clear ax;
-
-%spline tranistion summary plot
-figure(33); clf; title('expecting 4 hours of light and get 12'); hold on;
-
-mmean4 = zeros(1, length(one(1).fftyy4));
-%plot all splines on top of eachother
-    for k = 1:length(one)
-    plot(one(k).xx4, (one(k).fftyy4 - mean(one(k).fftyy4))/max(abs((one(k).fftyy4 - mean(one(k).fftyy4)))), 'LineWidth', 2);
-     mmean4 = mmean4 + (one(k).fftyy4 - mean(one(k).fftyy4))/max(abs((one(k).fftyy4 - mean(one(k).fftyy4))));
-    end
-    plot(one(1).xx4, mmean4/3, 'k-','LineWidth', 5);
-%plot light transitions
-    for j = 1:length(one(1).lighttimes4)
-        plot([one(1).lighttimes4(j), one(1).lighttimes4(j)], ylim, 'k-');
-      
-    end
-
-%individual splines plus raw data    
-figure(34); clf; hold on;
-
-   for k = 1:length(one)
-        
-       ax(k) = subplot(3,1,k); title('expecting 4 hours of light and get 12'); hold on; 
-               %plot raw data for each fish
-               plot(one(k).timcont4, one(k).fft4, '.');
-               %plot spline for each fish
-               plot(one(k).xx4, one(k).fftyy4, 'LineWidth', 3);
-               %add light transistion times as vertical lines
-               clear j;
-               for j = 1:length(one(k).lighttimes4)
-                   
-                   plot([one(k).lighttimes4(j), one(k).lighttimes4(j)], ylim, 'k-', 'LineWidth', 0.5);
-                   
-               end
-                
-   end
-
-
-linkaxes(ax, 'x');
-
-figure(35); clf; hold on;
-
-    plot(one(1).xx4(1:end-1), diff(mmean4/3), 'k-','LineWidth', 5);
-    %plot light transitions
-    for j = 1:length(one(1).lighttimes4)
-        plot([one(1).lighttimes4(j), one(1).lighttimes4(j)], ylim, 'k-');
-      
-    end
