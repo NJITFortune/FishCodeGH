@@ -60,6 +60,10 @@ multifish124idx = [16 18 19];
 
  
 %% multifish data 
+
+multifish124idx = [16 18 19];
+
+for kk = 1: length(
 multi(1) = k_multiphaselaser( expxpoint, , ReFs, light);
 
 
