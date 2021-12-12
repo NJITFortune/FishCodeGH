@@ -95,7 +95,7 @@ figure(24); clf; title('expecting 12 dark, get 4'); hold on;
 mmean = zeros(1, length(one(1).fftyy1));
 
 %plot all splines on top of eachother
-
+ax(1) = subplot(211); title('single fish'); hold on;
     %experiment 1
     for k = 1:length(one)
         %normalize splines around zero
@@ -104,25 +104,40 @@ mmean = zeros(1, length(one(1).fftyy1));
         mmean = mmean + normy;
     end
     
+    j = k;
     %experiment 2
     clear k;
     for k = 1:length(dos)
         %normalize splines around zero
         y = dos(k).fftyy1;
-        normy = (y - mean(dos(k).fftyy1))/max(abs((dos(k).fftyy1 - mean(dos(k).fftyy1))));
-        plot(dos(k).xx1, normy , 'LineWidth', 2);
-        mmean = mmean + normy;
+        plot(dos(k).xx1, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 2);
+        mmean = mmean + (y - mean(y))/max(abs((y - mean(y))));
     end
+    
+    j = j+k;
+    
+    %experiment 3
+    clear k;
+    for k = 1:length(tres)
+        %normalize splines around zero
+        y = tres(k).fftyy1;
+        plot(tres(k).xx1, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 2);
+        mmean = mmean + (y - mean(y))/max(abs((y - mean(y))));
+    end
+    
+    j = j + k;
 
-    plot(one(1).xx1, mmean/3, 'k-','LineWidth', 5);
+    plot(one(1).xx1, mmean/j, 'k-','LineWidth', 5);
    
 %plot light transitions
+clear j;
     for j = 1:length(one(1).lighttimes1)
         plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
       
     end
 
- 
+ax(2) = subplot(212); title('multiple fish'); hold on; 
+    for kk = 1:lengthI
 
 %individual splines plus raw data    
 figure(25); clf; hold on;
