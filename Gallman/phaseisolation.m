@@ -92,6 +92,7 @@ mediumV = [199/255 21/255 133/255];
 %spline tranistion summary plot 
 figure(24); clf; title('expecting 12 dark, get 4'); hold on;
 
+%ititialize vector to sum across amp
 mmean = zeros(1, length(one(1).fftyy1));
 
 %plot all splines on top of eachother
@@ -121,7 +122,7 @@ ax(1) = subplot(211); title('single fish'); hold on;
     for k = 1:length(tres)
         %normalize splines around zero
         y = tres(k).fftyy1;
-        plot(tres(k).xx1, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 2);
+        plot(tres(k).xx1, (y - mean(y))/max(abs((y - mean(y)))), 'LineWidth', 2);
         mmean = mmean + (y - mean(y))/max(abs((y - mean(y))));
     end
     
@@ -136,11 +137,24 @@ clear j;
       
     end
 
+%ititialize mean vector
+multimean = zeros(1, length(multi(1).Hiffyy1));
+    
 ax(2) = subplot(212); title('multiple fish'); hold on; 
     for kk = 1:length(multi)
+        
         yhi = multi(kk).Hifftyy1;
         ylo = multi(kk).Lofftyy1;
-        plot(multi(kk).
+        
+        %high amplitude fish
+        plot(multi(kk).hixx1, (yhi - mean(yhi))/max(abs((yhi - mean(yhi)))), 'LineWidth', 2);
+        multimean = multimean + (yhi - mean(yhi))/max(abs((yhi - mean(yhi))));
+        
+        %low amplitude fish
+        plot(multi(kk).loxx1, (ylo - mean(ylo))/max(abs((ylo - mean(ylo)))), 'LineWidth', 2);
+        multimean = multimean + (ylo - mean(ylo))/max(abs((ylo - mean(ylo))));
+        
+        
         
 
 %individual splines plus raw data    
