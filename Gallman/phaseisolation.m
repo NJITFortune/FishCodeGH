@@ -60,7 +60,7 @@ multifish124idx = [16 18 19];
 
  
 %% multifish data 
-[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(19), ReFs, light);
+
 
 
 %% plots - 
