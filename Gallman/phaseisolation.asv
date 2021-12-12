@@ -38,10 +38,11 @@ multifish124idx = [16 18 19];
 %each exp has different indicies
 
 %exp1
- one(k) = k_phaselaser(exp1idx, exp1xpoint, channel, ReFs, light);
+ one= k_phaselaser(exp1idx, exp1xpoint, channel, ReFs, light);
 %exp2
- dos(k) = k_phaselaser(exp1idx, exp1xpoint, channel, ReFs, light);
+ dos = k_phaselaser(exp2idx, exp3xpoint, channel, ReFs, light);
 %exp3
+ tres = k_phaselaser(exp3idx, exp3xpoint, channel, ReFs, light);
 %%
 %need to save into something
 %         addpath('/Users/eric/Documents/MATLAB');
@@ -59,9 +60,16 @@ multifish124idx = [16 18 19];
 
  
 %% multifish data 
-[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(19), ReFs, light);
+
+multifish124idx = [16 18 19];
+
+%for kk = 1: length(multifish124idx);
+%kk = 1
+multi(1) = k_multiphaselaser(exp1xpoint, multifish124idx(1) , ReFs, light);
+
 
 %% plots - 
+%colors
 salmon = [250/255 128/255 114/255];
 mediumV = [199/255 21/255 133/255];
 deepsky = [0/255 191/255 255/255];
