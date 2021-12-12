@@ -110,4 +110,4 @@ function multi(k) = k_multiphaselaser(k, expxpoint, kk, ReFs, light)
   
         multi(k).HiTim4 = HiTim(hitimidx4);
         multi(k).LoTim4 = LoTim(lotimidx4);
-        end
+     
