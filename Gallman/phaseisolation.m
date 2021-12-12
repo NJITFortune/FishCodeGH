@@ -72,80 +72,74 @@ multi(3) = k_multiphaselaser(exp3xpoint, multifish124idx(3) , ReFs, light);
 
 %% plots - 
 %colors
-salmon = [250/255 128/255 114/255];
-mediumV = [199/255 21/255 133/255];
+turq = [64/255, 224/255, 208/255];
+darkcy = [0/255, 139/255 139/255];
+
+lightsky = [135/255 206/255 235/255];
 deepsky = [0/255 191/255 255/255];
 
+lightsalmon = [255/255 160/255 122/255];
+salmon = [250/255 128/255 114/255];
 
-figure(4); clf; title("the whole enchilada..."); hold on;
-
-    xa(1) = subplot(311); title("single fish"); hold on;
-
-        %initialize variable to store amp sum to calculate mean
-         allmean = zeros(1, length(one(1).fftyy));
-
-         %plot all splines on top of eachother
-            for k = 1:length(one)
-            %normalized to eachother around 0 
-            plot(one(k).xx, (one(k).fftyy - mean(one(k).fftyy))/max(abs((one(k).fftyy - mean(one(k).fftyy)))), 'LineWidth', 2);
-            allmean = allmean + (one(k).fftyy - mean(one(k).fftyy))/max(abs((one(k).fftyy - mean(one(k).fftyy))));
-            end
-
-            %plot the mean
-            plot(one(1).xx, allmean/3, 'k-','LineWidth', 5);
-            %plot light transitions
-            for j = 1:length(one(1).lighttimes)
-                plot([one(1).lighttimes(j), one(1).lighttimes(j)], ylim, 'k-');
-              
-            end
-
-    xa(2) = subplot(312); title("average day amp"); hold on;
-            %plot the averages for four and twelve hours - around 1
-%             plot(fourtim, fouramp, 'c-', 'LineWidth', 3);
-%             plot(twelvetim, twelveamp, '-', 'LineWidth', 3, 'Color', salmon);
-            legend('four', 'twelve');
-            legend('AutoUpdate', 'off');
-
-        %plot light transitions
-            for j = 1:length(one(1).lighttimes)
-                plot([one(1).lighttimes(j), one(1).lighttimes(j)], ylim, 'k-');
-              
-            end
-
-     xa(3) = subplot(313); title("multiple fish"); hold on;
+paleV = [219/255 112/255 147/255];
+mediumV = [199/255 21/255 133/255];
 
 
-            plot(hixx, (Hifftyy-mean(Hifftyy))/max(abs(Hifftyy- mean(Hifftyy))), 'LineWidth', 2, 'Color', mediumV);
-            plot(loxx, (Lofftyy-mean(Lofftyy))/max(abs(Lofftyy- mean(Lofftyy))), 'LineWidth', 2, 'Color', deepsky);
+%see exp1-3phaseisolation for summary plot
 
-           
-            for j = 1:length(Hilighttimes)
-                plot([Hilighttimes(j), Hilighttimes(j)], ylim, 'k-');
-            end
+%% 1st transistion - expecting 12 dark, get 4
 
-     linkaxes(xa, 'x');
-
-%% 1st transistion
-
-%spline tranistion summary plot
+%spline tranistion summary plot 
 figure(24); clf; title('expecting 12 dark, get 4'); hold on;
 
 mmean = zeros(1, length(one(1).fftyy1));
-%plot all splines on top of eachother
-    for k = 1:length(one)
-    plot(one(k).xx1, (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1)))), 'LineWidth', 2);
-    mmean = mmean + (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
-    end
 
-    plot(one(1).xx1, mmean/3, 'k-','LineWidth', 5);
+%plot all splines on top of eachother
+ax(1) = subplot(211); title('single fish'); hold on;
+    %experiment 1
+    for k = 1:length(one)
+        %normalize splines around zero
+        normy = (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
+        plot(one(k).xx1,normy , 'LineWidth', 2);
+        mmean = mmean + normy;
+    end
+    
+    j = k;
+    %experiment 2
+    clear k;
+    for k = 1:length(dos)
+        %normalize splines around zero
+        y = dos(k).fftyy1;
+        plot(dos(k).xx1, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 2);
+        mmean = mmean + (y - mean(y))/max(abs((y - mean(y))));
+    end
+    
+    j = j+k;
+    
+    %experiment 3
+    clear k;
+    for k = 1:length(tres)
+        %normalize splines around zero
+        y = tres(k).fftyy1;
+        plot(tres(k).xx1, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 2);
+        mmean = mmean + (y - mean(y))/max(abs((y - mean(y))));
+    end
+    
+    j = j + k;
+
+    plot(one(1).xx1, mmean/j, 'k-','LineWidth', 5);
    
 %plot light transitions
+clear j;
     for j = 1:length(one(1).lighttimes1)
         plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
       
     end
 
- 
+ax(2) = subplot(212); title('multiple fish'); hold on; 
+    for kk = 1:length(multi)
+        yhi = multi(kk).
+        
 
 %individual splines plus raw data    
 figure(25); clf; hold on;
