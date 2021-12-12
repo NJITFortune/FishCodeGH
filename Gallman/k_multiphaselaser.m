@@ -1,7 +1,6 @@
 
 
-
-function multi = multiphaselaser( expxpoint, kk, ReFs, light)
+function multi = k_multiphaselaser( expxpoint, kk, ReFs, light)
 
 [hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(kk), ReFs, light);
 
