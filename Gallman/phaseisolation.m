@@ -60,7 +60,7 @@ multifish124idx = [16 18 19];
 
  
 %% multifish data 
-
+multi(1) = k_multiphaselaser( expxpoint, kk, ReFs, light)
 
 
 %% plots - 
