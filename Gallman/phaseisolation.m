@@ -138,7 +138,9 @@ clear j;
 
 ax(2) = subplot(212); title('multiple fish'); hold on; 
     for kk = 1:length(multi)
-        yhi = multi(kk).
+        yhi = multi(kk).Hifftyy1;
+        ylo = multi(kk).Lofftyy1;
+        plot(multi(kk).
         
 
 %individual splines plus raw data    
