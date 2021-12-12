@@ -40,7 +40,7 @@ multifish124idx = [16 18 19];
 %exp1
  one= k_phaselaser(exp1idx, exp1xpoint, channel, ReFs, light);
 %exp2
- dos = k_phaselaser(exp2idx, exp3xpoint, channel, ReFs, light);
+ dos = k_phaselaser(exp2idx, exp2xpoint, channel, ReFs, light);
 %exp3
  tres = k_phaselaser(exp3idx, exp3xpoint, channel, ReFs, light);
 %%
@@ -66,62 +66,26 @@ multifish124idx = [16 18 19];
 %for kk = 1: length(multifish124idx);
 %kk = 1
 multi(1) = k_multiphaselaser(exp1xpoint, multifish124idx(1) , ReFs, light);
+multi(2) = k_multiphaselaser(exp2xpoint, multifish124idx(2) , ReFs, light);
+multi(3) = k_multiphaselaser(exp3xpoint, multifish124idx(3) , ReFs, light);
 
 
 %% plots - 
 %colors
-salmon = [250/255 128/255 114/255];
-mediumV = [199/255 21/255 133/255];
+turq = [64/255, 224/255, 208/255];
+darkcy = [0/255, 139/255 139/255];
+
+lightsky = [135/255 206/255 235/255];
 deepsky = [0/255 191/255 255/255];
 
+lightsalmon = [255/255 160/255 122/255];
+salmon = [250/255 128/255 114/255];
 
-figure(4); clf; title("the whole enchilada..."); hold on;
-
-    xa(1) = subplot(311); title("single fish"); hold on;
-
-        %initialize variable to store amp sum to calculate mean
-         allmean = zeros(1, length(one(1).fftyy));
-
-         %plot all splines on top of eachother
-            for k = 1:length(one)
-            %normalized to eachother around 0 
-            plot(one(k).xx, (one(k).fftyy - mean(one(k).fftyy))/max(abs((one(k).fftyy - mean(one(k).fftyy)))), 'LineWidth', 2);
-            allmean = allmean + (one(k).fftyy - mean(one(k).fftyy))/max(abs((one(k).fftyy - mean(one(k).fftyy))));
-            end
-
-            %plot the mean
-            plot(one(1).xx, allmean/3, 'k-','LineWidth', 5);
-            %plot light transitions
-            for j = 1:length(one(1).lighttimes)
-                plot([one(1).lighttimes(j), one(1).lighttimes(j)], ylim, 'k-');
-              
-            end
-
-    xa(2) = subplot(312); title("average day amp"); hold on;
-            %plot the averages for four and twelve hours - around 1
-%             plot(fourtim, fouramp, 'c-', 'LineWidth', 3);
-%             plot(twelvetim, twelveamp, '-', 'LineWidth', 3, 'Color', salmon);
-            legend('four', 'twelve');
-            legend('AutoUpdate', 'off');
-
-        %plot light transitions
-            for j = 1:length(one(1).lighttimes)
-                plot([one(1).lighttimes(j), one(1).lighttimes(j)], ylim, 'k-');
-              
-            end
-
-     xa(3) = subplot(313); title("multiple fish"); hold on;
+paleV = [219/255 112/255 147/255];
+mediumV = [199/255 21/255 133/255];
 
 
-            plot(hixx, (Hifftyy-mean(Hifftyy))/max(abs(Hifftyy- mean(Hifftyy))), 'LineWidth', 2, 'Color', mediumV);
-            plot(loxx, (Lofftyy-mean(Lofftyy))/max(abs(Lofftyy- mean(Lofftyy))), 'LineWidth', 2, 'Color', deepsky);
-
-           
-            for j = 1:length(Hilighttimes)
-                plot([Hilighttimes(j), Hilighttimes(j)], ylim, 'k-');
-            end
-
-     linkaxes(xa, 'x');
+%see exp1-3phaseisolation for summary plot
 
 %% 1st transistion
 
