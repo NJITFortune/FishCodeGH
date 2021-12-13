@@ -202,7 +202,7 @@ figure(26); clf; hold on;
     %experiment 2
     clear k;
     clear ax;
-    clear j;
+
     for k = 1:length(dos)
         
         ax(k) = subplot(4,1,k); title('exp2 expecting 12 get 4')
