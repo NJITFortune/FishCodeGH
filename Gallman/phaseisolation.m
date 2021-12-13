@@ -198,7 +198,7 @@ figure(25); clf; hold on;
     clear k;
     for k = 1:length(dos)
         
-        ax(j+k) = subplot(
+        ax(j+k) = subplot(x,1, (j+k);
         %normalize splines around zero
         plot(dos(k).timcont1, dos(k).fft1 , 'LineWidth', 2);
         plot(dos(k).xx1, dos(k).fftyy1, 'LineWidth', 3);
