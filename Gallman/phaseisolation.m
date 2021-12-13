@@ -94,13 +94,14 @@ figure(24); clf; title('expecting 12 dark, get 4'); hold on;
 
 %ititialize vector to sum across amp
 mmean = zeros(1, length(one(1).fftyy1));
-
+length(mmean)
 %plot all splines on top of eachother
 ax(1) = subplot(211); title('single fish'); hold on;
     %experiment 1
     for k = 1:length(one)
         %normalize splines around zero
-        %normy = (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
+        normy = (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
+        length(normy)
         plot(one(k).xx1,(one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1)))) , 'LineWidth', 2);
         mmean = mmean + (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
     end
