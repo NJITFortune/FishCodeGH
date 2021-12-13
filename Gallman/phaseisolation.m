@@ -196,7 +196,7 @@ figure(25); clf; hold on;
    end
    
    ax(k+1) = subplot(5,1,(k+1)); title('exp1 multi'); hold on;
-              plot(multi(1).
+              plot(multi(1).HiTim1, multi(1).
    
 linkaxes(ax, 'x');
 
