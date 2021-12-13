@@ -761,7 +761,7 @@ clear j;
     end
 
 %ititialize mean vector
-multimean4 = zeros(1, length(multi(1).Hifftyy4));
+multimean4 = zeros(1, length(multi(2).Hifftyy4));
     
 ax(2) = subplot(212); title('multiple fish'); hold on; 
     for kk = 2:length(multi)
@@ -784,7 +784,7 @@ ax(2) = subplot(212); title('multiple fish'); hold on;
     
     jj = kk * 2;
     
-         plot(multi(1).hixx4, multimean4/jj, 'k-','LineWidth', 5);
+         plot(multi(2).hixx4, multimean4/jj, 'k-','LineWidth', 5);
     
 %plot light transitions
 clear j;
