@@ -78,8 +78,8 @@ darkcy = [0/255, 139/255 139/255];
 lightsky = [135/255 206/255 235/255];
 deepsky = [0/255 191/255 255/255];
 
-lightsalmon = [255/255 160/255 122/255];
-salmon = [250/255 128/255 114/255];
+roseybrown = [188/255 143/255 143/255];
+pink = [255/255 182/255 193/255];
 
 paleV = [219/255 112/255 147/255];
 mediumV = [199/255 21/255 133/255];
@@ -175,13 +175,16 @@ linkaxes(ax, 'x');
 figure(25); clf; hold on;
 
    %experiment 1
+   clear j;
+   clear k;
+   clear ax;
    for k = 1:(length(one)-1)
         
        ax(k) = subplot(3,1,k); title('exp1 expecting 12 dark, get 4'); hold on; 
                %plot raw data for each fish
-               plot(one(k).timcont1, one(k).fft1, '.');
+               plot(one(k).timcont1, one(k).fft1, '.', 'Color', paleV);
                %plot spline for each fish
-               plot(one(k).xx1, one(k).fftyy1, 'LineWidth', 3);
+               plot(one(k).xx1, one(k).fftyy1, 'LineWidth', 3, 'Color', turq);
                %add light transistion times as vertical lines
                clear j;
                for j = 1:length(one(k).lighttimes1)
@@ -192,49 +195,49 @@ figure(25); clf; hold on;
                 
    end
    
-        j = k;
+linkaxes(ax, 'x');
+
+figure(26); clf; hold on; 
         
     %experiment 2
     clear k;
+    clear ax;
+
     for k = 1:length(dos)
         
-        ax(j+k) = subplot(x,1, (j+k)); title('exp2 expecting 12 get 4)
-        %normalize splines around zero
-        plot(dos(k).timcont1, dos(k).fft1 , 'LineWidth', 2);
-        plot(dos(k).xx1, dos(k).fftyy1, 'LineWidth', 3);
-        
+        ax(k) = subplot(4,1,k); title('exp2 expecting 12 get 4'); hold on;
+   
+                plot(dos(k).timcont1, dos(k).fft1, '.', 'Color', turq);
+                plot(dos(k).xx1, dos(k).fftyy1, 'LineWidth', 3, 'Color', mediumV);
+        clear j;
         for j = 1:length(dos(k).lighttimes1)
                    
                    plot([dos(k).lighttimes1(j), dos(k).lighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
         end
     end
-    
-    j = j+k;
-    
+ 
+linkaxes(ax, 'x');
+ 
+figure(27); clf; hold on;
+
     %experiment 3
     clear k;
+    clear ax;
+    clear j;
     for k = 1:length(tres)
-        %normalize splines around zero
-        y = tres(k).fftyy1;
-        plot(tres(k).xx1, (y - mean(y))/max(abs((y - mean(y)))), 'LineWidth', 2);
-        mmean = mmean + (y - mean(y))/max(abs((y - mean(y))));
+        
+        ax(k) = subplot(length(tres),1, k); title('exp3 expecting 12 get 4'); hold on;
+   
+        plot(tres(k).timcont1, tres(k).fft1, '.', 'Color', pink);
+        plot(tres(k).xx1, tres(k).fftyy1, 'LineWidth', 3, 'Color', roseybrown);
     end
-    
-    j = j + k;
    
    
 linkaxes(ax, 'x');
  
 
 
-figure(26); clf; hold on;
-
-    plot(one(1).xx1(1:end-1), diff(mmean/3), 'k-','LineWidth', 5);
-    for j = 1:length(one(1).lighttimes1)
-        plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
-      
-    end
 
 
 
