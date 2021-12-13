@@ -207,8 +207,8 @@ figure(26); clf; hold on;
         
         ax(k) = subplot(length(dos),1,k); title('exp2 expecting 12 get 4')
    
-                plot(dos(k).timcont1, dos(k).fft1 , 'LineWidth', 2);
-                plot(dos(k).xx1, dos(k).fftyy1, 'LineWidth', 3);
+                plot(dos(k).timcont1, dos(k).fft1,'.', 'Color', turq);
+                plot(dos(k).xx1, dos(k).fftyy1, 'LineWidth', 3, 'Color', mediumV);
         
         for j = 1:length(dos(k).lighttimes1)
                    
