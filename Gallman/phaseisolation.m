@@ -139,7 +139,7 @@ clear j;
     end
 
 %ititialize mean vector
-multimean = zeros(1, length(multi(1).Hiffyy1));
+multimean = zeros(1, length(multi(1).Hifftyy1));
     
 ax(2) = subplot(212); title('multiple fish'); hold on; 
     for kk = 1:length(multi)
