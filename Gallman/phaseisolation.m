@@ -500,7 +500,7 @@ clear k;
 clear j;
 clear ax;
 %spline tranistion summary plot 
-figure(24); clf; title('expecting 4 dark, get 12'); hold on;
+figure(32); clf; title('expecting 4 dark, get 12'); hold on;
 
 %ititialize vector to sum across amp
 mmean3 = zeros(1, length(one(1).fftyy3));
@@ -581,7 +581,7 @@ linkaxes(ax, 'x');
 
 
 %individual splines plus raw data    
-figure(25); clf; hold on;
+figure(33); clf; hold on;
 
    %experiment 1
    clear j;
@@ -626,7 +626,7 @@ figure(25); clf; hold on;
    
 linkaxes(ax, 'x');
 
-figure(26); clf; hold on; 
+figure(34); clf; hold on; 
         
     %experiment 2
     clear k;
@@ -669,7 +669,7 @@ figure(26); clf; hold on;
  
 linkaxes(ax, 'x');
  
-figure(27); clf; hold on;
+figure(35); clf; hold on;
 
     %experiment 3
     clear k;
