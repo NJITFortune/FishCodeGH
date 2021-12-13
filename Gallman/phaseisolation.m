@@ -210,9 +210,9 @@ figure(26); clf; hold on;
                 plot(dos(k).timcont1, dos(k).fft1,'.', 'Color', turq);
                 plot(dos(k).xx1, dos(k).fftyy1, 'LineWidth', 3, 'Color', mediumV);
         
-        for j = 1:length(dos(k).lighttimes1)
+        for j = 1:length(dos(1).lighttimes1)
                    
-                   plot([dos(k).lighttimes1(j), dos(k).lighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   plot([dos(1).lighttimes1(j), dos(1).lighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
         end
     end
