@@ -15,7 +15,7 @@ clear k;
         twlightidx1 = find(one(k).lighttimes >= xpoint1 & one(k).lighttimes <= (xpoint1 + 48));
        
         
-        one(k).lighttimes1 = one(k).lighttimes(twlightidx1);
+        one(k).lighttimes1 = one(k).lighttimes(twlightidx1)-one(k).lighttimes(twlightidx1(1));
         one(k).xx1 = one(k).xx(twidx1)-one(k).xx(twidx1(1));
         one(k).fftyy1 = one(k).fftyy(twidx1);
     
