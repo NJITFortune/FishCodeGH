@@ -788,8 +788,8 @@ ax(2) = subplot(212); title('multiple fish'); hold on;
     
 %plot light transitions
 clear j;
-    for j = 1:length(multi(1).Hilighttimes4)
-        plot([multi(1).Hilighttimes4(j), multi(1).Hilighttimes4(j)], ylim, 'k-');
+    for j = 1:length(multi(2).Hilighttimes4)
+        plot([multi(2).Hilighttimes4(j), multi(2).Hilighttimes4(j)], ylim, 'k-');
       
     end
     
@@ -805,7 +805,7 @@ figure(33); clf; hold on;
    clear ax;
    for k = 1:length(one)
         
-       ax(k) = subplot(6,1,k); title('exp1 expecting 4 light, get 12'); hold on; 
+       ax(k) = subplot(4,1,k); title('exp1 expecting 4 light, get 12'); hold on; 
                %plot raw data for each fish
                plot(one(k).timcont4, one(k).fft4, '.', 'Color', paleV);
                %plot spline for each fish
@@ -820,25 +820,7 @@ figure(33); clf; hold on;
                 
    end
    
-   ax(k+1) = subplot(6,1,(k+1)); title('exp1 multi high freq fish'); hold on;
-              plot(multi(1).HiTim4, multi(1).HiAmp4, '.', 'Color', turq);
-              plot(multi(1).hixx4, multi(1).Hifftyy4,  'LineWidth', 3, 'Color', paleV);
-               clear j;
-               for j = 1:length(multi(1).Hilighttimes4)
-                   
-                   plot([multi(1).Hilighttimes4(j), multi(1).Hilighttimes4(j)], ylim, 'k-', 'LineWidth', 0.5);
-                   
-               end
-               
-   ax(k+2) = subplot(616);  title('exp1 multi low freq fish'); hold on;
-              plot(multi(1).LoTim4, multi(1).LoAmp4, '.', 'Color', turq);
-              plot(multi(1).loxx4, multi(1).Lofftyy4,  'LineWidth', 3, 'Color', paleV);
-               clear j;
-               for j = 1:length(multi(1).Hilighttimes4)
-                   
-                   plot([multi(1).Hilighttimes4(j), multi(1).Hilighttimes4(j)], ylim, 'k-', 'LineWidth', 0.5);
-                   
-               end
+ 
    
 linkaxes(ax, 'x');
 
