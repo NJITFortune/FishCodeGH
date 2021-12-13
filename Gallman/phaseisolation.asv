@@ -177,7 +177,7 @@ figure(25); clf; hold on;
    %experiment 1
    for k = 1:(length(one)-1)
         
-       ax(k) = subplot(3,1,k); title('expecting 12 dark, get 4'); hold on; 
+       ax(k) = subplot(3,1,k); title('exp1 expecting 12 dark, get 4'); hold on; 
                %plot raw data for each fish
                plot(one(k).timcont1, one(k).fft1, '.');
                %plot spline for each fish
@@ -197,9 +197,17 @@ figure(25); clf; hold on;
     %experiment 2
     clear k;
     for k = 1:length(dos)
+        
+        ax(j+k) = subplot(x,1, (j+k)); title('exp2 expecting 12 get 4)
         %normalize splines around zero
         plot(dos(k).timcont1, dos(k).fft1 , 'LineWidth', 2);
-        plot(one(k).xx1, one(k).fftyy1, 'LineWidth', 3);
+        plot(dos(k).xx1, dos(k).fftyy1, 'LineWidth', 3);
+        
+        for j = 1:length(dos(k).lighttimes1)
+                   
+                   plot([dos(k).lighttimes1(j), dos(k).lighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+        end
     end
     
     j = j+k;
