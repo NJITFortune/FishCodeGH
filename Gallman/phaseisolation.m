@@ -38,7 +38,7 @@ multifish124idx = [16 18 19];
 %each exp has different indicies
 
 %exp1
- one= k_phaselaser(exp1idx, exp1xpoint, channel, ReFs, light);
+ one = k_phaselaser(exp1idx, exp1xpoint, channel, ReFs, light, kg);
 %exp2
  dos = k_phaselaser(exp2idx, exp2xpoint, channel, ReFs, light);
 %exp3
