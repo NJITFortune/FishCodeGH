@@ -299,10 +299,10 @@ figure(27); clf; hold on;
 linkaxes(ax, 'x');
  
 %% 3rd transistion - expecting 12 light, get 4
-
+%exp 2 loses 1
 
 %spline tranistion summary plot 
-figure(28); clf; title('expecting 4 dark, get 12'); hold on;
+figure(28); clf; title('expecting 12 light, get 4'); hold on;
 
 %ititialize vector to sum across amp
 mmean2 = zeros(1, length(one(1).fftyy2));
@@ -393,7 +393,7 @@ figure(29); clf; hold on;
    clear ax;
    for k = 1:length(one)
         
-       ax(k) = subplot(6,1,k); title('exp1 expecting 4 dark, get 12'); hold on; 
+       ax(k) = subplot(6,1,k); title('exp1 expecting 12 light, get 4'); hold on; 
                %plot raw data for each fish
                plot(one(k).timcont2, one(k).fft2, '.', 'Color', paleV);
                %plot spline for each fish
@@ -438,7 +438,7 @@ figure(30); clf; hold on;
 
     for k = 1:(length(dos)-1)
         
-        ax(k) = subplot(5,1,k); title('exp2 expecting 12 get 4'); hold on;
+        ax(k) = subplot(5,1,k); title('exp2 expecting 12 light get 4'); hold on;
    
                 plot(dos(k).timcont2, dos(k).fft2, '.', 'Color', turq);
                 plot(dos(k).xx2, dos(k).fftyy2, 'LineWidth', 3, 'Color', mediumV);
@@ -450,27 +450,7 @@ figure(30); clf; hold on;
         end
     end
     
-    ax(k+1) = subplot(5,1,(k+1)); title('exp2 multi high freq fish'); hold on;
-              plot(multi(2).HiTim2, multi(2).HiAmp2, '.', 'Color', mediumV);
-              plot(multi(2).hixx2, multi(2).Hifftyy2,  'LineWidth', 3, 'Color', turq);
-               clear j;
-               for j = 1:length(multi(2).Hilighttimes2)
-                   
-                   plot([multi(2).Hilighttimes2(j), multi(2).Hilighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
-                   
-               end
-               
-   ax(k+2) = subplot(515);  title('exp2 multi low freq fish'); hold on;
-              plot(multi(2).LoTim2, multi(2).LoAmp2, '.', 'Color', mediumV);
-              plot(multi(2).loxx2, multi(2).Lofftyy2,  'LineWidth', 3, 'Color', turq);
-               clear j;
-               for j = 1:length(multi(2).Hilighttimes2)
-                   
-                   plot([multi(2).Hilighttimes2(j), multi(2).Hilighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
-                   
-               end
    
- 
 linkaxes(ax, 'x');
  
 figure(31); clf; hold on;
@@ -481,7 +461,7 @@ figure(31); clf; hold on;
     clear j;
     for k = 1:length(tres)
         
-        ax(k) = subplot(4,1, k); title('exp3 expecting 4 dark get 12'); hold on;
+        ax(k) = subplot(4,1, k); title('exp3 expecting 12 light, get 4'); hold on;
    
         plot(tres(k).timcont2, tres(k).fft2, '.', 'Color', pink);
         plot(tres(k).xx2, tres(k).fftyy2, 'LineWidth', 3, 'Color', roseybrown);
@@ -489,22 +469,22 @@ figure(31); clf; hold on;
    
     
     ax(k+1) = subplot(4,1,(k+1)); title('exp3 multi high freq fish'); hold on;
-              plot(multi(3).HiTim2, multi(3).HiAmp2, '.', 'Color', roseybrown);
-              plot(multi(3).hixx2, multi(3).Hifftyy2,  'LineWidth', 3, 'Color', pink);
+              plot(multi(2).HiTim2, multi(2).HiAmp2, '.', 'Color', roseybrown);
+              plot(multi(2).hixx2, multi(2).Hifftyy2,  'LineWidth', 3, 'Color', pink);
                clear j;
-               for j = 1:length(multi(3).Hilighttimes2)
+               for j = 1:length(multi(2).Hilighttimes2)
                    
-                   plot([multi(3).Hilighttimes2(j), multi(3).Hilighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   plot([multi(2).Hilighttimes2(j), multi(2).Hilighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
                end
                
    ax(k+2) = subplot(414);  title('exp3 multi low freq fish'); hold on;
-              plot(multi(3).LoTim2, multi(3).LoAmp2, '.', 'Color', roseybrown);
-              plot(multi(3).loxx2, multi(3).Lofftyy2,  'LineWidth', 3, 'Color', pink);
+              plot(multi(2).LoTim2, multi(2).LoAmp2, '.', 'Color', roseybrown);
+              plot(multi(2).loxx2, multi(2).Lofftyy2,  'LineWidth', 3, 'Color', pink);
                clear j;
-               for j = 1:length(multi(3).Hilighttimes2)
+               for j = 1:length(multi(2).Hilighttimes2)
                    
-                   plot([multi(3).Hilighttimes2(j), multi(3).Hilighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   plot([multi(2).Hilighttimes2(j), multi(2).Hilighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
                end
     
@@ -514,5 +494,217 @@ linkaxes(ax, 'x');
 
 
 
+%% 2nd transistion - expecting 4 dark, get 12
+clear jj;
+clear k;
+clear j;
+clear ax;
+%spline tranistion summary plot 
+figure(24); clf; title('expecting 4 dark, get 12'); hold on;
 
+%ititialize vector to sum across amp
+mmean3 = zeros(1, length(one(1).fftyy3));
+
+%plot all splines on top of eachother
+ax(1) = subplot(211); title('single fish'); hold on;
+    %experiment 1
+    for k = 1:length(one)
+        %normalize splines around zero
+        y = one(k).fftyy3;
+        plot(one(k).xx3, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 2);
+        mmean3 = mmean3 +  (y - mean(y))/max(abs((y - mean(y))));
+    end
+    
+    j = k;
+    %experiment 2
+    clear k;
+    for k = 1:length(dos)
+        %normalize splines around zero
+        y = dos(k).fftyy3;
+        plot(dos(k).xx3, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 2);
+        mmean3 = mmean3 + (y - mean(y))/max(abs((y - mean(y))));
+    end
+    
+    j = j+k;
+    
+    %experiment 3
+    clear k;
+    for k = 1:length(tres)
+        %normalize splines around zero
+        y = tres(k).fftyy3;
+        plot(tres(k).xx3, (y - mean(y))/max(abs((y - mean(y)))), 'LineWidth', 2);
+        mmean3 = mmean3 + (y - mean(y))/max(abs((y - mean(y))));
+    end
+    
+    j = j + k;
+
+    plot(one(1).xx3, mmean3/j, 'k-','LineWidth', 5);
+   
+%plot light transitions
+clear j;
+    for j = 1:length(one(1).lighttimes3)
+        plot([one(1).lighttimes3(j), one(1).lighttimes3(j)], ylim, 'k-');
+      
+    end
+
+%ititialize mean vector
+multimean3 = zeros(1, length(multi(1).Hifftyy3));
+    
+ax(2) = subplot(212); title('multiple fish'); hold on; 
+    for kk = 1:length(multi)
+        
+        yhi = multi(kk).Hifftyy3;
+        ylo = multi(kk).Lofftyy3;
+        
+        %high amplitude fish
+        plot(multi(kk).hixx3, (yhi - mean(yhi))/max(abs((yhi - mean(yhi)))), 'LineWidth', 2);
+        multimean3 = multimean3 + (yhi - mean(yhi))/max(abs((yhi - mean(yhi))));
+        
+        %low amplitude fish
+        plot(multi(kk).loxx3, (ylo - mean(ylo))/max(abs((ylo - mean(ylo)))), 'LineWidth', 2);
+        multimean3 = multimean3 + (ylo - mean(ylo))/max(abs((ylo - mean(ylo))));
+        
+    end
+    
+    jj = kk * 2;
+    
+         plot(multi(1).hixx3, multimean3/jj, 'k-','LineWidth', 5);
+    
+%plot light transitions
+clear j;
+    for j = 1:length(multi(1).Hilighttimes3)
+        plot([multi(1).Hilighttimes3(j), multi(1).Hilighttimes3(j)], ylim, 'k-');
+      
+    end
+    
+linkaxes(ax, 'x');
+
+
+%individual splines plus raw data    
+figure(25); clf; hold on;
+
+   %experiment 1
+   clear j;
+   clear k;
+   clear ax;
+   for k = 1:length(one)
+        
+       ax(k) = subplot(6,1,k); title('exp1 expecting 4 dark, get 12'); hold on; 
+               %plot raw data for each fish
+               plot(one(k).timcont3, one(k).fft3, '.', 'Color', paleV);
+               %plot spline for each fish
+               plot(one(k).xx3, one(k).fftyy3, 'LineWidth', 3, 'Color', turq);
+               %add light transistion times as vertical lines
+               clear j;
+               for j = 1:length(one(k).lighttimes3)
+                   
+                   plot([one(k).lighttimes3(j), one(k).lighttimes3(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+                
+   end
+   
+   ax(k+1) = subplot(6,1,(k+1)); title('exp1 multi high freq fish'); hold on;
+              plot(multi(1).HiTim3, multi(1).HiAmp3, '.', 'Color', turq);
+              plot(multi(1).hixx3, multi(1).Hifftyy3,  'LineWidth', 3, 'Color', paleV);
+               clear j;
+               for j = 1:length(multi(1).Hilighttimes3)
+                   
+                   plot([multi(1).Hilighttimes3(j), multi(1).Hilighttimes3(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+               
+   ax(k+2) = subplot(616);  title('exp1 multi low freq fish'); hold on;
+              plot(multi(1).LoTim3, multi(1).LoAmp3, '.', 'Color', turq);
+              plot(multi(1).loxx3, multi(1).Lofftyy3,  'LineWidth', 3, 'Color', paleV);
+               clear j;
+               for j = 1:length(multi(1).Hilighttimes3)
+                   
+                   plot([multi(1).Hilighttimes3(j), multi(1).Hilighttimes3(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+   
+linkaxes(ax, 'x');
+
+figure(26); clf; hold on; 
+        
+    %experiment 2
+    clear k;
+    clear ax;
+
+    for k = 1:length(dos)
+        
+        ax(k) = subplot(6,1,k); title('exp2 expecting 12 get 4'); hold on;
+   
+                plot(dos(k).timcont3, dos(k).fft3, '.', 'Color', turq);
+                plot(dos(k).xx3, dos(k).fftyy3, 'LineWidth', 3, 'Color', mediumV);
+        clear j;
+        for j = 1:length(dos(k).lighttimes3)
+                   
+                   plot([dos(k).lighttimes3(j), dos(k).lighttimes3(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+        end
+    end
+    
+    ax(k+1) = subplot(6,1,(k+1)); title('exp2 multi high freq fish'); hold on;
+              plot(multi(3).HiTim3, multi(3).HiAmp3, '.', 'Color', mediumV);
+              plot(multi(3).hixx3, multi(3).Hifftyy3,  'LineWidth', 3, 'Color', turq);
+               clear j;
+               for j = 1:length(multi(3).Hilighttimes3)
+                   
+                   plot([multi(3).Hilighttimes3(j), multi(3).Hilighttimes3(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+               
+   ax(k+2) = subplot(616);  title('exp2 multi low freq fish'); hold on;
+              plot(multi(3).LoTim3, multi(3).LoAmp3, '.', 'Color', mediumV);
+              plot(multi(3).loxx3, multi(3).Lofftyy3,  'LineWidth', 3, 'Color', turq);
+               clear j;
+               for j = 1:length(multi(3).Hilighttimes3)
+                   
+                   plot([multi(3).Hilighttimes3(j), multi(3).Hilighttimes3(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+   
+ 
+linkaxes(ax, 'x');
+ 
+figure(27); clf; hold on;
+
+    %experiment 3
+    clear k;
+    clear ax;
+    clear j;
+    for k = 1:length(tres)
+        
+        ax(k) = subplot(4,1, k); title('exp3 expecting 12 get 4'); hold on;
+   
+        plot(tres(k).timcont3, tres(k).fft3, '.', 'Color', pink);
+        plot(tres(k).xx3, tres(k).fftyy3, 'LineWidth', 3, 'Color', roseybrown);
+    end
+   
+    
+    ax(k+1) = subplot(4,1,(k+1)); title('exp3 multi high freq fish'); hold on;
+              plot(multi(2).HiTim3, multi(2).HiAmp3, '.', 'Color', roseybrown);
+              plot(multi(2).hixx3, multi(2).Hifftyy3,  'LineWidth', 3, 'Color', pink);
+               clear j;
+               for j = 1:length(multi(2).Hilighttimes3)
+                   
+                   plot([multi(2).Hilighttimes3(j), multi(2).Hilighttimes3(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+               
+   ax(k+2) = subplot(414);  title('exp3 multi low freq fish'); hold on;
+              plot(multi(2).LoTim3, multi(2).LoAmp3, '.', 'Color', roseybrown);
+              plot(multi(2).loxx3, multi(2).Lofftyy3,  'LineWidth', 3, 'Color', pink);
+               clear j;
+               for j = 1:length(multi(2).Hilighttimes3)
+                   
+                   plot([multi(2).Hilighttimes3(j), multi(2).Hilighttimes3(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+    
+   
+linkaxes(ax, 'x');
+ 
 
