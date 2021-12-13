@@ -225,7 +225,7 @@ figure(26); clf; hold on;
 
     for k = 1:length(dos)
         
-        ax(k) = subplot(4,1,k); title('exp2 expecting 12 get 4'); hold on;
+        ax(k) = subplot(6,1,k); title('exp2 expecting 12 get 4'); hold on;
    
                 plot(dos(k).timcont1, dos(k).fft1, '.', 'Color', turq);
                 plot(dos(k).xx1, dos(k).fftyy1, 'LineWidth', 3, 'Color', mediumV);
@@ -236,6 +236,27 @@ figure(26); clf; hold on;
                    
         end
     end
+    
+    ax(k+1) = subplot(6,1,(k+1)); title('exp2 multi high freq fish'); hold on;
+              plot(multi(2).HiTim1, multi(2).HiAmp1, '.', 'Color', mediumV);
+              plot(multi(2).hixx1, multi(2).Hifftyy1,  'LineWidth', 3, 'Color', turq);
+               clear j;
+               for j = 1:length(multi(2).Hilighttimes1)
+                   
+                   plot([multi(2).Hilighttimes1(j), multi(2).Hilighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+               
+   ax(k+2) = subplot(616);  title('exp2 multi low freq fish'); hold on;
+              plot(multi(2).LoTim1, multi(2).LoAmp1, '.', 'Color', mediumV);
+              plot(multi(2).loxx1, multi(2).Lofftyy1,  'LineWidth', 3, 'Color', turq);
+               clear j;
+               for j = 1:length(multi(2).Hilighttimes1)
+                   
+                   plot([multi(2).Hilighttimes1(j), multi(2).Hilighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+   
  
 linkaxes(ax, 'x');
  
@@ -253,6 +274,27 @@ figure(27); clf; hold on;
         plot(tres(k).xx1, tres(k).fftyy1, 'LineWidth', 3, 'Color', roseybrown);
     end
    
+    
+    ax(k+1) = subplot(6,1,(k+1)); title('exp2 multi high freq fish'); hold on;
+              plot(multi(2).HiTim1, multi(2).HiAmp1, '.', 'Color', mediumV);
+              plot(multi(2).hixx1, multi(2).Hifftyy1,  'LineWidth', 3, 'Color', turq);
+               clear j;
+               for j = 1:length(multi(2).Hilighttimes1)
+                   
+                   plot([multi(2).Hilighttimes1(j), multi(2).Hilighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+               
+   ax(k+2) = subplot(616);  title('exp2 multi low freq fish'); hold on;
+              plot(multi(2).LoTim1, multi(2).LoAmp1, '.', 'Color', mediumV);
+              plot(multi(2).loxx1, multi(2).Lofftyy1,  'LineWidth', 3, 'Color', turq);
+               clear j;
+               for j = 1:length(multi(2).Hilighttimes1)
+                   
+                   plot([multi(2).Hilighttimes1(j), multi(2).Hilighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+               end
+    
    
 linkaxes(ax, 'x');
  
