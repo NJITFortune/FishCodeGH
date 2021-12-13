@@ -205,7 +205,7 @@ figure(26); clf; hold on;
     clear j;
     for k = 1:length(dos)
         
-        ax(k) = subplot(length(dos),1,k); title('exp2 expecting 12 get 4')
+        ax(k) = subplot(4,1,k); title('exp2 expecting 12 get 4')
    
                 plot(dos(k).timcont1, dos(k).fft1,'.', 'Color', turq);
                 plot(dos(k).xx1, dos(k).fftyy1, 'LineWidth', 3, 'Color', mediumV);
