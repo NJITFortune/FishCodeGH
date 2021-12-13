@@ -191,7 +191,10 @@ figure(25); clf; hold on;
                 
    end
 linkaxes(ax, 'x');
- figure(26); clf; hold on;
+ 
+
+
+figure(26); clf; hold on;
 
     plot(one(1).xx1(1:end-1), diff(mmean/3), 'k-','LineWidth', 5);
     for j = 1:length(one(1).lighttimes1)
