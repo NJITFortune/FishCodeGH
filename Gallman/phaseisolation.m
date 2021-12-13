@@ -323,6 +323,7 @@ ax(1) = subplot(211); title('single fish'); hold on;
     for k = 1:length(dos)
         %normalize splines around zero
         y = dos(k).fftyy2;
+        length(y)
         plot(dos(k).xx2, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 2);
         mmean2 = mmean2 + (y - mean(y))/max(abs((y - mean(y))));
     end
