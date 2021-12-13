@@ -79,7 +79,7 @@ lightsky = [135/255 206/255 235/255];
 deepsky = [0/255 191/255 255/255];
 
 roseybrown = [188/255 143/255 143/255];
-salmon = [250/255 128/255 114/255];
+pink = [255/255 182/255 193/255];
 
 paleV = [219/255 112/255 147/255];
 mediumV = [199/255 21/255 133/255];
@@ -229,8 +229,8 @@ figure(27); clf; hold on;
         
         ax(k) = subplot(length(tres),1, k); title('exp3 expecting 12 get 4')
    
-        plot(tres(k).timcont1, tres(k).fft1, 'LineWidth', 2);
-        plot(tres(k).xx1, tres(k).fftyy1, 'LineWidth', 3);
+        plot(tres(k).timcont1, tres(k).fft1, '.', 'Color', roseybrown);
+        plot(tres(k).xx1, tres(k).fftyy1, 'LineWidth', 3, 'Color', pink);
     end
    
    
