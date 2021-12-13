@@ -175,9 +175,12 @@ linkaxes(ax, 'x');
 figure(25); clf; hold on;
 
    %experiment 1
+   clear j;
+   clear k;
+   clear ax;
    for k = 1:(length(one)-1)
         
-       ax(k) = subplot(3,1,k); title('expecting 12 dark, get 4'); hold on; 
+       ax(k) = subplot(3,1,k); title('exp1 expecting 12 dark, get 4'); hold on; 
                %plot raw data for each fish
                plot(one(k).timcont1, one(k).fft1, '.');
                %plot spline for each fish
@@ -192,16 +195,20 @@ figure(25); clf; hold on;
                 
    end
    
-        j = k;
+linkaxes(ax, 'x');
+   
+figure(26); clf; hold on; 
         
     %experiment 2
     clear k;
+    clear ax;
+    clear j;
     for k = 1:length(dos)
         
-        ax(j+k) = subplot(x,1, (j+k);
-        %normalize splines around zero
-        plot(dos(k).timcont1, dos(k).fft1 , 'LineWidth', 2);
-        plot(dos(k).xx1, dos(k).fftyy1, 'LineWidth', 3);
+        ax(k) = subplot(length(dos),1,k); title('exp2 expecting 12 get 4')
+   
+                plot(dos(k).timcont1, dos(k).fft1 , 'LineWidth', 2);
+                plot(dos(k).xx1, dos(k).fftyy1, 'LineWidth', 3);
         
         for j = 1:length(dos(k).lighttimes1)
                    
@@ -209,32 +216,35 @@ figure(25); clf; hold on;
                    
         end
     end
-    
-    j = j+k;
-    
+ 
+linkaxes(ax, 'x');
+ 
+figure(27); clf; hold on;
+
     %experiment 3
     clear k;
+    clear ax;
+    clear j;
     for k = 1:length(tres)
-        %normalize splines around zero
-        y = tres(k).fftyy1;
-        plot(tres(k).xx1, (y - mean(y))/max(abs((y - mean(y)))), 'LineWidth', 2);
-        mmean = mmean + (y - mean(y))/max(abs((y - mean(y))));
+        
+        ax(k) = subplot(length(tres),1, k); title('exp3 expecting 12 get 4')
+   
+        plot(tres(k).timcont1, tres(k).fft1, 'LineWidth', 2);
+        plot(tres(k).xx1, tres(k).fftyy1, 'LineWidth', 3);
     end
-    
-    j = j + k;
    
    
 linkaxes(ax, 'x');
  
 
 
-figure(26); clf; hold on;
-
-    plot(one(1).xx1(1:end-1), diff(mmean/3), 'k-','LineWidth', 5);
-    for j = 1:length(one(1).lighttimes1)
-        plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
-      
-    end
+% figure(26); clf; hold on;
+% 
+%     plot(one(1).xx1(1:end-1), diff(mmean/3), 'k-','LineWidth', 5);
+%     for j = 1:length(one(1).lighttimes1)
+%         plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
+%       
+%     end
 
 
 
