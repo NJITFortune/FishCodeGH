@@ -359,6 +359,8 @@ ax(2) = subplot(212); title('multiple fish'); hold on;
         yhi = multi(kk).Hifftyy2;
         ylo = multi(kk).Lofftyy2;
         
+        length(yhi)
+        length(ylo)
         %high amplitude fish
         plot(multi(kk).hixx2, (yhi - mean(yhi))/max(abs((yhi - mean(yhi)))), 'LineWidth', 2);
         multimean2 = multimean2 + (yhi - mean(yhi))/max(abs((yhi - mean(yhi))));
