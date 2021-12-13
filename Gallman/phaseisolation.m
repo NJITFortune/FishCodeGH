@@ -228,7 +228,7 @@ figure(27); clf; hold on;
     clear j;
     for k = 1:length(tres)
         
-        ax(k) = subplot(length(tres),1, k); title('exp3 expecting 12 get 4')
+        ax(k) = subplot(length(tres),1, k); title('exp3 expecting 12 get 4'); hold on;
    
         plot(tres(k).timcont1, tres(k).fft1, '.', 'Color', roseybrown);
         plot(tres(k).xx1, tres(k).fftyy1, 'LineWidth', 3, 'Color', pink);
