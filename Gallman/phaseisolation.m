@@ -182,9 +182,9 @@ figure(25); clf; hold on;
         
        ax(k) = subplot(3,1,k); title('exp1 expecting 12 dark, get 4'); hold on; 
                %plot raw data for each fish
-               plot(one(k).timcont1, one(k).fft1, '.');
+               plot(one(k).timcont1, one(k).fft1, '.', 'Color', paleV);
                %plot spline for each fish
-               plot(one(k).xx1, one(k).fftyy1, 'LineWidth', 3);
+               plot(one(k).xx1, one(k).fftyy1, 'LineWidth', 3, 'Color', turq);
                %add light transistion times as vertical lines
                clear j;
                for j = 1:length(one(k).lighttimes1)
