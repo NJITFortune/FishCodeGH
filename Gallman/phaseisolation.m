@@ -764,7 +764,7 @@ clear j;
 multimean4 = zeros(1, length(multi(1).Hifftyy4));
     
 ax(2) = subplot(212); title('multiple fish'); hold on; 
-    for kk = 1:length(multi)
+    for kk = 2:length(multi)
         
         yhi = multi(kk).Hifftyy4;
         ylo = multi(kk).Lofftyy4;
