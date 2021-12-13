@@ -58,7 +58,7 @@ clear k;
         
     
         %raw data for plotting/spline check
-        one(k).timcont3 = one(k).timcont(timcontidx3)-one(k).timcont(timcontidx(1));
+        one(k).timcont3 = one(k).timcont(timcontidx3)-one(k).timcont(timcontidx3(1));
         one(k).fft3 = one(k).fft(timcontidx3);
     
       %fourth transition - 4 hours to 12 hours
