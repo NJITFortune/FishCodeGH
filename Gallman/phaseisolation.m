@@ -100,9 +100,9 @@ ax(1) = subplot(211); title('single fish'); hold on;
     %experiment 1
     for k = 1:length(one)
         %normalize splines around zero
-        normy = (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
-        plot(one(k).xx1,normy , 'LineWidth', 2);
-        mmean = mmean + normy;
+        %normy = (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
+        plot(one(k).xx1,(one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1)))) , 'LineWidth', 2);
+        mmean = mmean + (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
     end
     
     j = k;
