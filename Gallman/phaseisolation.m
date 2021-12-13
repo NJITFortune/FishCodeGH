@@ -174,6 +174,7 @@ linkaxes(ax, 'x');
 %individual splines plus raw data    
 figure(25); clf; hold on;
 
+   %experiment 1
    for k = 1:(length(one)-1)
         
        ax(k) = subplot(3,1,k); title('expecting 12 dark, get 4'); hold on; 
@@ -190,6 +191,39 @@ figure(25); clf; hold on;
                end
                 
    end
+   
+        j = k;
+        
+    %experiment 2
+    clear k;
+    for k = 1:length(dos)
+        
+        ax(j+k) = subplot(
+        %normalize splines around zero
+        plot(dos(k).timcont1, dos(k).fft1 , 'LineWidth', 2);
+        plot(dos(k).xx1, dos(k).fftyy1, 'LineWidth', 3);
+        
+        for j = 1:length(dos(k).lighttimes1)
+                   
+                   plot([dos(k).lighttimes1(j), dos(k).lighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+        end
+    end
+    
+    j = j+k;
+    
+    %experiment 3
+    clear k;
+    for k = 1:length(tres)
+        %normalize splines around zero
+        y = tres(k).fftyy1;
+        plot(tres(k).xx1, (y - mean(y))/max(abs((y - mean(y)))), 'LineWidth', 2);
+        mmean = mmean + (y - mean(y))/max(abs((y - mean(y))));
+    end
+    
+    j = j + k;
+   
+   
 linkaxes(ax, 'x');
  
 
