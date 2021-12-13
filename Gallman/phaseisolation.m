@@ -180,7 +180,7 @@ figure(25); clf; hold on;
    clear ax;
    for k = 1:(length(one)-1)
         
-       ax(k) = subplot(3,1,k); title('exp1 expecting 12 dark, get 4'); hold on; 
+       ax(k) = subplot(4,1,k); title('exp1 expecting 12 dark, get 4'); hold on; 
                %plot raw data for each fish
                plot(one(k).timcont1, one(k).fft1, '.', 'Color', paleV);
                %plot spline for each fish
@@ -195,9 +195,11 @@ figure(25); clf; hold on;
                 
    end
    
-linkaxes(ax, 'x');
-%%
+   ax(k +1) = subplot(4,1,(k+1)); title('exp1 multi'); hold on;
+              plot(multi(1).
    
+linkaxes(ax, 'x');
+
 figure(26); clf; hold on; 
         
     %experiment 2
@@ -239,13 +241,6 @@ linkaxes(ax, 'x');
  
 
 
-% figure(26); clf; hold on;
-% 
-%     plot(one(1).xx1(1:end-1), diff(mmean/3), 'k-','LineWidth', 5);
-%     for j = 1:length(one(1).lighttimes1)
-%         plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
-%       
-%     end
 
 
 
