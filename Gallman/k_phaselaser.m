@@ -24,7 +24,7 @@ clear k;
         one(k).timcont = [kg(expidx(k)).e(1).s.timcont]/3600;  
         timcontidx = find(one(k).timcont >= one(k).lighttimes(3) & one(k).timcont <= (one(k).lighttimes(3) + 48));
         one(k).timcont1 = one(k).timcont(timcontidx);
-        one(k).fft = [kg(exp2idx(k)).e(1).s.sumfftAmp];
+        one(k).fft = [kg(expidx(k)).e(1).s.sumfftAmp];
         one(k).fft1 = one(k).fft(timcontidx);
     
     
