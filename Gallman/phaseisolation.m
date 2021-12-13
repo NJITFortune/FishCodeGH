@@ -98,7 +98,7 @@ length(mmean)
 %plot all splines on top of eachother
 ax(1) = subplot(211); title('single fish'); hold on;
     %experiment 1
-    for k = 1:length(one)
+    for k = 1:(length(one)-1)
         %normalize splines around zero
         normy = (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
         length(normy)
