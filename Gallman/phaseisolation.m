@@ -320,7 +320,7 @@ ax(1) = subplot(211); title('single fish'); hold on;
     j = k;
     %experiment 2
     clear k;
-    for k = 1:length(dos)
+    for k = 1:(length(dos)-1)
         %normalize splines around zero
         y = dos(k).fftyy2;
         length(y)
@@ -435,9 +435,9 @@ figure(30); clf; hold on;
     clear k;
     clear ax;
 
-    for k = 1:length(dos)
+    for k = 1:(length(dos)-1)
         
-        ax(k) = subplot(6,1,k); title('exp2 expecting 12 get 4'); hold on;
+        ax(k) = subplot(5,1,k); title('exp2 expecting 12 get 4'); hold on;
    
                 plot(dos(k).timcont2, dos(k).fft2, '.', 'Color', turq);
                 plot(dos(k).xx2, dos(k).fftyy2, 'LineWidth', 3, 'Color', mediumV);
@@ -449,7 +449,7 @@ figure(30); clf; hold on;
         end
     end
     
-    ax(k+1) = subplot(6,1,(k+1)); title('exp2 multi high freq fish'); hold on;
+    ax(k+1) = subplot(5,1,(k+1)); title('exp2 multi high freq fish'); hold on;
               plot(multi(2).HiTim2, multi(2).HiAmp2, '.', 'Color', mediumV);
               plot(multi(2).hixx2, multi(2).Hifftyy2,  'LineWidth', 3, 'Color', turq);
                clear j;
@@ -459,7 +459,7 @@ figure(30); clf; hold on;
                    
                end
                
-   ax(k+2) = subplot(616);  title('exp2 multi low freq fish'); hold on;
+   ax(k+2) = subplot(515);  title('exp2 multi low freq fish'); hold on;
               plot(multi(2).LoTim2, multi(2).LoAmp2, '.', 'Color', mediumV);
               plot(multi(2).loxx2, multi(2).Lofftyy2,  'LineWidth', 3, 'Color', turq);
                clear j;
