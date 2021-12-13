@@ -302,20 +302,19 @@ linkaxes(ax, 'x');
 
 
 %spline tranistion summary plot 
-figure(27); clf; title('expecting 4 dark, get 12'); hold on;
+figure(28); clf; title('expecting 4 dark, get 12'); hold on;
 
 %ititialize vector to sum across amp
-mmean = zeros(1, length(one(1).fftyy1));
-length(mmean)
+mmean2 = zeros(1, length(one(1).fftyy2));
+
 %plot all splines on top of eachother
 ax(1) = subplot(211); title('single fish'); hold on;
     %experiment 1
-    for k = 1:(length(one)-1)
+    for k = 1:length(one)
         %normalize splines around zero
-        normy = (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
-        length(normy)
-        plot(one(k).xx1,(one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1)))) , 'LineWidth', 2);
-        mmean = mmean + (one(k).fftyy1 - mean(one(k).fftyy1))/max(abs((one(k).fftyy1 - mean(one(k).fftyy1))));
+        y = one(k).fftyy2;
+        plot(one(k).xx2, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 2);
+        mmean2 = mmean2 + (y - mean(y))/max(abs((y - mean(y))));
     end
     
     j = k;
@@ -323,9 +322,9 @@ ax(1) = subplot(211); title('single fish'); hold on;
     clear k;
     for k = 1:length(dos)
         %normalize splines around zero
-        y = dos(k).fftyy1;
-        plot(dos(k).xx1, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 2);
-        mmean = mmean + (y - mean(y))/max(abs((y - mean(y))));
+        y = dos(k).fftyy2;
+        plot(dos(k).xx2, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 2);
+        mmean2 = mmean2 + (y - mean(y))/max(abs((y - mean(y))));
     end
     
     j = j+k;
@@ -334,49 +333,49 @@ ax(1) = subplot(211); title('single fish'); hold on;
     clear k;
     for k = 1:length(tres)
         %normalize splines around zero
-        y = tres(k).fftyy1;
-        plot(tres(k).xx1, (y - mean(y))/max(abs((y - mean(y)))), 'LineWidth', 2);
-        mmean = mmean + (y - mean(y))/max(abs((y - mean(y))));
+        y = tres(k).fftyy2;
+        plot(tres(k).xx2, (y - mean(y))/max(abs((y - mean(y)))), 'LineWidth', 2);
+        mmean2 = mmean2 + (y - mean(y))/max(abs((y - mean(y))));
     end
     
     j = j + k;
 
-    plot(one(1).xx1, mmean/j, 'k-','LineWidth', 5);
+    plot(one(1).xx2, mmean/j, 'k-','LineWidth', 5);
    
 %plot light transitions
 clear j;
-    for j = 1:length(one(1).lighttimes1)
-        plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
+    for j = 1:length(one(1).lighttimes2)
+        plot([one(1).lighttimes2(j), one(1).lighttimes2(j)], ylim, 'k-');
       
     end
 
 %ititialize mean vector
-multimean = zeros(1, length(multi(1).Hifftyy1));
+multimean2 = zeros(1, length(multi(1).Hifftyy2));
     
 ax(2) = subplot(212); title('multiple fish'); hold on; 
     for kk = 1:length(multi)
         
-        yhi = multi(kk).Hifftyy1;
-        ylo = multi(kk).Lofftyy1;
+        yhi = multi(kk).Hifftyy2;
+        ylo = multi(kk).Lofftyy2;
         
         %high amplitude fish
-        plot(multi(kk).hixx1, (yhi - mean(yhi))/max(abs((yhi - mean(yhi)))), 'LineWidth', 2);
-        multimean = multimean + (yhi - mean(yhi))/max(abs((yhi - mean(yhi))));
+        plot(multi(kk).hixx2, (yhi - mean(yhi))/max(abs((yhi - mean(yhi)))), 'LineWidth', 2);
+        multimean2 = multimean2 + (yhi - mean(yhi))/max(abs((yhi - mean(yhi))));
         
         %low amplitude fish
-        plot(multi(kk).loxx1, (ylo - mean(ylo))/max(abs((ylo - mean(ylo)))), 'LineWidth', 2);
-        multimean = multimean + (ylo - mean(ylo))/max(abs((ylo - mean(ylo))));
+        plot(multi(kk).loxx2, (ylo - mean(ylo))/max(abs((ylo - mean(ylo)))), 'LineWidth', 2);
+        multimean2 = multimean2 + (ylo - mean(ylo))/max(abs((ylo - mean(ylo))));
         
     end
     
     jj = kk *2;
     
-         plot(multi(1).hixx1, multimean/jj, 'k-','LineWidth', 5);
+         plot(multi(1).hixx2, multimean2/jj, 'k-','LineWidth', 5);
     
 %plot light transitions
 clear j;
-    for j = 1:length(multi(1).Hilighttimes1)
-        plot([multi(1).Hilighttimes1(j), multi(1).Hilighttimes1(j)], ylim, 'k-');
+    for j = 1:length(multi(1).Hilighttimes2)
+        plot([multi(1).Hilighttimes2(j), multi(1).Hilighttimes2(j)], ylim, 'k-');
       
     end
     
@@ -384,52 +383,52 @@ linkaxes(ax, 'x');
 
 
 %individual splines plus raw data    
-figure(25); clf; hold on;
+figure(29); clf; hold on;
 
    %experiment 1
    clear j;
    clear k;
    clear ax;
-   for k = 1:(length(one)-1)
+   for k = 1:length(one)
         
-       ax(k) = subplot(5,1,k); title('exp1 expecting 12 dark, get 4'); hold on; 
+       ax(k) = subplot(6,1,k); title('exp1 expecting 4 dark, get 12'); hold on; 
                %plot raw data for each fish
-               plot(one(k).timcont1, one(k).fft1, '.', 'Color', paleV);
+               plot(one(k).timcont2, one(k).fft2, '.', 'Color', paleV);
                %plot spline for each fish
-               plot(one(k).xx1, one(k).fftyy1, 'LineWidth', 3, 'Color', turq);
+               plot(one(k).xx2, one(k).fftyy2, 'LineWidth', 3, 'Color', turq);
                %add light transistion times as vertical lines
                clear j;
-               for j = 1:length(one(k).lighttimes1)
+               for j = 1:length(one(k).lighttimes2)
                    
-                   plot([one(k).lighttimes1(j), one(k).lighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   plot([one(k).lighttimes2(j), one(k).lighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
                end
                 
    end
    
-   ax(k+1) = subplot(5,1,(k+1)); title('exp1 multi high freq fish'); hold on;
-              plot(multi(1).HiTim1, multi(1).HiAmp1, '.', 'Color', turq);
-              plot(multi(1).hixx1, multi(1).Hifftyy1,  'LineWidth', 3, 'Color', paleV);
+   ax(k+1) = subplot(6,1,(k+1)); title('exp1 multi high freq fish'); hold on;
+              plot(multi(1).HiTim2, multi(1).HiAmp2, '.', 'Color', turq);
+              plot(multi(1).hixx2, multi(1).Hifftyy2,  'LineWidth', 3, 'Color', paleV);
                clear j;
-               for j = 1:length(multi(1).Hilighttimes1)
+               for j = 1:length(multi(1).Hilighttimes2)
                    
-                   plot([multi(1).Hilighttimes1(j), multi(1).Hilighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   plot([multi(1).Hilighttimes2(j), multi(1).Hilighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
                end
                
-   ax(k+2) = subplot(515);  title('exp1 multi low freq fish'); hold on;
-              plot(multi(1).LoTim1, multi(1).LoAmp1, '.', 'Color', turq);
-              plot(multi(1).loxx1, multi(1).Lofftyy1,  'LineWidth', 3, 'Color', paleV);
+   ax(k+2) = subplot(616);  title('exp1 multi low freq fish'); hold on;
+              plot(multi(1).LoTim2, multi(1).LoAmp2, '.', 'Color', turq);
+              plot(multi(1).loxx2, multi(1).Lofftyy2,  'LineWidth', 3, 'Color', paleV);
                clear j;
-               for j = 1:length(multi(1).Hilighttimes1)
+               for j = 1:length(multi(1).Hilighttimes2)
                    
-                   plot([multi(1).Hilighttimes1(j), multi(1).Hilighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   plot([multi(1).Hilighttimes2(j), multi(1).Hilighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
                end
    
 linkaxes(ax, 'x');
 
-figure(26); clf; hold on; 
+figure(30); clf; hold on; 
         
     %experiment 2
     clear k;
@@ -439,10 +438,10 @@ figure(26); clf; hold on;
         
         ax(k) = subplot(6,1,k); title('exp2 expecting 12 get 4'); hold on;
    
-                plot(dos(k).timcont1, dos(k).fft1, '.', 'Color', turq);
-                plot(dos(k).xx1, dos(k).fftyy1, 'LineWidth', 3, 'Color', mediumV);
+                plot(dos(k).timcont2, dos(k).fft2, '.', 'Color', turq);
+                plot(dos(k).xx2, dos(k).fftyy2, 'LineWidth', 3, 'Color', mediumV);
         clear j;
-        for j = 1:length(dos(k).lighttimes1)
+        for j = 1:length(dos(k).lighttimes)
                    
                    plot([dos(k).lighttimes1(j), dos(k).lighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
