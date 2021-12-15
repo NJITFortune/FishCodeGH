@@ -1,4 +1,4 @@
-clearvars -except kg kg2 cc
+clearvars -except kg kg2 cc dd
 
 %% make a function?
 light = 3;
