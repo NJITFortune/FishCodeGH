@@ -1,4 +1,4 @@
-e
+
 function one = k_phaselaser(expidx, expxpoint, channel, ReFs, light, kg)
 clear k;
  %get the spline estimates for each sample
