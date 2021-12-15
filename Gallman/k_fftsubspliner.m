@@ -1,5 +1,5 @@
 
-function [xx, tnormsubfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light)
+function [xx, tnormsubfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light, p)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -7,7 +7,7 @@ function [xx, tnormsubfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, l
 %just lazy
 %ld = [in.info.ld];
 %tightness of spline fit
-p = 0.9;
+pp = 0.9;
 
 %outliers
     % Prepare the data with outliers
@@ -111,7 +111,7 @@ if channel == 1
 %                 zAmpOG = [in.e(1).s(ttz{1}).zAmp]; 
             
             %sumfft
-            spliney = csaps([in.e(1).s(ttsf{1}).timcont]/(60*60), [in.e(1).s(ttsf{1}).sumfftAmp], p);
+            spliney = csaps([in.e(1).s(ttsf{1}).timcont]/(60*60), [in.e(1).s(ttsf{1}).sumfftAmp], pp);
             %resample new x values based on light/dark
             sumfftyy = fnval(xx, spliney);
             %estimate without resample
@@ -150,7 +150,7 @@ else %channel = 2
 %                 zAmpOG = [in.e(2).s(ttz{2}).zAmp]; 
             
             %sumfft
-            spliney = csaps([in.e(2).s(ttsf{2}).timcont]/(60*60), [in.e(2).s(ttsf{2}).sumfftAmp], p);
+            spliney = csaps([in.e(2).s(ttsf{2}).timcont]/(60*60), [in.e(2).s(ttsf{2}).sumfftAmp], pp);
             %resample new x values based on light/dark
             sumfftyy = fnval(xx, spliney);
             %estimate without resample
