@@ -296,7 +296,7 @@ figure(27); clf; hold on;
                    
         end
     end
-    
+
     ax(k+1) = subplot(4,1,(k+1)); title('exp3 multi high freq fish'); hold on;
               plot(multi(2).HiTim1, multi(2).HiAmp1, '.', 'Color', roseybrown);
               plot(multi(2).hixx1, multi(2).Hifftyy1,  'LineWidth', 3, 'Color', pink);
@@ -362,7 +362,7 @@ ax(1) = subplot(311); title('single fish'); hold on;
     
     j = j + k;
 
-    plot(one(1).xx2, mmean/j, 'k-','LineWidth', 5);
+    plot(one(1).xx2, mmean2/j, 'k-','LineWidth', 5);
    
 %plot light transitions
 clear j;
@@ -633,7 +633,7 @@ ax(3) = subplot(313); title('avg single fish amplitude'); hold on;
 
     %plot light transitions
     clear j;
-        for j = 1:length(one(1).lighttimes3)
+        for j = 1:length(one(1).lighttimes3) 
             plot([one(1).lighttimes3(j), one(1).lighttimes3(j)], ylim, 'k-');
           
         end
