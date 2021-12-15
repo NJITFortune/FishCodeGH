@@ -287,7 +287,7 @@ figure(27); clf; hold on;
    
         plot(tres(k).timcont1, tres(k).fft1, '.', 'Color', pink);
         plot(tres(k).xx1, tres(k).fftyy1, 'LineWidth', 3, 'Color', roseybrown);
-    end
+    
    
         clear j;
         for j = 1:length(tres(k).lighttimes1)
@@ -295,6 +295,7 @@ figure(27); clf; hold on;
                    plot([tres(k).lighttimes1(j), tres(k).lighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
                    
         end
+    end
     
     ax(k+1) = subplot(4,1,(k+1)); title('exp3 multi high freq fish'); hold on;
               plot(multi(2).HiTim1, multi(2).HiAmp1, '.', 'Color', roseybrown);
@@ -512,7 +513,7 @@ figure(31); clf; hold on;
 
    
     end
-    
+
     ax(k+1) = subplot(4,1,(k+1)); title('exp3 multi high freq fish'); hold on;
               plot(multi(2).HiTim2, multi(2).HiAmp2, '.', 'Color', roseybrown);
               plot(multi(2).hixx2, multi(2).Hifftyy2,  'LineWidth', 3, 'Color', pink);
