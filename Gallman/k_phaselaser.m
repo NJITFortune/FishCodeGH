@@ -5,7 +5,7 @@ clear k;
         for k = 1:length(expidx)
     
        
-        [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(expidx(k)), channel, ReFs, light);
+        [one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(expidx(k)), channel, ReFs, light, 0.9);
   
 
   %twelve hour to four hour transistions
