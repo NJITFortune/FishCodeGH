@@ -50,8 +50,8 @@ multifish124idx = [16 19 18];
         load("Users/eric/Documents/MATLAB/twelveamp.mat");
         %in 48 hour chunks... not actually that useful
             %length of kg(64) in hours is 344 = ~ 48 *7
-        twelveamp = [dd dd dd dd dd dd dd];
-        fouramp = [cc cc cc cc cc cc cc];
+        twelveamp = dd;
+        fouramp = cc;
 
         fourtim = one(1).xx(1):0.1:one(1).xx(1)+((length(fouramp)-1)*0.1);
         twelvetim = one(1).xx(1):0.1:one(1).xx(1)+((length(twelveamp)-1)*0.1);
