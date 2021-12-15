@@ -289,6 +289,12 @@ figure(27); clf; hold on;
         plot(tres(k).xx1, tres(k).fftyy1, 'LineWidth', 3, 'Color', roseybrown);
     end
    
+        clear j;
+        for j = 1:length(tres(k).lighttimes1)
+                   
+                   plot([tres(k).lighttimes1(j), tres(k).lighttimes1(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+        end
     
     ax(k+1) = subplot(4,1,(k+1)); title('exp3 multi high freq fish'); hold on;
               plot(multi(2).HiTim1, multi(2).HiAmp1, '.', 'Color', roseybrown);
@@ -497,7 +503,12 @@ figure(31); clf; hold on;
         plot(tres(k).xx2, tres(k).fftyy2, 'LineWidth', 3, 'Color', roseybrown);
     end
 
-        
+        clear j;
+        for j = 1:length(tres(k).lighttimes2)
+                   
+                   plot([tres(k).lighttimes2(j), tres(k).lighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+        end
 
    
     
@@ -729,6 +740,14 @@ figure(35); clf; hold on;
    
         plot(tres(k).timcont3, tres(k).fft3, '.', 'Color', pink);
         plot(tres(k).xx3, tres(k).fftyy3, 'LineWidth', 3, 'Color', roseybrown);
+
+
+        clear j;
+        for j = 1:length(tres(k).lighttimes3)
+                   
+                   plot([tres(k).lighttimes3(j), tres(k).lighttimes3(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+        end
     end
    
     
@@ -940,9 +959,13 @@ figure(39); clf; hold on;
    
         plot(tres(k).timcont4, tres(k).fft4, '.', 'Color', pink);
         plot(tres(k).xx4, tres(k).fftyy4, 'LineWidth', 3, 'Color', roseybrown);
+  
+        for j = 1:length(tres(k).lighttimes4)
+                   
+                   plot([tres(k).lighttimes4(j), tres(k).lighttimes4(j)], ylim, 'k-', 'LineWidth', 0.5);
+                   
+        end
     end
-   
-    
     ax(k+1) = subplot(4,1,(k+1)); title('exp3 multi high freq fish'); hold on;
               plot(multi(2).HiTim4, multi(2).HiAmp4, '.', 'Color', roseybrown);
               plot(multi(2).hixx4, multi(2).Hifftyy4,  'LineWidth', 3, 'Color', pink);
