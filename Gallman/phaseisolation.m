@@ -45,18 +45,18 @@ multifish124idx = [16 19 18];
  tres = k_phaselaser(exp3idx, exp3xpoint, channel, ReFs, light, kg);
 %%
 %need to save into something
-%         addpath('/Users/eric/Documents/MATLAB');
-%         load("Users/eric/Documents/MATLAB/fouramp.mat");
-%         load("Users/eric/Documents/MATLAB/twelveamp.mat");
-%         %in 48 hour chunks... not actually that useful
-%             %length of kg(64) in hours is 344 = ~ 48 *7
-%         twelveamp = [dd dd dd dd dd dd dd];
-%         fouramp = [cc cc cc cc cc cc cc];
-% 
-%         fourtim = one(1).xx(1):0.1:one(1).xx(1)+((length(fouramp)-1)*0.1);
-%         twelvetim = one(1).xx(1):0.1:one(1).xx(1)+((length(twelveamp)-1)*0.1);
-%     fourtim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(fouramp)-1)*0.1);
-%         twelvetim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(twelveamp)-1)*0.1);
+        addpath('/Users/eric/Documents/MATLAB');
+        load("Users/eric/Documents/MATLAB/fouramp.mat");
+        load("Users/eric/Documents/MATLAB/twelveamp.mat");
+        %in 48 hour chunks... not actually that useful
+            %length of kg(64) in hours is 344 = ~ 48 *7
+        twelveamp = [dd dd dd dd dd dd dd];
+        fouramp = [cc cc cc cc cc cc cc];
+
+        fourtim = one(1).xx(1):0.1:one(1).xx(1)+((length(fouramp)-1)*0.1);
+        twelvetim = one(1).xx(1):0.1:one(1).xx(1)+((length(twelveamp)-1)*0.1);
+        fourtim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(fouramp)-1)*0.1);
+        twelvetim1 = one(1).xx1(1):0.1:one(1).xx1(1)+((length(twelveamp)-1)*0.1);
 
  
 %% multifish data 
@@ -96,7 +96,7 @@ figure(24); clf; title('expecting 12 dark, get 4'); hold on;
 mmean = zeros(1, length(one(1).fftyy1));
 length(mmean)
 %plot all splines on top of eachother
-ax(1) = subplot(211); title('single fish'); hold on;
+ax(1) = subplot(311); title('single fish'); hold on;
     %experiment 1
     for k = 1:(length(one)-1)
         %normalize splines around zero
@@ -141,7 +141,7 @@ clear j;
 %ititialize mean vector
 multimean = zeros(1, length(multi(1).Hifftyy1));
     
-ax(2) = subplot(212); title('multiple fish'); hold on; 
+ax(2) = subplot(312); title('multiple fish'); hold on; 
     for kk = 1:length(multi)
         
         yhi = multi(kk).Hifftyy1;
@@ -167,10 +167,24 @@ clear j;
         plot([multi(1).Hilighttimes1(j), multi(1).Hilighttimes1(j)], ylim, 'k-');
       
     end
-    
+
+ax(3) = subplot(313); title('avg single fish amplitude'); hold on;
+        plot(fourtim1, fouramp);
+        plot(twelvetim1, twelveamp);
+        legend('four hour', 'twelve hour');
+        legend('AutoUpdate','off');
+
+    %plot light transitions
+    clear j;
+        for j = 1:length(one(1).lighttimes1)
+            plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
+          
+        end
+
+
 linkaxes(ax, 'x');
 
-
+%%
 %individual splines plus raw data    
 figure(25); clf; hold on;
 
