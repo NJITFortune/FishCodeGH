@@ -1,5 +1,5 @@
 
-function [hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hitnormsubfftyy, Hisubfftyy,  Lotnormsubfftyy, Losubfftyy, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(in, ReFs, light)
+function [hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hitnormsubfftyy, Hisubfftyy,  Lotnormsubfftyy, Losubfftyy, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(in, ReFs, light, pp)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -163,16 +163,16 @@ loxx = Lolighttimes(1):1/ReFs:Lolighttimes(end);
    
    
 %estimate new spline 
-p = 0.5;
+%pp = 0.5;
 
 %estimate new yvalues for every xx value
     %high frequency fish
-    spliney = csaps(Hisubffttim, Hisubfft, p);
+    spliney = csaps(Hisubffttim, Hisubfft, pp);
     %resample new x values based on light/dark
     Hisubfftyy = fnval(hixx, spliney);
 
     %low frequency fish
-    spliney = csaps(Losubffttim, Losubfft, p);
+    spliney = csaps(Losubffttim, Losubfft, pp);
     %resample new x values based on light/dark
     Losubfftyy = fnval(loxx, spliney);
 
