@@ -172,7 +172,7 @@ end
    
    
 %estimate new spline 
-p = 0.5;
+%p = 0.5;
 
   %estimate new yvalues for every x value
 
