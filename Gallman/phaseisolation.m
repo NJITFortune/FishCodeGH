@@ -813,9 +813,7 @@ ax(2) = subplot(312); title('multiple fish'); hold on;
         
         yhi = multi(kk).Hifftyy4;
         ylo = multi(kk).Lofftyy4;
-        
-        length(yhi)
-        length(ylo)
+       
         
         %high amplitude fish
         plot(multi(kk).hixx4, (yhi - mean(yhi))/max(abs((yhi - mean(yhi)))), 'LineWidth', 1);
