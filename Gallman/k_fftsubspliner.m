@@ -1,5 +1,5 @@
 
-function [xx, tnormsubfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light, p)
+function [xx, tnormsubfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -172,7 +172,7 @@ end
    
    
 %estimate new spline 
-%p = 0.5;
+p = 0.9;
 
   %estimate new yvalues for every x value
 
