@@ -373,8 +373,7 @@ ax(2) = subplot(312); title('multiple fish'); hold on;
         yhi = multi(kk).Hifftyy2;
         ylo = multi(kk).Lofftyy2;
         
-        length(yhi)
-        length(ylo)
+        
         %high amplitude fish
         plot(multi(kk).hixx2, (yhi - mean(yhi))/max(abs((yhi - mean(yhi)))), 'LineWidth', 2);
         multimean2 = multimean2 + (yhi - mean(yhi))/max(abs((yhi - mean(yhi))));
@@ -497,12 +496,16 @@ figure(31); clf; hold on;
         plot(tres(k).timcont2, tres(k).fft2, '.', 'Color', pink);
         plot(tres(k).xx2, tres(k).fftyy2, 'LineWidth', 3, 'Color', roseybrown);
     end
+
+        
+
    
     
     ax(k+1) = subplot(4,1,(k+1)); title('exp3 multi high freq fish'); hold on;
               plot(multi(2).HiTim2, multi(2).HiAmp2, '.', 'Color', roseybrown);
               plot(multi(2).hixx2, multi(2).Hifftyy2,  'LineWidth', 3, 'Color', pink);
                clear j;
+
                for j = 1:length(multi(2).Hilighttimes2)
                    
                    plot([multi(2).Hilighttimes2(j), multi(2).Hilighttimes2(j)], ylim, 'k-', 'LineWidth', 0.5);
@@ -758,18 +761,18 @@ clear k;
 clear j;
 clear ax;
 %spline tranistion summary plot 
-figure(32); clf; title('expecting 4 light, get 12'); hold on;
+figure(36); clf; title('expecting 4 light, get 12'); hold on;
 
 %ititialize vector to sum across amp
 mmean4 = zeros(1, length(one(1).fftyy4));
 
 %plot all splines on top of eachother
-ax(1) = subplot(211); title('single fish'); hold on;
+ax(1) = subplot(311); title('single fish'); hold on;
     %experiment 1
     for k = 1:length(one)
         %normalize splines around zero
         y = one(k).fftyy4;
-        plot(one(k).xx4, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 2);
+        plot(one(k).xx4, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 1);
         mmean4 = mmean4 +  (y - mean(y))/max(abs((y - mean(y))));
     end
     
@@ -779,7 +782,7 @@ ax(1) = subplot(211); title('single fish'); hold on;
     for k = 1:length(dos)
         %normalize splines around zero
         y = dos(k).fftyy4;
-        plot(dos(k).xx4, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 2);
+        plot(dos(k).xx4, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 1);
         mmean4 = mmean4 + (y - mean(y))/max(abs((y - mean(y))));
     end
     
@@ -790,7 +793,7 @@ ax(1) = subplot(211); title('single fish'); hold on;
     for k = 1:length(tres)
         %normalize splines around zero
         y = tres(k).fftyy4;
-        plot(tres(k).xx4, (y - mean(y))/max(abs((y - mean(y)))), 'LineWidth', 2);
+        plot(tres(k).xx4, (y - mean(y))/max(abs((y - mean(y)))), 'LineWidth', 1);
         mmean4 = mmean4 + (y - mean(y))/max(abs((y - mean(y))));
     end
     
@@ -808,21 +811,19 @@ clear j;
 %ititialize mean vector
 multimean4 = zeros(1, length(multi(2).Hifftyy4));
     
-ax(2) = subplot(212); title('multiple fish'); hold on; 
+ax(2) = subplot(312); title('multiple fish'); hold on; 
     for kk = 2:length(multi)
         
         yhi = multi(kk).Hifftyy4;
         ylo = multi(kk).Lofftyy4;
-        
-        length(yhi)
-        length(ylo)
+       
         
         %high amplitude fish
-        plot(multi(kk).hixx4, (yhi - mean(yhi))/max(abs((yhi - mean(yhi)))), 'LineWidth', 2);
+        plot(multi(kk).hixx4, (yhi - mean(yhi))/max(abs((yhi - mean(yhi)))), 'LineWidth', 1);
         multimean4 = multimean4 + (yhi - mean(yhi))/max(abs((yhi - mean(yhi))));
         
         %low amplitude fish
-        plot(multi(kk).loxx4, (ylo - mean(ylo))/max(abs((ylo - mean(ylo)))), 'LineWidth', 2);
+        plot(multi(kk).loxx4, (ylo - mean(ylo))/max(abs((ylo - mean(ylo)))), 'LineWidth', 1);
         multimean4 = multimean4 + (ylo - mean(ylo))/max(abs((ylo - mean(ylo))));
         
     end
@@ -837,12 +838,27 @@ clear j;
         plot([multi(2).Hilighttimes4(j), multi(2).Hilighttimes4(j)], ylim, 'k-');
       
     end
-    
+ 
+
+ax(3) = subplot(313); title('avg single fish amplitude'); hold on;
+        plot(fourtim1, fouramp, 'LineWidth',2);
+        plot(twelvetim1, twelveamp, 'LineWidth', 2);
+        legend('four hour', 'twelve hour');
+        legend('AutoUpdate','off');
+        legend('Box','off');
+
+    %plot light transitions
+    clear j;
+        for j = 1:length(one(1).lighttimes4)
+            plot([one(1).lighttimes4(j), one(1).lighttimes4(j)], ylim, 'k-');
+          
+        end
+
 linkaxes(ax, 'x');
 
-
+%%
 %individual splines plus raw data    
-figure(33); clf; hold on;
+figure(37); clf; hold on;
 
    %experiment 1
    clear j;
@@ -869,7 +885,7 @@ figure(33); clf; hold on;
    
 linkaxes(ax, 'x');
 
-figure(34); clf; hold on; 
+figure(38); clf; hold on; 
         
     %experiment 2
     clear k;
@@ -912,7 +928,7 @@ figure(34); clf; hold on;
  
 linkaxes(ax, 'x');
  
-figure(35); clf; hold on;
+figure(39); clf; hold on;
 
     %experiment 3
     clear k;
