@@ -1,4 +1,4 @@
-function [trial] = KatieMultifftDayTrialDessembler(in, fishfreq, ReFs, light)
+%function [trial] = KatieMultifftDayTrialDessembler(in, fishfreq, ReFs, light)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
@@ -13,7 +13,14 @@ function [trial] = KatieMultifftDayTrialDessembler(in, fishfreq, ReFs, light)
 
 clearvars -except kg kg2
 
-in = kg2(1);
+in = kg2(10);
+%need to troubleshoot
+%kg2()
+    %2
+    %3 - hiamp needs new spline... or something
+    %4 - temp
+    %5 basically no dark data
+    
 ReFs = 10;
 
 %% prep
@@ -28,7 +35,7 @@ end
 %triallength
 
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
-
+ld
 %% Take spline estimate of raw data
 
 %entire data set
@@ -206,7 +213,7 @@ clear jj;
 
 
             % Get the index of the start time of the trial
-            lodayidx = find(hout(jj).HiStimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
+            lodayidx = find(lout(jj).LoStimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
 
             % Get the datums
             %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
@@ -297,7 +304,7 @@ clear jj;
     subplot(212); hold on;
      himeanofmeans = mean(himday); % Takes the mean of the means for a day from each trial 
     plot(hitrial(jj).tim, himeanofmeans, 'k-', 'LineWidth', 3);
-    
+    kk = jj;
 %low frequency fish
  figure(28); clf; title('Day average by trial Low frequency fish'); hold on; 
  clear jj;
@@ -319,7 +326,7 @@ clear jj;
 
          % To get average across days, divide by number of days
             lomday(jj,:) = lomday(jj,:) / length(lotrial(jj).day);
-            subplot(212); hold on; title('Day average by trial hi frequency fish');
+            subplot(212); hold on; title('Day average by trial low frequency fish');
             plot(lotrial(jj).tim, lomday(jj,:), '-', 'Linewidth', 1);
             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
@@ -334,7 +341,7 @@ clear jj;
     
 figure(29); clf; title('trial day means for both fish'); hold on; 
 
-    plot(hitrial(jj).tim, himeanofmeans);
+   plot(hitrial(kk).tim, himeanofmeans);
     plot(lotrial(jj).tim, lomeanofmeans);
     plot([ld ld], ylim, 'k-', 'LineWidth', 1);
     legend('high frequency fish', 'low frequency fish');
