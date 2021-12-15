@@ -50,8 +50,8 @@ multifish124idx = [16 19 18];
         load("Users/eric/Documents/MATLAB/twelveamp.mat");
         %in 48 hour chunks... not actually that useful
             %length of kg(64) in hours is 344 = ~ 48 *7
-        twelveamp = [dd dd dd dd dd dd dd];
-        fouramp = [cc cc cc cc cc cc cc];
+        twelveamp = dd;
+        fouramp = cc;
 
         fourtim = one(1).xx(1):0.1:one(1).xx(1)+((length(fouramp)-1)*0.1);
         twelvetim = one(1).xx(1):0.1:one(1).xx(1)+((length(twelveamp)-1)*0.1);
@@ -112,7 +112,7 @@ ax(1) = subplot(311); title('single fish'); hold on;
     for k = 1:length(dos)
         %normalize splines around zero
         y = dos(k).fftyy1;
-        plot(dos(k).xx1, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 2);
+        plot(dos(k).xx1, (y - mean(y))/max(abs((y - mean(y)))) , 'LineWidth', 1.5);
         mmean = mmean + (y - mean(y))/max(abs((y - mean(y))));
     end
     
@@ -170,11 +170,21 @@ clear j;
 
 ax(3) = subplot(313); title('avg single fish amplitude'); hold on;
         plot(fourtim1, fouramp);
-        plot(twelvetim1, twelveamp)
-    
+        plot(twelvetim1, twelveamp);
+        legend('four hour', 'twelve hour');
+        legend('AutoUpdate','off');
+
+    %plot light transitions
+    clear j;
+        for j = 1:length(one(1).lighttimes1)
+            plot([one(1).lighttimes1(j), one(1).lighttimes1(j)], ylim, 'k-');
+          
+        end
+
+
 linkaxes(ax, 'x');
 
-
+%%
 %individual splines plus raw data    
 figure(25); clf; hold on;
 
