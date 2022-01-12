@@ -4,7 +4,7 @@ function out = KatieSeparationAnxiety(userfilespec)
 %see kgme multi
 %% Prep
     Fs = 40000; %sample rate
-    freqs = [450 650]; %freq range of typical eigen EOD
+    freqs = [425 625]; %freq range of typical eigen EOD
     %userfilespec = 'Eigen*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
@@ -134,8 +134,12 @@ for j=2:length(iFiles)
         tmpidx1l = find(tmp1.fftfreq > midpoint-rango & tmp1.fftfreq < midpoint);
         [out(j).e1loamp, lofreq1idx] = max(tmp1.fftdata(tmpidx1l));
         
+        %frequency
         tmphifreq1 = tmp1.fftfreq(tmpidx1h(hifreq1idx));
         tmplofreq1 = tmp1.fftfreq(tmpidx1l(lofreq1idx));
+        %amplitude
+        tmphiamp1 = tmp1.fftdata(tmpidx1h(hifreq1idx));
+        tmploamp1 = tmp1.fftdata(tmpidx1l(lofreq1idx));
         
 % Electrode 2
     tmp2 = fftmachine(data2, Fs);
@@ -144,15 +148,32 @@ for j=2:length(iFiles)
         tmpidx2l = find(tmp2.fftfreq > midpoint-rango & tmp2.fftfreq < midpoint);
         [out(j).e2loamp, lofreq2idx] = max(tmp2.fftdata(tmpidx2l));
     
+        %frequency
         tmphifreq2 = tmp2.fftfreq(tmpidx2h(hifreq2idx));
         tmplofreq2 = tmp2.fftfreq(tmpidx2l(lofreq2idx));
+        %amplitude
+        tmphiamp2 = tmp2.fftdata(tmpidx2h(hifreq2idx));
+        tmploamp2 = tmp2.fftdata(tmpidx2l(lofreq2idx));
 
 % Set current frequencies
 
-currhifreq = tmphifreq1;         
-currlofreq = tmplofreq2;  
-%        currhifreq = mean([tmphifreq1 tmphifreq2]);        
-%        currlofreq = mean([tmplofreq1 tmplofreq2]);        
+% currhifreq = tmphifreq1;         
+% currlofreq = tmplofreq2;  
+
+    if tmploamp1 > tmploamp2
+        currlofreq = tmplofreq1;
+    else
+        currlofreq = tmplofreq2;
+    end
+    
+    if tmphiamp1 > tmphiamp2
+        currhifreq = tmphifreq1;
+    else
+        currhifreq = tmphifreq2;
+    end
+
+%          currhifreq = mean([tmphifreq1 tmphifreq2]);        
+%     currlofreq = mean([tmplofreq1 tmplofreq2]);        
 
         
         

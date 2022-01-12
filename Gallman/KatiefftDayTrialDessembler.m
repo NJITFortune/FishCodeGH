@@ -6,14 +6,15 @@ function [trial, day] = KatieMultifftDayTrialDessembler(in, channel,  ReFs, ligh
     %starts with dark = 3
     %starts with light = 4
 
-clear trial
-clear day
-
-% in = kg(58);
-% channel = 1;
+% clearvars -except kg kg2
+% 
+% in = kg(84);
+% channel = 2;
 % ReFs = 10;
+% light = 3;
 
 %% prep
+ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 % define length of trial 
 if in.info.ld > 15 
@@ -24,7 +25,6 @@ end
 
 %triallength
 
-ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 %% Take spline estimate of raw data
 
@@ -42,7 +42,6 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
     timcont = [in.e(1).s.timcont] / (60*60);
     timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
-%     
 
 %% Define trial period
 
@@ -87,7 +86,7 @@ for jj = 1:numotrials
 %              out(jj).fftFreq = [in.e(j).s(timidx).fftFreq];
              
              % Time and treatment 
-             out(jj).timcont =timcont(timidx) - timcont(timidx(1)); %+1
+             out(jj).timcont = timcont(timidx) - timcont(timidx(1)); %+1
              out(jj).entiretimcont = timcont(timidx);
 %              out(jj).light = [in.e(j).s(timidx).light];
 %              out(jj).temp = [in.e(j).s(timidx).temp];
@@ -181,7 +180,7 @@ for k = 1:howmanydaysinsample
                 end
  end
     
-    
+%     
 %  %% plot to check
 % 
 %  %trials across tims
@@ -189,8 +188,8 @@ for k = 1:howmanydaysinsample
 %  
 %     for jj = 1:length(out)
 %         
-%         plot(out(jj).entiretimcont, out(jj).obwAmp, '.', 'MarkerSize', 3);
-%         plot(out(jj).Sentiretimcont, out(jj).SobwAmp, '-', 'LineWidth', 3);
+%         plot(out(jj).entiretimcont, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
+%         plot(out(jj).Sentiretimcont, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
 %         
 %     end
 %     
@@ -214,9 +213,9 @@ for k = 1:howmanydaysinsample
 %         for k=1:length(trial(jj).day)
 % 
 %                 %fill temporary vector with data from each day 
-%                 mday(jj,:) = mday(jj,:) + trial(jj).day(k).SobwAmp;
+%                 mday(jj,:) = mday(jj,:) + trial(jj).day(k).SsumfftAmp;
 %                 subplot(211); hold on; title('Days');
-%                 plot(trial(jj).tim, trial(jj).day(k).SobwAmp);
+%                 plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
 %                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 % 
 %         end
@@ -243,8 +242,8 @@ for k = 1:howmanydaysinsample
 % clear meanday;
 % 
 %  for k = 1:length(day)
-%         plot(day(k).tim, day(k).SobwAmp);
-%         meanday(k,:) = day(k).SobwAmp;
+%         plot(day(k).tim, day(k).Ssumfftyy);
+%         meanday(k,:) = day(k).Ssumfftyy;
 %  end
 %     
 %         mmday= mean(meanday);
@@ -257,5 +256,5 @@ for k = 1:howmanydaysinsample
 %     plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 %     legend('day mean', 'trial mean');
 %      legend('boxoff')
-% % 
-% % 
+% 
+% 

@@ -38,6 +38,7 @@ clear lighttimesidx;
 %% trim luz to data - Generate lighttimes
 
 lighttimeslong = abs(in.info.luz);
+ld = in.info.ld;
 
     %fit light vector to power idx
         %poweridx = good data
@@ -56,7 +57,7 @@ lighttimeslong = abs(in.info.luz);
         end
     end
 
-    
+  
 %only take times for light vectors that have data
 for j = 1:length(lighttimeslesslong)-1
         
@@ -75,6 +76,7 @@ lighttimes = lighttrim(lighttrim > 0);
 %add back the light time we subtracted 
 %ld = lighttimes(end) - lighttimes(end-1);
 %lighttimes(end +1) = lighttimes(end) + ld;
+%lighttimes
 for k = 1:length(lighttimes)
     lighttimes(k) = floor(lighttimes(k));
 end
@@ -161,6 +163,10 @@ else %channel = 2
                 sumfftAmpOG = [in.e(2).s(ttsf{2}).sumfftAmp]; 
              
 end
+
+% figure(57); clf; title('testing original spline'); hold on;
+%     plot(sumffttimOG, sumfftAmpOG, '.');
+%     plot(xx, sumfftyy, '-');
 %% subset raw data            
         
 %take raw data above the spline
