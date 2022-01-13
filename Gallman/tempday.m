@@ -29,7 +29,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     tempraw = [in.e(channel).s.temp];
     temptims = [in.info.temptims];
     freq = [in.e(channel).s.fftFreq];
-    light = abs([in.info.luz]);
+    light = abs(in.info.luz);
 
 
 figure(3); clf; hold on;
