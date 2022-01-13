@@ -22,18 +22,6 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     %uses new time base defined by ReFs
 [xx, obwyy, zyy, sumfftyy, temperaturetimes] = k_tempspliner(in,channel, ReFs, p);
 
-%Make a time base of raw data that starts and ends on lighttimes 
-    %necessary to define length of data and plot against spline estimate
-%     timcont = [in.e(channel).s.timcont] / (60*60);
-%     timcont = timcont(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end));
-% 
-%     obwraw = [in.e(channel).s(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end)).obwAmp];
-%     tempraw = [in.e(channel).s(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end)).temp];
-%     temptims = [in.info.temptims];
-%     freq = [in.e(channel).s(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end)).fftFreq];
-
-
-%redo because something went wrong above
     timcont = [in.e(channel).s.timcont] / (60*60);
     %timcont = timcont(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end));
 
@@ -45,10 +33,9 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 
 figure(3); clf; hold on;
-    %plot(timcont, tempraw, 'r-');
-     plot(timcont, freq, 'c-');
-    plot([temptims temptims], ylim, 'k-', 'LineWidth', 0.5);
-   % plot([lighttimes lighttimes], ylim, 'b-');
+%     plot(timcont, tempraw, 'r-');
+%     plot([temptims temptims], ylim, 'k-', 'LineWidth', 0.5);
+   plot([lighttimes lighttimes], ylim, 'b-');
 
 
 % plot tp check
