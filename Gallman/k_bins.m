@@ -63,6 +63,7 @@ totaltimhours = lighttimes(end)-lighttimes(1);
 %bins
 binsize = 10; %minutes
 totalnumbins = totaltimhours/(binsize/60);
+binz = 1:1:totalnumbins;
 
 bintimhour = lighttimes(1) + ()
 
