@@ -86,4 +86,7 @@ for j = 1:length(bintimhour)-1
 end
 
 
+for k = 1:length(bin)
+    if length(bin())
 
+end
