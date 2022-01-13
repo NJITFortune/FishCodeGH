@@ -98,3 +98,6 @@ end
 
      plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
      plot([bintimhour' bintimhour'], ylim, 'm-');
+
+%% probability estimate?
+
