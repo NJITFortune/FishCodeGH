@@ -65,7 +65,7 @@ binsize = 10; %minutes
 totalnumbins = totaltimhours/(binsize/60);
 binz = 1:1:totalnumbins;
 
-bintimhour = lighttimes(1) + ()
+bintimhour = (lighttimes(1)*60 + (binsize )
 
 %data is currently in hours - need 10minute bins
     %convert timcont to minutes?
