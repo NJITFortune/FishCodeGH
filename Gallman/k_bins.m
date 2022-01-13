@@ -66,7 +66,7 @@ totalnumbins = totaltimhours/(binsize/60);
 binz = 1:1:totalnumbins;
 
 %data is currently in hours - need 10minute bins
-bintimmin = (lighttimes(1)*60) + (binsize (binz-1));
+bintimmin = (lighttimes(1)*60) + (binsize * (binz-1));
 
 
     
