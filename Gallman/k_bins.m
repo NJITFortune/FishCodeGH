@@ -115,7 +115,7 @@ for k = 2:length(bin)
         bin(k).binary(:) = 0;
     end
 
-    plot(bin(k).middletim, bin(k).binary, '.', 'MarkerSize', 16, 'Color','g'); 
+    %plot(bin(k).middletim, bin(k).binary, '.', 'MarkerSize', 16, 'Color','g'); 
     
 
 end
@@ -123,5 +123,7 @@ end
 %      plot([bintimhour' bintimhour'], ylim, 'm-');
 %      plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
 
+%% dark to light
 
+for jj = 1:length()
 
