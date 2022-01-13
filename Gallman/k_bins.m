@@ -97,7 +97,7 @@ for k = 1:length(bin)-1
 end
 
      plot([bintimhour' bintimhour'], ylim, 'm-');
-          plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
+          plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
 
 
 %% probability estimate?
