@@ -10,7 +10,7 @@ ReFs = 10;  %resample once every minute (Usually 60)
   temptims = [in.info.temptims];
 
 figure(2); clf; hold on;
-    plot([in.e(channel).s.timcont]/3600, [in.e(channel).s.temp], '.');
+    plot([in.e(channel).s.timcont]/3600, [in.e(channel).s.temp], 'r-');
     plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
 
 %% Take spline estimate of entire data set
