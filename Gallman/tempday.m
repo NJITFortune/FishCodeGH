@@ -31,18 +31,13 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     freq = [in.e(channel).s.fftFreq];
     light = abs(in.info.luz);
 
-
+%% plot to check
 figure(3); clf; hold on;
     plot(timcont, tempraw, 'r-');
     plot([temptims temptims], ylim, 'k-', 'LineWidth', 0.5);
     plot([light' light'], ylim, 'b-');
 
-%     for j = 1:length(light)
-%     plot([light(j) light(j)], ylim, 'b-');
-%     end
 
-
-% plot tp check
 
 figure(34); clf; hold on; 
 
@@ -96,6 +91,7 @@ figure(777); clf; hold on;
         %plot(timcont, tempraw-1.5, 'r-', 'LineWidth', 1);
         plot(timcont, (freq/200)-mean(freq/200), 'm-');
         plot([temptims temptims], ylim, 'k-', 'LineWidth', 0.5);
+        plot([light' light'], ylim, 'b-');
         
 %linkaxes(xa, 'x');
 
