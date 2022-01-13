@@ -76,7 +76,7 @@ figure(777); clf; hold on;
             %preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
 
         end
-        plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
+        plot([temptims temptims], ylim, 'k-', 'LineWidth', 0.5);
         
 %linkaxes(xa, 'x');
 
