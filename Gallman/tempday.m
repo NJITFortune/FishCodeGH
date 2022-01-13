@@ -32,6 +32,12 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     temptims = [in.info.temptims];
     freq = [in.e(channel).s(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end)).fftFreq];
 
+
+figure(3); clf; hold on;
+    plot(timcont, tempraw, 'r-');
+    plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
+
+
 %% plot tp check
 
 figure(34); clf; hold on; 
