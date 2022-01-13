@@ -126,8 +126,20 @@ end
 %% dark to light
 
 %divide into days
-for jj = 1:floor(totaltimhours/(ld*2))
+
+darkz = 1:1:floor(totaltimhours/(ld*2));
+darkdays = lighttimes(1) + ((2*ld) * (darkz-1));
 
 
+for jj = 2:length(darkdays)
+
+    for k = 1:length(bin)
+
+    if bin(k).tim < darkdays(jj) && bin(k).tim >= darkdays(jj)-((4*binsize)/60)
+    
+        
+
+    end
+    end
 end
 
