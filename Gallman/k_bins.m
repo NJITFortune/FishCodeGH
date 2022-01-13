@@ -125,6 +125,9 @@ end
 
 %% dark to light
 
+%divide into days
+for jj = 1:length(totaltimhours/(ld*2))
 
-for jj = 1:length()
+
+end
 
