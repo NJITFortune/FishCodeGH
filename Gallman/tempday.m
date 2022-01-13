@@ -103,7 +103,7 @@ figure(777); clf; hold on;
 
         end
         %plot(timcont, tempraw-1.5, 'r-', 'LineWidth', 1);
-        plot(timcont, freq, 'm-');
+        plot(timcont, (freq/200)-mean(freq/200), 'm-');
         plot([temptims temptims], ylim, 'k-', 'LineWidth', 0.5);
         
 %linkaxes(xa, 'x');
