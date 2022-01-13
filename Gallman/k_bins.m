@@ -65,6 +65,8 @@ binsize = 10; %minutes
 totalnumbins = totaltimhours/(binsize/60);
 
 %data is currently in hours - need 10minute bins
+    %convert timcont to minutes?
+    timcontmin = timcont * 60
 
 
 
