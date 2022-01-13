@@ -82,11 +82,15 @@ for j = 1:length(bintimhour)-1
 
     timidx = find(timcont > bintimhour(j) & timcont <= bintimhour(j+1));
     bin(j).Amp(:) = fftAmp(timidx);
+    bin(j).tim(:) = timcont(timidx);
 
 end
 
 
-for k = 1:length(bin)
-    if length(bin(k).Amp)>0
+for k = 1:length(bin)-1
+    bin(k).meanAmp(:) = mean(bin(k).Amp);
+    bin(k).middletim(:) = bintimhour(k+1) - (5/60);
+    
+    plot(bin(k).middletim, )
 
 end
