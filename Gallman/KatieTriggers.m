@@ -1,5 +1,5 @@
 
-function [timcont, lighttimes, halfday] = KatieTriggers(in) 
+%function [timcont, lighttimes, halfday] = KatieTriggers(in) 
 
 %function [trial, day] = KatieDayDessembler(in, channel,  ReFs)
 %% usage
@@ -7,10 +7,10 @@ function [timcont, lighttimes, halfday] = KatieTriggers(in)
 % 
 % clear trial
 % clear day
-% clearvars -except kg
-% in = kg(31);
+clearvars -except kg kg2
+in = kg(31);
 channel = 1;
-% ReFs = 10;
+ReFs = 10;
 
 
 
