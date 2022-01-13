@@ -103,6 +103,7 @@ end
 %% probability estimate?
 
 figure(7); clf; hold on;
+ylim(-2, 2);
 % if the next dot increased in amp over the previous = 1
 % if the next dot decreased in amp over previous = 0;
 
@@ -115,7 +116,7 @@ for k = 2:length(bin)
     end
 
     plot(bin(k).middletim, bin(k).binary, '.', 'MarkerSize', 16, 'Color','g'); 
-    ylim(-2, 2);
+    
 
 end
 
