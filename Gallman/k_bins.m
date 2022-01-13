@@ -114,7 +114,7 @@ for k = 2:length(bin)
         bin(k).binary(:) = 0;
     end
 
-    plot(bin(k).middltim, bin(k).binary, '.', 'MarkerSize', 16, 'Color','g'); 
+    plot(bin(k).middletim, bin(k).binary, '.', 'MarkerSize', 16, 'Color','g'); 
 
 end
 
