@@ -44,10 +44,11 @@ ld = in.info.ld;
 
 %trim time and amplitude vectors to light transitions
     
-    lidx = find(timcont >=lighttimes(1) & timcont <= lighttimes(end));
-    timcont = [in.e(channel).s.timcont]/3600;
-    timcont = timcont(lidx);
-    fftAmp = [in.e(channel).s(lidx).sumfftAmp];
+        timcont = [in.e(channel).s.timcont]/3600;
+        lidx = find(timcont >=lighttimes(1) & timcont <= lighttimes(end));
+
+        timcont = timcont(lidx);
+        fftAmp = [in.e(channel).s(lidx).sumfftAmp];
 
 
 %plot to check
