@@ -78,7 +78,7 @@ bintimhour = bintimmin/60;
 
 %% Average amp by bin
 
-for j = 1:length(bintimhour)+1
+for j = 1:(length(bintimhour))+2
 
     timidx = find(timcont > bintimhour(j) & timcont <= bintimhour(j+1));
     bin(j).Amp(:) = fftAmp(timidx);
