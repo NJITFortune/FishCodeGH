@@ -5,7 +5,7 @@ clearvars -except kg kg2
 in = kg(2);
 channel = 1;
 
-%% chunk data by light transitions
+%% define data by light transitions
 
 %create light transistion vector lighttimes
 lighttimeslong = abs(in.info.luz);
@@ -55,6 +55,11 @@ ld = in.info.ld;
     figure(5); clf; hold on;
         plot(timcont, fftAmp, '.');
         plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
+
+%% Divide into bins
+
+%data is currently in hours - need 10minute bins
+
 
 
 
