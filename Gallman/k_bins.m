@@ -78,7 +78,7 @@ bintimhour = bintimmin/60;
 
 %% Average amp by bin
 
-
+for j = 1:length(bintimhour)
 
 
 
