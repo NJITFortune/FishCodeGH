@@ -76,6 +76,8 @@ bintimhour = bintimmin/60;
         plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
         plot([bintimhour' bintimhour'], ylim, 'm-');
 
+%% Average amp by bin
+
 
 
 
