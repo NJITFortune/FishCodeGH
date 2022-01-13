@@ -115,11 +115,12 @@ for k = 2:length(bin)
     end
 
     plot(bin(k).middletim, bin(k).binary, '.', 'MarkerSize', 16, 'Color','g'); 
+    ylim(-2, 2);
 
 end
 
- plot([bintimhour' bintimhour'], ylim, 'm-');
- plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
+     plot([bintimhour' bintimhour'], ylim, 'm-');
+     plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
 
 
 
