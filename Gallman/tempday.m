@@ -33,8 +33,8 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 
 figure(3); clf; hold on;
-%     plot(timcont, tempraw, 'r-');
-%     plot([temptims temptims], ylim, 'k-', 'LineWidth', 0.5);
+    plot(timcont, tempraw, 'r-');
+    plot([temptims temptims], ylim, 'k-', 'LineWidth', 0.5);
    plot([light, light], ylim, 'b-');
 
 
