@@ -35,9 +35,11 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 figure(3); clf; hold on;
     plot(timcont, tempraw, 'r-');
     plot([temptims temptims], ylim, 'k-', 'LineWidth', 0.5);
-    for j = 1:length(light)
-    plot([light(j) light(j)], ylim, 'b-');
-    end
+    plot([light' light'], ylim, 'b-');
+
+%     for j = 1:length(light)
+%     plot([light(j) light(j)], ylim, 'b-');
+%     end
 
 
 % plot tp check
