@@ -6,6 +6,13 @@ channel = 1;
 p = 0.5;
 ReFs = 10;  %resample once every minute (Usually 60)
 
+%% testing why the temp doesn't seem to line up...
+  temptims = [in.info.temptims];
+
+figure(2); clf; hold on;
+    plot([in.e.s.timcont], [in.e.s.temp], '.');
+    plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
+
 %% Take spline estimate of entire data set
 
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
