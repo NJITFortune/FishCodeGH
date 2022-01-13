@@ -126,8 +126,13 @@ end
 %% dark to light
 
 %divide into days
-for jj = 1:floor(totaltimhours/(ld*2))
 
+darkz = 1:1:floor(totaltimhours/(ld*2));
+darkdays = lighttimes(1) + ((2*ld) * (darkz-1));
+
+for jj = 2:length(darkdays)
+
+    binchunk(jj).darkdays(jj)
 
 end
 
