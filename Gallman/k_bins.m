@@ -67,13 +67,14 @@ binz = 1:1:totalnumbins;
 
 %data is currently in hours - need 10minute bins
 bintimmin = (lighttimes(1)*60) + (binsize * (binz-1));
-
+bintimhour = bintimmin/60;
 
     
 %plot to check
     figure(5); clf; hold on;
         plot(timcont, fftAmp, '.');
         plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
+        plot([bintimhour' bintimhour'], ylim, 'm-');
 
 
 
