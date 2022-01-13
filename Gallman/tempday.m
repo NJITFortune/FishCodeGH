@@ -47,7 +47,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 figure(3); clf; hold on;
     %plot(timcont, tempraw, 'r-');
      plot(timcont, freq, 'c-');
-    plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
+    plot([temptims temptims], ylim, 'k-', 'LineWidth', 0.5);
    % plot([lighttimes lighttimes], ylim, 'b-');
 
 
@@ -102,7 +102,8 @@ figure(777); clf; hold on;
             %preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
 
         end
-        plot(timcont, tempraw-1.5, 'r-', 'LineWidth', 1);
+        %plot(timcont, tempraw-1.5, 'r-', 'LineWidth', 1);
+        plot(timcont, freq, 'm-');
         plot([temptims temptims], ylim, 'k-', 'LineWidth', 0.5);
         
 %linkaxes(xa, 'x');
