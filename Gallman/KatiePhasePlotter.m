@@ -1,6 +1,6 @@
 %function k_phaseplotter(in)
 
-in = kg()
+
 light = 3;
 channel = 1;
 ReFs = 10;
