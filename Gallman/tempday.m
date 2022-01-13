@@ -41,11 +41,13 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
     tempraw = [in.e(channel).s.temp];
     temptims = [in.info.temptims];
     freq = [in.e(channel).s.fftFreq];
+    lighttimes = abs([in.info.luz]);
 
 
 figure(3); clf; hold on;
     plot(timcont, tempraw, 'r-');
     plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
+    plot([lighttimes, lighttimes], ylim, 'b-');
 
 
 % plot tp check
