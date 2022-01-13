@@ -15,8 +15,8 @@ p = 0.9;
 
 %outlier removal indicies
 % All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
-    tthi = 1:length(in.fish.his); % tthi is indices for HiAmp
-    ttlo = 1:length(in.fish.los); % ttlo is indices for LoAmp
+    tthi = 1:length(in.fish.his.HiAmp); % tthi is indices for HiAmp
+    ttlo = 1:length(in.fish.los.LoAmp); % ttlo is indices for LoAmp
 
  % figure(2); clf; plot(tthi); hold on; 
 
