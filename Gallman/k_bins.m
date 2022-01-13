@@ -86,11 +86,15 @@ for j = 1:length(bintimhour)-1
 
 end
 
+figure(4); clf; title('Average Amp by 10 minute bin'); hold on;
 
 for k = 1:length(bin)-1
     bin(k).meanAmp(:) = mean(bin(k).Amp);
     bin(k).middletim(:) = bintimhour(k+1) - (5/60);
     
-    plot(bin(k).middletim, bin(k).meanAmp, '.', )
+    plot(bin(k).middletim, bin(k).meanAmp, '.', 'MarkerSize', 5, 'Color','r');
 
 end
+
+     plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
+     plot([bintimhour' bintimhour'], ylim, 'm-');
