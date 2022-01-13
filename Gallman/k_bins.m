@@ -87,8 +87,10 @@ for j = 1:length(bintimhour)-1
 end
 
 
-for k = 1:length(bin)
+for k = 1:length(bin)-1
+    bin(k).meanAmp(:) = mean(bin(k).Amp);
+    bin(k).middletim(:) = bintimhour(k+1) - (5/60);
     
-
+    plot(bin(k).middletim, bin(k).meanAmp, '.', )
 
 end
