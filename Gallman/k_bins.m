@@ -87,6 +87,7 @@ end
 
 
 for k = 1:length(bin)
-    if length(bin())
+    
+
 
 end
