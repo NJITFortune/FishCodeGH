@@ -53,7 +53,7 @@ ld = in.info.ld;
 
 %plot to check
     figure(5); clf; hold on;
-        plot(timcont, fftAmp);
+        plot(timcont, fftAmp, '.');
         plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
 
 
