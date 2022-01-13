@@ -60,7 +60,9 @@ ld = in.info.ld;
 
 %length of experiment
 totaltimhours = lighttimes(end)-lighttimes(1);
-
+%bins
+binsize = 10; %minutes
+totalnumbins = totaltimhours/(binsize/60);
 
 %data is currently in hours - need 10minute bins
 
