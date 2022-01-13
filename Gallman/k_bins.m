@@ -59,7 +59,7 @@ ld = in.info.ld;
 %% Divide into bins
 
 %length of experiment
-totaltim = lighttimes(end)-lighttimes(1);
+totaltimhours = lighttimes(end)-lighttimes(1);
 
 
 %data is currently in hours - need 10minute bins
