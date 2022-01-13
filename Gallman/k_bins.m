@@ -64,10 +64,13 @@ totaltimhours = lighttimes(end)-lighttimes(1);
 binsize = 10; %minutes
 totalnumbins = totaltimhours/(binsize/60);
 
+bintimhour = lighttimes(1) + ()
+
 %data is currently in hours - need 10minute bins
     %convert timcont to minutes?
     timcontmin = timcont * 60;
   
+
     for j = 1:totalnumbins
 
         bintim(j,:) = timcontmin(j) + binsize;
