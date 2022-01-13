@@ -24,13 +24,23 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 %Make a time base of raw data that starts and ends on lighttimes 
     %necessary to define length of data and plot against spline estimate
-    timcont = [in.e(channel).s.timcont] / (60*60);
-    timcont = timcont(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end));
+%     timcont = [in.e(channel).s.timcont] / (60*60);
+%     timcont = timcont(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end));
+% 
+%     obwraw = [in.e(channel).s(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end)).obwAmp];
+%     tempraw = [in.e(channel).s(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end)).temp];
+%     temptims = [in.info.temptims];
+%     freq = [in.e(channel).s(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end)).fftFreq];
 
-    obwraw = [in.e(channel).s(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end)).obwAmp];
-    tempraw = [in.e(channel).s(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end)).temp];
+
+%redo because something went wrong above
+    timcont = [in.e(channel).s.timcont] / (60*60);
+    %timcont = timcont(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end));
+
+    %obwraw = [in.e(channel).s(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end)).obwAmp];
+    tempraw = [in.e(channel).s.temp];
     temptims = [in.info.temptims];
-    freq = [in.e(channel).s(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end)).fftFreq];
+    freq = [in.e(channel).s.fftFreq];
 
 
 figure(3); clf; hold on;
@@ -38,7 +48,7 @@ figure(3); clf; hold on;
     plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
 
 
-%% plot tp check
+% plot tp check
 
 figure(34); clf; hold on; 
 
