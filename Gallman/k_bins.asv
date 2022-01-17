@@ -102,7 +102,6 @@ end
 
 %% probability estimate?
 
-%figure(7); clf; hold on;
 
 % if the next dot increased in amp over the previous = 1
 % if the next dot decreased in amp over previous = 0;
@@ -115,13 +114,12 @@ for k = 2:length(bin)
         bin(k).binary(:) = 0;
     end
 
-    %plot(bin(k).middletim, bin(k).binary, '.', 'MarkerSize', 16, 'Color','g'); 
+    text(bin(k).middletim, bin(k).meanAmp, num2str(bin(k).binary)); 
     
 
 end
 
-%      plot([bintimhour' bintimhour'], ylim, 'm-');
-%      plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
+   
 
 %% dark to light
 
@@ -131,13 +129,14 @@ darkz = 1:1:floor(totaltimhours/(ld*2));
 darkdays = lighttimes(1) + ((2*ld) * (darkz-1));
 
 
+
 for jj = 2:length(darkdays)
 
-    for k = 1:length(bin)
 
-    if bin(k).tim < darkdays(jj) && bin(k).tim >= darkdays(jj)-((4*binsize)/60)
+    predidx = find([bin.middletim] <= darkdays(jj)+((4*binsize)/60) & [bin.middletim] >= darkdays(jj)-((4*binsize)/60));
+    darkdaypreds = bin
     
-    
+        
 
     end
     end
