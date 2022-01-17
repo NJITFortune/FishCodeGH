@@ -154,7 +154,7 @@ figure(7); clf; hold on;
     for jj = 1:length(darkd)
         for j = 1:length(darkd(jj).binary)
 
-    text([darkd(jj).bintims(j)], [darkd(jj).binAmps(j)], num2str([darkd(jj).binary(j)]));
+    text(darkd(jj).bintims(j), darkd(jj).binAmps(j), num2str(darkd(jj).binary(j)), 'FontSize', 12);
         end
     end
 
