@@ -61,7 +61,7 @@ ld = in.info.ld;
 %length of experiment
 totaltimhours = lighttimes(end)-lighttimes(1);
 %bins
-binsize = 10; %minutes
+binsize = 5; %minutes
 totalnumbins = totaltimhours/(binsize/60);
 binz = 1:1:totalnumbins;
 
@@ -86,18 +86,18 @@ for j = 1:length(bintimhour)-1
 
 end
 
-figure(4); clf; title('Average Amp by 10 minute bin'); hold on;
+%figure(4); clf; title('Average Amp by 10 minute bin'); hold on;
 
 for k = 1:length(bin)-1
     bin(k).meanAmp(:) = mean(bin(k).Amp);
     bin(k).middletim(:) = bintimhour(k+1) - ((binsize/2)/60);
     
-    plot(bin(k).middletim, bin(k).meanAmp, '.', 'MarkerSize', 16, 'Color','r');
+   %plot(bin(k).middletim, bin(k).meanAmp, '.', 'MarkerSize', 16, 'Color','r');
 
 end
 
-     plot([bintimhour' bintimhour'], ylim, 'm-');
-     plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
+%      plot([bintimhour' bintimhour'], ylim, 'm-');
+%      plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
 
 
 %% probability estimate?
@@ -114,7 +114,7 @@ for k = 2:length(bin)
         bin(k).binary(:) = 0;
     end
 
-    text(bin(k).middletim, bin(k).meanAmp, num2str(bin(k).binary)); 
+%     text(bin(k).middletim, bin(k).meanAmp, num2str(bin(k).binary)); 
     
 
 end
@@ -133,7 +133,7 @@ darkdays = lighttimes(2) + ((2*ld) * (darkz-1));
 for jj = 2:length(darkdays)
 
 
-    predidx = find([bin.middletim] <= darkdays(jj)+((4*binsize)/60) & [bin.middletim] >= darkdays(jj)-((4*binsize)/60));
+    predidx = find([bin.middletim] <= darkdays(jj)+((8*binsize)/60) & [bin.middletim] >= darkdays(jj)-((8*binsize)/60));
     
     %jj-1 so we start at 1
     darkd(jj-1).binary(:) = [bin(predidx).binary];
@@ -144,20 +144,20 @@ for jj = 2:length(darkdays)
 end
 
 %plot to check
-figure(7); clf; hold on;
-    
-    plot([bin.middletim], [bin.meanAmp], '.', 'MarkerSize', 16, 'Color','r');
-    plot([darkdays' darkdays'], ylim, 'k-', 'LineWidth', 1.5);
-    plot([bintimhour' bintimhour'], ylim, 'm-');
-
-    clear jj;
-    clear j;
-    for jj = 1:length(darkd)
-        for j = 1:length(darkd(jj).binary)
-
-    text(darkd(jj).bintims(j), darkd(jj).binAmps(j), num2str(darkd(jj).binary(j)), 'FontSize', 12);
-        end
-    end
+% figure(7); clf; hold on;
+%     
+%     plot([bin.middletim], [bin.meanAmp], '.', 'MarkerSize', 16, 'Color','r');
+%     plot([darkdays' darkdays'], ylim, 'k-', 'LineWidth', 1.5);
+%     plot([bintimhour' bintimhour'], ylim, 'm-');
+% 
+%     clear jj;
+%     clear j;
+%     for jj = 1:length(darkd)
+%         for j = 1:length(darkd(jj).binary)
+% 
+%     text(darkd(jj).bintims(j), darkd(jj).binAmps(j), num2str(darkd(jj).binary(j)), 'FontSize', 12);
+%         end
+%     end
 
 %% Averages for dark to light tranistions
 
