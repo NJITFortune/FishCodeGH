@@ -121,7 +121,7 @@ end
 
    
 
-%% dark to light
+%% dark to light transitions
 
 %divide into days
 
@@ -157,4 +157,14 @@ figure(7); clf; hold on;
     text(darkd(jj).bintims(j), darkd(jj).binAmps(j), num2str(darkd(jj).binary(j)), 'FontSize', 12);
         end
     end
+
+%% Averages for dark to light tranistions
+
+    
+
+
+
+
+
+
 
