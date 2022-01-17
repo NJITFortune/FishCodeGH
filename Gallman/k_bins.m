@@ -132,9 +132,9 @@ darkdays = lighttimes(1) + ((2*ld) * (darkz-1));
 
 for jj = 2:length(darkdays)
 
-    for k = 1:length(bin)
+   
 
-    if find(bin.tim <= darkdays(jj)+((4*binsize)/60) & bin(k).tim >= darkdays(jj)-((4*binsize)/60)
+    find(bin.tim <= darkdays(jj)+((4*binsize)/60) & bin.tim >= darkdays(jj)-((4*binsize)/60))
     
         
 
