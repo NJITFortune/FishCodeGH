@@ -161,7 +161,11 @@ figure(7); clf; hold on;
 %% Averages for dark to light tranistions
 
     
+for jj = 1:length(darkd)
 
+    pretranavg = 
+
+end
 
 
 
