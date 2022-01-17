@@ -163,7 +163,19 @@ figure(7); clf; hold on;
     
 for jj = 1:length(darkd)
 
-    pretranavg = 
+    darkd(jj).binary(1) > 0
+        darkprob1 = darkd(jj).binary(1) > 0
+
+
+    darkprob2
+    darkprob3
+    darkprob4
+
+
+    darkprob5
+    darkprob6
+    darkprob7
+    darkprob8
 
 end
 
