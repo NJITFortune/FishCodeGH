@@ -134,15 +134,15 @@ for jj = 2:length(darkdays)
 
 
     predidx = find([bin.middletim] <= darkdays(jj)+((4*binsize)/60) & [bin.middletim] >= darkdays(jj)-((4*binsize)/60));
-    
-    darkdaybinary(jj,:) = bin(predidx).binary;
-    darkdaybintims(jj,:) = bin(predidx).middletim;
-    darkdaybinAmps(jj,:) = bin(predidx).meanAmp;
+
+    darkd(jj).binary(:) = [bin(predidx).binary];
+    darkd(jj).bintims(:) = [bin(predidx).middletim];
+    darkd(jj).binAmps(:) = [bin(predidx).meanAmp];
     
         
 end
 
-
+%%
 %plot to check
 figure(7); clf; hold on;
     
