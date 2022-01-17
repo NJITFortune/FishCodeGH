@@ -161,7 +161,7 @@ figure(7); clf; hold on;
 %% Averages for dark to light tranistions
 
     
-for jj = 1:length(darkd)
+for jj = 2:length(darkd)
 
 
     darkprob(jj) = darkd(jj).binary(1); 
