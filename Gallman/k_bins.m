@@ -196,6 +196,6 @@ figure(27); clf; hold on;
 
 for k = 1:(transbinnum * 2)
  
-    sig = chi2
+    sig(k) = chi2pdf(pctdark(k), 1);
 
 end
