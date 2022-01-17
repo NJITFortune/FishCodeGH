@@ -196,7 +196,7 @@ figure(27); clf; hold on;
 
 for k = 1:(transbinnum * 2)
  
-   handsig = (length(find(darkprob(k,:)>0)) - length(darkprob(k,:))/2)^2 / length(darkprob(k,:))/2; + (length(find(darkprob(k,:)<1)) - length(darkprob(k,:))/2)^2/length(darkprob(k,:))/2;
-    %sig(k) = chi2pdf(pctdark(k), 1);
+   handsig(k) = (length(find(darkprob(k,:)>0)) - length(darkprob(k,:))/2)^2 / length(darkprob(k,:))/2; + (length(find(darkprob(k,:)<1)) - length(darkprob(k,:))/2)^2/length(darkprob(k,:))/2;
+   sig(k) = chi2pdf(pctdark(k), 1);
 
 end
