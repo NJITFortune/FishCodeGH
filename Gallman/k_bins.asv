@@ -163,16 +163,19 @@ figure(7); clf; hold on;
     
 for jj = 1:length(darkd)
 
-    darkprob1
-    darkprob2
-    darkprob3
-    darkprob4
 
-    
-    darkprob5
-    darkprob6
-    darkprob7
-    darkprob8
+    darkprob1(jj,:) = darkd(jj).binary(1); 
+
+
+%     darkprob2
+%     darkprob3
+%     darkprob4
+% 
+% 
+%     darkprob5
+%     darkprob6
+%     darkprob7
+%     darkprob8
 
 end
 
