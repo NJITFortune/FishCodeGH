@@ -133,12 +133,20 @@ darkdays = lighttimes(1) + ((2*ld) * (darkz-1));
 for jj = 2:length(darkdays)
 
 
-    predidx = find([bin.tim] <= darkdays(jj)+((4*binsize)/60) & [bin.tim] >= darkdays(jj)-((4*binsize)/60));
-    darkdaypreds = 
+    predidx = find([bin.middletim] <= darkdays(jj)+((4*binsize)/60) & [bin.middletim] >= darkdays(jj)-((4*binsize)/60));
+    darkdaybinary(jj,:) = bin(predidx).binary;
+    darkdaybintims(jj,:) = bin(predidx).middletim;
+    darkdaybinAmps(jj,:) = bin(predidx).meanAmp;
     
         
-
-    end
-    end
 end
+
+
+%plot to check
+figure(7); clf; hold on;
+    
+    plot([bin.middletim], [bin.meanAmp], '.', 'MarkerSize', 16, 'Color','r');
+    plot([darkdays' darkdays'], ylim, 'k-', 'LineWidth', 1.5);
+    text(darkdaytims, darkdaybinAmp, num2str(dardaybinary));
+
 
