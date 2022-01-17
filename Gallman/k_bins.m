@@ -134,7 +134,8 @@ for jj = 2:length(darkdays)
 
 
     predidx = find([bin.middletim] <= darkdays(jj)+((4*binsize)/60) & [bin.middletim] >= darkdays(jj)-((4*binsize)/60));
-
+    
+    %jj-1 so we start at 1
     darkd(jj-1).binary(:) = [bin(predidx).binary];
     darkd(jj-1).bintims(:) = [bin(predidx).middletim];
     darkd(jj-1).binAmps(:) = [bin(predidx).meanAmp];
@@ -163,9 +164,11 @@ figure(7); clf; hold on;
     
 for jj = 1:length(darkd)
 
+    for k = 1:8
+        darkprob(k,jj) = darkd(jj).binary(k); 
+    end
 
-    darkprob1(jj) = darkd(jj).binary(1); 
-
+end
 
 %     darkprob2
 %     darkprob3
@@ -177,10 +180,11 @@ for jj = 1:length(darkd)
 %     darkprob7
 %     darkprob8
 
+for k = 1:8
+    pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
 end
 
-
-
+figure(27); clf; plot(pctdark)
 
 
 
