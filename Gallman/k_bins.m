@@ -132,9 +132,9 @@ darkdays = lighttimes(1) + ((2*ld) * (darkz-1));
 
 for jj = 2:length(darkdays)
 
-   
 
-    find(bin.tim <= darkdays(jj)+((4*binsize)/60) & bin.tim >= darkdays(jj)-((4*binsize)/60))
+    predidx = find([bin.tim] <= darkdays(jj)+((4*binsize)/60) & [bin.tim] >= darkdays(jj)-((4*binsize)/60));
+    darkdaypreds = 
     
         
 
