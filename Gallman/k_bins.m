@@ -102,7 +102,6 @@ end
 
 %% probability estimate?
 
-%figure(7); clf; hold on;
 
 % if the next dot increased in amp over the previous = 1
 % if the next dot decreased in amp over previous = 0;
