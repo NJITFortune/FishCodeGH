@@ -129,6 +129,7 @@ darkz = 1:1:floor(totaltimhours/(ld*2));
 darkdays = lighttimes(1) + ((2*ld) * (darkz-1));
 
 
+
 for jj = 2:length(darkdays)
 
     for k = 1:length(bin)
