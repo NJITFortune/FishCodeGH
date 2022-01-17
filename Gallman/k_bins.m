@@ -115,7 +115,7 @@ for k = 2:length(bin)
         bin(k).binary(:) = 0;
     end
 
-    text(bin(k).middletim, bin(k).meanAmp, 'num2str(bin(k).binary)', '.', 'MarkerSize', 16, 'Color','g'); 
+    text(bin(k).middletim, bin(k).meanAmp, num2str(bin(k).binary), '.', 'MarkerSize', 16, 'Color','g'); 
     
 
 end
