@@ -166,6 +166,7 @@ for jj = 1:length(darkd)
 
     for k = 1:8
         darkprob(k,jj) = darkd(jj).binary(k); 
+        darkamp(k,jj) = darkd(jj).binAmps(k);
     end
 
 end
@@ -184,7 +185,11 @@ for k = 1:8
     pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
 end
 
-figure(27); clf; plot(pctdark)
+figure(27); clf; hold on;
 
+    plot(pctdark)
+    for k = 1:8
+        plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
+    end
 
 
