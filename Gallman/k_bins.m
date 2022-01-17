@@ -164,7 +164,7 @@ figure(7); clf; hold on;
 for jj = 1:length(darkd)
 
 
-    darkd(jj).prob1(:) = darkd(jj).binary(1); 
+    darkprob(jj) = darkd(jj).binary(1); 
 
 
 %     darkprob2
