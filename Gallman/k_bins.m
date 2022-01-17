@@ -134,7 +134,7 @@ for jj = 2:length(darkdays)
 
     for k = 1:length(bin)
 
-    if bin(k).tim < darkdays(jj) && bin(k).tim >= darkdays(jj)-((4*binsize)/60)
+    if find(bin.tim <= darkdays(jj)+((4*binsize)/60) & bin(k).tim >= darkdays(jj)-((4*binsize)/60)
     
         
 
