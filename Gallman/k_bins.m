@@ -147,6 +147,6 @@ figure(7); clf; hold on;
     
     plot([bin.middletim], [bin.meanAmp], '.', 'MarkerSize', 16, 'Color','r');
     plot([darkdays' darkdays'], ylim, 'k-', 'LineWidth', 1.5);
-    text(darkdaybintims, darkdaybinAmps, num2str(dardaybinary));
+    text(darkdaybintims, darkdaybinAmps, num2str(darkdaybinary));
 
 
