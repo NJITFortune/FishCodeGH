@@ -126,7 +126,7 @@ end
 %divide into days
 
 darkz = 1:1:floor(totaltimhours/(ld*2));
-darkdays = lighttimes(2) + ((2*ld) * (darkz-1));
+darkdays = lighttimes(1) + ((2*ld) * (darkz-1));
 
 transbinnum = 8;
 
