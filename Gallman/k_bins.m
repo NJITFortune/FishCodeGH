@@ -135,9 +135,9 @@ for jj = 2:length(darkdays)
 
     predidx = find([bin.middletim] <= darkdays(jj)+((4*binsize)/60) & [bin.middletim] >= darkdays(jj)-((4*binsize)/60));
 
-    darkd(jj).binary(:) = [bin(predidx).binary];
-    darkd(jj).bintims(:) = [bin(predidx).middletim];
-    darkd(jj).binAmps(:) = [bin(predidx).meanAmp];
+    darkd(jj-1).binary(:) = [bin(predidx).binary];
+    darkd(jj-1).bintims(:) = [bin(predidx).middletim];
+    darkd(jj-1).binAmps(:) = [bin(predidx).meanAmp];
     
         
 end
@@ -161,10 +161,10 @@ figure(7); clf; hold on;
 %% Averages for dark to light tranistions
 
     
-for jj = 2:length(darkd)
+for jj = 1:length(darkd)
 
 
-    darkprob(jj) = darkd(jj).binary(1); 
+    darkprob1(jj) = darkd(jj).binary(1); 
 
 
 %     darkprob2
