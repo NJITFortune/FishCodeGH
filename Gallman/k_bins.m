@@ -128,12 +128,12 @@ end
 darkz = 1:1:floor(totaltimhours/(ld*2));
 darkdays = lighttimes(2) + ((2*ld) * (darkz-1));
 
-
+transbinnum = 8;
 
 for jj = 2:length(darkdays)
 
 
-    predidx = find([bin.middletim] <= darkdays(jj)+((8*binsize)/60) & [bin.middletim] >= darkdays(jj)-((8*binsize)/60));
+    predidx = find([bin.middletim] <= darkdays(jj)+((transbinnum*binsize)/60) & [bin.middletim] >= darkdays(jj)-((transbinnum*binsize)/60));
     
     %jj-1 so we start at 1
     darkd(jj-1).binary(:) = [bin(predidx).binary];
@@ -164,7 +164,7 @@ end
     
 for jj = 1:length(darkd)
 
-    for k = 1:8
+    for k = 1:(transbinnum * 2)
         darkprob(k,jj) = darkd(jj).binary(k); 
         darkamp(k,jj) = darkd(jj).binAmps(k);
     end
@@ -181,14 +181,14 @@ end
 %     darkprob7
 %     darkprob8
 
-for k = 1:8
+for k = 1:transbinnum * 2
     pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
 end
 
 figure(27); clf; hold on;
 
     plot(pctdark)
-    for k = 1:8
+    for k = 1:transbinnum * 2
         plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
     end
 
