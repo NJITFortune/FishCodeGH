@@ -119,8 +119,7 @@ for k = 2:length(bin)
 
 end
 
-     plot([bintimhour' bintimhour'], ylim, 'm-');
-     plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
+   
 
 %% dark to light
 
