@@ -102,7 +102,7 @@ end
 
 %% probability estimate?
 
-%figure(7); clf; hold on;
+figure(7); clf; hold on;
 
 % if the next dot increased in amp over the previous = 1
 % if the next dot decreased in amp over previous = 0;
@@ -115,13 +115,13 @@ for k = 2:length(bin)
         bin(k).binary(:) = 0;
     end
 
-    %plot(bin(k).middletim, bin(k).binary, '.', 'MarkerSize', 16, 'Color','g'); 
+    plot(bin(k).middletim, bin(k).meanAmp, text(num2str(bin(k).binary)), '.', 'MarkerSize', 16, 'Color','g'); 
     
 
 end
 
-%      plot([bintimhour' bintimhour'], ylim, 'm-');
-%      plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
+     plot([bintimhour' bintimhour'], ylim, 'm-');
+     plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
 
 %% dark to light
 
