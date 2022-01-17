@@ -192,4 +192,10 @@ figure(27); clf; hold on;
         plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
     end
 
+%%
 
+for k = 1:(transbinnum * 2)
+ 
+    sig = chi2
+
+end
