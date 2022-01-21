@@ -38,7 +38,7 @@ figure(2); clf;
  
     
 
-    ax(1) = subplot(613); hold on; title('sumfftAmp spline channel 1');
+    ax(1) = subplot(x11); hold on; title('sumfftAmp spline channel 1');
         
         %raw spline estimate channel 1
         channel = 1;
@@ -49,46 +49,24 @@ figure(2); clf;
         %plot spline
         plot(xx1, sumfftyy1, '-', 'LineWidth', 3, 'Color', lavender);
         %plot light times
-        plot([lighttimes1' lighttimes1'], ylim, 'k-', 'LineWidth', 0.5)
+        plot([lighttimes1' lighttimes1'], ylim, 'k-', 'LineWidth', 0.5);
     
 
     
-
-
-    channel = 2;
-    [xx2, sumfftyy2, ~] =  k_rawspliner(out, channel, 10, 0.5);
-
-      plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
-
-
-ax(3) = subplot(612); hold on; title('zAmp - green = social');
-    plot([out.e(2).s(ttz{2}).timcont]/(60*60), [out.e(2).s(ttz{2}).zAmp], '.');
-    plot([out.e(1).s(ttz{1}).timcont]/(60*60), [out.e(1).s(ttz{1}).zAmp], '.');
-
-
+    ax(2) = subplot(x12); hold on; title('sumfftAmp spline channel 2');
+        
+        %raw spline estimate channel 1
+        channel = 2;
+        [xx2, sumfftyy2, lighttimes2] =  k_rawspliner(out, channel, 10, 0.5);
     
-    
-    
-    plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
-    plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
+        %plot raw data again
+        plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.', 'Color', blueish);
+        %plot spline
+        plot(xx2, sumfftyy2, '-', 'LineWidth', 3, 'Color', lavender);
+        %plot light times
+        plot([lighttimes2' lighttimes2'], ylim, 'k-', 'LineWidth', 0.5);
 
-ax(4) = subplot(614); hold on; title('frequency (black) and temperature (red)');   
-    plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.fftFreq], '.k', 'Markersize', 8);
-    plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.fftFreq], '.k', 'Markersize', 8);
   
-    
-ax(5) = subplot(615); hold on; title('temperature');
-    plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.temp], '-r', 'Markersize', 8);
-    plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.temp], '-r', 'Markersize', 8);
-
-
-ax(6) = subplot(616); hold on; title('light transitions');  
-    plot([out.e(2).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
-    ylim([-1, 6]);
-    xlabel('Continuous');
-
-
-
 
 
 % Add light transitions times to check luz if we have programmed it
@@ -101,31 +79,33 @@ if isfield(out.info, 'luz')
             darkon = out.info.luz(out.info.luz < 0);
             
             %plot
-            ax(6) = subplot(616); hold on;
-            plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
-            plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
+            ax(1) = subplot(x11); hold on;
+                plot([lighton' lighton']', [0 6], 'm-', 'LineWidth', 0.5);
+            ax(2) = subplot(x12); hold on;
+                plot([lighton' lighton']', [0 6], 'm-', 'LineWidth', 0.5);
+            %plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
     end    
 end
 
 
         
 % Add feedingtimes, if we have them... 
-   if isfield(out.info, 'feedingtimes')
-    if ~isempty([out.info.feedingtimes])
-       ax(1) = subplot(611); plot([out.info.feedingtimes' out.info.feedingtimes']', ylim, 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
-    end
-   end  
+%    if isfield(out.info, 'feedingtimes')
+%     if ~isempty([out.info.feedingtimes])
+%        ax(1) = subplot(611); plot([out.info.feedingtimes' out.info.feedingtimes']', ylim, 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
+%     end
+%    end  
 
 
 % Add temptimes, if we have them... 
-   if isfield(out.info, 'temptims')
-    if ~isempty([out.info.temptims])
-       ax(5) = subplot(615); 
-       for j = 1:length([out.info.temptims])
-            plot([out.info.temptims(j), out.info.temptims(j)], ylim, 'b-');
-       end         
-    end
-   end  
+%    if isfield(out.info, 'temptims')
+%     if ~isempty([out.info.temptims])
+%        ax(5) = subplot(615); 
+%        for j = 1:length([out.info.temptims])
+%             plot([out.info.temptims(j), out.info.temptims(j)], ylim, 'b-');
+%        end         
+%     end
+%    end  
 
 % % Add social times, if we have them... 
 %    if isfield(out.info.socialtimes)
@@ -135,20 +115,20 @@ end
 %    end
     
 % Add light transitions times to check luz if we have programmed it
-if isfield(out.info, 'luz')
-    if  ~isempty(out.info.luz)
-        
-        %luz by transition type
-            %separate by transition type
-            lighton = out.info.luz(out.info.luz > 0);
-            darkon = out.info.luz(out.info.luz < 0);
-            
-            %plot
-            ax(6) = subplot(616); hold on;
-            plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
-            plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
-    end    
-end
+% if isfield(out.info, 'luz')
+%     if  ~isempty(out.info.luz)
+%         
+%         %luz by transition type
+%             %separate by transition type
+%             lighton = out.info.luz(out.info.luz > 0);
+%             darkon = out.info.luz(out.info.luz < 0);
+%             
+%             %plot
+%             ax(6) = subplot(616); hold on;
+%             plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
+%             plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
+%     end    
+% end
 linkaxes(ax, 'x'); 
 
 
