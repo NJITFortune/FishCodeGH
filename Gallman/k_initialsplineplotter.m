@@ -35,8 +35,7 @@ orangeish = [224/255, 163/255, 46/255];
 figure(2); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
- 
-    
+
 
     ax(1) = subplot(211); hold on; title('sumfftAmp spline channel 1');
         
@@ -86,6 +85,11 @@ if isfield(out.info, 'luz')
             %plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
     end    
 end
+
+%% day average
+figure(3); clf; 
+channel = 1;
+[~, day] = KatieMultifftDayTrialDessembler(out, channel,  10, 3);
 
 
         
