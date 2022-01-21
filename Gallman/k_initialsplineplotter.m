@@ -38,7 +38,7 @@ figure(2); clf;
  
     
 
-    ax(1) = subplot(x11); hold on; title('sumfftAmp spline channel 1');
+    ax(1) = subplot(211); hold on; title('sumfftAmp spline channel 1');
         
         %raw spline estimate channel 1
         channel = 1;
@@ -53,7 +53,7 @@ figure(2); clf;
     
 
     
-    ax(2) = subplot(x12); hold on; title('sumfftAmp spline channel 2');
+    ax(2) = subplot(212); hold on; title('sumfftAmp spline channel 2');
         
         %raw spline estimate channel 1
         channel = 2;
@@ -79,9 +79,9 @@ if isfield(out.info, 'luz')
             darkon = out.info.luz(out.info.luz < 0);
             
             %plot
-            ax(1) = subplot(x11); hold on;
+            ax(1) = subplot(211); hold on;
                 plot([lighton' lighton']', [0 6], 'm-', 'LineWidth', 0.5);
-            ax(2) = subplot(x12); hold on;
+            ax(2) = subplot(212); hold on;
                 plot([lighton' lighton']', [0 6], 'm-', 'LineWidth', 0.5);
             %plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
     end    
