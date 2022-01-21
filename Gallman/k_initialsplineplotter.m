@@ -45,7 +45,7 @@ figure(2); clf;
         [xx1, sumfftyy1, lighttimes1] =  k_rawspliner(out, channel, 10, 0.5);
     
         %plot raw data again
-        plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.', 'Color', blueish);
+        plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.', 'MarkerSize', 10,'Color', blueish);
         %plot spline
         plot(xx1, sumfftyy1, 'LineWidth', 5, 'Color', lavender);
         %plot light times
