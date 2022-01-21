@@ -47,7 +47,7 @@ figure(2); clf;
         %plot raw data again
         plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.', 'Color', blueish);
         %plot spline
-        plot(xx1, sumfftyy1, '-', 'LineWidth', 3, 'Color', lavender);
+        plot(xx1, sumfftyy1, '-', 'LineWidth', 5, 'Color', lavender);
         %plot light times
         plot([lighttimes1' lighttimes1'], ylim, 'k-', 'LineWidth', 0.5);
     
@@ -62,7 +62,7 @@ figure(2); clf;
         %plot raw data again
         plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.', 'Color', orangeish);
         %plot spline
-        plot(xx2, sumfftyy2, '-', 'LineWidth', 3, 'Color', pinkish);
+        plot(xx2, sumfftyy2, '-', 'LineWidth', 5, 'Color', pinkish);
         %plot light times
         plot([lighttimes2' lighttimes2'], ylim, 'k-', 'LineWidth', 0.5);
 
