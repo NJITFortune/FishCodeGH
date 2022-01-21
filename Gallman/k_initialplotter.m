@@ -34,7 +34,11 @@ ax(2) = subplot(612); hold on; title('zAmp - green = social');
     plot([out.e(2).s(ttz{2}).timcont]/(60*60), [out.e(2).s(ttz{2}).zAmp], '.');
     plot([out.e(1).s(ttz{1}).timcont]/(60*60), [out.e(1).s(ttz{1}).zAmp], '.');
 
-ax(3) = subplot(613); hold on; title('obwAmp');
+ax(3) = subplot(613); hold on; title('sumfftAmp spline');
+
+    
+    
+    
     plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
     plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
 
