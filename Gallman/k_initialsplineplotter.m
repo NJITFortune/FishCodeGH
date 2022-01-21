@@ -30,11 +30,14 @@ ax(1) = subplot(611); hold on; title('sumfftAmp - magenta = added worms to tank'
     plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
     plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.');
 
-ax(2) = subplot(612); hold on; title('zAmp - green = social');
+ax(2) = subplot(613); hold on; title('sumfftAmp spline');
+    
+    
+
+ax(3) = subplot(612); hold on; title('zAmp - green = social');
     plot([out.e(2).s(ttz{2}).timcont]/(60*60), [out.e(2).s(ttz{2}).zAmp], '.');
     plot([out.e(1).s(ttz{1}).timcont]/(60*60), [out.e(1).s(ttz{1}).zAmp], '.');
 
-ax(3) = subplot(613); hold on; title('sumfftAmp spline');
 
     
     
