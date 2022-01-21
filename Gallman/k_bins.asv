@@ -59,7 +59,8 @@ ld = in.info.ld;
 
 %trim time and amplitude vectors to light transitions
     
-        timcont = [in.e(channel).s.timcont]/3600;
+        timcont = [in.e(channel).sttsf{channel}.timcont]/3600;
+        fftAmp = [in.e(channel).s(lidx).sumfftAmp];
         lidx = find(timcont >=lighttimes(1) & timcont <= lighttimes(end));
 
         timcont = timcont(lidx);
