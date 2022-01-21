@@ -1,5 +1,5 @@
 
-function [xx, obwyy, , lighttimes] =  k_testobwspliner(in, channel, ReFs, p)
+function [xx, fftyy, lighttimes] =  k_rawspliner(in, channel, ReFs, p)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
