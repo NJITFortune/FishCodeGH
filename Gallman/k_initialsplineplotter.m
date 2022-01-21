@@ -23,6 +23,9 @@ close all;
 
 %% Continuous data plot
 
+%colors
+turq = [64/255, 224/255, 208/255];
+
 figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
