@@ -80,9 +80,9 @@ if isfield(out.info, 'luz')
             
             %plot
             ax(1) = subplot(211); hold on;
-                plot([lighton' lighton']', [0 6], 'm-', 'LineWidth', 0.5);
+                plot([lighton' lighton']', ylim, 'm-', 'LineWidth', 0.5);
             ax(2) = subplot(212); hold on;
-                plot([lighton' lighton']', [0 6], 'm-', 'LineWidth', 0.5);
+                plot([lighton' lighton']', ylim, 'm-', 'LineWidth', 0.5);
             %plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
     end    
 end
