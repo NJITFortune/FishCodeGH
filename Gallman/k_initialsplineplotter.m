@@ -24,32 +24,41 @@ close all;
 %% Continuous data plot
 
 %colors
+%channel 1
 blueish = [103/255, 189/255, 170/255];
-orangish = [224/255, 163/255, 46/255];
-pinkish = [193/255, 90/255, 99/255];
 lavender = [133/255, 128/255, 177/255];
+%channel 2
+pinkish = [193/255, 90/255, 99/255];
+orangeish = [224/255, 163/255, 46/255];
 
-figure(1); clf; 
+
+figure(2); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
-ax(1) = subplot(611); hold on; title('sumfftAmp - magenta = added worms to tank');
-    plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
+ 
     
 
-ax(2) = subplot(613); hold on; title('sumfftAmp spline channel 1');
+    ax(1) = subplot(613); hold on; title('sumfftAmp spline channel 1');
+        
+        %raw spline estimate channel 1
+        channel = 1;
+        [xx1, sumfftyy1, lighttimes1] =  k_rawspliner(out, channel, 10, 0.5);
     
-    %raw spline estimate channel 1
-    channel = 1;
-    [xx1, sumfftyy1, lighttimes1] =  k_rawspliner(out, channel, 10, 0.5);
+        %plot raw data again
+        plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.', 'Color', blueish);
+        %plot spline
+        plot(xx1, sumfftyy1, '-', 'LineWidth', 3, 'Color', lavender);
+        %plot light times
+        plot([lighttimes1' lighttimes1'], ylim, 'k-', 'LineWidth', 0.5)
+    
 
-    %plot raw data again
-    plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.');
-    %plot spline
-    plot(xx1, sumfftyy1, )
+    
+
+
     channel = 2;
     [xx2, sumfftyy2, ~] =  k_rawspliner(out, channel, 10, 0.5);
 
-    
+      plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
 
 
 ax(3) = subplot(612); hold on; title('zAmp - green = social');
@@ -77,6 +86,28 @@ ax(6) = subplot(616); hold on; title('light transitions');
     plot([out.e(2).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
+
+
+
+
+
+% Add light transitions times to check luz if we have programmed it
+if isfield(out.info, 'luz')
+    if  ~isempty(out.info.luz)
+        
+        %luz by transition type
+            %separate by transition type
+            lighton = out.info.luz(out.info.luz > 0);
+            darkon = out.info.luz(out.info.luz < 0);
+            
+            %plot
+            ax(6) = subplot(616); hold on;
+            plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
+            plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
+    end    
+end
+
+
         
 % Add feedingtimes, if we have them... 
    if isfield(out.info, 'feedingtimes')
