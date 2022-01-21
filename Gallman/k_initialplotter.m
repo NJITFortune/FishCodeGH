@@ -1,4 +1,4 @@
-function k_initialplotter(out)
+function k_initialsplineplotter(out)
 % plot the data for fun
 % Usage: k_initialplotter(kg(#));
 close all;
