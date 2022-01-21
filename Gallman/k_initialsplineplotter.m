@@ -24,7 +24,10 @@ close all;
 %% Continuous data plot
 
 %colors
-turq = [64/255, 224/255, 208/255];
+blueish = [103/255, 189/255, 170/255];
+orangish = [224/255, 163/255, 46/255];
+pinkish = [193/255, 90/255, 99/255];
+lavender = [133/255, 128/255, 177/255];
 
 figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
