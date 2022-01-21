@@ -23,6 +23,14 @@ close all;
 
 %% Continuous data plot
 
+%colors
+%channel 1
+blueish = [103/255, 189/255, 170/255];
+orangish = [224/255, 163/255, 46/255];
+%channel 2
+pinkish = [193/255, 90/255, 99/255];
+lavender = [133/255, 128/255, 177/255];
+
 figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
@@ -39,7 +47,7 @@ ax(2) = subplot(613); hold on; title('sumfftAmp spline channel 1');
     %plot raw data again
     plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.');
     %plot spline
-    plot(xx1, sumfftuu)
+    plot(xx1, sumfftyy1, )
     channel = 2;
     [xx2, sumfftyy2, ~] =  k_rawspliner(out, channel, 10, 0.5);
 
