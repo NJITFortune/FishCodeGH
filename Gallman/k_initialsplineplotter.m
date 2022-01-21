@@ -60,9 +60,9 @@ figure(2); clf;
         [xx2, sumfftyy2, lighttimes2] =  k_rawspliner(out, channel, 10, 0.5);
     
         %plot raw data again
-        plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.', 'Color', blueish);
+        plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.', 'Color', orangeish);
         %plot spline
-        plot(xx2, sumfftyy2, '-', 'LineWidth', 3, 'Color', lavender);
+        plot(xx2, sumfftyy2, '-', 'LineWidth', 3, 'Color', pinkish);
         %plot light times
         plot([lighttimes2' lighttimes2'], ylim, 'k-', 'LineWidth', 0.5);
 
