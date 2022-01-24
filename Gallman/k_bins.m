@@ -87,10 +87,10 @@ bintimhour = bintimmin/60;
 
     
 %plot to check
-    figure(5); clf; hold on;
-        plot(timcont, fftAmp, '.');
-        plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
-        plot([bintimhour' bintimhour'], ylim, 'm-');
+%     figure(5); clf; hold on;
+%         plot(timcont, fftAmp, '.');
+%         plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
+%         plot([bintimhour' bintimhour'], ylim, 'm-');
 
 %% Average amp by bin
 
@@ -145,6 +145,7 @@ darkz = 1:1:floor(totaltimhours/(ld*2));
 darkdays = lighttimes(1) + ((2*ld) * (darkz-1));
 
 transbinnum = 8;
+transtim = transbinnum*binsize/60;
 
 for jj = 2:length(darkdays)
 
@@ -205,6 +206,7 @@ end
 figure(27); clf; hold on;
 
     plot(pcttim, pctdark);
+    plot([transtim, transtim], ylim, 'k-');
 %     for k = 1:transbinnum * 2
 %         plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
 %     end
