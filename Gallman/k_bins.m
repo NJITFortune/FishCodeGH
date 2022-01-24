@@ -144,7 +144,7 @@ end
 darkz = 1:1:floor(totaltimhours/(ld*2));
 darkdays = lighttimes(1) + ((2*ld) * (darkz-1));
 
-transbinnum = 16;
+transbinnum = 8;
 
 for jj = 2:length(darkdays)
 
