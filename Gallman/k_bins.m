@@ -191,16 +191,6 @@ for jj = 1:length(darkd)
 
 end
 
-%     darkprob2
-%     darkprob3
-%     darkprob4
-% 
-% 
-%     darkprob5
-%     darkprob6
-%     darkprob7
-%     darkprob8
-
 for k = 1:transbinnum * 2
     pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
     pcttim(k) = k*(binsize/60);
