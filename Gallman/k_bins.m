@@ -104,6 +104,9 @@ end
 
 figure(4); clf; title('Average Amp by 10 minute bin'); hold on;
 
+
+    plot([bin.tim], [bin.Amp], '.');
+
 for k = 1:length(bin)
     bin(k).meanAmp(:) = mean(bin(k).Amp);
     bin(k).middletim(:) = bintimhour(k+1) - ((binsize/2)/60);
