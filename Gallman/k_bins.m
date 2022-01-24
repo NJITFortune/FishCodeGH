@@ -193,6 +193,8 @@ end
 
 for k = 1:transbinnum * 2
     pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
+    onecount(k) = length(find(darkprob(k,:)>0));
+    totalcount(k) = length(darkprob(k,:));
     pcttim(k) = k*(binsize/60);
 end
 
