@@ -59,12 +59,12 @@ ld = in.info.ld;
 
 %trim time and amplitude vectors to light transitions
     
-        timcont = [in.e(channel).sttsf{channel}.timcont]/3600;
-        fftAmp = [in.e(channel).s(lidx).sumfftAmp];
+        timcont = [in.e(channel).s(ttsf{channel}).timcont]/3600;
+        fftAmp = [in.e(channel).s(ttsf{channel}).sumfftAmp];
         lidx = find(timcont >=lighttimes(1) & timcont <= lighttimes(end));
 
         timcont = timcont(lidx);
-        fftAmp = [in.e(channel).s(lidx).sumfftAmp];
+        fftAmp = fftAmp(lidx);
 
 
 %plot to check
@@ -199,6 +199,7 @@ end
 
 for k = 1:transbinnum * 2
     pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
+    pcttim(k) = (binsize)/60
 end
 
 figure(27); clf; hold on;
