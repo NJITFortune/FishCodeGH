@@ -21,6 +21,7 @@ function k_initialsplineplotter(out)
         ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
     end
 
+ld = out.info.ld;
 %% Continuous data plot
 
 %colors
