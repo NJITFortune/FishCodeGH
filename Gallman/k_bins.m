@@ -201,7 +201,7 @@ figure(27); clf; hold on;
     plot(pcttim, pctdark);
     plot([transtim, transtim], ylim, 'k-');
     for k = 1:transbinnum * 2
-        %plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
+        text(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
         plot(pcttim(k),darkamp(k,:), 'k.');
     end
 
