@@ -102,18 +102,18 @@ for j = 1:length(bintimhour)-1
 
 end
 
-%figure(4); clf; title('Average Amp by 10 minute bin'); hold on;
+figure(4); clf; title('Average Amp by 10 minute bin'); hold on;
 
-for k = 1:length(bin)-1
+for k = 1:length(bin)
     bin(k).meanAmp(:) = mean(bin(k).Amp);
     bin(k).middletim(:) = bintimhour(k+1) - ((binsize/2)/60);
     
-   %plot(bin(k).middletim, bin(k).meanAmp, '.', 'MarkerSize', 16, 'Color','r');
+   plot(bin(k).middletim, bin(k).meanAmp, '.', 'MarkerSize', 16, 'Color','r');
 
 end
 
-%      plot([bintimhour' bintimhour'], ylim, 'm-');
-%      plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
+     plot([bintimhour' bintimhour'], ylim, 'm-');
+     plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
 
 
 %% probability estimate?
