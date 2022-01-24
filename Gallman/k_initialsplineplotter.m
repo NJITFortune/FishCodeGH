@@ -89,7 +89,7 @@ end
 %% day average
 figure(3); clf; 
 channel = 1;
-[~, day] = KatieMultifftDayTrialDessembler(out, channel,  10, 3);
+[~, day] = KatiefftDayTrialDessembler(out, channel,  10, 3);
 
 
         
