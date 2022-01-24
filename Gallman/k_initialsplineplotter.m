@@ -88,7 +88,7 @@ if isfield(out.info, 'luz')
 end
 
 %% day average
-figure(3); clf; 
+
 channel = 1;
 [trial, day] = KatiefftDayTrialDessembler(out, channel,  10, 3);
 
