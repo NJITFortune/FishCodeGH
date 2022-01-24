@@ -199,11 +199,12 @@ end
 
 for k = 1:transbinnum * 2
     pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
+    pcttim(k) = k*(binsize/60);
 end
 
 figure(27); clf; hold on;
 
-    plot(pctdark)
+    plot(pcttim, pctdark);
     for k = 1:transbinnum * 2
         plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
     end
