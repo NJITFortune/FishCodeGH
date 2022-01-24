@@ -6,12 +6,7 @@ function [trial, day] = KatieMultifftDayTrialDessembler(in, channel,  ReFs, ligh
     %starts with dark = 3
     %starts with light = 4
 
-% clearvars -except kg kg2
 % 
-% in = kg(86);
-% channel = 1;
-% ReFs = 10;
-% light = 3;
 
 %% prep
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
