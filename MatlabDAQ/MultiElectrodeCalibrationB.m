@@ -28,7 +28,9 @@ figure(2); clf; hold on;
         plot(nloc1,-npks1, 'g.-');
         plot(locs1, pks1, 'r.-');
     ax(2) = subplot(212); 
-         plot(locs)   
+    for j = 1:length(locs1)
+         plot(locs(j), -npks1(j) + pks1(j));  
+    end
     
     
     
