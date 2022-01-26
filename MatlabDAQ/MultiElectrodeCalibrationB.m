@@ -1,5 +1,5 @@
 Fs = 40000; %sample rate
-freqs = [550 650]; %freq range of typical eigen EOD
+freqs = [250 650]; %freq range of typical eigen EOD
 % Band pass filter in frequency range of fish
     [h,g] = butter(5, [freqs(1)/(Fs/2) freqs(2)/(Fs/2)]);
 
