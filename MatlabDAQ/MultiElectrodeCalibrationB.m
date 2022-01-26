@@ -14,7 +14,7 @@ figure(1); clf; hold on;
 figure(2); clf; hold on;
     ax(1) = subplot(211); 
         plot(kcalch1data);
-        findpeaks(kcalch1data,'MinPeakProminence',4,'Annotate','extents')
+        findpeaks(abs(kcalch1data),'MinPeakProminence',2,'Annotate','extents')
            % [pks1, locs1] = findpeaks(kcalch1data);
         %plot(locs1, pks1);
     ax(2) = subplot(212); 
