@@ -29,7 +29,7 @@ figure(2); clf; hold on;
         plot(locs1, pks1, 'r.-');
     ax(2) = subplot(212); 
     
-         plot(locs1, -npks1 + pks1(2:end));  
+         plot(locs1, -npks1(2:end) + pks1);  
  
     
     
