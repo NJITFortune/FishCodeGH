@@ -1,12 +1,19 @@
 
+freqs = [399 401]; %freq range of typical eigen EOD
+% Band pass filter in frequency range of fish
+    [h,g] = butter(5, [freqs(1)/(Fs/2) freqs(2)/(Fs/2)]);
+
 %katie cal
 %plot
 figure(1); clf; hold on;
     load('Eigen24LDA-01-26-2022_15-04-26.mat');
-    kcalch1data = data(:,1);
-        xa(1) = subplot(411); plot(data(:,1));
-        xa(2) = subplot(412); plot(data(:,2));
+        data1 = filtfilt(h,g, data(:,1)); % Band pass filter   
+        data2 = filtfilt(h,g, data(:,2)); % Band pass filter  
+    kcalch1data = data1;
+        xa(1) = subplot(411); plot(data1);
+        xa(2) = subplot(412); plot(data2);
    load('Eigen24LDA-01-26-2022_15-05-59.mat');
+   
    kcalch2data = data(:,2);
         xa(3) = subplot(413); plot(data(:,1));
         xa(4) = subplot(414); plot(data(:,2));
