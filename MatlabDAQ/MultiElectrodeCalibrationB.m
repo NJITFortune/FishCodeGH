@@ -22,7 +22,7 @@ figure(1); clf; hold on;
 figure(2); clf; hold on;
     ax(1) = subplot(211); hold on;
         plot(kcalch1data);
-       findpeaks(abs(kcalch1data),'MinPeakProminence',2,'Annotate','extents')
+      % findpeaks(abs(kcalch1data),'MinPeakProminence',2,'Annotate','extents')
          [pks1, locs1] = findpeaks(kcalch1data);
          [npks1, nloc1] = findpeaks(-kcalch1data);
         plot(nloc1,-npks1, 'g.-');
