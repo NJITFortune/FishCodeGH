@@ -22,16 +22,13 @@ figure(1); clf; hold on;
 figure(2); clf; hold on;
     ax(1) = subplot(211); hold on;
         plot(kcalch1data);
-      peaks = findpeaks(kcalch1data);
-         [B, I] = maxk(peaks, 10);
-        plot(I, B, 'b*');
-       % findpeaks(abs(kcalch1data),'MinPeakProminence',2,'Annotate','extents')
-%          [pks1, locs1] = findpeaks(kcalch1data);
-%          [npks1, nloc1] = findpeaks(-kcalch1data);
-%         plot(nloc1,-npks1, 'g.-');
-%         plot(locs1, pks1, 'r.-');
+       findpeaks(abs(kcalch1data),'MinPeakProminence',2,'Annotate','extents')
+         [pks1, locs1] = findpeaks(kcalch1data);
+         [npks1, nloc1] = findpeaks(-kcalch1data);
+        plot(nloc1,-npks1, 'g.-');
+        plot(locs1, pks1, 'r.-');
     ax(2) = subplot(212); 
-        % plot(locs1, -npks1(2:end) + pks1);  
+        plot(locs1, -npks1(2:end) + pks1);  
  
     
 figure(3); clf; hold on;
