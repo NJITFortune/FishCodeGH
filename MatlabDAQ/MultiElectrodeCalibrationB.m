@@ -28,7 +28,11 @@ figure(2); clf; hold on;
         plot(nloc1,-npks1, 'g.-');
         plot(locs1, pks1, 'r.-');
     ax(2) = subplot(212); 
-        plot(kcalch2data);
+         plot()   
+    
+    
+    
+    % plot(kcalch2data);
            % [pks2, locs2] = findpeaks(kcalch2data);
         %plot(locs2, pks2);
 
