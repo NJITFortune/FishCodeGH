@@ -15,11 +15,11 @@ figure(2); clf; hold on;
     ax(1) = subplot(211); 
         plot(kcalch1data);
             [pks1, locs1] = findpeaks(kcalch1data);
-        plot(locs1, pks1, 'r*');
+        plot(locs1, pks1);
     ax(2) = subplot(212); 
         plot(kcalch2data);
             [pks2, locs2] = findpeaks(kcalch2data);
-        plot(locs2, pks2, 'r*');
+        plot(locs2, pks2);
 
     
      
