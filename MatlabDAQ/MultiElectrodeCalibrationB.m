@@ -44,7 +44,7 @@ tt2 = find(kcalch2tim > xx & kcalch2tim < xx+dur);
     stdamp2 = std(pks2);
 
 
-fprintf('Amp1 is %f2.4 and Amp2 = %f2.4 and ratio is %f2.4', meanamp1, meanamp2, meanamp2/meanamp1)
+fprintf('Amp1 is %f2.4 and Amp2 = %f2.4 and ratio is %f2.4 \n', meanamp1, meanamp2, meanamp2/meanamp1)
 
 % figure(2); clf; hold on;
 %     ax(1) = subplot(211); hold on;
