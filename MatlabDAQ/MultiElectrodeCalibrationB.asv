@@ -24,10 +24,21 @@ figure(1); clf; hold on;
 linkaxes(xa, 'xy');
 
 
-fprintf('Two clicks to get the range for analysis.\n')
+fprintf('Two clicks on top to get the range for analysis.\n')
 [xx, ~] = ginput(2); xx = sort(xx);
 
-tt =
+tt1 = find(kcalch1tim > xx(1) & kcalch1tim < xx(2));
+dur = xx(2) - xx(1);
+
+[pks1, locs1] = findpeaks(abs(kcalch1data(tt1) - mean(kcalch1data(tt1))));
+
+
+
+fprintf('One clicks on bottom to get start of the range for analysis.\n')
+[xx, ~] = ginput(1); 
+tt2 = find(kcalch2tim > xx & kcalch2tim < xx+dur);
+
+[pks1, locs1] = findpeaks(kcalch1data);
 
 
 % figure(2); clf; hold on;
