@@ -6,7 +6,7 @@ freqs = [250 650]; %freq range of typical eigen EOD
 %katie cal
 %plot
 figure(1); clf; hold on;
-    load('/Volumes/My\ Book/Eigen24LDA-01-26-2022_15-04-26.mat');
+    load('/Volumes/My\ Book/Gallman/Calibration-Jan2022/Eigen24LDA-01-26-2022_15-04-26.mat');
         data1 = filtfilt(h,g, data(:,1)); % Band pass filter   
         data2 = filtfilt(h,g, data(:,2)); % Band pass filter  
    kcalch1data = data1;
