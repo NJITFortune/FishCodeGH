@@ -17,7 +17,7 @@ figure(1); clf; hold on;
         xa(2) = subplot(412); plot(tim, data2);
 load('/Volumes/My Book/Gallman/Calibration-Jan2022/ElectrodeCalibration-Jan-26-2022-B/Eigen24LDA-01-26-2022_14-58-08.mat');
    %load('/Volumes/My Book/Gallman/Calibration-Jan2022/ElectrodeCalibration-Jan-26-2022-B/Eigen24LDA-01-26-2022_14-43-04.mat');
-   5load('/Volumes/My Book/Gallman/Calibration-Jan2022/ElectrodeCalibration-Jan-26-2022-B/Eigen24LDA-01-27-2022_18-28-27.mat');
+   %load('/Volumes/My Book/Gallman/Calibration-Jan2022/ElectrodeCalibration-Jan-26-2022-B/Eigen24LDA-01-27-2022_18-28-27.mat');
         data1 = filtfilt(h,g, data(:,1)); % Band pass filter   
         data2 = filtfilt(h,g, data(:,2)); % Band pass filter  
    kcalch2data = data2;
