@@ -21,7 +21,7 @@ figure(1); clf; hold on;
         xa(3) = subplot(413); plot(tim, data1);
         xa(4) = subplot(414); plot(tim, data2);
 
-linkaxes(xa, 'xy');
+linkaxes(xa, 'x');
 
 
 fprintf('Two clicks on top to get the range for analysis.\n')
