@@ -207,9 +207,9 @@ figure(27); clf; hold on;
         plot(pcttim(k),darkamp(k,:), 'k.');
     end
 %% crosstab on unsummarized data (pre-percent of ones)
-for k = 2:length(darkprob)
+for j=1:floor(length(darkprob)/2)
 
-    for j=1:floor(length(darkprob)/2)
+    for k = 2:length(darkprob)
     [~,chi2(j,:),pval(j,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
     end
 end
