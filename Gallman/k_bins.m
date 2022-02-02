@@ -198,12 +198,17 @@ for jj = 2:length(darkdays)
 
 end
 
+for jj = 1:length(dday)
+    collength(jj,:) = length(dday(jj).tim);
+end
+    
+
 %plot day amp
 figure(8); clf; hold on;
 
     plot([dday.tim], [dday.amp], '.');
 for jj = 1:length(dday)
-    for j = 1:length()
+    for j = 1:max(collength)
      if dday(jj).tim < 4
          darkhalfamp(jj,:) = dday(jj).amp;
          darkhalftim(jj,:) = dday(jj).tim;
