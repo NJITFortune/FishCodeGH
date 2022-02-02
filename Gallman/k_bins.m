@@ -208,6 +208,7 @@ figure(27); clf; hold on;
     end
 %% crosstab on unsummarized data (pre-percent of ones)
 clear k;
+clear j;
 for j=1:floor(length(darkprob)/2)
 
     for k = 2:length(darkprob)
