@@ -215,7 +215,11 @@ for k = 2:size(darkprob,1)
    [~,chi2(k-1,:),pval(k-1,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
   
 end
+figure(28); clf; hold on;
 
+    plot(pcttim, pctdark);
+    plot([transtim, transtim], ylim, 'k-');
+    text
 
 %%
 
