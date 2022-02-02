@@ -104,7 +104,7 @@ for j = 1:length(bintimhour)-1
    
 end
 
-timmies = [bin.tim];
+
 
 % figure(4); clf; title('Average Amp by 10 minute bin'); hold on;
 % 
@@ -162,8 +162,7 @@ for jj = 2:length(darkdays)
     %jj-1 so we start at 1
     darkd(jj-1).binary(:) = [bin(predidx).binary];
     darkd(jj-1).bintims(:) = [bin(predidx).tim];
-   % darkd(jj-1).xtim(:) = [bin(predidx).tim]-[bin(predidx(1)).tim];
-  
+   
     darkd(jj-1).binmidtims(:) = [bin(predidx).middletim];
     darkd(jj-1).binAmps(:) = [bin(predidx).meanAmp];
     
@@ -194,8 +193,8 @@ end
 for jj = 2:length(darkdays)
 
     darkidx = find(timcont<= darkdays(jj-1) & timcont > darkdays(jj));
-    dday(jj).tim(:) = timcont(darkidx)-timcont(darkidx(1));
-    dday(jj).amp(:) = fftAmp(darkidx);
+    dday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
+    dday(jj-1).amp(:) = fftAmp(darkidx);
 
 end
 
