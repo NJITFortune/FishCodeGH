@@ -212,7 +212,7 @@ clear k;
 for k = 2:length(darkprob)
 
    
-    [~,chi2(:),pval(:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
+    [~,chi2(ceil((k-1)/2+0.5),:),pval(ceil((k-1)/2+0.5),:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
 
 end
 
