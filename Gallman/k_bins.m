@@ -198,10 +198,7 @@ for jj = 2:length(darkdays)
 
 end
 
-for jj = 1:length(dday)
-    collength(jj,:) = length(dday(jj).tim);
-end
-    
+ 
 
 %plot day amp
 figure(8); clf; hold on;
@@ -218,7 +215,7 @@ for jj = 1:length(dday)
      end
     end
 end
-    plot(dday.darkhalftim, dday.darkhalfamp, 'm.');
+    plot([dday.darkhalftim], [dday.darkhalfamp], 'm.');
 %% Averages for dark to light tranistions
 
     
