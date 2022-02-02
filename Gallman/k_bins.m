@@ -211,7 +211,7 @@ clear k;
 
 for k = 2:4%length(darkprob)
 
-   j = k/2
+   j = k*1.5
     %[~,chi2(j,:),pval(j,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
    
 end
