@@ -211,7 +211,7 @@ clear k;
 j = 0;
 for k = 2:length(darkprob)
 
-   j = j+1
+   j = j+1;
    if j < length(darkprob)/2
    [~,chi2(j,:),pval(j,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
    end
