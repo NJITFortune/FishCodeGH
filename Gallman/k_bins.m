@@ -161,7 +161,7 @@ for jj = 2:length(darkdays)
     
     %jj-1 so we start at 1
     darkd(jj-1).binary(:) = [bin(predidx).binary];
-    darkd(jj-1).bintims(:) = timmies(predidx)-timmies(preidx(1));
+    darkd(jj-1).bintims(:) = timmies(predidx)-timmies(predidx(1));
    
     darkd(jj-1).binmidtims(:) = [bin(predidx).middletim];
     darkd(jj-1).binAmps(:) = [bin(predidx).meanAmp];
