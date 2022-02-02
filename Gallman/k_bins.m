@@ -104,7 +104,7 @@ for j = 1:length(bintimhour)-1
    
 end
 
-
+timmies = [bin.tim];
 
 % figure(4); clf; title('Average Amp by 10 minute bin'); hold on;
 % 
@@ -161,7 +161,7 @@ for jj = 2:length(darkdays)
     
     %jj-1 so we start at 1
     darkd(jj-1).binary(:) = [bin(predidx).binary];
-    darkd(jj-1).bintims(:) = [bin(predidx).tim];
+    darkd(jj-1).bintims(:) = timmies(predidx)-timmies(preidx(1));
    
     darkd(jj-1).binmidtims(:) = [bin(predidx).middletim];
     darkd(jj-1).binAmps(:) = [bin(predidx).meanAmp];
@@ -229,6 +229,7 @@ for jj = 1:length(darkd)
     for k = 1:(transbinnum * 2)
         darkprob(k,jj) = darkd(jj).binary(k); 
         darkamp(k,jj) = darkd(jj).binAmps(k);
+        darktims(k,jj) = darkd(jj).bintims(k);
         
     end
 
@@ -248,7 +249,8 @@ figure(27); clf; hold on;
     for k = 1:transbinnum * 2
         %midtim(k,:) = pcttim(k)+((binsize/2)/60);
         %plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
-        plot(pcttim(k)+((binsize/2)/60),darkamp(k,:), 'k.');
+        %plot(pcttim(k)+((binsize/2)/60),darkamp(k,:), 'k.');
+        plot(darktims(k,:),darkamp(k,:), 'k.');
         plot([pcttim(k), pcttim(k)], ylim, 'm-');
     end
     plot([transtim, transtim], ylim, 'k-');
