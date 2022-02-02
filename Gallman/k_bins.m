@@ -224,7 +224,8 @@ clear k;
 for k = 2:size(darkprob,1)
 
    [~,chi2(k-1,:),pval(k-1,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
-   text(pcttim(k-1)+((binsize/2)/60), pctdark(k-1), num2str(pval(k-1,:)));
+   pval3sigs = round(pval(k-1,:), 3, 'significant');
+   text(pcttim(k-1)+((binsize/2)/60), pctdark(k-1), num2str(pval3sigs));
   
 end
 
