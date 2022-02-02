@@ -96,13 +96,12 @@ bintimhour = bintimmin/60;
 
 for j = 1:length(bintimhour)-1
 
-    
 
     timidx = find(timcont > bintimhour(j) & timcont <= bintimhour(j+1));
-    if ~isempty(fftAmp(timidx))
+ 
     bin(j).Amp(:) = fftAmp(timidx);
     bin(j).tim(:) = timcont(timidx);
-    end
+   
 end
 
 timmies = [bin.tim];
@@ -164,6 +163,7 @@ for jj = 2:length(darkdays)
     darkd(jj-1).binary(:) = [bin(predidx).binary];
     darkd(jj-1).bintims(:) = [bin(predidx).tim];
    % darkd(jj-1).xtim(:) = [bin(predidx).tim]-[bin(predidx(1)).tim];
+   darkd(jj-1).xtim(:) = timmies(predidx)-timmies(predidx(1));
     darkd(jj-1).binmidtims(:) = [bin(predidx).middletim];
     darkd(jj-1).binAmps(:) = [bin(predidx).meanAmp];
     
