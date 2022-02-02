@@ -201,7 +201,7 @@ end
 %plot day amp
 figure(8); clf; hold on;
 
-    plot([dday.tim], [dday.amp]);
+    plot([dday.tim], [dday.amp], '.');
 %% Averages for dark to light tranistions
 
     
