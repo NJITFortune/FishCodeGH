@@ -207,6 +207,7 @@ figure(27); clf; hold on;
         plot(pcttim(k),darkamp(k,:), 'k.');
     end
 %% crosstab on unsummarized data (pre-percent of ones)
+clear k;
 for j=1:floor(length(darkprob)/2)
 
     for k = 2:length(darkprob)
