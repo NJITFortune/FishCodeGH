@@ -198,20 +198,26 @@ for jj = 2:length(darkdays)
 
 end
 
+for jj = 1:length(dday)
+    collength(jj,:) = length(dday(jj).tim);
+end
+    
+
 %plot day amp
 figure(8); clf; hold on;
 
     plot([dday.tim], [dday.amp], '.');
 for jj = 1:length(dday)
- if dday(jj).tim < 4
-     darkhalfamp(jj,:) = dday(jj).amp;
-     darkhalftim(jj) = dday(jj).tim
- else
-     lighthalfamp = dday(jj).amp;
-     lighthalftim = dday(jj).tim
- end
+    for j = 1:max(collength)
+     if dday(jj).tim(j) < 4
+         dday(jj).darkhalfamp(j,:) = dday(jj).amp(j);
+         dday(jj).darkhalftim(j,:) = dday(jj).tim(j);
+     else
+         dday(jj).lighthalfamp(j,:) = dday(jj).amp(j);
+         dday(jj).lighthalftim(jj,:) = dday(jj).tim;
+     end
 end
-    plot(dday.tim, )
+    plot(darkhalftim, darkhalfamp, 'm.');
 %% Averages for dark to light tranistions
 
     
