@@ -96,9 +96,10 @@ bintimhour = bintimmin/60;
 
 for j = 1:length(bintimhour)-1
 
-    if ~isempty(timcont > bintimhour(j) & timcont <= bintimhour(j+1))
+    
 
     timidx = find(timcont > bintimhour(j) & timcont <= bintimhour(j+1));
+    if ~isempty(fftAmp(timidx))
     bin(j).Amp(:) = fftAmp(timidx);
     bin(j).tim(:) = timcont(timidx);
     end
