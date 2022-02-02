@@ -157,7 +157,7 @@ for jj = 2:length(darkdays)
     
     %jj-1 so we start at 1
     darkd(jj-1).binary(:) = [bin(predidx).binary];
-    darkd(jj-1).bintims(:) = [bin(predidx).middletim];
+    darkd(jj-1).bintims(:) = [bin(predidx).tim];
     darkd(jj-1).binAmps(:) = [bin(predidx).meanAmp];
     
         
@@ -207,17 +207,20 @@ figure(27); clf; hold on;
         plot(pcttim(k),darkamp(k,:), 'k.');
     end
 %% crosstab on unsummarized data (pre-percent of ones)
-clear k;
-j = 0;
-for k = 2:length(darkprob)
+figure(28); clf; hold on;
 
-   j = j+1;
-   if j < length(darkprob)/2
-   [~,chi2(j,:),pval(j,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
-   end
+    plot(pcttim, pctdark);
+    plot([transtim, transtim], ylim, 'k-');
+
+clear k;
+for k = 2:size(darkprob,1)
+
+   [~,chi2(k-1,:),pval(k-1,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
+   text(pcttim(k-1), pctdark(k-1), num2str(pval(k-1,:)));
+  
 end
 
-
+    
 %%
 
 % for k = 1:(transbinnum * 2)
