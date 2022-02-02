@@ -190,11 +190,11 @@ end
 
 %% summary by day for stats
 
-for jj = 1:length(darkdays)-1
+for jj = 2:length(darkdays)
 
-    darkidx = find(timcont<= darkdays(jj) & timcont > darkdays(jj+1));
-    dday(jj).tim(:) = timcont(darkidx)-timcont(darkidx(1));
-    dday(jj).amp(:) = fftAmp(darkidx);
+    darkidx = find(timcont>= darkdays(jj-1) & timcont < darkdays(jj));
+    dday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
+    dday(jj-1).amp(:) = fftAmp(darkidx);
 
 end
 
