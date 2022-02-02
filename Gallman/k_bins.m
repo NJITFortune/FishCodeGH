@@ -163,19 +163,12 @@ for jj = 2:length(darkdays)
     darkd(jj-1).binary(:) = [bin(predidx).binary];
     darkd(jj-1).bintims(:) = [bin(predidx).tim];
    % darkd(jj-1).xtim(:) = [bin(predidx).tim]-[bin(predidx(1)).tim];
-   darkd(jj-1).xtim(:) = timmies(predidx)-timmies(predidx(1));
+  
     darkd(jj-1).binmidtims(:) = [bin(predidx).middletim];
     darkd(jj-1).binAmps(:) = [bin(predidx).meanAmp];
     
         
 end
-
-
-%plot day amp
-figure(8); clf; hold on;
-
-    
-    plot(darkd.xtim, darkd.binAmps);
       
 
 
@@ -195,6 +188,21 @@ figure(8); clf; hold on;
 %         end
 %     end
 
+
+%% summary by day for stats
+
+for jj = 2:length(darkdays)
+
+    darkidx = find(timcont<= darkdays(jj-1) & timcont > darkdays(jj));
+    dday(jj).tim(:) = timcont(darkidx)-timcont(darkidx(1));
+    dday(jj).amp(:) = fftAmp(darkidx);
+
+end
+
+%plot day amp
+figure(8); clf; hold on;
+
+    plot(dday.tim, dday.amp);
 %% Averages for dark to light tranistions
 
     
