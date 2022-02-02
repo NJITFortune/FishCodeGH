@@ -206,7 +206,7 @@ figure(27); clf; hold on;
     plot([transtim, transtim], ylim, 'k-');
     for k = 1:transbinnum * 2
         %plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
-        plot(pcttim(k),darkamp(k,:), 'k.');
+        plot(darkmidtim(k,:),darkamp(k,:), 'k.');
         plot([pcttim(k), pcttim(k)], ylim, 'm-');
     end
 %% crosstab on unsummarized data (pre-percent of ones)
