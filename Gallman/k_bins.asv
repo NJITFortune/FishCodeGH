@@ -104,7 +104,7 @@ for j = 1:length(bintimhour)-1
    
 end
 
-timmies = [bin.tim];
+
 
 % figure(4); clf; title('Average Amp by 10 minute bin'); hold on;
 % 
@@ -162,8 +162,7 @@ for jj = 2:length(darkdays)
     %jj-1 so we start at 1
     darkd(jj-1).binary(:) = [bin(predidx).binary];
     darkd(jj-1).bintims(:) = [bin(predidx).tim];
-   % darkd(jj-1).xtim(:) = [bin(predidx).tim]-[bin(predidx(1)).tim];
-  
+   
     darkd(jj-1).binmidtims(:) = [bin(predidx).middletim];
     darkd(jj-1).binAmps(:) = [bin(predidx).meanAmp];
     
@@ -192,14 +191,27 @@ end
 %% summary by day for stats
 
 for jj = 2:length(darkdays)
-e
- darkd(jj-1).xtim(:) = timmies(predidx)-timmies(predidx(1));
+
+    darkidx = find(timcont>= darkdays(jj-1) & timcont < darkdays(jj));
+    dday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
+    dday(jj-1).amp(:) = fftAmp(darkidx);
+
+end
+
 %plot day amp
 figure(8); clf; hold on;
 
-    
-    plot(darkd.xtim, darkd.binAmps);
-
+    plot([dday.tim], [dday.amp], '.');
+for jj = 1:length(dday)
+ if dday(jj).tim < 4
+     darkhalfamp(jj,:) = dday(jj).amp;
+     darkhalftim(jj) = dday(jj).tim
+ else
+     lighthalfamp = dday(jj).amp;
+     lighthalftim = dday(jj).tim
+ end
+end
+    plot(dday.tim, )
 %% Averages for dark to light tranistions
 
     
