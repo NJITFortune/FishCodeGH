@@ -206,12 +206,15 @@ figure(27); clf; hold on;
         %plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
         plot(pcttim(k),darkamp(k,:), 'k.');
     end
+%% crosstab on unsummarized data (pre-percent of ones)
+
+
 
 %%
 
-for k = 1:(transbinnum * 2)
- 
-%    handsig(k) = ((length(find(darkprob(k,:)>0)) - length(darkprob(k,:))/2)^2 / length(darkprob(k,:))/2) + ((length(find(darkprob(k,:)<1)) - length(darkprob(k,:))/2)^2/length(darkprob(k,:))/2);
-%    sig(k) = chi2pdf(pctdark(k), 1);
-
-end
+% for k = 1:(transbinnum * 2)
+%  
+% %    handsig(k) = ((length(find(darkprob(k,:)>0)) - length(darkprob(k,:))/2)^2 / length(darkprob(k,:))/2) + ((length(find(darkprob(k,:)<1)) - length(darkprob(k,:))/2)^2/length(darkprob(k,:))/2);
+% %    sig(k) = chi2pdf(pctdark(k), 1);
+% 
+% end
