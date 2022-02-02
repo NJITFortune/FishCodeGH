@@ -215,8 +215,8 @@ for jj = 1:length(dday)
      end
     end
     plot(dday(jj).darkhalftim, dday(jj).darkhalfamp, 'm.');
-    darkhalfamp(jj,:) = dday(jj).darkhalfamp;
-    lighthalfamp(jj,:) = dday(jj).lighthalfamp;
+%     darkhalfamp(jj,:) = dday(jj).darkhalfamp;
+%     lighthalfamp(jj,:) = dday(jj).lighthalfamp;
 end
     %plot([dday.darkhalftim], [dday.darkhalfamp], 'm.');
 %% Averages for dark to light tranistions
