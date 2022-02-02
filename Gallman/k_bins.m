@@ -68,9 +68,9 @@ ld = in.info.ld;
 
 
 %plot to check
-    figure(5); clf; hold on;
-        plot(timcont, fftAmp, '.');
-        plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
+%     figure(5); clf; hold on;
+%         plot(timcont, fftAmp, '.');
+%         plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
 
 %% Divide into bins
 
@@ -102,21 +102,21 @@ for j = 1:length(bintimhour)-1
 
 end
 
-figure(4); clf; title('Average Amp by 10 minute bin'); hold on;
-
-
-    plot([bin.tim], [bin.Amp], '.');
+% figure(4); clf; title('Average Amp by 10 minute bin'); hold on;
+% 
+% 
+%     plot([bin.tim], [bin.Amp], '.');
 
 for k = 1:length(bin)
     bin(k).meanAmp(:) = mean(bin(k).Amp);
     bin(k).middletim(:) = bintimhour(k+1) - ((binsize/2)/60);
     
-   plot(bin(k).middletim, bin(k).meanAmp, '.', 'MarkerSize', 16, 'Color','r');
+   %plot(bin(k).middletim, bin(k).meanAmp, '.', 'MarkerSize', 16, 'Color','r');
 
 end
 
-     plot([bintimhour' bintimhour'], ylim, 'm-');
-     plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
+%      plot([bintimhour' bintimhour'], ylim, 'm-');
+%      plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
 
 
 %% probability estimate?
@@ -207,9 +207,9 @@ figure(27); clf; hold on;
         plot(pcttim(k),darkamp(k,:), 'k.');
     end
 %% crosstab on unsummarized data (pre-percent of ones)
-for k = 1:length(darkprob)-1
+for k = 2:length(darkprob)-1
 
-    [~,chi2(k,:),pval(k,:)] = crosstab(darkprob(k,:), darkprob(k+1,:));
+    [~,chi2(k-1,:),pval(k-1,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
     
 end
 
