@@ -207,8 +207,8 @@ figure(8); clf; hold on;
 for jj = 1:length(dday)
     for j = 1:length(dday(jj).tim)
      if dday(jj).tim(j) < 4
-         dday(jj).darkhalfamp(j,:) = dday(jj).amp(j);
-         dday(jj).darkhalftim(j,:) = dday(jj).tim(j);
+         dday(jj).darkhalfamp(:) = dday(jj).amp(j);
+         dday(jj).darkhalftim(:) = dday(jj).tim(j);
      else
          dday(jj).lighthalfamp(j,:) = dday(jj).amp(j);
          dday(jj).lighthalftim(j,:) = dday(jj).tim(j);
