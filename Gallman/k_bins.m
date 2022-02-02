@@ -209,9 +209,9 @@ figure(27); clf; hold on;
 %% crosstab on unsummarized data (pre-percent of ones)
 clear k;
 clear j;
-for j=1:floor(length(darkprob)/2)
+for k = 2:length(darkprob)
 
-    for k = 2:length(darkprob)
+    for j=1:floor(length(darkprob)/2)
     [~,chi2(j,:),pval(j,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
     end
 end
