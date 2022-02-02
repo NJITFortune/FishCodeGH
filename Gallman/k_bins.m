@@ -219,7 +219,7 @@ figure(28); clf; hold on;
 
     plot(pcttim, pctdark);
     plot([transtim, transtim], ylim, 'k-');
-    text
+    text(pcttim, pctdark+0.1, num2str(pval))
 
 %%
 
