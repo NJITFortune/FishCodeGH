@@ -168,8 +168,10 @@ end
 
 %plot day amp
 figure(8); clf; hold on;
-    plot(darkd(1).bintims, darkd.binAmps);
-        
+
+    for jj = 1:length(darkd)
+    plot(darkd(1).bintims, darkd(jj).binAmps);
+    end    
 
 
 %plot to check
