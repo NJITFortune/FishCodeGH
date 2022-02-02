@@ -217,6 +217,8 @@ for jj = 1:length(dday)
     plot(darkhalftim, darkhalfamp, 'm.');    
 end
     
+%% Calculate chisqu of means
+
 
 
 %% Averages for dark to light tranistions
