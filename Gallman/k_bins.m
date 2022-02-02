@@ -209,15 +209,15 @@ figure(8); clf; hold on;
     plot([dday.tim], [dday.amp], '.');
 for jj = 1:length(dday)
     for j = 1:max(collength)
-     if dday(jj).tim < 4
-         darkhalfamp(jj,:) = dday(jj).amp;
-         darkhalftim(jj,:) = dday(jj).tim;
+     if dday(jj).tim(j) < 4
+         dday(jj).darkhalfamp(j,:) = dday(jj).amp(j);
+         dday(jj).darkhalftim(j,:) = dday(jj).tim(j);
      else
-         lighthalfamp(jj,:) = dday(jj).amp;
-         lighthalftim(jj,:) = dday(jj).tim;
+         dday(jj).lighthalfamp(j,:) = dday(jj).amp(j);
+         dday(jj).lighthalftim(j,:) = dday(jj).tim(j);
      end
 end
-    plot(darkhalftim, darkhalfamp, 'm.');
+    plot(dday.darkhalftim, dday.darkhalfamp, 'm.');
 %% Averages for dark to light tranistions
 
     
