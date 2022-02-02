@@ -216,7 +216,7 @@ clear k;
 for k = 2:size(darkprob,1)
 
    [~,chi2(k-1,:),pval(k-1,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
-   text(pcttim, pctdark, num2str(pval(k-1,:)));
+   text(pcttim(k-1), pctdark(k-1), num2str(pval(k-1,:)));
   
 end
 
