@@ -161,7 +161,7 @@ for jj = 2:length(darkdays)
     
     %jj-1 so we start at 1
     darkd(jj-1).binary(:) = [bin(predidx).binary];
-    darkd(jj-1).bintims(:) = [bin(predidx).tim] - [bin(predidx(1)).tim];
+    darkd(jj-1).bintims(:) = [bin(predidx).tim]; 
    
     darkd(jj-1).binmidtims(:) = [bin(predidx).middletim];
     darkd(jj-1).binAmps(:) = [bin(predidx).meanAmp];
@@ -244,16 +244,16 @@ end
 
 figure(27); clf; hold on;
 
-    plot(pcttim, pctdark);
+    %plot(pcttim, pctdark);
     
     for k = 1:transbinnum * 2
         %midtim(k,:) = pcttim(k)+((binsize/2)/60);
         %plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
-        plot(pcttim(k)+((binsize/2)/60),darkamp(k,:), 'k.');
-        %plot(darktims(k,:),darkamp(k,:), 'k.');
-        plot([pcttim(k), pcttim(k)], ylim, 'm-');
+        %plot(pcttim(k)+((binsize/2)/60),darkamp(k,:), 'k.');
+        plot(darktims(k,:),darkamp(k,:), 'k.');
+        %plot([pcttim(k), pcttim(k)], ylim, 'm-');
     end
-    plot([transtim, transtim], ylim, 'k-');
+    %plot([transtim, transtim], ylim, 'k-');
 
 %% crosstab on unsummarized data (pre-percent of ones)
     
