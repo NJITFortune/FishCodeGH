@@ -219,7 +219,7 @@ end
     
 %% Calculate chisqu of means
 
-
+[hypothesis,pvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal')
 
 %% Averages for dark to light tranistions
 
