@@ -202,6 +202,8 @@ end
 figure(8); clf; hold on;
 
     plot([dday.tim], [dday.amp], '.');
+
+ if dday.tim 
 %% Averages for dark to light tranistions
 
     
