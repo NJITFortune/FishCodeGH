@@ -208,7 +208,7 @@ figure(8); clf; hold on;
 
     plot([dday.tim], [dday.amp], '.');
 for jj = 1:length(dday)
-    for j = 1:max(collength)
+    for j = 1:length(dday(jj).tim)
      if dday(jj).tim(j) < 4
          dday(jj).darkhalfamp(j,:) = dday(jj).amp(j);
          dday(jj).darkhalftim(j,:) = dday(jj).tim(j);
