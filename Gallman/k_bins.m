@@ -277,9 +277,9 @@ end
 
 %% chi square by hand for number check
 for k = 1:transbinnum * 2
-    clear n1; clear n2;
-    clear N1;clear N2;
-  
+%     clear n1; clear n2;
+%     clear N1;clear N2;
+%   
     %observed data
     n1 = onecount(k);
     N1 = totalcount(k);
