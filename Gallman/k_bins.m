@@ -76,7 +76,7 @@ ld = in.info.ld;
 %length of experiment
 totaltimhours = lighttimes(end)-lighttimes(1);
 %bins
-binsize = 5; %minutes
+binsize = 10; %minutes
 totalnumbins = totaltimhours/(binsize/60);
 binz = 1:1:totalnumbins;
 
