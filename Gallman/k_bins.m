@@ -298,6 +298,23 @@ for k = 1:transbinnum * 2
     
    text(pcttim(k), 1, num2str(p(k)));
 end
+
+%% chi square by hand method 2
+for k = 1:transbinnum * 2
+%     clear n1; clear n2;
+%     clear N1;clear N2;
+%   
+    %observed data
+    n1 = onecount(k);
+    N1 = totalcount(k);
+    n2 = totalcount(k)-onecount(k);
+    N2 = totalcount(k);
+    %pooled estimate of proportion
+    p0 = (n1+n2)/(N1+N2);
+    %expected counts under null
+    n10 = N1 * p0;
+    n20 = N2 * p0;
+
 %%
 
 % for k = 1:(transbinnum * 2)
