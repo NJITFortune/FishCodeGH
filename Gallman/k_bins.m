@@ -253,7 +253,7 @@ figure(27); clf; hold on;
         %plot(pcttim(k),darkamp(k,:), 'k.');
         plot([pcttim(k), pcttim(k)], ylim, 'm-');
     end
-    %plot([transtim, transtim], ylim, 'k-');
+    plot([transtim, transtim], ylim, 'k-');
 
 %% crosstab on unsummarized data (pre-percent of ones)
     
