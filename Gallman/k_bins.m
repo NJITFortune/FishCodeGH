@@ -242,8 +242,8 @@ for k = 1:transbinnum * 2
 
     if darkprob(k,:) > 0
         upamp(k) = darkamp(k,:);
-    else
-        downamp(k) =darkamp(k,:);
+%     else
+%         downamp(k) = darkamp(k,:);
     end
 end
 
