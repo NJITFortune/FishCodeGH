@@ -229,7 +229,12 @@ for jj = 1:length(darkd)
         darkprob(k,jj) = darkd(jj).binary(k); 
         darkamp(k,jj) = darkd(jj).binAmps(k);
         darktims(k,jj) = darkd(jj).bintims(k);
-      
+     
+        if darkprob(k,jj) > 0
+        upamp(k) = darkamp(k,jj);
+        else
+        downamp(k) = darkamp(k,jj);
+        end
     end
 
 end
@@ -240,11 +245,7 @@ for k = 1:transbinnum * 2
     totalcount(k) = length(darkprob(k,:));
     pcttim(k) = k*(binsize/60);
 
-    if darkprob(k,:) > 0
-        upamp(k) = darkamp(k,:);
-%     else
-%         downamp(k) = darkamp(k,:);
-    end
+    
 end
 
 figure(27); clf; hold on;
@@ -255,7 +256,7 @@ figure(27); clf; hold on;
        
         %plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
         plot(pcttim(k)-((binsize/2)/60),darkamp(k,:), 'k.');
-        plot(pcttim(k)-((binsize/2)/60), upamp(k), 'm.');
+        plot(pcttim(k)-((binsize/2)/60), upamp(k, :), 'm.');
         %plot(pcttim(k)-((binsize/2)/60),meandarkamp(k,:),'r.', 'MarkerSize', 5);
        
         plot([pcttim(k), pcttim(k)], ylim, 'm-');
