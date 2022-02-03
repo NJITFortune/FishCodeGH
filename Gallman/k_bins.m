@@ -274,7 +274,21 @@ for k = 2:size(darkprob,1)
   
 end
 
-    
+
+%% chi square by hand for number check
+for k = 1:transbinnum * 2
+    %observed data
+    n1 = onecount(k);
+    N1 = totalcount(k);
+    n2 = totalcount(k)-onecount(k);
+    N2 = totalcount(k);
+    %pooled estimate of proportion
+    p0 = (n1+n2)/(N1+N2);
+    %expected counts under null
+    n10 = N1 * p0;
+
+
+end
 %%
 
 % for k = 1:(transbinnum * 2)
