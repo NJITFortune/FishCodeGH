@@ -1,4 +1,4 @@
-function out = KatieFishFinder(in, calibrationfactor)
+function out = KatieFishFinder(in)
 %% usage
 %takes raw fft amp data from each tube and assigns it to high and low freq fish
 %kg2(#).fish = KatieFishFinder(kg2(#).s)
@@ -27,7 +27,7 @@ function out = KatieFishFinder(in, calibrationfactor)
         %out.HiAmp = zeros(1, length(intube2hi));
             %tube 2
             for j=1:length(intube2hi)
-                tout.his(intube2hi(j)).HiAmp1 = in(intube2hi(j)).e2hiamp * calibrationfactor;
+                tout.his(intube2hi(j)).HiAmp1 = in(intube2hi(j)).e2hiamp; %* calibrationfactor;
                 tout.his(intube2hi(j)).HiTim1 = in(intube2hi(j)).timcont/3600;
                 tout.his(intube2hi(j)).HIfreq1 = [in(intube2hi(j)).hifreq];
             end
@@ -43,7 +43,7 @@ function out = KatieFishFinder(in, calibrationfactor)
        % out.LoAmp = zeros(1, length(intube2lo));
             %tube 2    
             for j=1:length(intube2lo)
-                tout.los(intube2lo(j)).LoAmp1 = in(intube2lo(j)).e2loamp * calibrationfactor;
+                tout.los(intube2lo(j)).LoAmp1 = in(intube2lo(j)).e2loamp;% * calibrationfactor;
                 tout.los(intube2lo(j)).LoTim1 = in(intube2lo(j)).timcont/3600;
                 tout.los(intube2lo(j)).LOfreq1 = [in(intube2lo(j)).lofreq];
             end
