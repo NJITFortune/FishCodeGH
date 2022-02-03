@@ -249,7 +249,7 @@ figure(27); clf; hold on;
     for k = 1:transbinnum * 2
        
         %plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
-        plot(pcttim(k)-((binsize/2)/60),mean(darkamp(k,'all'), 'k.');
+        plot(pcttim(k)-((binsize/2)/60),mean(darkamp(k,:)), 'k.');
         %plot(pcttim(k)-((binsize/2)/60),darkamp(k,mean(:)),'r.', 'MarkerSize', 5);
        
         plot([pcttim(k), pcttim(k)], ylim, 'm-');
