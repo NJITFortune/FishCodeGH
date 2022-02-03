@@ -7,19 +7,19 @@ channel = 1;
 
 %% outliers
 
-    % Prepare the data with outliers
+% Prepare the data with outliers
 
-            ttsf{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
-            ttsf{2} = ttsf{1};
+    ttsf{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
+    ttsf{2} = ttsf{1};
 
+ 
+% Prepare the data without outliers
+
+    % If we have removed outliers via KatieRemover, get the indices...    
+    if ~isempty(in.idx)
+        ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+    end
      
-    % Prepare the data without outliers
-
-            % If we have removed outliers via KatieRemover, get the indices...    
-            if ~isempty(in.idx)
-                ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
-            end
-         
 %% define data by light transitions
 
 %create light transistion vector lighttimes
@@ -47,8 +47,7 @@ ld = in.info.ld;
                  
             %end 
     end
-    
-    
+       
     
     lighttimes = lighttimeslesslong;
     %for when we use the computer to find light transistions
@@ -240,6 +239,12 @@ for k = 1:transbinnum * 2
     onecount(k) = length(find(darkprob(k,:)>0));
     totalcount(k) = length(darkprob(k,:));
     pcttim(k) = k*(binsize/60);
+
+    if darkprob(k,:) > 0
+        upamp(k) = darkamp(k,:);
+    else
+        downamp(k) =darkamp(k,:);
+    end
 end
 
 figure(27); clf; hold on;
@@ -250,6 +255,7 @@ figure(27); clf; hold on;
        
         %plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
         plot(pcttim(k)-((binsize/2)/60),darkamp(k,:), 'k.');
+        plot(pcttim(k)-((binsize/2)/60), upamp(k), 'm.');
         %plot(pcttim(k)-((binsize/2)/60),meandarkamp(k,:),'r.', 'MarkerSize', 5);
        
         plot([pcttim(k), pcttim(k)], ylim, 'm-');
