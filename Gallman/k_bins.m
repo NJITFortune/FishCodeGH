@@ -244,7 +244,7 @@ end
 
 figure(27); clf; hold on;
 
-    plot(pcttim-((binsize/2)/60), pctdark);
+    plot(pcttim-((binsize/2)/60), pctdark, '.-');
     
     for k = 1:transbinnum * 2
         %midtim(k,:) = pcttim(k)+((binsize/2)/60);
