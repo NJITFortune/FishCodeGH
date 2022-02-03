@@ -230,7 +230,7 @@ for jj = 1:length(darkd)
         darkprob(k,jj) = darkd(jj).binary(k); 
         darkamp(k,jj) = darkd(jj).binAmps(k);
         darktims(k,jj) = darkd(jj).bintims(k);
-        
+        meandarkamp(k,jj) = mean(darkd(jj).binAmps(k));
     end
 
 end
