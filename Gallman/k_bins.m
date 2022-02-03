@@ -249,7 +249,7 @@ figure(27); clf; hold on;
     for k = 1:transbinnum * 2
         %midtim(k,:) = pcttim(k)+((binsize/2)/60);
         %plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
-        %plot(pcttim(k)+((binsize/2)/60),darkamp(k,:), 'k.');
+        plot(pcttim(k)-((binsize/2)/60),darkamp(k,:), 'k.');
         %plot(pcttim(k),darkamp(k,:), 'k.');
         plot([pcttim(k), pcttim(k)], ylim, 'm-');
     end
@@ -262,7 +262,7 @@ for k = 2:size(darkprob,1)
 
    [~,chi2(k-1,:),pval(k-1,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
    pval3sigs = round(pval(k-1,:), 2, 'significant');
-   text(pcttim(k-1)+((binsize/2)/60), pctdark(k-1), num2str(pval3sigs));
+   %text(pcttim(k-1)+((binsize/2)/60), pctdark(k-1), num2str(pval3sigs));
   
 end
 
