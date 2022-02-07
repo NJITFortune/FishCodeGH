@@ -276,7 +276,7 @@ end
 
 
 %% chi square by hand for number check
-for k = 1:transbinnum * 2
+for k = 1:2%transbinnum * 2
 %     clear n1; clear n2;
 %     clear N1;clear N2;
 %   
