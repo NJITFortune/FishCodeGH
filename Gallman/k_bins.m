@@ -241,6 +241,7 @@ for jj = 1:length(darkd)
 end
 
 upamp(upamp==0) = nan;
+downamp(downamp==0) = nan;
 % upamps = upamp(upamp > 0);
 % downamps = downamp(downamp >0);
 
@@ -260,7 +261,7 @@ figure(27); clf; hold on;
     for k = 1:transbinnum * 2
        
         %plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
-        plot(pcttim(k)-((binsize/2)/60), darkamp(k,:), 'k.', 'MarkerSize', 10);
+        %plot(pcttim(k)-((binsize/2)/60), darkamp(k,:), 'k.', 'MarkerSize', 10);
         plot(pcttim(k)-((binsize/2)/60), upamp(k, :), 'm.','MarkerSize', 10);
         %plot(pcttim(k)-((binsize/2)/60),meandarkamp(k,:),'r.', 'MarkerSize', 5);
        
