@@ -250,9 +250,12 @@ for k = 1:transbinnum * 2
     onecount(k) = length(find(darkprob(k,:)>0));
     totalcount(k) = length(darkprob(k,:));
     pcttim(k) = k*(binsize/60);
-
-    
+   
 end
+
+%generate random jiggle for amp plotting
+[M,N] = size(pctttim);
+rand
 
 figure(27); clf; hold on;
 
