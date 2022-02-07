@@ -232,7 +232,6 @@ for jj = 1:length(darkd)
      
         if darkprob(k,jj) > 0
         upamp(k, jj) = darkamp(k,jj);
-        upamps(k, jj) = upamp(upamp>0);
         else
         downamp(k, jj) = darkamp(k,jj);
         end
@@ -260,7 +259,7 @@ figure(27); clf; hold on;
        
         %plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
         plot(pcttim(k)-((binsize/2)/60), darkamp(k,:), 'k.', 'MarkerSize', 10);
-        plot(pcttim(k)-((binsize/2)/60), upamps(k, :), 'm.','MarkerSize', 10);
+        plot(pcttim(k)-((binsize/2)/60), upamp(k, :) > 0, 'm.','MarkerSize', 10);
         %plot(pcttim(k)-((binsize/2)/60),meandarkamp(k,:),'r.', 'MarkerSize', 5);
        
         plot([pcttim(k), pcttim(k)], ylim, 'm-');
