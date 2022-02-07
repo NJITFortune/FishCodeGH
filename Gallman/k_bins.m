@@ -232,7 +232,7 @@ for jj = 1:length(darkd)
      
         if darkprob(k,jj) > 0
         upamp(k, jj) = darkamp(k,jj);
-       
+        upamps(k, jj) = upamp(upamp(k,jj)>0);
         else
         downamp(k, jj) = darkamp(k,jj);
         end
@@ -240,8 +240,8 @@ for jj = 1:length(darkd)
 
 end
 
-upamps = upamp(upamp > 0);
-downamps = downamp(downamp >0);
+% upamps = upamp(upamp > 0);
+% downamps = downamp(downamp >0);
 
 for k = 1:transbinnum * 2
     pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
