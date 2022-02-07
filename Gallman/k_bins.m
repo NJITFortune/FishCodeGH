@@ -276,15 +276,15 @@ end
 
 
 %% chi square by hand for number check
-for k = 1:2%transbinnum * 2
+for k = 1:(transbinnum * 2)-1
 %     clear n1; clear n2;
 %     clear N1;clear N2;
 %   
     %observed data
     n1 = onecount(k);
     N1 = totalcount(k);
-    n2 = totalcount(k)-onecount(k);
-    N2 = totalcount(k);
+    n2 = onecount(k+1);
+    N2 = totalcount(k+1);
     %pooled estimate of proportion
     p0 = (n1+n2)/(N1+N2);
     %expected counts under null
@@ -300,15 +300,15 @@ for k = 1:2%transbinnum * 2
 end
 
 %% chi square by hand method 2
-for k = 1:transbinnum * 2
+for k = 1:(transbinnum * 2)-1
 %     clear n1; clear n2;
 %     clear N1;clear N2;
 %   
     %observed data
     n1 = onecount(k);
     N1 = totalcount(k);
-    n2 = totalcount(k)-onecount(k);
-    N2 = totalcount(k);
+    n2 = onecount(k+1);
+    N2 = totalcount(k+1);
     %pooled estimate of proportion
     p0 = (n1+n2)/(N1+N2);
     %expected counts under null
