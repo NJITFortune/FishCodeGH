@@ -232,6 +232,7 @@ for jj = 1:length(darkd)
      
         if darkprob(k,jj) > 0
         upamp(k, jj) = darkamp(k,jj);
+        
         else
         downamp(k, jj) = darkamp(k,jj);
         end
@@ -239,7 +240,7 @@ for jj = 1:length(darkd)
 
 end
 
-
+upamp(upamp==0) = nan;
 % upamps = upamp(upamp > 0);
 % downamps = downamp(downamp >0);
 
