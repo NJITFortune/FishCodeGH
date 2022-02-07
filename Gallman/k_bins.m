@@ -239,6 +239,9 @@ for jj = 1:length(darkd)
 
 end
 
+upamps = upamp(upamp > 0);
+downamps = downamp(downamp >0);
+
 for k = 1:transbinnum * 2
     pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
     onecount(k) = length(find(darkprob(k,:)>0));
