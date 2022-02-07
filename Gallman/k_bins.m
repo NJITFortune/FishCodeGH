@@ -239,7 +239,7 @@ for jj = 1:length(darkd)
 
 end
 
-upamps = nonzeros(upamp');
+
 % upamps = upamp(upamp > 0);
 % downamps = downamp(downamp >0);
 
