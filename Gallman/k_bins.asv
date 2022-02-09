@@ -219,24 +219,24 @@ figure(8); clf; title('Dark to light transition average'); hold on;
 for jj = 1:length(dday)
     for j = 1:length(dday(jj).tim)
      if dday(jj).tim(j) < 4
-         darkhalfamp(j,:) = dday(jj).amp(j);
-         darkhalftim(j,:) = dday(jj).tim(j);
+         ddarkhalfamp(j,:) = dday(jj).amp(j);
+         ddarkhalftim(j,:) = dday(jj).tim(j);
      else
-         lighthalfamp(j,:) = dday(jj).amp(j);
-         lighthalftim(j,:) = dday(jj).tim(j);
+         dlighthalfamp(j,:) = dday(jj).amp(j);
+         dlighthalftim(j,:) = dday(jj).tim(j);
      end
     end
-    plot(darkhalftim, darkhalfamp, 'm.');    
+    plot(dlighthalftim, dlighthalfamp, 'm.');    
 
 end
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
 
-[hypothesis,pvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
+[hypothesis,dpvalue] = ttest2(ddarkhalfamp,dlighthalfamp,'Vartype','unequal');
 
 %txt = 'pvalue =' + num2str(pvalue)
-text(ld,min(ylim)+0.1,num2str(pvalue),'FontSize',14);
+text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
 
 %% light summary by day for stats
 %light
@@ -249,33 +249,33 @@ for kk = 2:length(lightdays)
 end
 
 
-%plot darkday amp
-figure(8); clf; title('Dark to light transition average'); hold on; 
-    plot([dday.tim], [dday.amp], '.');
-for jj = 1:length(dday)
-    for j = 1:length(dday(jj).tim)
-     if dday(jj).tim(j) < 4
-         darkhalfamp(j,:) = dday(jj).amp(j);
-         darkhalftim(j,:) = dday(jj).tim(j);
+%plot lightday amp
+figure(9); clf; title('Light to dark transition average'); hold on; 
+    plot([lday.tim], [lday.amp], '.');
+for kk = 1:length(lday)
+    for k = 1:length(lday(kk).tim)
+     if lday(kk).tim(k) < 4
+         lighthalfamp(k,:) = lday(kk).amp(k);
+         lighthalftim(k,:) = lday(kk).tim(k);
      else
-         lighthalfamp(j,:) = dday(jj).amp(j);
-         lighthalftim(j,:) = dday(jj).tim(j);
+         darkhalfamp(k,:) = lday(kk).amp(k);
+         darkhalftim(k,:) = lday(kk).tim(k);
      end
     end
-    plot(darkhalftim, darkhalfamp, 'm.');    
+    plot(lighthalftim, lighthalfamp, 'm.');       
 
 end
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
 
-[hypothesis,pvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
+[hypothesis, lpvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
 
 %txt = 'pvalue =' + num2str(pvalue)
-text(ld,min(ylim)+0.1,num2str(pvalue),'FontSize',14);
-%% Averages for dark to light tranistions
+text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
 
-    
+%% Bin summary for dark to light tranistions
+   
 for jj = 1:length(darkd)
 
     for k = 1:(transbinnum * 2)
@@ -338,6 +338,114 @@ for k = 1:(transbinnum * 2)-1
 %   
     %observed data
     n1 = onecount(k);
+    N1 = totalcount(k);
+    n2 = onecount(k+1);
+    N2 = totalcount(k+1);
+    %pooled estimate of proportion
+    p0 = (n1+n2)/(N1+N2);
+    %expected counts under null
+    n10 = N1 * p0;
+    n20 = N2 * p0;
+   % Chi-square test, by hand
+   observed = [n1 N1-n1 n2 N2-n2];
+   expected = [n10 N1-n10 n20 N2-n20];
+   chi2stat(k,:) = sum((observed-expected).^2 ./ expected);
+   p(k,:) = 1 - chi2cdf(chi2stat(k),1);
+    
+   pval2sigs(k,:) = round(p(k,:), 2, 'significant');
+
+   %plot p-values on summary plot
+   text(pcttim(k), pctdark(k), num2str(pval2sigs(k)));
+end
+
+% %% chi square by hand method 2
+% %basically just checks math
+% for k = 1:(transbinnum * 2)-1
+% %     clear n1; clear n2;
+% %     clear N1;clear N2;
+% %   
+%     %observed data
+%     n1 = onecount(k);
+%     N1 = totalcount(k);
+%     n2 = onecount(k+1);
+%     N2 = totalcount(k+1);
+%     %pooled estimate of proportion
+%     p0 = (n1+n2)/(N1+N2);
+%     %expected counts under null
+%     n10 = N1 * p0;
+%     n20 = N2 * p0;
+%     % Chi-square test, by hand
+%        observed = [n1 N1-n1 n2 N2-n2];
+%        expected = [n10 N1-n10 n20 N2-n20];
+%        [h(k,:), p2(k,:), stats(k,:)] = chi2gof([1 2 3 4],'freq',observed,'expected',expected,'ctrs',[1 2 3 4],'nparams',2);
+%     text(pcttim(k), pctdark(k), num2str(p2(k)));
+%         
+% end
+
+%% Bin summary for light to dark tranistions
+   
+for jj = 1:length(lightd)
+
+    for k = 1:(transbinnum * 2)
+        lightprob(k,jj) = lightd(jj).binary(k); 
+        lightamp(k,jj) = lightd(jj).binAmps(k);
+        lighttims(k,jj) = lightd(jj).bintims(k);
+     
+        if lightprob(k,jj) > 0
+        lupamp(k, jj) = lightamp(k,jj);
+        
+        else
+        ldownamp(k, jj) = lightamp(k,jj);
+        end
+    end
+
+end
+
+%change zeros to nans for plotting
+lupamp(lupamp==0) = nan;
+ldownamp(ldownamp==0) = nan;
+
+
+for k = 1:transbinnum * 2
+    %calculate proportion of ones (increases in amp from previous bin)
+    pctlight(k) =  length(find(lightprob(k,:)>0)) / lengthlightprob(k,:));
+    %number of ones
+    lonecount(k) = length(find(lightprob(k,:)>0));
+    %total amp counts per bin
+    ltotalcount(k) = length(lightprob(k,:));
+    %define bins around transition for plotting
+    pctlighttim(k) = k*(binsize/60);
+   
+end
+
+
+
+figure(28); clf; title('Light transition summary'); hold on;
+    
+    %plot proportion of amplitude increases from previous bins
+    plot(pctlighttim-((binsize/2)/60), pctlight, '.-');
+
+    %generate random jiggle for amp plotting  through scatter
+    for k = 1:transbinnum * 2
+
+        scatter(pctlighttim(k)-((binsize/2)/60), lupamp(k, :), 'jitter', 'on', 'jitterAmount', 0.05, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
+        scatter(pctlighttim(k)-((binsize/2)/60), ldownamp(k,:),'jitter', 'on', 'jitterAmount', 0.05, 'MarkerEdgeColor', 'k');
+       
+    end
+    %plot bin lines
+    plot([pctlighttim', pctlighttim'], ylim, 'm-');
+    %plot dark to light transition line
+    plot([transtim, transtim], ylim, 'k-');
+
+
+
+%% chi square by hand for number check
+for k = 1:(transbinnum * 2)-1
+%     clear n1; clear n2;
+%     clear N1;clear N2;
+%   
+    %observed data
+    n1 = lonecount(k);
     N1 = totalcount(k);
     n2 = onecount(k+1);
     N2 = totalcount(k+1);
