@@ -280,7 +280,7 @@ for k = 2:size(darkprob,1)
 
    [~,chi2(k-1,:),pval(k-1,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
    pval3sigs = round(pval(k-1,:), 2, 'significant');
-   text(pcttim(k-1), pctdark(k-1), num2str(pval3sigs));
+   %ttim(k-1), pctdark(k-1)-0.1, num2str(pval3sigs));
   
 end
 
@@ -328,7 +328,7 @@ for k = 1:(transbinnum * 2)-1
        observed = [n1 N1-n1 n2 N2-n2];
        expected = [n10 N1-n10 n20 N2-n20];
        [h(k,:), p2(k,:), stats(k,:)] = chi2gof([1 2 3 4],'freq',observed,'expected',expected,'ctrs',[1 2 3 4],'nparams',2);
-    text(pcttim(k), 0.8, num2str(p2(k)));
+    text(pcttim(k), pctdark(k), num2str(p2(k)));
         
 end
 
