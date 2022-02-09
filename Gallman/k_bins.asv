@@ -177,9 +177,11 @@ end
 %light transitions
 for kk = 2:length(lightdays)
 
-    transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour>= darkdays(jj)-((transbinnum*binsize)/60));
+    transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour>= lightdays(kk)-((transbinnum*binsize)/60));
 
-    lightd(kk-1).binary(:) = 
+    lightd(kk-1).binary(:) = [bin(transdidx).binary];
+    lightd(kk-1).bintims(:) = [bin(transidx).tim]; 
+    lightd(kk-1).binAmps(:) = [bin(transidx).meanAmp];
 end
 
 
@@ -202,11 +204,21 @@ end
 
 %% summary by day for stats
 
+%dark
 for jj = 2:length(darkdays)
 
     darkidx = find(timcont>= darkdays(jj-1) & timcont < darkdays(jj));
     dday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
     dday(jj-1).amp(:) = fftAmp(darkidx);
+
+end
+
+%light
+for kk = 2:length(lightdays)
+
+    lightidx = find(timcont>= lightdays(kk-1) & timcont < lightdays(kk));
+    lday(kk-1).tim(:) = timcont(lightidxidx)-timcont(lightidxidx(1));
+    lday(kk-1).amp(:) = fftAmp(darkidx);
 
 end
 
