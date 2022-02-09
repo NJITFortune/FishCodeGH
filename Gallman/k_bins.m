@@ -307,7 +307,7 @@ for k = 1:(transbinnum * 2)-1
     
    pval3sigs = round(p(k,:), 2, 'significant');
 
-   text(pcttim(k), 1, num2str(pval3sigs(k,:)));
+   text(pcttim(k), pctdark(k), num2str(pval3sigs(k,:)));
 end
 
 % %% chi square by hand method 2
