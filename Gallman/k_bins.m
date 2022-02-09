@@ -305,7 +305,7 @@ for k = 1:(transbinnum * 2)-1
    chi2stat(k,:) = sum((observed-expected).^2 ./ expected);
    p(k,:) = 1 - chi2cdf(chi2stat(k),1);
     
-   pval3sigs = round(p(k-1,:), 2, 'significant');
+   pval3sigs = round(p(k,:), 2, 'significant');
 
    text(pcttim(k), 1, num2str(pval3sigs(k)));
 end
