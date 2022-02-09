@@ -218,8 +218,7 @@ end
  
 
 %plot darkday amp
-figure(8); clf; hold on;
-
+figure(8); clf; title('Dark to light transition average'); hold on; 
     plot([dday.tim], [dday.amp], '.');
 for jj = 1:length(dday)
     for j = 1:length(dday(jj).tim)
