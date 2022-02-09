@@ -268,8 +268,9 @@ figure(27); clf; hold on;
         plot(pcttim(k)-((binsize/2)/60), upamp(k, :), 'm.','MarkerSize', 10);
         %plot(pcttim(k)-((binsize/2)/60),meandarkamp(k,:),'r.', 'MarkerSize', 5);
        
-        plot([pcttim(k), pcttim(k)], ylim, 'm-');
+        
     end
+    plot([pcttim', pcttim'], ylim, 'm-');
     plot([transtim, transtim], ylim, 'k-');
 
 %% crosstab on unsummarized data (pre-percent of ones)
