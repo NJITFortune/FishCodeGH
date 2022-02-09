@@ -273,9 +273,9 @@ end
 
 %txt = 'pvalue =' + num2str(pvalue)
 text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
-%% Averages for dark to light tranistions
 
-    
+%% Bin summary for dark to light tranistions
+   
 for jj = 1:length(darkd)
 
     for k = 1:(transbinnum * 2)
@@ -312,7 +312,7 @@ end
 
 
 
-figure(27); clf; hold on;
+figure(27); clf; title('Dark transition summary');hold on;
     
     %plot proportion of amplitude increases from previous bins
     plot(pcttim-((binsize/2)/60), pctdark, '.-');
@@ -356,6 +356,114 @@ for k = 1:(transbinnum * 2)-1
 
    %plot p-values on summary plot
    text(pcttim(k), pctdark(k), num2str(pval2sigs(k)));
+end
+
+% %% chi square by hand method 2
+% %basically just checks math
+% for k = 1:(transbinnum * 2)-1
+% %     clear n1; clear n2;
+% %     clear N1;clear N2;
+% %   
+%     %observed data
+%     n1 = onecount(k);
+%     N1 = totalcount(k);
+%     n2 = onecount(k+1);
+%     N2 = totalcount(k+1);
+%     %pooled estimate of proportion
+%     p0 = (n1+n2)/(N1+N2);
+%     %expected counts under null
+%     n10 = N1 * p0;
+%     n20 = N2 * p0;
+%     % Chi-square test, by hand
+%        observed = [n1 N1-n1 n2 N2-n2];
+%        expected = [n10 N1-n10 n20 N2-n20];
+%        [h(k,:), p2(k,:), stats(k,:)] = chi2gof([1 2 3 4],'freq',observed,'expected',expected,'ctrs',[1 2 3 4],'nparams',2);
+%     text(pcttim(k), pctdark(k), num2str(p2(k)));
+%         
+% end
+
+%% Bin summary for light to dark tranistions
+   
+for jj = 1:length(lightd)
+
+    for k = 1:(transbinnum * 2)
+        lightprob(k,jj) = lightd(jj).binary(k); 
+        lightamp(k,jj) = lightd(jj).binAmps(k);
+        lighttims(k,jj) = lightd(jj).bintims(k);
+     
+        if lightprob(k,jj) > 0
+        lupamp(k, jj) = lightamp(k,jj);
+        
+        else
+        ldownamp(k, jj) = lightamp(k,jj);
+        end
+    end
+
+end
+
+%change zeros to nans for plotting
+lupamp(lupamp==0) = nan;
+ldownamp(ldownamp==0) = nan;
+
+
+for k = 1:transbinnum * 2
+    %calculate proportion of ones (increases in amp from previous bin)
+    pctlight(k) =  length(find(lightprob(k,:)>0)) / lengthlightprob(k,:));
+    %number of ones
+    lonecount(k) = length(find(lightprob(k,:)>0));
+    %total amp counts per bin
+    ltotalcount(k) = length(lightprob(k,:));
+    %define bins around transition for plotting
+    pctlighttim(k) = k*(binsize/60);
+   
+end
+
+
+
+figure(28); clf; title('Light transition summary'); hold on;
+    
+    %plot proportion of amplitude increases from previous bins
+    plot(pctlighttim-((binsize/2)/60), pctlight, '.-');
+
+    %generate random jiggle for amp plotting  through scatter
+    for k = 1:transbinnum * 2
+
+        scatter(pctlighttim(k)-((binsize/2)/60), lupamp(k, :), 'jitter', 'on', 'jitterAmount', 0.05, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
+        scatter(pctlighttim(k)-((binsize/2)/60), ldownamp(k,:),'jitter', 'on', 'jitterAmount', 0.05, 'MarkerEdgeColor', 'k');
+       
+    end
+    %plot bin lines
+    plot([pctlighttim', pctlighttim'], ylim, 'm-');
+    %plot dark to light transition line
+    plot([transtim, transtim], ylim, 'k-');
+
+
+
+%% chi square by hand for number check
+for k = 1:(transbinnum * 2)-1
+%     clear n1; clear n2;
+%     clear N1;clear N2;
+%   
+    %observed data
+    n1 = lonecount(k);
+    N1 = ltotalcount(k);
+    n2 = lonecount(k+1);
+    N2 = ltotalcount(k+1);
+    %pooled estimate of proportion
+    p0 = (n1+n2)/(N1+N2);
+    %expected counts under null
+    n10 = N1 * p0;
+    n20 = N2 * p0;
+   % Chi-square test, by hand
+   observed = [n1 N1-n1 n2 N2-n2];
+   expected = [n10 N1-n10 n20 N2-n20];
+   chi2stat(k,:) = sum((observed-expected).^2 ./ expected);
+   lp(k,:) = 1 - chi2cdf(chi2stat(k),1);
+    
+   lpval2sigs(k,:) = round(lp(k,:), 2, 'significant');
+
+   %plot p-values on summary plot
+   text(pcttim(k), pctdark(k), num2str(lpval2sigs(k)));
 end
 
 % %% chi square by hand method 2
