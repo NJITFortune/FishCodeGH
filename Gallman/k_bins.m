@@ -254,8 +254,8 @@ for k = 1:transbinnum * 2
 end
 
 %generate random jiggle for amp plotting
-% [M,N] = size(pctttim);
-% rand
+[M,N] = size(pctttim);
+randtim = pcttim + 0.2*rand(M,N)-0.1;
 
 figure(27); clf; hold on;
 
@@ -265,11 +265,11 @@ figure(27); clf; hold on;
        
         %plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
         %plot(pcttim(k)-((binsize/2)/60), darkamp(k,:), 'k.', 'MarkerSize', 10);
-        plot(pcttim(k)-((binsize/2)/60), upamp(k, :), 'm.','MarkerSize', 10);
+        plot(randtim(k)-((binsize/2)/60), upamp(k, :), 'm.','MarkerSize', 10);
         %plot(pcttim(k)-((binsize/2)/60),meandarkamp(k,:),'r.', 'MarkerSize', 5);
        
     end
-    
+
     plot([pcttim', pcttim'], ylim, 'm-');
     plot([transtim, transtim], ylim, 'k-');
 
