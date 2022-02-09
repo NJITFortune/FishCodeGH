@@ -255,7 +255,7 @@ end
 
 %generate random jiggle for amp plotting
 [M,N] = size(pcttim);
-randtim = pcttim + 0.05*rand(M,N)-0.1;
+randtim = pcttim + 0.05*rand(M,N)-0.01;
 
 figure(27); clf; hold on;
 
