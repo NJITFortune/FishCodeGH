@@ -213,18 +213,11 @@ for jj = 2:length(darkdays)
 
 end
 
-%light
-for kk = 2:length(lightdays)
 
-    lightidx = find(timcont>= lightdays(kk-1) & timcont < lightdays(kk));
-    lday(kk-1).tim(:) = timcont(lightidxidx)-timcont(lightidxidx(1));
-    lday(kk-1).amp(:) = fftAmp(darkidx);
-
-end
 
  
 
-%plot day amp
+%plot darkday amp
 figure(8); clf; hold on;
 
     plot([dday.tim], [dday.amp], '.');
@@ -239,12 +232,25 @@ for jj = 1:length(dday)
      end
     end
     plot(darkhalftim, darkhalfamp, 'm.');    
+
 end
-    
-%% Calculate chisqu of means
+    plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
-[hypothesis,pvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal')
+%Calculate chisqu of means
 
+[hypothesis,pvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
+
+txt = '\leftarrow pvalue = 0';
+text(pi,sin(pi),txt,'FontSize',14)
+
+%light
+for kk = 2:length(lightdays)
+
+    lightidx = find(timcont>= lightdays(kk-1) & timcont < lightdays(kk));
+    lday(kk-1).tim(:) = timcont(lightidxidx)-timcont(lightidxidx(1));
+    lday(kk-1).amp(:) = fftAmp(lightidx);
+
+end
 %% Averages for dark to light tranistions
 
     
