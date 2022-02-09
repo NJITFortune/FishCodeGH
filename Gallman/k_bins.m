@@ -408,7 +408,7 @@ ldownamp(ldownamp==0) = nan;
 
 for k = 1:transbinnum * 2
     %calculate proportion of ones (increases in amp from previous bin)
-    pctlight(k) =  length(find(lightprob(k,:)>0)) / lengthlightprob(k,:));
+    pctlight(k) =  length(find(lightprob(k,:)>0)) / length(lightprob(k,:));
     %number of ones
     lonecount(k) = length(find(lightprob(k,:)>0));
     %total amp counts per bin
