@@ -428,8 +428,8 @@ figure(28); clf; title('Light transition summary'); hold on;
     %generate random jiggle for amp plotting  through scatter
     for k = 1:transbinnum * 2
 
-        scatter(pctlighttim(k)-((binsize/2)/60), lupamp(k, :), 'jitter', 'on', 'jitterAmount', 0.05, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
-        scatter(pctlighttim(k)-((binsize/2)/60), ldownamp(k,:),'jitter', 'on', 'jitterAmount', 0.05, 'MarkerEdgeColor', 'k');
+        scatter(pctlighttim(k)-((binsize/2)/60), lupamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
+        scatter(pctlighttim(k)-((binsize/2)/60), ldownamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
        
     end
     %plot bin lines
