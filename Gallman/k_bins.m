@@ -254,7 +254,7 @@ for k = 1:transbinnum * 2
 end
 
 %generate random jiggle for amp plotting
-[M,N] = size(pctttim);
+[M,N] = size(pcttim);
 randtim = pcttim + 0.2*rand(M,N)-0.1;
 
 figure(27); clf; hold on;
