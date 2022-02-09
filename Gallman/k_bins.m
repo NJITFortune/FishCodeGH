@@ -266,7 +266,7 @@ figure(27); clf; hold on;
         %plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
         %plot(pcttim(k)-((binsize/2)/60), darkamp(k,:), 'k.', 'MarkerSize', 10);
         scatter(pcttim(k)-((binsize/2)/60), upamp(k, :), 'jitter', 'on', 'jitterAmount', 0.03, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
-        scatter(pcttim(k)-((binsize/2)/60),downamp(k,:),'jitter', 'on', 'jitterAmount', 0.03, 'MarkerEdgeColor', 'k'););
+        scatter(pcttim(k)-((binsize/2)/60),downamp(k,:),'jitter', 'on', 'jitterAmount', 0.03, 'MarkerEdgeColor', 'k');
        
     end
 
