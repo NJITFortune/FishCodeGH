@@ -2,7 +2,7 @@
 %% prep 
 clearvars -except kg kg2
 
-in = kg(2);
+in = kg(12);
 channel = 1;
 
 %% outliers
