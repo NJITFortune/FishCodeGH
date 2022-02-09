@@ -146,9 +146,13 @@ end
 %% dark to light transitions
 
 %divide into days
-
+%dark transistions
 darkz = 1:1:floor(totaltimhours/(ld*2));
 darkdays = lighttimes(1) + ((2*ld) * (darkz-1));
+
+%light transitions
+lightz = 1:1:floor(totaltimhours/(ld*2));
+lightdays = lighttimes(2) + ((2*ld) * (lightz-1));
 
 transbinnum = 8;
 transtim = transbinnum*binsize/60;
