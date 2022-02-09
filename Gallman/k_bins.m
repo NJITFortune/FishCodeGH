@@ -306,7 +306,7 @@ for k = 1:(transbinnum * 2)-1
    chi2stat(k,:) = sum((observed-expected).^2 ./ expected);
    p(k,:) = 1 - chi2cdf(chi2stat(k),1);
     
-   text(pcttim(k), 1, num2str(p(k)));
+   %text(pcttim(k), 1, num2str(p(k)));
 end
 
 %% chi square by hand method 2
