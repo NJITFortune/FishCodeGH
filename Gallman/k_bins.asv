@@ -146,9 +146,13 @@ end
 %% dark to light transitions
 
 %divide into days
-
+%dark transistions
 darkz = 1:1:floor(totaltimhours/(ld*2));
 darkdays = lighttimes(1) + ((2*ld) * (darkz-1));
+
+%light transitions
+lightz = 2:1:floor(totaltimhours/(ld*2));
+lightdays = lighttimes(2)
 
 transbinnum = 8;
 transtim = transbinnum*binsize/60;
@@ -240,15 +244,19 @@ for jj = 1:length(darkd)
 
 end
 
+%change zeros to nans for plotting
 upamp(upamp==0) = nan;
 downamp(downamp==0) = nan;
-% upamps = upamp(upamp > 0);
-% downamps = downamp(downamp >0);
+
 
 for k = 1:transbinnum * 2
+    %calculate proportion of ones (increases in amp from previous bin)
     pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
+    %number of ones
     onecount(k) = length(find(darkprob(k,:)>0));
+    %total amp counts per bin
     totalcount(k) = length(darkprob(k,:));
+    %define bins around transition for plotting
     pcttim(k) = k*(binsize/60);
    
 end
@@ -272,16 +280,6 @@ figure(27); clf; hold on;
     %plot dark to light transition line
     plot([transtim, transtim], ylim, 'k-');
 
-%% crosstab on unsummarized data (pre-percent of ones)
-    
-% clear k;
-% for k = 2:size(darkprob,1)
-% 
-%    [~,chi2(k-1,:),pval(k-1,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
-%    pval3sigs = round(pval(k-1,:), 2, 'significant');
-%    text(pcttim(k-1), pctdark(k-1)-0.1, num2str(pval3sigs));
-%   
-% end
 
 
 %% chi square by hand for number check
@@ -305,9 +303,10 @@ for k = 1:(transbinnum * 2)-1
    chi2stat(k,:) = sum((observed-expected).^2 ./ expected);
    p(k,:) = 1 - chi2cdf(chi2stat(k),1);
     
-   pval3sigs = round(p(k,:), 2, 'significant');
+   pval2sigs(k,:) = round(p(k,:), 2, 'significant');
 
-   text(pcttim(k), pctdark(k), num2str(p(k)));
+   %plot p-values on summary plot
+   text(pcttim(k), pctdark(k), num2str(pval2sigs(k)));
 end
 
 % %% chi square by hand method 2
@@ -334,11 +333,3 @@ end
 %         
 % end
 
-%%
-
-% for k = 1:(transbinnum * 2)
-%  
-% %    handsig(k) = ((length(find(darkprob(k,:)>0)) - length(darkprob(k,:))/2)^2 / length(darkprob(k,:))/2) + ((length(find(darkprob(k,:)<1)) - length(darkprob(k,:))/2)^2/length(darkprob(k,:))/2);
-% %    sig(k) = chi2pdf(pctdark(k), 1);
-% 
-% end
