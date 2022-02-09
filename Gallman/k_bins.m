@@ -254,12 +254,12 @@ figure(9); clf; title('Light to dark transition average'); hold on;
     plot([lday.tim], [lday.amp], '.');
 for kk = 1:length(lday)
     for k = 1:length(lday(kk).tim)
-     if lday(jj).tim(k) > 4
-         darkhalfamp(k,:) = lday(kk).amp(k);
-         darkhalftim(k,:) = lday(kk).tim(k);
-     else
+     if lday(kk).tim(k) < 4
          lighthalfamp(k,:) = lday(kk).amp(k);
          lighthalftim(k,:) = lday(kk).tim(k);
+     else
+         darkhalfamp(k,:) = lday(kk).amp(k);
+         darkhalftim(k,:) = lday(kk).tim(k);
      end
     end
     plot(lighthalftim, lighthalfamp, 'm.');       
