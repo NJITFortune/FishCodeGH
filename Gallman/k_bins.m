@@ -253,36 +253,35 @@ for k = 1:transbinnum * 2
    
 end
 
-%generate random jiggle for amp plotting
-[M,N] = size(pcttim);
-randtim = pcttim + 0.05*rand(M,N)-0.01;
+
 
 figure(27); clf; hold on;
-
-    plot(pcttim-((binsize/2)/60), pctdark, '.-');
     
+    %plot proportion of amplitude increases from previous bins
+    plot(pcttim-((binsize/2)/60), pctdark, '.-');
+
+    %generate random jiggle for amp plotting  through scatter
     for k = 1:transbinnum * 2
-       
-        %plot(k*ones(length(darkamp(k,:)),1), darkamp(k,:), 'k.');
-        %plot(pcttim(k)-((binsize/2)/60), darkamp(k,:), 'k.', 'MarkerSize', 10);
+
         scatter(pcttim(k)-((binsize/2)/60), upamp(k, :), 'jitter', 'on', 'jitterAmount', 0.05, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
         scatter(pcttim(k)-((binsize/2)/60),downamp(k,:),'jitter', 'on', 'jitterAmount', 0.05, 'MarkerEdgeColor', 'k');
        
     end
-
+    %plot bin lines
     plot([pcttim', pcttim'], ylim, 'm-');
+    %plot dark to light transition line
     plot([transtim, transtim], ylim, 'k-');
 
 %% crosstab on unsummarized data (pre-percent of ones)
     
-clear k;
-for k = 2:size(darkprob,1)
-
-   [~,chi2(k-1,:),pval(k-1,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
-   pval3sigs = round(pval(k-1,:), 2, 'significant');
-   %ttim(k-1), pctdark(k-1)-0.1, num2str(pval3sigs));
-  
-end
+% clear k;
+% for k = 2:size(darkprob,1)
+% 
+%    [~,chi2(k-1,:),pval(k-1,:)] = crosstab(darkprob(k-1,:), darkprob(k,:));
+%    pval3sigs = round(pval(k-1,:), 2, 'significant');
+%    text(pcttim(k-1), pctdark(k-1)-0.1, num2str(pval3sigs));
+%   
+% end
 
 
 %% chi square by hand for number check
@@ -306,31 +305,34 @@ for k = 1:(transbinnum * 2)-1
    chi2stat(k,:) = sum((observed-expected).^2 ./ expected);
    p(k,:) = 1 - chi2cdf(chi2stat(k),1);
     
-   %text(pcttim(k), 1, num2str(p(k)));
+   pval3sigs = round(p(k-1,:), 2, 'significant');
+
+   text(pcttim(k), 1, num2str(pval3sigs(k)));
 end
 
-%% chi square by hand method 2
-for k = 1:(transbinnum * 2)-1
-%     clear n1; clear n2;
-%     clear N1;clear N2;
-%   
-    %observed data
-    n1 = onecount(k);
-    N1 = totalcount(k);
-    n2 = onecount(k+1);
-    N2 = totalcount(k+1);
-    %pooled estimate of proportion
-    p0 = (n1+n2)/(N1+N2);
-    %expected counts under null
-    n10 = N1 * p0;
-    n20 = N2 * p0;
-    % Chi-square test, by hand
-       observed = [n1 N1-n1 n2 N2-n2];
-       expected = [n10 N1-n10 n20 N2-n20];
-       [h(k,:), p2(k,:), stats(k,:)] = chi2gof([1 2 3 4],'freq',observed,'expected',expected,'ctrs',[1 2 3 4],'nparams',2);
-    text(pcttim(k), pctdark(k), num2str(p2(k)));
-        
-end
+% %% chi square by hand method 2
+% %basically just checks math
+% for k = 1:(transbinnum * 2)-1
+% %     clear n1; clear n2;
+% %     clear N1;clear N2;
+% %   
+%     %observed data
+%     n1 = onecount(k);
+%     N1 = totalcount(k);
+%     n2 = onecount(k+1);
+%     N2 = totalcount(k+1);
+%     %pooled estimate of proportion
+%     p0 = (n1+n2)/(N1+N2);
+%     %expected counts under null
+%     n10 = N1 * p0;
+%     n20 = N2 * p0;
+%     % Chi-square test, by hand
+%        observed = [n1 N1-n1 n2 N2-n2];
+%        expected = [n10 N1-n10 n20 N2-n20];
+%        [h(k,:), p2(k,:), stats(k,:)] = chi2gof([1 2 3 4],'freq',observed,'expected',expected,'ctrs',[1 2 3 4],'nparams',2);
+%     text(pcttim(k), pctdark(k), num2str(p2(k)));
+%         
+% end
 
 %%
 
