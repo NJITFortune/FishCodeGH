@@ -146,17 +146,19 @@ end
 %% dark to light transitions
 
 %divide into days
+daysz = 1:1:floor(totaltimhours/(ld*2));
+
 %dark transistions
-darkz = 1:1:floor(totaltimhours/(ld*2));
-darkdays = lighttimes(1) + ((2*ld) * (darkz-1));
+darkdays = lighttimes(1) + ((2*ld) * (daysz-1));
 
 %light transitions
-lightz = 1:1:floor(totaltimhours/(ld*2));
-lightdays = lighttimes(2) + ((2*ld) * (lightz-1));
+lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 
+%how many bins around the transistion 
 transbinnum = 8;
 transtim = transbinnum*binsize/60;
 
+%dark transistions
 for jj = 2:length(darkdays)
 
 
@@ -172,6 +174,15 @@ for jj = 2:length(darkdays)
         
 end
       
+%light transitions
+for kk = 2:length(lightdays)
+
+    transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour>= lightdays(kk)-((transbinnum*binsize)/60));
+
+    lightd(kk-1).binary(:) = [bin(transdidx).binary];
+    lightd(kk-1).bintims(:) = [bin(transidx).tim]; 
+    lightd(kk-1).binAmps(:) = [bin(transidx).meanAmp];
+end
 
 
 %plot to check
@@ -193,6 +204,7 @@ end
 
 %% summary by day for stats
 
+%dark
 for jj = 2:length(darkdays)
 
     darkidx = find(timcont>= darkdays(jj-1) & timcont < darkdays(jj));
@@ -201,9 +213,11 @@ for jj = 2:length(darkdays)
 
 end
 
+
+
  
 
-%plot day amp
+%plot darkday amp
 figure(8); clf; hold on;
 
     plot([dday.tim], [dday.amp], '.');
@@ -219,11 +233,19 @@ for jj = 1:length(dday)
     end
     plot(darkhalftim, darkhalfamp, 'm.');    
 end
-    
-%% Calculate chisqu of means
 
-[hypothesis,pvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal')
+%Calculate chisqu of means
 
+[hypothesis,pvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
+
+%light
+for kk = 2:length(lightdays)
+
+    lightidx = find(timcont>= lightdays(kk-1) & timcont < lightdays(kk));
+    lday(kk-1).tim(:) = timcont(lightidxidx)-timcont(lightidxidx(1));
+    lday(kk-1).amp(:) = fftAmp(lightidx);
+
+end
 %% Averages for dark to light tranistions
 
     
