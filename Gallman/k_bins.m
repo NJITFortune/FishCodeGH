@@ -179,7 +179,7 @@ for kk = 2:length(lightdays)
 
     transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour>= lightdays(kk)-((transbinnum*binsize)/60));
 
-    lightd(kk-1).binary(:) = [bin(transdidx).binary];
+    lightd(kk-1).binary(:) = [bin(transidx).binary];
     lightd(kk-1).bintims(:) = [bin(transidx).tim]; 
     lightd(kk-1).binAmps(:) = [bin(transidx).meanAmp];
 end
