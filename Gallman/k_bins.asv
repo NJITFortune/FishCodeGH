@@ -146,17 +146,19 @@ end
 %% dark to light transitions
 
 %divide into days
+daysz = 1:1:floor(totaltimhours/(ld*2));
+
 %dark transistions
-darkz = 1:1:floor(totaltimhours/(ld*2));
-darkdays = lighttimes(1) + ((2*ld) * (darkz-1));
+darkdays = lighttimes(1) + ((2*ld) * (daysz-1));
 
 %light transitions
-lightz = 2:1:floor(totaltimhours/(ld*2));
-lightdays = lighttimes(2)
+lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 
+%how many bins around the transistion 
 transbinnum = 8;
 transtim = transbinnum*binsize/60;
 
+%dark transistions
 for jj = 2:length(darkdays)
 
 
@@ -172,6 +174,13 @@ for jj = 2:length(darkdays)
         
 end
       
+%light transitions
+for kk = 2:length(lightdays)
+
+    transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour>= darkdays(jj)-((transbinnum*binsize)/60));
+
+    lightd(kk-1).binary(:) = 
+end
 
 
 %plot to check
