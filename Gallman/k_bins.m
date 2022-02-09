@@ -218,7 +218,7 @@ figure(8); clf; title('Dark to light transition average'); hold on;
     plot([dday.tim], [dday.amp], '.');
 for jj = 1:length(dday)
     for j = 1:length(dday(jj).tim)
-     if dday(jj).tim(j) < 4
+     if dday(jj).tim(j) < ld
          ddarkhalfamp(j,:) = dday(jj).amp(j);
          ddarkhalftim(j,:) = dday(jj).tim(j);
      else
@@ -254,7 +254,7 @@ figure(9); clf; title('Light to dark transition average'); hold on;
     plot([lday.tim], [lday.amp], '.');
 for kk = 1:length(lday)
     for k = 1:length(lday(kk).tim)
-     if lday(kk).tim(k) < 4
+     if lday(kk).tim(k) < ld
          lighthalfamp(k,:) = lday(kk).amp(k);
          lighthalftim(k,:) = lday(kk).tim(k);
      else
