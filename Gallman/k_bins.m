@@ -305,9 +305,9 @@ for k = 1:(transbinnum * 2)-1
    chi2stat(k,:) = sum((observed-expected).^2 ./ expected);
    p(k,:) = 1 - chi2cdf(chi2stat(k),1);
     
-   %pval3sigs = round(p(k,:), 2, 'significant');
+   pval3sigs(k,:) = round(p(k,:), 2, 'significant');
 
-   text(pcttim(k), pctdark(k), num2str(p(k)));
+   text(pcttim(k), pctdark(k), num2str(pval3sigs(k)));
 end
 
 % %% chi square by hand method 2
