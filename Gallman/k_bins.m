@@ -232,14 +232,16 @@ for jj = 1:length(dday)
      end
     end
     plot(darkhalftim, darkhalfamp, 'm.');    
-    
+
 end
+    plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
 
 [hypothesis,pvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
 
-
+txt = '\leftarrow pvalue = 0';
+text(pi,sin(pi),txt,'FontSize',14)
 
 %light
 for kk = 2:length(lightdays)
