@@ -320,8 +320,8 @@ figure(27); clf; title('Dark transition summary');hold on;
     %generate random jiggle for amp plotting  through scatter
     for k = 1:transbinnum * 2
 
-        scatter(pcttim(k)-((binsize/2)/60), upamp(k, :), 'jitter', 'on', 'jitterAmount', 0.05, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
-        scatter(pcttim(k)-((binsize/2)/60),downamp(k,:),'jitter', 'on', 'jitterAmount', 0.05, 'MarkerEdgeColor', 'k');
+        scatter(pcttim(k)-((binsize/2)/60), upamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
+        scatter(pcttim(k)-((binsize/2)/60),downamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
        
     end
     %plot bin lines
