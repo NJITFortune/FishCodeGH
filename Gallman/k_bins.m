@@ -241,7 +241,7 @@ end
 [hypothesis,pvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
 
 %txt = '\leftarrow pvalue = num2str(pvalue)';
-text(ld,ylim(2)/2,num2str(pvalue),'FontSize',14);
+text(ld,1,num2str(pvalue),'FontSize',14);
 
 %light
 for kk = 2:length(lightdays)
