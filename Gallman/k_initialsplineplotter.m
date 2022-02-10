@@ -21,6 +21,7 @@ function k_initialsplineplotter(out)
         ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
     end
 
+ld = out.info.ld;
 %% Continuous data plot
 
 %colors
@@ -87,9 +88,64 @@ if isfield(out.info, 'luz')
 end
 
 %% day average
-figure(3); clf; 
+
 channel = 1;
-[~, day] = KatieMultifftDayTrialDessembler(out, channel,  10, 3);
+[trial, day] = KatiefftDayTrialDessembler(out, channel,  10, 3);
+
+figure(27); clf; hold on; title('Day average by trial');
+    for jj=1:length(trial) 
+
+        %create temporary vector to calculate mean by trial
+        mday(jj,:) = zeros(1, length(trial(jj).tim));
+
+
+        for k=1:length(trial(jj).day)
+
+                %fill temporary vector with data from each day 
+                mday(jj,:) = mday(jj,:) + trial(jj).day(k).SsumfftAmp;
+                subplot(211); hold on; title('Days');
+                plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
+                plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+
+        end
+
+         % To get average across days, divide by number of days
+            mday(jj,:) = mday(jj,:) / length(trial(jj).day);
+            subplot(212); hold on; title('Day average by trial');
+            plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
+            plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+
+    end
+    
+    % Mean of means
+ 
+    subplot(212); hold on;
+     meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
+    plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
+    
+
+   
+    
+figure(28); clf; hold on; 
+
+clear meanday;
+
+ for k = 1:length(day)
+        plot(day(k).tim, day(k).Ssumfftyy);
+        meanday(k,:) = day(k).Ssumfftyy;
+ end
+    
+        mmday= mean(meanday);
+        plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
+        plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+        
+figure(29); clf; hold on;
+    plot(day(1).tim, mmday);
+    plot(trial(jj).tim, meanofmeans);
+    plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+    legend('day mean', 'trial mean');
+     legend('boxoff')
+
 
 
         
