@@ -1,8 +1,12 @@
 function monophenia
 
-[filer, pather] = uigetfile('*.avi');
+% Pick folder with videos to crop 
+    myfolder = uigetdir('/Volumes/My Book/Udo');
+    cd(myfolder);
+% Get all files in folder
+    iFiles = dir('**/*.avi');
 
-[~, baseName, ~] = fileparts(fullfile(pather,filer));
+[pather, baseName, ~] = fileparts(fullfile(iFiles(1).folder, iFiles(1).name));
 
 tmpname = [baseName, '-UL.avi'];
     newfilenames{1} = fullfile(pather,tmpname);
