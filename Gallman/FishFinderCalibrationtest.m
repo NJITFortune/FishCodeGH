@@ -114,18 +114,18 @@ figure(1); clf; hold on;
     
     assx(1) = subplot(511); hold on; 
         %plot([tout.his.HiTim1], [tout.his.HiAmp1], 'k.');
-        plot([tout.his.HiTim], [tout.his.HiAmp1], '.');
+        plot([tout.his.HiTim1], [tout.his.HiAmp1], '.');
        
 
     assx(2) = subplot(512); hold on; 
        % plot([tout.los.LoTim1], [tout.los.LoAmp1], 'k.');
-        plot([tout.los.LoTim], [tout.los.LoAmp1], '.');
+        plot([tout.los.LoTim1], [tout.los.LoAmp1], '.');
         
     assx(3) = subplot(513); hold on;
        % plot([tout.his.HiTim1], [tout.his.HIfreq1], 'k.'); 
-        plot([tout.his.HiTim], [tout.his.HIfreq1], '.'); 
+        plot([tout.his.HiTim1], [tout.his.HIfreq1], '.'); 
         %plot([tout.los.LoTim1], [tout.los.LOfreq1], 'k.');
-        plot([tout.los.LoTim], [tout.los.LOfreq1], '.');
+        plot([tout.los.LoTim1], [tout.los.LOfreq1], '.');
         
     
     assx(4) = subplot(514); hold on; 
