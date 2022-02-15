@@ -34,8 +34,17 @@ hitube2amp = [out(intube2hi).e2hiamp];
 lotube1amp = [out(intube1lo).e1loamp];
 lotube2amp = [out(intube2lo).e2loamp];
 
+hiidx1 = find(hitube1tim > 65 & hitube1tim < 155);
+hitube1timpart = hitube1tim(hiidx1);
+hitube1amppart = hitube1amp(hiidx1);
 
+hiidx2 = find(hitube1tim > 65 & hitube2tim < 155);
+hitube2timpart = hitube2tim(hiidx2);
+hitube2amppart = hitube1amp(hiidx2);
 
+tuberatio = hitube1amppart/hitube2amppart;
+
+tuberatio
 figure(987); clf; hold on;
 
     ax(1) = subplot(211); title('high freq fish'); hold on;
