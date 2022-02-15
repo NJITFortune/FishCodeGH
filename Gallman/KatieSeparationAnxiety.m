@@ -1,7 +1,8 @@
-function out = KatieSeparationAnxiety(userfilespec)
+%function out = KatieSeparationAnxiety(userfilespec)
 %% usage
 %kg2(k).s = out
 %see kgme multi
+userfilespec = 'Eigen*';
 %% Prep
     Fs = 40000; %sample rate
     freqs = [200 800]; %freq range of typical eigen EOD
