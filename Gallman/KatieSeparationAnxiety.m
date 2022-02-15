@@ -2,6 +2,7 @@
 %% usage
 %kg2(k).s = out
 %see kgme multi
+clear all;
 userfilespec = 'Eigen*';
 %% Prep
     Fs = 40000; %sample rate
