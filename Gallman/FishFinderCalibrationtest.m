@@ -44,12 +44,16 @@ hitube2amppart = hitube1amp(hiidx2);
 
 tuberatio = mean(hitube1amppart)/mean(hitube2amppart);
 
-tuberatio
+for j = 1:length(hitube2amp)
+    hitube2newamp(j,:) = hitube2amp(j)*2.8;
+end
+
 figure(987); clf; hold on;
 
     ax(1) = subplot(211); title('high freq fish'); hold on;
             plot([out(intube1hi).timcont]/3600, [out(intube1hi).e1hiamp], 'bo');
             plot([out(intube2hi).timcont]/3600, [out(intube2hi).e2hiamp], 'mo');
+            plot(hitube2tim, hitube2newamp, 'ko');
     ax(2) = subplot(212); title('low freq fish'); hold on;
             plot([out(intube1lo).timcont]/3600, [out(intube1lo).e1loamp], 'bo');
             plot([out(intube2lo).timcont]/3600, [out(intube2lo).e2loamp], 'mo');
