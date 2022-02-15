@@ -11,9 +11,9 @@
     %threshold for ratio at 2.5
         %when each fish was in tube 2
         intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
-            plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], 'b.');
+            plot([out(intube2hi).timcont]/3600, [out(intube2hi).e2hiamp], 'b.');
         intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
-            plot([out(intube2lo).timcont], [out(intube2lo).e2loamp], 'm.');
+            plot([out(intube2lo).timcont]/3600, [out(intube2lo).e2loamp], 'm.');
 
         %when each fish was in tube 1
         intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);
