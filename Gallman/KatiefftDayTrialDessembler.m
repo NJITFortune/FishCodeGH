@@ -6,7 +6,7 @@
     %starts with dark = 3
     %starts with light = 4
 
-in = kg(94);
+in = kg(13);
 channel = 1;
 ReFs = 10;
 light = 3;
