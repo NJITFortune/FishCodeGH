@@ -38,7 +38,7 @@ hiidx1 = find(hitube1tim > 65 & hitube1tim < 155);
 hitube1timpart = hitube1tim(hiidx1);
 hitube1amppart = hitube1amp(hiidx1);
 
-hiidx2 = find(hitube1tim > 65 & hitube2tim < 155);
+hiidx2 = find(hitube2tim > 65 & hitube2tim < 155);
 hitube2timpart = hitube2tim(hiidx2);
 hitube2amppart = hitube1amp(hiidx2);
 
