@@ -114,25 +114,25 @@ figure(1); clf; hold on;
     
     assx(1) = subplot(511); hold on; 
         %plot([tout.his.HiTim1], [tout.his.HiAmp1], 'k.');
-        plot([out.his.HiTim], [out.his.HiAmp], '.');
+        plot([tout.his.HiTim], [tout.his.HiAmp], '.');
        
 
     assx(2) = subplot(512); hold on; 
        % plot([tout.los.LoTim1], [tout.los.LoAmp1], 'k.');
-        plot([out.los.LoTim], [out.los.LoAmp], '.');
+        plot([tout.los.LoTim], [tout.los.LoAmp], '.');
         
     assx(3) = subplot(513); hold on;
        % plot([tout.his.HiTim1], [tout.his.HIfreq1], 'k.'); 
-        plot([out.his.HiTim], [out.his.HIfreq], '.'); 
+        plot([tout.his.HiTim], [tout.his.HIfreq], '.'); 
         %plot([tout.los.LoTim1], [tout.los.LOfreq1], 'k.');
-        plot([out.los.LoTim], [out.los.LOfreq], '.');
+        plot([tout.los.LoTim], [tout.los.LOfreq], '.');
         
     
     assx(4) = subplot(514); hold on; 
-            plot([in.timcont]/(60*60), [in.temp], '.');
+            plot([out.timcont]/(60*60), [out.temp], '.');
     
     assx(5) = subplot(515); hold on;
-        plot([in.timcont]/(60*60), [in.light]);
+        plot([out.timcont]/(60*60), [out.light]);
         ylim([-1, 6]);
         
 linkaxes(assx, 'x');
