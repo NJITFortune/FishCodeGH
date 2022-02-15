@@ -4,7 +4,7 @@ function out = KatieSeparationAnxiety(userfilespec)
 %see kgme multi
 %% Prep
     Fs = 40000; %sample rate
-    freqs = [425 625]; %freq range of typical eigen EOD
+    freqs = [200 800]; %freq range of typical eigen EOD
     %userfilespec = 'Eigen*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
