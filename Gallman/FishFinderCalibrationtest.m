@@ -45,7 +45,7 @@ hitube2amppart = hitube1amp(hiidx2);
 tuberatio = mean(hitube1amppart)/mean(hitube2amppart);
 
 for j = 1:length(hitube2amp)
-    hitube2newamp(j,:) = hitube2amp(j)*2.8;
+    hitube2newamp(j,:) = hitube2amp(j)+0.4;
 end
 
 figure(987); clf; hold on;
