@@ -42,7 +42,7 @@ hiidx2 = find(hitube2tim > 65 & hitube2tim < 155);
 hitube2timpart = hitube2tim(hiidx2);
 hitube2amppart = hitube1amp(hiidx2);
 
-tuberatio = hitube1amppart/hitube2amppart;
+tuberatio = mean(hitube1amppart)/mean(hitube2amppart);
 
 tuberatio
 figure(987); clf; hold on;
