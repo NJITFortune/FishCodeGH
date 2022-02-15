@@ -7,7 +7,7 @@
     %starts with light = 4
 
 in = kg(94);
-channel = 2;
+channel = 1;
 ReFs = 10;
 light = 3;
 
