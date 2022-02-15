@@ -28,7 +28,7 @@ figure(987); clf; hold on;
             plot([out(intube1hi).timcont], [out(intube1hi).e1hiamp], 'bo');
             plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], 'mo');
     ax(2) = subplot(212); title('low freq fish'); hold on;
-            plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'bo');
+            plot([out(intube1lo).timcont], [out(intube1lo).e1loamp]*20, 'bo');
             plot([out(intube2lo).timcont], [out(intube2lo).e2loamp], 'mo');
 
 
