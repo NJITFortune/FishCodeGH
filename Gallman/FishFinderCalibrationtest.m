@@ -147,14 +147,25 @@ lotube2freq = [out(intube2lo).lofreq];
 %% chunking for calibration
 
 %hi freq fish
-%tube1
-hifishchunk1idx = find(hitube1timff < 63);
+%chunk 1 = tim < 63
+    %tube1
+    hifishchunk1idx = find(hitube1timff < 63);
+    
+        for j = 1:length(hifishchunk1idx)
+            hitube1ampchunk1(j) = hitube1ampff(hifishchunk1idx(j)) * 3;
+            hitube1timchunk1(j) = hitube1timff(hifishchunk1idx(j));
+        end
 
-    for j = 1:length(hifishchunk1idx)
-        hitube1ampchunk1(j) = hitube1ampff(hifishchunk1idx(j)) * 3;
-        hitube1timchunk1(j) = hitube1timff(hifishchunk1idx(j));
-    end
+    %tube2
+    clear hifishchunk1idx;
+    hifishchunk1idx = find(hitube2timff < 63);
+    
+        for j = 1:length(hifishchunk1idx)
+            hitube2ampchunk1(j) = hitube2ampff(hifishchunk1idx(j)) * 3;
+            hitube2timchunk1(j) = hitube2timff(hifishchunk1idx(j));
+        end
 
+%chunk 2 = tim > 157 & tim < 219;
 clear hifishchunk3idx;
 clear hitube1ampchunk3;
 clear hitube1timchunk3;
