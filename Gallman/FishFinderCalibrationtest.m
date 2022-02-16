@@ -281,11 +281,11 @@ clear tout.his.HiTim
             end
             %tube 2
          
-            for j=1:length(hitube2ampcomb)
-                tout.his(j).HiAmp(:) = hitube2ampcomb(j);
-                tout.his(j).HiTim(:) = hitube2timcomb(j);
-                %tout.his(j).HiFreq = hitube2freqff(j);
-            end
+%             for j=1:length(hitube2ampcomb)
+%                 tout.his(j).HiAmp(:) = hitube2ampcomb(j);
+%                 tout.his(j).HiTim(:) = hitube2timcomb(j);
+%                 %tout.his(j).HiFreq = hitube2freqff(j);
+%             end
 
 %% plot
 
