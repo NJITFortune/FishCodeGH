@@ -270,7 +270,9 @@ clear hitube2timchunk5;
 
 %combine tubes
 %hi frequency fish
-        
+clear tout.his.HiAmp
+clear tout.his.HiTim
+
             %tube 1
             for j=1:length(hitube1ampcomb)
                 tout.his(j).HiAmp(:) = hitube1ampcomb(j);
