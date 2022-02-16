@@ -271,6 +271,8 @@ clear hitube2timchunk5;
 
 HiAmp = [hitube1ampcomb, hitube2ampcomb];
 HiTim = [hitube1timcomb, hitube2timcomb];
+
+
 % %combine tubes
 % %hi frequency fish
 % clear tout.his.HiAmp
