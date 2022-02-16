@@ -268,6 +268,23 @@ clear hitube2timchunk5;
     hitube2ampcomb = [hitube2ampchunk1, hitube2ampchunk2, hitube2ampchunk3, hitube2ampchunk4, hitube2ampchunk5, hitube2ampchunk6];
     hitube2timcomb = [hitube2timchunk1, hitube2timchunk2, hitube2timchunk3, hitube2timchunk4, hitube2timchunk5, hitube2timchunk6];
 
+%combine tubes
+%hi frequency fish
+        
+            %tube 1
+            for j=1:length(hitube1ampcomb)
+                tout.his(j).HiAmp(:) = hitube1ampcomb(j);
+                tout.his(j).HiTim(:) = hitube1timcomb(j);
+                tout.his(j).HIfreq1 = [in(hitube1timcomb(j)).hifreq];
+            end
+            %tube 2
+            clear j;
+            for j=1:length(hitube2ampcomb)
+                tout.his(j).HiAmp(:) = hitube2ampcomb(j);
+                tout.his(j).HiTim(:) = hitube2timcomb(j);
+                tout.his(j).HIfreq1 = [in(hitube2timcomb(j)).hifreq];
+            end
+
 %% plot
 
 %hi frequency fish
@@ -299,11 +316,15 @@ figure(453); clf; hold on;
     ax(3) = subplot(413); title('combined chunks'); hold on;
             plot(hitube1timcomb, hitube1ampcomb,'bo'); 
             plot(hitube2timcomb, hitube2ampcomb,'mo'); 
+            plot(tout.his.HiTim, tout.his.HiAmp, 'k.');
 
     ax(4) = subplot(414); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
 
 linkaxes(ax, 'x');
+
+
+
 
 
 %low frequency fish
