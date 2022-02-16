@@ -261,14 +261,35 @@ clear hitube2timchunk5;
         end
 
 
-%non-adjusted chunks
+%combine chunks
+    %tube 1
+    hitube1ampcomb = [hitube1ampchunk1, hitube1ampchunk2, hitube1ampchunk3, hitube1ampchunk4, hitube1ampchunk5];
+    hitube1timcomb = [hitube1timchunk1, hitube1timchunk2, hitube1timchunk3, hitube1timchunk4, hitube1timchunk5];
+    hitube2ampcomb = [hitube2ampchunk1, hitube2ampchunk2, hitube2ampchunk3, hitube2ampchunk4, hitube2ampchunk5, hitube2ampchunk6];
+    hitube2timcomb = [hitube2timchunk1, hitube2timchunk2, hitube2timchunk3, hitube2timchunk4, hitube2timchunk5, hitube2timchunk6];
+
+%combine tubes
+%hi frequency fish
+        
+            %tube 2
+            for j=1:length(intube2hi)
+                tout.his(intube2hi(j)).HiAmp1 = in(intube2hi(j)).e2hiamp; %* calibrationfactor;
+                tout.his(intube2hi(j)).HiTim1 = in(intube2hi(j)).timcont/3600;
+                tout.his(intube2hi(j)).HIfreq1 = [in(intube2hi(j)).hifreq];
+            end
+            %tube 1
+            for j=1:length(intube1hi)
+                tout.his(intube1hi(j)).HiAmp1 = in(intube1hi(j)).e1hiamp;
+                tout.his(intube1hi(j)).HiTim1 = in(intube1hi(j)).timcont/3600;
+                tout.his(intube1hi(j)).HIfreq1 = [in(intube1hi(j)).hifreq];
+            end
 
 %% plot
 
 %hi frequency fish
 figure(453); clf; hold on;
 
-    ax(1) = subplot(311); title('tube 1 adjustments'); hold on;
+    ax(1) = subplot(411); title('tube 1 adjustments'); hold on;
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
@@ -279,7 +300,7 @@ figure(453); clf; hold on;
             plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
            
-    ax(2) = subplot(312); title('tube 2 adjustments'); hold on;
+    ax(2) = subplot(412); title('tube 2 adjustments'); hold on;
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
@@ -291,10 +312,17 @@ figure(453); clf; hold on;
             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
             plot(hitube2timchunk6, hitube2ampchunk6, 'ko');
 
-    ax(3) = subplot(413); title('combined chunks')
+    ax(3) = subplot(413); title('combined chunks'); hold on;
+            plot(hitube1timcomb, hitube1ampcomb,'bo'); 
+            plot(hitube2timcomb, hitube2ampcomb,'mo'); 
 
-    ax(3) = subplot(313); title('light cycle'); hold on;
+    ax(4) = subplot(414); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
+
+linkaxes(ax, 'x');
+
+
+
 
 
 %low frequency fish
