@@ -183,7 +183,7 @@ hifishchunk2idx = find(hitube2timff > 65 & hitube2timff < 157);
 
 hifishchunk5idx = find(hitube2timff > 228);
 
-    for j = 1:length(hifishchunk2idx)
+    for j = 1:length(hifishchunk5idx)
         hitube2ampchunk5(j) = hitube2ampff(hifishchunk5idx(j)) * 1.8;
         hitube2timchunk5(j) = hitube2timff(hifishchunk5idx(j));
     end
