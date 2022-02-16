@@ -167,7 +167,7 @@ lotube2freq = [out(intube2lo).lofreq];
 
 %chunk 2 = tim > 65 and tim < 157
     %tube 1
-    hifishchunk2idx = find(hitube1timff > 65 & hitube1timff <= 157);
+    hifishchunk2idx = find(hitube1timff > 63 & hitube1timff <= 157);
     
         for j = 1:length(hifishchunk2idx)
             hitube1ampchunk2(j) = hitube1ampff(hifishchunk2idx(j)) ;
@@ -176,7 +176,7 @@ lotube2freq = [out(intube2lo).lofreq];
 
     clear hifishchunk2idx;
     %tube 2
-    hifishchunk2idx = find(hitube2timff > 65 & hitube2timff <= 157);
+    hifishchunk2idx = find(hitube2timff > 63 & hitube2timff <= 157);
     
         for j = 1:length(hifishchunk2idx)
             hitube2ampchunk2(j) = hitube2ampff(hifishchunk2idx(j)) * 1.8;
@@ -241,7 +241,7 @@ clear hitube2timchunk5;
 %chunk 5 tube 2 = tim > 229 & tim < 238       
     %tube 2
     clear hifishchunk5idx;
-    hifishchunk5idx = find(hitube2timff > 229 & hitube2timff < 238);
+    hifishchunk5idx = find(hitube2timff > 229 & hitube2timff <= 238);
     
         for j = 1:length(hifishchunk5idx)
             hitube2ampchunk5(j) = hitube2ampff(hifishchunk5idx(j)) * 1.5;
@@ -250,6 +250,13 @@ clear hitube2timchunk5;
             
  
 %chunk 6 tube 2 = tim > 238 
+    %tube 2
+    hifishchunk6idx = find(hitube2timff > 238);
+    
+        for j = 1:length(hifishchunk6idx)
+            hitube2ampchunk6(j) = hitube2ampff(hifishchunk6idx(j)) * 2;
+            hitube2timchunk6(j) = hitube2timff(hifishchunk6idx(j));
+        end
 
 
 %non-adjusted chunks
@@ -280,7 +287,7 @@ figure(453); clf; hold on;
             plot(hitube2timchunk3, hitube2ampchunk3, 'ko');
             plot(hitube2timchunk4, hitube2ampchunk4, 'ko');
             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
-
+            plot(hitube2timchunk6, hitube2ampchunk6, 'ko');
 
     ax(3) = subplot(313); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
