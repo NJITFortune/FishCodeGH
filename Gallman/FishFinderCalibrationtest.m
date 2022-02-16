@@ -161,7 +161,7 @@ lotube2freq = [out(intube2lo).lofreq];
     hifishchunk1idx = find(hitube2timff < 63);
     
         for j = 1:length(hifishchunk1idx)
-            hitube2ampchunk1(j) = hitube2ampff(hifishchunk1idx(j)) * ;
+            hitube2ampchunk1(j) = hitube2ampff(hifishchunk1idx(j)) * 3;
             hitube2timchunk1(j) = hitube2timff(hifishchunk1idx(j));
         end
 
@@ -264,8 +264,10 @@ figure(453); clf; hold on;
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
             %adjusted tube 2
+            plot(hitube2timchunk1, hitube2ampchunk1, 'ko');
             plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
             plot(hitube2timchunk3, hitube2ampchunk3, 'ko');
+            plot(hitube2timchunk4, hitube2ampchunk4, 'ko');
             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
 
 
