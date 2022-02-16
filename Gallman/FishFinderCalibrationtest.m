@@ -181,6 +181,13 @@ hifishchunk2idx = find(hitube2timff > 65 & hitube2timff < 157);
         hitube2timchunk2(j) = hitube2timff(hifishchunk2idx(j));
     end
 
+hifishchunk5idx = find(hitube2timff > 65 & hitube2timff < 157);
+
+    for j = 1:length(hifishchunk2idx)
+        hitube2ampchunk2(j) = hitube2ampff(hifishchunk2idx(j)) * 1.8;
+        hitube2timchunk2(j) = hitube2timff(hifishchunk2idx(j));
+    end
+
 %% plot
 
 figure(453); clf; hold on;
