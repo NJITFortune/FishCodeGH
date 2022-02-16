@@ -146,12 +146,14 @@ lotube2freq = [out(intube2lo).lofreq];
 
 %% chunking for calibration
 
+%hi freq fish
+%tube1
 hifishchunk1idx = find(hitube1timff < 63);
 
-for j = 1:length(hifishchunk1idx)
-    hitube1ampchunk1(j) = hitube1ampff(hifishchunk1idx(j)) * 3;
-    hitube1timchunk1(j) = hitube1timff(hifishchunk1idx(j));
-end
+    for j = 1:length(hifishchunk1idx)
+        hitube1ampchunk1(j) = hitube1ampff(hifishchunk1idx(j)) * 3;
+        hitube1timchunk1(j) = hitube1timff(hifishchunk1idx(j));
+    end
 
 clear hifishchunk3idx;
 clear hitube1ampchunk3;
@@ -159,18 +161,25 @@ clear hitube1timchunk3;
 
 hifishchunk3idx = find(hitube1timff > 157 & hitube1timff < 219);
 
-for j = 1:length(hifishchunk3idx)
-    hitube1ampchunk3(j) = hitube1ampff(hifishchunk3idx(j)) * 5.5;
-    hitube1timchunk3(j) = hitube1timff(hifishchunk3idx(j));
-end
+    for j = 1:length(hifishchunk3idx)
+        hitube1ampchunk3(j) = hitube1ampff(hifishchunk3idx(j)) * 5.5;
+        hitube1timchunk3(j) = hitube1timff(hifishchunk3idx(j));
+    end
 
 hifishchunk4idx = find(hitube1timff > 219 & hitube1timff < 229);
 
-for j = 1:length(hifishchunk4idx)
-    hitube1ampchunk4(j) = hitube1ampff(hifishchunk4idx(j)) * 3.5;
-    hitube1timchunk4(j) = hitube1timff(hifishchunk4idx(j));
-end
+    for j = 1:length(hifishchunk4idx)
+        hitube1ampchunk4(j) = hitube1ampff(hifishchunk4idx(j)) * 3.5;
+        hitube1timchunk4(j) = hitube1timff(hifishchunk4idx(j));
+    end
 
+%tube 2
+hifishchunk2idx = find(hitube2timff > & hitube2timff);
+
+    for j = 1:length(hifishchunk2idx)
+        hitube2ampchunk2(j) = hitube2ampff(hifishchunk2idx(j)) * 3.5;
+        hitube2timchunk2(j) = hitube2timff(hifishchunk2idx(j));
+    end
 
 %% plot
 
