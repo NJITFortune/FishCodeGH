@@ -273,7 +273,7 @@ clear hitube2timchunk5;
 %hi frequency fish
 figure(453); clf; hold on;
 
-    ax(1) = subplot(311); title('tube 1 adjustments'); hold on;
+    ax(1) = subplot(411); title('tube 1 adjustments'); hold on;
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
@@ -284,7 +284,7 @@ figure(453); clf; hold on;
             plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
            
-    ax(2) = subplot(312); title('tube 2 adjustments'); hold on;
+    ax(2) = subplot(412); title('tube 2 adjustments'); hold on;
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
@@ -300,8 +300,10 @@ figure(453); clf; hold on;
             plot(hitube1timcomb, hitube1ampcomb,'bo'); 
             plot(hitube2timcomb, hitube2ampcomb,'mo'); 
 
-    ax(3) = subplot(313); title('light cycle'); hold on;
+    ax(4) = subplot(414); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
+
+linkaxes(ax, 'x');
 
 
 %low frequency fish
