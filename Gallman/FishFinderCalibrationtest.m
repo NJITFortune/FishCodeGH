@@ -175,8 +175,10 @@ lotube2freq = [out(intube2lo).lofreq];
         end
 
     clear hifishchunk2idx;
+    clear hitube2ampchunk2;
+    clear hitube2timchunk2;
     %tube 2
-    hifishchunk2idx = find(hitube2timff > 63 & hitube2timff <= 157);
+    hifishchunk2idx = find(hitube2timff > 65 & hitube2timff <= 157);
     
         for j = 1:length(hifishchunk2idx)
             hitube2ampchunk2(j) = hitube2ampff(hifishchunk2idx(j)) * 1.8;
