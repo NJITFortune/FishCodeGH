@@ -174,10 +174,10 @@ hifishchunk4idx = find(hitube1timff > 219 & hitube1timff < 229);
     end
 
 %tube 2
-hifishchunk2idx = find(hitube2timff > & hitube2timff);
+hifishchunk2idx = find(hitube2timff > 65 & hitube2timff < 157);
 
     for j = 1:length(hifishchunk2idx)
-        hitube2ampchunk2(j) = hitube2ampff(hifishchunk2idx(j)) * 3.5;
+        hitube2ampchunk2(j) = hitube2ampff(hifishchunk2idx(j)) * 2;
         hitube2timchunk2(j) = hitube2timff(hifishchunk2idx(j));
     end
 
@@ -191,6 +191,7 @@ figure(453); clf; hold on;
             plot(hitube1timchunk1, hitube1ampchunk1, 'ko');
             plot(hitube1timchunk3, hitube1ampchunk3, 'ko');
             plot(hitube1timchunk4, hitube1ampchunk4, 'ko');
+            plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
            
     ax(2) = subplot(312); title('low freq fish'); hold on;
             plot(lotube1timff, lotube1ampff, 'bo');
