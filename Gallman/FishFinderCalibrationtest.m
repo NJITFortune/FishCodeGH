@@ -200,7 +200,7 @@ clear hitube1timchunk3;
     hifishchunk3idx = find(hitube2timff > 157 & hitube2timff < 219);
     
         for j = 1:length(hifishchunk3idx)
-            hitube2ampchunk3(j) = hitube2ampff(hifishchunk3idx(j)) * ;
+            hitube2ampchunk3(j) = hitube2ampff(hifishchunk3idx(j)) * 2;
             hitube2timchunk3(j) = hitube2timff(hifishchunk3idx(j));
         end
 
@@ -265,6 +265,7 @@ figure(453); clf; hold on;
             plot(hitube2timff, hitube2ampff, 'mo');
             %adjusted tube 2
             plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
+            plot(hitube2timchunk3, hitube2ampchunk3, 'ko');
             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
 
 
