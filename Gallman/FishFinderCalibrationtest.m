@@ -316,7 +316,7 @@ figure(453); clf; hold on;
     ax(3) = subplot(413); title('combined chunks'); hold on;
             plot(hitube1timcomb, hitube1ampcomb,'bo'); 
             plot(hitube2timcomb, hitube2ampcomb,'mo'); 
-            plot(tout.his.HiTim, tout.his.HiAmp, 'k.');
+            plot([tout.his.HiTim], [tout.his.HiAmp], 'k.');
 
     ax(4) = subplot(414); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
