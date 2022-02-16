@@ -153,6 +153,13 @@ for j = 1:length(hifishchunk1idx)
     hitube1timchunk1(j) = hitube1timff(hifishchunk1idx(j));
 end
 
+hifishchunk3idx = find(hitube3timff < );
+
+for j = 1:length(hifishchunk1idx)
+    hitube1ampchunk1(j) = hitube1ampff(hifishchunk1idx(j)) * 3;
+    hitube1timchunk1(j) = hitube1timff(hifishchunk1idx(j));
+end
+
 
 %% plot
 
