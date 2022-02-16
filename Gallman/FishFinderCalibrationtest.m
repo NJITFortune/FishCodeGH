@@ -261,7 +261,12 @@ clear hitube2timchunk5;
         end
 
 
-%non-adjusted chunks
+%combine chunks
+    %tube 1
+    hitube1ampcomb = [hitube1ampchunk1, hitube1ampchunk2, hitube1ampchunk3, hitube1ampchunk4, hitube1ampchunk5];
+    hitube1timcomb = [hitube1timchunk1, hitube1timchunk2, hitube1timchunk3, hitube1timchunk4, hitube1timchunk5];
+    hitube2ampcomb = [hitube2ampchunk1, hitube2ampchunk2, hitube2ampchunk3, hitube2ampchunk4, hitube2ampchunk5, hitube2ampchunk6];
+    hitube2timcomb = [hitube2timchunk1, hitube2timchunk2, hitube2timchunk3, hitube2timchunk4, hitube2timchunk5, hitube2timchunk6];
 
 %% plot
 
@@ -290,6 +295,10 @@ figure(453); clf; hold on;
             plot(hitube2timchunk4, hitube2ampchunk4, 'ko');
             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
             plot(hitube2timchunk6, hitube2ampchunk6, 'ko');
+
+    ax(3) = subplot(413); title('combined chunks'); hold on;
+            plot(hitube1timcomb, hitube1ampcomb,'bo'); 
+            plot(hitube2timcomb, hitube2ampcomb,'mo'); 
 
     ax(3) = subplot(313); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
