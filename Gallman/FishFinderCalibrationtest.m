@@ -278,7 +278,7 @@ clear hitube2timchunk5;
                 %tout.his(j).HiFreq = hitube1freqff(j);
             end
             %tube 2
-            clear j;
+         
             for j=1:length(hitube2ampcomb)
                 tout.his(j).HiAmp(:) = hitube2ampcomb(j);
                 tout.his(j).HiTim(:) = hitube2timcomb(j);
