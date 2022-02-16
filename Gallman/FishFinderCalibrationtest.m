@@ -153,7 +153,7 @@ for j = 1:length(hifishchunk1idx)
     hitube1timchunk1(j) = hitube1timff(hifishchunk1idx(j));
 end
 
-hifishchunk3idx = find(hitube1timff > 157 & hitube1timff < 228);
+hifishchunk3idx = find(hitube1timff > 157 & hitube1timff < 219);
 
 for j = 1:length(hifishchunk3idx)
     hitube1ampchunk3(j) = hitube1ampff(hifishchunk3idx(j)) * 5;
