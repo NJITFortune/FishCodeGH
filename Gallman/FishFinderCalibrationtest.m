@@ -166,7 +166,15 @@ lotube2freq = [out(intube2lo).lofreq];
         end
 
 %chunk 2 = tim > 65 and tim < 157
+    %tube 1
+    hifishchunk2idx = find(hitube1timff > 65 & hitube1timff < 157);
     
+        for j = 1:length(hifishchunk2idx)
+            hitube1ampchunk2(j) = hitube1ampff(hifishchunk2idx(j)) ;
+            hitube1timchunk2(j) = hitube1timff(hifishchunk2idx(j));
+        end
+
+    clear hifishchunk2idx;
     %tube 2
     hifishchunk2idx = find(hitube2timff > 65 & hitube2timff < 157);
     
@@ -175,16 +183,37 @@ lotube2freq = [out(intube2lo).lofreq];
             hitube2timchunk2(j) = hitube2timff(hifishchunk2idx(j));
         end
 
+%chunk 3 = tim > 157 & tim < 219;
+clear hifishchunk3idx;
+clear hitube1ampchunk3;
+clear hitube1timchunk3;
 
-
-
-    %tube 2
-    hifishchunk2idx = find(hitube2timff > 65 & hitube2timff < 157);
+    %tube1
+    hifishchunk3idx = find(hitube1timff > 157 & hitube1timff < 219);
     
-        for j = 1:length(hifishchunk2idx)
-            hitube2ampchunk2(j) = hitube2ampff(hifishchunk2idx(j)) * 1.8;
-            hitube2timchunk2(j) = hitube2timff(hifishchunk2idx(j));
+        for j = 1:length(hifishchunk3idx)
+            hitube1ampchunk3(j) = hitube1ampff(hifishchunk3idx(j)) * 5.5;
+            hitube1timchunk3(j) = hitube1timff(hifishchunk3idx(j));
         end
+    
+    %tube2
+    hifishchunk3idx = find(hitube2timff > 157 & hitube2timff < 219);
+    
+        for j = 1:length(hifishchunk3idx)
+            hitube2ampchunk3(j) = hitube2ampff(hifishchunk3idx(j)) * 5.5;
+            hitube2timchunk3(j) = hitube2timff(hifishchunk3idx(j));
+        end
+
+
+hifishchunk4idx = find(hitube1timff > 219 & hitube1timff < 229);
+
+    for j = 1:length(hifishchunk4idx)
+        hitube1ampchunk4(j) = hitube1ampff(hifishchunk4idx(j)) * 3.5;
+        hitube1timchunk4(j) = hitube1timff(hifishchunk4idx(j));
+    end
+
+
+
 
 hifishchunk5idx = find(hitube2timff > 228);
 
@@ -194,26 +223,6 @@ hifishchunk5idx = find(hitube2timff > 228);
     end
         
  
-
-%chunk 3 = tim > 157 & tim < 219;
-clear hifishchunk3idx;
-clear hitube1ampchunk3;
-clear hitube1timchunk3;
-
-%tube1
-hifishchunk3idx = find(hitube1timff > 157 & hitube1timff < 219);
-
-    for j = 1:length(hifishchunk3idx)
-        hitube1ampchunk3(j) = hitube1ampff(hifishchunk3idx(j)) * 5.5;
-        hitube1timchunk3(j) = hitube1timff(hifishchunk3idx(j));
-    end
-
-hifishchunk4idx = find(hitube1timff > 219 & hitube1timff < 229);
-
-    for j = 1:length(hifishchunk4idx)
-        hitube1ampchunk4(j) = hitube1ampff(hifishchunk4idx(j)) * 3.5;
-        hitube1timchunk4(j) = hitube1timff(hifishchunk4idx(j));
-    end
 
 
 
