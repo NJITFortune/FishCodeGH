@@ -271,17 +271,18 @@ clear hitube2timchunk5;
 %combine tubes
 %hi frequency fish
         
-            %tube 2
-            for j=1:length(intube2hi)
-                tout.his(intube2hi(j)).HiAmp1 = in(intube2hi(j)).e2hiamp; %* calibrationfactor;
-                tout.his(intube2hi(j)).HiTim1 = in(intube2hi(j)).timcont/3600;
-                tout.his(intube2hi(j)).HIfreq1 = [in(intube2hi(j)).hifreq];
-            end
             %tube 1
-            for j=1:length(intube1hi)
-                tout.his(intube1hi(j)).HiAmp1 = in(intube1hi(j)).e1hiamp;
-                tout.his(intube1hi(j)).HiTim1 = in(intube1hi(j)).timcont/3600;
-                tout.his(intube1hi(j)).HIfreq1 = [in(intube1hi(j)).hifreq];
+            for j=1:length(hitube1ampcomb)
+                tout.his(j).HiAmp(:) = hitube1ampcomb(j);
+                tout.his(j).HiTim(:) = hitube1timcomb(j);
+                tout.his(j).HIfreq1 = [in(hitube1timcomb(j)).hifreq];
+            end
+            %tube 2
+            clear j;
+            for j=1:length(hitube2ampcomb)
+                tout.his(j).HiAmp(:) = hitube2ampcomb(j);
+                tout.his(j).HiTim(:) = hitube2timcomb(j);
+                tout.his(j).HIfreq1 = [in(hitube2timcomb(j)).hifreq];
             end
 
 %% plot
