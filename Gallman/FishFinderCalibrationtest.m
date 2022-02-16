@@ -272,13 +272,6 @@ clear hitube2timchunk5;
 %hi frequency fish
 clear tout.his.HiAmp
 clear tout.his.HiTim
-
-            %tube 1
-            for j=1:length(hitube1ampcomb)
-                tout.his(j).HiAmp(:) = hitube1ampcomb(j);
-                tout.his(j).HiTim(:) = hitube1timcomb(j);
-                %tout.his(j).HiFreq = hitube1freqff(j);
-            end
             %tube 2
          
             for j=1:length(hitube2ampcomb)
@@ -286,6 +279,13 @@ clear tout.his.HiTim
                 tout.his(j).HiTim(:) = hitube2timcomb(j);
                 %tout.his(j).HiFreq = hitube2freqff(j);
             end
+            %tube 1
+            for j=1:length(hitube1ampcomb)
+                tout.his(j).HiAmp(:) = hitube1ampcomb(j);
+                tout.his(j).HiTim(:) = hitube1timcomb(j);
+                %tout.his(j).HiFreq = hitube1freqff(j);
+            end
+            
 
 %% plot
 
