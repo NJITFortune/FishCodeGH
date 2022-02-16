@@ -161,15 +161,46 @@ lotube2freq = [out(intube2lo).lofreq];
     hifishchunk1idx = find(hitube2timff < 63);
     
         for j = 1:length(hifishchunk1idx)
-            hitube2ampchunk1(j) = hitube2ampff(hifishchunk1idx(j)) * 3;
+            hitube2ampchunk1(j) = hitube2ampff(hifishchunk1idx(j)) * ;
             hitube2timchunk1(j) = hitube2timff(hifishchunk1idx(j));
         end
 
-%chunk 2 = tim > 157 & tim < 219;
+%chunk 2 = tim > 65 and tim < 157
+    
+    %tube 2
+    hifishchunk2idx = find(hitube2timff > 65 & hitube2timff < 157);
+    
+        for j = 1:length(hifishchunk2idx)
+            hitube2ampchunk2(j) = hitube2ampff(hifishchunk2idx(j)) * 1.8;
+            hitube2timchunk2(j) = hitube2timff(hifishchunk2idx(j));
+        end
+
+
+
+
+    %tube 2
+    hifishchunk2idx = find(hitube2timff > 65 & hitube2timff < 157);
+    
+        for j = 1:length(hifishchunk2idx)
+            hitube2ampchunk2(j) = hitube2ampff(hifishchunk2idx(j)) * 1.8;
+            hitube2timchunk2(j) = hitube2timff(hifishchunk2idx(j));
+        end
+
+hifishchunk5idx = find(hitube2timff > 228);
+
+    for j = 1:length(hifishchunk5idx)
+        hitube2ampchunk5(j) = hitube2ampff(hifishchunk5idx(j)) * 2;
+        hitube2timchunk5(j) = hitube2timff(hifishchunk5idx(j));
+    end
+        
+ 
+
+%chunk 3 = tim > 157 & tim < 219;
 clear hifishchunk3idx;
 clear hitube1ampchunk3;
 clear hitube1timchunk3;
 
+%tube1
 hifishchunk3idx = find(hitube1timff > 157 & hitube1timff < 219);
 
     for j = 1:length(hifishchunk3idx)
@@ -184,20 +215,7 @@ hifishchunk4idx = find(hitube1timff > 219 & hitube1timff < 229);
         hitube1timchunk4(j) = hitube1timff(hifishchunk4idx(j));
     end
 
-%tube 2
-hifishchunk2idx = find(hitube2timff > 65 & hitube2timff < 157);
 
-    for j = 1:length(hifishchunk2idx)
-        hitube2ampchunk2(j) = hitube2ampff(hifishchunk2idx(j)) * 1.8;
-        hitube2timchunk2(j) = hitube2timff(hifishchunk2idx(j));
-    end
-
-hifishchunk5idx = find(hitube2timff > 228);
-
-    for j = 1:length(hifishchunk5idx)
-        hitube2ampchunk5(j) = hitube2ampff(hifishchunk5idx(j)) * 2;
-        hitube2timchunk5(j) = hitube2timff(hifishchunk5idx(j));
-    end
 
 %non-adjusted chunks
 
