@@ -405,6 +405,11 @@ LoTim = [lotube1timcomb, lotube2timff];
 
 %% save into output structure
 %hi freq fish
+% out.HiAmp = HiAmp;
+% out.HiTim = HiTim;
+% out.LoAmp = LoAmp;
+% out.LoTim = LoTim;
+
 for j = 1:length(HiAmp)
     out.his(j).HiAmp(:) = HiAmp(j);
     out.his(j).HiTim(:) = HiTim(j);
@@ -415,4 +420,4 @@ for j = 1:length(LoAmp)
     out.los(j).LoAmp(:) = LoAmp(j);
     out.los(j).LoTim(:) = LoTim(j);
 end
-
+ 
