@@ -420,8 +420,8 @@ linkaxes(ax, 'x');
     ax(1) = subplot(311); title('high freq fish'); hold on;
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
-            plot(lotube1timchunk4, lotube1timchunk4, 'ko');
-            plot(lotube1timchunk2, lotube1timchunk2, 'ko');
+            plot(lotube1timchunk4, lotube1ampchunk4, 'ko');
+            plot(lotube1timchunk2, lotube1ampchunk2, 'ko');
             
            
     ax(2) = subplot(312); title('low freq fish'); hold on;
