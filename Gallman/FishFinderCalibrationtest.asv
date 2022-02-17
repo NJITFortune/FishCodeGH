@@ -421,6 +421,4 @@ for j = 1:length(LoAmp)
     los(j).LoTim(:) = LoTim(j);
 end
 
-%add to data structure
-HA = num2cell(his);
-[out.his] = HA{:};
+out(1).his = his;
