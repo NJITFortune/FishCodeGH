@@ -341,8 +341,6 @@ linkaxes(ax, 'x');
             lotube1timchunk1(j) = lotube1timff(lofishchunk1idx(j));
         end
 
-
-
 %chunk 2 = tim >= 67 & tim < 156
     %tube1 
     clear lotube1ampchunk2;
@@ -366,7 +364,6 @@ linkaxes(ax, 'x');
         end
 
 
-
 %chunk 4 = tim >= 222
     %tube1
     clear lotube1ampchunk4;
@@ -378,18 +375,14 @@ linkaxes(ax, 'x');
             lotube1timchunk4(j) = lotube1timff(lofishchunk4idx(j));
         end
 
-    
-
 %combine chunks
     %tube 1
     lotube1ampcomb = [lotube1ampchunk1, lotube1ampchunk2, lotube1ampchunk3, lotube1ampchunk4];
     lotube1timcomb = [lotube1timchunk1, lotube1timchunk2, lotube1timchunk3, lotube1timchunk4];
-    lotube2ampcomb = [hitube2ampchunk1, hitube2ampchunk2, hitube2ampchunk3, hitube2ampchunk4, hitube2ampchunk5, hitube2ampchunk6];
-    lotube2timcomb = [hitube2timchunk1, hitube2timchunk2, hitube2timchunk3, hitube2timchunk4, hitube2timchunk5, hitube2timchunk6];
+    
 
-
-HiAmp = [hitube1ampcomb, hitube2ampcomb];
-HiTim = [hitube1timcomb, hitube2timcomb];
+LoAmp = [lotube1ampcomb, lotube2ampff];
+LoTim = [lotube1timcomb, lotube2timff];
 
 
 %low frequency fish
@@ -400,6 +393,7 @@ HiTim = [hitube1timcomb, hitube2timcomb];
             plot(lotube2timff, lotube2ampff, 'mo');
             plot(lotube1timchunk4, lotube1ampchunk4, 'ko');
             plot(lotube1timchunk2, lotube1ampchunk2, 'ko');
+            plot(LoTim, LoAmp, 'k.');
             
            
     ax(2) = subplot(312); title('low freq fish'); hold on;
@@ -408,4 +402,10 @@ HiTim = [hitube1timcomb, hitube2timcomb];
 
     ax(3) = subplot(313); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
+
+%% save into output structure
+newout.HiAmp;
+newout.HiTim;
+newout.LoAmp;
+newout.LoTim;
 
