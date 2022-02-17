@@ -341,14 +341,6 @@ linkaxes(ax, 'x');
             lotube1timchunk1(j) = lotube1timff(lofishchunk1idx(j));
         end
 
-    %tube2
-    clear lofishchunk1idx;
-    lofishchunk1idx = find(lotube2timff < 67);
-    
-        for j = 1:length(lofishchunk1idx)
-            lotube2ampchunk1(j) = lotube2ampff(lofishchunk1idx(j));
-            lotube2timchunk1(j) = lotube2timff(lofishchunk1idx(j));
-        end
 
 
 %chunk 2 = tim >= 67 & tim < 156
@@ -362,15 +354,6 @@ linkaxes(ax, 'x');
             lotube1timchunk2(j) = lotube1timff(lofishchunk2idx(j));
         end
 
-    %tube2
-    clear lofishchunk2idx;
-   
-    lofishchunk2idx = find(lotube2timff >= 67 & lotube2timff < 156);
-    
-        for j = 1:length(lofishchunk2idx)
-            lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j));
-            lotube2timchunk2(j) = lotube2timff(lofishchunk2idx(j));
-        end
 
 %chunk 3 = tim >= 156 & tim < 222
     %tube1
@@ -380,15 +363,6 @@ linkaxes(ax, 'x');
         for j = 1:length(lofishchunk3idx)
             lotube1ampchunk3(j) = lotube1ampff(lofishchunk3idx(j));
             lotube1timchunk3(j) = lotube1timff(lofishchunk3idx(j));
-        end
-
-    %tube2
-    clear lofishchunk3idx;
-    lofishchunk3idx = find(lotube2timff >= 156 & lotube2timff < 222);
-    
-        for j = 1:length(lofishchunk3idx)
-            lotube2ampchunk3(j) = lotube2ampff(lofishchunk3idx(j));
-            lotube2timchunk3(j) = lotube2timff(lofishchunk3idx(j));
         end
 
 
@@ -404,14 +378,16 @@ linkaxes(ax, 'x');
             lotube1timchunk4(j) = lotube1timff(lofishchunk4idx(j));
         end
 
-    %tube2
-    clear lofishchunk4idx;
-    lofishchunk4idx = find(lotube2timff >= 222);
     
-        for j = 1:length(lofishchunk4idx)
-            lotube2ampchunk4(j) = lotube2ampff(lofishchunk4idx(j));
-            lotube2timchunk4(j) = lotube2timff(lofishchunk4idx(j));
-        end
+
+%combine chunks
+    %tube 1
+    lotube1ampcomb = [lotube1ampchunk1, lotube1ampchunk2, lotube1ampchunk3, lotube1ampchunk4];
+    lotube1timcomb = [lotube1timchunk1, lotube1timchunk2, lotube1timchunk3, lotube1timchunk4];
+    
+
+LoAmp = [lotube1ampcomb, lotube2ampff];
+LoTim = [lotube1timcomb, lotube2timff];
 
 
 %low frequency fish
@@ -422,6 +398,7 @@ linkaxes(ax, 'x');
             plot(lotube2timff, lotube2ampff, 'mo');
             plot(lotube1timchunk4, lotube1ampchunk4, 'ko');
             plot(lotube1timchunk2, lotube1ampchunk2, 'ko');
+            plot(LoTim, LoAmp, 'k.');
             
            
     ax(2) = subplot(312); title('low freq fish'); hold on;
