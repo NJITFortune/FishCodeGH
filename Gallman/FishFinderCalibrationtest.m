@@ -411,13 +411,16 @@ LoTim = [lotube1timcomb, lotube2timff];
 % out.LoTim = LoTim;
 
 for j = 1:length(HiAmp)
-    out.his(j).HiAmp(:) = HiAmp(j);
-    out.his(j).HiTim(:) = HiTim(j);
+    his(j).HiAmp(:) = HiAmp(j);
+    his(j).HiTim(:) = HiTim(j);
 end
 
 %lo freq fish
 for j = 1:length(LoAmp)
-    out.los(j).LoAmp(:) = LoAmp(j);
-    out.los(j).LoTim(:) = LoTim(j);
+    los(j).LoAmp(:) = LoAmp(j);
+    los(j).LoTim(:) = LoTim(j);
 end
- 
+
+%add to data structure
+HA = num2cell(his.HiAmp);
+[out.HiAmp] = HA{:};
