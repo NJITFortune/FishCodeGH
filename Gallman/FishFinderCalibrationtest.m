@@ -423,4 +423,4 @@ end
 
 %add to data structure
 HA = num2cell(his);
-[out.HiAmp] = HA{:};
+[out.HiAmp] = HA{1,:};
