@@ -144,9 +144,8 @@ lotube2freq = [out(intube2lo).lofreq];
 % 
 %     pause(1);
 
-%% chunking for calibration
+%% HIGH FREQUENCY FISH chunking for calibration
 
-%hi freq fish
 %chunk 1 = tim < 63
     %tube1
     hifishchunk1idx = find(hitube1timff < 63);
@@ -332,6 +331,7 @@ linkaxes(ax, 'x');
 
 
 
+%% LOW FREQUENCY FISH chunking for calibration
 
 
 %low frequency fish
