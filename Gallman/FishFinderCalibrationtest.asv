@@ -337,17 +337,17 @@ linkaxes(ax, 'x');
     lofishchunk1idx = find(lotube1timff < 67);
     
         for j = 1:length(lofishchunk1idx)
-            lotube1ampchunk1(j) = hitube1ampff(lofishchunk1idx(j)) * 3;
-            lotube1timchunk1(j) = hitube1timff(lofishchunk1idx(j));
+            lotube1ampchunk1(j) = lotube1ampff(lofishchunk1idx(j));
+            lotube1timchunk1(j) = lotube1timff(lofishchunk1idx(j));
         end
 
     %tube2
-    clear hifishchunk1idx;
-    hifishchunk1idx = find(hitube2timff < 63);
+    clear lofishchunk1idx;
+    lofishchunk1idx = find(lotube2timff < 67);
     
-        for j = 1:length(hifishchunk1idx)
-            hitube2ampchunk1(j) = hitube2ampff(hifishchunk1idx(j)) * 2.5;
-            hitube2timchunk1(j) = hitube2timff(hifishchunk1idx(j));
+        for j = 1:length(lofishchunk1idx)
+            lotube1ampchunk1(j) = lotube1ampff(lofishchunk1idx(j));
+            lotube1timchunk1(j) = lotube1timff(lofishchunk1idx(j));
         end
 
 %low frequency fish
