@@ -144,9 +144,8 @@ lotube2freq = [out(intube2lo).lofreq];
 % 
 %     pause(1);
 
-%% chunking for calibration
+%% HIGH FREQUENCY FISH chunking for calibration
 
-%hi freq fish
 %chunk 1 = tim < 63
     %tube1
     hifishchunk1idx = find(hitube1timff < 63);
@@ -332,24 +331,21 @@ linkaxes(ax, 'x');
 
 
 
+%% LOW FREQUENCY FISH chunking for calibration
 
 
 %low frequency fish
-% figure(454); clf; hold on;
+ figure(454); clf; hold on;
 % 
-%     ax(1) = subplot(311); title('high freq fish'); hold on;
-%             plot(hitube1timff, hitube1ampff, 'bo');
-%             plot(hitube2timff, hitube2ampff, 'mo');
-%             plot(hitube1timchunk1, hitube1ampchunk1, 'ko');
-%             plot(hitube1timchunk3, hitube1ampchunk3, 'ko');
-%             plot(hitube1timchunk4, hitube1ampchunk4, 'ko');
-%             plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
-%             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
-%            
-%     ax(2) = subplot(312); title('low freq fish'); hold on;
-%             plot(lotube1timff, lotube1ampff, 'bo');
-%             plot(lotube2timff, lotube2ampff, 'mo');
-% 
-%     ax(3) = subplot(313); title('light cycle'); hold on;
-%             plot([out.timcont]/3600, [out.light]);
+    ax(1) = subplot(311); title('high freq fish'); hold on;
+            plot(hitube1timff, hitube1ampff, 'bo');
+            plot(hitube2timff, hitube2ampff, 'mo');
+            
+           
+    ax(2) = subplot(312); title('low freq fish'); hold on;
+            plot(lotube1timff, lotube1ampff, 'bo');
+            plot(lotube2timff, lotube2ampff, 'mo');
+
+    ax(3) = subplot(313); title('light cycle'); hold on;
+            plot([out.timcont]/3600, [out.light]);
 
