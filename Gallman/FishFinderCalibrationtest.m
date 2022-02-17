@@ -341,8 +341,6 @@ linkaxes(ax, 'x');
             lotube1timchunk1(j) = lotube1timff(lofishchunk1idx(j));
         end
 
-
-
 %chunk 2 = tim >= 67 & tim < 156
     %tube1 
     clear lotube1ampchunk2;
@@ -366,7 +364,6 @@ linkaxes(ax, 'x');
         end
 
 
-
 %chunk 4 = tim >= 222
     %tube1
     clear lotube1ampchunk4;
@@ -377,8 +374,6 @@ linkaxes(ax, 'x');
             lotube1ampchunk4(j) = lotube1ampff(lofishchunk4idx(j))/2;
             lotube1timchunk4(j) = lotube1timff(lofishchunk4idx(j));
         end
-
-    
 
 %combine chunks
     %tube 1
@@ -407,4 +402,17 @@ LoTim = [lotube1timcomb, lotube2timff];
 
     ax(3) = subplot(313); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
+
+%% save into output structure
+%hi freq fish
+for j = 1:length(HiAmp)
+    out.his(j).HiAmp(:) = HiAmp(j);
+    out.his(j).HiTim(:) = HiTim(j);
+end
+
+%lo freq fish
+for j = 1:length(LoAmp)
+    out.los(j).LoAmp(:) = LoAmp(j);
+    out.los(j).LoTim(:) = LoTim(j);
+end
 
