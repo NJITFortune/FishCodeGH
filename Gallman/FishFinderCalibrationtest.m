@@ -338,8 +338,8 @@ linkaxes(ax, 'x');
  figure(454); clf; hold on;
 % 
     ax(1) = subplot(311); title('high freq fish'); hold on;
-            plot(hitube1timff, hitube1ampff, 'bo');
-            plot(hitube2timff, hitube2ampff, 'mo');
+            plot(lotube1timff, lotube1ampff, 'bo');
+            plot(lotube2timff, lotube2ampff, 'mo');
             
            
     ax(2) = subplot(312); title('low freq fish'); hold on;
