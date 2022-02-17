@@ -421,4 +421,4 @@ for j = 1:length(LoAmp)
     los(j).LoTim(:) = LoTim(j);
 end
 
-out(j) = 
+out.his = his;l
