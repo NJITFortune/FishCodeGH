@@ -404,8 +404,19 @@ LoTim = [lotube1timcomb, lotube2timff];
             plot([out.timcont]/3600, [out.light]);
 
 %% save into output structure
-newout.HiAmp;
-newout.HiTim;
-newout.LoAmp;
-newout.LoTim;
+%hi freq fish
+out.HiAmp = HiAmp;
+out.HiTim = HiTim;
+out.LoAmp = LoAmp;
+out.LoTim = LoTim;
+for j = 1:length(HiAmp)
+    out.his(j).HiAmp(:) = HiAmp(j);
+    out.his(j).HiTim(:) = HiTim(j);
+end
+
+%lo freq fish
+for j = 1:length(LoAmp)
+    out.los(j).LoAmp(:) = LoAmp(j);
+    out.los(j).LoTim(:) = LoTim(j);
+end
 
