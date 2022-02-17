@@ -355,7 +355,7 @@ linkaxes(ax, 'x');
     %tube1
     lofishchunk2idx = find(lotube1timff >= 67 & lotube1timff < 156);
     
-        for j = 1:length(lofishchunk1idx)
+        for j = 1:length(lofishchunk2idx)
             lotube1ampchunk2(j) = lotube1ampff(lofishchunk2idx(j))/2;
             lotube1timchunk2(j) = lotube1timff(lofishchunk2idx(j));
         end
@@ -369,22 +369,22 @@ linkaxes(ax, 'x');
             lotube2timchunk2(j) = lotube2timff(lofishchunk2idx(j));
         end
 
-%chunk 3 = tim > 222
+%chunk 3 = tim >= 156 & tim < 222
     %tube1
-    lofishchunk2idx = find(lotube1timff >= 67 & lotube1timff < 156);
+    lofishchunk3idx = find(lotube1timff >= 156 & lotube1timff < 222);
     
-        for j = 1:length(lofishchunk1idx)
+        for j = 1:length(lofishchunk3idx)
             lotube1ampchunk2(j) = lotube1ampff(lofishchunk2idx(j))/2;
             lotube1timchunk2(j) = lotube1timff(lofishchunk2idx(j));
         end
 
     %tube2
     clear lofishchunk2idx;
-    lofishchunk2idx = find(lotube2timff >= 67 & lotube2timff < 156);
+    lofishchunk3idx = find(lotube2timff >= 156 & lotube2timff < 222);
     
-        for j = 1:length(lofishchunk2idx)
-            lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j));
-            lotube2timchunk2(j) = lotube2timff(lofishchunk2idx(j));
+        for j = 1:length(lofishchunk3idx)
+            lotube2ampchunk2(j) = lotube2ampff(lofishchunk3idx(j));
+            lotube2timchunk2(j) = lotube2timff(lofishchunk3idx(j));
         end
 
 
