@@ -422,5 +422,5 @@ for j = 1:length(LoAmp)
 end
 
 %add to data structure
-HA = num2cell(his.HiAmp);
+HA = num2cell(his);
 [out.HiAmp] = HA{:};
