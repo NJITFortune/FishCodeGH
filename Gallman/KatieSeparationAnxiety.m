@@ -159,7 +159,7 @@ for j=2:length(iFiles)
 
 % Set current frequencies
 
-currhifreq = tmphifreq2;         
+currhifreq = 450;         
 currlofreq = tmplofreq1;  
 % 
 %     if tmploamp1 > tmploamp2
