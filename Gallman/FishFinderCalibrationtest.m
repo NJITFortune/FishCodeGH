@@ -37,6 +37,10 @@ lotube2freq = [out(intube2lo).lofreq];
         
 %% filter by fish frequency
 %hifreq
+clear hitube1ampff;
+clear hitube1timff;
+clear hitube1freqff;
+         
 figure(1); clf;
 
     histogram(hitube1freq, 100); hold on;
@@ -65,6 +69,9 @@ figure(1); clf;
     
     
 figure(1); clf;
+clear hitube2ampff;
+clear hitube2timff;
+clear hitube2freqff;
 
     histogram(hitube2freq, 100); hold on;
     
@@ -92,6 +99,9 @@ figure(1); clf;
 
 %lofreq
 figure(1); clf;
+clear lotube1ampff;
+clear lotube1timff;
+clear lotube1freqff;
 
     histogram(lotube1freq, 100); hold on;
     
@@ -119,6 +129,9 @@ figure(1); clf;
 
   
 figure(1); clf;
+clear lotube2ampff;
+clear lotube2timff;
+clear lotube2freqff;
 
     histogram(lotube2freq, 100); hold on;
     
