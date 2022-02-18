@@ -165,7 +165,7 @@ figure(452); clf; hold on;
 %             plot(hitube2tim, hitube2freq, 'k.');
 %          plot(hitube2timff, hitube2freqff,'b.'); 
 
-            plot(lotube1tim, lotube1freq, 'k.');
+            %plot(lotube1tim, lotube1freq, 'k.');
          plot(lotube1timff, lotube1freqff,'m.'); 
 
             plot(lotube2tim, lotube2freq, 'k.');
