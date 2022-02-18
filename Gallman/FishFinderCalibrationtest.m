@@ -411,14 +411,13 @@ LoTim = [lotube1timcomb, lotube2timff];
 % out.LoTim = LoTim;
 
 for j = 1:length(HiAmp)
-    his(j).HiAmp(:) = HiAmp(j);
-    his(j).HiTim(:) = HiTim(j);
+    fish.his(j).HiAmp(:) = HiAmp(j);
+    fish.his(j).HiTim(:) = HiTim(j);
 end
 
 %lo freq fish
 for j = 1:length(LoAmp)
-    los(j).LoAmp(:) = LoAmp(j);
-    los(j).LoTim(:) = LoTim(j);
+    fish.los(j).LoAmp(:) = LoAmp(j);
+    fish.los(j).LoTim(:) = LoTim(j);
 end
 
-out(1).his = his;
