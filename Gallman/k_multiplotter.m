@@ -40,10 +40,10 @@ figure(66); clf; title('By fish'); hold on;
    
 
     axs(3) = subplot(513); hold on; title('Frequency ');
-        plot([out.fish.his.HiTim], [out.fish.his.HIfreq], 'k.');
-            plot([out.fish.his(tthi).HiTim], [out.fish.his(tthi).HIfreq], '.','Color', teal); 
-        plot([out.fish.los.LoTim], [out.fish.los.LOfreq], 'k.');
-            plot([out.fish.los(ttlo).LoTim], [out.fish.los(ttlo).LOfreq], '.','Color', orange);
+        plot([out.fish.his.HiTim], [out.fish.his.HiFreq], 'k.');
+            plot([out.fish.his(tthi).HiTim], [out.fish.his(tthi).HiFreq], '.','Color', teal); 
+        plot([out.fish.los.LoTim], [out.fish.los.LoFreq], 'k.');
+            plot([out.fish.los(ttlo).LoTim], [out.fish.los(ttlo).LoFreq], '.','Color', orange);
         
     axs(4) = subplot(514); hold on; title('Temperature');
             plot([out.s.timcont]/3600, [out.s.temp], 'r.');
