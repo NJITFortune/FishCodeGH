@@ -270,6 +270,7 @@ clear hitube2timchunk5;
 
 HiAmp = [hitube1ampcomb, hitube2ampcomb];
 HiTim = [hitube1timcomb, hitube2timcomb];
+HiFreq = [hitube1freqff, hitube2freqff];
 
 
 % %combine tubes
@@ -383,6 +384,7 @@ linkaxes(ax, 'x');
 
 LoAmp = [lotube1ampcomb, lotube2ampff];
 LoTim = [lotube1timcomb, lotube2timff];
+LoFreq = [lotube1freqff, lotube2freqff];
 
 
 %low frequency fish
@@ -410,16 +412,17 @@ LoTim = [lotube1timcomb, lotube2timff];
 % out.LoAmp = LoAmp;
 % out.LoTim = LoTim;
 
-hifreqidx = find(HiTim);
+
 for j = 1:length(HiAmp)
     fish.his(j).HiAmp(:) = HiAmp(j);
     fish.his(j).HiTim(:) = HiTim(j);
-    fish.his
+    fish.his(j).HiFreq(:) = HiFreq(j);
 end
 
 %lo freq fish
 for j = 1:length(LoAmp)
     fish.los(j).LoAmp(:) = LoAmp(j);
     fish.los(j).LoTim(:) = LoTim(j);
+    fish.los(j).LoFreq(:) = LoFreq(j);
 end
 
