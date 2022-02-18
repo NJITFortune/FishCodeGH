@@ -170,8 +170,8 @@ figure(452); clf; hold on;
             %raw amp
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
-            plot(hitube2timff, hitube2ampff, 'mo');
-            plot(hitube1timff, hitube1ampff, 'mo');
+            plot(hitube2timff, hitube2ampff, 'ko');
+            plot(hitube1timff, hitube1ampff, 'ko');
             
     ax(3) = subplot(413); title('combined chunks'); hold on; ylim([300, 500]);
            plot(hitube1tim, hitube1freq, 'k.');
