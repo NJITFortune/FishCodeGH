@@ -159,8 +159,8 @@ figure(452); clf; hold on;
             plot(lotube2timff, lotube2ampff, 'mo');
             
     ax(3) = subplot(413); title('combined chunks'); hold on; ylim([300, 500]);
-            plot(hitube1tim, hitube1freq, 'k.');
-           plot(hitube1timff, hitube1freqff,'b.'); 
+           % plot(hitube1tim, hitube1freq, 'k.');
+          % plot(hitube1timff, hitube1freqff,'b.'); 
 
             plot(hitube2tim, hitube2freq, 'k.');
          plot(hitube2timff, hitube2freqff,'b.'); 
