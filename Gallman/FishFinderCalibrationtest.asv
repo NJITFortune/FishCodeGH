@@ -37,6 +37,10 @@ lotube2freq = [out(intube2lo).lofreq];
         
 %% filter by fish frequency
 %hifreq
+clear hitube1ampff;
+clear hitube1timff;
+clear hitube1freqff;
+         
 figure(1); clf;
 
     histogram(hitube1freq, 100); hold on;
@@ -65,6 +69,9 @@ figure(1); clf;
     
     
 figure(1); clf;
+clear hitube2ampff;
+clear hitube1timff;
+clear hitube1freqff;
 
     histogram(hitube2freq, 100); hold on;
     
@@ -158,14 +165,18 @@ figure(452); clf; hold on;
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
             
-    ax(3) = subplot(413); title('combined chunks'); hold on;
-            plot(hitube1tim, hitube1freq, 'k.');
-            plot(hitube1timff, hitube1freqff,'b.'); 
+    ax(3) = subplot(413); title('combined chunks'); hold on; ylim([300, 500]);
+           plot(hitube1tim, hitube1freq, 'k.');
+          plot(hitube1timff, hitube1freqff,'b.'); 
 
             plot(hitube2tim, hitube2freq, 'k.');
-            plot(hitube2timcomb, hitube2ampcomb,'mo'); 
-           % plot([tout.his.HiTim], [tout.his.HiAmp], 'k.');
-            plot(HiTim, HiAmp, 'k.');
+         plot(hitube2timff, hitube2freqff,'b.'); 
+
+            plot(lotube1tim, lotube1freq, 'k.');
+         plot(lotube1timff, lotube1freqff,'m.'); 
+
+            plot(lotube2tim, lotube2freq, 'k.');
+            plot(lotube2timff, lotube2freqff,'m.'); 
 
     ax(4) = subplot(414); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
