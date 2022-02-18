@@ -309,7 +309,7 @@ figure(453); clf; hold on;
 %             plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
 %             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
            
-    ax(2) = subplot(312); title('tube 2 adjustments'); hold on;
+    ax(2) = subplot(312); title('tube 2 adjustments'); hold on; ylim([0,5]);
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
