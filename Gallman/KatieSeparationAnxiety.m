@@ -6,7 +6,7 @@
 userfilespec = 'Eigen*';
 %% Prep
     Fs = 40000; %sample rate
-    freqs = [200 500]; %freq range of typical eigen EOD
+    freqs = [200 700]; %freq range of typical eigen EOD
     %userfilespec = 'Eigen*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
