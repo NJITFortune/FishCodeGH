@@ -296,10 +296,9 @@ HiFreq = [hitube1freqff, hitube2freqff];
 
 %hi frequency fish
 figure(453); clf; hold on;
-ax = gca;
-ax.YLim = [0,5];
 
-    ax(1) = subplot(311); title('tube 1 adjustments'); hold on;
+
+    ax(1) = subplot(311); title('tube 1 adjustments'); hold on; ylim([0,5]);
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
