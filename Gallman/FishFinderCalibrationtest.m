@@ -325,6 +325,7 @@ figure(453); clf; hold on;
             plot(hitube2timcomb, hitube2ampcomb,'mo'); 
            % plot([tout.his.HiTim], [tout.his.HiAmp], 'k.');
             plot(HiTim, HiAmp, 'k.');
+            
     ax(4) = subplot(414); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
 
