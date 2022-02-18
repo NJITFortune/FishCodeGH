@@ -453,6 +453,8 @@ LoFreq = [lotube1freqff, lotube2freqff];
 
     ax(3) = subplot(313); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
+            
+linkaxes(ax, 'x');
 
 %% save into output structure
 %hi freq fish
