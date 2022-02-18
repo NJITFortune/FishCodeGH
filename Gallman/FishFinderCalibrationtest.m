@@ -179,10 +179,10 @@ figure(452); clf; hold on;
          plot(hitube2timff, hitube2freqff,'b.'); 
 
             plot(lotube1tim, lotube1freq, 'k.');
-         plot(lotube1timff, lotube1freqff,'r.'); 
+         plot(lotube1timff, lotube1freqff,'m.'); 
 
             plot(lotube2tim, lotube2freq, 'k.');
-            plot(lotube2timff, lotube2freqff,'m.'); 
+            plot(lotube2timff, lotube2freqff,'r.'); 
 
     ax(4) = subplot(414); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
