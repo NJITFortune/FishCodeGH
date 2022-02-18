@@ -162,7 +162,8 @@ for j=2:length(iFiles)
 if tmphifreq2 > 440
 currhifreq = tmphifreq2;
 else
-currhifreq
+currhifreq = 450;
+end
 
 
 
