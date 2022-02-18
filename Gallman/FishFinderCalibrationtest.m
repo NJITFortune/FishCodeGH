@@ -416,13 +416,13 @@ LoFreq = [lotube1freqff, lotube2freqff];
 for j = 1:length(HiAmp)
     fish.his(j).HiAmp(:) = HiAmp(j);
     fish.his(j).HiTim(:) = HiTim(j);
-    fish.his(j).HiTim(:) = HiFreq(j);
+    fish.his(j).HiFreq(:) = HiFreq(j);
 end
 
 %lo freq fish
 for j = 1:length(LoAmp)
     fish.los(j).LoAmp(:) = LoAmp(j);
     fish.los(j).LoTim(:) = LoTim(j);
-    fish.los(j).LoTim(:) = LoFreq(j);
+    fish.los(j).LoFreq(:) = LoFreq(j);
 end
 
