@@ -302,23 +302,23 @@ figure(453); clf; hold on;
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
             %adjusted tube 1
-            plot(hitube1timchunk1, hitube1ampchunk1, 'ko');
-            plot(hitube1timchunk3, hitube1ampchunk3, 'ko');
-            plot(hitube1timchunk4, hitube1ampchunk4, 'ko');
-            plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
-            plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
+%             plot(hitube1timchunk1, hitube1ampchunk1, 'ko');
+%             plot(hitube1timchunk3, hitube1ampchunk3, 'ko');
+%             plot(hitube1timchunk4, hitube1ampchunk4, 'ko');
+%             plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
+%             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
            
     ax(2) = subplot(412); title('tube 2 adjustments'); hold on;
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
             %adjusted tube 2
-            plot(hitube2timchunk1, hitube2ampchunk1, 'ko');
-            plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
-            plot(hitube2timchunk3, hitube2ampchunk3, 'ko');
-            plot(hitube2timchunk4, hitube2ampchunk4, 'ko');
-            plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
-            plot(hitube2timchunk6, hitube2ampchunk6, 'ko');
+%             plot(hitube2timchunk1, hitube2ampchunk1, 'ko');
+%             plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
+%             plot(hitube2timchunk3, hitube2ampchunk3, 'ko');
+%             plot(hitube2timchunk4, hitube2ampchunk4, 'ko');
+%             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
+%             plot(hitube2timchunk6, hitube2ampchunk6, 'ko');
 
     ax(3) = subplot(413); title('combined chunks'); hold on;
             plot(hitube1timcomb, hitube1ampcomb,'bo'); 
