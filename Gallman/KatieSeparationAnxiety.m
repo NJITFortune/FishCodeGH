@@ -162,17 +162,17 @@ for j=2:length(iFiles)
 currhifreq = tmphifreq1;         
 currlofreq = tmplofreq2;  
 % 
-    if tmploamp1 > tmploamp2
-        currlofreq = tmplofreq1;
-    else
-        currlofreq = tmplofreq2;
-    end
-    
-    if tmphiamp1 > tmphiamp2
-        currhifreq = tmphifreq1;
-    else
-        currhifreq = tmphifreq2;
-    end
+%     if tmploamp1 > tmploamp2
+%         currlofreq = tmplofreq1;
+%     else
+%         currlofreq = tmplofreq2;
+%     end
+%     
+%     if tmphiamp1 > tmphiamp2
+%         currhifreq = tmphifreq1;
+%     else
+%         currhifreq = tmphifreq2;
+%     end
 
 %          currhifreq = mean([tmphifreq1 tmphifreq2]);        
 %     currlofreq = mean([tmplofreq1 tmplofreq2]);        
