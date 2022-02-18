@@ -160,7 +160,7 @@ for j=2:length(iFiles)
 % Set current frequencies
 
 
-currhifreq = tmphifreq2;
+%currhifreq = tmphifreq2;
 
 
 currlofreq = tmplofreq1;  
@@ -171,11 +171,11 @@ currlofreq = tmplofreq1;
 %         currlofreq = tmplofreq2;
 %     end
 %     
-%     if tmphiamp1 > tmphiamp2
-%         currhifreq = tmphifreq1;
-%     else
-%         currhifreq = tmphifreq2;
-%     end
+    if tmphiamp1 > tmphiamp2
+        currhifreq = tmphifreq1;
+    else
+        currhifreq = tmphifreq2;
+    end
 
 %          currhifreq = mean([tmphifreq1 tmphifreq2]);        
 %     currlofreq = mean([tmplofreq1 tmplofreq2]);        
