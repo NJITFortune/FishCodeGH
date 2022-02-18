@@ -160,16 +160,16 @@ figure(452); clf; hold on;
             
     ax(3) = subplot(413); title('combined chunks'); hold on;
             plot(hitube1tim, hitube1freq, 'k.');
-            plot(hitube1timff, hitube1freqff,'b.'); 
+           % plot(hitube1timff, hitube1freqff,'b.'); 
 
             plot(hitube2tim, hitube2freq, 'k.');
-            plot(hitube2timff, hitube2freqff,'b.'); 
+         %   plot(hitube2timff, hitube2freqff,'b.'); 
 
             plot(lotube1tim, lotube1freq, 'k.');
-            plot(lotube1timff, lotube1freqff,'m.'); 
+        %   plot(lotube1timff, lotube1freqff,'m.'); 
 
             plot(lotube2tim, lotube2freq, 'k.');
-            plot(lotube2timff, lotube2freqff,'m.'); 
+         %   plot(lotube2timff, lotube2freqff,'m.'); 
 
     ax(4) = subplot(414); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
