@@ -28,22 +28,23 @@ function fullquadrophenia
 %% Extract first frame and show 4 images 
 
 
-for j = 1:4
+%for j = 1:4
 
    v = VideoReader(fullfile(pather, iFiles(1).name));
          
    im = readFrame(v);
+   imshow(im);
 
-   figure(j); imshow(im(coordinates(j,1):coordinates(j,2), coordinates(j,3):coordinates(j,4)));
+ %  figure(j); imshow(im(coordinates(j,1):coordinates(j,2), coordinates(j,3):coordinates(j,4)));
         
-end
+%end
 
 pause(2);
 
-xx = input('You like?: ');
-fprintf('You typed: %s \n', xx);
-
-newdir = [pather, '/newFiles'];
+% xx = input('You like?: ');
+% fprintf('You typed: %s \n', xx);
+% 
+% newdir = [pather, '/newFiles'];
 
 mkdir(newdir);
 
