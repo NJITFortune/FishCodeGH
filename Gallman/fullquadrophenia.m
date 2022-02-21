@@ -1,7 +1,7 @@
 function fullquadrophenia
 
 % Pick folder with videos to crop 
-    myfolder = uigetdir('/Volumes/LaCie/');
+    myfolder = uigetdir('/Volumes/SSD/');
     myfolder = [myfolder, '/*.avi'];
 % Get all files in folder
     iFiles = dir(myfolder);
@@ -28,20 +28,20 @@ function fullquadrophenia
 %% Extract first frame and show 4 images 
 
 
-% for j = 1:4
-% 
-%    v = VideoReader(fullfile(pather, iFiles(1).name));
-%          
-%    im = readFrame(v);
-% 
-%    figure(j); imshow(im(coordinates(j,1):coordinates(j,2), coordinates(j,3):coordinates(j,4)));
-%         
-% end
-% 
-% pause(2);
-% 
-% xx = input('You like?: ');
-% fprintf('You typed: %s \n', xx);
+for j = 1:4
+
+   v = VideoReader(fullfile(pather, iFiles(1).name));
+         
+   im = readFrame(v);
+
+   figure(j); imshow(im(coordinates(j,1):coordinates(j,2), coordinates(j,3):coordinates(j,4)));
+        
+end
+
+pause(2);
+
+xx = input('You like?: ');
+fprintf('You typed: %s \n', xx);
 
 newdir = [pather, '/newFiles'];
 
@@ -50,7 +50,7 @@ mkdir(newdir);
 %% cycle through all files
 ff = waitbar(0, 'Cycling through files.');
 
-kstart = 0397;
+%kstart = 0397;
 
 for k = 1:length(iFiles)
  
@@ -59,13 +59,13 @@ for k = 1:length(iFiles)
 fprintf('Percent: %2.4f \n', 100 * (k/length(iFiles)) );
 
 [pather, baseName, ~] = fileparts(fullfile(iFiles(k).folder, iFiles(k).name));
-    tmpname = [pather, '/newFiles/', baseName, num2str(k+kstart), '-UL.avi'];
+    tmpname = [pather, '/newFiles/', baseName, num2str(k), '-UL.avi'];
         newfilenames{1} = fullfile(tmpname);
-    tmpname = [pather, '/newFiles/', baseName, num2str(k+kstart), '-UR.avi'];
+    tmpname = [pather, '/newFiles/', baseName, num2str(k), '-UR.avi'];
         newfilenames{2} = fullfile(tmpname);
-    tmpname = [pather, '/newFiles/', baseName, num2str(k+kstart),'-LL.avi'];
+    tmpname = [pather, '/newFiles/', baseName, num2str(k),'-LL.avi'];
         newfilenames{3} = fullfile(tmpname);
-    tmpname = [pather, '/newFiles/', baseName, num2str(k+kstart),'-LR.avi'];
+    tmpname = [pather, '/newFiles/', baseName, num2str(k),'-LR.avi'];
         newfilenames{4} = fullfile(tmpname);
 
 
