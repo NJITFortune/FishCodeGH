@@ -54,11 +54,12 @@ end
 % xx = input('You like?: ');
 % fprintf('You typed: %s \n', xx);
 % 
-% newdir = [pather, '/newFiles'];
-
-%mkdir(newdir);
-
+% 
 %% cycle through all files
+
+newdir = [pather, '/newFiles'];
+mkdir(newdir);
+
 ff = waitbar(0, 'Cycling through files.');
 
 %kstart = 0397;
