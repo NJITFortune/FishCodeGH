@@ -286,6 +286,7 @@ linkaxes(ax, 'x');
 %% LOW FREQUENCY FISH chunking for calibration
 %chunk 1 = tim => 40 & tim < 200
 %   %tube1
+    clear lofishchunk1idx;
     lofishchunk1idx = find(lotube1timff >= 40 & lotube1timff < 200);
     
         for j = 1:length(lofishchunk1idx)
@@ -294,6 +295,9 @@ linkaxes(ax, 'x');
         end
 
     %tube2
+    clear lofishchunk1idx;
+    clear lotube2ampchunk1;
+    clear lotube2timchunk1;
     lofishchunk1idx = find(lotube2timff >= 40 & lotube2timff < 200);
     
         for j = 1:length(lofishchunk2idx)
@@ -303,12 +307,7 @@ linkaxes(ax, 'x');
 %%
 
 
-%combine chunks
-    %tube 1
-    lotube1ampcomb = [lotube1ampchunk1, lotube1ampchunk2, lotube1ampchunk3, lotube1ampchunk4];
-    lotube1timcomb = [lotube1timchunk1, lotube1timchunk2, lotube1timchunk3, lotube1timchunk4];
-    
-
+%combine chunks   
 LoAmp = [lotube1ampchunk1, lotube2ampchunk1];
 LoTim = [lotube1timchunk1, lotube2timchunk1];
 LoFreq = [lotube1freqff, lotube2freqff];
