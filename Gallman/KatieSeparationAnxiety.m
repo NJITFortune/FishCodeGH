@@ -158,17 +158,18 @@ for j=2:length(iFiles)
         tmploamp2 = tmp2.fftdata(tmpidx2l(lofreq2idx));
 
 % Set current frequencies
-% % 
-% if tmplofreq2 < 450
+% 
+% if tmplofreq2 < 370
 % currlofreq = tmplofreq2;
 % else
-% currlofreq = 450;
+% currlofreq = tmplofreq1;
 % end
-currlofreq = tmplofreq1;
-currhifreq = tmphifreq2;
+% currlofreq = tmplofreq1;
+% currhifreq = tmphifreq2;
 
 %currlofreq = tmplofreq2;  
-% 
+currlofreq = 350;
+
     if tmploamp1 > tmploamp2
         currlofreq = tmplofreq1;
     else
