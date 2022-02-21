@@ -297,11 +297,11 @@ linkaxes(ax, 'x');
     %tube1 
     clear lotube1ampchunk2;
     clear lotube1timchunk2;
-    lofishchunk2idx = find(lotube1timff >= 235);
+    lofishchunk2idx = find(lotube2timff >= 235);
     
         for j = 1:length(lofishchunk2idx)
-            lotube1ampchunk2(j) = lotube1ampff(lofishchunk2idx(j))*1.8;
-            lotube1timchunk2(j) = lotube1timff(lofishchunk2idx(j));
+            lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j))*1.8;
+            lotube2timchunk2(j) = lotube2timff(lofishchunk2idx(j));
         end
 %%
 
@@ -344,7 +344,7 @@ LoFreq = [lotube1freqff, lotube2freqff];
     ax(1) = subplot(311); title('high freq fish'); hold on; ylim([0,3]);
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
-             plot(lotube1timchunk1, lotube1ampchunk1, 'ko');
+             plot(lotube1timchunk2, lotube1ampchunk2, 'ko');
 %             plot(lotube1timchunk2, lotube1ampchunk2, 'ko');
 %             plot(LoTim, LoAmp, 'k.');
             
