@@ -10,6 +10,16 @@ function fullquadrophenia
 
 %% Defaults
 % Y-axis coordinates (adjust as needed)
+height = 1020;
+width = 1278;
+
+    toptop = height-720;
+    topbottom = height-400;
+    bottomtop = height-320;
+    bottombottom = height;
+
+
+
     toptop = 1024-720;
     topbottom = 1024-400;
     bottomtop = 1024-320;
