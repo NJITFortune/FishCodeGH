@@ -194,23 +194,23 @@ linkaxes(ax, 'x');
 
 %% HIGH FREQUENCY FISH chunking for calibration
 
-%chunk 1 = tim >= 40 & tim <=
+%chunk 1 = tim >= 40 & tim < 200
     %tube1
-    hifishchunk1idx = find(hitube1timff < 63);
+    hifishchunk1idx = find(hitube1timff >= 40 & hitube1timff < 200);
     
         for j = 1:length(hifishchunk1idx)
             hitube1ampchunk1(j) = hitube1ampff(hifishchunk1idx(j)) * 3;
             hitube1timchunk1(j) = hitube1timff(hifishchunk1idx(j));
         end
 
-    %tube2
-    clear hifishchunk1idx;
-    hifishchunk1idx = find(hitube2timff < 63);
-    
-        for j = 1:length(hifishchunk1idx)
-            hitube2ampchunk1(j) = hitube2ampff(hifishchunk1idx(j)) * 2.5;
-            hitube2timchunk1(j) = hitube2timff(hifishchunk1idx(j));
-        end
+%     %tube2
+%     clear hifishchunk1idx;
+%     hifishchunk1idx = find(hitube2timff < 63);
+%     
+%         for j = 1:length(hifishchunk1idx)
+%             hitube2ampchunk1(j) = hitube2ampff(hifishchunk1idx(j)) * 2.5;
+%             hitube2timchunk1(j) = hitube2timff(hifishchunk1idx(j));
+%         end
 
 %chunk 2 = tim > 65 and tim < 157
     %tube 1
