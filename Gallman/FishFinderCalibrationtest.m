@@ -194,7 +194,7 @@ linkaxes(ax, 'x');
 
 %% HIGH FREQUENCY FISH chunking for calibration
 
-%chunk 1 = tim < 63
+%chunk 1 = tim >= 40 & tim <=
     %tube1
     hifishchunk1idx = find(hitube1timff < 63);
     
