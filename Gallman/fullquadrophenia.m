@@ -39,14 +39,14 @@ function fullquadrophenia
         
 %end
 
-pause(2);
+%pause(2);
 
 % xx = input('You like?: ');
 % fprintf('You typed: %s \n', xx);
 % 
 % newdir = [pather, '/newFiles'];
 
-mkdir(newdir);
+%mkdir(newdir);
 
 %% cycle through all files
 ff = waitbar(0, 'Cycling through files.');
