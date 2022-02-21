@@ -217,8 +217,8 @@ linkaxes(ax, 'x');
 %combine chunks
     
 
-HiAmp = [hitube1ampchunk1, hitube2ampchunk1];
-HiTim = [hitube1timchunk1, hitube2timchunk1];
+HiAmp = [hitube1ampff, hitube2ampff];
+HiTim = [hitube1timchunk1, hitube2ampff];
 HiFreq = [hitube1freqff, hitube2timchunk1];
 
 
