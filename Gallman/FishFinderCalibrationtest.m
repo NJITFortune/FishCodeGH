@@ -165,14 +165,14 @@ figure(452); clf; hold on;
     ax(1) = subplot(411); title('high frequency fish'); hold on; ylim([0,3]);
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
-            
+            plot(hitube2timff, hitube2ampff, 'mo');
             
     ax(2) = subplot(412); title('low frequency fish'); hold on; ylim([0,3]);
             %raw amp
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
-            plot(hitube2timff, hitube2ampff, 'ko');
-            plot(hitube1timff, hitube1ampff, 'ko');
+            
+          
             
     ax(3) = subplot(413); title('combined chunks'); hold on; ylim([300, 500]);
            plot(hitube1tim, hitube1freq, 'k.');
