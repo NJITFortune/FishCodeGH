@@ -285,47 +285,23 @@ linkaxes(ax, 'x');
 
 %% LOW FREQUENCY FISH chunking for calibration
 %chunk 1 = tim => 40 & tim < 200
-%     %tube1
-    lofishchunk1idx = find(lotube1timff < 67);
+%   %tube1
+    lofishchunk1idx = find(lotube1timff >= 40 & lotube1timff < 200);
     
         for j = 1:length(lofishchunk1idx)
             lotube1ampchunk1(j) = lotube1ampff(lofishchunk1idx(j));
             lotube1timchunk1(j) = lotube1timff(lofishchunk1idx(j));
         end
 
-%chunk 2 = tim >= 235
-    %tube1 
-    clear lotube1ampchunk2;
-    clear lotube1timchunk2;
-    lofishchunk2idx = find(lotube2timff >= 235);
+    %tube2
+    lofishchunk1idx = find(lotube2timff >= 40 & lotube2timff < 200);
     
         for j = 1:length(lofishchunk2idx)
-            lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j))*1.8;
-            lotube2timchunk2(j) = lotube2timff(lofishchunk2idx(j));
+            lotube2ampchunk1(j) = lotube2ampff(lofishchunk1idx(j));
+            lotube2timchunk1(j) = lotube2timff(lofishchunk1idx(j));
         end
 %%
 
-%chunk 3 = tim >= 156 & tim < 222
-    %tube1
-    
-    lofishchunk3idx = find(lotube1timff >= 156 & lotube1timff < 222);
-    
-        for j = 1:length(lofishchunk3idx)
-            lotube1ampchunk3(j) = lotube1ampff(lofishchunk3idx(j));
-            lotube1timchunk3(j) = lotube1timff(lofishchunk3idx(j));
-        end
-
-
-%chunk 4 = tim >= 222
-    %tube1
-    clear lotube1ampchunk4;
-    clear lotube1timchunk4;
-    lofishchunk4idx = find(lotube1timff >= 222);
-    
-        for j = 1:length(lofishchunk4idx)
-            lotube1ampchunk4(j) = lotube1ampff(lofishchunk4idx(j))/2;
-            lotube1timchunk4(j) = lotube1timff(lofishchunk4idx(j));
-        end
 
 %combine chunks
     %tube 1
@@ -333,8 +309,8 @@ linkaxes(ax, 'x');
     lotube1timcomb = [lotube1timchunk1, lotube1timchunk2, lotube1timchunk3, lotube1timchunk4];
     
 
-LoAmp = [lotube1ampcomb, lotube2ampff];
-LoTim = [lotube1timcomb, lotube2timff];
+LoAmp = [lotube1ampchunk1, lotube2ampchunk1];
+LoTim = [lotube1timchunk1, lotube2timchunk1];
 LoFreq = [lotube1freqff, lotube2freqff];
 
 
