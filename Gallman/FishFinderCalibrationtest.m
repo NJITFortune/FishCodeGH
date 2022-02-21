@@ -284,14 +284,14 @@ linkaxes(ax, 'x');
 
 
 %% LOW FREQUENCY FISH chunking for calibration
-%chunk 1 = tim < 67
+%chunk 1 = tim => 40 & tim < 200
 %     %tube1
-%     lofishchunk1idx = find(lotube1timff < 67);
-%     
-%         for j = 1:length(lofishchunk1idx)
-%             lotube1ampchunk1(j) = lotube1ampff(lofishchunk1idx(j));
-%             lotube1timchunk1(j) = lotube1timff(lofishchunk1idx(j));
-%         end
+    lofishchunk1idx = find(lotube1timff < 67);
+    
+        for j = 1:length(lofishchunk1idx)
+            lotube1ampchunk1(j) = lotube1ampff(lofishchunk1idx(j));
+            lotube1timchunk1(j) = lotube1timff(lofishchunk1idx(j));
+        end
 
 %chunk 2 = tim >= 235
     %tube1 
