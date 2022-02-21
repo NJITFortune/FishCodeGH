@@ -162,7 +162,7 @@ clear lotube2freqff;
 figure(452); clf; hold on;
 
 
-    ax(1) = subplot(411); title('high frequency fish'); hold on; ylim([0,3]);
+    ax(1) = subplot(411); title('high frequency fish'); hold on; %ylim([0,3]);
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
