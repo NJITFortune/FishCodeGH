@@ -10,24 +10,24 @@ function fullquadrophenia
 
 %% Defaults
 % Y-axis coordinates (adjust as needed)
-height = 1020;
-width = 1278;
+% height = 1020;
+% width = 1278;
 
     toptop = 110;
     topbottom = 496;
     bottomtop = 546;
-    bottombottom = height;
+    bottombottom = 900;
 
 
 
-    toptop = 1024-720;
-    topbottom = 1024-400;
-    bottomtop = 1024-320;
-    bottombottom = 1024;
+%     toptop = 1024-720;
+%     topbottom = 1024-400;
+%     bottomtop = 1024-320;
+%     bottombottom = width;
 
 % X-axis coordinates
-    lefty = [1 640];
-    righty = [640 1280];
+    lefty = [1 636];
+    righty = [636 1280];
 
 % Concatonated for loop below
     coordinates(1,:) = [toptop, topbottom, lefty(1), lefty(2)];
@@ -38,16 +38,16 @@ width = 1278;
 %% Extract first frame and show 4 images 
 
 
-%for j = 1:4
+for j = 1:4
 
    v = VideoReader(fullfile(pather, iFiles(1).name));
          
    im = readFrame(v);
-   imshow(im);
+   
 
- %  figure(j); imshow(im(coordinates(j,1):coordinates(j,2), coordinates(j,3):coordinates(j,4)));
+  figure(j); imshow(im(coordinates(j,1):coordinates(j,2), coordinates(j,3):coordinates(j,4)));
         
-%end
+end
 
 %pause(2);
 
