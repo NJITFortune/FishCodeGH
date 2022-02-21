@@ -6,7 +6,7 @@
 userfilespec = 'Eigen*';
 %% Prep
     Fs = 40000; %sample rate
-    freqs = [350 700]; %freq range of typical eigen EOD
+    freqs = [350 650]; %freq range of typical eigen EOD
     %userfilespec = 'Eigen*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
@@ -159,15 +159,15 @@ for j=2:length(iFiles)
 
 % Set current frequencies
 % 
-% if tmphifreq2 > 440
-% currhifreq = tmphifreq2;
-% else
-% currhifreq = 450;
-% end
-% 
+if tmplofreq2 < 500
+currlofreq = tmplofreq2;
+else
+currlofreq = 450;
+end
+
 currhifreq = tmphifreq1;
 
-currlofreq = tmplofreq2;  
+%currlofreq = tmplofreq2;  
 % 
 %     if tmploamp1 > tmploamp2
 %         currlofreq = tmplofreq1;
