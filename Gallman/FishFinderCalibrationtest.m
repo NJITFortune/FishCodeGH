@@ -156,6 +156,7 @@ clear lotube2freqff;
     end
 
     pause(1);
+    
 
 %% plot to check frequency filtering
 figure(452); clf; hold on;
