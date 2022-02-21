@@ -218,7 +218,7 @@ linkaxes(ax, 'x');
     
 
 HiAmp = [hitube1ampchunk1, hitube2ampchunk1];
-HiTim = [hitube1timchunk1, hitube2timcomb];
+HiTim = [hitube1timchunk1, hitube2timchunk1];
 HiFreq = [hitube1freqff, hitube2timchunk1];
 
 
@@ -300,7 +300,7 @@ linkaxes(ax, 'x');
     clear lotube2timchunk1;
     lofishchunk1idx = find(lotube2timff >= 40 & lotube2timff < 200);
     
-        for j = 1:length(lofishchunk2idx)
+        for j = 1:length(lofishchunk1idx)
             lotube2ampchunk1(j) = lotube2ampff(lofishchunk1idx(j));
             lotube2timchunk1(j) = lotube2timff(lofishchunk1idx(j));
         end
