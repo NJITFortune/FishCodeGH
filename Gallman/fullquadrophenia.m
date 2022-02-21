@@ -15,7 +15,7 @@ width = 1278;
 
     toptop = 110;
     topbottom = 496;
-    bottomtop = height-320;
+    bottomtop = 546;
     bottombottom = height;
 
 
