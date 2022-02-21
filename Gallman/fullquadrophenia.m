@@ -13,8 +13,8 @@ function fullquadrophenia
 height = 1020;
 width = 1278;
 
-    toptop = height-720;
-    topbottom = height-400;
+    toptop = 110;
+    topbottom = 496;
     bottomtop = height-320;
     bottombottom = height;
 
