@@ -339,7 +339,7 @@ LoFreq = [lotube1freqff, lotube2freqff];
 
 
 %% low frequency fish
- figure(454); clf; hold on;
+ figure(455); clf; hold on;
 % 
     ax(1) = subplot(311); title('high freq fish'); hold on; ylim([0,3]);
             plot(lotube1timff, lotube1ampff, 'bo');
