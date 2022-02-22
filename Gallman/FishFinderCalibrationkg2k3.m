@@ -329,8 +329,8 @@ linkaxes(ax, 'x');
 
 
 %combine chunks   
-LoAmp = [lotube1ampff, lotube2ampchunk1, lotube2ampchunk2];
-LoTim = [lotube1timff, lotube2timchunk1, lotube2timchunk2];
+LoAmp = [lotube1ampff, lotube2ampff];
+LoTim = [lotube1timff, lotube2timff];
 LoFreq = [lotube1freqff, lotube2freqff];
 
 
