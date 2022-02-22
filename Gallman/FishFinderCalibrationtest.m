@@ -200,30 +200,32 @@ linkaxes(ax, 'x');
     clear hitube1ampchunk1;
     clear hitube1timchunk1;
 
-    hifishchunk1idx = find(hitube1timff >= 76 & hitube1timff < 200);
+    hifishchunk1idx = find(hitube1timff < 76);
     
         for j = 1:length(hifishchunk1idx)
-            hitube1ampchunk1(j) = hitube1ampff(hifishchunk1idx(j))/2.5;
+            hitube1ampchunk1(j) = hitube1ampff(hifishchunk1idx(j));
             hitube1timchunk1(j) = hitube1timff(hifishchunk1idx(j));
         end
-%%
-    %tube2
-    clear hifishchunk1idx;
-    hifishchunk1idx = find(hitube2timff >= 40 & hitube2timff < 200);
-    
-        for j = 1:length(hifishchunk1idx)
-            hitube2ampchunk1(j) = hitube2ampff(hifishchunk1idx(j));
-            hitube2timchunk1(j) = hitube2timff(hifishchunk1idx(j));
-        end
 
+    %tube1
+    clear hifishchunk1idx;
+    clear hitube1ampchunk1;
+    clear hitube1timchunk1;
+
+    hifishchunk2idx = find(hitube1timff >= 76 & hitube1timff < 200);
+    
+        for j = 1:length(hifishchunk2idx)
+            hitube1ampchunk2(j) = hitube1ampff(hifishchunk2idx(j))/2.5;
+            hitube1timchunk2(j) = hitube1timff(hifishchunk2idx(j));
+        end
 
 
 %combine chunks
     
 
-HiAmp = [hitube1ampff, hitube2ampff];
-HiTim = [hitube1timchunk1, hitube2ampff];
-HiFreq = [hitube1freqff, hitube2timchunk1];
+HiAmp = [hitube1ampchunk1, hitube1ampchunk2, hitube2ampff];
+HiTim = [hitube1timchunk1, hitube1timchunk2, hitube2timff];
+HiFreq = [hitube1freqff, hitube2freqff];
 
 
 % %combine tubes
