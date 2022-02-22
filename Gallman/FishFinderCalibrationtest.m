@@ -208,9 +208,9 @@ linkaxes(ax, 'x');
         end
 
     %tube1
-    clear hifishchunk1idx;
-    clear hitube1ampchunk1;
-    clear hitube1timchunk1;
+%     clear hifishchunk1idx;
+%     clear hitube1ampchunk1;
+%     clear hitube1timchunk1;
 
     hifishchunk2idx = find(hitube1timff >= 76 & hitube1timff < 200);
     
