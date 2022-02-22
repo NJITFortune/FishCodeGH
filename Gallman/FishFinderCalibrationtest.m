@@ -196,10 +196,10 @@ linkaxes(ax, 'x');
 
 %chunk 1 = tim >= 40 & tim < 200
     %tube1
-    hifishchunk1idx = find(hitube1timff >= 40 & hitube1timff < 200);
+    hifishchunk1idx = find(hitube1timff >= 17 & hitube1timff < 200);
     
         for j = 1:length(hifishchunk1idx)
-            hitube1ampchunk1(j) = hitube1ampff(hifishchunk1idx(j)) * 4;
+            hitube1ampchunk1(j) = hitube1ampff(hifishchunk1idx(j));
             hitube1timchunk1(j) = hitube1timff(hifishchunk1idx(j));
         end
 
