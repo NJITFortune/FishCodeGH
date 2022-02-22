@@ -253,7 +253,7 @@ HiFreq = [hitube1freqff, hitube2freqff];
 figure(453); clf; hold on;
 
 
-    ax(1) = subplot(311); title('tube 1 adjustments'); hold on; ylim([0,1.5]);
+    ax(1) = subplot(311); title('tube 1 adjustments'); hold on; %ylim([0,1.5]);
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
            plot(hitube2timff, hitube2ampff, 'mo');
