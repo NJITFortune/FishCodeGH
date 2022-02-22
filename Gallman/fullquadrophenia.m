@@ -1,4 +1,4 @@
-function fullquadrophenia
+%function fullquadrophenia
 
 % Pick folder with videos to crop 
     myfolder = uigetdir('/Volumes/SSD/');
