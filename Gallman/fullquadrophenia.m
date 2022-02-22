@@ -71,13 +71,13 @@ for k = 1:length(iFiles)
 fprintf('Percent: %2.4f \n', 100 * (k/length(iFiles)) );
 
 [pather, baseName, ~] = fileparts(fullfile(iFiles(k).folder, iFiles(k).name));
-    tmpname = [pather, '/newFiles/', baseName, num2str(k), '-UL.avi'];
+    tmpname = [pather, '/newFiles/', baseName, '-UL.avi'];
         newfilenames{1} = fullfile(tmpname);
-    tmpname = [pather, '/newFiles/', baseName, num2str(k), '-UR.avi'];
+    tmpname = [pather, '/newFiles/', baseName, '-UR.avi'];
         newfilenames{2} = fullfile(tmpname);
-    tmpname = [pather, '/newFiles/', baseName, num2str(k),'-LL.avi'];
+    tmpname = [pather, '/newFiles/', baseName, '-LL.avi'];
         newfilenames{3} = fullfile(tmpname);
-    tmpname = [pather, '/newFiles/', baseName, num2str(k),'-LR.avi'];
+    tmpname = [pather, '/newFiles/', baseName, '-LR.avi'];
         newfilenames{4} = fullfile(tmpname);
 
 
