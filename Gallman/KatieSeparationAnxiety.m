@@ -157,7 +157,7 @@ for j=2:length(iFiles)
         tmphiamp2 = tmp2.fftdata(tmpidx2h(hifreq2idx));
         tmploamp2 = tmp2.fftdata(tmpidx2l(lofreq2idx));
 
-Set current frequencies
+%Set current frequencies
 
 
 currlofreq = tmplofreq1;
