@@ -159,7 +159,7 @@ for j=2:length(iFiles)
 
 %Set current frequencies
 
-
+if tmploamp1 < 0.1
 currlofreq = tmplofreq1;
 
 currhifreq = tmphifreq2;
