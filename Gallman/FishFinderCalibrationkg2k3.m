@@ -203,7 +203,7 @@ linkaxes(ax, 'x');
 %     hifishchunk1idx = find(hitube1timff < 76);
     
         for j = 1:length(hitube2ampff)
-            hitube2ampchunk1(j) = hitube2ampff((j))*3;
+            hitube2ampchunk1(j) = hitube2ampff((j))*2;
             hitube2timchunk1(j) = hitube2timff((j));
         end
 %%
@@ -212,13 +212,13 @@ linkaxes(ax, 'x');
 %     clear hitube1ampchunk1;
 %     clear hitube1timchunk1;
 
-    hifishchunk2idx = find(hitube1timff >= 76 & hitube1timff < 200);
-    
-        for j = 1:length(hifishchunk2idx)
-            hitube1ampchunk2(j) = hitube1ampff(hifishchunk2idx(j))/2.5;
-            hitube1timchunk2(j) = hitube1timff(hifishchunk2idx(j));
-        end
-
+%     hifishchunk2idx = find(hitube1timff >= 76 & hitube1timff < 200);
+%     
+%         for j = 1:length(hifishchunk2idx)
+%             hitube1ampchunk2(j) = hitube1ampff(hifishchunk2idx(j))/2.5;
+%             hitube1timchunk2(j) = hitube1timff(hifishchunk2idx(j));
+%         end
+% 
 
 %combine chunks
     
