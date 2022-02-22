@@ -208,9 +208,9 @@ linkaxes(ax, 'x');
         end
 
     %tube1
-    clear hifishchunk1idx;
-    clear hitube1ampchunk1;
-    clear hitube1timchunk1;
+%     clear hifishchunk1idx;
+%     clear hitube1ampchunk1;
+%     clear hitube1timchunk1;
 
     hifishchunk2idx = find(hitube1timff >= 76 & hitube1timff < 200);
     
@@ -265,6 +265,7 @@ figure(453); clf; hold on;
 %             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
            
     ax(2) = subplot(312); title('tube 2 adjustments'); hold on; ylim([0,3]);
+            plot(HiTim, HiAmp, 'k.');
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
@@ -293,10 +294,10 @@ linkaxes(ax, 'x');
 %chunk 1 = tim => 40 & tim < 200
 %   %tube1
     clear lofishchunk1idx;
-    lofishchunk1idx = find(lotube1timff >= 40 & lotube1timff < 200);
+    lofishchunk1idx = find(lotube1timff >= 15 & lotube1timff < 200);
     
         for j = 1:length(lofishchunk1idx)
-            lotube1ampchunk1(j) = lotube1ampff(lofishchunk1idx(j));
+            lotube1ampchunk1(j) = lotube1ampff(lofishchunk1idx(j))*3;
             lotube1timchunk1(j) = lotube1timff(lofishchunk1idx(j));
         end
 
@@ -325,7 +326,7 @@ LoFreq = [lotube1freqff, lotube2freqff];
     ax(1) = subplot(311); title('high freq fish'); hold on; ylim([0,3]);
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
-             plot(lotube2timchunk2, lotube2ampchunk2, 'ko');
+            % plot(lotube2timchunk2, lotube2ampchunk2, 'ko');
 %             plot(lotube1timchunk2, lotube1ampchunk2, 'ko');
 %             plot(LoTim, LoAmp, 'k.');
             
