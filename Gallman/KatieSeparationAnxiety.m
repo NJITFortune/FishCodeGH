@@ -6,7 +6,7 @@ clearvars -except kg2 kg
 userfilespec = 'Eigen*';
 %% Prep
     Fs = 40000; %sample rate
-    freqs = [200 600]; %freq range of typical eigen EOD
+    freqs = [350 500]; %freq range of typical eigen EOD
     %userfilespec = 'Eigen*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
@@ -176,6 +176,10 @@ currhifreq = tmphifreq2;
 
 if currhifreq < 420
     currhifreq = 450;
+end
+
+if currlofreq > 420
+    currlofreq = 413;
 end
 
 % % 
