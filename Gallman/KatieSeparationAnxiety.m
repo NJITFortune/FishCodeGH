@@ -186,6 +186,8 @@ currhifreq = tmphifreq2;
         currhifreq = tmphifreq2;
     end
 
+ 
+
 %          currhifreq = mean([tmphifreq1 tmphifreq2]);        
 %     currlofreq = mean([tmplofreq1 tmplofreq2]);        
 
