@@ -174,11 +174,11 @@ for j=2:length(iFiles)
 currlofreq = tmplofreq1;  
 currhifreq = tmphifreq2;
 
-if currhifreq < 420
+if currhifreq < 440
     currhifreq = 450;
 end
 
-if currlofreq > 420
+if currlofreq > 440
     currlofreq = 413;
 end
 
