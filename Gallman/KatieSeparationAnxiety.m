@@ -2,7 +2,7 @@
 %% usage
 %kg2(k).s = out
 %see kgme multi
-
+clearvars -except kg2 kg
 userfilespec = 'Eigen*';
 %% Prep
     Fs = 40000; %sample rate
