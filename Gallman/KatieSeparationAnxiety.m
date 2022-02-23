@@ -171,7 +171,7 @@ for j=2:length(iFiles)
 % currhifreq = tmphifreq1;
 % end
 
-% currlofreq = tmplofreq2;  
+currlofreq = tmplofreq2;  
 % currlofreq = 350;
 % % 
     if tmploamp1 > tmploamp2
