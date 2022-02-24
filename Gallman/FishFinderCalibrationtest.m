@@ -174,7 +174,7 @@ figure(452); clf; hold on;
             
           
             
-    ax(3) = subplot(413); title('combined chunks'); hold on; %ylim([300, 500]);
+    ax(3) = subplot(413); title('combined chunks'); hold on; ylim([300, 500]);
            plot(hitube1tim, hitube1freq, 'k.');
           plot(hitube1timff, hitube1freqff,'b.'); 
 
