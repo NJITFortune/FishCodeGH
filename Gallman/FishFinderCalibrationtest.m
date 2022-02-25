@@ -230,6 +230,7 @@ linkaxes(ax, 'x');
 %combine chunks
 clear HiAmp;
 clear HiTim;
+clear HiFreq;
 
 HiAmp = [hitube1ampchunk1, hitube1ampchunk2, hitube2ampchunk3];
 HiTim = [hitube1timchunk1, hitube1timchunk2, hitube2timchunk3];
