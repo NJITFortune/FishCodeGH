@@ -219,7 +219,7 @@ linkaxes(ax, 'x');
    clear hifishchunk3idx;
     clear hitube2ampchunk3;
     clear hitube2timchunk3;
- hifishchunk3idx = find(hitube2timff >= 12);
+ hifishchunk3idx = find(hitube2timff >= 0);
     
         for j = 1:length(hifishchunk2idx)
             hitube2ampchunk3(j) = hitube2ampff(hifishchunk3idx(j))/3;
