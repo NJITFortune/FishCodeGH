@@ -235,7 +235,7 @@ end
 
 %Calculate chisqu of means
 
-[hypothesis,dpvalue] = ttest2(ddarkhalfamp,dlighthalfamp,'Vartype','unequal');
+[~,dpvalue] = ttest2(ddarkhalfamp,dlighthalfamp,'Vartype','unequal');
 
 %txt = 'pvalue =' + num2str(pvalue)
 text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
