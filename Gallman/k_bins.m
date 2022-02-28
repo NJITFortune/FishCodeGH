@@ -215,7 +215,7 @@ end
 %plot darkday amp
 figure(8); clf; title('Dark to light transition average'); hold on; 
     plot([dday.tim], [dday.amp], '.');
-    plot(darktimxx, darkampyy, 'k-');
+   
 
 
 
@@ -233,6 +233,8 @@ for jj = 1:length(dday)
     plot(dlighthalftim, dlighthalfamp, 'm.');    
 
 end
+   
+    plot(darktimxx, darkampyy, 'k-', 'LineWidth', 10);
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
