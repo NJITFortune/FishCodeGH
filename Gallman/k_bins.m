@@ -234,7 +234,7 @@ for jj = 1:length(dday)
 
 end
    
-    plot(darktimxx, darkampyy, 'k-', 'LineWidth', 10);
+    plot(darktimxx, darkampyy, 'k-', 'LineWidth', 3);
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
