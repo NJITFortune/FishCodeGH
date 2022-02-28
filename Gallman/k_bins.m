@@ -212,6 +212,9 @@ for jj = 2:length(darkdays)
 end
 
 [darktimxx, darkampyy] = k_spliney([dday.tim], [dday.amp], 0.9);
+darkdy= diff(darkampyy)./diff(darktimxx);
+%plot(x(2:end),dy)
+
 %plot darkday amp
 figure(8); clf; title('Dark to light transition average'); hold on; 
     plot([dday.tim], [dday.amp], '.');
@@ -235,6 +238,7 @@ for jj = 1:length(dday)
 end
    
     plot(darktimxx, darkampyy, 'k-', 'LineWidth', 3);
+    plot(darktimxx(2:end), darkdy, 'b-', 'LineWidth', 3);
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
