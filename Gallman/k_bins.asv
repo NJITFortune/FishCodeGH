@@ -78,7 +78,7 @@ ld = in.info.ld;
 %length of experiment
 totaltimhours = lighttimes(end)-lighttimes(1);
 %bins
-binsize = 20; %minutes
+binsize = 10; %minutes
 totalnumbins = totaltimhours/(binsize/60);
 binz = 1:1:totalnumbins;
 
@@ -156,10 +156,10 @@ transbinnum = 8;
 transtim = transbinnum*binsize/60;
 
 %dark transistions
-for jj = 1:length(darkdays)
+for jj = 2:length(darkdays)
 
 
-    predidx = find(bintimhour <= darkdays(jj)+((transbinnum*binsize)/60) & bintimhour>= darkdays(jj)-((transbinnum*binsize)/60));
+    predidx = find(bintimhour <= darkdays(jj)+((transbinnum*binsize)/60) & bintimhour >= darkdays(jj)-((transbinnum*binsize)/60));
     
     %jj-1 so we start at 1
     darkd(jj).binary(:) = [bin(predidx).binary];
@@ -274,7 +274,7 @@ text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
 %% Bin summary for dark to light tranistions
    
 for jj = 1:length(darkd)
-
+clear k;
     for k = 1:(transbinnum * 2)
         darkprob(k,jj) = darkd(jj).binary(k); 
         darkamp(k,jj) = darkd(jj).binAmps(k);
