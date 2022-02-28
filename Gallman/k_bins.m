@@ -2,7 +2,7 @@
 %% prep 
 clearvars -except kg kg2
 
-in = kg(2);
+in = kg(1);
 channel = 1;
 %kg(12) starts with light
 
@@ -157,7 +157,7 @@ lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 transtim = transbinnum*binsize/60;
 
 %dark transistions
-for jj = 2:length(darkdays)
+for jj = 2:length(darkdays)-1
 
 
     predidx = find(bintimhour <= darkdays(jj)+((transbinnum*binsize)/60) & bintimhour >= darkdays(jj)-((transbinnum*binsize)/60));
