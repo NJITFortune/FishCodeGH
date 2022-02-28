@@ -238,8 +238,8 @@ text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
 %light
 for kk = 2:length(lightdays)
 
-    lightidx = find(timcont>= lightdays(kk-1) & timcont < lightdays(kk));
-    lday(kk-1).tim(:) = timcont(lightidx)-timcont(lightidx(1));
+    lightidx = find(timcont >= lightdays(kk-1) & timcont < lightdays(kk));
+    lday(kk-1).tim(:) = timcont(lightidx) - timcont(lightidx(1));
     lday(kk-1).amp(:) = fftAmp(lightidx);
 
 end
