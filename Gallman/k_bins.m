@@ -159,7 +159,7 @@ transtim = transbinnum*binsize/60;
 for jj = 1:length(darkdays)
 
 
-    predidx = find(bintimhour <= darkdays(jj)+((transbinnum*binsize)/60) & bintimhour>= darkdays(jj)-((transbinnum*binsize)/60));
+    predidx = find(bintimhour <= darkdays(jj)+((transbinnum*binsize)/60) & bintimhour >= darkdays(jj)-((transbinnum*binsize)/60));
     
     %jj-1 so we start at 1
     darkd(jj).binary(:) = [bin(predidx).binary];
