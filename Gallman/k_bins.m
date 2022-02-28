@@ -211,12 +211,13 @@ for jj = 2:length(darkdays)
 
 end
 
-
+[darktimxx, darkampyy] = k_spliney([dday.tim], [dday.amp], darkdays, 0.7);
 %plot darkday amp
 figure(8); clf; title('Dark to light transition average'); hold on; 
     plot([dday.tim], [dday.amp], '.');
+    plot(darktimxx, darkampyy, 'k-');
 
-[darktimxx, darkampyy] = k_splighty(x, y, lightx, p)
+
 
 
 for jj = 1:length(dday)

@@ -1,4 +1,4 @@
-function [xx, yy] = k_splighty(x, y, lightx, p)
+function [xx, yy] = k_spliney(x, y, lightx, p)
 
 %fit
 %p = 0.9;
