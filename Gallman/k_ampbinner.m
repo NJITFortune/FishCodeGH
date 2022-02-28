@@ -253,6 +253,8 @@ out.dldarkhalftim = ddarkhalftim;
 out.dllighthalfamp = dlighthalfamp;
 out.dllighthalftim = dlighthalftim;
 out.dlpvaluettest = dpvalue;
+out.darkampyy = darkampyy;
+out.darktimxx = darktimxx;
 
 %% light summary by day for stats
 %light
@@ -302,6 +304,8 @@ out.ldlighthalfamp = lighthalfamp;
 out.ldlighthalftim = lighthalftim;
 out.ldpvaluettest = lpvalue;
 out.ld = ld;
+out.lighttimxx = lighttimxx;
+out.lightampyy = lightampyy;
 
 %% Bin summary for dark tranistions
    
