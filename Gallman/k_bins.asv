@@ -237,6 +237,12 @@ end
 %txt = 'pvalue =' + num2str(pvalue)
 text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
 
+out.dldarkhalfamp = ddarkhalfamp;
+out.dldarkhalftim = ddarkhalftim;
+out.dllighthalfamp = dlighthalfamp;
+out.dllighthalftim = dlighthalftim;
+out.dlpvaluettest = dpvalue;
+
 %% light summary by day for stats
 %light
 for kk = 2:length(lightdays)
@@ -269,10 +275,16 @@ end
 
 %Calculate chisqu of means
 
-[hypothesis, lpvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
+[~, lpvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
 
 %txt = 'pvalue =' + num2str(pvalue)
 text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
+
+out.lddarkhalfamp = darkhalfamp;
+out.lddarkhalftim = darkhalftim;
+out.ldlighthalfamp = lighthalfamp;
+out.ldlighthalftim = lighthalftim;
+out.ldpvaluettest = lpvalue;
 
 %% Bin summary for dark tranistions
    
