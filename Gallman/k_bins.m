@@ -202,6 +202,8 @@ end
  lowp = 2000;    
  [f,e] = butter(5, lowp/(Fs/2), 'low');
 
+  data(:,1) = filtfilt(f,e, data(:,1)); % Low pass filter   
+
 %% dark summary by day for stats
 
 %dark
@@ -215,6 +217,7 @@ end
 
 [darktimxx, darkampyy] = k_spliney([dday.tim], [dday.amp], 0.6);
 darkdy= gradient(darkampyy)./gradient(darktimxx);
+fdarkdy = filtfilt(f,e, darkdy);
 %plot(x(2:end),dy)
 
 %plot darkday amp
@@ -241,6 +244,7 @@ end
    
     plot(darktimxx, darkampyy, 'k-', 'LineWidth', 3);
     plot(darktimxx, darkdy, 'b-', 'LineWidth', 1.5);
+    plot(darktimxx, darkdy, 'c-', 'LineWidth', 1.5);
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
