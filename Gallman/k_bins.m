@@ -454,7 +454,10 @@ figure(28); clf; title('Dark to Light transition summary'); hold on;
     %plot dark to light transition line
     plot([transtim, transtim], ylim, 'k-');
 
-
+out.pctlight = pctlight;
+out.pctlighttim = pcttim;
+out.darkupamp = upamp;
+out.darkdownamp = downamp;
 
 %% chi square by hand for number check
 for k = 1:(transbinnum * 2)-1
