@@ -199,7 +199,8 @@ end
 %         end
 %     end
 %% filter for derivative estimate
-
+ lowp = 2000;    
+ [f,e] = butter(5, lowp/(Fs/2), 'low');
 
 %% dark summary by day for stats
 
