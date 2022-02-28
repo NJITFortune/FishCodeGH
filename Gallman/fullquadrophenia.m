@@ -38,16 +38,18 @@
 %% Extract first frame and show 4 images 
 
 
-for j = 1:4
-
-   v = VideoReader(fullfile(pather, iFiles(1).name));
-         
-   im = readFrame(v);
-   
-
-  figure(j); imshow(im(coordinates(j,1):coordinates(j,2), coordinates(j,3):coordinates(j,4)));
-        
-end
+% for j = 1:4
+% 
+%    v = VideoReader(fullfile(pather, iFiles(1).name));
+%          
+%    im = readFrame(v);
+% 
+%    %imshow(im)
+%    
+% 
+%   figure(j); imshow(im(coordinates(j,1):coordinates(j,2), coordinates(j,3):coordinates(j,4)));
+%         
+% end
 
 %pause(2);
 
@@ -57,8 +59,15 @@ end
 % 
 %% cycle through all files
 
-newdir = [pather, '/newFiles'];
+mynewfolder = uigetdir('/Volumes/');
+
+newdir = [mynewfolder, '/newFiles'];
 mkdir(newdir);
+    
+mkdir([newdir, '/UR']);
+mkdir([newdir, '/UL']);
+mkdir([newdir, '/LL']);
+mkdir([newdir, '/LR']);
 
 ff = waitbar(0, 'Cycling through files.');
 
@@ -71,13 +80,13 @@ for k = 1:length(iFiles)
 fprintf('Percent: %2.4f \n', 100 * (k/length(iFiles)) );
 
 [pather, baseName, ~] = fileparts(fullfile(iFiles(k).folder, iFiles(k).name));
-    tmpname = [pather, '/newFiles/', baseName, '-UL.avi'];
+    tmpname = [pather, '/newFiles/UL/', baseName, '-UL.avi'];
         newfilenames{1} = fullfile(tmpname);
-    tmpname = [pather, '/newFiles/', baseName, '-UR.avi'];
+    tmpname = [pather, '/newFiles/UR/', baseName, '-UR.avi'];
         newfilenames{2} = fullfile(tmpname);
-    tmpname = [pather, '/newFiles/', baseName, '-LL.avi'];
+    tmpname = [pather, '/newFiles/LL/', baseName, '-LL.avi'];
         newfilenames{3} = fullfile(tmpname);
-    tmpname = [pather, '/newFiles/', baseName, '-LR.avi'];
+    tmpname = [pather, '/newFiles/LR/', baseName, '-LR.avi'];
         newfilenames{4} = fullfile(tmpname);
 
 
