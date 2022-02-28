@@ -200,7 +200,7 @@ end
 %     end
 %% filter for derivative estimate
    
- [f,e] = butter(5, , 'low');
+% [f,e] = butter(5, , 'low');
 
  
 
@@ -217,7 +217,7 @@ end
 
 [darktimxx, darkampyy] = k_spliney([dday.tim], [dday.amp], 0.6);
 darkdy= gradient(darkampyy)./gradient(darktimxx);
-fdarkdy = filtfilt(f,e, darkdy);
+%fdarkdy = filtfilt(f,e, darkdy);
 %plot(x(2:end),dy)
 
 %plot darkday amp
