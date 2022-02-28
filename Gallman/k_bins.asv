@@ -1,4 +1,4 @@
-%function later
+function out = k_ampbinner(in, channel, binsize, transbinnum)
 %% prep 
 clearvars -except kg kg2
 
@@ -6,12 +6,14 @@ in = kg(2);
 channel = 1;
 %kg(12) starts with light
 
-
+%binsize in minutes
+% binsize = 10;
+% transbinnum = 8;
 %% outliers
 
 % Prepare the data with outliers
 
-    ttsf{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
+    ttsf{1} = 1:length([in.e(channel).s.timcont]); % tto is indices for obwAmp
     ttsf{2} = ttsf{1};
 
  
@@ -19,7 +21,7 @@ channel = 1;
 
     % If we have removed outliers via KatieRemover, get the indices...    
     if ~isempty(in.idx)
-        ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+        ttsf{channel} = in.idx(channel).sumfftidx;  % ttsf is indices for sumfftAmp
     end
      
 %% define data by light transitions
@@ -78,7 +80,7 @@ ld = in.info.ld;
 %length of experiment
 totaltimhours = lighttimes(end)-lighttimes(1);
 %bins
-binsize = 10; %minutes
+%binsize = 10; %minutes
 totalnumbins = totaltimhours/(binsize/60);
 binz = 1:1:totalnumbins;
 
@@ -119,7 +121,7 @@ bintimhour = bintimmin/60;
 
 
 
-%% probability estimate?
+%% probability estimate
 
 % if the next dot increased in amp over the previous = 1
 % if the next dot decreased in amp over previous = 0;
@@ -138,7 +140,6 @@ for k = 2:length(bin)
 end
 
    
-
 %% dark to light transitions
 
 %divide into days
@@ -152,7 +153,7 @@ darkdays = lighttimes(1) + ((2*ld) * (daysz-1));
 lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 
 %how many bins around the transistion 
-transbinnum = 8;
+%transbinnum = 8;
 transtim = transbinnum*binsize/60;
 
 %dark transistions
@@ -162,17 +163,17 @@ for jj = 2:length(darkdays)
     predidx = find(bintimhour <= darkdays(jj)+((transbinnum*binsize)/60) & bintimhour >= darkdays(jj)-((transbinnum*binsize)/60));
     
     %jj-1 so we start at 1
-    darkd(jj).binary(:) = [bin(predidx).binary];
-    darkd(jj).bintims(:) = [bin(predidx).tim]; 
+    darkd(jj-1).binary(:) = [bin(predidx).binary];
+    darkd(jj-1).bintims(:) = [bin(predidx).tim]; 
    
-    darkd(jj).binmidtims(:) = [bin(predidx).middletim];
-    darkd(jj).binAmps(:) = [bin(predidx).meanAmp];
+    darkd(jj-1).binmidtims(:) = [bin(predidx).middletim];
+    darkd(jj-1).binAmps(:) = [bin(predidx).meanAmp];
     
         
 end
       
 %light transitions
-for kk = 1:length(lightdays)
+for kk = 1:length(lightdays)-1
 
     transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour >= lightdays(kk)-((transbinnum*binsize)/60));
 
@@ -209,6 +210,7 @@ for jj = 2:length(darkdays)
     dday(jj-1).amp(:) = fftAmp(darkidx);
 
 end
+
 
 %plot darkday amp
 figure(8); clf; title('Dark to light transition average'); hold on; 
@@ -249,6 +251,7 @@ end
 %plot lightday amp
 figure(9); clf; title('Light to dark transition average'); hold on; 
     plot([lday.tim], [lday.amp], '.');
+
 for kk = 1:length(lday)
     for k = 1:length(lday(kk).tim)
      if lday(kk).tim(k) < ld
@@ -271,7 +274,7 @@ end
 %txt = 'pvalue =' + num2str(pvalue)
 text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
 
-%% Bin summary for dark to light tranistions
+%% Bin summary for dark tranistions
    
 for jj = 1:length(darkd)
 clear k;
@@ -309,7 +312,7 @@ end
 
 
 
-figure(27); clf; title('Dark transition summary');hold on;
+figure(27); clf; title('Light to Dark transition summary');hold on;
     
     %plot proportion of amplitude increases from previous bins
     plot(pcttim-((binsize/2)/60), pctdark, '.-');
@@ -379,7 +382,7 @@ end
 %         
 % end
 
-%% Bin summary for light to dark tranistions
+%% Bin summary for light tranistions
    
 for jj = 1:length(lightd)
 
@@ -417,7 +420,7 @@ end
 
 
 
-figure(28); clf; title('Light transition summary'); hold on;
+figure(28); clf; title('Dark to Light transition summary'); hold on;
     
     %plot proportion of amplitude increases from previous bins
     plot(pctlighttim-((binsize/2)/60), pctlight, '.-');
