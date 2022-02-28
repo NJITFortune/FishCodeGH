@@ -200,9 +200,9 @@ end
 %     end
 %% filter for derivative estimate
  lowp = 2000;    
- [f,e] = butter(5, lowp/(Fs/2), 'low');
+ [f,e] = butter(5, lowp/(10/2), 'low');
 
-  data(:,1) = filtfilt(f,e, data(:,1)); % Low pass filter   
+ 
 
 %% dark summary by day for stats
 
