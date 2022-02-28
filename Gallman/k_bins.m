@@ -156,17 +156,17 @@ transbinnum = 8;
 transtim = transbinnum*binsize/60;
 
 %dark transistions
-for jj = 1:length(darkdays)
+for jj = 2:length(darkdays)
 
 
     predidx = find(bintimhour <= darkdays(jj)+((transbinnum*binsize)/60) & bintimhour >= darkdays(jj)-((transbinnum*binsize)/60));
     
     %jj-1 so we start at 1
-    darkd(jj).binary(:) = [bin(predidx).binary];
-    darkd(jj).bintims(:) = [bin(predidx).tim]; 
+    darkd(jj-1).binary(:) = [bin(predidx).binary];
+    darkd(jj-1).bintims(:) = [bin(predidx).tim]; 
    
-    darkd(jj).binmidtims(:) = [bin(predidx).middletim];
-    darkd(jj).binAmps(:) = [bin(predidx).meanAmp];
+    darkd(jj-1).binmidtims(:) = [bin(predidx).middletim];
+    darkd(jj-1).binAmps(:) = [bin(predidx).meanAmp];
     
         
 end
