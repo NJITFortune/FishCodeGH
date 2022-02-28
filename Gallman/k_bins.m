@@ -198,6 +198,7 @@ end
 %     text(darkd(jj).bintims(j), darkd(jj).binAmps(j), num2str(darkd(jj).binary(j)), 'FontSize', 12);
 %         end
 %     end
+%% filter for derivative estimate
 
 
 %% dark summary by day for stats
