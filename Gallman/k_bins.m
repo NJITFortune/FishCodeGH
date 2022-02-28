@@ -2,7 +2,7 @@
 %% prep 
 clearvars -except kg kg2
 
-in = kg(12);
+in = kg(1);
 channel = 1;
 %kg(12) starts with light
 
@@ -235,7 +235,7 @@ end
 
 %Calculate chisqu of means
 
-[hypothesis,dpvalue] = ttest2(ddarkhalfamp,dlighthalfamp,'Vartype','unequal');
+[~,dpvalue] = ttest2(ddarkhalfamp,dlighthalfamp,'Vartype','unequal');
 
 %txt = 'pvalue =' + num2str(pvalue)
 text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
