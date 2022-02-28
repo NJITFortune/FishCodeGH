@@ -211,7 +211,7 @@ for jj = 2:length(darkdays)
 
 end
 
-[darktimxx, darkampyy] = k_spliney([dday.tim], [dday.amp], 0.9);
+[darktimxx, darkampyy] = k_spliney([dday.tim], [dday.amp], 0.6);
 darkdy= gradient(darkampyy)./gradient(darktimxx);
 %plot(x(2:end),dy)
 
