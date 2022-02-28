@@ -142,6 +142,7 @@ end
 %% dark to light transitions
 
 %divide into days
+%index      
 daysz = 1:1:floor(totaltimhours/(ld*2));
 
 %dark transistions
@@ -317,7 +318,7 @@ figure(27); clf; title('Dark transition summary');hold on;
     for k = 1:transbinnum * 2
 
         scatter(pcttim(k)-((binsize/2)/60), upamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
-        scatter(pcttim(k)-((binsize/2)/60),downamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
+        scatter(pcttim(k)-((binsize/2)/60), downamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
        
     end
     %plot bin lines
