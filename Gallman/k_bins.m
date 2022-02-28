@@ -172,7 +172,7 @@ for jj = 2:length(darkdays)
 end
       
 %light transitions
-for kk = 1:length(lightdays)
+for kk = 1:length(lightdays)-1
 
     transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour >= lightdays(kk)-((transbinnum*binsize)/60));
 
@@ -250,7 +250,7 @@ end
 %plot lightday amp
 figure(9); clf; title('Light to dark transition average'); hold on; 
     plot([lday.tim], [lday.amp], '.');
-    
+
 for kk = 1:length(lday)
     for k = 1:length(lday(kk).tim)
      if lday(kk).tim(k) < ld
