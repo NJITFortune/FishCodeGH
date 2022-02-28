@@ -248,11 +248,11 @@ end
 %txt = 'pvalue =' + num2str(pvalue)
 text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
 
-out.dldarkhalfamp = ddarkhalfamp;
-out.dldarkhalftim = ddarkhalftim;
-out.dllighthalfamp = dlighthalfamp;
-out.dllighthalftim = dlighthalftim;
-out.dlpvaluettest = dpvalue;
+out.ddarkhalfamp = ddarkhalfamp;
+out.ddarkhalftim = ddarkhalftim;
+out.dlighthalfamp = dlighthalfamp;
+out.dlighthalftim = dlighthalftim;
+out.dpvaluettest = dpvalue;
 out.darkampyy = darkampyy;
 out.darktimxx = darktimxx;
 
@@ -298,11 +298,11 @@ end
 %txt = 'pvalue =' + num2str(pvalue)
 text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
 
-out.lddarkhalfamp = darkhalfamp;
-out.lddarkhalftim = darkhalftim;
-out.ldlighthalfamp = lighthalfamp;
-out.ldlighthalftim = lighthalftim;
-out.ldpvaluettest = lpvalue;
+out.ldarkhalfamp = darkhalfamp;
+out.ldarkhalftim = darkhalftim;
+out.llighthalfamp = lighthalfamp;
+out.llighthalftim = lighthalftim;
+out.lpvaluettest = lpvalue;
 out.ld = ld;
 out.lighttimxx = lighttimxx;
 out.lightampyy = lightampyy;
