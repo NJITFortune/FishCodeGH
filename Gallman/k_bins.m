@@ -1,4 +1,4 @@
-%function out = k_ampbinner(in, channel, binsize, transbinnum)
+function out = k_ampbinner(in, channel, binsize, transbinnum)
 %% prep 
 clearvars -except kg kg2
 
@@ -7,8 +7,8 @@ channel = 1;
 %kg(12) starts with light
 
 %binsize in minutes
-binsize = 60;
-transbinnum = 8;
+% binsize = 60;
+% transbinnum = 8;
 %% outliers
 
 % Prepare the data with outliers
