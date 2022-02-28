@@ -95,37 +95,31 @@ bintimhour = bintimmin/60;
 
 %% Average amp by bin
 
-for j = 1:length(bintimhour)-1
-
-
-    timidx = find(timcont > bintimhour(j) & timcont <= bintimhour(j+1));
- 
-    bin(j).Amp(:) = fftAmp(timidx);
-    bin(j).tim(:) = timcont(timidx);
-   
-end
-
-
-
-% figure(4); clf; title('Average Amp by 10 minute bin'); hold on;
-% 
-% 
-%     plot([bin.tim], [bin.Amp], '.');
-
-for k = 1:length(bin)
-    bin(k).meanAmp(:) = mean(bin(k).Amp);
-    bin(k).middletim(:) = bintimhour(k+1) - ((binsize/2)/60);
+%divide amplitude data into bins
+    for j = 1:length(bintimhour)-1
     
-   %plot(bin(k).middletim, bin(k).meanAmp, '.', 'MarkerSize', 16, 'Color','r');
+    
+        timidx = find(timcont > bintimhour(j) & timcont <= bintimhour(j+1));
+     
+        bin(j).Amp(:) = fftAmp(timidx);
+        bin(j).tim(:) = timcont(timidx);
+       
+    end
 
-end
 
-%      plot([bintimhour' bintimhour'], ylim, 'm-');
-%      plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 1.5);
+
+%average aplitude data within each bin
+    for k = 1:length(bin)
+        bin(k).meanAmp(:) = mean(bin(k).Amp);
+        bin(k).middletim(:) = bintimhour(k+1) - ((binsize/2)/60);
+        
+       %plot(bin(k).middletim, bin(k).meanAmp, '.', 'MarkerSize', 16, 'Color','r');
+    
+    end
+
 
 
 %% probability estimate?
-
 
 % if the next dot increased in amp over the previous = 1
 % if the next dot decreased in amp over previous = 0;
