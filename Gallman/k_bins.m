@@ -40,16 +40,16 @@ ld = in.info.ld;
 
   
     %only take times for light vectors that have data
-    for j = 1:length(lighttimeslesslong)-1
-            
-            %is there data between j and j+1?    
-            %if ~isempty(find([in.e(1).s(ttsf{1} ).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(ttsf{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
-                
-                   lighttrim(j) = lighttimeslesslong(j);
-                 
-            %end 
-    end
-       
+%     for j = 1:length(lighttimeslesslong)-1
+%             
+%             %is there data between j and j+1?    
+%             %if ~isempty(find([in.e(1).s(ttsf{1} ).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(ttsf{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
+%                 
+%                    lighttrim(j) = lighttimeslesslong(j);
+%                  
+%             %end 
+%     end
+%        
     
     lighttimes = lighttimeslesslong;
     %for when we use the computer to find light transistions
@@ -146,7 +146,6 @@ daysz = 1:1:floor(totaltimhours/(ld*2));
 
 %dark transistions
 darkdays = lighttimes(1) + ((2*ld) * (daysz-1));
-darkdays = darkdays(darkdays<totaltimhours);
 
 %light transitions
 lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
