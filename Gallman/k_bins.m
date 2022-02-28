@@ -1,4 +1,4 @@
-function out = k_ampbinner(in, channel, binsize, transbinnum)
+%function out = k_ampbinner(in, channel, binsize, transbinnum)
 %% prep 
 clearvars -except kg kg2
 
