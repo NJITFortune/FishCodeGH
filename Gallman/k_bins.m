@@ -263,7 +263,10 @@ for kk = 2:length(lightdays)
     lday(kk-1).amp(:) = fftAmp(lightidx);
 
 end
+
 [lighttimxx, lightampyy] = k_spliney([lday.tim], [lday.amp], 0.9);
+lightdy= diff(lightampyy)./diff(lighttimxx);
+
 %plot lightday amp
 figure(9); clf; title('Light to dark transition average'); hold on; 
     plot([lday.tim], [lday.amp], '.');
@@ -283,6 +286,7 @@ for kk = 1:length(lday)
 end
 
     plot(lighttimxx, lightampyy, 'k-', 'LineWidth', 3);
+      plot(lighttimxx(2:end), lightdy, 'b-', 'LineWidth', 1.5);
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
