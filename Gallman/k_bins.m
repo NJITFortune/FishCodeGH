@@ -265,7 +265,7 @@ for kk = 2:length(lightdays)
 end
 
 [lighttimxx, lightampyy] = k_spliney([lday.tim], [lday.amp], 0.9);
-lightdy= diff(lightampyy)./diff(lighttimxx);
+lightdy= gradient(lightampyy)./diff(lighttimxx);
 
 %plot lightday amp
 figure(9); clf; title('Light to dark transition average'); hold on; 
