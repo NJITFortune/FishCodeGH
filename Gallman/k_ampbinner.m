@@ -2,8 +2,8 @@ function out = k_ampbinner(in, channel, binsize, transbinnum)
 %% prep 
 clearvars -except kg kg2
 
-in = kg(12);
-channel = 1;
+% in = kg(12);
+% channel = 1;
 %kg(12) starts with light
 
 %binsize in minutes
