@@ -216,8 +216,8 @@ end
 figure(8); clf; title('Dark to light transition average'); hold on; 
     plot([dday.tim], [dday.amp], '.');
 
+[darktimxx, darkampyy] = k_splighty(x, y, lightx, p)
 
-darksplineamp = k_spliney
 
 for jj = 1:length(dday)
     for j = 1:length(dday(jj).tim)
