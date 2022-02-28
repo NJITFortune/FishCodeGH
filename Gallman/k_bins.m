@@ -156,7 +156,7 @@ transbinnum = 8;
 transtim = transbinnum*binsize/60;
 
 %dark transistions
-for jj = 1:length(darkdays)
+for jj = 1:length(darkdays)-1
 
 
     predidx = find(bintimhour <= darkdays(jj)+((transbinnum*binsize)/60) & bintimhour>= darkdays(jj)-((transbinnum*binsize)/60));
