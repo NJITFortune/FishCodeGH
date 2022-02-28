@@ -199,8 +199,8 @@ end
 %         end
 %     end
 %% filter for derivative estimate
- lowp = 2000;    
- [f,e] = butter(5, lowp/(10/2), 'low');
+   
+ [f,e] = butter(5, , 'low');
 
  
 
