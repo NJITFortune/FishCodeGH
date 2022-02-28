@@ -341,7 +341,10 @@ figure(27); clf; title('Light to Dark transition summary');hold on;
     %plot dark to light transition line
     plot([transtim, transtim], ylim, 'k-');
 
-
+out.pctdark = pctdark;
+out.pctdarktim = pcttim;
+out.darkupamp = upamp;
+out.darkdownamp = downamp;
 
 %% chi square by hand for number check
 for k = 1:(transbinnum * 2)-1
@@ -369,6 +372,8 @@ for k = 1:(transbinnum * 2)-1
    %plot p-values on summary plot
    text(pcttim(k), pctdark(k), num2str(pval2sigs(k)));
 end
+
+out.pctdarkpvalues = pval2sigs;
 
 % %% chi square by hand method 2
 % %basically just checks math
@@ -449,7 +454,10 @@ figure(28); clf; title('Dark to Light transition summary'); hold on;
     %plot dark to light transition line
     plot([transtim, transtim], ylim, 'k-');
 
-
+out.pctlight = pctlight;
+out.pctlighttim = pcttim;
+out.darkupamp = upamp;
+out.darkdownamp = downamp;
 
 %% chi square by hand for number check
 for k = 1:(transbinnum * 2)-1
