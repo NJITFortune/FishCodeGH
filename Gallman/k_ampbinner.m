@@ -216,8 +216,8 @@ darkdy= gradient(darkampyy)./gradient(darktimxx);
 %plot(x(2:end),dy)
 
 %plot darkday amp
-figure(8); clf; title('Dark to light transition average'); hold on; 
-    plot([dday.tim], [dday.amp], '.');
+% figure(8); clf; title('Dark to light transition average'); hold on; 
+%     plot([dday.tim], [dday.amp], '.');
    
 
 
@@ -233,20 +233,20 @@ for jj = 1:length(dday)
          dlighthalftim(j,:) = dday(jj).tim(j);
      end
     end
-    plot(dlighthalftim, dlighthalfamp, 'm.');    
+    %plot(dlighthalftim, dlighthalfamp, 'm.');    
 
 end
    
-    plot(darktimxx, darkampyy, 'k-', 'LineWidth', 3);
-    plot(darktimxx, darkdy, 'b-', 'LineWidth', 1.5);
-    plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+%     plot(darktimxx, darkampyy, 'k-', 'LineWidth', 3);
+%     plot(darktimxx, darkdy, 'b-', 'LineWidth', 1.5);
+%     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
 
 [~,dpvalue] = ttest2(ddarkhalfamp,dlighthalfamp,'Vartype','unequal');
 
 %txt = 'pvalue =' + num2str(pvalue)
-text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
+% text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
 
 out.ddarkhalfamp = ddarkhalfamp;
 out.ddarkhalftim = ddarkhalftim;
@@ -270,8 +270,8 @@ end
 lightdy= gradient(lightampyy)./gradient(lighttimxx);
 
 %plot lightday amp
-figure(9); clf; title('Light to dark transition average'); hold on; 
-    plot([lday.tim], [lday.amp], '.');
+% figure(9); clf; title('Light to dark transition average'); hold on; 
+%     plot([lday.tim], [lday.amp], '.');
 
 for kk = 1:length(lday)
     for k = 1:length(lday(kk).tim)
@@ -283,20 +283,20 @@ for kk = 1:length(lday)
          darkhalftim(k,:) = lday(kk).tim(k);
      end
     end
-    plot(lighthalftim, lighthalfamp, 'm.');       
+%     plot(lighthalftim, lighthalfamp, 'm.');       
 
 end
 
-    plot(lighttimxx, lightampyy, 'k-', 'LineWidth', 3);
-      plot(lighttimxx, lightdy, 'b-', 'LineWidth', 1.5);
-    plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+%     plot(lighttimxx, lightampyy, 'k-', 'LineWidth', 3);
+%       plot(lighttimxx, lightdy, 'b-', 'LineWidth', 1.5);
+%     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
 
 [~, lpvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
 
 %txt = 'pvalue =' + num2str(pvalue)
-text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
+% text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
 
 out.ldarkhalfamp = darkhalfamp;
 out.ldarkhalftim = darkhalftim;
@@ -345,22 +345,22 @@ end
 
 
 
-figure(27); clf; title('Light to Dark transition summary');hold on;
-    
-    %plot proportion of amplitude increases from previous bins
-    plot(pcttim-((binsize/2)/60), pctdark, '.-');
+% figure(27); clf; title('Light to Dark transition summary');hold on;
+%     
+%     %plot proportion of amplitude increases from previous bins
+%     plot(pcttim-((binsize/2)/60), pctdark, '.-');
 
-    %generate random jiggle for amp plotting  through scatter
-    for k = 1:transbinnum * 2
-
-        scatter(pcttim(k)-((binsize/2)/60), upamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
-        scatter(pcttim(k)-((binsize/2)/60), downamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
-       
-    end
-    %plot bin lines
-    plot([pcttim', pcttim'], ylim, 'm-');
-    %plot dark to light transition line
-    plot([transtim, transtim], ylim, 'k-');
+%     %generate random jiggle for amp plotting  through scatter
+%     for k = 1:transbinnum * 2
+% 
+%         scatter(pcttim(k)-((binsize/2)/60), upamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
+%         scatter(pcttim(k)-((binsize/2)/60), downamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
+%        
+%     end
+%     %plot bin lines
+%     plot([pcttim', pcttim'], ylim, 'm-');
+%     %plot dark to light transition line
+%     plot([transtim, transtim], ylim, 'k-');
 
 out.pctdark = pctdark;
 out.pctdarktim = pcttim;
@@ -391,7 +391,7 @@ for k = 1:(transbinnum * 2)-1
    pval2sigs(k,:) = round(p(k,:), 2, 'significant');
 
    %plot p-values on summary plot
-   text(pcttim(k), pctdark(k), num2str(pval2sigs(k)));
+%    text(pcttim(k), pctdark(k), num2str(pval2sigs(k)));
 end
 
 out.pctdarkpvalues = pval2sigs;
@@ -458,22 +458,22 @@ end
 
 
 
-figure(28); clf; title('Dark to Light transition summary'); hold on;
-    
-    %plot proportion of amplitude increases from previous bins
-    plot(pctlighttim-((binsize/2)/60), pctlight, '.-');
-
-    %generate random jiggle for amp plotting  through scatter
-    for k = 1:transbinnum * 2
-
-        scatter(pctlighttim(k)-((binsize/2)/60), lupamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
-        scatter(pctlighttim(k)-((binsize/2)/60), ldownamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
-       
-    end
-    %plot bin lines
-    plot([pctlighttim', pctlighttim'], ylim, 'm-');
-    %plot dark to light transition line
-    plot([transtim, transtim], ylim, 'k-');
+% figure(28); clf; title('Dark to Light transition summary'); hold on;
+%     
+%     %plot proportion of amplitude increases from previous bins
+%     plot(pctlighttim-((binsize/2)/60), pctlight, '.-');
+% 
+%     %generate random jiggle for amp plotting  through scatter
+%     for k = 1:transbinnum * 2
+% 
+%         scatter(pctlighttim(k)-((binsize/2)/60), lupamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
+%         scatter(pctlighttim(k)-((binsize/2)/60), ldownamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
+%        
+%     end
+%     %plot bin lines
+%     plot([pctlighttim', pctlighttim'], ylim, 'm-');
+%     %plot dark to light transition line
+%     plot([transtim, transtim], ylim, 'k-');
 
 out.pctlight = pctlight;
 out.pctlighttim = pcttim;
@@ -504,7 +504,7 @@ for k = 1:(transbinnum * 2)-1
    lpval2sigs(k,:) = round(lp(k,:), 2, 'significant');
 
    %plot p-values on summary plot
-   text(pcttim(k), pctlight(k), num2str(lpval2sigs(k)));
+%    text(pcttim(k), pctlight(k), num2str(lpval2sigs(k)));
 end
 
 out.pctlightpvalues = lpval2sigs;
