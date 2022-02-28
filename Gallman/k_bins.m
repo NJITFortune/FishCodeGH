@@ -1,4 +1,4 @@
-%function later
+function out = k_ampbinner(in, channel, binsize, transbinnum)
 %% prep 
 clearvars -except kg kg2
 
@@ -6,12 +6,14 @@ in = kg(2);
 channel = 1;
 %kg(12) starts with light
 
-
+%binsize in minutes
+% binsize = 10;
+% transbinnum = 8;
 %% outliers
 
 % Prepare the data with outliers
 
-    ttsf{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
+    ttsf{1} = 1:length([in.e(channel).s.timcont]); % tto is indices for obwAmp
     ttsf{2} = ttsf{1};
 
  
@@ -19,7 +21,7 @@ channel = 1;
 
     % If we have removed outliers via KatieRemover, get the indices...    
     if ~isempty(in.idx)
-        ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+        ttsf{channel} = in.idx(channel).sumfftidx;  % ttsf is indices for sumfftAmp
     end
      
 %% define data by light transitions
@@ -78,7 +80,7 @@ ld = in.info.ld;
 %length of experiment
 totaltimhours = lighttimes(end)-lighttimes(1);
 %bins
-binsize = 10; %minutes
+%binsize = 10; %minutes
 totalnumbins = totaltimhours/(binsize/60);
 binz = 1:1:totalnumbins;
 
@@ -119,7 +121,7 @@ bintimhour = bintimmin/60;
 
 
 
-%% probability estimate?
+%% probability estimate
 
 % if the next dot increased in amp over the previous = 1
 % if the next dot decreased in amp over previous = 0;
@@ -138,7 +140,6 @@ for k = 2:length(bin)
 end
 
    
-
 %% dark to light transitions
 
 %divide into days
@@ -152,7 +153,7 @@ darkdays = lighttimes(1) + ((2*ld) * (daysz-1));
 lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 
 %how many bins around the transistion 
-transbinnum = 8;
+%transbinnum = 8;
 transtim = transbinnum*binsize/60;
 
 %dark transistions
@@ -236,6 +237,12 @@ end
 %txt = 'pvalue =' + num2str(pvalue)
 text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
 
+out.dldarkhalfamp = ddarkhalfamp;
+out.dldarkhalftim = ddarkhalftim;
+out.dllighthalfamp = dlighthalfamp;
+out.dllighthalftim = dlighthalftim;
+out.dlpvaluettest = dpvalue;
+
 %% light summary by day for stats
 %light
 for kk = 2:length(lightdays)
@@ -268,10 +275,16 @@ end
 
 %Calculate chisqu of means
 
-[hypothesis, lpvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
+[~, lpvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
 
 %txt = 'pvalue =' + num2str(pvalue)
 text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
+
+out.lddarkhalfamp = darkhalfamp;
+out.lddarkhalftim = darkhalftim;
+out.ldlighthalfamp = lighthalfamp;
+out.ldlighthalftim = lighthalftim;
+out.ldpvaluettest = lpvalue;
 
 %% Bin summary for dark tranistions
    
@@ -328,7 +341,10 @@ figure(27); clf; title('Light to Dark transition summary');hold on;
     %plot dark to light transition line
     plot([transtim, transtim], ylim, 'k-');
 
-
+out.pctdark = pctdark;
+out.pctdarktim = pcttim;
+out.darkupamp = upamp;
+out.darkdownamp = downamp;
 
 %% chi square by hand for number check
 for k = 1:(transbinnum * 2)-1
@@ -356,6 +372,8 @@ for k = 1:(transbinnum * 2)-1
    %plot p-values on summary plot
    text(pcttim(k), pctdark(k), num2str(pval2sigs(k)));
 end
+
+out.pctdarkpvalues = pval2sigs;
 
 % %% chi square by hand method 2
 % %basically just checks math
