@@ -259,7 +259,7 @@ for kk = 2:length(lightdays)
     lday(kk-1).amp(:) = fftAmp(lightidx);
 
 end
-[lighttimxx, lightampyy] = k_spliney([lday.tim], [lday.amp], 0.5);
+[lighttimxx, lightampyy] = k_spliney([lday.tim], [lday.amp], 0.3);
 %plot lightday amp
 figure(9); clf; title('Light to dark transition average'); hold on; 
     plot([lday.tim], [lday.amp], '.');
