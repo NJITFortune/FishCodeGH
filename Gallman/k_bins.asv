@@ -1,14 +1,14 @@
-function out = k_ampbinner(in, channel, binsize, transbinnum)
+%function out = k_ampbinner(in, channel, binsize, transbinnum)
 %% prep 
 clearvars -except kg kg2
 
-in = kg(2);
+in = kg(12);
 channel = 1;
 %kg(12) starts with light
 
 %binsize in minutes
-% binsize = 10;
-% transbinnum = 8;
+binsize = 60;
+transbinnum = 8;
 %% outliers
 
 % Prepare the data with outliers
@@ -211,10 +211,15 @@ for jj = 2:length(darkdays)
 
 end
 
-
+[darktimxx, darkampyy] = k_spliney([dday.tim], [dday.amp], 0.7);
 %plot darkday amp
 figure(8); clf; title('Dark to light transition average'); hold on; 
     plot([dday.tim], [dday.amp], '.');
+   
+
+
+
+
 for jj = 1:length(dday)
     for j = 1:length(dday(jj).tim)
      if dday(jj).tim(j) < ld
@@ -228,6 +233,8 @@ for jj = 1:length(dday)
     plot(dlighthalftim, dlighthalfamp, 'm.');    
 
 end
+   
+    plot(darktimxx, darkampyy, 'k-');
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
