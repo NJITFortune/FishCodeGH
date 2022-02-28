@@ -1,7 +1,7 @@
-function [xx, yy] = k_splighty(x, y, lightx)
+function [xx, yy] = k_splighty(x, y, lightx, p)
 
 %fit
-p = 0.7;
+%p = 0.9;
 %resample rate
 ReFs = 10;
 
