@@ -7,8 +7,8 @@ channel = 1;
 %kg(12) starts with light
 
 %binsize in minutes
-% binsize = 60;
-% transbinnum = 8;
+binsize = 60;
+transbinnum = 8;
 %% outliers
 
 % Prepare the data with outliers
