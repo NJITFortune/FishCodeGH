@@ -273,7 +273,7 @@ end
 %txt = 'pvalue =' + num2str(pvalue)
 text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
 
-%% Bin summary for dark to light tranistions
+%% Bin summary for dark tranistions
    
 for jj = 1:length(darkd)
 clear k;
@@ -311,7 +311,7 @@ end
 
 
 
-figure(27); clf; title('Dark transition summary');hold on;
+figure(27); clf; title('Light to Dark transition summary');hold on;
     
     %plot proportion of amplitude increases from previous bins
     plot(pcttim-((binsize/2)/60), pctdark, '.-');
@@ -381,7 +381,7 @@ end
 %         
 % end
 
-%% Bin summary for light to dark tranistions
+%% Bin summary for light tranistions
    
 for jj = 1:length(lightd)
 
@@ -419,7 +419,7 @@ end
 
 
 
-figure(28); clf; title('Light transition summary'); hold on;
+figure(28); clf; title('Dark to Light transition summary'); hold on;
     
     %plot proportion of amplitude increases from previous bins
     plot(pctlighttim-((binsize/2)/60), pctlight, '.-');
