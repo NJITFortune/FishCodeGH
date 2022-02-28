@@ -1,4 +1,4 @@
-function out = k_ampbinner(in, channel, binsize, transbinnum)
+%function out = k_ampbinner(in, channel, binsize, transbinnum)
 %% prep 
 clearvars -except kg kg2
 
@@ -7,8 +7,8 @@ channel = 1;
 %kg(12) starts with light
 
 %binsize in minutes
-% binsize = 10;
-% transbinnum = 8;
+binsize = 10;
+transbinnum = 8;
 %% outliers
 
 % Prepare the data with outliers
@@ -237,11 +237,11 @@ end
 %txt = 'pvalue =' + num2str(pvalue)
 text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
 
-out.dldarkhalfamp = ddarkhalfamp;
-out.dldarkhalftim = ddarkhalftim;
-out.dllighthalfamp = dlighthalfamp;
-out.dllighthalftim = dlighthalftim;
-out.dlpvaluettest = dpvalue;
+% out.dldarkhalfamp = ddarkhalfamp;
+% out.dldarkhalftim = ddarkhalftim;
+% out.dllighthalfamp = dlighthalfamp;
+% out.dllighthalftim = dlighthalftim;
+% out.dlpvaluettest = dpvalue;
 
 %% light summary by day for stats
 %light
@@ -280,11 +280,11 @@ end
 %txt = 'pvalue =' + num2str(pvalue)
 text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
 
-out.lddarkhalfamp = darkhalfamp;
-out.lddarkhalftim = darkhalftim;
-out.ldlighthalfamp = lighthalfamp;
-out.ldlighthalftim = lighthalftim;
-out.ldpvaluettest = lpvalue;
+% out.lddarkhalfamp = darkhalfamp;
+% out.lddarkhalftim = darkhalftim;
+% out.ldlighthalfamp = lighthalfamp;
+% out.ldlighthalftim = lighthalftim;
+% out.ldpvaluettest = lpvalue;
 
 %% Bin summary for dark tranistions
    
@@ -341,10 +341,10 @@ figure(27); clf; title('Light to Dark transition summary');hold on;
     %plot dark to light transition line
     plot([transtim, transtim], ylim, 'k-');
 
-out.pctdark = pctdark;
-out.pctdarktim = pcttim;
-out.darkupamp = upamp;
-out.darkdownamp = downamp;
+% out.pctdark = pctdark;
+% out.pctdarktim = pcttim;
+% out.darkupamp = upamp;
+% out.darkdownamp = downamp;
 
 %% chi square by hand for number check
 for k = 1:(transbinnum * 2)-1
@@ -454,11 +454,11 @@ figure(28); clf; title('Dark to Light transition summary'); hold on;
     %plot dark to light transition line
     plot([transtim, transtim], ylim, 'k-');
 
-out.pctlight = pctlight;
-out.pctlighttim = pcttim;
-out.lightupamp = upamp;
-out.lightdownamp = downamp;
-out.transtim = transtim;
+% out.pctlight = pctlight;
+% out.pctlighttim = pcttim;
+% out.lightupamp = upamp;
+% out.lightdownamp = downamp;
+% out.transtim = transtim;
 %% chi square by hand for number check
 for k = 1:(transbinnum * 2)-1
 %     clear n1; clear n2;
@@ -486,7 +486,7 @@ for k = 1:(transbinnum * 2)-1
    text(pcttim(k), pctlight(k), num2str(lpval2sigs(k)));
 end
 
-out.pctlightpvalues = lpval2sigs;
+%out.pctlightpvalues = lpval2sigs;
 
 % %% chi square by hand method 2
 % %basically just checks math
