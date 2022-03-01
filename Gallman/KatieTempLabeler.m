@@ -57,38 +57,38 @@ function out = KatieTempLabeler(in)
         %f = falltime
         %l= lowercross
         %u = uppercross
-%         [r, lrx, ~, ~, ~] = risetime([in(1).s.temp], [in(1).s.timcont]/3600);
-%         [f, ~, ufx, ~, ~] = falltime([in(1).s.temp], [in(1).s.timcont]/3600);
-%         
-%         
-%         %save rise indicis in center of temp change
-%             %lower cross plus risetime/2
-%         for j = 1:length(lrx)
-%             %plot([lrx(j)+(r(j)/2), lrx(j)+(r(j)/2)], ylim, 'k-');
-%             rise(j,:) = lrx(j)+(r(j)/2);
-%         %     plot([rise(j) rise(j)], ylim, 'b-');
-%         end
-%         
-%         
-%         %save fall indicis in center of temp change
-%             %upper cross plus falltime/2
-%         for k = 1:length(ufx)
-%             %plot([ufx(k)+(f(k)/2), ufx(k)+(f(k)/2)],  ylim, 'r-');
-%            fall(k,:) = ufx(k)+(f(k)/2);
-%         end
-%      
-%         %concatenate rise and fall times into single vector 
-%         alltemp = vertcat(rise, fall);
-%         %sort vector in ascending order
-%         [tempsort, ~] = sort(alltemp);
-%                
-%         %save vector as output
-%         %plot to check
-%         for j = 1:length(tempsort)
-%             out.temptims(j,:) = tempsort(j);
-%             plot([out.temptims(j), out.temptims(j)], ylim, 'b-');
-%         end
-%    
+        [r, lrx, ~, ~, ~] = risetime([in(1).s.temp], [in(1).s.timcont]/3600);
+        [f, ~, ufx, ~, ~] = falltime([in(1).s.temp], [in(1).s.timcont]/3600);
+        
+        
+        %save rise indicis in center of temp change
+            %lower cross plus risetime/2
+        for j = 1:length(lrx)
+            %plot([lrx(j)+(r(j)/2), lrx(j)+(r(j)/2)], ylim, 'k-');
+            rise(j,:) = lrx(j)+(r(j)/2);
+        %     plot([rise(j) rise(j)], ylim, 'b-');
+        end
+        
+        
+        %save fall indicis in center of temp change
+            %upper cross plus falltime/2
+        for k = 1:length(ufx)
+            %plot([ufx(k)+(f(k)/2), ufx(k)+(f(k)/2)],  ylim, 'r-');
+           fall(k,:) = ufx(k)+(f(k)/2);
+        end
+     
+        %concatenate rise and fall times into single vector 
+        alltemp = vertcat(rise, fall);
+        %sort vector in ascending order
+        [tempsort, ~] = sort(alltemp);
+               
+        %save vector as output
+        %plot to check
+        for j = 1:length(tempsort)
+            out.temptims(j,:) = tempsort(j);
+            plot([out.temptims(j), out.temptims(j)], ylim, 'b-');
+        end
+   
 %% manual labels
  %enter into command line
     out.ld = input('Enter the LD schedule: '); %temp code is 99 if constant light or dark
