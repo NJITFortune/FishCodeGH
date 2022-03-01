@@ -62,7 +62,7 @@ ax(4) = subplot(414); hold on; title('light transitions');
    end  
 
 % Add social times, if we have them... 
-   if isfield(out.info.socialtimes)
+   if isfield(out.info, 'socialtimes')
     if ~isempty(out.info.socialtimes)   
         ax(1) = subplot(411); plot([abs(out.info.socialtimes)' abs(out.info.socialtimes)']', ylim, 'g-', 'LineWidth', 2, 'MarkerSize', 10);
     end  
