@@ -1,4 +1,6 @@
 
+clearvars -except kg kg2
+
 in = kg(104);
 channel = 1;
 
