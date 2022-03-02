@@ -32,10 +32,12 @@ timcont = [in.e(channel).s.timcont] / (60*60);
     
 
 
-for j = 1:length(tempV)
+for j = 1:1%length(tempV)
   
   R2 = R1 * ((1023.0 / tempV(j)) - 1.0);
+  R2
   logR2 = log(R2);
+  logR2
   T = (1.0 / (c1 + (c2*logR2) + (c3*logR2*logR2*logR2)));
   tempC(j,:) = T - 273.15;
 
@@ -43,14 +45,14 @@ end
 
  %% plot to check
 
- figure(453); clf; hold on;
-
-    ax(1) = subplot(211); title('Temp in Volts'); hold on;
-        plot(timcont, tempV, '-');
-
-    ax(2) = subplot(212); title('Temp in degC'); hold on;
-        plot(timcont, tempC, '-');
-
+%  figure(453); clf; hold on;
+% 
+%     ax(1) = subplot(211); title('Temp in Volts'); hold on;
+%         plot(timcont, tempV, '-');
+% 
+%     ax(2) = subplot(212); title('Temp in degC'); hold on;
+%         plot(timcont, tempC, '-');
+% 
 
 
 
