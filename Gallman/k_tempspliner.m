@@ -36,12 +36,12 @@ temperaturetimeslong = abs(in.info.temptims);
 
     %fit light vector to power idx
         %poweridx = good data
-    if isempty(in.info.poweridx) %if there are no values in poweridx []
+   % if isempty(in.info.poweridx) %if there are no values in poweridx []
         temperaturetimeslesslong = temperaturetimeslong;
-    else %take data from within power idx range
-        temptimesidx = temperaturetimeslong > in.info.poweridx(1) & temperaturetimeslong < in.info.poweridx(2);
-        temperaturetimeslesslong = temperaturetimeslong(temptimesidx);
-    end
+%     else %take data from within power idx range
+%         temptimesidx = temperaturetimeslong > in.info.poweridx(1) & temperaturetimeslong < in.info.poweridx(2);
+%         temperaturetimeslesslong = temperaturetimeslong(temptimesidx);
+%     end
 
     
 %only take times for light vectors that have data
