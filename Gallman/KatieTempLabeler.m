@@ -1,6 +1,8 @@
 %function out = KatieTempLabeler(in)
 % Usage: kg(#).info = KatieTempLabeler(kg(#).e)
-in = kg(105).e
+
+clearvars -exepct kg
+in = kg(105).e;
 %out = kg2(k).info
 
 %% auto labels
@@ -12,7 +14,7 @@ in = kg(105).e
     %output saved in vector luz
     %plots to check
         %plot light/time
-        figure(58); clf; hold on;
+      figure(58); clf; hold on;
         
         plot([in(1).s.timcont]/3600, [in(1).s.light]);
                     ylim([-1, 6]);
