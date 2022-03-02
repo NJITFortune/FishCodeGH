@@ -1,9 +1,10 @@
 
 in = kg(103);
+channel = 1;
 
 %define input variables
 Rig = in.info.folder(end);
-temp = [in.info.temptims];
+tempV = [in.e(channel).s.temp];
 timcont = [in.e(channel).s.timcont] / (60*60);
 %define variables for calculations
     %constants
@@ -31,9 +32,9 @@ timcont = [in.e(channel).s.timcont] / (60*60);
     
 
 
-for j = 1:length(temp)
+for j = 1:length(tempV)
   
-  R2 = R1 * ((1023.0 / temp(j)) - 1.0);
+  R2 = R1 * ((1023.0 / tempV(j)) - 1.0);
   logR2 = log(R2);
   T = (1.0 / (c1 + c2*logR2 + c3*logR2*logR2*logR2));
   tempC(j,:) = T - 273.15;
@@ -45,7 +46,7 @@ end
  figure(453); clf; hold on;
 
     ax(1) = subplot(211); title('Temp in Volts'); hold on;
-        plot(timcont, temp, '-');
+        plot(timcont, tempV, '-');
 
     ax(2) = subplot(212); title('Temp in degC'); hold on;
         plot(timcont, tempC, '-');
