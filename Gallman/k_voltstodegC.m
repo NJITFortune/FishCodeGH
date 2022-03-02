@@ -1,5 +1,5 @@
 function tempC = k_voltstodegC(in, channel)
-clearvars -except kg kg2
+%clearvars -except kg kg2
 
 % in = kg(103);
 % channel = 1;
