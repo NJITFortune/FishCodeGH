@@ -57,7 +57,7 @@ for k = 2:2:length(temptims)-1
 
     pday(k/2).obw(:) = obwyy(tidx);
     pday(k/2).zAmp(:) = zyy(tidx);
-    pday(k/2). sumfft(:) = sumfftyy(tidx);
+    pday(k/2).sumfft(:) = sumfftyy(tidx);
 
     pday(k/2).entiretim(:) = xx(tidx);
     
@@ -83,7 +83,7 @@ figure(777); clf; hold on;
         for kk = 1:length(pday)
 
 
-            plot(pday(kk).entiretim, pday(kk).obw, 'LineWidth', 2);
+            plot(pday(kk).entiretim, pday(kk).sumfft, 'LineWidth', 2);
 
             %preavg(kk, :) = preavg(kk, :) + pday(kk).obw;
 
@@ -100,23 +100,23 @@ figure(777); clf; hold on;
 figure(778); clf; hold on;
 
 
-pmean = zeros(1, length(pday(1).obw));
-ptim = zeros(1, length(pday(1).obw));
+pmean = zeros(1, length(pday(1).sumfft));
+ptim = zeros(1, length(pday(1).sumfft));
 
 
         for p = 1:length(pday)
 
-            plot(pday(p).tim, pday(p).obw, 'LineWidth', 2);
+            plot(pday(p).tim, pday(p).sumfft, 'LineWidth', 2);
 
-                if length(pmean) > length(pday(p).obw)
-                    pmean(1:length(pday(p).obw)) = pmean(1:length(pday(p).obw)) + pday(p).obw;
+                if length(pmean) > length(pday(p).sumfft)
+                    pmean(1:length(pday(p).obw)) = pmean(1:length(pday(p).sumfft)) + pday(p).sumfft;
                 end
-                if length(pmean) < length(pday(p).obw)
+                if length(pmean) < length(pday(p).sumfft)
                     pmean = pmean + pday(p).obw(1:length(pmean));
-                    pmean(end+1:length(pday(p).obw)) = pday(p).obw(length(pmean)+1:end);
+                    pmean(end+1:length(pday(p).sumfft)) = pday(p).sumfft(length(pmean)+1:end);
                 end
-                if length(pmean) == length(pday(p).obw)
-                        pmean = pmean + pday(p).obw;
+                if length(pmean) == length(pday(p).sumfft)
+                        pmean = pmean + pday(p).sumfft;
                 end
 
                 if length(pday(p).tim) > length(ptim)
