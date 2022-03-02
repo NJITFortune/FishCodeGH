@@ -77,29 +77,29 @@ if channel == 1
       
       %estimate new yvalues for every x value
       
-            %obw
-            spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
-            %resample new x values based on light/dark
-            obwyy = fnval(xx, spliney);
-            
-            %detrend ydata
-            dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
-            %extract trend 
-            normobwyytrend = 1./(obwyy - dtobwyy);
-            tnormobwyy = obwyy .* normobwyytrend;
-            %tnormobwyy = obwyy * mean(normobwyytrend);    
-            
-      
-            %zAmp
-            spliney = csaps([in.e(1).s(ttz{1}).timcont]/(60*60), [in.e(1).s(ttz{1}).zAmp], p);
-            %resample new x values based on light/dark
-            zyy = fnval(xx, spliney);
-            
-            %detrend ydata
-            dtzyy = detrend(zyy,6,'SamplePoints', xx);
-            %extract trend 
-            normzyytrend = 1./(zyy - dtzyy);
-            tnormzyy = obwyy .* normzyytrend;
+%             %obw
+%             spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
+%             %resample new x values based on light/dark
+%             obwyy = fnval(xx, spliney);
+%             
+%             %detrend ydata
+%             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
+%             %extract trend 
+%             normobwyytrend = 1./(obwyy - dtobwyy);
+%             tnormobwyy = obwyy .* normobwyytrend;
+%             %tnormobwyy = obwyy * mean(normobwyytrend);    
+%             
+%       
+%             %zAmp
+%             spliney = csaps([in.e(1).s(ttz{1}).timcont]/(60*60), [in.e(1).s(ttz{1}).zAmp], p);
+%             %resample new x values based on light/dark
+%             zyy = fnval(xx, spliney);
+%             
+%             %detrend ydata
+%             dtzyy = detrend(zyy,6,'SamplePoints', xx);
+%             %extract trend 
+%             normzyytrend = 1./(zyy - dtzyy);
+%             tnormzyy = obwyy .* normzyytrend;
                 
             
             %sumfft
@@ -122,27 +122,27 @@ else %channel = 2
 
       %estimate new yvalues for every x value
              
-           %obw
-            spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
-            %resample new x values based on light/dark
-            obwyy = fnval(xx, spliney);
-            
-            %detrend ydata
-            dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
-            %extract trend 
-            normobwyytrend = 1./(obwyy - dtobwyy);
-            tnormobwyy = obwyy .* normobwyytrend;
-                    
-           %zAmp
-            spliney = csaps([in.e(2).s(ttz{2}).timcont]/(60*60), [in.e(2).s(ttz{2}).zAmp], p);
-            %resample new x values based on light/dark
-            zyy = fnval(xx, spliney);
-            
-            %detrend ydata
-            dtzyy = detrend(zyy,6,'SamplePoints', xx);
-            %extract trend 
-            normzyytrend = 1./(zyy - dtzyy);
-            tnormzyy = obwyy .* normzyytrend;
+%            %obw
+%             spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
+%             %resample new x values based on light/dark
+%             obwyy = fnval(xx, spliney);
+%             
+%             %detrend ydata
+%             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
+%             %extract trend 
+%             normobwyytrend = 1./(obwyy - dtobwyy);
+%             tnormobwyy = obwyy .* normobwyytrend;
+%                     
+%            %zAmp
+%             spliney = csaps([in.e(2).s(ttz{2}).timcont]/(60*60), [in.e(2).s(ttz{2}).zAmp], p);
+%             %resample new x values based on light/dark
+%             zyy = fnval(xx, spliney);
+%             
+%             %detrend ydata
+%             dtzyy = detrend(zyy,6,'SamplePoints', xx);
+%             %extract trend 
+%             normzyytrend = 1./(zyy - dtzyy);
+%             tnormzyy = obwyy .* normzyytrend;
             
            %sumfft
             spliney = csaps([in.e(2).s(ttsf{2}).timcont]/(60*60), [in.e(2).s(ttsf{2}).sumfftAmp], p);
