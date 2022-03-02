@@ -116,7 +116,7 @@ figure(778); clf; hold on;
         pmean = pmean / length(pday);
         ptim = ptim(1:length(pmean));
 
-        plot(ptim, pmean, 'k', 'LineWidth', 3)
+        plot(ptim, pmean, 'k', 'LineWidth', 5)
 %calculate temp ld equivalent
     td = floor(temperaturetimes(3)-temperaturetimes(2));
         plot([td, td], ylim, 'k-', 'LineWidth', 2);
