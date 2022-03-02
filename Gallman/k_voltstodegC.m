@@ -1,7 +1,7 @@
 
 clearvars -except kg kg2
 
-in = kg(104);
+in = kg(103);
 channel = 1;
 
 %define input variables
