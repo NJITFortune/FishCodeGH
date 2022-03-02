@@ -12,20 +12,20 @@ ld = [in.info.ld];
 %outliers
     % Prepare the data with outliers
 
-            tto{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
-            tto{2} = tto{1};
+%             tto{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
+%             tto{2} = tto{1};
+% 
+%             ttz{1} = tto{1}; % ttz is indices for zAmp
+%             ttz{2} = tto{1};
 
-            ttz{1} = tto{1}; % ttz is indices for zAmp
-            ttz{2} = tto{1};
-
-            ttsf{1} = tto{1}; % ttsf is indices for sumfftAmp
-            ttsf{2} = tto{1};
+            ttsf{1} = 1:length([in.e(1).s.timcont]); % ttsf is indices for sumfftAmp
+            ttsf{2} = 1:length([in.e(2).s.timcont]);
     % Prepare the data without outliers
 
             % If we have removed outliers via KatieRemover, get the indices...    
             if ~isempty(in.idx) 
-                tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
-                ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
+%                 tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
+%                 ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
                 ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
             end
          
