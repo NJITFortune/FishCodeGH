@@ -1,14 +1,14 @@
-%function out = KatieTempLabeler(in)
+function out = KatieTempLabeler(in)
 % Usage: kg(#).info = KatieTempLabeler(kg(#).e)
 
-clearvars -except kg
-in = kg(105).e;
+% clearvars -except kg
+% in = kg(105).e;
 %out = kg2(k).info
 
 %% auto labels
 %datafolder name
     %saved in Gallman
-%    [~,out.folder,~]=fileparts(pwd);
+    [~,out.folder,~]=fileparts(pwd);
     
 %light changes
     %output saved in vector luz
@@ -93,9 +93,9 @@ in = kg(105).e;
    
 %% manual labels
  %enter into command line
-%     out.ld = input('Enter the LD schedule: '); %temp code is 99 if constant light or dark
-%     out.fishid = input('Enter fish name or identifier: ');
-%     out.feedingtimes = input('Enter feeding times in hours from start: ');
-%     out.poweridx = input('Enter the values of timcont in hours over which to perform power analysis: ');
-%     
+    out.ld = input('Enter the LD schedule: '); %temp code is 99 if constant light or dark
+    out.fishid = input('Enter fish name or identifier: ');
+    out.feedingtimes = input('Enter feeding times in hours from start: ');
+    out.poweridx = input('Enter the values of timcont in hours over which to perform power analysis: ');
+    
 
