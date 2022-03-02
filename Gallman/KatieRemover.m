@@ -3,46 +3,46 @@ function out = KatieRemover(in)
 % Usage: kg(#).idx = KatieRemover(kg(#).e);
 for k=1:2
 
-% OBW        
-figure(1); clf;
-
-    histogram([in(k).s.obwAmp], 100); hold on;
-    
-    %Lower lim
-    %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
-    [cutofffreqL, ~]  = ginput(1);
-    plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
-    drawnow; 
-    
-    %Upper lim
-    %fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
-    [cutofffreqH, ~]  = ginput(1);
-    plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
-    drawnow; 
-    
-    out(k).obwidx = find([in(k).s.obwAmp] > cutofffreqL & [in(k).s.obwAmp] < cutofffreqH);
-    pause(1);
-    
-% zAmp        
-figure(1); clf;
-
-    histogram([in(k).s.zAmp], 100); hold on;
-    
-    %Lower lim
-    %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
-    [cutofffreqL, ~]  = ginput(1);
-    plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
-    drawnow;   
-    
-    %Upper lim
-    %fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
-    [cutofffreqH, ~]  = ginput(1);
-    plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
-    drawnow; 
-    
-    %Define indices by upper and lower lim
-    out(k).zidx = find([in(k).s.zAmp] > cutofffreqL & [in(k).s.zAmp] < cutofffreqH);
-    pause(1);
+% % OBW        
+% figure(1); clf;
+% 
+%     histogram([in(k).s.obwAmp], 100); hold on;
+%     
+%     %Lower lim
+%     %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
+%     [cutofffreqL, ~]  = ginput(1);
+%     plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+%     drawnow; 
+%     
+%     %Upper lim
+%     %fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
+%     [cutofffreqH, ~]  = ginput(1);
+%     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+%     drawnow; 
+%     
+%     out(k).obwidx = find([in(k).s.obwAmp] > cutofffreqL & [in(k).s.obwAmp] < cutofffreqH);
+%     pause(1);
+%     
+% % zAmp        
+% figure(1); clf;
+% 
+%     histogram([in(k).s.zAmp], 100); hold on;
+%     
+%     %Lower lim
+%     %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
+%     [cutofffreqL, ~]  = ginput(1);
+%     plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+%     drawnow;   
+%     
+%     %Upper lim
+%     %fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
+%     [cutofffreqH, ~]  = ginput(1);
+%     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+%     drawnow; 
+%     
+%     %Define indices by upper and lower lim
+%     out(k).zidx = find([in(k).s.zAmp] > cutofffreqL & [in(k).s.zAmp] < cutofffreqH);
+%     pause(1);
 
 % peakfftAmp        
 figure(1); clf;
