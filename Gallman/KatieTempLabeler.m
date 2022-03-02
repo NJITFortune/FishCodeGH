@@ -46,7 +46,7 @@ in = kg(105).e;
     %output saved in vector temptims
     %plots to check
         %plot temp/time
-        figure(58); clf; hold on;
+        figure(59); clf; hold on;
         plot([in(1).s.timcont]/3600, [in(1).s.temp]);
                     
                     
