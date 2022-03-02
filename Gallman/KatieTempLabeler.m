@@ -1,6 +1,6 @@
 %function out = KatieTempLabeler(in)
 % Usage: kg(#).info = KatieTempLabeler(kg(#).e)
-in = kg(105).s
+in = kg(105).s;
 %out = kg2(k).info
 
 %% auto labels
