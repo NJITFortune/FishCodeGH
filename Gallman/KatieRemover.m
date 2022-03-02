@@ -86,6 +86,7 @@ figure(1); clf;
     out(k).sumfftidx = find([in(k).s.sumfftAmp] > cutofffreqL & [in(k).s.sumfftAmp] < cutofffreqH);
     pause(1);
 
-    close(1);
 
 end
+
+close(1);
