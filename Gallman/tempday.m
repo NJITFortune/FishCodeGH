@@ -101,15 +101,15 @@ figure(777); clf; hold on;
 figure(778); clf; hold on;
 
 
-        plot(pday(1).tim, pday(1).sumfft);
-        pmean = pday(1).sumfft;
+        plot(pday(1).tim, pday(1).sumfft - mean(pday(1).sumfft));
+        pmean = pday(1).sumfft - mean(pday(1).sumfft);
         ptim = pday(1).tim;
 
         for p = 2:length(pday)
 
-            plot(pday(p).tim, pday(p).sumfft, 'LineWidth', 2);
+            plot(pday(p).tim, pday(p).sumfft - mean(pday(p).sumfft), 'LineWidth', 2);
             pmean = pmean(1:min([length(pmean), length(pday(p).sumfft)]));
-            pmean = pmean + pday(p).sumfft(1:length(pmean));
+            pmean = pmean + (pday(p).sumfft(1:length(pmean)) - mean(pday(p).sumfft(1:length(pmean))));
            
         end
 % 
