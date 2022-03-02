@@ -6,10 +6,10 @@ function [trial, day] = KatiefftDayTrialDessembler(in, channel,  ReFs, light)
     %starts with dark = 3
     %starts with light = 4
 
-in = kg(107);
-channel = 1;
-ReFs = 10;
-light = 3;
+% in = kg(107);
+% channel = 1;
+% ReFs = 10;
+% light = 3;
 
 %% prep
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
