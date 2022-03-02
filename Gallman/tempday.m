@@ -20,7 +20,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %detrendspliner uses csaps to estimate cubic spline of data 
     %subtracts trend from data
     %uses new time base defined by ReFs
-[xx, ~, ~, sumfftyy, temperaturetimes] = k_tempspliner(in,channel, ReFs, p);
+[xx, sumfftyy, temperaturetimes] = k_tempspliner(in,channel, ReFs, p);
 
     timcont = [in.e(channel).s.timcont] / (60*60);
     %timcont = timcont(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end));
