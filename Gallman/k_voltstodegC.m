@@ -1,7 +1,7 @@
 
 in = kg(103);
-rigname = in.info.folder(end);
-Rig = genvarname(rigname);
+Rig = in.info.folder(end);
+%Rig = genvarname(rigname);
 
 %define variables for calculations
     %constants
