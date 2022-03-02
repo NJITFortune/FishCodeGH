@@ -1,12 +1,12 @@
-function out = KatieTempLabeler(in)
+%function out = KatieTempLabeler(in)
 % Usage: kg(#).info = KatieTempLabeler(kg(#).e)
-%in = kg2(k).s
+in = kg(105).s
 %out = kg2(k).info
 
 %% auto labels
 %datafolder name
     %saved in Gallman
-    [~,out.folder,~]=fileparts(pwd);
+%    [~,out.folder,~]=fileparts(pwd);
     
 %light changes
     %output saved in vector luz
@@ -50,8 +50,8 @@ function out = KatieTempLabeler(in)
                     
         %find idicies where the light changes (threshold of 2.5)  
             %autoplots but does not save. Use to check output
-            %risetime([in.e(1).s.temp], [in.e(1).s.timcont]/3600);
-            %falltime([in.e(1).s.temp], [in.e(1).s.timcont]/3600);
+            risetime([in.e(1).s.temp], [in.e(1).s.timcont]/3600);
+            falltime([in.e(1).s.temp], [in.e(1).s.timcont]/3600);
         
         %r = risetime
         %f = falltime
@@ -91,9 +91,9 @@ function out = KatieTempLabeler(in)
    
 %% manual labels
  %enter into command line
-    out.ld = input('Enter the LD schedule: '); %temp code is 99 if constant light or dark
-    out.fishid = input('Enter fish name or identifier: ');
-    out.feedingtimes = input('Enter feeding times in hours from start: ');
-    out.poweridx = input('Enter the values of timcont in hours over which to perform power analysis: ');
-    
+%     out.ld = input('Enter the LD schedule: '); %temp code is 99 if constant light or dark
+%     out.fishid = input('Enter fish name or identifier: ');
+%     out.feedingtimes = input('Enter feeding times in hours from start: ');
+%     out.poweridx = input('Enter the values of timcont in hours over which to perform power analysis: ');
+%     
 
