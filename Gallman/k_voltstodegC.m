@@ -10,7 +10,7 @@ Rig = genvarname(rigname);
     c3 = 2.019202697e-07;
 
 
-if Rig == A
+if Rig == 'A'
     R1 = R1a;
 end
 %     %thermister calibration by tank
