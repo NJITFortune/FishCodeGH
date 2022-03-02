@@ -101,7 +101,7 @@ figure(778); clf; hold on;
 
 
 for j = 1:length(pday)
-    temptriallength(j,:) = length(pday(j).summfft);
+    temptriallength(j,:) = length(pday(j).sumfft);
 end
 longesttrial = max(temptriallength);
 
