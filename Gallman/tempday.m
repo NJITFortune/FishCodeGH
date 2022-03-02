@@ -101,7 +101,7 @@ figure(777); clf; hold on;
 figure(778); clf; hold on;
 
 
-        plot(pday(1).tim, pday(1).summfft);
+        plot(pday(1).tim, pday(1).sumfft);
         pmean = pday(1).sumfft;
         ptim = pday(1).sumfft;
 
