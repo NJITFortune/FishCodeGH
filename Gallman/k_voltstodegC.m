@@ -38,22 +38,22 @@ for j = 1:1%length(tempV)
 
   logR2 = log(R2);
 
-  T = (1.0 / (c1 + (c2*logR2) + (c3*logR2*logR2*logR2)));
-  
+  T = 1.0 / (c1 + c2*logR2 + c3*logR2*logR2*logR2);
+
   tempC(j,:) = T - 273.15;
 
 end
 
  %% plot to check
 
-%  figure(453); clf; hold on;
-% 
-%     ax(1) = subplot(211); title('Temp in Volts'); hold on;
-%         plot(timcont, tempV, '-');
-% 
-%     ax(2) = subplot(212); title('Temp in degC'); hold on;
-%         plot(timcont, tempC, '-');
-% 
+ figure(453); clf; hold on;
+
+    ax(1) = subplot(211); title('Temp in Volts'); hold on;
+        plot(timcont, tempV, '-');
+
+    ax(2) = subplot(212); title('Temp in degC'); hold on;
+        plot(timcont, tempC, '-');
+
 
 
 
