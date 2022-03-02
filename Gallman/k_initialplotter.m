@@ -35,6 +35,7 @@ ax(2) = subplot(412); hold on; title('frequency (black) and temperature (red)');
     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.fftFreq], '.k', 'Markersize', 8);
      
 ax(3) = subplot(413); hold on; title('temperature');
+
     plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.temp], '-r', 'Markersize', 8);
     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.temp], '-r', 'Markersize', 8);
 
