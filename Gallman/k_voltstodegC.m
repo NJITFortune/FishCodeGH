@@ -36,7 +36,7 @@ timcont = [in.e(channel).s.timcont] / (60*60);
 
 for j = 1:1%length(tempV)
   
-  R2 = R1 * ((1023.0 / tempV(j)) - 1.0);
+  R2 = R1 * ((1023.0 / (tempV(j)*(1023/5))) - 1.0);
 
   logR2 = log(R2);
 
