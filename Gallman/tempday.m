@@ -104,9 +104,13 @@ for j = length(pday):-1:1
     temptriallength(j,:) = length(pday(j).sumfft);
 end
 longesttrial = max(temptriallength);
+shortesttrial = min(temptriallength);
 
-pmean = zeros(1, longesttrial);
-ptim = zeros(1, longesttrial);
+pmean = zeros(1, shortesttrial);
+ptim = zeros(1, shortesttrial);
+
+% pmean = zeros(1, longesttrial);
+% ptim = zeros(1, longesttrial);
 
 
         for p = 1:length(pday)
