@@ -1,4 +1,4 @@
-
+function tempC = k_voltstodegC(in)
 clearvars -except kg kg2
 
 in = kg(103);
