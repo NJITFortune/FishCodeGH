@@ -1,5 +1,5 @@
 
-in = kg(103);
+in = kg(104);
 channel = 1;
 
 %define input variables
