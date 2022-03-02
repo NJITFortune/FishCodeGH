@@ -6,8 +6,8 @@
     %starts with dark = 3
     %starts with light = 4
 
-in = kg(107);
-channel = 2;
+in = kg(106);
+channel = 1;
 ReFs = 10;
 light = 3;
 
