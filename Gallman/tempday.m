@@ -100,13 +100,13 @@ figure(777); clf; hold on;
 figure(778); clf; hold on;
 
 
-for j = 1:length(pday)
+for j = length(pday):-1:1
     temptriallength(j,:) = length(pday(j).sumfft);
 end
 longesttrial = max(temptriallength);
 
-pmean = zeros(1, length(pday(1).sumfft));
-ptim = zeros(1, length(pday(1).sumfft));
+pmean = zeros(1, longesttrial);
+ptim = zeros(1, longesttrial);
 
 
         for p = 1:length(pday)
