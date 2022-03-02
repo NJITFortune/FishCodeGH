@@ -114,10 +114,10 @@ ptim = zeros(1, longesttrial);
             plot(pday(p).tim, pday(p).sumfft, 'LineWidth', 2);
 
                 if length(pmean) > length(pday(p).sumfft)
-                    pmean(1:length(pday(p).obw)) = pmean(1:length(pday(p).sumfft)) + pday(p).sumfft;
+                    pmean(1:length(pday(p).sumfft)) = pmean(1:length(pday(p).sumfft)) + pday(p).sumfft;
                 end
                 if length(pmean) < length(pday(p).sumfft)
-                    pmean = pmean + pday(p).obw(1:length(pmean));
+                    pmean = pmean + pday(p).sumfft(1:length(pmean));
                     pmean(end+1:length(pday(p).sumfft)) = pday(p).sumfft(length(pmean)+1:end);
                 end
                 if length(pmean) == length(pday(p).sumfft)
