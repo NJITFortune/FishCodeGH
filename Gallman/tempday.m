@@ -27,7 +27,7 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
     %obwraw = [in.e(channel).s(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end)).obwAmp];
     temprawvolt = [in.e(channel).s.temp];
-    tempraw = 
+    tempraw = k_voltstodegC(in, channel);
     temptims = [in.info.temptims];
     freq = [in.e(channel).s.fftFreq];
     light = abs(in.info.luz);
