@@ -1,7 +1,7 @@
 %function out = KatieTempLabeler(in)
 % Usage: kg(#).info = KatieTempLabeler(kg(#).e)
 
-clearvars -exepct kg
+clearvars -except kg
 in = kg(105).e;
 %out = kg2(k).info
 
