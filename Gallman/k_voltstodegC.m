@@ -18,6 +18,8 @@ timcont = [in.e(channel).s.timcont] / (60*60);
     R1a = 9630; % adjust for each from 10000 //9500
     R1b = 9800; %adjust for each from 10000 //9500//11500
     R1c = 11000; % adjust for each from 10000 //9500
+    R1d = 9700; % adjust for each from 10000 //9500
+    R1e = 10000; % adjust for each from 10000 //9500//11500
 
 
     if Rig == 'A'
@@ -32,7 +34,15 @@ timcont = [in.e(channel).s.timcont] / (60*60);
         R1 = R1c;
     end
     
+    if Rig == 'D'
+        R1 = R1d;
+    end
 
+    if Rig == 'E'
+        R1 = R1e;
+    end
+
+%analog read converts
 
 for j = 1:length(tempV)
   
