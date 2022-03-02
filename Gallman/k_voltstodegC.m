@@ -44,8 +44,11 @@ end
 
  figure(453); clf; hold on;
 
-    ax(1) = subplot(211); title('Temp in Volts');
-        plot(timcont, temp, )
+    ax(1) = subplot(211); title('Temp in Volts'); hold on;
+        plot(timcont, temp, '-');
+
+    ax(2) = subplot(212); title('Temp in degC'); hold on;
+        plot(timcont, tempC, '-');
 
 
 
