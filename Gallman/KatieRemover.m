@@ -45,25 +45,25 @@ for k=1:2
 %     pause(1);
 
 % peakfftAmp        
-figure(1); clf;
-
-    histogram([in(k).s.peakfftAmp], 100); hold on;
-    
-    %Lower lim
-    %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
-    [cutofffreqL, ~]  = ginput(1);
-    plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
-    drawnow;    
-    
-    %Upper lim
-    %fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
-    [cutofffreqH, ~]  = ginput(1);
-    plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
-    drawnow; 
-    
-   %Define indices by upper and lower lim
-    out(k).peakfftidx = find([in(k).s.peakfftAmp] > cutofffreqL & [in(k).s.peakfftAmp] < cutofffreqH);
-    pause(1);
+% figure(1); clf;
+% 
+%     histogram([in(k).s.peakfftAmp], 100); hold on;
+%     
+%     %Lower lim
+%     %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
+%     [cutofffreqL, ~]  = ginput(1);
+%     plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+%     drawnow;    
+%     
+%     %Upper lim
+%     %fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
+%     [cutofffreqH, ~]  = ginput(1);
+%     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+%     drawnow; 
+%     
+%    %Define indices by upper and lower lim
+%     out(k).peakfftidx = find([in(k).s.peakfftAmp] > cutofffreqL & [in(k).s.peakfftAmp] < cutofffreqH);
+%     pause(1);
     
 % sumfftAmp        
 figure(1); clf;
@@ -85,5 +85,7 @@ figure(1); clf;
     %Define indices by upper and lower lim
     out(k).sumfftidx = find([in(k).s.sumfftAmp] > cutofffreqL & [in(k).s.sumfftAmp] < cutofffreqH);
     pause(1);
+
+    close(1);
 
 end
