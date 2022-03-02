@@ -135,7 +135,7 @@ ptim = zeros(1, shortesttrial);
         end
 % 
         pmean = pmean / length(pday);
-        plot(ptim, pmean, 'k', 'LineWidth', 3)
+        plot(ptim(1:shortesttrial), pmean(1:shortesttrial), 'k', 'LineWidth', 3)
 
         
  %% ERIC HELP PLEASE
