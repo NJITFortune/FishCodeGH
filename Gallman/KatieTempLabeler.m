@@ -52,8 +52,8 @@ in = kg(105).e;
                     
         %find idicies where the light changes (threshold of 2.5)  
             %autoplots but does not save. Use to check output
-            risetime([in(1).s.temp], [in(1).s.timcont]/3600);
-            falltime([in(1).s.temp], [in(1).s.timcont]/3600);
+%             risetime([in(1).s.temp], [in(1).s.timcont]/3600);
+%             falltime([in(1).s.temp], [in(1).s.timcont]/3600);
         
         %r = risetime
         %f = falltime
