@@ -1,7 +1,7 @@
 
 clearvars -except kg
 
-in = kg(104);
+in = kg(105);
 channel = 1;
 p = 0.5;
 ReFs = 10;  %resample once every minute (Usually 60)
