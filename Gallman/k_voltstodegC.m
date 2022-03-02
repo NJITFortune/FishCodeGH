@@ -4,7 +4,7 @@ in = kg(103);
 %define input variables
 Rig = in.info.folder(end);
 temp = [in.info.temptims];
-
+timcont = [in.e(channel).s.timcont] / (60*60);
 %define variables for calculations
     %constants
     c1 = 1.009249522e-03;
@@ -45,7 +45,7 @@ end
  figure(453); clf; hold on;
 
     ax(1) = subplot(211); title('Temp in Volts');
-        plot([in.e(1).s.])
+        plot(timcont, temp, )
 
 
 
