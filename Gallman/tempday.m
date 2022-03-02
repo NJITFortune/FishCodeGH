@@ -51,9 +51,9 @@ figure(34); clf; hold on;
 
 %this is going to suck because the temp doesn't change super consistently
 
-for k = 2:2:length(temptims)-1
+for k = 2:2:length(temperaturetimes)-1
     %define index overwhich to divide data
-    tidx = find(xx >= temptims(k-1) & xx < temptims(k+1));   
+    tidx = find(xx >= temperaturetimes(k-1) & xx < temperaturetimes(k+1));   
 
     pday(k/2).obw(:) = obwyy(tidx);
     pday(k/2).zAmp(:) = zyy(tidx);
