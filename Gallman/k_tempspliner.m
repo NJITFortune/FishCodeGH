@@ -47,10 +47,10 @@ temperaturetimeslong = abs(in.info.temptims);
 %only take times for light vectors that have data
 for j = 1:length(temperaturetimeslesslong)-1
         
-        %is there data between j and j+1?    
-       if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= temperaturetimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (temperaturetimeslesslong(j+1)),1))  
-            ott = [in.e(1).s(tto{1}).timcont]/(60*60) >= temperaturetimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < temperaturetimeslesslong(j+1); 
-            
+%         %is there data between j and j+1?    
+%        if ~isempty(find([in.e(1).s(tto{1}).timcont]/(60*60) >= temperaturetimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < (temperaturetimeslesslong(j+1)),1))  
+%             ott = [in.e(1).s(tto{1}).timcont]/(60*60) >= temperaturetimeslesslong(j) & [in.e(1).s(tto{1}).timcont]/(60*60) < temperaturetimeslesslong(j+1); 
+%             
             
             
             %ensures that we start on the first full lighttime
@@ -59,7 +59,7 @@ for j = 1:length(temperaturetimeslesslong)-1
               % luztimes(j) = in.info.luz(j);
            % end
          
-        end 
+%         end 
 end
 
 
