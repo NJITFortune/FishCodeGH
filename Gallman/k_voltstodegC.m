@@ -33,9 +33,9 @@ temptims = [in.info.temptims];
 
 for j = 1:length(temptims)
   
-  R2a = R1a * ((1023.0 / temptims(j)) - 1.0);
-  logR2a = log(R2a);
-  Ta = (1.0 / (c1 + c2*logR2a + c3*logR2a*logR2a*logR2a));
+  R2 = R1 * ((1023.0 / temptims(j)) - 1.0);
+  logR2a = log(R2);
+  Ta = (1.0 / (c1 + c2*logR2 + c3*logR2a*logR2a*logR2a));
   Ta = Ta - 273.15;
 
   Serial.print("Temperature A: "); 
