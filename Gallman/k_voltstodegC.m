@@ -3,7 +3,7 @@ in = kg(103);
 
 %define input variables
 Rig = in.info.folder(end);
-temptims = [in.info.temptims];
+temp = [in.info.temptims];
 
 %define variables for calculations
     %constants
@@ -31,17 +31,21 @@ temptims = [in.info.temptims];
     
 
 
-for j = 1:length(temptims)
+for j = 1:length(temp)
   
-  R2 = R1 * ((1023.0 / temptims(j)) - 1.0);
-  logR2a = log(R2);
-  Ta = (1.0 / (c1 + c2*logR2 + c3*logR2a*logR2a*logR2a));
-  Ta = Ta - 273.15;
+  R2 = R1 * ((1023.0 / temp(j)) - 1.0);
+  logR2 = log(R2);
+  T = (1.0 / (c1 + c2*logR2 + c3*logR2*logR2*logR2));
+  tempC(j,:) = T - 273.15;
 
-  Serial.print("Temperature A: "); 
-  Serial.print(Ta);
-  Serial.println(" C"); 
+end
 
+ %% plot to check
+
+ figure(453); clf; hold on;
+
+    ax(1) = subplot(211); title('Temp in Volts');
+        plot([in.e(1).s.])
 
 
 
