@@ -1,8 +1,8 @@
-function tempC = k_voltstodegC(in)
+function tempC = k_voltstodegC(in, channel)
 clearvars -except kg kg2
 
-in = kg(103);
-channel = 1;
+% in = kg(103);
+% channel = 1;
 
 %define input variables
 Rig = in.info.folder(end);
