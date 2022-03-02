@@ -138,7 +138,7 @@ ptim = zeros(1, shortesttrial);
         plot(ptim(1:shortesttrial), pmean(1:shortesttrial), 'k', 'LineWidth', 3)
 %calculate temp ld equivalent
     td = floor(temperaturetimes(2)-temperaturetimes(1));
-        plot([td, td], ylim, 'k-', 'LineWidth', 3);
+        plot([td, td], ylim, 'k-', 'LineWidth', 2);
         
  %% ERIC HELP PLEASE
  
