@@ -101,41 +101,21 @@ figure(777); clf; hold on;
 figure(778); clf; hold on;
 
 
-for j = length(pday):-1:1
-    temptriallength(j,:) = length(pday(j).sumfft);
-end
-longesttrial = max(temptriallength);
-shortesttrial = min(temptriallength);
+        plot(pday(1).tim, pday(1).summfft);
+        pmean = pday(1).sumfft;
+        ptim = pday(1).sumfft;
 
-pmean = zeros(1, shortesttrial);
-ptim = zeros(1, shortesttrial);
-
-% pmean = zeros(1, longesttrial);
-% ptim = zeros(1, longesttrial);
-
-
-        for p = 1:length(pday)
+        for p = 2:length(pday)
 
             plot(pday(p).tim, pday(p).sumfft, 'LineWidth', 2);
-
-                if length(pmean) > length(pday(p).sumfft)
-                    pmean(1:length(pday(p).sumfft)) = pmean(1:length(pday(p).sumfft)) + pday(p).sumfft;
-                end
-                if length(pmean) < length(pday(p).sumfft)
-                    pmean = pmean + pday(p).sumfft(1:length(pmean));
-                    pmean(end+1:length(pday(p).sumfft)) = pday(p).sumfft(length(pmean)+1:end);
-                end
-                if length(pmean) == length(pday(p).sumfft)
-                        pmean = pmean + pday(p).sumfft;
-                end
-
-                if length(pday(p).tim) > length(ptim)
-                    ptim = pday(p).tim;
-                end
+            pmean = pmean(1:min([length(pmean), length(pday(p).summfft)]));
+            pmean = pmean + pday(p).summfft(1:length(pmean));
            
         end
 % 
         pmean = pmean / length(pday);
+        ptim = ptim(1:length(pmean));
+
         plot(ptim(1:shortesttrial), pmean(1:shortesttrial), 'k', 'LineWidth', 3)
 %calculate temp ld equivalent
     td = floor(temperaturetimes(3)-temperaturetimes(2));
