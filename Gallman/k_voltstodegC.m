@@ -42,7 +42,8 @@ timcont = [in.e(channel).s.timcont] / (60*60);
         R1 = R1e;
     end
 
-%analog read converts
+%analogread converts voltage to a digital value from 0-1023
+%voltage * (1023/5) adapts the arduino code for the NiDaq
 
 for j = 1:length(tempV)
   
