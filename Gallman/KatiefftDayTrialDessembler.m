@@ -1,4 +1,4 @@
-%function [trial, day] = KatiefftDayTrialDessembler(in, channel,  ReFs, light)
+function [trial, day] = KatiefftDayTrialDessembler(in, channel,  ReFs, light)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
@@ -179,79 +179,79 @@ for k = 1:howmanydaysinsample
  end
  
  %% plot to check
-
- %trials across tims
- figure(26); clf; title('trials across time');  hold on;
- 
-    for jj = 1:length(out)
-        
-        plot(out(jj).entiretimcont, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
-        plot(out(jj).Sentiretimcont, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
-        
-    end
-    
-    for j = 1:length(lighttimes)
-        
-        plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-    end
-    
- 
- clear mday;
- 
- %all days
- %average day by trial
- figure(27); clf; hold on; title('Day average by trial');
-    for jj=1:length(trial) 
-
-        %create temporary vector to calculate mean by trial
-        mday(jj,:) = zeros(1, length(trial(jj).tim));
-
-
-        for k=1:length(trial(jj).day)
-
-                %fill temporary vector with data from each day 
-                mday(jj,:) = mday(jj,:) + trial(jj).day(k).SsumfftAmp;
-                subplot(211); hold on; title('Days');
-                plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
-                plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-
-        end
-
-         % To get average across days, divide by number of days
-            mday(jj,:) = mday(jj,:) / length(trial(jj).day);
-            subplot(212); hold on; title('Day average by trial');
-            plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
-            plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-
-    end
-    
-    % Mean of means
- 
-    subplot(212); hold on;
-     meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
-    plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
-    
-
-   
-    
-figure(28); clf; hold on; 
-
-clear meanday;
-
- for k = 1:length(day)
-        plot(day(k).tim, day(k).Ssumfftyy);
-        meanday(k,:) = day(k).Ssumfftyy;
- end
-    
-        mmday= mean(meanday);
-        plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
-        plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-        
-figure(29); clf; hold on;
-    plot(day(1).tim, mmday);
-    plot(trial(jj).tim, meanofmeans);
-    plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-    legend('day mean', 'trial mean');
-     legend('boxoff')
-
-
+% 
+%  %trials across tims
+%  figure(26); clf; title('trials across time');  hold on;
+%  
+%     for jj = 1:length(out)
+%         
+%         plot(out(jj).entiretimcont, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
+%         plot(out(jj).Sentiretimcont, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
+%         
+%     end
+%     
+%     for j = 1:length(lighttimes)
+%         
+%         plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+%     end
+%     
+%  
+%  clear mday;
+%  
+%  %all days
+%  %average day by trial
+%  figure(27); clf; hold on; title('Day average by trial');
+%     for jj=1:length(trial) 
+% 
+%         %create temporary vector to calculate mean by trial
+%         mday(jj,:) = zeros(1, length(trial(jj).tim));
+% 
+% 
+%         for k=1:length(trial(jj).day)
+% 
+%                 %fill temporary vector with data from each day 
+%                 mday(jj,:) = mday(jj,:) + trial(jj).day(k).SsumfftAmp;
+%                 subplot(211); hold on; title('Days');
+%                 plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
+%                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+% 
+%         end
+% 
+%          % To get average across days, divide by number of days
+%             mday(jj,:) = mday(jj,:) / length(trial(jj).day);
+%             subplot(212); hold on; title('Day average by trial');
+%             plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
+%             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+% 
+%     end
+%     
+%     % Mean of means
+%  
+%     subplot(212); hold on;
+%      meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
+%     plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
+%     
+% 
+%    
+%     
+% figure(28); clf; hold on; 
+% 
+% clear meanday;
+% 
+%  for k = 1:length(day)
+%         plot(day(k).tim, day(k).Ssumfftyy);
+%         meanday(k,:) = day(k).Ssumfftyy;
+%  end
+%     
+%         mmday= mean(meanday);
+%         plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
+%         plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+%         
+% figure(29); clf; hold on;
+%     plot(day(1).tim, mmday);
+%     plot(trial(jj).tim, meanofmeans);
+%     plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+%     legend('day mean', 'trial mean');
+%      legend('boxoff')
+% 
+% 
