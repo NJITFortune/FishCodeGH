@@ -1,7 +1,7 @@
 
 clearvars -except kg
 
-in = kg(105);
+in = kg(1050.);
 channel = 1;
 p = 0.5;
 ReFs = 10;  %resample once every minute (Usually 60)
@@ -101,18 +101,22 @@ figure(777); clf; hold on;
 figure(778); clf; hold on;
 
 
-        plot(pday(1).tim, pday(1).summfft);
-        pmean = pday(1).sumfft;
+        plot(pday(1).tim, pday(1).sumfft - mean(pday(1).sumfft));
+        pmean = pday(1).sumfft - mean(pday(1).sumfft);
+        ptim = pday(1).tim;
 
         for p = 2:length(pday)
 
-            plot(pday(p).tim, pday(p).sumfft, 'LineWidth', 2);
-            pmean = pmean(1:min([length(pmean), length(pday(p).summfft)))
+            plot(pday(p).tim, pday(p).sumfft - mean(pday(p).sumfft), 'LineWidth', 2);
+            pmean = pmean(1:min([length(pmean), length(pday(p).sumfft)]));
+            pmean = pmean + (pday(p).sumfft(1:length(pmean)) - mean(pday(p).sumfft(1:length(pmean))));
            
         end
 % 
         pmean = pmean / length(pday);
-        plot(ptim(1:shortesttrial), pmean(1:shortesttrial), 'k', 'LineWidth', 3)
+        ptim = ptim(1:length(pmean));
+
+        plot(ptim, pmean, 'k', 'LineWidth', 5)
 %calculate temp ld equivalent
     td = floor(temperaturetimes(3)-temperaturetimes(2));
         plot([td, td], ylim, 'k-', 'LineWidth', 2);
