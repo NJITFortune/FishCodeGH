@@ -1,7 +1,7 @@
-function [xx, yy] = k_splighty(x, y, lightx)
+function [xx, yy] = k_spliney(x, y, p)
 
 %fit
-p = 0.7;
+%p = 0.9;
 %resample rate
 ReFs = 10;
 
@@ -9,5 +9,5 @@ ReFs = 10;
 
             spliney = csaps(x, y, p);
             %resample new x values based on light/dark 
-            xx = lightx(1):1/ReFs:lightx(end);
+            xx = x(1):1/ReFs:x(end);
             yy = fnval(xx, spliney);

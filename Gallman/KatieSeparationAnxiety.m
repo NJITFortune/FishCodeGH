@@ -1,10 +1,12 @@
-function out = KatieSeparationAnxiety(userfilespec)
+%function out = KatieSeparationAnxiety(userfilespec)
 %% usage
 %kg2(k).s = out
 %see kgme multi
+clearvars -except kg2 kg
+userfilespec = 'Eigen*';
 %% Prep
     Fs = 40000; %sample rate
-    freqs = [425 625]; %freq range of typical eigen EOD
+    freqs = [350 600]; %freq range of typical eigen EOD
     %userfilespec = 'Eigen*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
@@ -155,22 +157,45 @@ for j=2:length(iFiles)
         tmphiamp2 = tmp2.fftdata(tmpidx2h(hifreq2idx));
         tmploamp2 = tmp2.fftdata(tmpidx2l(lofreq2idx));
 
-% Set current frequencies
+%Set current frequencies
 
-% currhifreq = tmphifreq1;         
-% currlofreq = tmplofreq2;  
+% if tmploamp1 < 0.1
+% currlofreq = tmplofreq2;
+% else 
+% currlofreq = tmplofreq1;
+% end
+% 
+% if tmphiamp1 < 0.1
+% currhifreq = tmphifreq2;
+% else 
+% currhifreq = tmphifreq1;
+% end
 
-    if tmploamp1 > tmploamp2
-        currlofreq = tmplofreq1;
-    else
-        currlofreq = tmplofreq2;
-    end
-    
-    if tmphiamp1 > tmphiamp2
-        currhifreq = tmphifreq1;
-    else
-        currhifreq = tmphifreq2;
-    end
+currlofreq = tmplofreq1;  
+currhifreq = tmphifreq2;
+
+if currhifreq < 440
+    currhifreq = 450;
+end
+
+if currlofreq > 440
+    currlofreq = 413;
+end
+
+% % 
+%     if tmploamp1 > tmploamp2
+%         currlofreq = tmplofreq1;
+%     else
+%         currlofreq = tmplofreq2;
+%     end
+%     
+%     if tmphiamp1 > tmphiamp2
+%         currhifreq = tmphifreq1;
+%     else
+%         currhifreq = tmphifreq2;
+%     end
+
+ 
 
 %          currhifreq = mean([tmphifreq1 tmphifreq2]);        
 %     currlofreq = mean([tmplofreq1 tmplofreq2]);        

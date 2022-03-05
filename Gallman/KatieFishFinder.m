@@ -1,4 +1,4 @@
-function out = KatieFishFinder(in)
+%function out = KatieFishFinder(in)
 %% usage
 %takes raw fft amp data from each tube and assigns it to high and low freq fish
 %kg2(#).fish = KatieFishFinder(kg2(#).s)
