@@ -25,27 +25,29 @@ for k = 1:length(iFiles)
 
     c = readmatrix(fullfile(iFiles(k).folder,iFiles(k).name));
     
-    out.filename = iFiles(k).name; 
+    out.s(k).filename = iFiles(k).name; 
     
-    out.tim = 1/Fs:1/Fs:length(c(:,1))/Fs;
+    out.s(k).tim = 1/Fs:1/Fs:length(c(:,1))/Fs;
     out.Fs = Fs;
     
-    out.nose(:,1) = c(:,2);
-    out.nose(:,2) = c(:,3);
-    out.nose(:,3) = c(:,4);
+    out.s(k).nose(:,1) = c(:,2);
+    out.s(k).nose(:,2) = c(:,3);
+    out.s(k).nose(:,3) = c(:,4);
     
-    out.fin(:,1) = c(:,5);
-    out.fin(:,2) = c(:,6);
-    out.fin(:,3) = c(:,7);
+    out.s(k).fin(:,1) = c(:,5);
+    out.s(k).fin(:,2) = c(:,6);
+    out.s(k).fin(:,3) = c(:,7);
     
-    out.tail(:,1) = c(:,8);
-    out.tail(:,2) = c(:,9);
-    out.tail(:,3) = c(:,10);
+    out.s(k).tail(:,1) = c(:,8);
+    out.s(k).tail(:,2) = c(:,9);
+    out.s(k).tail(:,3) = c(:,10);
 
 end
 
+pause(1); close(ff);
+
 out.folder = iFiles(1).name;
-out.tim = [];
+out.timcont = [];
 %% Calculate shitty velocity
 % 
 % for j=1:length(out.nose)-1 
