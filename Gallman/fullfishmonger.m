@@ -16,6 +16,8 @@ Fs = 15;
 
 %% Put data into structure
 
+ff = waitbar(0, 'Cycling through files.');
+
 for k = 1:length(iFiles)
     
 k    
