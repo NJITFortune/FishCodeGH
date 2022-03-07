@@ -20,25 +20,27 @@ ff = waitbar(0, 'Cycling through files.');
 
 for k = 1:length(iFiles)
     
-k    
-c = readmatrix(fullfile(iFiles(k).folder,iFiles(k).name));
 
-out.filename = iFiles(k).name; 
+    waitbar(k/length(iFiles), ff, 'Fishing...', 'modal');
 
-out.tim = 1/Fs:1/Fs:length(c(:,1))/Fs;
-out.Fs = Fs;
-
-out.nose(:,1) = c(:,2);
-out.nose(:,2) = c(:,3);
-out.nose(:,3) = c(:,4);
-
-out.fin(:,1) = c(:,5);
-out.fin(:,2) = c(:,6);
-out.fin(:,3) = c(:,7);
-
-out.tail(:,1) = c(:,8);
-out.tail(:,2) = c(:,9);
-out.tail(:,3) = c(:,10);
+    c = readmatrix(fullfile(iFiles(k).folder,iFiles(k).name));
+    
+    out.filename = iFiles(k).name; 
+    
+    out.tim = 1/Fs:1/Fs:length(c(:,1))/Fs;
+    out.Fs = Fs;
+    
+    out.nose(:,1) = c(:,2);
+    out.nose(:,2) = c(:,3);
+    out.nose(:,3) = c(:,4);
+    
+    out.fin(:,1) = c(:,5);
+    out.fin(:,2) = c(:,6);
+    out.fin(:,3) = c(:,7);
+    
+    out.tail(:,1) = c(:,8);
+    out.tail(:,2) = c(:,9);
+    out.tail(:,3) = c(:,10);
 
 end
 
