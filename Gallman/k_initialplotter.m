@@ -5,19 +5,19 @@ close all;
 %% Preparations
 
 % All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
-    tto{1} = 1:length([out.e(2).s.timcont]); % tto is indices for obwAmp
-    tto{2} = tto{1};
+%     tto{1} = 1:length([out.e(2).s.timcont]); % tto is indices for obwAmp
+%     tto{2} = tto{1};
+% 
+%     ttz{1} = tto{1}; % ttz is indices for zAmp
+%     ttz{2} = tto{1};
 
-    ttz{1} = tto{1}; % ttz is indices for zAmp
-    ttz{2} = tto{1};
-
-    ttsf{1} = tto{1}; % ttsf is indices for sumfftAmp
-    ttsf{2} = tto{1};
+    ttsf{1} = 1:length([out.e(1).s.timcont]); % ttsf is indices for sumfftAmp
+    ttsf{2} = 1:length([out.e(2).s.timcont]);
     
 % If we have removed outliers via KatieRemover, get the indices...    
     if ~isempty(out.idx)
-        tto{1} = out.idx(1).obwidx; tto{2} = out.idx(2).obwidx; % tto is indices for obwAmp
-        ttz{1} = out.idx(1).zidx; ttz{2} = out.idx(2).zidx; % ttz is indices for zAmp
+%         tto{1} = out.idx(1).obwidx; tto{2} = out.idx(2).obwidx; % tto is indices for obwAmp
+%         ttz{1} = out.idx(1).zidx; ttz{2} = out.idx(2).zidx; % ttz is indices for zAmp
         ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
     end
 
@@ -35,8 +35,11 @@ ax(2) = subplot(412); hold on; title('frequency (black) and temperature (red)');
     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.fftFreq], '.k', 'Markersize', 8);
      
 ax(3) = subplot(413); hold on; title('temperature');
-    plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.temp], '-r', 'Markersize', 8);
-    plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.temp], '-r', 'Markersize', 8);
+    ch2tempC = k_voltstodegC(out, 2);
+    ch1tempC = k_voltstodegC(out, 1);
+    
+    plot([out.e(2).s.timcont]/(60*60), ch2tempC, '-r', 'Markersize', 8);
+    plot([out.e(1).s.timcont]/(60*60), ch1tempC, '-r', 'Markersize', 8);
 
 ax(4) = subplot(414); hold on; title('light transitions');  
     plot([out.e(2).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);

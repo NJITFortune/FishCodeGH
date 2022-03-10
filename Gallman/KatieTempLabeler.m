@@ -1,6 +1,8 @@
 function out = KatieTempLabeler(in)
 % Usage: kg(#).info = KatieTempLabeler(kg(#).e)
-%in = kg2(k).s
+
+% clearvars -except kg
+% in = kg(105).e;
 %out = kg2(k).info
 
 %% auto labels
@@ -12,7 +14,7 @@ function out = KatieTempLabeler(in)
     %output saved in vector luz
     %plots to check
         %plot light/time
-        figure(58); clf; hold on;
+      figure(58); clf; hold on;
         
         plot([in(1).s.timcont]/3600, [in(1).s.light]);
                     ylim([-1, 6]);
@@ -44,14 +46,14 @@ function out = KatieTempLabeler(in)
     %output saved in vector temptims
     %plots to check
         %plot temp/time
-        figure(58); clf; hold on;
+        figure(59); clf; hold on;
         plot([in(1).s.timcont]/3600, [in(1).s.temp]);
                     
                     
         %find idicies where the light changes (threshold of 2.5)  
             %autoplots but does not save. Use to check output
-            %risetime([in.e(1).s.temp], [in.e(1).s.timcont]/3600);
-            %falltime([in.e(1).s.temp], [in.e(1).s.timcont]/3600);
+%             risetime([in(1).s.temp], [in(1).s.timcont]/3600);
+%             falltime([in(1).s.temp], [in(1).s.timcont]/3600);
         
         %r = risetime
         %f = falltime

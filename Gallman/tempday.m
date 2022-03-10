@@ -1,7 +1,7 @@
 
 clearvars -except kg
 
-in = kg(103);
+in = kg(1);
 channel = 1;
 p = 0.5;
 ReFs = 10;  %resample once every minute (Usually 60)
@@ -20,13 +20,14 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %detrendspliner uses csaps to estimate cubic spline of data 
     %subtracts trend from data
     %uses new time base defined by ReFs
-[xx, obwyy, zyy, sumfftyy, temperaturetimes] = k_tempspliner(in,channel, ReFs, p);
+[xx, sumfftyy, temperaturetimes] = k_tempspliner(in,channel, ReFs, p);
 
     timcont = [in.e(channel).s.timcont] / (60*60);
     %timcont = timcont(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end));
 
     %obwraw = [in.e(channel).s(timcont >= temperaturetimes(1) & timcont <= temperaturetimes(end)).obwAmp];
     tempraw = [in.e(channel).s.temp];
+    %tempraw = k_voltstodegC(in, channel);
     temptims = [in.info.temptims];
     freq = [in.e(channel).s.fftFreq];
     light = abs(in.info.luz);
@@ -41,7 +42,7 @@ figure(3); clf; hold on;
 
 figure(34); clf; hold on; 
 
-    plot(xx, (obwyy/2)-mean(obwyy/2), '-', 'LineWidth', 3);
+    plot(xx, (sumfftyy/2)-mean(sumfftyy/2), '-', 'LineWidth', 3);
     plot(timcont, (freq/200)-mean(freq/200), 'c-', 'LineWidth', 2);
     plot(timcont, tempraw-mean(tempraw), 'r-', 'LineWidth', 1);
     plot([temptims temptims], ylim, 'k-', 'LineWidth', 2);
@@ -55,8 +56,8 @@ for k = 2:2:length(temperaturetimes)-1
     %define index overwhich to divide data
     tidx = find(xx >= temperaturetimes(k-1) & xx < temperaturetimes(k+1));   
 
-    pday(k/2).obw(:) = obwyy(tidx);
-    pday(k/2).zAmp(:) = zyy(tidx);
+%     pday(k/2).obw(:) = obwyy(tidx);
+%     pday(k/2).zAmp(:) = zyy(tidx);
     pday(k/2).sumfft(:) = sumfftyy(tidx);
 
     pday(k/2).entiretim(:) = xx(tidx);
@@ -100,44 +101,24 @@ figure(777); clf; hold on;
 figure(778); clf; hold on;
 
 
-for j = length(pday):-1:1
-    temptriallength(j,:) = length(pday(j).sumfft);
-end
-longesttrial = max(temptriallength);
-shortesttrial = min(temptriallength);
+        plot(pday(1).tim, pday(1).sumfft - mean(pday(1).sumfft));
+        pmean = pday(1).sumfft - mean(pday(1).sumfft);
+        ptim = pday(1).tim;
 
-pmean = zeros(1, shortesttrial);
-ptim = zeros(1, shortesttrial);
+        for p = 2:length(pday)
 
-% pmean = zeros(1, longesttrial);
-% ptim = zeros(1, longesttrial);
-
-
-        for p = 1:length(pday)
-
-            plot(pday(p).tim, pday(p).sumfft, 'LineWidth', 2);
-
-                if length(pmean) > length(pday(p).sumfft)
-                    pmean(1:length(pday(p).sumfft)) = pmean(1:length(pday(p).sumfft)) + pday(p).sumfft;
-                end
-                if length(pmean) < length(pday(p).sumfft)
-                    pmean = pmean + pday(p).sumfft(1:length(pmean));
-                    pmean(end+1:length(pday(p).sumfft)) = pday(p).sumfft(length(pmean)+1:end);
-                end
-                if length(pmean) == length(pday(p).sumfft)
-                        pmean = pmean + pday(p).sumfft;
-                end
-
-                if length(pday(p).tim) > length(ptim)
-                    ptim = pday(p).tim;
-                end
+            plot(pday(p).tim, pday(p).sumfft - mean(pday(p).sumfft), 'LineWidth', 2);
+            pmean = pmean(1:min([length(pmean), length(pday(p).sumfft)]));
+            pmean = pmean + (pday(p).sumfft(1:length(pmean)) - mean(pday(p).sumfft(1:length(pmean))));
            
         end
 % 
         pmean = pmean / length(pday);
-        plot(ptim(1:shortesttrial), pmean(1:shortesttrial), 'k', 'LineWidth', 3)
+        ptim = ptim(1:length(pmean));
+
+        plot(ptim, pmean, 'k', 'LineWidth', 5)
 %calculate temp ld equivalent
-    td = floor(temperaturetimes(2)-temperaturetimes(1));
+    td = floor(temperaturetimes(3)-temperaturetimes(2));
         plot([td, td], ylim, 'k-', 'LineWidth', 2);
         
  %% ERIC HELP PLEASE
