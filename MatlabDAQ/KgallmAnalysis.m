@@ -1,3 +1,4 @@
+
 function out = KgallmAnalysis(userfilespec, Fs, numstart)
 % Function out = KgallmAnalysis('Eigen*', 40000, 23);
 % userfilespec is data from listentothis.m, e.g. 'EigenTest*.mat'
