@@ -164,9 +164,9 @@ else %channel = 2
              
 end
 
-% figure(57); clf; title('testing original spline'); hold on;
-%     plot(sumffttimOG, sumfftAmpOG, '.');
-%     plot(xx, sumfftyy, '-');
+figure(57); clf; title('testing original spline'); hold on;
+    plot(sumffttimOG, sumfftAmpOG, '.');
+    plot(xx, sumfftyy, '-');
 %% subset raw data            
         
 %take raw data above the spline
