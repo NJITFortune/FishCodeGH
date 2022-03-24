@@ -182,7 +182,7 @@ for k = 1:howmanydaysinsample
  %% plot to check
 
  %trials across tims
- figure(26); hold on; %title('trials across time');  
+ figure(57); hold on; %title('trials across time');  
  
     for jj = 1:length(out)
         
