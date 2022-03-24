@@ -182,11 +182,11 @@ for k = 1:howmanydaysinsample
  %% plot to check
 
  %trials across tims
- figure(26); clf; title('trials across time');  hold on;
+ figure(26); hold on; %title('trials across time');  
  
     for jj = 1:length(out)
         
-        plot(out(jj).entiretimcont, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
+        %plot(out(jj).entiretimcont, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
         plot(out(jj).Sentiretimcont, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
         
     end
