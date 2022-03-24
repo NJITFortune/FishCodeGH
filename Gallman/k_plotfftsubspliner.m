@@ -190,9 +190,12 @@ p = 0.9;
    normsubfftyytrend = 1./(subfftyy - dtsubfftyy);
    tnormsubfftyy = subfftyy .* normsubfftyytrend;
 
-   %%plot to check
-figure(57); clf; title('testing original spline'); hold on;
-    plot(sumffttimOG, sumfftAmpOG, '.');
-    plot()
-    plot(xx, sumfftyy, '-');
+%% plot to check
+figure(57); clf; hold on;
+    %raw data
+    plot(sumffttimOG,sumfftAmpOG, '.'); 
+    %raw data above first spline
+    plot(subffttim,subfft, '.');
+    %second spline before detrending
+    plot(xx, subfftyy, '-', 'LineWidth', 3);
 
