@@ -182,21 +182,21 @@ for k = 1:howmanydaysinsample
  %% plot to check
 
  %trials across tims
- figure(57); hold on; %title('trials across time');  
- 
-    for jj = 1:length(out)
-        
-        %plot(out(jj).entiretimcont, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
-        plot(out(jj).Sentiretimcont, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
-        
-    end
-    
-    for j = 1:length(lighttimes)
-        
-        plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-    end
-    
- 
+%  figure(57); hold on; %title('trials across time');  
+%  
+%     for jj = 1:length(out)
+%         
+%         %plot(out(jj).entiretimcont, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
+%         plot(out(jj).Sentiretimcont, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
+%         
+%     end
+%     
+%     for j = 1:length(lighttimes)
+%         
+%         plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+%     end
+%     
+%  
  clear mday;
  
  %all days
