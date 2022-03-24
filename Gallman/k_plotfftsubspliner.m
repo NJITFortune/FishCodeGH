@@ -198,4 +198,6 @@ figure(57); clf; hold on;
     plot(subffttim,subfft, '.');
     %second spline before detrending
     plot(xx, subfftyy, '-', 'LineWidth', 3);
+    %detrended spline
+    plot(xx, tnormsubfftyy, '-', 'LineWidth', 3);
 
