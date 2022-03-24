@@ -164,9 +164,7 @@ else %channel = 2
              
 end
 
-figure(57); clf; title('testing original spline'); hold on;
-    plot(sumffttimOG, sumfftAmpOG, '.');
-    plot(xx, sumfftyy, '-');
+
 %% subset raw data            
         
 %take raw data above the spline
@@ -192,5 +190,9 @@ p = 0.9;
    normsubfftyytrend = 1./(subfftyy - dtsubfftyy);
    tnormsubfftyy = subfftyy .* normsubfftyytrend;
 
-
+   %%plot to check
+figure(57); clf; title('testing original spline'); hold on;
+    plot(sumffttimOG, sumfftAmpOG, '.');
+    plot()
+    plot(xx, sumfftyy, '-');
 
