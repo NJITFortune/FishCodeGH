@@ -235,7 +235,7 @@ for k = 1:howmanydaysinsample
 
    
     
-figure(29); clf; hold on; 
+figure(887); clf; hold on; 
 
 clear meanday;
 
