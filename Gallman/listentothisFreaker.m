@@ -1,4 +1,4 @@
- function listentothis(~,evt)
+ function listentothisFreaker(~,evt)
 % obj is the DataAcquisition object passed in. evt is not used.
 
     data = evt.Data;
@@ -12,6 +12,10 @@
     %Temp channel
     temp = mean(data(:,4));
     
+%% Get frequency of the recording
+    [b,a] = butter(5, [250/(40000/2) 650/(40000/2)], 'bandpass');
+    dd = filtfilt(b,a,data(:,1));
+    [fftamp, ] fftmachine(dd, 40000);
     
     FileName = sprintf('TESTElectro_%s.mat', datestr(now, 'mm-dd-yyyy_HH-MM-SS'));
     save(FileName, 'EODonly', 'tim', 'temp');
