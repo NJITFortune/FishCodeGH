@@ -1,5 +1,5 @@
-function [xx, tnormsubfftyy, lighttimes] =  k_plotfftsubspliner(in, channel, ReFs, light)
-%function [xx, subfftyy, lighttimes] =  k_plotfftsubspliner(in, channel, ReFs, light)
+%function [xx, tnormsubfftyy, lighttimes] =  k_plotfftsubspliner(in, channel, ReFs, light)
+function [xx, subfftyy, lighttimes] =  k_plotfftsubspliner(in, channel, ReFs, light)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
