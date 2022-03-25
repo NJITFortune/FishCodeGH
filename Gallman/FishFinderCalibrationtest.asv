@@ -232,11 +232,13 @@ clear HiAmp;
 clear HiTim;
 clear HiFreq;
 
-HiAmp = [hitube1ampchunk1, hitube1ampchunk2, hitube2ampchunk3];
-HiTim = [hitube1timchunk1, hitube1timchunk2, hitube2timchunk3];
+% HiAmp = [hitube1ampchunk1, hitube1ampchunk2, hitube2ampchunk3];
+% HiTim = [hitube1timchunk1, hitube1timchunk2, hitube2timchunk3];
+% HiFreq = [hitube1freqff, hitube2freqff];
+
+HiAmp = [hitube1ampff,  hitube2ampff];
+HiTim = [hitube1timff,  hitube2timff];
 HiFreq = [hitube1freqff, hitube2freqff];
-
-
 % %combine tubes
 % %hi frequency fish
 % clear tout.his.HiAmp
@@ -323,17 +325,17 @@ linkaxes(ax, 'x');
 %             lotube2timchunk1(j) = lotube2timff(lofishchunk1idx(j));
 %         end
 % 
-% %chunk 2
-%     %tube2
-% %     clear lofishchunk1idx;
-% %     clear lotube2ampchunk1;
-% %     clear lotube2timchunk1;
-%     lofishchunk2idx = find(lotube2timff >= 65);
-%     
-%         for j = 1:length(lofishchunk2idx)
-%             lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j))*2;
-%             lotube2timchunk2(j) = lotube2timff(lofishchunk2idx(j));
-%         end
+%chunk 2
+    %tube2
+%     clear lofishchunk1idx;
+%     clear lotube2ampchunk1;
+%     clear lotube2timchunk1;
+    %lofishchunk2idx = find(lotube2timff >= 65);
+    
+        for j = 1:length(lofishchunk2idx)
+            lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j))*2;
+            lotube2timchunk2(j) = lotube2timff(lofishchunk2idx(j));
+        end
 
 
 %%
