@@ -200,15 +200,14 @@ linkaxes(ax, 'x');
     clear hitube1ampchunk1;
     clear hitube1timchunk1;
 
- hifishchunk1idx = find(hitube1timff < 117);
+ hifishchunk1idx = find(hitube2timff < 117);
 %     
         for j = 1:length(hifishchunk1idx)
-            hitube1ampchunk1(j) = hitube1ampff(hifishchunk1idx(j));
-            hitube1timchunk1(j) = hitube1timff(hifishchunk1idx(j));
+            hitube2ampchunk1(j) = hitube2ampff(hifishchunk1idx(j))*2.5;
+            hitube2timchunk1(j) = hitube2timff(hifishchunk1idx(j));
 
-            
         end
-
+%%
      clear hifishchunk2idx;
  hifishchunk2idx = find(hitube1timff >= 223);
 %     
@@ -272,11 +271,11 @@ figure(453); clf; hold on;
             plot(hitube2timff, hitube2ampff, 'mo');
             %adjusted tube 1
             plot(hitube1timchunk1, hitube1ampchunk1, 'ko');
-            plot(hitube1timchunk2, hitube1ampchunk2, 'ko');
+           % plot(hitube1timchunk2, hitube1ampchunk2, 'ko');
 %             plot(hitube1timchunk3, hitube1ampchunk3, 'ko');
 %             plot(hitube1timchunk4, hitube1ampchunk4, 'ko');
 %             plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
-            plot(hitube2timchunk3, hitube2ampchunk3, 'ko');
+            %plot(hitube2timchunk3, hitube2ampchunk3, 'ko');
 %             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
            
     ax(2) = subplot(312); title('tube 2 adjustments'); hold on; ylim([0,3]);
