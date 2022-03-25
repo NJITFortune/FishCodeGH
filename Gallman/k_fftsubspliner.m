@@ -188,7 +188,7 @@ p = 0.9;
         subfftyy = fnval(xx, spliney);
        
 %detrend ydata
-   dtsubfftyy = detrend(subfftyy,2,'SamplePoints', xx);
+   dtsubfftyy = detrend(subfftyy,0,'SamplePoints', xx);
    normsubfftyytrend = 1./(subfftyy - dtsubfftyy);
    tnormsubfftyy = subfftyy .* normsubfftyytrend;
 
