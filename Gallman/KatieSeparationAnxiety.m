@@ -171,29 +171,29 @@ for j=2:length(iFiles)
 % currhifreq = tmphifreq1;
 % end
 
-currlofreq = tmplofreq1;  
-currhifreq = tmphifreq2;
-
-if currhifreq < 440
-    currhifreq = 450;
-end
-
-if currlofreq > 440
-    currlofreq = 413;
-end
+% currlofreq = tmplofreq1;  
+% currhifreq = tmphifreq2;
+% 
+% if currhifreq < 440
+%     currhifreq = 450;
+% end
+% 
+% if currlofreq > 440
+%     currlofreq = 413;
+% end
 
 % % 
-%     if tmploamp1 > tmploamp2
-%         currlofreq = tmplofreq1;
-%     else
-%         currlofreq = tmplofreq2;
-%     end
-%     
-%     if tmphiamp1 > tmphiamp2
-%         currhifreq = tmphifreq1;
-%     else
-%         currhifreq = tmphifreq2;
-%     end
+    if tmploamp1 > tmploamp2
+        currlofreq = tmplofreq1;
+    else
+        currlofreq = tmplofreq2;
+    end
+    
+    if tmphiamp1 > tmphiamp2
+        currhifreq = tmphifreq1;
+    else
+        currhifreq = tmphifreq2;
+    end
 
  
 
