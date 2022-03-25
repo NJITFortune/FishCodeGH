@@ -15,7 +15,14 @@
 %% Get frequency of the recording
     [b,a] = butter(5, [250/(40000/2) 650/(40000/2)], 'bandpass');
     dd = filtfilt(b,a,data(:,1));
-    [fftamp, ] fftmachine(dd, 40000);
+    ff = fftmachine(dd, 40000);
+    
+    diff = -5; % # Hz difference from fish's own frequency
+
+    [~, idx] = max(ff.fftdata(ff.fftfreq > 250 & ff.fftfreq < 650));
+    oFs = 20000; tim = 1/oFs:1/oFs:60;
+    ss = sin(tim*2*pi* ff.fftfreq(idx) + diff);
+    audiowrite('playbackwav.wav', ss, oFs);
     
     FileName = sprintf('TESTElectro_%s.mat', datestr(now, 'mm-dd-yyyy_HH-MM-SS'));
     save(FileName, 'EODonly', 'tim', 'temp');
