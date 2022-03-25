@@ -255,58 +255,14 @@ linkaxes(ax, 'x');
             hitube1timchunk6(j) = hitube1timff(hifishchunk6idx(j));
 
         end
-
 %%
-     clear hifishchunk2idx;
- hifishchunk2idx = find(hitube1timff >= 223);
-%     
-        for j = 1:length(hifishchunk2idx)
-            hitube1ampchunk2(j) = hitube1ampff(hifishchunk2idx(j))/3.5;
-            hitube1timchunk2(j) = hitube1timff(hifishchunk2idx(j));
-        end
 
-
-   clear hifishchunk3idx;
-    clear hitube2ampchunk3;
-    clear hitube2timchunk3;
- hifishchunk3idx = find(hitube2timff >= 0);
-    
-        for j = 1:length(hifishchunk3idx)
-            hitube2ampchunk3(j) = hitube2ampff(hifishchunk3idx(j))/3;
-            hitube2timchunk3(j) = hitube2timff(hifishchunk3idx(j));
-        end
-
-
-%combine chunks
-clear HiAmp;
-clear HiTim;
-clear HiFreq;
-
-% HiAmp = [hitube1ampchunk1, hitube1ampchunk2, hitube2ampchunk3];
-% HiTim = [hitube1timchunk1, hitube1timchunk2, hitube2timchunk3];
-% HiFreq = [hitube1freqff, hitube2freqff];
-
-HiAmp = [hitube1ampff,  hitube2ampff];
-HiTim = [hitube1timff,  hitube2timff];
+HiAmp = [hitube2ampchunk1, hitube2ampchunk2, hitube2ampchunk3, hitube2ampchunk4, hitube1ampchunk5, hitube1ampchunk6];
+HiTim = [hitube2timchunk4, hitube2timchunk1, hitube2timchunk2, hitube2timchunk3, hitube1timchunk5, hitube1timchunk6];
 HiFreq = [hitube1freqff, hitube2freqff];
-% %combine tubes
-% %hi frequency fish
-% clear tout.his.HiAmp
-% clear tout.his.HiTim
-%             %tube 2
-%          
-%             for j=1:length(hitube2ampcomb)
-%                 tout.his(j).HiAmp(:) = hitube2ampcomb(j);
-%                 tout.his(j).HiTim(:) = hitube2timcomb(j);
-%                 %tout.his(j).HiFreq = hitube2freqff(j);
-%             end
-%             %tube 1
-%             for j=1:length(hitube1ampcomb)
-%                 tout.his(j).HiAmp(:) = hitube1ampcomb(j);
-%                 tout.his(j).HiTim(:) = hitube1timcomb(j);
-%                 %tout.his(j).HiFreq = hitube1freqff(j);
-%             end
-%             
+% HiAmp = [hitube1ampff,  hitube2ampff];
+% HiTim = [hitube1timff,  hitube2timff];
+% HiFreq = [hitube1freqff, hitube2freqff];
 
 %% plot
 
