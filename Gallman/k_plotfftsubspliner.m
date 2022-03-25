@@ -186,7 +186,7 @@ p = 0.9;
         subfftyy = fnval(xx, spliney);
        
 %detrend ydata
-   dtsubfftyy = detrend(subfftyy,2,'SamplePoints', xx); % was 6, but too much for 12/12 and 24/24 data etc.
+   dtsubfftyy = detrend(subfftyy,1,'SamplePoints', xx); % was 6, but too much for 12/12 and 24/24 data etc.
    normsubfftyytrend = 1./(subfftyy - dtsubfftyy);
    tnormsubfftyy = subfftyy .* normsubfftyytrend;
 
