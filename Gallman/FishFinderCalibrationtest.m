@@ -232,11 +232,13 @@ clear HiAmp;
 clear HiTim;
 clear HiFreq;
 
-HiAmp = [hitube1ampchunk1, hitube1ampchunk2, hitube2ampchunk3];
-HiTim = [hitube1timchunk1, hitube1timchunk2, hitube2timchunk3];
+% HiAmp = [hitube1ampchunk1, hitube1ampchunk2, hitube2ampchunk3];
+% HiTim = [hitube1timchunk1, hitube1timchunk2, hitube2timchunk3];
+% HiFreq = [hitube1freqff, hitube2freqff];
+
+HiAmp = [hitube1ampff,  hitube2ampff];
+HiTim = [hitube1timff,  hitube2timff];
 HiFreq = [hitube1freqff, hitube2freqff];
-
-
 % %combine tubes
 % %hi frequency fish
 % clear tout.his.HiAmp
