@@ -1,15 +1,15 @@
-%function out = fmfilteredmidxings(in)
+function out = fmfilteredmidxings(in)
 %% define variables
 %non-function usage
-clearvars -except fm fmv
-in = fm(1);
+% clearvars -except fm fmv
+% in = fm(1);
 
 
     medfiltnum = 11; 
-    cutoffreq = 1;
-    Fs = 15;
-    %low pass filter
-    [b,a] = butter(5, cutoffreq / (Fs/2), 'low');
+%    cutoffreq = 1;
+%     Fs = 15;
+%     %low pass filter
+%     [b,a] = butter(5, cutoffreq / (Fs/2), 'low');
 
 %% Calculate filtered velocity
 
@@ -70,20 +70,21 @@ xlim([0 640]); ylim([-340 0]);
 %% midline xings
 
 %adapted from k_zAmp.m for zero xings
-    z = zeros(1,length(in.s(j).nose)); %create vector length of data
+    z = zeros(1,length(in.s(j).fin)); %create vector length of data
     z(in.s(j).nose(:,1) > xmid) = 1; %fill with 1s for all filtered data greater than xmid
     z = diff(z); %subtract the X(2) - X(1) to find the xings greater than the midline
     
     posZs = find(z == 1); 
+    length(posZs)
     
-    amp = zeros(1,length(posZs)-1); % PreAllocate for speed
-    
-    for kk = 2:length(posZs)
-       %amp(kk-1) = max(in.s(j).nose((posZs(kk-1):posZs(kk)),1)) - (min(in.s(j).nose(posZs(kk-1):posZs(kk)),1)); % Max + min of signal for each cycle
-       amp(kk-1) = max(in.s(j).nose(posZs(kk-1):posZs(kk), 1)) - min(in.s(j).nose(posZs(kk-1):posZs(kk), 1));
-    end
-    
-    nosexings = mean(amp);
+%     amp = zeros(1,length(posZs)-1); % PreAllocate for speed
+%     
+%     for kk = 2:length(posZs)
+%        %amp(kk-1) = max(in.s(j).nose((posZs(kk-1):posZs(kk)),1)) - (min(in.s(j).nose(posZs(kk-1):posZs(kk)),1)); % Max + min of signal for each cycle
+%        amp(kk-1) = max(in.s(j).nose(posZs(kk-1):posZs(kk), 1)) - min(in.s(j).nose(posZs(kk-1):posZs(kk), 1));
+%     end
+%     
+%     nosexings = mean(amp);
 
         
 % figure(2); clf; hold on
