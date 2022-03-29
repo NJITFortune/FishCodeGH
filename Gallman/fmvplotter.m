@@ -9,5 +9,5 @@ figure(49); clf; hold on;
 
 figure(50); clf; hold on;
     
-    plot([in.timfo.timcont], [in.ss.variance], '.-');
+    plot([in.timfo.timcont], [in.ss.std], '.-');
     plot([in.timfo.lighttimes' in.timfo.lighttimes'], ylim, 'k-');
