@@ -46,6 +46,7 @@ for j = length(ss):-1:1
         smean = smean + filtfilt(b,a, medfilt1(ss(j).dTail, medfiltnum) );    
     
         ss(j).savg = smean / 3;
+        ss(j).variance = var(ss(j).savg);
         ss(j).velmean = mean(ss(j).savg);
         ss(j).velstd = std(ss(j).savg);
 end
