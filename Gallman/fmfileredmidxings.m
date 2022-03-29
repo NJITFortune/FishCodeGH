@@ -1,8 +1,8 @@
-function out = fmfilteredmidxings(in)
+%function out = fmfilteredmidxings(in)
 %% define variables
 %non-function usage
-% clearvars -except fm fmv
-% in = fm(1);
+clearvars -except fm fmv
+in = fm(1);
 
 
     medfiltnum = 11; 
