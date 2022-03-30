@@ -190,7 +190,7 @@ lightreturn = darkpulse + 1;
  
     for jj = 1:length(out)
         
-        plot(out(jj).entiretimcont, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
+        plot(out(jj).entiretimcont, out(jj).sumfftAmp, '.', 'MarkerSize', 5);
         plot(out(jj).Sentiretimcont, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
         
     end
