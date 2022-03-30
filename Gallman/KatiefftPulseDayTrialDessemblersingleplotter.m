@@ -71,8 +71,8 @@ for jj = 1:numotrials
 
 
             % Get the index for the start of the current period (xx is time)
-            timidx1 = find(timcont >= (lighttimes(1)-ld/2) + ((jj-1) * triallength), 1);
-            timidx2 = find(timcont >= (lighttimes(1)-ld/2) + ((jj) * triallength), 1);
+            timidx1 = find(timcont >= (lighttimes(1)-ld) + ((jj-1) * triallength), 1);
+            timidx2 = find(timcont >= (lighttimes(1)-ld) + ((jj) * triallength), 1);
             % Get the rest of the indices for the trial  
             timidx = timidx1:timidx2;
             
