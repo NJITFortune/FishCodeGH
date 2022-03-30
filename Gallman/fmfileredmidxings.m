@@ -21,7 +21,19 @@ function out = fmfilteredmidxings(in)
     
     in.s(j).nose(:,1) = medfilt1(in.s(j).nose(:,1), medfiltnum);
     in.s(j).nose(:,2) = medfilt1(in.s(j).nose(:,2), medfiltnum);
+
+    xmax = max(in.s(j).nose(:,1));
+    xmin = min(in.s(j).nose(:,1));
+    xmid = (xmax - xmin)/2 +xmin;
 %    
+
+    z = zeros(1,length(in.s(j).nose)); %create vector length of data
+    z(in.s(j).nose(:,1) > xmid) = 1; %fill with 1s for all filtered data greater than xmid
+    z = diff(z); %subtract the X(2) - X(1) to find the xings greater than the midline
+    
+    posZs = find(z == 1); 
+    negZs = find(z==-1);
+    sx(j) = length(posZs)+ length(negZs);
 
 
   end
