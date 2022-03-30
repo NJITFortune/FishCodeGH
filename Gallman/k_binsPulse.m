@@ -150,7 +150,7 @@ daysz = 1:1:floor(totaltimhours/(ld));
 darkdays = (lighttimes(1)) + ((ld) * (daysz-1));
 
 %light transitions
-lightdays = (lighttimes(2)) + ((ld) * (daysz-1));
+%lightdays = (lighttimes(2)) + ((ld) * (daysz-1));
 
 %how many bins around the transistion 
 %transbinnum = 8;
@@ -172,15 +172,15 @@ for jj = 2:length(darkdays)-1
         
 end
       
-%light transitions
-for kk = 1:length(lightdays)-1
-
-    transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour >= lightdays(kk)-((transbinnum*binsize)/60));
-
-    lightd(kk).binary(:) = [bin(transidx).binary];
-    lightd(kk).bintims(:) = [bin(transidx).tim]; 
-    lightd(kk).binAmps(:) = [bin(transidx).meanAmp];
-end
+% %light transitions
+% for kk = 1:length(lightdays)-1
+% 
+%     transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour >= lightdays(kk)-((transbinnum*binsize)/60));
+% 
+%     lightd(kk).binary(:) = [bin(transidx).binary];
+%     lightd(kk).bintims(:) = [bin(transidx).tim]; 
+%     lightd(kk).binAmps(:) = [bin(transidx).meanAmp];
+% end
 
 
 %plot to check
