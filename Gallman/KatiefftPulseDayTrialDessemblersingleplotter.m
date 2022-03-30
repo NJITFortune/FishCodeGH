@@ -226,7 +226,7 @@ lightretrun = darkpulse + 1;
             mday(jj,:) = mday(jj,:) / length(trial(jj).day);
             subplot(212); hold on; title('Day average by trial');
             plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
-             plot([darkpulse darkpulse+ld], ylim, 'k-', 'LineWidth', 1);
+             plot([darkpulse', darkpulse+ld'], ylim, 'k-', 'LineWidth', 1);
                 plot([lightreturn lightreturn+ld], ylim, 'm-', 'LineWidth', 1);
 
     end
