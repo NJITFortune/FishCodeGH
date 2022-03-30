@@ -1,4 +1,4 @@
-function [trial] = KatiefftDayTrialDessembler(in, channel,  ReFs, light)
+%function [trial] = KatiefftDayTrialDessembler(in, channel,  ReFs, light)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
@@ -7,10 +7,10 @@ function [trial] = KatiefftDayTrialDessembler(in, channel,  ReFs, light)
     %starts with light = 4
 % clearvars -except kg kg2
 % 
-% in = kg(106);
-% channel = 2;
-% ReFs = 10;
-% light = 3;
+in = kg(106);
+channel = 2;
+ReFs = 10;
+light = 3;
 
 %% prep
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
