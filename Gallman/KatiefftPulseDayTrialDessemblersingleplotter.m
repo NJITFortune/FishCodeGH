@@ -179,7 +179,9 @@ for k = 1:howmanydaysinsample
                 end
  end
  
- % plot to check
+%% plot to check
+
+darkpulse = ld
 
  %trials across tims
  figure(26); clf; title('trials across time');  hold on;
