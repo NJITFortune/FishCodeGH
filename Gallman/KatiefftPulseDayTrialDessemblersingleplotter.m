@@ -182,7 +182,7 @@ for k = 1:howmanydaysinsample
  
 %% plot to check
 
-darkpulse = ld/2;
+darkpulse = ld;
 lightreturn = darkpulse + 1;
 
  %trials across tims
