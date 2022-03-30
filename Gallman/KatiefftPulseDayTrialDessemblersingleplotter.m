@@ -270,5 +270,20 @@ figure(29); clf; hold on;
   
     legend('day mean', 'trial mean');
     legend('boxoff')
-% 
-% 
+%% 
+figure(30); clf; hold on; 
+
+clear meanday;
+
+ for k = 1:length(day)
+
+        plot(day(k).tim, day(k).Ssumfftyy - day(k).Ssumfftyy(ceil(length(day(k).Ssumfftyy))/2));
+        meanday(k,:) = day(k).Ssumfftyy;
+ end
+    
+        mmday= mean(meanday);
+        plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
+        %lightlines
+         plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
+         plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
+        
