@@ -192,6 +192,6 @@ p = 0.9;
    normsubfftyytrend = 1./(subfftyy - dtsubfftyy);
    tnormsubfftyy = subfftyy .* normsubfftyytrend;
 
-figure(26)
-
+figure(26); clf; hold on;
+    plot(subffttim, subfft, '.');
 
