@@ -76,6 +76,8 @@ function out = fmfilteredmidxings(in)
     
     posZs = find(z == 1); 
     length(posZs)
+
+    
     
 %     amp = zeros(1,length(posZs)-1); % PreAllocate for speed
 %     
