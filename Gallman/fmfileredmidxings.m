@@ -21,20 +21,9 @@ function out = fmfilteredmidxings(in)
     
     in.s(j).nose(:,1) = medfilt1(in.s(j).nose(:,1), medfiltnum);
     in.s(j).nose(:,2) = medfilt1(in.s(j).nose(:,2), medfiltnum);
-%     in.s(j).fin(:,1) = medfilt1(in.s(j).fin(:,1), medfiltnum);
-%     in.s(j).fin(:,2) = medfilt1(in.s(j).fin(:,2), medfiltnum);
-%     in.s(j).tail(:,1) = medfilt1(in.s(j).tail(:,1), medfiltnum);
-%     in.s(j).tail(:,2) = medfilt1(in.s(j).tail(:,2), medfiltnum);
-%   
-% 
-%         % Calculate velocity from filtered posistion data
-%         for jj = length(in.s(1).nose)-1:-1:1
-%     
-%             ss(j).dNose(jj) = pdist2(in.s(j).nose(jj,1:2), in.s(j).nose(jj+1,1:2)); 
-%             ss(j).dFin(jj) = pdist2(in.s(j).fin(jj,1:2), in.s(j).fin(jj+1,1:2)); 
-%             ss(j).dTail(jj) = pdist2(in.s(j).tail(jj,1:2), in.s(j).tail(jj+1,1:2)); 
-%     
-%         end 
+%    
+
+
   end
 
 
