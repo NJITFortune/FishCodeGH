@@ -230,7 +230,7 @@ figure(8); clf; title('Dark to light transition average'); hold on;
 
 for jj = 1:length(dday)
     for j = 1:length(dday(jj).tim)
-     if dday(jj).tim(j) < ld
+     if dday(jj).tim(j) < ld/2
          ddarkhalfamp(j,:) = dday(jj).amp(j);
          ddarkhalftim(j,:) = dday(jj).tim(j);
      else
@@ -252,7 +252,7 @@ end
 [~,dpvalue] = ttest2(ddarkhalfamp,dlighthalfamp,'Vartype','unequal');
 
 %txt = 'pvalue =' + num2str(pvalue)
-text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
+text(ld/2,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
 
 % out.dldarkhalfamp = ddarkhalfamp;
 % out.dldarkhalftim = ddarkhalftim;
