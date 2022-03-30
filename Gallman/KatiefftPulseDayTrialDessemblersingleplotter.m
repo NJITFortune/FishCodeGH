@@ -217,8 +217,10 @@ lightretrun = darkpulse + 1;
                 mday(jj,:) = mday(jj,:) + trial(jj).day(k).SsumfftAmp;
                 subplot(211); hold on; title('Days');
                 plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
-                plot([darkpulse darkpulse+ld], ylim, 'k-', 'LineWidth', 1);
-                plot([lightreturn lightreturn+ld], ylim, 'm-', 'LineWidth', 1);
+                plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
+            plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
+            plot([darkpulse+ld, darkpulse+ld], ylim, 'k-', 'LineWidth', 1);
+            plot([lightreturn+ld, lightreturn+ld], ylim, 'm-', 'LineWidth', 1);
 
         end
 
@@ -226,9 +228,10 @@ lightretrun = darkpulse + 1;
             mday(jj,:) = mday(jj,:) / length(trial(jj).day);
             subplot(212); hold on; title('Day average by trial');
             plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
-             plot([darkpulse', darkpulse+ld'], ylim, 'k-', 'LineWidth', 1);
-                plot([lightreturn lightreturn+ld], ylim, 'm-', 'LineWidth', 1);
-
+            plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
+            plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
+            plot([darkpulse+ld, darkpulse+ld], ylim, 'k-', 'LineWidth', 1);
+            plot([lightreturn+ld, lightreturn+ld], ylim, 'm-', 'LineWidth', 1);
     end
     
     % Mean of means
@@ -251,8 +254,10 @@ clear meanday;
     
         mmday= mean(meanday);
         plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
-         plot([darkpulse darkpulse+ld], ylim, 'k-', 'LineWidth', 1);
-         plot([lightreturn lightreturn+ld], ylim, 'm-', 'LineWidth', 1);
+         plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
+            plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
+            plot([darkpulse+ld, darkpulse+ld], ylim, 'k-', 'LineWidth', 1);
+            plot([lightreturn+ld, lightreturn+ld], ylim, 'm-', 'LineWidth', 1);
 
         
 figure(29); clf; hold on;
