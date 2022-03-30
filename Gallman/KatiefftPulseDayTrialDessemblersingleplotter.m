@@ -286,4 +286,5 @@ clear meanday;
         %lightlines
          plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
          plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
+         plot(xlim, [0, 0], 'k-', 'LineWidth', 1);
         
