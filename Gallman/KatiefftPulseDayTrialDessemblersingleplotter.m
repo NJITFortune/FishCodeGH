@@ -40,7 +40,7 @@ end
     %necessary to define length of data
 
     timcont = [in.e(1).s.timcont] / (60*60);
-    timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
+    timcont = timcont(timcont >= (lighttimes(1)-ld/2) & timcont <= (lighttimes(end)-ld/2));
 
 %% Define trial period
 
