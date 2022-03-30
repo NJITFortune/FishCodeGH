@@ -133,7 +133,7 @@ end
         ld = out(jj).ld;
 
         % Divide by daylength to get the number of days in the trial
-        howmanydaysintrial = floor(triallength / (ld*2));
+        howmanydaysintrial = floor(triallength / (ld));
         % This is the number of sample in a day
         howmanysamplesinaday = ld * 2 * ReFs;
 
@@ -141,7 +141,7 @@ end
 
 
             % Get the index of the start time of the trial
-            dayidx = find(out(jj).Stimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
+            dayidx = find(out(jj).Stimcont > (k-1) * (ld), 1) -1; % k-1 so that we start at zero
 
             % Get the datums
             %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
@@ -161,7 +161,8 @@ end
     
 %% Divide sample into days to compare against trial day means
 
-howmanydaysinsample = floor(lengthofsampleHOURS / (ld*2));
+%originally ld * 2
+howmanydaysinsample = floor(lengthofsampleHOURS / (ld));
 
 tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
 %spline data
@@ -170,7 +171,7 @@ for k = 1:howmanydaysinsample
     
 
     %         % Get the index of the start time of the day
-                dayidx = find(xx >= xx(1) + (k-1) * (ld*2) & xx < xx(1) + k*(ld*2)); % k-1 so that we start at zero
+                dayidx = find(xx >= xx(1) + (k-1) * (ld) & xx < xx(1) + k*(ld)); % k-1 so that we start at zero
 
                 if length(dayidx) >= howmanysamplesinaday
 %                 day(k).SobwAmp = obwyy(dayidx);
@@ -182,7 +183,7 @@ for k = 1:howmanydaysinsample
  
 %% plot to check
 
-darkpulse = ld;
+darkpulse = ld/2;
 lightreturn = darkpulse + 1;
 
  %trials across tims
