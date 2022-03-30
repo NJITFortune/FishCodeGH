@@ -17,7 +17,7 @@ function out = fmfilteredmidxings(in)
     % (:,1) = x
     % (:,2) = y
 
-  for j = 1%length(in.s):-1:1
+  for j = length(in.s):-1:1
     
     in.s(j).nose(:,1) = medfilt1(in.s(j).nose(:,1), medfiltnum);
     in.s(j).nose(:,2) = medfilt1(in.s(j).nose(:,2), medfiltnum);
@@ -33,12 +33,12 @@ function out = fmfilteredmidxings(in)
     
     posZs = find(z == 1); 
     negZs = find(z==-1);
-    sx(j). = length(posZs)+ length(negZs);
+    sx(j).midxings = length(posZs)+ length(negZs);
 
 
   end
 
-
+sx = out;
 
 %% Plot data
 % figure(1); clf; hold on;
