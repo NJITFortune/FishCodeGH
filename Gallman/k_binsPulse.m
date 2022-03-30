@@ -147,10 +147,10 @@ end
 daysz = 1:1:floor(totaltimhours/(ld));
 
 %dark transistions
-darkdays = (lighttimes(1)-ld/2) + ((ld) * (daysz-1));
+darkdays = (lighttimes(1)) + ((ld) * (daysz-1));
 
 %light transitions
-lightdays = (lighttimes(2)-ld/2) + ((ld) * (daysz-1));
+lightdays = (lighttimes(2)) + ((ld) * (daysz-1));
 
 %how many bins around the transistion 
 %transbinnum = 8;
