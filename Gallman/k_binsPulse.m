@@ -424,58 +424,58 @@ out.pctdarkpvalues = pval2sigs;
 
 %% Bin summary for light tranistions
    
-for jj = 1:length(lightd)
-
-    for k = 1:(transbinnum * 2)
-        lightprob(k,jj) = lightd(jj).binary(k); 
-        lightamp(k,jj) = lightd(jj).binAmps(k);
-        lighttims(k,jj) = lightd(jj).bintims(k);
-     
-        if lightprob(k,jj) > 0
-        lupamp(k, jj) = lightamp(k,jj);
-        
-        else
-        ldownamp(k, jj) = lightamp(k,jj);
-        end
-    end
-
-end
-
-%change zeros to nans for plotting
-lupamp(lupamp==0) = nan;
-ldownamp(ldownamp==0) = nan;
-
-
-for k = 1:transbinnum * 2
-    %calculate proportion of ones (increases in amp from previous bin)
-    pctlight(k) =  length(find(lightprob(k,:)>0)) / length(lightprob(k,:));
-    %number of ones
-    lonecount(k) = length(find(lightprob(k,:)>0));
-    %total amp counts per bin
-    ltotalcount(k) = length(lightprob(k,:));
-    %define bins around transition for plotting
-    pctlighttim(k) = k*(binsize/60);
-   
-end
-
-
-
-figure(28); clf; title('Dark to Light transition summary'); hold on;
-    
-    %plot proportion of amplitude increases from previous bins
-    plot(pctlighttim-((binsize/2)/60), pctlight, '.-');
-
-    %generate random jiggle for amp plotting  through scatter
-    for k = 1:transbinnum * 2
-
-        scatter(pctlighttim(k)-((binsize/2)/60), lupamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
-        scatter(pctlighttim(k)-((binsize/2)/60), ldownamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
-       
-    end
-    %plot bin lines
-    plot([pctlighttim', pctlighttim'], ylim, 'm-');
-    %plot dark to light transition line
-    plot([transtim, transtim], ylim, 'k-');
+% for jj = 1:length(lightd)
+% 
+%     for k = 1:(transbinnum * 2)
+%         lightprob(k,jj) = lightd(jj).binary(k); 
+%         lightamp(k,jj) = lightd(jj).binAmps(k);
+%         lighttims(k,jj) = lightd(jj).bintims(k);
+%      
+%         if lightprob(k,jj) > 0
+%         lupamp(k, jj) = lightamp(k,jj);
+%         
+%         else
+%         ldownamp(k, jj) = lightamp(k,jj);
+%         end
+%     end
+% 
+% end
+% 
+% %change zeros to nans for plotting
+% lupamp(lupamp==0) = nan;
+% ldownamp(ldownamp==0) = nan;
+% 
+% 
+% for k = 1:transbinnum * 2
+%     %calculate proportion of ones (increases in amp from previous bin)
+%     pctlight(k) =  length(find(lightprob(k,:)>0)) / length(lightprob(k,:));
+%     %number of ones
+%     lonecount(k) = length(find(lightprob(k,:)>0));
+%     %total amp counts per bin
+%     ltotalcount(k) = length(lightprob(k,:));
+%     %define bins around transition for plotting
+%     pctlighttim(k) = k*(binsize/60);
+%    
+% end
+% 
+% 
+% 
+% figure(28); clf; title('Dark to Light transition summary'); hold on;
+%     
+%     %plot proportion of amplitude increases from previous bins
+%     plot(pctlighttim-((binsize/2)/60), pctlight, '.-');
+% 
+%     %generate random jiggle for amp plotting  through scatter
+%     for k = 1:transbinnum * 2
+% 
+%         scatter(pctlighttim(k)-((binsize/2)/60), lupamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
+%         scatter(pctlighttim(k)-((binsize/2)/60), ldownamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
+%        
+%     end
+%     %plot bin lines
+%     plot([pctlighttim', pctlighttim'], ylim, 'm-');
+%     %plot dark to light transition line
+%     plot([transtim, transtim], ylim, 'k-');
 
 % out.pctlight = pctlight;
 % out.pctlighttim = pcttim;
