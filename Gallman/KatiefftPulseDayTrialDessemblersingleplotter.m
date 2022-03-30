@@ -67,7 +67,7 @@ for jj = 1:numotrials
                 %data
             % indices for our sample window of perd hours
             timidx = find(timcont >= (lighttimes(1)-ld/2) + ((jj-1)*triallength) & ...
-            timcont < lighttimes(1) + (jj*triallength));
+            timcont < (lighttimes(1)-ld/2) + (jj*triallength));
 
 
 %             % Get the index for the start of the current period (xx is time)
