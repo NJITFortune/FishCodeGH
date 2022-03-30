@@ -59,24 +59,24 @@ out = sx;
 %     plot(in.s(j).tail(1,1), -in.s(j).tail(1,2), 'k.', 'MarkerSize', 16);
 % 
 % % Calculate midline from nose position
-    xmax = max(in.s(j).nose(:,1));
-    xmin = min(in.s(j).nose(:,1));
-    xmid = (xmax - xmin)/2 +xmin;
-
-   % plot([xmid, xmid], ylim, 'k-');
-    
-
-%xlim([0 640]); ylim([-340 0]);
-
-%% midline xings
-
-%adapted from k_zAmp.m for zero xings
-    z = zeros(1,length(in.s(j).fin)); %create vector length of data
-    z(in.s(j).nose(:,1) > xmid) = 1; %fill with 1s for all filtered data greater than xmid
-    z = diff(z); %subtract the X(2) - X(1) to find the xings greater than the midline
-    
-    posZs = find(z == 1); 
-    sx(j) = length(posZs);
+%     xmax = max(in.s(j).nose(:,1));
+%     xmin = min(in.s(j).nose(:,1));
+%     xmid = (xmax - xmin)/2 +xmin;
+% 
+%    % plot([xmid, xmid], ylim, 'k-');
+%     
+% 
+% %xlim([0 640]); ylim([-340 0]);
+% 
+% %% midline xings
+% 
+% %adapted from k_zAmp.m for zero xings
+%     z = zeros(1,length(in.s(j).fin)); %create vector length of data
+%     z(in.s(j).nose(:,1) > xmid) = 1; %fill with 1s for all filtered data greater than xmid
+%     z = diff(z); %subtract the X(2) - X(1) to find the xings greater than the midline
+%     
+%     posZs = find(z == 1); 
+%     sx(j) = length(posZs);
 
 
     
