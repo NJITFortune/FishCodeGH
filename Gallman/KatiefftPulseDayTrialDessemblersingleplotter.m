@@ -135,7 +135,7 @@ end
         % Divide by daylength to get the number of days in the trial
         howmanydaysintrial = floor(triallength / (ld));
         % This is the number of sample in a day
-        howmanysamplesinaday = ld * 2 * ReFs;
+        howmanysamplesinaday = ld * ReFs;
 
         for k = 1:howmanydaysintrial % Each day in a trial
 
