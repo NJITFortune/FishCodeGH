@@ -66,7 +66,7 @@ for jj = 1:numotrials
                 %timcont needs to have the same indicies as the rest of the
                 %data
             % indices for our sample window of perd hours
-            timidx = find(timcont >= lighttimes(1) + ((jj-1)*triallength) & ...
+            timidx = find(timcont >= (lighttimes(1)-ld/2) + ((jj-1)*triallength) & ...
             timcont < lighttimes(1) + (jj*triallength));
 
 
