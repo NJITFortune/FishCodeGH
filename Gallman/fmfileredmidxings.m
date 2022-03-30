@@ -38,7 +38,7 @@ function out = fmfilteredmidxings(in)
 
   end
 
-out = sx;;
+out = sx;
 
 %% Plot data
 % figure(1); clf; hold on;
