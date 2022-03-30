@@ -5,7 +5,7 @@
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
-% clearvars -except kg kg2
+clearvars -except kg kg2
 % 
 in = kg(114);
 channel = 2;
@@ -179,7 +179,10 @@ for k = 1:howmanydaysinsample
                 end
  end
  
- % plot to check
+%% plot to check
+
+darkpulse = ld/2;
+lightretrun = darkpulse + 1;
 
  %trials across tims
  figure(26); clf; title('trials across time');  hold on;
