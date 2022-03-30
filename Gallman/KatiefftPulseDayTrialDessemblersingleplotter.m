@@ -64,16 +64,16 @@ for jj = 1:numotrials
             j = channel;
            
                 %timcont needs to have the same indicies as the rest of the
-                %data
-            % indices for our sample window of perd hours
-            timidx = find(timcont >= (lighttimes(1)-ld/2) + ((jj-1)*triallength) & ...
-            timcont < (lighttimes(1)-ld/2) + (jj*triallength));
+%                 %data
+%             % indices for our sample window of perd hours
+%             timidx = find(timcont >= (lighttimes(1)-ld/2) + ((jj-1)*triallength) & ...
+%             timcont < (lighttimes(1)-ld/2) + (jj*triallength));
 
 
-%             % Get the index for the start of the current period (xx is time)
-%             timidx = find(timcont > timcont(1) + ((jj-1) * perd), 1);
-%             % Get the rest of the indices for the trial  
-%             timidx = timidx:timidx + (perd*ReFs)-1;
+            % Get the index for the start of the current period (xx is time)
+            timidx = find(timcont >= timcont(1) + ((jj-1) * triallength), 1);
+            % Get the rest of the indices for the trial  
+            timidx = timidx:timidx + (perd*triallength)-1;
             
          
             
@@ -105,7 +105,7 @@ for jj = 1:numotrials
     
              
             % Get the index for the start of the current period (xx is time)
-            Stimidx = find(xx > xx(1) + ((jj-1) * triallength), 1);
+            Stimidx = find(xx >= xx(1) + ((jj-1) * triallength), 1);
             % Get the rest of the indices for the trial  
             Stimidx = Stimidx:Stimidx + (triallength*ReFs)-1;
             
