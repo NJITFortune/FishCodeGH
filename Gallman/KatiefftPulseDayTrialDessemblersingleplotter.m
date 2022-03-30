@@ -263,7 +263,10 @@ clear meanday;
 figure(29); clf; hold on;
     plot(day(1).tim, mmday);
     plot(trial(jj).tim, meanofmeans);
-    plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+    plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
+            plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
+            plot([darkpulse+ld, darkpulse+ld], ylim, 'k-', 'LineWidth', 1);
+            plot([lightreturn+ld, lightreturn+ld], ylim, 'm-', 'LineWidth', 1);
     legend('day mean', 'trial mean');
      legend('boxoff')
 % 
