@@ -194,5 +194,5 @@ p = 0.9;
 
 %% movmean
 k = 5/60;
-meansubfft = movmean(subfft, k);
+meansubfft = movmean(subfft);
 
