@@ -185,7 +185,7 @@ darkpulse = ld/2;
 lightreturn = darkpulse + 1;
 
  %trials across tims
- figure(26); clf; title('trials across time');  hold on;
+ figure(26); title('trials across time');  hold on;
  
     for jj = 1:length(out)
         
