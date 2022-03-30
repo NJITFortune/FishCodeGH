@@ -262,46 +262,46 @@ text(ld/2,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
 
 %% light summary by day for stats
 %light
-for kk = 2:length(lightdays)
-
-    lightidx = find(timcont >= lightdays(kk-1) & timcont < lightdays(kk));
-    lday(kk-1).tim(:) = timcont(lightidx) - timcont(lightidx(1));
-    lday(kk-1).amp(:) = fftAmp(lightidx);
-
-end
-
-[lighttimxx, lightampyy] = k_spliney([lday.tim], [lday.amp], 0.9);
-lightdy= gradient(lightampyy)./gradient(lighttimxx);
-
-%plot lightday amp
-figure(9); clf; title('Light to dark transition average'); hold on; 
-    plot([lday.tim], [lday.amp], '.');
-
-for kk = 1:length(lday)
-    for k = 1:length(lday(kk).tim)
-     if lday(kk).tim(k) < ld/2
-         lighthalfamp(k,:) = lday(kk).amp(k);
-         lighthalftim(k,:) = lday(kk).tim(k);
-     else
-         darkhalfamp(k,:) = lday(kk).amp(k);
-         darkhalftim(k,:) = lday(kk).tim(k);
-     end
-    end
-    plot(lighthalftim, lighthalfamp, 'm.');       
-
-end
-
-    plot(lighttimxx, lightampyy, 'k-', 'LineWidth', 3);
-      plot(lighttimxx, lightdy, 'b-', 'LineWidth', 1.5);
-    plot([ld/2 ld/2], ylim, 'k-', 'LineWidth', 2);
-    plot([ld/2+1 ld/2+1], ylim, 'm-', 'LineWidth', 2);
-
-%Calculate chisqu of means
-
-[~, lpvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
-
-%txt = 'pvalue =' + num2str(pvalue)
-text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
+% for kk = 2:length(lightdays)
+% 
+%     lightidx = find(timcont >= lightdays(kk-1) & timcont < lightdays(kk));
+%     lday(kk-1).tim(:) = timcont(lightidx) - timcont(lightidx(1));
+%     lday(kk-1).amp(:) = fftAmp(lightidx);
+% 
+% end
+% 
+% [lighttimxx, lightampyy] = k_spliney([lday.tim], [lday.amp], 0.9);
+% lightdy= gradient(lightampyy)./gradient(lighttimxx);
+% 
+% %plot lightday amp
+% figure(9); clf; title('Light to dark transition average'); hold on; 
+%     plot([lday.tim], [lday.amp], '.');
+% 
+% for kk = 1:length(lday)
+%     for k = 1:length(lday(kk).tim)
+%      if lday(kk).tim(k) < ld/2
+%          lighthalfamp(k,:) = lday(kk).amp(k);
+%          lighthalftim(k,:) = lday(kk).tim(k);
+%      else
+%          darkhalfamp(k,:) = lday(kk).amp(k);
+%          darkhalftim(k,:) = lday(kk).tim(k);
+%      end
+%     end
+%     plot(lighthalftim, lighthalfamp, 'm.');       
+% 
+% end
+% 
+%     plot(lighttimxx, lightampyy, 'k-', 'LineWidth', 3);
+%       plot(lighttimxx, lightdy, 'b-', 'LineWidth', 1.5);
+%     plot([ld/2 ld/2], ylim, 'k-', 'LineWidth', 2);
+%     plot([ld/2+1 ld/2+1], ylim, 'm-', 'LineWidth', 2);
+% 
+% %Calculate chisqu of means
+% 
+% [~, lpvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
+% 
+% %txt = 'pvalue =' + num2str(pvalue)
+% text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
 
 % out.lddarkhalfamp = darkhalfamp;
 % out.lddarkhalftim = darkhalftim;
