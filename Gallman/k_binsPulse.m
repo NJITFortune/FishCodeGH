@@ -279,7 +279,7 @@ figure(9); clf; title('Light to dark transition average'); hold on;
 
 for kk = 1:length(lday)
     for k = 1:length(lday(kk).tim)
-     if lday(kk).tim(k) < ld
+     if lday(kk).tim(k) < ld/2
          lighthalfamp(k,:) = lday(kk).amp(k);
          lighthalftim(k,:) = lday(kk).tim(k);
      else
@@ -293,7 +293,8 @@ end
 
     plot(lighttimxx, lightampyy, 'k-', 'LineWidth', 3);
       plot(lighttimxx, lightdy, 'b-', 'LineWidth', 1.5);
-    plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+    plot([ld/2 ld/2], ylim, 'k-', 'LineWidth', 2);
+    plot([ld/2+1 ld/2+1], ylim, 'm-', 'LineWidth', 2);
 
 %Calculate chisqu of means
 
