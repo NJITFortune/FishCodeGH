@@ -40,7 +40,7 @@ end
     %necessary to define length of data
 
     timcont = [in.e(1).s.timcont] / (60*60);
-    timcont = timcont(timcont >= (lighttimes(1)-ld/2) & timcont <= (lighttimes(end)-ld/2));
+    %timcont = timcont(timcont >= (lighttimes(1)-ld/2) & timcont <= (lighttimes(end)-ld/2));
 
 %% Define trial period
 
@@ -71,8 +71,8 @@ for jj = 1:numotrials
 
 
             % Get the index for the start of the current period (xx is time)
-            timidx1 = find(timcont >= timcont(1) + ((jj-1) * triallength), 1);
-            timidx2 = find(timcont >= timcont(1) + ((jj) * triallength)-1, 1);
+            timidx1 = find(timcont >= (lighttimes(1)-ld/2) + ((jj-1) * triallength), 1);
+            timidx2 = find(timcont >= (lighttimes(1)-ld/2) + ((jj) * triallength)-1, 1);
             % Get the rest of the indices for the trial  
             timidx = timidx1:timidx2;
             
