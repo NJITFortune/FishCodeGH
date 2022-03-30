@@ -7,7 +7,7 @@ function [xx, subfftyy, lighttimes] =  k_fftPulsesubspliner(in, channel, ReFs, l
 %just lazy
 %ld = [in.info.ld];
 %tightness of spline fit
-pp = 0.9;
+pp = 1;
 
 %outliers
     % Prepare the data with outliers
