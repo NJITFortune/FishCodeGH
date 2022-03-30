@@ -221,8 +221,7 @@ lightreturn = darkpulse + 1;
                 plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
                 plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
             plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
-            plot([darkpulse+ld, darkpulse+ld], ylim, 'k-', 'LineWidth', 1);
-            plot([lightreturn+ld, lightreturn+ld], ylim, 'm-', 'LineWidth', 1);
+           
 
         end
 
@@ -233,8 +232,7 @@ lightreturn = darkpulse + 1;
             %lightlines
             plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
             plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
-            plot([darkpulse+ld, darkpulse+ld], ylim, 'k-', 'LineWidth', 1);
-            plot([lightreturn+ld, lightreturn+ld], ylim, 'm-', 'LineWidth', 1);
+          
     end
     
     % Mean of means
@@ -260,8 +258,7 @@ clear meanday;
         %lightlines
          plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
          plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
-         plot([darkpulse+ld, darkpulse+ld], ylim, 'k-', 'LineWidth', 1);
-         plot([lightreturn+ld, lightreturn+ld], ylim, 'm-', 'LineWidth', 1);
+        
 
         
 figure(29); clf; hold on;
@@ -270,8 +267,7 @@ figure(29); clf; hold on;
     %lightlines
     plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
     plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
-    plot([darkpulse+ld, darkpulse+ld], ylim, 'k-', 'LineWidth', 1);
-    plot([lightreturn+ld, lightreturn+ld], ylim, 'm-', 'LineWidth', 1);
+  
     legend('day mean', 'trial mean');
     legend('boxoff')
 % 
