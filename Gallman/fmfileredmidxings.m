@@ -75,9 +75,9 @@ function out = fmfilteredmidxings(in)
     z = diff(z); %subtract the X(2) - X(1) to find the xings greater than the midline
     
     posZs = find(z == 1); 
-    length(posZs)
+    sx(j) = length(posZs);
 
-    
+
     
 %     amp = zeros(1,length(posZs)-1); % PreAllocate for speed
 %     
