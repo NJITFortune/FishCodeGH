@@ -33,7 +33,7 @@ function out = fmfilteredmidxings(in)
     
     posZs = find(z == 1); 
     negZs = find(z==-1);
-    sx(j) = length(posZs)+ length(negZs);
+    sx(j). = length(posZs)+ length(negZs);
 
 
   end
