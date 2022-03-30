@@ -272,8 +272,8 @@ clear HiTim;
 % HiAmp = [hitube1ampchunk1, hitube1ampchunk2, hitube1ampchunk3, hitube1ampchunk4, hitube2ampff];
 % HiTim = [hitube1timchunk1, hitube1timchunk2, hitube1timchunk3, hitube1timchunk4, hitube2timff];
 % HiFreq = [hitube1freqff, hitube2freqff];
-HiAmp = [hitube1ampff,  hitube2ampchunk1];
-HiTim = [hitube1timff,  hitube2timchunk1];
+HiAmp = [hitube1ampff,  hitube2ampff];
+HiTim = [hitube1timff,  hitube2timff];
 HiFreq = [hitube1freqff, hitube2freqff];
 
 %% plot
