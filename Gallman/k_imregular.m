@@ -49,7 +49,7 @@ k = channel;
     end
 
 %xx = in.e(1).s(1).timcont:ReFs:in.e(1).s(end).timcont;
-xx = lighttimes(1):ReFs:lighttimes(end);
+xx = lighttimes(1)*3600:ReFs:lighttimes(end)*3600;
 
 for j = length(xx):-1:1
 
@@ -69,7 +69,7 @@ end
 
 out.meanamp = movmean(sumfftAmpyy, 3, 'omitnan');
 filledsumfftAmpyy = fillmissing(sumfftAmpyy, 'linear');
-
+xx = xx/3600;
 figure(4); clf; hold on;
     plot([in.e(k).s.timcont], [in.e(k).s.sumfftAmp], '.-');
     plot(xx, sumfftAmpyy, '.-'); 
