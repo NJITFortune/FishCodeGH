@@ -39,7 +39,7 @@ end
 
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
-    xx = xx/3600;
+    %xx = xx/3600;
     timcont = [in.e(1).s.timcont] / (60*60);
     %timcont = timcont(timcont >= (lighttimes(1)-ld/2) & timcont <= (lighttimes(end)-ld/2));
 
