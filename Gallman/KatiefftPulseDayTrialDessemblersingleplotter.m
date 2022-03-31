@@ -31,8 +31,8 @@ end
 %[xx, obwyy, ~, ~, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
 %[xx, sumfftyy, lighttimes] =  k_fftPulsesubspliner(in, channel, ReFs, light);
-[xx, sumfftyy, lighttimes] =  k_fftPulsemean(in, channel, ReFs, light);
-
+%[xx, sumfftyy, lighttimes] =  k_fftPulsemean(in, channel, ReFs, light);
+[xx, sumfftyy, lighttimes] =  k_imregular(in, channel, ReFs, light);
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
 % lighttimes(end +1) = lighttimes(end) + ld;
