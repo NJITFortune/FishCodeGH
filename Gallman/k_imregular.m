@@ -48,8 +48,10 @@ k = channel;
 
     end
 
-%xx = in.e(1).s(1).timcont:ReFs:in.e(1).s(end).timcont;
-xx = lighttimes(1)*3600:ReFs:lighttimes(end)*3600;
+xx = in.e(1).s(1).timcont:ReFs:in.e(1).s(end).timcont;
+xidx = find(xx>= lighttimes(1)*3600 & xx <= lighttimes(end)*3600);
+
+%xx = lighttimes(1)*3600:ReFs:lighttimes(end)*3600;
 
 for j = length(xx):-1:1
 
