@@ -1,4 +1,4 @@
-function [xx, subfftyy, lighttimes] =  k_imregular(in, channel, ReFs, light)
+function [xx, filledsumfftAmpyy, lighttimes] =  k_imregular(in, channel, ReFs, light)
 %function out = imregular(in)
 %% to lazy to function
 % clearvars -except kg kg2
