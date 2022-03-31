@@ -69,7 +69,7 @@ end
 
 out.meanamp = movmean(sumfftAmpyy, 3, 'omitnan');
 filledsumfftAmpyy = fillmissing(sumfftAmpyy, 'linear');
-xx = xx/3600;
+%xx = xx/3600;
 figure(4); clf; hold on;
     plot([in.e(k).s.timcont], [in.e(k).s.sumfftAmp], '.-');
     plot(xx, sumfftAmpyy, '.-'); 
