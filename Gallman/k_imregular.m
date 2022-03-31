@@ -1,12 +1,12 @@
-%function [xx, subfftyy, lighttimes] =  k_imregular(in, channel, ReFs, light)
+function [xx, subfftyy, lighttimes] =  k_imregular(in, channel, ReFs, light)
 %function out = imregular(in)
 %% to lazy to function
-clearvars -except kg kg2
-%out = in;
-in = kg(1);
-channel = 1;
-ReFs = 60;
-light = 3;
+% clearvars -except kg kg2
+% %out = in;
+% in = kg(1);
+% channel = 1;
+% ReFs = 60;
+% light = 3;
 
 
 k = channel;
