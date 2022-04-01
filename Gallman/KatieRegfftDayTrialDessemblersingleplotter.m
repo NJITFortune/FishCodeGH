@@ -13,19 +13,18 @@ ReFs = 60;
 light = 3;
 
 %% prep
+
+% define length of trial
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
-% define length of trial 
+ 
 if in.info.ld > 15 
     triallength = in.info.ld * 2;
 else
     triallength = in.info.ld * 4;
 end
 
-%triallength
 
-
-%% Take spline estimate of raw data
 %outliers
     % Prepare the data with outliers
 
@@ -64,9 +63,10 @@ ld = in.info.ld;
     end
 
 %make lighttimes an integer
+    %convert to seconds because xx is in seconds
     lighttimes = floor(lighttimes*3600);
 
-    %% define data by lighttimes
+%% define data by lighttimes
 
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
@@ -77,23 +77,27 @@ ld = in.info.ld;
     xx = xx(idx);
     sumfftyy = sumfftyy(idx);
 
-   
 
-%% Define trials 
+%% Define trials and days
 
  %trial
-    % How many trials available?
+   triallengthSECS = triallength * 3600;
+    % How many trials in sample?
     lengthofsampleHOURS = (lighttimes(end) - lighttimes(1)) / 3600; 
-    %lengthofsampleHOURS = timcont(end) - timcont(1); 
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / triallength); % of trials
-    triallengthSECS = triallength * 3600;
+    % How many samples in a trial
+    samplesinatrial = floor(triallengthSECS/ReFs);
+    
+
  %day
     daylengthSECONDS = (ld*2) * 3600;
     % Divide by daylength to get the number of days in the trial
         howmanydaysintrial = floor(triallength / (ld*2));
         % This is the number of sample in a day
         howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
+        %how many days total
+        howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
 
 %% Divide data into trials
 
@@ -102,12 +106,11 @@ ld = in.info.ld;
 
 for jj = 1:numotrials
     
-    
              
             % Get the index for the start of the current period (xx is time)
-            Stimidx = find(xx >= xx(1) + ((jj-1) * triallengthSECS), 1);
+            Stimidx = find(xx > xx(1) + ((jj-1) * triallengthSECS), 1);
             % Get the rest of the indices for the trial  
-            Stimidx = Stimidx:Stimidx + (floor(triallengthSECS/ReFs))-1;
+            Stimidx = Stimidx:Stimidx + samplesinatrial-1;
             
             if length(sumfftyy) >= Stimidx(end)
              % Data   
@@ -127,8 +130,6 @@ end
 
     for jj = length(out):-1:1 % For each trial
         
-
-        
         for k = 1:howmanydaysintrial % Each day in a trial
 
 
@@ -136,9 +137,7 @@ end
             dayidx = find(out(jj).Stimcont > (k-1) * (ld*2*3600), 1) -1; % k-1 so that we start at zero
 
             % Get the datums
-            %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
-%             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
-            trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
+            trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday);
 %             
                trial(jj).ld = ld; 
 
@@ -154,9 +153,6 @@ end
     
 %% Divide sample into days to compare against trial day means
 
-howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
-
-
 %tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
 tim = 1/ReFs:1/ReFs:(ld*2);
 %spline data
@@ -167,18 +163,19 @@ for k = 1:howmanydaysinsample
     %         % Get the index of the start time of the day
                 dayidx = find(xx >= xx(1) + (k-1) * daylengthSECONDS & xx < xx(1) + k* daylengthSECONDS); % k-1 so that we start at zero
 
-                if length(dayidx) >= howmanysamplesinaday
-%                 day(k).SobwAmp = obwyy(dayidx);
-%                 day(k).SzAmp = zyy(dayidx);
-                day(k).Ssumfftyy = sumfftyy(dayidx);
-                day(k).tim = tim;
+                if length(dayidx) >= howmanysamplesinaday %important so that we know when to stop
+
+                    day(k).Ssumfftyy = sumfftyy(dayidx);
+                    day(k).tim = tim;
+                    
                 end
  end
  
  %% plot to check
 
  %change back to hours because my brain doesnt think in seconds
- %trials across tims
+
+ %trials across time - check division with lighttimes 
  figure(26); clf; title('trials across time');  hold on;
  
     for jj = 1:length(out)
@@ -192,8 +189,7 @@ for k = 1:howmanydaysinsample
         plot([lighttimes(j)/3600, lighttimes(j)/3600], ylim, 'k-', 'LineWidth', 0.5);
     end
     
- 
- clear mday;
+
  
  %all days
  %average day by trial
@@ -208,6 +204,8 @@ for k = 1:howmanydaysinsample
 
                 %fill temporary vector with data from each day 
                 mday(jj,:) = mday(jj,:) + trial(jj).day(k).SsumfftAmp;
+
+                %plot every day 
                 subplot(211); hold on; title('Days');
                 plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
@@ -216,6 +214,8 @@ for k = 1:howmanydaysinsample
 
          % To get average across days, divide by number of days
             mday(jj,:) = mday(jj,:) / length(trial(jj).day);
+
+            %plot day average by trial
             subplot(212); hold on; title('Day average by trial');
             plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
@@ -223,28 +223,29 @@ for k = 1:howmanydaysinsample
     end
     
     % Mean of means
- 
+    meanofmeans = nanmean(mday); % Takes the mean of the means for a day from each trial 
+
+    %plot average of days across trials
     subplot(212); hold on;
-     meanofmeans = nanmean(mday); % Takes the mean of the means for a day from each trial 
     plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
     
 
    
-    
+%plot averages for days without trial division 
 figure(28); clf; hold on; 
 
-clear meanday;
 
- for k = 1:length(day)
-        plot(day(k).tim, day(k).Ssumfftyy);
-        meanday(k,:) = day(k).Ssumfftyy;
- end
-    
-        mmday= nanmean(meanday);
-        plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
-        plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+     for k = 1:length(day)
+            plot(day(k).tim, day(k).Ssumfftyy);
+            meanday(k,:) = day(k).Ssumfftyy;
+     end
         
-figure(2); clf; hold on;
+            mmday= nanmean(meanday);
+            plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
+            plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+ 
+%compare day mean calculations            
+figure(29); clf; hold on;
     plot(day(1).tim, mmday);
     plot(trial(jj).tim, meanofmeans);
     plot([ld ld], ylim, 'k-', 'LineWidth', 3);
