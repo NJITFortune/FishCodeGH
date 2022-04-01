@@ -10,14 +10,14 @@ function out =  KatieRegular(in, ReFs)
 
 
 %k = channel;
-
+lighttimes = abs(in.info.luz);
 %% regular
 %generate new vectors for each channel (electrode)
 
 for k = 1:2
 
     %generate new time vector with regular intervals of ReFs (60 seconds)
-    out(k).xx = in.e(k).s(1).timcont:ReFs:in.e(k).s(end).timcont;
+    out(k).xx = lighttimes(1):ReFs:in.e(k).s(end).timcont;
 
     %assign amplitude values to new time vector
     for j = length(out(k).xx):-1:1
