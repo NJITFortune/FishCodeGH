@@ -78,7 +78,7 @@ ld = in.info.ld;
 for k = 1:length(lighttimes)
     lighttimes(k) = floor(lighttimes(k))*3600;
 end
-%% define data
+%% define data by lighttimes
 
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
@@ -86,6 +86,9 @@ end
     xx = xx(xx >= lighttimes(1) & xx <= lighttimes(end));
 
     sumfftyy = [in.ch(channel).sumfftAmpyy];
+    sumfftyy = sumfftyy(xx);
+
+   
 
 %% Define trial period
 
