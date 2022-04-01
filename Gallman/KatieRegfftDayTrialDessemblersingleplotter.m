@@ -99,14 +99,12 @@ for jj = 1:numotrials
     
              
             % Get the index for the start of the current period (xx is time)
-            Stimidx = find(xx > xx(1) + ((jj-1) * triallength), 1);
+            Stimidx = find(xx >= xx(1) + ((jj-1) * triallength), 1);
             % Get the rest of the indices for the trial  
             Stimidx = Stimidx:Stimidx + (triallength*ReFs)-1;
             
             if length(sumfftyy) >= Stimidx(end)
              % Data   
-             %out(jj).SobwAmp = fftyy(Stimidx);
-%              out(jj).SzAmp = zyy(Stimidx);
              out(jj).SsumfftAmp = sumfftyy(Stimidx);
              
              % Time  
