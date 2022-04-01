@@ -225,7 +225,7 @@ for k = 1:howmanydaysinsample
     % Mean of means
  
     subplot(212); hold on;
-     meanofmeans = mean(mday); % Takes the mean of the means for a day from each trial 
+     meanofmeans = nanmean(mday); % Takes the mean of the means for a day from each trial 
     plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
     
 
@@ -240,7 +240,7 @@ clear meanday;
         meanday(k,:) = day(k).Ssumfftyy;
  end
     
-        mmday= mean(meanday);
+        mmday= nanmean(meanday);
         plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
         plot([ld ld], ylim, 'k-', 'LineWidth', 3);
         
