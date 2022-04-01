@@ -246,7 +246,7 @@ clear meanday;
 figure(29); clf; hold on;
     plot(day(1).tim, mmday);
     plot(trial(jj).tim, meanofmeans);
-    plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+    plot([ld ld], ylim, 'k-', 'LineWidth', 3);
     legend('day mean', 'trial mean');
      legend('boxoff')
 % 
