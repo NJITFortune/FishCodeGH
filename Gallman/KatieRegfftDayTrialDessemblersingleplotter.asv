@@ -38,9 +38,6 @@ end
                 ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
             end
 
-clear lighttrim;
-clear lighttimeslesslong;
-clear lighttimesidx;
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
@@ -68,7 +65,7 @@ ld = in.info.ld;
 
 %make lighttimes an integer
 for k = 1:length(lighttimes)
-    lighttimes(k) = floor(lighttimes(k))*3600;
+    lighttimes(k) = (floor(lighttimes(k)))*3600;
 end
 %% define data by lighttimes
 
@@ -86,7 +83,7 @@ end
 %% Define trial period
 
     % How many trials available?
-    lengthofsampleHOURS = lighttimes(end) - lighttimes(1); 
+    lengthofsampleHOURS = (lighttimes(end) - lighttimes(1))/3600; 
     %lengthofsampleHOURS = timcont(end) - timcont(1); 
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / triallength); % of trials
@@ -108,8 +105,6 @@ for jj = 1:numotrials
             
             if length(sumfftyy) >= Stimidx(end)
              % Data   
-             %out(jj).SobwAmp = fftyy(Stimidx);
-%              out(jj).SzAmp = zyy(Stimidx);
              out(jj).SsumfftAmp = sumfftyy(Stimidx);
              
              % Time  
@@ -156,7 +151,8 @@ end
     
 %% Divide sample into days to compare against trial day means
 
-howmanydaysinsample = floor(lengthofsampleHOURS / (ld*2));
+howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)))*3600;
+daylength
 
 tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
 %spline data
