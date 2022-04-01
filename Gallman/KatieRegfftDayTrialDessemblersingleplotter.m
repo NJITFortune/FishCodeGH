@@ -10,7 +10,7 @@ clearvars -except kg kg2
 in = kg(2);
 channel = 1;
 ReFs = 60;
-light = 3;
+light = 4;
 
 %% prep
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
