@@ -65,7 +65,7 @@ ld = in.info.ld;
 
         if light < 4 %we start with dark
             lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
-            lighttimesl = lighttimeslong(lighttimesidx);
+            lighttimes = lighttimeslong(lighttimesidx);
         else %we start with light
             %poweridx normally starts with dark, so we need to add ld to start with light
             poweridx1 = in.info.poweridx(1) + ld;
