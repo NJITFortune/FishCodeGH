@@ -83,10 +83,11 @@ end
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
     xx = [in.ch(channel).xx];
-    xx = xx(xx >= lighttimes(1) & xx <= lighttimes(end));
+    idx = find(xx >= lighttimes(1) & xx <= lighttimes(end));
+    xx = xx(idx);
 
     sumfftyy = [in.ch(channel).sumfftAmpyy];
-    sumfftyy = sumfftyy(xx);
+    sumfftyy = sumfftyy(idx);
 
    
 
