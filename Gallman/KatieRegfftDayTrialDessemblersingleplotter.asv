@@ -63,10 +63,10 @@ ld = in.info.ld;
     end
 
 %make lighttimes an integer
-
+    %convert to seconds because xx is in seconds
     lighttimes = floor(lighttimes*3600);
 
-    %% define data by lighttimes
+%% define data by lighttimes
 
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
@@ -77,17 +77,19 @@ ld = in.info.ld;
     xx = xx(idx);
     sumfftyy = sumfftyy(idx);
 
-   
 
-%% Define trials 
+%% Define trials and days
 
  %trial
-    % How many trials available?
+   triallengthSECS = triallength * 3600;
+    % How many trials in sample?
     lengthofsampleHOURS = (lighttimes(end) - lighttimes(1)) / 3600; 
-    %lengthofsampleHOURS = timcont(end) - timcont(1); 
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / triallength); % of trials
-    triallengthSECS = triallength * 3600;
+    % How many samples in a trial
+    samplesinatrial = floor(triallengthSECS/ReFs);
+    
+
  %day
     daylengthSECONDS = (ld*2) * 3600;
     % Divide by daylength to get the number of days in the trial
@@ -102,12 +104,11 @@ ld = in.info.ld;
 
 for jj = 1:numotrials
     
-    
              
             % Get the index for the start of the current period (xx is time)
             Stimidx = find(xx >= xx(1) + ((jj-1) * triallengthSECS), 1);
             % Get the rest of the indices for the trial  
-            Stimidx = Stimidx:Stimidx + (floor(triallengthSECS/ReFs))-1;
+            Stimidx = Stimidx:Stimidx + samplesinatrial-1;
             
             if length(sumfftyy) >= Stimidx(end)
              % Data   
@@ -127,8 +128,6 @@ end
 
     for jj = length(out):-1:1 % For each trial
         
-
-        
         for k = 1:howmanydaysintrial % Each day in a trial
 
 
@@ -136,8 +135,6 @@ end
             dayidx = find(out(jj).Stimcont > (k-1) * (ld*2*3600), 1) -1; % k-1 so that we start at zero
 
             % Get the datums
-            %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
-%             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
             trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
 %             
                trial(jj).ld = ld; 
