@@ -130,7 +130,6 @@ end
 
     for jj = length(out):-1:1 % For each trial
         
-        ld = out(jj).ld;
 
         % Divide by daylength to get the number of days in the trial
         howmanydaysintrial = floor(triallength / (ld*2));
@@ -148,7 +147,7 @@ end
 %             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
             trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
 %             
-               trial(jj).ld = in.info.ld; 
+               trial(jj).ld = ld; 
 
            
 
