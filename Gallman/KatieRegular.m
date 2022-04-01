@@ -23,6 +23,8 @@ function out =  KatieRegular(in, ReFs)
             end
 %% regular
 %generate new vectors for each channel (electrode)
+
+ff = waitbar(0, 'Cycling through samples.');
 for k = 1:2
 
     %generate new time vector with regular intervals of ReFs (60 seconds)
