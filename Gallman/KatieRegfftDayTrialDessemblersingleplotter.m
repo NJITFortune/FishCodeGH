@@ -83,7 +83,7 @@ end
 %% Define trial period
 
     % How many trials available?
-    lengthofsampleHOURS = lighttimes(end) - lighttimes(1); 
+    lengthofsampleHOURS = (lighttimes(end) - lighttimes(1))/3600; 
     %lengthofsampleHOURS = timcont(end) - timcont(1); 
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / triallength); % of trials
