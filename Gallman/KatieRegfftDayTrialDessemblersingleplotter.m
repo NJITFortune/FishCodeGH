@@ -161,11 +161,11 @@ for k = 1:howmanydaysinsample
     
 
     %         % Get the index of the start time of the day
-                dayidx = find(xx >= xx(1) + (k-1) * daylengthSECONDS & xx < xx(1) + k* daylengthSECONDS); % k-1 so that we start at zero
+                ddayidx = find(xx >= xx(1) + (k-1) * daylengthSECONDS & xx < xx(1) + k* daylengthSECONDS); % k-1 so that we start at zero
 
-                if length(dayidx) >= howmanysamplesinaday %important so that we know when to stop
+                if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
 
-                    day(k).Ssumfftyy = sumfftyy(dayidx);
+                    day(k).Ssumfftyy = sumfftyy(ddayidx);
                     day(k).tim = tim;
                     
                 end
