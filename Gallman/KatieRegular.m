@@ -11,7 +11,17 @@ function out =  KatieRegular(in, ReFs)
 
 %k = channel;
 %% prep
+%outliers
+    % Prepare the data with outliers
+            ttsf{1} = 1:length([in.e(1).s.timcont]); % ttsf is indices for sumfftAmp
+            ttsf{2} = 1:length([in.e(2).s.timcont]);
+    % Prepare the data without outliers
 
+            % If we have removed outliers via KatieRemover, get the indices...    
+            if ~isempty(in.idx) 
+                ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+            end
+%% regular
 %generate new vectors for each channel (electrode)
 for k = 1:2
 
@@ -40,16 +50,16 @@ for k = 1:2
 end 
 
 %% plot to check
+ttsf{1}
 
 figure(543); clf; hold on;
 
+for k = 1:2
     ax(1) = subplot(411); hold on; title('sumfftAmp');
-        plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
-        plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.');
-    
+        plot(out(k).xx(ttsf{k})/(60*60), out(k).sumfftAmpyy(ttsf{k}), '.');
+       
     ax(2) = subplot(412); hold on; title('frequency (black) and temperature (red)');   
-        plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.fftFreq], '.k', 'Markersize', 8);
-        plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.fftFreq], '.k', 'Markersize', 8);
+        plot([out.e(k).s.timcont]/(60*60), [out.e(k).s.fftFreq], '.k', 'Markersize', 8);
          
     ax(3) = subplot(413); hold on; title('temperature');
         ch2tempC = k_voltstodegC(out, 2);
@@ -69,4 +79,4 @@ figure(543); clf; hold on;
 
 
 
-
+end
