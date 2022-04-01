@@ -76,7 +76,7 @@ for k = 1:2
 
 
 
-
+linkaxes(ax, 'x'); 
 
 
 end
