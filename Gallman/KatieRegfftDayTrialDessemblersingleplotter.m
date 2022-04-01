@@ -241,7 +241,7 @@ clear meanday;
     
         mmday= mean(meanday);
         plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
-        plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+        plot([ld ld], ylim, 'k-', 'LineWidth', 3);
         
 figure(29); clf; hold on;
     plot(day(1).tim, mmday);
