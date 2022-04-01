@@ -94,7 +94,7 @@ end
     % Divide by daylength to get the number of days in the trial
         howmanydaysintrial = floor(triallength / (ld*2));
         % This is the number of sample in a day
-        howmanysamplesinaday = daylengthSECONDS * ReFs;
+        howmanysamplesinaday = daylengthSECONDS / ReFs;
 
 %% Divide data into trials
 
@@ -108,7 +108,7 @@ for jj = 1:numotrials
             % Get the index for the start of the current period (xx is time)
             Stimidx = find(xx >= xx(1) + ((jj-1) * triallengthSECS), 1);
             % Get the rest of the indices for the trial  
-            Stimidx = Stimidx:Stimidx + (triallengthSECS*ReFs)-1;
+            Stimidx = Stimidx:Stimidx + (triallengthSECS/ReFs)-1;
             
             if length(sumfftyy) >= Stimidx(end)
              % Data   
