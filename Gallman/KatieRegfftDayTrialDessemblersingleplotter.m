@@ -64,10 +64,9 @@ ld = in.info.ld;
     end
 
 %make lighttimes an integer
-for k = 1:length(lighttimes)
-    lighttimes(k) = (floor(lighttimes(k)))*3600;
-end
-%% define data by lighttimes
+    lighttimes = floor(lighttimes(k)*3600);
+
+    %% define data by lighttimes
 
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
