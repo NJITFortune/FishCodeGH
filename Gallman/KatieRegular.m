@@ -62,8 +62,7 @@ for k = 1:2
         plot([out.e(k).s.timcont]/(60*60), [out.e(k).s.fftFreq], '.k', 'Markersize', 8);
          
     ax(3) = subplot(413); hold on; title('temperature');
-        ch2tempC = k_voltstodegC(out, 2);
-        ch1tempC = k_voltstodegC(out, 1);
+
         
         plot([out.e(2).s.timcont]/(60*60), ch2tempC, '-r', 'Markersize', 8);
         plot([out.e(1).s.timcont]/(60*60), ch1tempC, '-r', 'Markersize', 8);
