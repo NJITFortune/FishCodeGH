@@ -70,18 +70,18 @@ for k = 1:2
         plot([in.e(k).s.timcont]/(60*60), [out(k).tempcelcius], '-r', 'Markersize', 8);
         
     ax(4) = subplot(414); hold on; title('light transitions');  
-        plot([in.e(1).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
+        plot([in.e(1).s.timcont]/(60*60), [in.e(1).s.light], '.', 'Markersize', 8);
         ylim([-1, 6]);
         xlabel('Continuous');
 
         % Add light transitions times to check luz if we have programmed it
-        if isfield(out.info, 'luz')
-            if  ~isempty(out.info.luz)
+        if isfield(in.info, 'luz')
+            if  ~isempty(in.info.luz)
                 
                 %luz by transition type
                     %separate by transition type
-                    lighton = out.info.luz(out.info.luz > 0);
-                    darkon = out.info.luz(out.info.luz < 0);
+                    lighton = in.info.luz(in.info.luz > 0);
+                    darkon = in.info.luz(in.info.luz < 0);
                     
                     %plot
                     ax(4) = subplot(414); hold on;
