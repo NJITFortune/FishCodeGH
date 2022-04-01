@@ -52,7 +52,7 @@ ld = in.info.ld;
         lighttimes = lighttimeslong;
     else %take data from within power idx range
 
-        if light < 4 %we start with dark
+        if light == 3 %we start with dark
             lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         else %we start with light
