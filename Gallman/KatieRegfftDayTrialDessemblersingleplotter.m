@@ -98,7 +98,7 @@ end
 
 %% Divide data into trials
 
-
+ReFs = 60;
 %KatieRegular data
 
 for jj = 1:numotrials
