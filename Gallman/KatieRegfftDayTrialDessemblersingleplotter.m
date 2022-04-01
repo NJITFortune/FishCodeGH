@@ -10,7 +10,7 @@ clearvars -except kg kg2
 in = kg(2);
 channel = 1;
 ReFs = 60;
-light = 3;
+light = 4;
 
 %% prep
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
@@ -244,7 +244,7 @@ clear meanday;
         plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
         plot([ld ld], ylim, 'k-', 'LineWidth', 3);
         
-figure(2); clf; hold on;
+figure(29); clf; hold on;
     plot(day(1).tim, mmday);
     plot(trial(jj).tim, meanofmeans);
     plot([ld ld], ylim, 'k-', 'LineWidth', 3);
