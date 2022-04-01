@@ -80,14 +80,16 @@ end
 
    
 
-%% Define trial period
+%% Define trials 
 
+ %trial
     % How many trials available?
     lengthofsampleHOURS = (lighttimes(end) - lighttimes(1))/3600; 
     %lengthofsampleHOURS = timcont(end) - timcont(1); 
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / triallength); % of trials
-
+    triallengthSECS = triallength*3600;
+ %day
     daylengthSECONDS = (ld*2)*3600;
     % Divide by daylength to get the number of days in the trial
         howmanydaysintrial = floor(triallength / (ld*2));
@@ -96,7 +98,7 @@ end
 
 %% Divide data into trials
 
-triallengthSECS = triallength * 3600;
+
 %KatieRegular data
 
 for jj = 1:numotrials
