@@ -10,17 +10,7 @@ function out =  KatieRegular(in, ReFs)
 
 
 %k = channel;
-%% prep
-%outliers
-    % Prepare the data with outliers
-            ttsf{1} = 1:length([in.e(1).s.timcont]); % ttsf is indices for sumfftAmp
-            ttsf{2} = 1:length([in.e(2).s.timcont]);
-    % Prepare the data without outliers
 
-            % If we have removed outliers via KatieRemover, get the indices...    
-            if ~isempty(in.idx) 
-                ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
-            end
 %% regular
 %generate new vectors for each channel (electrode)
 
@@ -56,6 +46,17 @@ for k = 1:2
 end 
 
 %% plot to check
+
+%outliers
+    % Prepare the data with outliers
+            ttsf{1} = 1:length([in.e(1).s.timcont]); % ttsf is indices for sumfftAmp
+            ttsf{2} = 1:length([in.e(2).s.timcont]);
+    % Prepare the data without outliers
+
+            % If we have removed outliers via KatieRemover, get the indices...    
+            if ~isempty(in.idx) 
+                ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+            end
 
 
 figure(543); clf; hold on;
