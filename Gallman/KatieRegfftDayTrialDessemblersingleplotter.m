@@ -9,7 +9,7 @@ clearvars -except kg kg2
 % 
 in = kg(1);
 channel = 1;
-ReFs = 60;
+ReFs = 60/3600; %convert to hours?
 light = 3;
 
 %% prep
@@ -187,7 +187,6 @@ for k = 1:howmanydaysinsample
  
     for jj = 1:length(out)
         
-        plot(out(jj).entiretimcont, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
         plot(out(jj).Sentiretimcont, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
         
     end
