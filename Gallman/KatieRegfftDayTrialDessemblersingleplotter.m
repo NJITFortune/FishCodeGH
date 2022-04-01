@@ -70,11 +70,11 @@ ld = in.info.ld;
 
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
-    xx = [in.ch(channel).xx];
+    xx = in.ch(channel).xx;
+    sumfftyy = in.ch(channel).sumfftAmpyy;
+
     idx = find(xx >= lighttimes(1) & xx <= lighttimes(end));
     xx = xx(idx);
-
-    sumfftyy = [in.ch(channel).sumfftAmpyy];
     sumfftyy = sumfftyy(idx);
 
    
@@ -83,13 +83,13 @@ ld = in.info.ld;
 
  %trial
     % How many trials available?
-    lengthofsampleHOURS = (lighttimes(end) - lighttimes(1))/3600; 
+    lengthofsampleHOURS = (lighttimes(end) - lighttimes(1)) / 3600; 
     %lengthofsampleHOURS = timcont(end) - timcont(1); 
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / triallength); % of trials
-    triallengthSECS = triallength*3600;
+    triallengthSECS = triallength * 3600;
  %day
-    daylengthSECONDS = (ld*2)*3600;
+    daylengthSECONDS = (ld*2) * 3600;
     % Divide by daylength to get the number of days in the trial
         howmanydaysintrial = floor(triallength / (ld*2));
         % This is the number of sample in a day
