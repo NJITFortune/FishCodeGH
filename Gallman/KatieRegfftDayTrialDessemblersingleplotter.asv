@@ -29,20 +29,12 @@ end
 %outliers
     % Prepare the data with outliers
 
-%             tto{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
-%             tto{2} = tto{1};
-% 
-%             ttz{1} = tto{1}; % ttz is indices for zAmp
-%             ttz{2} = tto{1};
-
             ttsf{1} = 1:length([in.e(1).s.timcont]); % ttsf is indices for sumfftAmp
             ttsf{2} = 1:length([in.e(2).s.timcont]);
     % Prepare the data without outliers
 
             % If we have removed outliers via KatieRemover, get the indices...    
             if ~isempty(in.idx) 
-%                 tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
-%                 ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
                 ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
             end
 
@@ -65,7 +57,7 @@ ld = in.info.ld;
 
         if light < 4 %we start with dark
             lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
-            lighttimesl = lighttimeslong(lighttimesidx);
+            lighttimes = lighttimeslong(lighttimesidx);
         else %we start with light
             %poweridx normally starts with dark, so we need to add ld to start with light
             poweridx1 = in.info.poweridx(1) + ld;
@@ -76,16 +68,20 @@ ld = in.info.ld;
 
 %make lighttimes an integer
 for k = 1:length(lighttimes)
-    lighttimes(k) = floor(lighttimes(k));
+    lighttimes(k) = floor(lighttimes(k))*3600;
 end
-%% define data
+%% define data by lighttimes
 
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
-    xx = [in.ch(channel).xx] / (60*60);
-    xx = timcont(xx >= lighttimes(1) & xx <= lighttimes(end));
+    xx = [in.ch(channel).xx];
+    idx = find(xx >= lighttimes(1) & xx <= lighttimes(end));
+    xx = xx(idx);
 
     sumfftyy = [in.ch(channel).sumfftAmpyy];
+    sumfftyy = sumfftyy(idx);
+
+   
 
 %% Define trial period
 
@@ -130,7 +126,6 @@ end
 
     for jj = length(out):-1:1 % For each trial
         
-        ld = out(jj).ld;
 
         % Divide by daylength to get the number of days in the trial
         howmanydaysintrial = floor(triallength / (ld*2));
@@ -148,7 +143,7 @@ end
 %             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
             trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
 %             
-               trial(jj).ld = in.info.ld; 
+               trial(jj).ld = ld; 
 
            
 
@@ -187,7 +182,6 @@ for k = 1:howmanydaysinsample
  
     for jj = 1:length(out)
         
-        plot(out(jj).entiretimcont, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
         plot(out(jj).Sentiretimcont, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
         
     end
