@@ -151,7 +151,7 @@ end
     
 %% Divide sample into days to compare against trial day means
 
-howmanydaysinsample = floor(lengthofsampleHOURS / (ld*2));
+howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)))*3600;
 
 tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
 %spline data
