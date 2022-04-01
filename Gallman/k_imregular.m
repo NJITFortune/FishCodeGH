@@ -1,4 +1,4 @@
-function [xx, filledsumfftAmpyy, lighttimes] =  k_imregular(in, channel, ReFs, light)
+function out =  k_imregular(in, ReFs)
 %function out = imregular(in)
 %% to lazy to function
 % clearvars -except kg kg2
@@ -9,71 +9,41 @@ function [xx, filledsumfftAmpyy, lighttimes] =  k_imregular(in, channel, ReFs, l
 % light = 3;
 
 
-k = channel;
+%k = channel;
 %% prep
-%outlier removal indicies
-    ttsf{1} = 1:length([in.e(1).s.timcont]); % ttsf is indices for sumfftAmp
-    ttsf{2} = 1:length([in.e(2).s.timcont]);
 
-    % If we have removed outliers via KatieRemover, get the indices...    
-            if ~isempty(in.idx) 
-                ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
-            end
-      
-%lighttimes
-    lighttimeslong = abs(in.info.luz);
-    ld = in.info.ld;
+%generate new vectors for each channel (electrode)
+for k = 1:2
 
-  %fit light vector to power idx
-        %poweridx = good data
+    %generate new time vector with regular intervals of ReFs (60 seconds)
+    out(k).xx = in.e(k).s(1).timcont:ReFs:in.e(k).s(end).timcont;
 
-    %no poweridx
-    if isempty(in.info.poweridx) %if there are no values in poweridx []
-
-        lighttimes = lighttimeslong;
-
-    %poweridx
-    else %take data from within power idx range
-
-        if light < 4 %we start with dark
-            lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
-            lighttimes = lighttimeslong(lighttimesidx);
-
-        else %we start with light
-        %poweridx normally starts with dark, so we need to add ld to start with light
-            poweridx1 = in.info.poweridx(1) + ld;
-            lighttimesidx = lighttimeslong > poweridx1(1) & lighttimeslong < in.info.poweridx(2);
-            lighttimes = lighttimeslong(lighttimesidx);
+    %assign amplitude values to new time vector
+    for j = length(out(k).xx):-1:1
+    
+        %find values a half step in either direction ReFs
+        tt = find([in.e(k).s.timcont] > (out(k).xx(j)-ReFs/2) & [in.e(k).s.timcont] < (out(k).xx(j)+ReFs/2));
+    
+        %if there are values, assign the y to xx
+        if ~isempty(tt) 
+            temp(k).sumfftAmpyy(j) = in.e(k).s(tt).sumfftAmp;
+    
+        %if there are no values assign nan
+        else
+            temp(k).sumfftAmpyy(j) = nan;
         end
-
+    
     end
 
-xx = in.e(1).s(1).timcont:ReFs:in.e(1).s(end).timcont;
-xidx = find(xx>= lighttimes(1)*3600 & xx <= lighttimes(end)*3600);
+    out(k).sumfftAmpyy = fillmissing(temp(k).sumfftAmpyy, 'linear');
+    
+end 
 
-%xx = lighttimes(1)*3600:ReFs:lighttimes(end)*3600;
+%out.meanamp = movmean(sumfftAmpyy, 3, 'omitnan');
 
-for j = length(xx):-1:1
-
-    %find values a half step in either direction ReFs
-    tt = find([in.e(k).s.timcont] > (xx(j)-ReFs/2) & [in.e(k).s.timcont] < (xx(j)+ReFs/2));
-
-    %if there are values, assign the y to xx
-    if ~isempty(tt) 
-        sumfftAmpyy(j) = in.e(k).s(tt).sumfftAmp;
-
-    %if there are no values assign nan
-    else
-        sumfftAmpyy(j) = nan;
-    end
-
-end
-
-out.meanamp = movmean(sumfftAmpyy, 3, 'omitnan');
-filledsumfftAmpyy = fillmissing(sumfftAmpyy, 'linear');
 %xx = xx/3600;
-figure(4); clf; hold on;
-    plot([in.e(k).s.timcont], [in.e(k).s.sumfftAmp], '.-');
-    plot(xx, sumfftAmpyy, '.-'); 
-    plot(xx, filledsumfftAmpyy, 'o-');
+% figure(4); clf; hold on;
+%     plot([in.e(k).s.timcont], [in.e(k).s.sumfftAmp], '.-');
+%     plot(xx, sumfftAmpyy, '.-'); 
+%     plot(xx, filledsumfftAmpyy, 'o-');
 
