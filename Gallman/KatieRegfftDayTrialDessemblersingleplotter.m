@@ -9,7 +9,7 @@ clearvars -except kg kg2
 % 
 in = kg(1);
 channel = 1;
-%ReFs = 10;
+ReFs = 60;
 light = 3;
 
 %% prep
@@ -26,21 +26,66 @@ end
 
 
 %% Take spline estimate of raw data
+%outliers
+    % Prepare the data with outliers
 
-%entire data set
-%[xx, obwyy, ~, ~, lighttimes] = k_detrendspliner(in,channel, ReFs);
+%             tto{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
+%             tto{2} = tto{1};
+% 
+%             ttz{1} = tto{1}; % ttz is indices for zAmp
+%             ttz{2} = tto{1};
 
-[xx, sumfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light);
+            ttsf{1} = 1:length([in.e(1).s.timcont]); % ttsf is indices for sumfftAmp
+            ttsf{2} = 1:length([in.e(2).s.timcont]);
+    % Prepare the data without outliers
 
-% lighttimes = abs(luztimes);
-% %add back the light time we subtracted 
-% lighttimes(end +1) = lighttimes(end) + ld;
+            % If we have removed outliers via KatieRemover, get the indices...    
+            if ~isempty(in.idx) 
+%                 tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
+%                 ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
+                ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+            end
+
+clear lighttrim;
+clear lighttimeslesslong;
+clear lighttimesidx;
+%light is a label for whether the subjective day starts with light or with dark
+    %starts with dark = 3
+    %starts with light = 4
+%% trim luz to data - Generate lighttimes
+
+lighttimeslong = abs(in.info.luz);
+ld = in.info.ld;
+
+    %fit light vector to power idx
+        %poweridx = good data
+    if isempty(in.info.poweridx) %if there are no values in poweridx []
+        lighttimes = lighttimeslong;
+    else %take data from within power idx range
+
+        if light < 4 %we start with dark
+            lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
+            lighttimesl = lighttimeslong(lighttimesidx);
+        else %we start with light
+            %poweridx normally starts with dark, so we need to add ld to start with light
+            poweridx1 = in.info.poweridx(1) + ld;
+            lighttimesidx = lighttimeslong > poweridx1(1) & lighttimeslong < in.info.poweridx(2);
+            lighttimes = lighttimeslong(lighttimesidx);
+        end
+    end
+
+%make lighttimes an integer
+for k = 1:length(lighttimes)
+    lighttimes(k) = floor(lighttimes(k));
+end
+%% define data
 
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
+    xx = [in.ch(channel).xx] / (60*60);
+    xx = timcont(xx >= lighttimes(1) & xx <= lighttimes(end));
 
-    timcont = [in.e(1).s.timcont] / (60*60);
-    timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
+    sumfftyy = [in.ch(channel).sumfftAmpyy];
 
 %% Define trial period
 
@@ -53,59 +98,15 @@ end
 
 %% Divide data into trials
 
-%raw data
 
-for jj = 1:numotrials
-    
-%             % indices for our sample window of perd hours
-%             timidx = find(timcont >= timcont(1) + ((jj-1)*perd) & ...
-%                timcont < timcont(1) + (jj*perd));
-
-            j = channel;
-           
-                %timcont needs to have the same indicies as the rest of the
-                %data
-            % indices for our sample window of perd hours
-            timidx = find(timcont >= lighttimes(1) + ((jj-1)*triallength) & ...
-            timcont < lighttimes(1) + (jj*triallength));
-
-
-%             % Get the index for the start of the current period (xx is time)
-%             timidx = find(timcont > timcont(1) + ((jj-1) * perd), 1);
-%             % Get the rest of the indices for the trial  
-%             timidx = timidx:timidx + (perd*ReFs)-1;
-            
-         
-            
-           
-             % Data   
-             %out(jj).obwAmp = [in.e(j).s(timidx).obwAmp];
-%              out(jj).zAmp = [in.e(j).s(timidx).zAmp];
-             out(jj).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
-%              out(jj).fftFreq = [in.e(j).s(timidx).fftFreq];
-             
-             % Time and treatment 
-             out(jj).timcont = timcont(timidx) - timcont(timidx(1)); %+1
-             out(jj).entiretimcont = timcont(timidx);
-%              out(jj).light = [in.e(j).s(timidx).light];
-%              out(jj).temp = [in.e(j).s(timidx).temp];
-             
-             out(jj).ld = in.info.ld; 
-             %out(jj).kg = orgidx; % idx for kg
-             
-           
-
-end   
-
-
-%spline data
+%KatieRegular data
 
 for jj = 1:numotrials
     
     
              
             % Get the index for the start of the current period (xx is time)
-            Stimidx = find(xx > xx(1) + ((jj-1) * triallength), 1);
+            Stimidx = find(xx >= xx(1) + ((jj-1) * triallength), 1);
             % Get the rest of the indices for the trial  
             Stimidx = Stimidx:Stimidx + (triallength*ReFs)-1;
             
