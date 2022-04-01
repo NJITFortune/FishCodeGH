@@ -147,7 +147,8 @@ end
         end
             % Make a time sequence for the datums (easier than extracting from
             % xx...)
-            trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday;
+%            trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+            trial(jj).tim = 1/ReFs:1/ReFs:(ld*2);
 
     end
     
@@ -156,7 +157,8 @@ end
 howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
 
 
-tim = 1/ReFs:1/ReFs:howmanysamplesinaday;
+%tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+tim = 1/ReFs:1/ReFs:(ld*2);
 %spline data
 
 for k = 1:howmanydaysinsample
