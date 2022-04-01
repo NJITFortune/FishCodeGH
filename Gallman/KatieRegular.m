@@ -45,12 +45,17 @@ for k = 1:2
     
     end
 
+    %fill missing - replaces nans with values?
     out(k).sumfftAmpyy = fillmissing(temp(k).sumfftAmpyy, 'linear');
+
+    %save temperature vectors - because why not?
+    out(k).tempcelcius = k_voltstodegC(in, k);
+
 
 end 
 
 %% plot to check
-ttsf{1}
+
 
 figure(543); clf; hold on;
 
@@ -59,19 +64,15 @@ for k = 1:2
         plot(out(k).xx(ttsf{k})/(60*60), out(k).sumfftAmpyy(ttsf{k}), '.');
        
     ax(2) = subplot(412); hold on; title('frequency (black) and temperature (red)');   
-        plot([out.e(k).s.timcont]/(60*60), [out.e(k).s.fftFreq], '.k', 'Markersize', 8);
+        plot([in.e(k).s.timcont]/(60*60), [in.e(k).s.fftFreq], '.k', 'Markersize', 8);
          
     ax(3) = subplot(413); hold on; title('temperature');
-
+        plot([in.e(k).s.timcont]/(60*60), [out(k).tempcelcius], '-r', 'Markersize', 8);
         
-        plot([out.e(2).s.timcont]/(60*60), ch2tempC, '-r', 'Markersize', 8);
-        plot([out.e(1).s.timcont]/(60*60), ch1tempC, '-r', 'Markersize', 8);
-    
     ax(4) = subplot(414); hold on; title('light transitions');  
-        plot([out.e(2).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
+        plot([in.e(1).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
         ylim([-1, 6]);
         xlabel('Continuous');
-
 
 
 
