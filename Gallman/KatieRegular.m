@@ -39,11 +39,15 @@ for k = 1:2
 
 end 
 
-%out.meanamp = movmean(sumfftAmpyy, 3, 'omitnan');
+%% plot to check
 
-%xx = xx/3600;
-% figure(4); clf; hold on;
-%     plot([in.e(k).s.timcont], [in.e(k).s.sumfftAmp], '.-');
-%     plot(xx, sumfftAmpyy, '.-'); 
-%     plot(xx, filledsumfftAmpyy, 'o-');
+figure(543); clf; hold on;
+    
+
+
+
+
+
+
+
 
