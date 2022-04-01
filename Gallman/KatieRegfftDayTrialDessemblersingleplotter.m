@@ -88,6 +88,11 @@ end
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / triallength); % of trials
 
+    daylengthSECONDS = (ld*2)*3600;
+    % Divide by daylength to get the number of days in the trial
+        howmanydaysintrial = floor(triallength / (ld*2));
+        % This is the number of sample in a day
+        howmanysamplesinaday = daylengthSECONDS * ReFs;
 
 %% Divide data into trials
 
@@ -99,7 +104,7 @@ for jj = 1:numotrials
     
              
             % Get the index for the start of the current period (xx is time)
-            Stimidx = find(xx >= xx(1) + ((jj-1) * triallength), 1);
+            Stimidx = find(xx >= xx(1) + ((jj-1) * (triallength*3600)), 1);
             % Get the rest of the indices for the trial  
             Stimidx = Stimidx:Stimidx + (triallength*ReFs)-1;
             
@@ -122,11 +127,7 @@ end
     for jj = length(out):-1:1 % For each trial
         
 
-        % Divide by daylength to get the number of days in the trial
-        howmanydaysintrial = floor(triallength / (ld*2));
-        % This is the number of sample in a day
-        howmanysamplesinaday = ld * 2 * 3600 * ReFs;
-
+        
         for k = 1:howmanydaysintrial % Each day in a trial
 
 
@@ -152,7 +153,7 @@ end
 %% Divide sample into days to compare against trial day means
 
 howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
-daylengthSECONDS = (ld*2)*3600;
+
 
 tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
 %spline data
@@ -161,7 +162,7 @@ for k = 1:howmanydaysinsample
     
 
     %         % Get the index of the start time of the day
-                dayidx = find(xx >= xx(1) + (k-1) * daylengthSECONDS & xx < xx(1) + k*daylengthSECONDS); % k-1 so that we start at zero
+                dayidx = find(xx >= xx(1) + (k-1) * daylengthSECONDS & xx < xx(1) + k* daylengthSECONDS); % k-1 so that we start at zero
 
                 if length(dayidx) >= howmanysamplesinaday
 %                 day(k).SobwAmp = obwyy(dayidx);
