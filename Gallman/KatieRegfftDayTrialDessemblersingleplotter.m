@@ -64,7 +64,7 @@ ld = in.info.ld;
     end
 
 %make lighttimes an integer
-    lighttimes = floor(lighttimes(k)*3600);
+    lighttimes = floor(lighttimes*3600);
 
     %% define data by lighttimes
 
