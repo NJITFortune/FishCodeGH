@@ -93,7 +93,7 @@ ld = in.info.ld;
     % Divide by daylength to get the number of days in the trial
         howmanydaysintrial = floor(triallength / (ld*2));
         % This is the number of sample in a day
-        howmanysamplesinaday = daylengthSECONDS / ReFs;
+        howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
 
 %% Divide data into trials
 
