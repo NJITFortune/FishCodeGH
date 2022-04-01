@@ -7,7 +7,7 @@
     %starts with light = 4
 clearvars -except kg kg2
 % 
-in = kg(1);
+in = kg(2);
 channel = 1;
 ReFs = 60;
 light = 3;
@@ -64,18 +64,17 @@ ld = in.info.ld;
     end
 
 %make lighttimes an integer
-for k = 1:length(lighttimes)
-    lighttimes(k) = (floor(lighttimes(k)))*3600;
-end
-%% define data by lighttimes
+    lighttimes = floor(lighttimes(k)*3600);
+
+    %% define data by lighttimes
 
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
-    xx = [in.ch(channel).xx];
+    xx = in.ch(channel).xx;
     idx = find(xx >= lighttimes(1) & xx <= lighttimes(end));
     xx = xx(idx);
 
-    sumfftyy = [in.ch(channel).sumfftAmpyy];
+    sumfftyy = in.ch(channel).sumfftAmpyy];
     sumfftyy = sumfftyy(idx);
 
    
@@ -176,19 +175,19 @@ for k = 1:howmanydaysinsample
  
  %% plot to check
 
- %change ba
+ %change back to hours because my brain doesnt think in seconds
  %trials across tims
  figure(26); clf; title('trials across time');  hold on;
  
     for jj = 1:length(out)
         
-        plot(out(jj).Sentiretimcont, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
+        plot(out(jj).Sentiretimcont/3600, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
         
     end
     
     for j = 1:length(lighttimes)
         
-        plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+        plot([lighttimes(j)/3600, lighttimes(j)/3600], ylim, 'k-', 'LineWidth', 0.5);
     end
     
  
@@ -241,12 +240,12 @@ clear meanday;
     
         mmday= mean(meanday);
         plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
-        plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+        plot([ld ld], ylim, 'k-', 'LineWidth', 3);
         
-figure(29); clf; hold on;
+figure(2); clf; hold on;
     plot(day(1).tim, mmday);
     plot(trial(jj).tim, meanofmeans);
-    plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+    plot([ld ld], ylim, 'k-', 'LineWidth', 3);
     legend('day mean', 'trial mean');
      legend('boxoff')
 % 
