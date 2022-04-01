@@ -7,9 +7,9 @@
     %starts with light = 4
 clearvars -except kg kg2
 % 
-in = kg(2);
-channel = 2;
-ReFs = 10;
+in = kg(1);
+channel = 1;
+%ReFs = 10;
 light = 3;
 
 %% prep
