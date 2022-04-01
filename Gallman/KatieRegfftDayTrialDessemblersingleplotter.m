@@ -125,7 +125,7 @@ end
         % Divide by daylength to get the number of days in the trial
         howmanydaysintrial = floor(triallength / (ld*2));
         % This is the number of sample in a day
-        howmanysamplesinaday = ld * 2 * ReFs;
+        howmanysamplesinaday = ld * 2 * 3600 * ReFs;
 
         for k = 1:howmanydaysintrial % Each day in a trial
 
@@ -151,7 +151,8 @@ end
     
 %% Divide sample into days to compare against trial day means
 
-howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)))*3600;
+howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
+daylengthSECONDS = (ld*2)*3600;
 
 tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
 %spline data
@@ -160,7 +161,7 @@ for k = 1:howmanydaysinsample
     
 
     %         % Get the index of the start time of the day
-                dayidx = find(xx >= xx(1) + (k-1) * (ld*2) & xx < xx(1) + k*(ld*2)); % k-1 so that we start at zero
+                dayidx = find(xx >= xx(1) + (k-1) * daylengthSECONDS & xx < xx(1) + k*daylengthSECONDS); % k-1 so that we start at zero
 
                 if length(dayidx) >= howmanysamplesinaday
 %                 day(k).SobwAmp = obwyy(dayidx);
