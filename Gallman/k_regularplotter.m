@@ -15,7 +15,7 @@ function k_regularplotter(in)
 figure(543); clf; hold on;
 
 for k = 1:2
-    ax(1) = subplot(411); hold on; title('sumfftAmp');
+    ax(1) = subplot(411); hold on; title('sumfftAmp'); ylim([0,4]);
         plot(in.ch(k).xx(ttsf{k})/(60*60), in.ch(k).sumfftAmpyy(ttsf{k}), '.');
        
     ax(2) = subplot(412); hold on; title('frequency (black) and temperature (red)');   
