@@ -176,18 +176,19 @@ for k = 1:howmanydaysinsample
  
  %% plot to check
 
+ %change back to hours because my brain doesnt think in seconds
  %trials across tims
  figure(26); clf; title('trials across time');  hold on;
  
     for jj = 1:length(out)
         
-        plot(out(jj).Sentiretimcont, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
+        plot(out(jj).Sentiretimcont/3600, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
         
     end
     
     for j = 1:length(lighttimes)
         
-        plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+        plot([lighttimes(j)/3600, lighttimes(j)/3600], ylim, 'k-', 'LineWidth', 0.5);
     end
     
  
