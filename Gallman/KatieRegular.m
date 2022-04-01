@@ -48,7 +48,7 @@ for k = 1:2
     out(k).sumfftAmpyy = fillmissing(temp(k).sumfftAmpyy, 'linear');
 
     %save temperature vectors - because why not?
-    out(k).tempcelcius = k_voltstodegC(in, k);
+    out(k).tempcelcius = real(k_voltstodegC(in, k));
 
 
 end 
