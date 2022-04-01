@@ -110,7 +110,7 @@ for jj = 1:numotrials
             % Get the index for the start of the current period (xx is time)
             Stimidx = find(xx > xx(1) + ((jj-1) * triallengthSECS), 1);
             % Get the rest of the indices for the trial  
-            Stimidx = Stimidx:Stimidx + samplesinatrial-1;
+            Stimidx = Stimidx:Stimidx + samplesinatrial;
             
             if length(sumfftyy) >= Stimidx(end)
              % Data   
