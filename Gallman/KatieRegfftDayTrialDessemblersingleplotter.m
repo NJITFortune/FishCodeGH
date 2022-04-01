@@ -105,7 +105,7 @@ for jj = 1:numotrials
     
              
             % Get the index for the start of the current period (xx is time)
-            Stimidx = find(xx >= xx(1) + ((jj-1) * triallengthSECS), 1);
+            Stimidx = find(xx > xx(1) + ((jj-1) * triallengthSECS), 1);
             % Get the rest of the indices for the trial  
             Stimidx = Stimidx:Stimidx + (floor(triallengthSECS/ReFs))-1;
             
@@ -133,7 +133,7 @@ end
 
 
             % Get the index of the start time of the trial
-            dayidx = find(out(jj).Stimcont >= (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
+            dayidx = find(out(jj).Stimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
 
             % Get the datums
             %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
