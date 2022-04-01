@@ -9,7 +9,7 @@ clearvars -except kg kg2
 % 
 in = kg(1);
 channel = 1;
-ReFs = 60/3600; %convert to hours?
+ReFs = 60;
 light = 3;
 
 %% prep
@@ -76,13 +76,13 @@ ld = in.info.ld;
 
 %make lighttimes an integer
 for k = 1:length(lighttimes)
-    lighttimes(k) = floor(lighttimes(k));
+    lighttimes(k) = floor(lighttimes(k))*3600;
 end
 %% define data
 
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
-    xx = [in.ch(channel).xx] / (60*60);
+    xx = [in.ch(channel).xx];
     xx = xx(xx >= lighttimes(1) & xx <= lighttimes(end));
 
     sumfftyy = [in.ch(channel).sumfftAmpyy];
@@ -98,7 +98,7 @@ end
 
 %% Divide data into trials
 
-ReFs = 60;
+
 %KatieRegular data
 
 for jj = 1:numotrials
