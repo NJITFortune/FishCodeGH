@@ -96,7 +96,7 @@ end
 
 %% Divide data into trials
 
-triallengthSECS = triallength 3600
+triallengthSECS = triallength * 3600;
 %KatieRegular data
 
 for jj = 1:numotrials
