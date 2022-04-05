@@ -34,7 +34,7 @@ for k = 1:2
         plot([in.e(k).s.timcont]/(60*60), [in.e(k).s.fftFreq], '.k', 'Markersize', 8);
          
     ax(3) = subplot(413); hold on; title('temperature');
-        plot([in.e(k).s.timcont]/(60*60), [in.ch(k).tempcelcius], '-r', 'Markersize', 8);
+     %   plot([in.e(k).s.timcont]/(60*60), [in.ch(k).tempcelcius], '-r', 'Markersize', 8);
         
     ax(4) = subplot(414); hold on; title('light transitions');  
         plot([in.e(1).s.timcont]/(60*60), [in.e(1).s.light], '.', 'Markersize', 8);
