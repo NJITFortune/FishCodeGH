@@ -28,13 +28,13 @@ figure(543); clf; hold on;
 
 for k = 1:2
     ax(1) = subplot(411); hold on; title('sumfftAmp');
-        plot(out(k).xx(ttsf{k})/(60*60), out(k).sumfftAmpyy(ttsf{k}), '.');
+        plot(in(k).ch.xx(ttsf{k})/(60*60), in(k).ch.sumfftAmpyy(ttsf{k}), '.');
        
     ax(2) = subplot(412); hold on; title('frequency (black) and temperature (red)');   
         plot([in.e(k).s.timcont]/(60*60), [in.e(k).s.fftFreq], '.k', 'Markersize', 8);
          
     ax(3) = subplot(413); hold on; title('temperature');
-        plot([in.e(k).s.timcont]/(60*60), [out(k).tempcelcius], '-r', 'Markersize', 8);
+        plot([in.e(k).s.timcont]/(60*60), [in(k).ch.tempcelcius], '-r', 'Markersize', 8);
         
     ax(4) = subplot(414); hold on; title('light transitions');  
         plot([in.e(1).s.timcont]/(60*60), [in.e(1).s.light], '.', 'Markersize', 8);
