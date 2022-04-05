@@ -19,11 +19,11 @@ lighttimes = abs(in.info.luz);
 for k = 1:2
 
     %calculate starttim
-    if lighttimes(1) < in.e(k).s(1).timcont
-        starttim = lighttimes(1);
-    else 
+%     if lighttimes(1) < in.e(k).s(1).timcont
+%         starttim = lighttimes(1);
+%     else 
         starttim = in.e(k).s(1).timcont;
-    end
+    %end
     %generate new time vector with regular intervals of ReFs (60 seconds)
     out(k).xx = starttim:ReFs:in.e(k).s(end).timcont;
 
