@@ -10,7 +10,7 @@ function out =  KatieRegular(in, ReFs)
 
 
 %k = channel;
-lighttimes = abs(in.info.luz);
+%lighttimes = abs(in.info.luz);
 
 
 %% regular
@@ -28,6 +28,15 @@ for k = 1:2
     out(k).timcontxx = starttim:ReFs:in.e(k).s(end).timcont;
 
     %assign amplitude values to new time vector
+
+
+
+    a = in.e(k).timcont;
+    b = mod(a, 60);
+
+    a(b < 30) = a(b < 30) - b(b<30); 
+    a(b >= 30) = a(b >= 30) + (60 - b(b>=30));
+
     for j = length(out(k).timcontxx):-1:1
     
         %find values a half step in either direction ReFs
