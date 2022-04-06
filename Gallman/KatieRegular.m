@@ -25,13 +25,13 @@ for k = 1:2
         starttim = in.e(k).s(1).timcont;
     %end
     %generate new time vector with regular intervals of ReFs (60 seconds)
-    out(k).xx = starttim:ReFs:in.e(k).s(end).timcont;
+    out(k).timcontxx = starttim:ReFs:in.e(k).s(end).timcont;
 
     %assign amplitude values to new time vector
-    for j = length(out(k).xx):-1:1
+    for j = length(out(k).timcontxx):-1:1
     
         %find values a half step in either direction ReFs
-        tt = find([in.e(k).s.timcont] > (out(k).xx(j)-ReFs/2) & [in.e(k).s.timcont] < (out(k).xx(j)+ReFs/2));
+        tt = find([in.e(k).s.timcont] > (out(k).timcontxx(j)-ReFs/2) & [in.e(k).s.timcont] < (out(k).timcontxx(j)+ReFs/2));
     
         %if there are values, assign the y to xx
         if ~isempty(tt) 
@@ -71,7 +71,7 @@ figure(543); clf; hold on;
 
 for k = 1:2
     ax(1) = subplot(411); hold on; title('sumfftAmp');
-        plot(out(k).xx(ttsf{k})/(60*60), out(k).sumfftAmpyy(ttsf{k}), '.');
+        plot(out(k).timcontxx(ttsf{k})/(60*60), out(k).sumfftAmpyy(ttsf{k}), '.');
        
     ax(2) = subplot(412); hold on; title('frequency (black) and temperature (red)');   
         plot([in.e(k).s.timcont]/(60*60), [in.e(k).s.fftFreq], '.k', 'Markersize', 8);
