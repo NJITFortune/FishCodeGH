@@ -65,4 +65,7 @@ end
 %     ax(1) = subplot(211); hold on; plot(oldtim, oldamp, '*-'); hold on; plot(newtim, newampNaN, 'o');
 %     ax(2) = subplot(212); hold on; plot(oldtim, oldamp, '*-'); hold on; plot(newtim, newampFilled, 'o');
 %     linkaxes(ax, 'x');
+    pea = imread('/Applications/MATLAB_R2021b.app/toolbox/images/imdata/peacock.jpg');
+    figure; imshow(pea, 'InitialMagnification',1000); pause(1); close(gcf);
+% A lasting impression
 
