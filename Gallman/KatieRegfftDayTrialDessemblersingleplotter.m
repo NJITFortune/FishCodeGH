@@ -37,6 +37,22 @@ end
                 ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
             end
 
+
+
+%regularize data across time in ReFs second intervals
+
+    xx = in.e(channel).;
+    sumfftyy = in.ch(channel).sumfftAmpyy;
+
+    idx = find(xx >= lighttimes(1) & xx <= lighttimes(end));
+    xx = xx(idx);
+    sumfftyy = sumfftyy(idx);
+
+
+
+
+
+
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
@@ -66,16 +82,16 @@ ld = in.info.ld;
     %convert to seconds because xx is in seconds
     lighttimes = floor(lighttimes*3600);
 
-%% define data by lighttimes
-
-%Make a time base that starts and ends on lighttimes 
-    %necessary to define length of data
-    xx = in.ch(channel).xx;
-    sumfftyy = in.ch(channel).sumfftAmpyy;
-
-    idx = find(xx >= lighttimes(1) & xx <= lighttimes(end));
-    xx = xx(idx);
-    sumfftyy = sumfftyy(idx);
+% %% define data by lighttimes
+% 
+% %Make a time base that starts and ends on lighttimes 
+%     %necessary to define length of data
+%     xx = in.ch(channel).xx;
+%     sumfftyy = in.ch(channel).sumfftAmpyy;
+% 
+%     idx = find(xx >= lighttimes(1) & xx <= lighttimes(end));
+%     xx = xx(idx);
+%     sumfftyy = sumfftyy(idx);
 
 
 %% Define trials and days
