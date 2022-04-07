@@ -41,7 +41,7 @@ end
 
 %regularize data across time in ReFs second intervals
 
-    xx = in.e(channel).;
+    timcont = in.e(channel).s.ti  ;
     sumfftyy = in.ch(channel).sumfftAmpyy;
 
     idx = find(xx >= lighttimes(1) & xx <= lighttimes(end));
