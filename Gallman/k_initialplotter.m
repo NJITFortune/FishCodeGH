@@ -26,7 +26,7 @@ function k_initialplotter(out)
 figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
-ax(1) = subplot(411); hold on; title('sumfftAmp'); ylim([0,5]);
+ax(1) = subplot(411); hold on; title('sumfftAmp'); %ylim([0,5]);
     plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
     plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp], '.');
 
