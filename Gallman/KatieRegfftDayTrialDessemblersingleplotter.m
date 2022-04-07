@@ -10,7 +10,7 @@
 %for when i'm too lazy to function
 clearvars -except kg kg2
 
-in = kg(98);
+in = kg();
 channel = 1;
 ReFs = 60;
 light = 3;
