@@ -1,13 +1,16 @@
 %function [trial] = KatiefftDayTrialDessembler(in, channel,  ReFs, light)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
-
+%
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
+
+
+%for when i'm too lazy to function
 clearvars -except kg kg2
-% 
-in = kg(2);
+
+in = kg(3);
 channel = 1;
 ReFs = 60;
 light = 3;
@@ -28,27 +31,23 @@ end
 %outliers
     % Prepare the data with outliers
 
-            ttsf{1} = 1:length([in.e(1).s.timcont]); % ttsf is indices for sumfftAmp
-            ttsf{2} = 1:length([in.e(2).s.timcont]);
+            ttsf{channel} = 1:length([in.e(channel).s.timcont]); % ttsf is indices for sumfftAmp
+            
     % Prepare the data without outliers
 
             % If we have removed outliers via KatieRemover, get the indices...    
             if ~isempty(in.idx) 
-                ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+                ttsf{channel} = in.idx(channel).sumfftidx; % ttsf is indices for sumfftAmp
             end
 
 
 
 %regularize data across time in ReFs second intervals
 
-    timcont = [in.e(channel).s.timcont];
-    sumfftyy = [in.e(channel).s.sumfftAmp];
+    timcont = [in.e(channel).s(ttsf{channel}).timcont];
+    sumfft = [in.e(channel).s(ttsf{channel}).sumfftAmp];
 
-    
-
-
-
-
+    [xx, sumfftyy] = metamucil(timcont, sumfft);
 
 
 %light is a label for whether the subjective day starts with light or with dark
@@ -80,16 +79,14 @@ ld = in.info.ld;
     %convert to seconds because xx is in seconds
     lighttimes = floor(lighttimes*3600);
 
-% %% define data by lighttimes
-% 
-% %Make a time base that starts and ends on lighttimes 
-%     %necessary to define length of data
-%     xx = in.ch(channel).xx;
-%     sumfftyy = in.ch(channel).sumfftAmpyy;
-% 
-%     idx = find(xx >= lighttimes(1) & xx <= lighttimes(end));
-%     xx = xx(idx);
-%     sumfftyy = sumfftyy(idx);
+%% define data by lighttimes
+
+%Make a time base that starts and ends on lighttimes 
+    %necessary to define length of data
+
+    idx = find(xx >= lighttimes(1) & xx <= lighttimes(end));
+    xx = xx(idx);
+    sumfftyy = sumfftyy(idx);
 
 
 %% Define trials and days
