@@ -28,7 +28,7 @@ figure(1); clf;
 
 ax(1) = subplot(411); hold on; title('sumfftAmp'); %ylim([0,5]);
     plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
-    plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp]-min([out.e(1).s(ttsf{1}).sumfftAmp]), '.');
+    plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp]/min([out.e(1).s(ttsf{1}).sumfftAmp]), '.');
 
 ax(2) = subplot(412); hold on; title('frequency (black) and temperature (red)');   
     plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.fftFreq], '.k', 'Markersize', 8);
