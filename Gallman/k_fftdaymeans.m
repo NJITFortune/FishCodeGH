@@ -37,7 +37,7 @@ clear mday;
 
          % To get average across days, divide by number of days
             dayrangemin(jj, :) = min(mday(jj));
-            dayrangemax(jj, :) =  max(mday(jj));
+            dayrangemax(jj, :) = max(mday(jj));
             mday(jj,:) = mday(jj,:) / length(in(j).trial(jj).day);
           
     end
