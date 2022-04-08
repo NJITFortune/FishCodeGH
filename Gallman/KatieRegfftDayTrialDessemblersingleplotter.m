@@ -224,8 +224,9 @@ for k = 1:howmanydaysinsample
 
         end
             
-            maxamp = max(mday)
-            minamp = min(mday)
+            maxamp = max(mday(jj));
+            minamp = min(mday(jj));
+            max(maxamp)
          % To get average across days, divide by number of days
             mday(jj,:) = mday(jj,:) / length(trial(jj).day);
 
