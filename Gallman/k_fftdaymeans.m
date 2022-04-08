@@ -20,8 +20,7 @@ clear mday;
  for j = 1:length(in)
     for jj=1:length(in(j).trial) 
 
-        maxtrialamp(jj) = max(in(j).trial(jj).SsumfftAmp);
-        mintrialamp(jj) = min(in(j).trial(jj).SsumfftAmp);
+       
         %in(j).trial(jj).Sentiretimcont
 
         %create temporary vector to calculate mean by trial
@@ -35,10 +34,12 @@ clear mday;
         end
 
          % To get average across days, divide by number of days
+            dayrangemin(jj, :) = min(mday(jj));
+            dayrangemax(jj, :) =  max(mday(jj));
             mday(jj,:) = mday(jj,:) / length(in(j).trial(jj).day);
           
     end
-    amprange(j) = [min(mintrialamp), max(maxtrialamp)];
+    amprange(j) = [min(dayrangemin), max(dayrangemax)];
 
  end  
    
