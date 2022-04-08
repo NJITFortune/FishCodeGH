@@ -26,7 +26,7 @@ function k_initialplotter(out)
 figure(1); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
-    lowest = min([out.e(2).s(ttsf{2}).sumfftAmp]);
+    lowest = min([out.e(1).s(ttsf{1}).sumfftAmp]);
     highest = max([out.e(2).s(ttsf{2}).sumfftAmp]);
 
     fudge = 2-lowest;
