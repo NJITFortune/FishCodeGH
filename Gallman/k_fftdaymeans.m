@@ -20,6 +20,8 @@ clear mday;
  for j = 1:length(in)
     for jj=1:length(in(j).trial) 
 
+        in(j).trial(jj).SsumfftAmp
+
         %create temporary vector to calculate mean by trial
         mday(jj,:) = zeros(1,length(in(j).trial(jj).tim));
 
