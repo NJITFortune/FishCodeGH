@@ -18,7 +18,7 @@ ld = in(1).trial(1).ld;
  %average day by trial
  
 clear mday;
- 
+figure(99);clf; hold on; 
  for j = 1:length(in)
     for jj=1:length(in(j).trial) 
 
@@ -32,7 +32,7 @@ clear mday;
 
                 %fill temporary vector with data from each day 
                 mday(jj,:) = mday(jj,:) + in(j).trial(jj).day(k).SsumfftAmp;
-                figure(99);clf; hold on;
+                
                 plot(in(j).trial(jj).day(k).SsumfftAmp);
                
         end
