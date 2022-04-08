@@ -28,7 +28,7 @@ figure(1); clf;
 
     lowest = min([out.e(1).s(ttsf{1}).sumfftAmp]);
     highest = max([out.e(2).s(ttsf{2}).sumfftAmp]);
-
+lowest
     fudge = 2-lowest;
     onefudged = bsxfun(@plus, [out.e(1).s(ttsf{2}).sumfftAmp], fudge);
 
