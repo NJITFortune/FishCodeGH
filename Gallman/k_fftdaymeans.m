@@ -32,16 +32,18 @@ clear mday;
 
                 %fill temporary vector with data from each day 
                 mday(jj,:) = mday(jj,:) + in(j).trial(jj).day(k).SsumfftAmp;
+                figure(99);hold on;
+                plot(n(j).trial(jj).day(k).SsumfftAmp);
                
         end
 
          % To get average across days, divide by number of days
-            dayrangemin(jj, :) = min(mday(jj))
-            dayrangemax(jj, :) = max(mday(jj))
+            dayrangemin(jj, :) = min(mday(jj));
+            dayrangemax(jj, :) = max(mday(jj));
             mday(jj,:) = mday(jj,:) / length(in(j).trial(jj).day);
           
     end
-    amprange(j,:) = [min(dayrangemin), max(dayrangemax)]
+    amprange(j,:) = [min(dayrangemin), max(dayrangemax)];
 
  end  
    
