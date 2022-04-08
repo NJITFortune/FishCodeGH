@@ -193,6 +193,7 @@ for k = 1:howmanydaysinsample
         
         plot(out(jj).Sentiretimcont/3600, out(jj).SsumfftAmp, '.', 'LineWidth', 3);
         
+        
     end
     
     for j = 1:length(lighttimes)
@@ -222,7 +223,9 @@ for k = 1:howmanydaysinsample
                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
         end
-
+            
+            maxamp = max(mday)
+            minamp = min(mday)
          % To get average across days, divide by number of days
             mday(jj,:) = mday(jj,:) / length(trial(jj).day);
 
