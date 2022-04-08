@@ -1,10 +1,10 @@
-function [hourtim, meanoftrialmeans,amprange, ld] = k_fftdaymeans(in)
+%function [hourtim, meanoftrialmeans,amprange, ld] = k_fftdaymeans(in)
 %% usage
 %processes output from KatieDayTrialDessembler.m of kg by hourexp
 %k_daydessembledplotter.m without the plotting
 %for use with plotting mean summary of entire kg
 
-%in = dark(1).h;
+in = dark(1).h;
 
 % for k = 1:length(dark)
 %      [dark(k).hourtim, dark(k).meanoftrialmeans, dark(k).ld] = k_fftdaymeans(dark(k).h);
@@ -41,7 +41,7 @@ clear mday;
             mday(jj,:) = mday(jj,:) / length(in(j).trial(jj).day);
           
     end
-    amprange(j,:) = [min(dayrangemin), max(dayrangemax)];
+    amprange(j,:) = [min(dayrangemin), max(dayrangemax)]
 
  end  
    
