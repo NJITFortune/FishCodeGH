@@ -27,7 +27,7 @@ clear mday;
         %create temporary vector to calculate mean by trial
         mday(jj,:) = zeros(1,length(in(j).trial(jj).tim));
 
-        for k=1:length(in(j).trial(jj).day)
+        for k = 1:length(in(j).trial(jj).day)
 
                 %fill temporary vector with data from each day 
                 mday(jj,:) = mday(jj,:) + in(j).trial(jj).day(k).SsumfftAmp;
