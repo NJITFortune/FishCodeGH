@@ -30,8 +30,9 @@ figure(1); clf;
     highest = max([out.e(2).s(ttsf{2}).sumfftAmp]);
 
     fudge = 2-lowest;
-    fudge
+    
     onefudged = bsxfun(@plus, [out.e(1).s(ttsf{1}).sumfftAmp], fudge);
+    min(onefudged)
 
 
 ax(1) = subplot(411); hold on; title('sumfftAmp'); %ylim([0,5]);
