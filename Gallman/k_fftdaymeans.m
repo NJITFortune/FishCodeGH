@@ -32,7 +32,7 @@ clear mday;
 
                 %fill temporary vector with data from each day 
                 mday(jj,:) = mday(jj,:) + in(j).trial(jj).day(k).SsumfftAmp;
-                figure(99);hold on;
+                figure(99);clf; hold on;
                 plot(in(j).trial(jj).day(k).SsumfftAmp);
                
         end
