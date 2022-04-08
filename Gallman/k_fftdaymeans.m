@@ -1,4 +1,4 @@
-function [hourtim, meanoftrialmeans, ld] = k_fftdaymeans(in)
+function [hourtim, meanoftrialmeans, amprange, ld] = k_fftdaymeans(in)
 %% usage
 %processes output from KatieDayTrialDessembler.m of kg by hourexp
 %k_daydessembledplotter.m without the plotting
@@ -20,7 +20,9 @@ clear mday;
  for j = 1:length(in)
     for jj=1:length(in(j).trial) 
 
-        in(j).trial(jj).SsumfftAmp
+        maxtrialamp(jj) = max(in(j).trial(jj).SsumfftAmp);
+        mintrialamp(jj) = min(in(j).trial(jj).SsumfftAmp);
+        %in(j).trial(jj).Sentiretimcont
 
         %create temporary vector to calculate mean by trial
         mday(jj,:) = zeros(1,length(in(j).trial(jj).tim));
@@ -36,6 +38,7 @@ clear mday;
             mday(jj,:) = mday(jj,:) / length(in(j).trial(jj).day);
           
     end
+    amprange(j) = [min(mintrialamp), max(maxtrialamp)];
 
  end  
    
