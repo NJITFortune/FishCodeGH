@@ -45,7 +45,8 @@ end
 %regularize data across time in ReFs second intervals
 
     timcont = [in.e(channel).s(ttsf{channel}).timcont];
-    sumfft = [in.e(channel).s(ttsf{channel}).sumfftAmp];
+    %adjusts for differences in gain during collection
+    sumfft = [in.e(channel).s(ttsf{channel}).sumfftAmp]/min([in.e(channel).s(ttsf{channel}).sumfftAmp]);
 
     [xx, sumfftyy] = metamucil(timcont, sumfft);
 
