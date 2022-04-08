@@ -191,7 +191,7 @@ for k = 1:howmanydaysinsample
  
     for jj = 1:length(out)
         
-        plot(out(jj).Sentiretimcont/3600, out(jj).SsumfftAmp, '.-', 'LineWidth', 3);
+        plot(out(jj).Sentiretimcont/3600, out(jj).SsumfftAmp, '.', 'LineWidth', 3);
         
     end
     
