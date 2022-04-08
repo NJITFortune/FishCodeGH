@@ -30,11 +30,11 @@ figure(1); clf;
     highest = max([out.e(2).s(ttsf{2}).sumfftAmp]);
 
     fudge = 1-lowest;
-    bsxfun(@plus, [out.e(2).s(ttsf{2}).sumfftAmp], fudge)
+    onefudged = bsxfun(@plus, [out.e(2).s(ttsf{2}).sumfftAmp], fudge);
 
 
 ax(1) = subplot(411); hold on; title('sumfftAmp'); %ylim([0,5]);
-    plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp]*(lowest/highest), '.');%/max([out.e(2).s(ttsf{2}).sumfftAmp])
+    plot([out.e(2).s(ttsf{2}).timcont]/(60*60), onefudged/1, '.');%/max([out.e(2).s(ttsf{2}).sumfftAmp])
     %plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp],'.');%/max([out.e(1).s(ttsf{1}).sumfftAmp])
 
 ax(2) = subplot(412); hold on; title('frequency (black) and temperature (red)');   
