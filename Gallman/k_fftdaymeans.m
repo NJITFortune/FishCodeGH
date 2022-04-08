@@ -41,7 +41,7 @@ clear mday;
             mday(jj,:) = mday(jj,:) / length(in(j).trial(jj).day);
           
     end
-    amprange(j) = [min(dayrangemin), max(dayrangemax)]
+    amprange(j) = [min(dayrangemin'), max(dayrangemax')]
 
  end  
    
