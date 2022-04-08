@@ -46,7 +46,7 @@ end
 
     timcont = [in.e(channel).s(ttsf{channel}).timcont];
     %adjusts for differences in gain during collection
-    sumfft = [in.e(channel).s(ttsf{channel}).sumfftAmp];%/min([in.e(channel).s(ttsf{channel}).sumfftAmp]);
+    sumfft = [in.e(channel).s(ttsf{channel}).sumfftAmp]/max([in.e(channel).s(ttsf{channel}).sumfftAmp]);
 
     [xx, sumfftyy] = metamucil(timcont, sumfft);
 
