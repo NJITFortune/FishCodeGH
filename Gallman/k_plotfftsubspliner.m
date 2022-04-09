@@ -1,5 +1,5 @@
-
-function [xx, tnormsubfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light)
+function [xx, tnormsubfftyy, lighttimes] =  k_plotfftsubspliner(in, channel, ReFs, light)
+%function [xx, subfftyy, lighttimes] =  k_plotfftsubspliner(in, channel, ReFs, light)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -164,9 +164,7 @@ else %channel = 2
              
 end
 
-% figure(57); clf; title('testing original spline'); hold on;
-%     plot(sumffttimOG, sumfftAmpOG, '.');
-%     plot(xx, sumfftyy, '-');
+
 %% subset raw data            
         
 %take raw data above the spline
@@ -188,9 +186,18 @@ p = 0.9;
         subfftyy = fnval(xx, spliney);
        
 %detrend ydata
-   dtsubfftyy = detrend(subfftyy,0,'SamplePoints', xx); %changed from polynomial detrend to mean subtraction 
+   dtsubfftyy = detrend(subfftyy, 1, 'SamplePoints', xx); % was 6, but too much for 12/12 and 24/24 data etc.
    normsubfftyytrend = 1./(subfftyy - dtsubfftyy);
    tnormsubfftyy = subfftyy .* normsubfftyytrend;
 
-
+%% plot to check
+figure(57); clf; hold on;
+    %raw data
+    plot(sumffttimOG,sumfftAmpOG, '.'); 
+    %raw data above first spline
+    plot(subffttim,subfft, '.');
+    %second spline before detrending
+    plot(xx, subfftyy, '-', 'LineWidth', 3);
+    %detrended spline
+    plot(xx, tnormsubfftyy, '-', 'LineWidth', 3);
 

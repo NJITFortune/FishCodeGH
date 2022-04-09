@@ -6,7 +6,7 @@ clearvars -except kg2 kg
 userfilespec = 'Eigen*';
 %% Prep
     Fs = 40000; %sample rate
-    freqs = [350 600]; %freq range of typical eigen EOD
+    freqs = [400 650]; %freq range of typical eigen EOD
     %userfilespec = 'Eigen*'; %file names
     numstart = 23; %1st position in file name of time stamp
     
@@ -160,7 +160,7 @@ for j=2:length(iFiles)
 %Set current frequencies
 
 % if tmploamp1 < 0.1
-% currlofreq = tmplofreq2;
+ 
 % else 
 % currlofreq = tmplofreq1;
 % end
@@ -171,31 +171,33 @@ for j=2:length(iFiles)
 % currhifreq = tmphifreq1;
 % end
 
-currlofreq = tmplofreq1;  
-currhifreq = tmphifreq2;
+% currlofreq = tmplofreq1;  
+% currhifreq = tmphifreq2;
+% 
+% if currhifreq < 440
+%     currhifreq = 450;
+% end
+% 
+% if currlofreq > 440
+%     currlofreq = 413;
+% end
 
-if currhifreq < 440
-    currhifreq = 450;
-end
 
-if currlofreq > 440
-    currlofreq = 413;
-end
 
-% % 
-%     if tmploamp1 > tmploamp2
-%         currlofreq = tmplofreq1;
-%     else
-%         currlofreq = tmplofreq2;
-%     end
-%     
-%     if tmphiamp1 > tmphiamp2
-%         currhifreq = tmphifreq1;
-%     else
-%         currhifreq = tmphifreq2;
-%     end
+% 
+    if tmploamp1 > tmploamp2
+        currlofreq = tmplofreq1;
+    else
+        currlofreq = tmplofreq2;
+    end
+    
+    if tmphiamp1 > tmphiamp2
+        currhifreq = tmphifreq1;
+    else
+        currhifreq = tmphifreq2;
+    end
 
- 
+
 
 %          currhifreq = mean([tmphifreq1 tmphifreq2]);        
 %     currlofreq = mean([tmplofreq1 tmplofreq2]);        

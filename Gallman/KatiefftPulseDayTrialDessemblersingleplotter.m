@@ -1,16 +1,16 @@
-function [trial] = KatiefftDayTrialDessembler(in, channel,  ReFs, light)
+%function [trial] = KatiefftDayTrialDessemblersingleplotter(in, channel,  ReFs, light)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
-% clearvars -except kg kg2
+clearvars -except kg kg2
 % 
-% in = kg(106);
-% channel = 2;
-% ReFs = 10;
-% light = 3;
+in = kg(114);
+channel = 1;
+ReFs = 10;
+light = 3;
 
 %% prep
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
@@ -30,17 +30,18 @@ end
 %entire data set
 %[xx, obwyy, ~, ~, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
-[xx, sumfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light);
-
+%[xx, sumfftyy, lighttimes] =  k_fftPulsesubspliner(in, channel, ReFs, light);
+[xx, sumfftyy, lighttimes] =  k_fftPulsemean(in, channel, ReFs, light);
+%[xx, sumfftyy, lighttimes] =  k_imregular(in, channel, ReFs, light);
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
 % lighttimes(end +1) = lighttimes(end) + ld;
 
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
-
+    %xx = xx/3600;
     timcont = [in.e(1).s.timcont] / (60*60);
-    timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
+    %timcont = timcont(timcont >= (lighttimes(1)-ld/2) & timcont <= (lighttimes(end)-ld/2));
 
 %% Define trial period
 
@@ -64,16 +65,17 @@ for jj = 1:numotrials
             j = channel;
            
                 %timcont needs to have the same indicies as the rest of the
-                %data
-            % indices for our sample window of perd hours
-            timidx = find(timcont >= lighttimes(1) + ((jj-1)*triallength) & ...
-            timcont < lighttimes(1) + (jj*triallength));
+%                 %data
+%             % indices for our sample window of perd hours
+%             timidx = find(timcont >= (lighttimes(1)-ld/2) + ((jj-1)*triallength) & ...
+%             timcont < (lighttimes(1)-ld/2) + (jj*triallength));
 
 
-%             % Get the index for the start of the current period (xx is time)
-%             timidx = find(timcont > timcont(1) + ((jj-1) * perd), 1);
-%             % Get the rest of the indices for the trial  
-%             timidx = timidx:timidx + (perd*ReFs)-1;
+            % Get the index for the start of the current period (xx is time)
+            timidx1 = find(timcont >= (lighttimes(1)-ld/2) + ((jj-1) * triallength), 1);
+            timidx2 = find(timcont >= (lighttimes(1)-ld/2) + ((jj) * triallength), 1);
+            % Get the rest of the indices for the trial  
+            timidx = timidx1:timidx2;
             
          
             
@@ -105,7 +107,7 @@ for jj = 1:numotrials
     
              
             % Get the index for the start of the current period (xx is time)
-            Stimidx = find(xx > xx(1) + ((jj-1) * triallength), 1);
+            Stimidx = find(xx >= xx(1) + ((jj-1) * triallength), 1);
             % Get the rest of the indices for the trial  
             Stimidx = Stimidx:Stimidx + (triallength*ReFs)-1;
             
@@ -132,15 +134,15 @@ end
         ld = out(jj).ld;
 
         % Divide by daylength to get the number of days in the trial
-        howmanydaysintrial = floor(triallength / (ld*2));
+        howmanydaysintrial = floor(triallength / (ld));
         % This is the number of sample in a day
-        howmanysamplesinaday = ld * 2 * ReFs;
+        howmanysamplesinaday = ld * ReFs;
 
         for k = 1:howmanydaysintrial % Each day in a trial
 
 
             % Get the index of the start time of the trial
-            dayidx = find(out(jj).Stimcont > (k-1) * (ld*2), 1) -1; % k-1 so that we start at zero
+            dayidx = find(out(jj).Stimcont > (k-1) * (ld), 1) -1; % k-1 so that we start at zero
 
             % Get the datums
             %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
@@ -160,7 +162,8 @@ end
     
 %% Divide sample into days to compare against trial day means
 
-howmanydaysinsample = floor(lengthofsampleHOURS / (ld*2));
+%originally ld * 2
+howmanydaysinsample = floor(lengthofsampleHOURS / (ld));
 
 tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
 %spline data
@@ -169,7 +172,7 @@ for k = 1:howmanydaysinsample
     
 
     %         % Get the index of the start time of the day
-                dayidx = find(xx >= xx(1) + (k-1) * (ld*2) & xx < xx(1) + k*(ld*2)); % k-1 so that we start at zero
+                dayidx = find(xx >= xx(1) + (k-1) * (ld) & xx < xx(1) + k*(ld)); % k-1 so that we start at zero
 
                 if length(dayidx) >= howmanysamplesinaday
 %                 day(k).SobwAmp = obwyy(dayidx);
@@ -179,28 +182,31 @@ for k = 1:howmanydaysinsample
                 end
  end
  
- %% plot to check
+%% plot to check
 
-%  %trials across tims
-%  figure(26); clf; title('trials across time');  hold on;
-%  
-%     for jj = 1:length(out)
-%         
-%         plot(out(jj).entiretimcont, out(jj).sumfftAmp, '.', 'MarkerSize', 3);
-%         plot(out(jj).Sentiretimcont, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
-%         
-%     end
-%     
-%     for j = 1:length(lighttimes)
-%         
-%         plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-%     end
-%     
-%  
-%  clear mday;
-%  
-%  %all days
-%  %average day by trial
+darkpulse = ld/2;
+lightreturn = darkpulse + 1;
+
+ %trials across tims
+ figure(26); clf; title('trials across time');  hold on;
+ 
+    for jj = 1:length(out)
+        
+        plot(out(jj).entiretimcont, out(jj).sumfftAmp, '.', 'MarkerSize', 5);
+        plot(out(jj).Sentiretimcont, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
+        
+    end
+    
+    for j = 1:length(lighttimes)
+        
+        plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+    end
+    
+ 
+ clear mday;
+ 
+ %all days
+ %average day by trial
 %  figure(27); clf; hold on; title('Day average by trial');
 %     for jj=1:length(trial) 
 % 
@@ -214,7 +220,9 @@ for k = 1:howmanydaysinsample
 %                 mday(jj,:) = mday(jj,:) + trial(jj).day(k).SsumfftAmp;
 %                 subplot(211); hold on; title('Days');
 %                 plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
-%                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+%                 plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
+%             plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
+%            
 % 
 %         end
 % 
@@ -222,8 +230,10 @@ for k = 1:howmanydaysinsample
 %             mday(jj,:) = mday(jj,:) / length(trial(jj).day);
 %             subplot(212); hold on; title('Day average by trial');
 %             plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
-%             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-% 
+%             %lightlines
+%             plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
+%             plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
+%           
 %     end
 %     
 %     % Mean of means
@@ -246,13 +256,36 @@ for k = 1:howmanydaysinsample
 %     
 %         mmday= mean(meanday);
 %         plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
-%         plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+%         %lightlines
+%          plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
+%          plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
+%         
+% 
 %         
 % figure(29); clf; hold on;
 %     plot(day(1).tim, mmday);
 %     plot(trial(jj).tim, meanofmeans);
-%     plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+%     %lightlines
+%     plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
+%     plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
+%   
 %     legend('day mean', 'trial mean');
-%      legend('boxoff')
-% % 
-% % 
+%     legend('boxoff')
+% %% 
+% figure(30); clf; hold on; 
+% 
+% clear meanday;
+% 
+%  for k = 1:length(day)
+% 
+%         plot(day(k).tim, day(k).Ssumfftyy - day(k).Ssumfftyy(ceil(length(day(k).Ssumfftyy))/2));
+%         meanday(k,:) = day(k).Ssumfftyy;
+%  end
+%     
+%         mmday= mean(meanday);
+%         plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
+%         %lightlines
+%          plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
+%          plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
+%          plot(xlim, [0, 0], 'k-', 'LineWidth', 1);
+%         

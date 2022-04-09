@@ -1,5 +1,5 @@
-
-function [xx, tnormsubfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light)
+function [xx, meansubfft, lighttimes] =  k_fftPulsemean(in, channel, ReFs, light)
+%function [xx, tnormsubfftyy, lighttimes] =  k_fftPulsesubspliner(in, channel, ReFs, light)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -7,7 +7,7 @@ function [xx, tnormsubfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, l
 %just lazy
 %ld = [in.info.ld];
 %tightness of spline fit
-pp = 0.9;
+pp = .99;
 
 %outliers
     % Prepare the data with outliers
@@ -87,7 +87,7 @@ end
  
 if channel == 1
     
-    xx = lighttimes(1):1/ReFs:lighttimes(end);
+    xx = (lighttimes(1)-ld/2):1/ReFs:(lighttimes(end)-ld/2);
       
       %estimate new yvalues for every x value
       
@@ -128,7 +128,7 @@ if channel == 1
 else %channel = 2
     
         
-    xx = lighttimes(1):1/ReFs:lighttimes(end);
+    xx = (lighttimes(1)-ld/2):1/ReFs:(lighttimes(end)-ld/2);
 
       %estimate new yvalues for every x value
              
@@ -192,5 +192,7 @@ p = 0.9;
    normsubfftyytrend = 1./(subfftyy - dtsubfftyy);
    tnormsubfftyy = subfftyy .* normsubfftyytrend;
 
-
+%% movmean
+k = 5/60;
+meansubfft = movmean(subfft,k);
 

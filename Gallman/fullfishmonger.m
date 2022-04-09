@@ -1,5 +1,6 @@
 function out = fullfishmonger
 
+medfiltnum = 11; 
 Fs = 15;
 %confidencelevel = 0.95;
 
@@ -30,6 +31,7 @@ for k = 1:length(iFiles)
     out.s(k).tim = 1/Fs:1/Fs:length(c(:,1))/Fs;
     out.Fs = Fs;
     
+
     out.s(k).nose(:,1) = c(:,2);
     out.s(k).nose(:,2) = c(:,3);
     out.s(k).nose(:,3) = c(:,4);
@@ -47,7 +49,7 @@ end
 pause(1); close(ff);
 
 out.folder = iFiles(1).name;
-out.timcont = [];
+
 %% Calculate shitty velocity
 % 
 % for j=1:length(out.nose)-1 

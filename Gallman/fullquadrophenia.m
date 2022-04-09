@@ -48,6 +48,7 @@ for j = 1:4
          
    im = readFrame(v);
    
+   %imshow(im);
 
   figure(j); imshow(im(coordinates(j,1):coordinates(j,2), coordinates(j,3):coordinates(j,4)));
         

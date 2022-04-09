@@ -7,7 +7,7 @@ channel = 1;
 %kg(12) starts with light
 
 %binsize in minutes
-binsize = 10;
+binsize = 20;
 transbinnum = 8;
 %% outliers
 
@@ -64,7 +64,7 @@ ld = in.info.ld;
     
         timcont = [in.e(channel).s(ttsf{channel}).timcont]/3600;
         fftAmp = [in.e(channel).s(ttsf{channel}).sumfftAmp];
-        lidx = find(timcont >=lighttimes(1) & timcont <= lighttimes(end));
+        lidx = find(timcont >=(lighttimes(1)-ld/2) & timcont <= (lighttimes(end)-ld/2));
 
         timcont = timcont(lidx);
         fftAmp = fftAmp(lidx);
@@ -144,13 +144,13 @@ end
 
 %divide into days
 %index      
-daysz = 1:1:floor(totaltimhours/(ld*2));
+daysz = 1:1:floor(totaltimhours/(ld));
 
 %dark transistions
-darkdays = lighttimes(1) + ((2*ld) * (daysz-1));
+darkdays = (lighttimes(1)) + ((ld) * (daysz-1));
 
 %light transitions
-lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
+%lightdays = (lighttimes(2)) + ((ld) * (daysz-1));
 
 %how many bins around the transistion 
 %transbinnum = 8;
@@ -172,15 +172,15 @@ for jj = 2:length(darkdays)-1
         
 end
       
-%light transitions
-for kk = 1:length(lightdays)-1
-
-    transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour >= lightdays(kk)-((transbinnum*binsize)/60));
-
-    lightd(kk).binary(:) = [bin(transidx).binary];
-    lightd(kk).bintims(:) = [bin(transidx).tim]; 
-    lightd(kk).binAmps(:) = [bin(transidx).meanAmp];
-end
+% %light transitions
+% for kk = 1:length(lightdays)-1
+% 
+%     transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour >= lightdays(kk)-((transbinnum*binsize)/60));
+% 
+%     lightd(kk).binary(:) = [bin(transidx).binary];
+%     lightd(kk).bintims(:) = [bin(transidx).tim]; 
+%     lightd(kk).binAmps(:) = [bin(transidx).meanAmp];
+% end
 
 
 %plot to check
@@ -230,7 +230,7 @@ figure(8); clf; title('Dark to light transition average'); hold on;
 
 for jj = 1:length(dday)
     for j = 1:length(dday(jj).tim)
-     if dday(jj).tim(j) < ld
+     if dday(jj).tim(j) < ld/2
          ddarkhalfamp(j,:) = dday(jj).amp(j);
          ddarkhalftim(j,:) = dday(jj).tim(j);
      else
@@ -252,7 +252,7 @@ end
 [~,dpvalue] = ttest2(ddarkhalfamp,dlighthalfamp,'Vartype','unequal');
 
 %txt = 'pvalue =' + num2str(pvalue)
-text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
+text(ld/2,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
 
 % out.dldarkhalfamp = ddarkhalfamp;
 % out.dldarkhalftim = ddarkhalftim;
@@ -262,45 +262,46 @@ text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
 
 %% light summary by day for stats
 %light
-for kk = 2:length(lightdays)
-
-    lightidx = find(timcont >= lightdays(kk-1) & timcont < lightdays(kk));
-    lday(kk-1).tim(:) = timcont(lightidx) - timcont(lightidx(1));
-    lday(kk-1).amp(:) = fftAmp(lightidx);
-
-end
-
-[lighttimxx, lightampyy] = k_spliney([lday.tim], [lday.amp], 0.9);
-lightdy= gradient(lightampyy)./gradient(lighttimxx);
-
-%plot lightday amp
-figure(9); clf; title('Light to dark transition average'); hold on; 
-    plot([lday.tim], [lday.amp], '.');
-
-for kk = 1:length(lday)
-    for k = 1:length(lday(kk).tim)
-     if lday(kk).tim(k) < ld
-         lighthalfamp(k,:) = lday(kk).amp(k);
-         lighthalftim(k,:) = lday(kk).tim(k);
-     else
-         darkhalfamp(k,:) = lday(kk).amp(k);
-         darkhalftim(k,:) = lday(kk).tim(k);
-     end
-    end
-    plot(lighthalftim, lighthalfamp, 'm.');       
-
-end
-
-    plot(lighttimxx, lightampyy, 'k-', 'LineWidth', 3);
-      plot(lighttimxx, lightdy, 'b-', 'LineWidth', 1.5);
-    plot([ld ld], ylim, 'k-', 'LineWidth', 2);
-
-%Calculate chisqu of means
-
-[~, lpvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
-
-%txt = 'pvalue =' + num2str(pvalue)
-text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
+% for kk = 2:length(lightdays)
+% 
+%     lightidx = find(timcont >= lightdays(kk-1) & timcont < lightdays(kk));
+%     lday(kk-1).tim(:) = timcont(lightidx) - timcont(lightidx(1));
+%     lday(kk-1).amp(:) = fftAmp(lightidx);
+% 
+% end
+% 
+% [lighttimxx, lightampyy] = k_spliney([lday.tim], [lday.amp], 0.9);
+% lightdy= gradient(lightampyy)./gradient(lighttimxx);
+% 
+% %plot lightday amp
+% figure(9); clf; title('Light to dark transition average'); hold on; 
+%     plot([lday.tim], [lday.amp], '.');
+% 
+% for kk = 1:length(lday)
+%     for k = 1:length(lday(kk).tim)
+%      if lday(kk).tim(k) < ld/2
+%          lighthalfamp(k,:) = lday(kk).amp(k);
+%          lighthalftim(k,:) = lday(kk).tim(k);
+%      else
+%          darkhalfamp(k,:) = lday(kk).amp(k);
+%          darkhalftim(k,:) = lday(kk).tim(k);
+%      end
+%     end
+%     plot(lighthalftim, lighthalfamp, 'm.');       
+% 
+% end
+% 
+%     plot(lighttimxx, lightampyy, 'k-', 'LineWidth', 3);
+%       plot(lighttimxx, lightdy, 'b-', 'LineWidth', 1.5);
+%     plot([ld/2 ld/2], ylim, 'k-', 'LineWidth', 2);
+%     plot([ld/2+1 ld/2+1], ylim, 'm-', 'LineWidth', 2);
+% 
+% %Calculate chisqu of means
+% 
+% [~, lpvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
+% 
+% %txt = 'pvalue =' + num2str(pvalue)
+% text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
 
 % out.lddarkhalfamp = darkhalfamp;
 % out.lddarkhalftim = darkhalftim;
@@ -423,58 +424,58 @@ out.pctdarkpvalues = pval2sigs;
 
 %% Bin summary for light tranistions
    
-for jj = 1:length(lightd)
-
-    for k = 1:(transbinnum * 2)
-        lightprob(k,jj) = lightd(jj).binary(k); 
-        lightamp(k,jj) = lightd(jj).binAmps(k);
-        lighttims(k,jj) = lightd(jj).bintims(k);
-     
-        if lightprob(k,jj) > 0
-        lupamp(k, jj) = lightamp(k,jj);
-        
-        else
-        ldownamp(k, jj) = lightamp(k,jj);
-        end
-    end
-
-end
-
-%change zeros to nans for plotting
-lupamp(lupamp==0) = nan;
-ldownamp(ldownamp==0) = nan;
-
-
-for k = 1:transbinnum * 2
-    %calculate proportion of ones (increases in amp from previous bin)
-    pctlight(k) =  length(find(lightprob(k,:)>0)) / length(lightprob(k,:));
-    %number of ones
-    lonecount(k) = length(find(lightprob(k,:)>0));
-    %total amp counts per bin
-    ltotalcount(k) = length(lightprob(k,:));
-    %define bins around transition for plotting
-    pctlighttim(k) = k*(binsize/60);
-   
-end
-
-
-
-figure(28); clf; title('Dark to Light transition summary'); hold on;
-    
-    %plot proportion of amplitude increases from previous bins
-    plot(pctlighttim-((binsize/2)/60), pctlight, '.-');
-
-    %generate random jiggle for amp plotting  through scatter
-    for k = 1:transbinnum * 2
-
-        scatter(pctlighttim(k)-((binsize/2)/60), lupamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
-        scatter(pctlighttim(k)-((binsize/2)/60), ldownamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
-       
-    end
-    %plot bin lines
-    plot([pctlighttim', pctlighttim'], ylim, 'm-');
-    %plot dark to light transition line
-    plot([transtim, transtim], ylim, 'k-');
+% for jj = 1:length(lightd)
+% 
+%     for k = 1:(transbinnum * 2)
+%         lightprob(k,jj) = lightd(jj).binary(k); 
+%         lightamp(k,jj) = lightd(jj).binAmps(k);
+%         lighttims(k,jj) = lightd(jj).bintims(k);
+%      
+%         if lightprob(k,jj) > 0
+%         lupamp(k, jj) = lightamp(k,jj);
+%         
+%         else
+%         ldownamp(k, jj) = lightamp(k,jj);
+%         end
+%     end
+% 
+% end
+% 
+% %change zeros to nans for plotting
+% lupamp(lupamp==0) = nan;
+% ldownamp(ldownamp==0) = nan;
+% 
+% 
+% for k = 1:transbinnum * 2
+%     %calculate proportion of ones (increases in amp from previous bin)
+%     pctlight(k) =  length(find(lightprob(k,:)>0)) / length(lightprob(k,:));
+%     %number of ones
+%     lonecount(k) = length(find(lightprob(k,:)>0));
+%     %total amp counts per bin
+%     ltotalcount(k) = length(lightprob(k,:));
+%     %define bins around transition for plotting
+%     pctlighttim(k) = k*(binsize/60);
+%    
+% end
+% 
+% 
+% 
+% figure(28); clf; title('Dark to Light transition summary'); hold on;
+%     
+%     %plot proportion of amplitude increases from previous bins
+%     plot(pctlighttim-((binsize/2)/60), pctlight, '.-');
+% 
+%     %generate random jiggle for amp plotting  through scatter
+%     for k = 1:transbinnum * 2
+% 
+%         scatter(pctlighttim(k)-((binsize/2)/60), lupamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
+%         scatter(pctlighttim(k)-((binsize/2)/60), ldownamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
+%        
+%     end
+%     %plot bin lines
+%     plot([pctlighttim', pctlighttim'], ylim, 'm-');
+%     %plot dark to light transition line
+%     plot([transtim, transtim], ylim, 'k-');
 
 % out.pctlight = pctlight;
 % out.pctlighttim = pcttim;
