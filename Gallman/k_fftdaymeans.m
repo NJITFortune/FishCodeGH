@@ -1,4 +1,4 @@
-%function [hourtim, meanoftrialmeans, ld] = k_fftdaymeans(in)
+function [hourtim, meanoftrialmeans,amprange, ld] = k_fftdaymeans(in)
 %% usage
 %processes output from KatieDayTrialDessembler.m of kg by hourexp
 %k_daydessembledplotter.m without the plotting
