@@ -159,7 +159,8 @@ end
             % xx...)
 %            trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
             trial(jj).tim = 1/ReFs:1/ReFs:(ld*2);
-            
+            trial(jj).trialmax = max(out(jj).SsumfftAmp);
+            trial(jj).trialmin = min(out(jj).SsumfftAmp);
     end
     
 %% Divide sample into days to compare against trial day means
