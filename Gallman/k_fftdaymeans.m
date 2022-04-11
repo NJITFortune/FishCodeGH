@@ -44,8 +44,8 @@ clear mday;
             trialampmax(jj,:) =  max([in(j).trial(jj).trialmax]);
             trialampmin(jj,:) = min([in(j).trial(jj).trialmin]);
     end
- 
-
+    amprange(j,:) = [min(trialampmin)]
+    
  end  
 
     
