@@ -133,7 +133,7 @@ for jj = 1:numotrials
              out(jj).Sentiretimcont = xx(Stimidx);
             end
     
-    
+       
 end
 %above copied from KatieTrialTrendDessembler
 
@@ -160,6 +160,8 @@ end
             % xx...)
 %            trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
             trial(jj).tim = 1/ReFs:1/ReFs:(ld*2);
+            trial(jj).trialmax = max(out(jj).SsumfftAmp);
+            trial(jj).trialmin = min(out(jj).SsumfftAmp);
          
     end
     
