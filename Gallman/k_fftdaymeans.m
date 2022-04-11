@@ -3,7 +3,7 @@
 %processes output from KatieDayTrialDessembler.m of kg by hourexp
 %k_daydessembledplotter.m without the plotting
 %for use with plotting mean summary of entire kg
-
+clearvars -except dark kg kg2 colorsforplots
 in = dark(3).h;
 
 % for k = 1:length(dark)
