@@ -5,7 +5,7 @@
 %for use with plotting mean summary of entire kg
 
 clearvars -except dark kg kg2 colorsforplots
-in = dark(1).h(1);
+in = dark(1).h;
 
 % for k = 1:length(dark)
 %      [dark(k).hourtim, dark(k).meanoftrialmeans, dark(k).ld] = k_fftdaymeans(dark(k).h);
