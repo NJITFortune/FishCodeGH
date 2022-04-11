@@ -1,4 +1,4 @@
-function [hourtim, meanoftrialmeans,amprange, ld] = k_fftdaymeans(in)
+function [hourtim, meanoftrialmeans, amprange, ld] = k_fftdaymeans(in)
 %% usage
 %processes output from KatieDayTrialDessembler.m of kg by hourexp
 %k_daydessembledplotter.m without the plotting
@@ -43,7 +43,7 @@ clear mday;
             mday(jj,:) = mday(jj,:) / length(in(j).trial(jj).day);
           
     end
-   
+   amprange(j) = [min()]
 
  end  
 
