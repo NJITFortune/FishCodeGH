@@ -1,4 +1,4 @@
-function [trial] = KatieRegfftDayTrialDessembler(in, channel,  ReFs, light)
+function [trial, amprange] = KatieRegfftDayTrialDessembler(in, channel,  ReFs, light)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 %
@@ -161,10 +161,9 @@ end
 %            trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
             trial(jj).tim = 1/ReFs:1/ReFs:(ld*2);
             trial(jj).trialmax = max(out(jj).SsumfftAmp);
-            trial(jj).trialmin = min(out(jj).SsumfftAmp);
-         
+            trial(jj).trialmin = min(out(jj).SsumfftAmp);    
     end
-    
+    amprange = [min(trial.trialmin), max(trial.trialmax)];
 %% Divide sample into days to compare against trial day means
 
 %tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
