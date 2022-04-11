@@ -43,7 +43,7 @@ clear mday;
             mday(jj,:) = mday(jj,:) / length(in(j).trial(jj).day);
           
     end
-   amprange(j) = [min()]
+   amprange(j,:) = [min([in(j).trial.trialmin]), max([in(j).trial.trialmax])];
 
  end  
 
