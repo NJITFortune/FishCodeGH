@@ -39,17 +39,15 @@ clear mday;
         end
 
          % To get average across days, divide by number of days
-            dayrangemin(jj, :) = min(mday(jj));
-            dayrangemax(jj, :) = max(mday(jj));
+            
             mday(jj,:) = mday(jj,:) / length(in(j).trial(jj).day);
           
     end
-    trialamprangemin(j,:) = min(dayrangemin);
-    trialamprangemax(j,:) = max(dayrangemax);
+   
 
  end  
 
-    amprange(j,:) = [min(trialamprangemin(j)), max(trialamprangemax(j))];
+    
    
     % Mean of means
     meanoftrialmeans = mean(mday); % Takes the mean of the means for a day from each trial 
