@@ -1,11 +1,11 @@
-function [hourtim, meanoftrialmeans, ld] = k_fftdaymeans(in)
+%function [hourtim, meanoftrialmeans, ld] = k_fftdaymeans(in)
 %% usage
 %processes output from KatieDayTrialDessembler.m of kg by hourexp
 %k_daydessembledplotter.m without the plotting
 %for use with plotting mean summary of entire kg
 
-% clearvars -except dark kg kg2 colorsforplots
-% in = dark(3).h;
+clearvars -except dark kg kg2 colorsforplots
+in = dark(1).h;
 
 % for k = 1:length(dark)
 %      [dark(k).hourtim, dark(k).meanoftrialmeans, dark(k).ld] = k_fftdaymeans(dark(k).h);
@@ -41,8 +41,8 @@ clear mday;
          % To get average across days, divide by number of days
             
             mday(jj,:) = mday(jj,:) / length(in(j).trial(jj).day);
-%             trialampmax(jj,:) =  max([in(j).trial(jj).trialmax]);
-%             trialampmin(jj,:) = min([in(j).trial(jj).trialmin]);
+            trialampmax(jj,:) =  max([in(j).trial(jj).trialmax]);
+            trialampmin(jj,:) = min([in(j).trial(jj).trialmin]);
     end
  
 
