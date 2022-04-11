@@ -4,7 +4,8 @@ function [hourtim, meanoftrialmeans,amprange, ld] = k_fftdaymeans(in)
 %k_daydessembledplotter.m without the plotting
 %for use with plotting mean summary of entire kg
 
-%in = dark(1).h;
+% clearvars -except dark kg kg2 colorsforplots
+% in = dark(3).h;
 
 % for k = 1:length(dark)
 %      [dark(k).hourtim, dark(k).meanoftrialmeans, dark(k).ld] = k_fftdaymeans(dark(k).h);
@@ -38,14 +39,17 @@ clear mday;
         end
 
          % To get average across days, divide by number of days
-            dayrangemin(jj, :) = min(mday(jj));
-            dayrangemax(jj, :) = max(mday(jj));
+%             dayrangemin(jj, :) = min(mday(jj));
+%             dayrangemax(jj, :) = max(mday(jj));
             mday(jj,:) = mday(jj,:) / length(in(j).trial(jj).day);
           
     end
-    amprange(j,:) = [min(dayrangemin), max(dayrangemax)];
+%     trialamprangemin(j,:) = min(dayrangemin);
+%     trialamprangemax(j,:) = max(dayrangemax);
 
  end  
+
+    amprange(j) = [min(trialamprangemin), max(trialamprangemax)];
    
     % Mean of means
     meanoftrialmeans = mean(mday); % Takes the mean of the means for a day from each trial 
