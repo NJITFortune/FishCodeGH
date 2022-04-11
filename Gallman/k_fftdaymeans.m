@@ -43,9 +43,12 @@ clear mday;
             mday(jj,:) = mday(jj,:) / length(in(j).trial(jj).day);
           
     end
-    amprange(j,:) = [min(dayrangemin), max(dayrangemax)];
+    trialamprangemin(j,:) = min(dayrangemin);
+    trialamprangemax(j,:) = max(dayrangemax);
 
  end  
+
+    amprange = [min(trialamprangemin), max(trialamprangemax)];
    
     % Mean of means
     meanoftrialmeans = mean(mday); % Takes the mean of the means for a day from each trial 
