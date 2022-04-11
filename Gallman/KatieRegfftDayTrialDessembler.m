@@ -163,7 +163,7 @@ end
             trial(jj).trialmax = max(out(jj).SsumfftAmp);
             trial(jj).trialmin = min(out(jj).SsumfftAmp);    
     end
-    amprange = [min(trial.trialmin), max(trial.trialmax)];
+  
 %% Divide sample into days to compare against trial day means
 
 %tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
