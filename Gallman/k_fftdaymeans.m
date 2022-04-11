@@ -41,7 +41,8 @@ clear mday;
          % To get average across days, divide by number of days
             
             mday(jj,:) = mday(jj,:) / length(in(j).trial(jj).day);
-            amprange(jj,:) = [min([in(j).trial(jj).trialmin]), max([in(j).trial(jj).trialmax])];
+            trialampmax(jj,:) =  max([in(j).trial(jj).trialmax]);
+            trialampmin(jj,:) = min([in(j).trial(jj).trialmin]);
     end
  
 
