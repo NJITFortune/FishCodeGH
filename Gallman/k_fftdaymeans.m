@@ -49,7 +49,7 @@ clear mday;
 
  end  
 
-    amprange = [min(trialamprangemin'), max(trialamprangemax')];
+    amprange(j,:) = [min(trialamprangemin(j)), max(trialamprangemax(j))];
    
     % Mean of means
     meanoftrialmeans = mean(mday); % Takes the mean of the means for a day from each trial 
