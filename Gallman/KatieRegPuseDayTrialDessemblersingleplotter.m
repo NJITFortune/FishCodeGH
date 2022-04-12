@@ -48,7 +48,31 @@ end
     %starts with dark = 3
     %starts with light = 4
 
+%% trim luz to data - Generate lighttimes
 
+lighttimeslong = abs(in.info.luz);
+ld = in.info.ld;
+
+    %fit light vector to power idx
+        %poweridx = good data
+    if isempty(in.info.poweridx) %if there are no values in poweridx []
+        lighttimes = lighttimeslong;
+    else %take data from within power idx range
+
+        if light == 3 %we start with dark
+            lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
+            lighttimes = lighttimeslong(lighttimesidx);
+        else %we start with light
+            %poweridx normally starts with dark, so we need to add ld to start with light
+            poweridx1 = in.info.poweridx(1) + ld;
+            lighttimesidx = lighttimeslong > poweridx1(1) & lighttimeslong < in.info.poweridx(2);
+            lighttimes = lighttimeslong(lighttimesidx);
+        end
+    end
+
+%make lighttimes an integer
+    %convert to seconds because xx is in seconds
+    lighttimes = floor(lighttimes*3600);
  %   xx = (lighttimes(1)-ld/2):1/ReFs:(lighttimes(end)-ld/2);
 
 
