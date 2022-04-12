@@ -195,27 +195,25 @@ end
 %dark
 for jj = 2:length(darkdays)
 
-    darkidx = find(timcont>= darkdays(jj-1) & timcont < darkdays(jj));
+    darkidx = find(timcont >= darkdays(jj-1) & timcont < darkdays(jj));
     dday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
     dday(jj-1).amp(:) = fftAmp(darkidx);
 
 end
 
 %spline resample
-[darktimxx, darkampyy] = k_spliney([dday.tim], [dday.amp], 0.6);
-darkdy= gradient(darkampyy)./gradient(darktimxx);
+% [darktimxx, darkampyy] = k_spliney([dday.tim], [dday.amp], 0.6);
+% darkdy= gradient(darkampyy)./gradient(darktimxx);
 
 %metamucil resample
-
-
+[darkxx, darkampyy] = metamucil([dday.tim]*3600, [dday.amp]);
+darktimxx = darkxx/3600;
+darkdy= gradient(darkampyy)./gradient(darktimxx);
 
 %plot darkday amp
 figure(8); clf; title('Dark to light transition average'); hold on; 
     plot([dday.tim], [dday.amp], '.');
    
-
-
-
 
 for jj = 1:length(dday)
     for j = 1:length(dday(jj).tim)
