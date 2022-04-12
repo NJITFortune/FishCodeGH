@@ -2,7 +2,7 @@
 %% prep 
 clearvars -except kg kg2
 
-in = kg(14);
+in = kg(97);
 channel = 1;
 %kg(12) starts with light
 
