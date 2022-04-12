@@ -42,7 +42,6 @@ lighttimeslong = abs(in.info.luz);
         
     end
 
- 
     
     lighttimes = lighttimeslesslong;
     %for when we use the computer to find light transistions
