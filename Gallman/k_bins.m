@@ -206,9 +206,9 @@ end
 % darkdy= gradient(darkampyy)./gradient(darktimxx);
 
 %metamucil resample
-[darkxx, darkampyy] = metamucil([dday.tim]*3600, [dday.amp]);
-darktimxx = darkxx/3600;
-darkdy= gradient(darkampyy)./gradient(darktimxx);
+% [darkxx, darkampyy] = metamucil([dday.tim]*3600, [dday.amp]);
+% darktimxx = darkxx/3600;
+% darkdy= gradient(darkampyy)./gradient(darktimxx);
 
 %plot darkday amp
 figure(8); clf; title('Dark to light transition average'); hold on; 
@@ -229,7 +229,7 @@ for jj = 1:length(dday)
 
 end
    
-     plot(darktimxx, darkampyy, 'k-', 'LineWidth', 3);
+     %plot(darktimxx, darkampyy, 'k-', 'LineWidth', 3);
 % %     plot(darktimxx, darkdy, 'b-', 'LineWidth', 1.5);
 % %     plot(darktimxx, darkdy, 'c-', 'LineWidth', 1.5);
      plot([ld ld], ylim, 'k-', 'LineWidth', 2);
