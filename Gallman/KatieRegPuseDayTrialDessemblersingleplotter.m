@@ -49,7 +49,7 @@ end
     %starts with light = 4
 
 
-
+ %   xx = (lighttimes(1)-ld/2):1/ReFs:(lighttimes(end)-ld/2);
 
 
 %% Define trial period
