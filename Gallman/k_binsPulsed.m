@@ -208,12 +208,12 @@ darkdy= gradient(Mean)./gradient(Tim);
 
 %plot darkday amp
 figure(8); clf; title('Dark to light transition average'); hold on; 
-    plot([dday.tim], [dday.amp], '.');
+    plot([dday.tim], [dday.amp], 'm.');
    
 
 for jj = 1:length(dday)
     for j = 1:length(dday(jj).tim)
-     if dday(jj).tim(j) < ld/2
+     if dday(jj).tim(j) > ld/2 && dday(jj).tim(j) <= (ld/2)+1 
          ddarkhalfamp(j,:) = dday(jj).amp(j);
          ddarkhalftim(j,:) = dday(jj).tim(j);
      else
@@ -221,7 +221,7 @@ for jj = 1:length(dday)
          dlighthalftim(j,:) = dday(jj).tim(j);
      end
     end
-    plot(dlighthalftim, dlighthalfamp, 'm.');    
+    plot(ddarkhalftim, ddarkhalfamp, 'b.');    
 
 end
    
