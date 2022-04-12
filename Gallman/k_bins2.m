@@ -279,7 +279,7 @@ end
 [~, lpvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
 
 %txt = 'pvalue =' + num2str(pvalue)
-text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
+text(ld, min(ylim)+0.1, num2str(lpvalue),'FontSize',14);
 
 % out.lddarkhalfamp = darkhalfamp;
 % out.lddarkhalftim = darkhalftim;
