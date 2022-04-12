@@ -293,7 +293,7 @@ text(ld, min(ylim)+0.1, num2str(lpvalue),'FontSize',14);
    
 for jj = 1:length(darkd)
 clear k;
-    for k = 1:(transbinnum * 2)
+    for k = 1:(transbinnum * 2)-1
         darkprob(k,jj) = darkd(jj).binary(k); 
         darkamp(k,jj) = darkd(jj).binAmps(k);
         darktims(k,jj) = darkd(jj).bintims(k);
