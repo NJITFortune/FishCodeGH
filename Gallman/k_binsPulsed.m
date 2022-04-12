@@ -394,7 +394,7 @@ for k = 1:transbinnum * 2
    
 end
 
-
+transtim2 = ((transbinnum*binsize)+60)/60;
 
 figure(28); clf; title('Dark to Light transition summary'); hold on;
     
@@ -412,6 +412,10 @@ figure(28); clf; title('Dark to Light transition summary'); hold on;
     plot([pctlighttim', pctlighttim'], ylim, 'm-');
     %plot dark to light transition line
     plot([transtim, transtim], ylim, 'k-');
+    plot([transtim2, transtim2], ylim, 'k-');
+
+
+
 
 % out.pctlight = pctlight;
 % out.pctlighttim = pcttim;
