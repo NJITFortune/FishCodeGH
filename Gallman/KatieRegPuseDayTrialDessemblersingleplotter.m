@@ -9,7 +9,7 @@ clearvars -except kg kg2
 % 
 in = kg(1);
 channel = 1;
-ReFs = 10;
+ReFs = 60;
 light = 3;
 
 %% prep
@@ -159,7 +159,28 @@ end
             trial(jj).tim = 1/ReFs:1/ReFs:(ld*2);
             
     end
+    length(trial(end).tim)
+    length(trial(end).day(end).SsumfftAmp)
+
+%% Divide sample into days to compare against trial day means
+
+%tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+tim = 1/ReFs:1/ReFs:(ld*2);
+%spline data
+
+for k = 1:howmanydaysinsample
     
+
+    %         % Get the index of the start time of the day
+                ddayidx = find(xx >= xx(1) + (k-1) * daylengthSECONDS & xx < xx(1) + k* daylengthSECONDS); % k-1 so that we start at zero
+
+                if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
+
+                    day(k).Ssumfftyy = sumfftyy(ddayidx);
+                    day(k).tim = tim;
+                    
+                end
+ end
 
 %% plot to check
 
@@ -181,7 +202,6 @@ lightreturn = darkpulse + 1;
     end
     
  
- clear mday;
  
  %all days
  %average day by trial
@@ -192,14 +212,15 @@ lightreturn = darkpulse + 1;
         mday(jj,:) = zeros(1, length(trial(jj).tim));
 
 
-        for k=1:length(trial(jj).day)
+        for k = 1:length(trial(jj).day)
 
                 %fill temporary vector with data from each day 
                 mday(jj,:) = mday(jj,:) + trial(jj).day(k).SsumfftAmp;
+
                 subplot(211); hold on; title('Days');
-                plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
-                plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
-            plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
+                    plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
+                    plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
+                    plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
            
 
         end
