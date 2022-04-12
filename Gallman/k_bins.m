@@ -230,8 +230,8 @@ for jj = 1:length(dday)
 end
    
     plot(darktimxx, darkampyy, 'k-', 'LineWidth', 3);
-    plot(darktimxx, darkdy, 'b-', 'LineWidth', 1.5);
-    plot(darktimxx, darkdy, 'c-', 'LineWidth', 1.5);
+%     plot(darktimxx, darkdy, 'b-', 'LineWidth', 1.5);
+%     plot(darktimxx, darkdy, 'c-', 'LineWidth', 1.5);
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
