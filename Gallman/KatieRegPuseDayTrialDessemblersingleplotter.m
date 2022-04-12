@@ -90,7 +90,7 @@ ld = in.info.ld;
  %trial
    triallengthSECS = triallength * 3600;
     % How many trials in sample?
-    lengthofsampleHOURS = (lighttimes(end) - lighttimes(1)) / 3600; 
+    lengthofsampleHOURS = (xx(end) - xx(1)) / 3600; 
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / triallength); % of trials
     % How many samples in a trial
