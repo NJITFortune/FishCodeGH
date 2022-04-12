@@ -139,7 +139,7 @@ daysz = 1:1:floor(totaltimhours/(ld*2));
 
 %dark transistions
 darkdays = lighttimes(1) + ((2*ld) * (daysz-1));
-
+length(darkdays)
 %light transitions
 lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 
