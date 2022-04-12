@@ -203,7 +203,7 @@ for jj = 2:length(darkdays)
 
 end
 
-[Tim, Mean] = KatieRegfftDayTrialDessemblersingledaymean(in, channel,  60, 3);
+[Tim, Mean] = KatieRegPulseDayTrialDessemblersingledaymean(in, channel,  60, 3);
 darkdy= gradient(Mean)./gradient(Tim);
 
 %plot darkday amp
@@ -252,7 +252,7 @@ for kk = 2:length(lightdays)
 
 end
 
-[LTim, LMean] = KatieRegfftDayTrialDessemblersingledaymean(in, channel,  60, 4);
+[LTim, LMean] = KatieRegPulseDayTrialDessemblersingledaymean(in, channel,  60, 4);
 
 %plot lightday amp
 figure(9); clf; title('Light to dark transition average'); hold on; 
