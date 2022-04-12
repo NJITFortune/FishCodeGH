@@ -148,7 +148,7 @@ lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 transtim = transbinnum*binsize/60;
 
 %dark transistions
-for jj = 2:length(darkdays)-1
+for jj = 2:length(darkdays)
 
 
     predidx = find(bintimhour <= darkdays(jj)+((transbinnum*binsize)/60) & bintimhour >= darkdays(jj)-((transbinnum*binsize)/60));
