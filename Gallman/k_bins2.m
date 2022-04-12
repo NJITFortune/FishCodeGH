@@ -201,14 +201,7 @@ for jj = 2:length(darkdays)
 
 end
 
-%spline resample
-% [darktimxx, darkampyy] = k_spliney([dday.tim], [dday.amp], 0.6);
-% darkdy= gradient(darkampyy)./gradient(darktimxx);
-
-%metamucil resample
-% [darkxx, darkampyy] = metamucil([dday.tim]*3600, [dday.amp]);
-% darktimxx = darkxx/3600;
-% darkdy= gradient(darkampyy)./gradient(darktimxx);
+darkregavg = KatieRegfftDayTrialDessemblersingledaymean(in, channel,  60, 3);
 
 %plot darkday amp
 figure(8); clf; title('Dark to light transition average'); hold on; 
@@ -229,7 +222,7 @@ for jj = 1:length(dday)
 
 end
    
- 
+    plot(darkregavg.tim, darkregavg.meanofmeans, 'k-', 'LineWidth', 2);
      plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
