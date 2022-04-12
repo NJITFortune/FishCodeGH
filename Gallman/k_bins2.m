@@ -10,9 +10,9 @@ ld = in.info.ld;
 binportion = 0.02*ld;
 
 %binsize in minutes
-binsize = binportion;
+binsize = binportion*60;
 transbinnum = 8;
-binsize = 10;
+%binsize = 10;
 %% outliers
 
 % Prepare the data with outliers
