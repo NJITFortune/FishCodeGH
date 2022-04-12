@@ -2,7 +2,7 @@
 %% prep 
 clearvars -except kg kg2
 
-in = kg(13);
+in = kg(14);
 channel = 1;
 %kg(12) starts with light
 
@@ -10,7 +10,7 @@ ld = in.info.ld;
 binportion = 0.02*ld;
 
 %binsize in minutes
-binsize = binportion;
+binsize = floor(binportion*60);
 transbinnum = 8;
 binsize = 10;
 %% outliers
@@ -139,7 +139,7 @@ daysz = 1:1:floor(totaltimhours/(ld*2));
 
 %dark transistions
 darkdays = lighttimes(1) + ((2*ld) * (daysz-1));
-
+length(darkdays)
 %light transitions
 lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 
@@ -148,7 +148,7 @@ lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 transtim = transbinnum*binsize/60;
 
 %dark transistions
-for jj = 2:length(darkdays)-1
+for jj = 2:length(darkdays)
 
 
     predidx = find(bintimhour <= darkdays(jj)+((transbinnum*binsize)/60) & bintimhour >= darkdays(jj)-((transbinnum*binsize)/60));
@@ -164,7 +164,7 @@ for jj = 2:length(darkdays)-1
 end
       
 %light transitions
-for kk = 1:length(lightdays)-1
+for kk = 1:length(lightdays)
 
     transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour >= lightdays(kk)-((transbinnum*binsize)/60));
 
@@ -313,7 +313,7 @@ upamp(upamp==0) = nan;
 downamp(downamp==0) = nan;
 
 
-for k = 1:transbinnum * 2
+for k = 1:(transbinnum * 2)
     %calculate proportion of ones (increases in amp from previous bin)
     pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
     %number of ones
@@ -333,7 +333,7 @@ figure(27); clf; title('Light to Dark transition summary');hold on;
     plot(pcttim-((binsize/2)/60), pctdark, '.-');
 
     %generate random jiggle for amp plotting  through scatter
-    for k = 1:transbinnum * 2
+    for k = 1:(transbinnum * 2)-1
 
         scatter(pcttim(k)-((binsize/2)/60), upamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
         scatter(pcttim(k)-((binsize/2)/60), downamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
