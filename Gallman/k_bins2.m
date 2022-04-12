@@ -202,6 +202,7 @@ for jj = 2:length(darkdays)
 end
 
 [Tim, Mean] = KatieRegfftDayTrialDessemblersingledaymean(in, channel,  60, 3);
+darkdy= gradient(Mean)./gradient(Tim);
 
 %plot darkday amp
 figure(8); clf; title('Dark to light transition average'); hold on; 
@@ -222,7 +223,8 @@ for jj = 1:length(dday)
 
 end
    
-    plot(Tim, Mean, 'k-', 'LineWidth', 2);
+    plot(Tim, Mean, 'k-', 'LineWidth', 3);
+    plot(Tim, darkdy, 'b-', 'LineWidth', 2)
      plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
