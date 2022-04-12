@@ -13,20 +13,43 @@ ReFs = 10;
 light = 3;
 
 %% prep
+
+% define length of trial
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
-% define length of trial 
+%define length of trial by daylength
 if in.info.ld > 15 
     triallength = in.info.ld * 2;
 else
     triallength = in.info.ld * 4;
 end
 
-%triallength
+%outliers
+    % Prepare the data with outliers
+
+            ttsf{channel} = 1:length([in.e(channel).s.timcont]); % ttsf is indices for sumfftAmp
+            
+    % Prepare the data without outliers
+
+            % If we have removed outliers via KatieRemover, get the indices...    
+            if ~isempty(in.idx) 
+                ttsf{channel} = in.idx(channel).sumfftidx; % ttsf is indices for sumfftAmp
+            end
+
+%regularize data across time in ReFs second intervals
+
+    timcont = [in.e(channel).s(ttsf{channel}).timcont];
+    sumfft = [in.e(channel).s(ttsf{channel}).sumfftAmp];
+
+    [xx, sumfftyy] = metamucil(timcont, sumfft);
 
 
-%% Take spline estimate of raw data
-[newtim, newampFilled] = metamucil(oldtim, oldamp)
+%light is a label for whether the subjective day starts with light or with dark
+    %starts with dark = 3
+    %starts with light = 4
+
+
+
 
 
 %% Define trial period
