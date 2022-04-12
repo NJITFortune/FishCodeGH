@@ -80,11 +80,11 @@ ld = in.info.ld;
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
 
-    idx = find(xx >= lighttimes(1) & xx <= lighttimes(end));
+    idx = find(xx >= lighttimes(1)-ld/2 & xx <= lighttimes(end)+ld/2);
     xx = xx(idx);
     sumfftyy = sumfftyy(idx);
 
-    
+
 %% Define trial period
 
     % How many trials available?
