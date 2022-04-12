@@ -293,7 +293,7 @@ text(ld, min(ylim)+0.1, num2str(lpvalue),'FontSize',14);
    
 for jj = 1:length(darkd)
 clear k;
-    for k = 1:(transbinnum * 2)-1
+    for k = 1:(transbinnum * 2)
         darkprob(k,jj) = darkd(jj).binary(k); 
         darkamp(k,jj) = darkd(jj).binAmps(k);
         darktims(k,jj) = darkd(jj).bintims(k);
@@ -313,7 +313,7 @@ upamp(upamp==0) = nan;
 downamp(downamp==0) = nan;
 
 
-for k = 1:(transbinnum * 2)-1
+for k = 1:(transbinnum * 2)
     %calculate proportion of ones (increases in amp from previous bin)
     pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
     %number of ones
@@ -350,7 +350,7 @@ figure(27); clf; title('Light to Dark transition summary');hold on;
 % out.darkdownamp = downamp;
 
 %% chi square by hand for number check
-for k = 1:(transbinnum * 2)-1
+for k = 1:(transbinnum * 2)
 %     clear n1; clear n2;
 %     clear N1;clear N2;
 %   
