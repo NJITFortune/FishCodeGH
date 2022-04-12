@@ -12,7 +12,7 @@ binportion = 0.02*ld;
 %binsize in minutes
 binsize = floor(binportion*60);
 transbinnum = 8;
-binsize = 10;
+binsize = 15;
 %% outliers
 
 % Prepare the data with outliers
