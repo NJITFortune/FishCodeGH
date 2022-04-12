@@ -7,7 +7,7 @@ channel = 1;
 %kg(12) starts with light
 
 %binsize in minutes
-binsize = 10;
+binsize = 5;
 transbinnum = 8;
 %% outliers
 
@@ -201,14 +201,8 @@ for jj = 2:length(darkdays)
 
 end
 
-%spline resample
-% [darktimxx, darkampyy] = k_spliney([dday.tim], [dday.amp], 0.6);
-% darkdy= gradient(darkampyy)./gradient(darktimxx);
-
-%metamucil resample
-% [darkxx, darkampyy] = metamucil([dday.tim]*3600, [dday.amp]);
-% darktimxx = darkxx/3600;
-% darkdy= gradient(darkampyy)./gradient(darktimxx);
+[Tim, Mean] = KatieRegfftDayTrialDessemblersingledaymean(in, channel,  60, 3);
+darkdy= gradient(Mean)./gradient(Tim);
 
 %plot darkday amp
 figure(8); clf; title('Dark to light transition average'); hold on; 
@@ -229,9 +223,8 @@ for jj = 1:length(dday)
 
 end
    
-     %plot(darktimxx, darkampyy, 'k-', 'LineWidth', 3);
-% %     plot(darktimxx, darkdy, 'b-', 'LineWidth', 1.5);
-% %     plot(darktimxx, darkdy, 'c-', 'LineWidth', 1.5);
+    plot(Tim, Mean, 'k-', 'LineWidth', 3);
+   % plot(Tim, darkdy, 'b-', 'LineWidth', 2)
      plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
@@ -257,8 +250,7 @@ for kk = 2:length(lightdays)
 
 end
 
-[lighttimxx, lightampyy] = k_spliney([lday.tim], [lday.amp], 0.9);
-lightdy= gradient(lightampyy)./gradient(lighttimxx);
+[LTim, LMean] = KatieRegfftDayTrialDessemblersingledaymean(in, channel,  60, 4);
 
 %plot lightday amp
 figure(9); clf; title('Light to dark transition average'); hold on; 
@@ -278,8 +270,8 @@ for kk = 1:length(lday)
 
 end
 
-    plot(lighttimxx, lightampyy, 'k-', 'LineWidth', 3);
-      plot(lighttimxx, lightdy, 'b-', 'LineWidth', 1.5);
+    plot(LTim, LMean, 'k-', 'LineWidth', 3);
+     
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
@@ -287,7 +279,7 @@ end
 [~, lpvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
 
 %txt = 'pvalue =' + num2str(pvalue)
-text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
+text(ld, min(ylim)+0.1, num2str(lpvalue),'FontSize',14);
 
 % out.lddarkhalfamp = darkhalfamp;
 % out.lddarkhalftim = darkhalftim;
