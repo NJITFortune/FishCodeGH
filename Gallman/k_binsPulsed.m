@@ -227,7 +227,8 @@ end
    
     plot(Tim, Mean, 'k-', 'LineWidth', 3);
    % plot(Tim, darkdy, 'b-', 'LineWidth', 2)
-     plot([ld/2 (ld/2)+1], ylim, 'k-', 'LineWidth', 2);
+     plot([ld/2 (ld/2)], ylim, 'k-', 'LineWidth', 2);
+     plot([(ld/2)+1 (ld/2)+1], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
 
