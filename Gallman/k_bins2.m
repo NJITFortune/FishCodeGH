@@ -7,7 +7,7 @@ channel = 1;
 %kg(12) starts with light
 
 %binsize in minutes
-binsize = 5.5;
+binsize = 5;
 transbinnum = 8;
 %% outliers
 
