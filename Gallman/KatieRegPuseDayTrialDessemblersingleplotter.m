@@ -109,67 +109,19 @@ ld = in.info.ld;
 
 %% Divide data into trials
 
-%raw data
+
+%KatieRegular data
 
 for jj = 1:numotrials
     
-%             % indices for our sample window of perd hours
-%             timidx = find(timcont >= timcont(1) + ((jj-1)*perd) & ...
-%                timcont < timcont(1) + (jj*perd));
-
-            j = channel;
-           
-                %timcont needs to have the same indicies as the rest of the
-%                 %data
-%             % indices for our sample window of perd hours
-%             timidx = find(timcont >= (lighttimes(1)-ld/2) + ((jj-1)*triallength) & ...
-%             timcont < (lighttimes(1)-ld/2) + (jj*triallength));
-
-
-            % Get the index for the start of the current period (xx is time)
-            timidx1 = find(timcont >= (lighttimes(1)-ld/2) + ((jj-1) * triallength), 1);
-            timidx2 = find(timcont >= (lighttimes(1)-ld/2) + ((jj) * triallength), 1);
-            % Get the rest of the indices for the trial  
-            timidx = timidx1:timidx2;
-            
-         
-            
-           
-             % Data   
-             %out(jj).obwAmp = [in.e(j).s(timidx).obwAmp];
-%              out(jj).zAmp = [in.e(j).s(timidx).zAmp];
-             out(jj).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
-%              out(jj).fftFreq = [in.e(j).s(timidx).fftFreq];
-             
-             % Time and treatment 
-             out(jj).timcont = timcont(timidx) - timcont(timidx(1)); %+1
-             out(jj).entiretimcont = timcont(timidx);
-%              out(jj).light = [in.e(j).s(timidx).light];
-%              out(jj).temp = [in.e(j).s(timidx).temp];
-             
-             out(jj).ld = in.info.ld; 
-             %out(jj).kg = orgidx; % idx for kg
-             
-           
-
-end   
-
-
-%spline data
-
-for jj = 1:numotrials
-    
-    
              
             % Get the index for the start of the current period (xx is time)
-            Stimidx = find(xx >= xx(1) + ((jj-1) * triallength), 1);
+            Stimidx = find(xx > xx(1) + ((jj-1) * triallengthSECS), 1);
             % Get the rest of the indices for the trial  
-            Stimidx = Stimidx:Stimidx + (triallength*ReFs)-1;
+            Stimidx = Stimidx:Stimidx + samplesinatrial;
             
             if length(sumfftyy) >= Stimidx(end)
              % Data   
-             %out(jj).SobwAmp = fftyy(Stimidx);
-%              out(jj).SzAmp = zyy(Stimidx);
              out(jj).SsumfftAmp = sumfftyy(Stimidx);
              
              % Time  
@@ -179,7 +131,8 @@ for jj = 1:numotrials
     
     
 end
-%above copied from KatieTrialTrendDessembler
+
+
 
 %% divide trials into days
 
