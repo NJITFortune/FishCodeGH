@@ -2,13 +2,17 @@
 %% prep 
 clearvars -except kg kg2
 
-in = kg(1);
+in = kg(13);
 channel = 1;
 %kg(12) starts with light
 
+ld = in.info.ld;
+binportion = 0.02*ld;
+
 %binsize in minutes
-binsize = 5;
+binsize = binportion;
 transbinnum = 8;
+binsize = 10;
 %% outliers
 
 % Prepare the data with outliers
@@ -28,7 +32,6 @@ transbinnum = 8;
 
 %create light transistion vector lighttimes
 lighttimeslong = abs(in.info.luz);
-ld = in.info.ld;
 
 %trim lighttimes to poweridx
     if isempty(in.info.poweridx) %if there are no values in poweridx []
@@ -40,7 +43,6 @@ ld = in.info.ld;
         
     end
 
- 
     
     lighttimes = lighttimeslesslong;
     %for when we use the computer to find light transistions
