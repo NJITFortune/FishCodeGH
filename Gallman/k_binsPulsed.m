@@ -2,7 +2,7 @@
 %% prep 
 clearvars -except kg kg2
 
-in = kg(97);
+in = kg(114);
 channel = 1;
 %kg(12) starts with light
 
@@ -12,7 +12,7 @@ binportion = 0.02*ld;
 %binsize in minutes
 binsize = floor(binportion*60);
 transbinnum = 8;
-binsize = 15;
+%binsize = 15;
 %% outliers
 
 % Prepare the data with outliers
@@ -55,7 +55,7 @@ lighttimeslong = abs(in.info.luz);
     
         timcont = [in.e(channel).s(ttsf{channel}).timcont]/3600;
         fftAmp = [in.e(channel).s(ttsf{channel}).sumfftAmp];
-        lidx = find(timcont >=lighttimes(1) & timcont <= lighttimes(end));
+        lidx = find(timcont >=lighttimes(1)-(ld/2) & timcont <= lighttimes(end)-(ld/2));
 
         timcont = timcont(lidx);
         fftAmp = fftAmp(lidx);
@@ -135,13 +135,13 @@ end
 
 %divide into days
 %index      
-daysz = 1:1:floor(totaltimhours/(ld*2));
+daysz = 1:1:floor(totaltimhours/ld);
 
 %dark transistions
-darkdays = lighttimes(1) + ((2*ld) * (daysz-1));
+darkdays = lighttimes(1) + (ld * (daysz-1));
 length(darkdays)
 %light transitions
-lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
+lightdays = lighttimes(2) + (ld * (daysz-1));
 
 %how many bins around the transistion 
 %transbinnum = 8;
@@ -213,7 +213,7 @@ figure(8); clf; title('Dark to light transition average'); hold on;
 
 for jj = 1:length(dday)
     for j = 1:length(dday(jj).tim)
-     if dday(jj).tim(j) < ld
+     if dday(jj).tim(j) < ld/2
          ddarkhalfamp(j,:) = dday(jj).amp(j);
          ddarkhalftim(j,:) = dday(jj).tim(j);
      else
@@ -227,7 +227,7 @@ end
    
     plot(Tim, Mean, 'k-', 'LineWidth', 3);
    % plot(Tim, darkdy, 'b-', 'LineWidth', 2)
-     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+     plot([ld/2 (ld/2)+1], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
 
