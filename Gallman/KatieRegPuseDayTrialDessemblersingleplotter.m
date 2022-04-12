@@ -162,6 +162,26 @@ end
     length(trial(end).tim)
     length(trial(end).day(end).SsumfftAmp)
 
+%% Divide sample into days to compare against trial day means
+
+%tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+tim = 1/ReFs:1/ReFs:(ld*2);
+%spline data
+
+for k = 1:howmanydaysinsample
+    
+
+    %         % Get the index of the start time of the day
+                ddayidx = find(xx >= xx(1) + (k-1) * daylengthSECONDS & xx < xx(1) + k* daylengthSECONDS); % k-1 so that we start at zero
+
+                if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
+
+                    day(k).Ssumfftyy = sumfftyy(ddayidx);
+                    day(k).tim = tim;
+                    
+                end
+ end
+
 %% plot to check
 
 darkpulse = ld/2;
