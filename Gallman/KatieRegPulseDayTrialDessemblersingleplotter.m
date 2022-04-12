@@ -99,13 +99,13 @@ ld = in.info.ld;
     
 
  %day
-    daylengthSECONDS = (ld*2) * 3600;
+    daylengthSECONDS = (ld) * 3600;
     % Divide by daylength to get the number of days in the trial
-        howmanydaysintrial = floor(triallength / (ld*2));
+        howmanydaysintrial = floor(triallength / (ld));
         % This is the number of sample in a day
         howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
         %how many days total
-        howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
+        howmanydaysinsample = (floor(lengthofsampleHOURS / (ld)));
 
 
 %% Divide data into trials
@@ -144,7 +144,7 @@ end
 
 
             % Get the index of the start time of the trial
-            dayidx = find(out(jj).Stimcont > (k-1) * (ld*2*3600), 1) -1; % k-1 so that we start at zero
+            dayidx = find(out(jj).Stimcont > (k-1) * (ld*3600), 1) -1; % k-1 so that we start at zero
 
             % Get the datums
             trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
@@ -166,7 +166,7 @@ end
 %% Divide sample into days to compare against trial day means
 
 %tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
-tim = 1/ReFs:1/ReFs:(ld*2);
+tim = 1/ReFs:1/ReFs:(ld);
 %spline data
 
 for k = 1:howmanydaysinsample
