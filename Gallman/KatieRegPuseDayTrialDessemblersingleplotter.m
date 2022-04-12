@@ -27,21 +27,7 @@ end
 
 %% Take spline estimate of raw data
 [newtim, newampFilled] = metamucil(oldtim, oldamp)
-%entire data set
-%[xx, obwyy, ~, ~, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
-%[xx, sumfftyy, lighttimes] =  k_fftPulsesubspliner(in, channel, ReFs, light);
-[xx, sumfftyy, lighttimes] =  k_fftPulsemean(in, channel, ReFs, light);
-%[xx, sumfftyy, lighttimes] =  k_imregular(in, channel, ReFs, light);
-% lighttimes = abs(luztimes);
-% %add back the light time we subtracted 
-% lighttimes(end +1) = lighttimes(end) + ld;
-
-%Make a time base that starts and ends on lighttimes 
-    %necessary to define length of data
-    %xx = xx/3600;
-    timcont = [in.e(1).s.timcont] / (60*60);
-    %timcont = timcont(timcont >= (lighttimes(1)-ld/2) & timcont <= (lighttimes(end)-ld/2));
 
 %% Define trial period
 
