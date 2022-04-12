@@ -21,10 +21,10 @@ ld = in(1).trial(1).ld;
 clear mday;
 %figure(99);clf; hold on; 
  for j = 1:length(in)
-     j
+  
     for jj=1:length(in(j).trial) 
 
-      jj 
+   
         %in(j).trial(jj).Sentiretimcont
 
         %create temporary vector to calculate mean by trial
