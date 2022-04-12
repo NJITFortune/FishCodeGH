@@ -139,57 +139,28 @@ end
 
     for jj = length(out):-1:1 % For each trial
         
-        ld = out(jj).ld;
-
-        % Divide by daylength to get the number of days in the trial
-        howmanydaysintrial = floor(triallength / (ld));
-        % This is the number of sample in a day
-        howmanysamplesinaday = ld * ReFs;
-
         for k = 1:howmanydaysintrial % Each day in a trial
 
 
             % Get the index of the start time of the trial
-            dayidx = find(out(jj).Stimcont > (k-1) * (ld), 1) -1; % k-1 so that we start at zero
+            dayidx = find(out(jj).Stimcont > (k-1) * (ld*2*3600), 1) -1; % k-1 so that we start at zero
 
             % Get the datums
-            %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
-%             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
             trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
 %             
-               trial(jj).ld = in.info.ld; 
+               trial(jj).ld = ld; 
 
            
 
         end
             % Make a time sequence for the datums (easier than extracting from
             % xx...)
-            trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
-
+%            trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+            trial(jj).tim = 1/ReFs:1/ReFs:(ld*2);
+            
     end
     
-%% Divide sample into days to compare against trial day means
 
-%originally ld * 2
-howmanydaysinsample = floor(lengthofsampleHOURS / (ld));
-
-tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
-%spline data
-
-for k = 1:howmanydaysinsample
-    
-
-    %         % Get the index of the start time of the day
-                dayidx = find(xx >= xx(1) + (k-1) * (ld) & xx < xx(1) + k*(ld)); % k-1 so that we start at zero
-
-                if length(dayidx) >= howmanysamplesinaday
-%                 day(k).SobwAmp = obwyy(dayidx);
-%                 day(k).SzAmp = zyy(dayidx);
-                day(k).Ssumfftyy = sumfftyy(dayidx);
-                day(k).tim = tim;
-                end
- end
- 
 %% plot to check
 
 darkpulse = ld/2;
