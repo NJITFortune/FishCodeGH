@@ -224,25 +224,10 @@ lightreturn = darkpulse + 1;
 
    
     
-figure(28); clf; hold on; 
-
-clear meanday;
-
- for k = 1:length(day)
-        plot(day(k).tim, day(k).Ssumfftyy);
-        meanday(k,:) = day(k).Ssumfftyy;
- end
-    
-        mmday= mean(meanday);
-        plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
-        %lightlines
-         plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
-         plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
-        
 
         
 figure(29); clf; hold on;
-    plot(day(1).tim, mmday);
+   
     plot(trial(jj).tim, meanofmeans);
     %lightlines
     plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
