@@ -313,7 +313,7 @@ upamp(upamp==0) = nan;
 downamp(downamp==0) = nan;
 
 
-for k = 1:transbinnum * 2
+for k = 1:(transbinnum * 2)-1
     %calculate proportion of ones (increases in amp from previous bin)
     pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
     %number of ones
