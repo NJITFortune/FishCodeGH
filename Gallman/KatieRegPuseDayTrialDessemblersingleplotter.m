@@ -159,7 +159,8 @@ end
             trial(jj).tim = 1/ReFs:1/ReFs:(ld*2);
             
     end
-    
+    length(trial(end).tim)
+    length(trial(end).day(end).SsumfftAmp)
 
 %% plot to check
 
@@ -194,7 +195,7 @@ lightreturn = darkpulse + 1;
         for k = 1:length(trial(jj).day)
 
                 %fill temporary vector with data from each day 
-              %  mday(jj,:) = mday(jj,:) + trial(jj).day(k).SsumfftAmp;
+                mday(jj,:) = mday(jj,:) + trial(jj).day(k).SsumfftAmp;
 
                 subplot(211); hold on; title('Days');
                     plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
