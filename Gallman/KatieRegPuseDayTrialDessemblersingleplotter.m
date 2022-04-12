@@ -73,6 +73,7 @@ ld = in.info.ld;
 %make lighttimes an integer
     %convert to seconds because xx is in seconds
     lighttimes = floor(lighttimes*3600);
+    halfdayinseconds = (ld/2)*3600;
  %   xx = (lighttimes(1)-ld/2):1/ReFs:(lighttimes(end)-ld/2);
 
 %% define data by lighttimes
@@ -80,7 +81,7 @@ ld = in.info.ld;
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
 
-    idx = find(xx >= lighttimes(1)-ld/2 & xx <= lighttimes(end)-ld/2);
+    idx = find(xx >= lighttimes(1)-halfdayinseconds & xx <= lighttimes(end)-halfdayinseconds);
     xx = xx(idx);
     sumfftyy = sumfftyy(idx);
 
