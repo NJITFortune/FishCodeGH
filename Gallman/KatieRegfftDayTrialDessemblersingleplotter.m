@@ -20,13 +20,12 @@ light = 3;
 % define length of trial
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
- 
+%define length of trial by daylength
 if in.info.ld > 15 
     triallength = in.info.ld * 2;
 else
     triallength = in.info.ld * 4;
 end
-
 
 %outliers
     % Prepare the data with outliers
@@ -39,8 +38,6 @@ end
             if ~isempty(in.idx) 
                 ttsf{channel} = in.idx(channel).sumfftidx; % ttsf is indices for sumfftAmp
             end
-
-
 
 %regularize data across time in ReFs second intervals
 
