@@ -85,13 +85,26 @@ ld = in.info.ld;
     sumfftyy = sumfftyy(idx);
 
 
-%% Define trial period
+%% Define trials and days
 
-    % How many trials available?
-    lengthofsampleHOURS = lighttimes(end) - lighttimes(1); 
-    %lengthofsampleHOURS = timcont(end) - timcont(1); 
+ %trial
+   triallengthSECS = triallength * 3600;
+    % How many trials in sample?
+    lengthofsampleHOURS = (lighttimes(end) - lighttimes(1)) / 3600; 
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / triallength); % of trials
+    % How many samples in a trial
+    samplesinatrial = floor(triallengthSECS/ReFs);
+    
+
+ %day
+    daylengthSECONDS = (ld*2) * 3600;
+    % Divide by daylength to get the number of days in the trial
+        howmanydaysintrial = floor(triallength / (ld*2));
+        % This is the number of sample in a day
+        howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
+        %how many days total
+        howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
 
 
 %% Divide data into trials
