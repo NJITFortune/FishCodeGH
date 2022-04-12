@@ -350,7 +350,7 @@ figure(27); clf; title('Light to Dark transition summary');hold on;
 % out.darkdownamp = downamp;
 
 %% chi square by hand for number check
-for k = 1:(transbinnum * 2)
+for k = 1:(transbinnum * 2)-1
 %     clear n1; clear n2;
 %     clear N1;clear N2;
 %   
