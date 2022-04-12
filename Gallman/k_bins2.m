@@ -224,7 +224,7 @@ for jj = 1:length(dday)
 end
    
     plot(Tim, Mean, 'k-', 'LineWidth', 3);
-    plot(Tim, darkdy, 'b-', 'LineWidth', 2)
+   % plot(Tim, darkdy, 'b-', 'LineWidth', 2)
      plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
@@ -250,8 +250,7 @@ for kk = 2:length(lightdays)
 
 end
 
-[lighttimxx, lightampyy] = k_spliney([lday.tim], [lday.amp], 0.9);
-lightdy= gradient(lightampyy)./gradient(lighttimxx);
+[LTim, LMean] = KatieRegfftDayTrialDessemblersingledaymean(in, channel,  60, 4);
 
 %plot lightday amp
 figure(9); clf; title('Light to dark transition average'); hold on; 
@@ -271,8 +270,8 @@ for kk = 1:length(lday)
 
 end
 
-    plot(lighttimxx, lightampyy, 'k-', 'LineWidth', 3);
-      plot(lighttimxx, lightdy, 'b-', 'LineWidth', 1.5);
+    plot(LTim, LMean, 'k-', 'LineWidth', 3);
+     
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
