@@ -181,7 +181,6 @@ lightreturn = darkpulse + 1;
     end
     
  
- clear mday;
  
  %all days
  %average day by trial
