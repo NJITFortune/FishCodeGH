@@ -10,10 +10,10 @@
 %for when i'm too lazy to function
 clearvars -except kg kg2
 
-in = kg(54);
-channel = 2;
+in = kg(97);
+channel = 1;
 ReFs = 60;
-light = 3;
+light = 4;
 
 %% prep
 
@@ -61,7 +61,7 @@ ld = in.info.ld;
         lighttimes = lighttimeslong;
     else %take data from within power idx range
 
-        if light == 3 %we start with dark
+        if light < 4 %we start with dark
             lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         else %we start with light
