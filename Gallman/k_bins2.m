@@ -89,7 +89,7 @@ bintimhour = bintimmin/60;
 %% Average amp by bin
 
 %divide amplitude data into bins
-    for j = 1:length(bintimhour)
+    for j = 1:length(bintimhour)-1
     
     
         timidx = find(timcont > bintimhour(j) & timcont <= bintimhour(j+1));
