@@ -198,7 +198,7 @@ lightreturn = darkpulse + 1;
     
     for j = 1:length(lighttimes)
         
-        plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+        plot([lighttimes(j)/3600, lighttimes(j)/3600], ylim, 'k-', 'LineWidth', 0.5);
     end
     
  
