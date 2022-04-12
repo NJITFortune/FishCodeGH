@@ -191,14 +191,15 @@ lightreturn = darkpulse + 1;
         mday(jj,:) = zeros(1, length(trial(jj).tim));
 
 
-        for k=1:length(trial(jj).day)
+        for k = 1:length(trial(jj).day)
 
                 %fill temporary vector with data from each day 
-                mday(jj,:) = mday(jj,:) + trial(jj).day(k).SsumfftAmp;
+              %  mday(jj,:) = mday(jj,:) + trial(jj).day(k).SsumfftAmp;
+
                 subplot(211); hold on; title('Days');
-                plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
-                plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
-            plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
+                    plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
+                    plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
+                    plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
            
 
         end
