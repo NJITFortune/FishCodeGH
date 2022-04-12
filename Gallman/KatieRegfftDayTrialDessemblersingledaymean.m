@@ -1,4 +1,4 @@
-function [out] = KatieRegfftDayTrialDessemblersingledaymean(in, channel,  ReFs, light)
+function [Tim, Mean] = KatieRegfftDayTrialDessemblersingledaymean(in, channel,  ReFs, light)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 %
@@ -239,8 +239,8 @@ for k = 1:howmanydaysinsample
 %     subplot(212); hold on;
 %     plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
     
-out.tim = trial(1).tim;
-out.mean = meanofmeans;
+Tim = trial(1).tim;
+Mean = meanofmeans;
    
 
 % 
