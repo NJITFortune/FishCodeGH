@@ -164,7 +164,7 @@ for jj = 2:length(darkdays)
 end
       
 %light transitions
-for kk = 1:length(lightdays)-1
+for kk = 1:length(lightdays)
 
     transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour >= lightdays(kk)-((transbinnum*binsize)/60));
 
