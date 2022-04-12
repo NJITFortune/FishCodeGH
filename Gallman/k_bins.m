@@ -2,7 +2,7 @@
 %% prep 
 clearvars -except kg kg2
 
-in = kg(114);
+in = kg(1);
 channel = 1;
 %kg(12) starts with light
 
@@ -40,18 +40,7 @@ ld = in.info.ld;
         
     end
 
-  
-    %only take times for light vectors that have data
-%     for j = 1:length(lighttimeslesslong)-1
-%             
-%             %is there data between j and j+1?    
-%             %if ~isempty(find([in.e(1).s(ttsf{1} ).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(ttsf{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
-%                 
-%                    lighttrim(j) = lighttimeslesslong(j);
-%                  
-%             %end 
-%     end
-%        
+ 
     
     lighttimes = lighttimeslesslong;
     %for when we use the computer to find light transistions
@@ -198,9 +187,6 @@ end
 %     text(darkd(jj).bintims(j), darkd(jj).binAmps(j), num2str(darkd(jj).binary(j)), 'FontSize', 12);
 %         end
 %     end
-%% filter for derivative estimate
-   
-% [f,e] = butter(5, , 'low');
 
  
 
@@ -215,10 +201,13 @@ for jj = 2:length(darkdays)
 
 end
 
+%spline resample
 [darktimxx, darkampyy] = k_spliney([dday.tim], [dday.amp], 0.6);
 darkdy= gradient(darkampyy)./gradient(darktimxx);
-%fdarkdy = filtfilt(f,e, darkdy);
-%plot(x(2:end),dy)
+
+%metamucil resample
+
+
 
 %plot darkday amp
 figure(8); clf; title('Dark to light transition average'); hold on; 

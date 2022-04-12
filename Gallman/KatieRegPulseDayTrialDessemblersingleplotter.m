@@ -7,7 +7,8 @@
     %starts with light = 4
 clearvars -except kg kg2
 % 
-in = kg(1);
+in = kg(114);
+    %113,114,115
 channel = 1;
 ReFs = 60;
 light = 3;
@@ -73,6 +74,7 @@ ld = in.info.ld;
 %make lighttimes an integer
     %convert to seconds because xx is in seconds
     lighttimes = floor(lighttimes*3600);
+    halfdayinseconds = (ld/2)*3600;
  %   xx = (lighttimes(1)-ld/2):1/ReFs:(lighttimes(end)-ld/2);
 
 %% define data by lighttimes
@@ -80,7 +82,7 @@ ld = in.info.ld;
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
 
-    idx = find(xx >= lighttimes(1)-ld/2 & xx <= lighttimes(end)+ld/2);
+    idx = find(xx >= lighttimes(1)-halfdayinseconds & xx <= lighttimes(end)-halfdayinseconds);
     xx = xx(idx);
     sumfftyy = sumfftyy(idx);
 
@@ -90,7 +92,7 @@ ld = in.info.ld;
  %trial
    triallengthSECS = triallength * 3600;
     % How many trials in sample?
-    lengthofsampleHOURS = (lighttimes(end) - lighttimes(1)) / 3600; 
+    lengthofsampleHOURS = (xx(end) - xx(1)) / 3600; 
     % How many integer trials in dataset
     numotrials = floor(lengthofsampleHOURS / triallength); % of trials
     % How many samples in a trial
@@ -98,13 +100,13 @@ ld = in.info.ld;
     
 
  %day
-    daylengthSECONDS = (ld*2) * 3600;
+    daylengthSECONDS = (ld) * 3600;
     % Divide by daylength to get the number of days in the trial
-        howmanydaysintrial = floor(triallength / (ld*2));
+        howmanydaysintrial = floor(triallength / (ld));
         % This is the number of sample in a day
         howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
         %how many days total
-        howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
+        howmanydaysinsample = (floor(lengthofsampleHOURS / (ld)));
 
 
 %% Divide data into trials
@@ -143,7 +145,7 @@ end
 
 
             % Get the index of the start time of the trial
-            dayidx = find(out(jj).Stimcont > (k-1) * (ld*2*3600), 1) -1; % k-1 so that we start at zero
+            dayidx = find(out(jj).Stimcont > (k-1) * (ld*3600), 1) -1; % k-1 so that we start at zero
 
             % Get the datums
             trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
@@ -156,7 +158,7 @@ end
             % Make a time sequence for the datums (easier than extracting from
             % xx...)
 %            trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
-            trial(jj).tim = 1/ReFs:1/ReFs:(ld*2);
+            trial(jj).tim = 1/ReFs:1/ReFs:(ld);
             
     end
     length(trial(end).tim)
@@ -165,7 +167,7 @@ end
 %% Divide sample into days to compare against trial day means
 
 %tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
-tim = 1/ReFs:1/ReFs:(ld*2);
+tim = 1/ReFs:1/ReFs:(ld);
 %spline data
 
 for k = 1:howmanydaysinsample
@@ -192,13 +194,13 @@ lightreturn = darkpulse + 1;
  
     for jj = 1:length(out)
         
-        plot(out(jj).Sentiretimcont, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
+        plot(out(jj).Sentiretimcont/3600, out(jj).SsumfftAmp, '-', 'LineWidth', 3);
         
     end
     
     for j = 1:length(lighttimes)
         
-        plot([lighttimes(j), lighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+        plot([lighttimes(j)/3600, lighttimes(j)/3600], ylim, 'k-', 'LineWidth', 0.5);
     end
     
  
