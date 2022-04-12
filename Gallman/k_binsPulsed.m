@@ -7,12 +7,12 @@ channel = 1;
 %kg(12) starts with light
 
 ld = in.info.ld;
-binportion = 0.02*ld;
+%binportion = 0.02*ld;
 
 %binsize in minutes
-binsize = floor(binportion*60);
+%binsize = floor(binportion*60);
 transbinnum = 8;
-%binsize = 15;
+binsize = 15;
 %% outliers
 
 % Prepare the data with outliers
@@ -298,8 +298,8 @@ figure(27); clf; title('Light to Dark transition summary');hold on;
     %plot bin lines
     plot([pcttim', pcttim'], ylim, 'm-');
     %plot dark to light transition line
-    plot([transtim, transtim], ylim, 'k-');
-     plot([transtim2, transtim2], ylim, 'k-');
+    plot([transtim, transtim], ylim, 'k-', 'LineWidth', 2);
+     plot([transtim2, transtim2], ylim, 'k-', 'LineWidth', 2);
 
 % out.pctdark = pctdark;
 % out.pctdarktim = pcttim;
