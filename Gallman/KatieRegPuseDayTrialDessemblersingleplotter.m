@@ -75,7 +75,16 @@ ld = in.info.ld;
     lighttimes = floor(lighttimes*3600);
  %   xx = (lighttimes(1)-ld/2):1/ReFs:(lighttimes(end)-ld/2);
 
+%% define data by lighttimes
 
+%Make a time base that starts and ends on lighttimes 
+    %necessary to define length of data
+
+    idx = find(xx >= lighttimes(1) & xx <= lighttimes(end));
+    xx = xx(idx);
+    sumfftyy = sumfftyy(idx);
+
+    
 %% Define trial period
 
     % How many trials available?
