@@ -157,7 +157,7 @@ end
             % Make a time sequence for the datums (easier than extracting from
             % xx...)
 %            trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
-            trial(jj).tim = 1/ReFs:1/ReFs:(ld*2);
+            trial(jj).tim = 1/ReFs:1/ReFs:(ld);
             
     end
     length(trial(end).tim)
