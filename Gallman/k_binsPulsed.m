@@ -12,7 +12,7 @@ ld = in.info.ld;
 %binsize in minutes
 %binsize = floor(binportion*60);
 transbinnum = 8;
-binsize = 10;
+binsize = 30;
 %% outliers
 
 % Prepare the data with outliers
