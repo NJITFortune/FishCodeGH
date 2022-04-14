@@ -385,7 +385,7 @@ figure(27); clf; title('Light to Dark transition summary');hold on;
     plot(pctfedtim-((binsize/2)/60), pctfed, '.-');
 
     %generate random jiggle for amp plotting  through scatter
-    for k = 1:transbinnum * 2
+    for k = 1:(transbinnum * 2)-1
 
         scatter(pctfedtim(k)-((binsize/2)/60), fedupamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
         scatter(pctfedtim(k)-((binsize/2)/60), feddownamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
