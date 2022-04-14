@@ -85,40 +85,27 @@ for jj = 2:length(fedtim)-1
 
 end
 
-%average aplitude data within each bin
-for k = 1:length(fed)
-        fed(k).meanAmp(:) = mean(fed(k).Amp);
-        bin(k).middletim(:) = bintimhour(k+1) - ((binsize/2)/60);
-        
-       %plot(bin(k).middletim, bin(k).meanAmp, '.', 'MarkerSize', 16, 'Color','r');
-end
+
 
 %% Divide into bins
 
 %length of experiment
-totaltimhours = lighttimes(end)-lighttimes(1);
+totaltimhours = fed(1).tim(end)-fed(1).tim(1);
 %bins
 %binsize = 10; %minutes
 totalnumbins = totaltimhours/(binsize/60);
 binz = 1:1:totalnumbins;
 
 %data is currently in hours - need 10minute bins
-bintimmin = (lighttimes(1)*60) + (binsize * (binz-1));
+bintimmin = (fed(1).tim(1)*60) + (binsize * (binz-1));
 bintimhour = bintimmin/60;
 
     
-
-
-
-%plot to check
-%     figure(5); clf; hold on;
-%         plot(timcont, fftAmp, '.');
-%         plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
-%         plot([bintimhour' bintimhour'], ylim, 'm-');
-
 %% Average amp by bin
 
 %divide amplitude data into bins
+
+for jj = 1:length(fed)
     for j = 1:length(bintimhour)-1
     
     
@@ -128,7 +115,7 @@ bintimhour = bintimmin/60;
         bin(j).tim(:) = timcont(timidx);
        
     end
-
+end
 
 
 %average aplitude data within each bin
