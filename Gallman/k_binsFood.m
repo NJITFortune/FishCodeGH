@@ -134,6 +134,8 @@ for jj = 1:length(fed)
     end
 
 
+    for i = 1:length(bintims)
+        
 
 
 end
