@@ -134,9 +134,9 @@ for jj = 1:length(fed)
     end
 
 
-    for i = 1:length(bintims)
-        
-
+    for i = 1:length(fed(jj).bin)
+        for ii = 1:length(bintims)
+        fedprob(i, jj) = fed(jj).bin()
 
 end
 
