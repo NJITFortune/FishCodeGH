@@ -134,8 +134,9 @@ for jj = 1:length(fed)
     end
 
 
-    for i = 1:length()
-
+    for i = 1:length(fed(jj).bin)
+        
+        fedprob(i, jj) = fed(jj).bin(i).binary;
 
 end
 
