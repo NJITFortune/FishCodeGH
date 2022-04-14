@@ -209,7 +209,7 @@ fedtim = [in.info.feedingtimes];
 transtim = transbinnum*binsize/60;
 
 %dark transistions
-for jj = 2:length(fedtim)
+for jj = 2:length(fedtim)-1
 
 
     predidx = find(bintimhour <= fedtim(jj)+((transbinnum*binsize)/60) & bintimhour >= fedtim(jj)-((transbinnum*binsize)/60));
