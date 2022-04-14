@@ -70,162 +70,79 @@ ld = in.info.ld;
         fftAmp = fftAmp(lidx);
 
 
-%plot to check
-%     figure(5); clf; hold on;
-%         plot(timcont, fftAmp, '.');
-%         plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
+
+fedtim = [in.info.feedingtimes];
+%binrange = transbinnum*binsize;
+
+%find time around transitions
+
+
+for jj = 1:length(fedtim)
+
+    fedidx = find(timcont <= fedtim(jj)+((transbinnum*binsize)/60) & timcont >= fedtim(jj)-((transbinnum*binsize)/60));
+    fed(jj).tim = timcont(fedidx);
+    fed(jj).amp = fftAmp(fedidx);
+
+end
+
+
 
 %% Divide into bins
 
 %length of experiment
-totaltimhours = lighttimes(end)-lighttimes(1);
+totaltimhours = fed(1).tim(end)-fed(1).tim(1);
 %bins
 %binsize = 10; %minutes
 totalnumbins = totaltimhours/(binsize/60);
 binz = 1:1:totalnumbins;
 
-%data is currently in hours - need 10minute bins
-bintimmin = (lighttimes(1)*60) + (binsize * (binz-1));
-bintimhour = bintimmin/60;
 
-    
-%plot to check
-%     figure(5); clf; hold on;
-%         plot(timcont, fftAmp, '.');
-%         plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
-%         plot([bintimhour' bintimhour'], ylim, 'm-');
+for jj = 1:length(fed)
 
-%% Average amp by bin
+    %data is currently in hours - need minute bins
+    bintims = (fed(jj).tim(1)*60) + (binsize * (binz-1))/60;
 
-%divide amplitude data into bins
-    for j = 1:length(bintimhour)-1
+    %divide data around feeding times into bins
+    for j = 2:length(bintims)
     
     
-        timidx = find(timcont > bintimhour(j) & timcont <= bintimhour(j+1));
+        binidx = find(fed(jj).tim > bintims(j-1) & fed(jj).tim <= bintims(j));
      
-        bin(j).Amp(:) = fftAmp(timidx);
-        bin(j).tim(:) = timcont(timidx);
-       
-    end
-
-
-
-%average aplitude data within each bin
-    for k = 1:length(bin)
-        bin(k).meanAmp(:) = mean(bin(k).Amp);
-        bin(k).middletim(:) = bintimhour(k+1) - ((binsize/2)/60);
-        
-       %plot(bin(k).middletim, bin(k).meanAmp, '.', 'MarkerSize', 16, 'Color','r');
-    
-    end
-
-
-
-%% probability estimate
-
-% if the next dot increased in amp over the previous = 1
-% if the next dot decreased in amp over previous = 0;
-
-for k = 2:length(bin)
-    
-    if bin(k).meanAmp > bin(k-1).meanAmp
-        bin(k).binary(:) = 1;
-    else
-        bin(k).binary(:) = 0;
-    end
-
-%     text(bin(k).middletim, bin(k).meanAmp, num2str(bin(k).binary)); 
-    
-
-end
-
-   
-%% dark to light transitions
-
-%divide into days
-%index      
-daysz = 1:1:floor(totaltimhours/(ld));
-
-%dark transistions
-darkdays = (lighttimes(1)) + ((ld) * (daysz-1));
-
-%light transitions
-%lightdays = (lighttimes(2)) + ((ld) * (daysz-1));
-
-%how many bins around the transistion 
-%transbinnum = 8;
-transtim = transbinnum*binsize/60;
-
-%dark transistions
-for jj = 2:length(darkdays)-1
-
-
-    predidx = find(bintimhour <= darkdays(jj)+((transbinnum*binsize)/60) & bintimhour >= darkdays(jj)-((transbinnum*binsize)/60));
-    
-    %jj-1 so we start at 1
-    darkd(jj-1).binary(:) = [bin(predidx).binary];
-    darkd(jj-1).bintims(:) = [bin(predidx).tim]; 
-   
-    darkd(jj-1).binmidtims(:) = [bin(predidx).middletim];
-    darkd(jj-1).binAmps(:) = [bin(predidx).meanAmp];
-    
-        
-end
+        fed(jj).bin(j-1).binAmp(:) = fftAmp(binidx);
+        fed(jj).bin(j-1).bintim(:) = timcont(binidx);
       
-% %light transitions
-% for kk = 1:length(lightdays)-1
-% 
-%     transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour >= lightdays(kk)-((transbinnum*binsize)/60));
-% 
-%     lightd(kk).binary(:) = [bin(transidx).binary];
-%     lightd(kk).bintims(:) = [bin(transidx).tim]; 
-%     lightd(kk).binAmps(:) = [bin(transidx).meanAmp];
-% end
+    end
 
 
-%plot to check
-% figure(7); clf; hold on;
-%     
-%     plot([bin.middletim], [bin.meanAmp], '.', 'MarkerSize', 16, 'Color','r');
-%     plot([darkdays' darkdays'], ylim, 'k-', 'LineWidth', 1.5);
-%     plot([bintimhour' bintimhour'], ylim, 'm-');
-% 
-%     clear jj;
-%     clear j;
-%     for jj = 1:length(darkd)
-%         for j = 1:length(darkd(jj).binary)
-% 
-%     text(darkd(jj).bintims(j), darkd(jj).binAmps(j), num2str(darkd(jj).binary(j)), 'FontSize', 12);
-%         end
-%     end
-%% food transitions
+    %average aplitude data within each bin
+    for k = 1:length(fed(jj).bin)
 
-fedtim = [in.info.feedingtimes];
-
-
-
-%how many bins around the transistion 
-%fedtransbinnum = ;
-transtim = transbinnum*binsize/60;
-
-%dark transistions
-for jj = 2:length(fedtim)-1
-
-
-    predidx = find(bintimhour <= fedtim(jj)+((transbinnum*binsize)/60) & bintimhour >= fedtim(jj)-((transbinnum*binsize)/60));
+        fed(jj).bin(k).meanAmp(:) = mean(fed(jj).bin(k).binAmp);
     
-    %jj-1 so we start at 1
-    fed(jj-1).binary(:) = [bin(predidx).binary];
-    fed(jj-1).bintims(:) = [bin(predidx).tim]; 
-   
-    fed(jj-1).binmidtims(:) = [bin(predidx).middletim];
-    fed(jj-1).binAmps(:) = [bin(predidx).meanAmp];
+    end
+
+    for kk = 2:length(fed(jj).bin)
+
+        if fed(jj).bin(kk).meanAmp > fed(jj).bin(kk-1).meanAmp
+
+            fed(jj).bin(kk).binary(:) = 1;
+        else
+            fed(jj).bin(k).binary(:) = 0;
+        end
+
     
-        
+    end
+
+
+
+
 end
 
- 
 
+
+
+
+   
 
 
 %% Bin summary for dark tranistions
