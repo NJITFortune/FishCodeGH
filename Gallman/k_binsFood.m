@@ -345,7 +345,7 @@ out.pctdarkpvalues = pval2sigs;
    
 for jj = 1:length(fed)
 clear k;
-    for k = 1:(transbinnum * 2)
+    for k = 1:(transbinnum * 2) 
         fedprob(k,jj) = fed(jj).binary(k); 
         fedamp(k,jj) = fed(jj).binAmps(k);
         fedtims(k,jj) = fed(jj).bintims(k);
@@ -379,13 +379,13 @@ end
 
 
 
-figure(27); clf; title('Light to Dark transition summary');hold on;
+figure(28); clf; title('feeding transition summary');hold on;
     
     %plot proportion of amplitude increases from previous bins
     plot(pctfedtim-((binsize/2)/60), pctfed, '.-');
 
     %generate random jiggle for amp plotting  through scatter
-    for k = 1:(transbinnum * 2)-1
+    for k = 1:(transbinnum * 2)
 
         scatter(pctfedtim(k)-((binsize/2)/60), fedupamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
         scatter(pctfedtim(k)-((binsize/2)/60), feddownamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
