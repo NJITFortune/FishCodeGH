@@ -200,7 +200,7 @@ end
 %     end
 %% food transitions
 
-fedtim = in.info.feedingtimes;
+fedtim = [in.info.feedingtimes];
 
 
 
