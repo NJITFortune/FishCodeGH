@@ -81,7 +81,7 @@ for jj = 2:length(fedtim)-1
 
     fedidx = find(timcont <= fedtim(jj)+((transbinnum*binsize)/60) & timcont >= fedtim(jj)-((transbinnum*binsize)/60));
     fed(jj).tim = timcont(fedidx);
-    fed(jj).amp = fftAmp(fedidx);
+    %fed(jj).amp = fftAmp(fedidx);
 
 end
 
@@ -96,23 +96,19 @@ totaltimhours = fed(1).tim(end)-fed(1).tim(1);
 totalnumbins = totaltimhours/(binsize/60);
 binz = 1:1:totalnumbins;
 
-%data is currently in hours - need 10minute bins
-bintimmin = (fed(1).tim(1)*60) + (binsize * (binz-1));
-bintimhour = bintimmin/60;
-
-    
-%% Average amp by bin
-
-%divide amplitude data into bins
 
 for jj = 1:length(fed)
-    for j = 1:length(bintimhour)-1
+
+    %data is currently in hours - need minute bins
+    bintims = (fed(jj).tim(1)*60) + (binsize * (binz-1))/60;
+
+    for j = 2:length(bintims)
     
     
-        timidx = find(timcont > bintimhour(j) & timcont <= bintimhour(j+1));
+        binidx = find(fed(jj).tim > bintims(j-1) & fed(jj).tim <= bintims(j));
      
-        bin(j).Amp(:) = fftAmp(timidx);
-        bin(j).tim(:) = timcont(timidx);
+        bin(j-1).Amp(:) = fftAmp(binidx);
+        bin(j-1).tim(:) = timcont(binidx);
        
     end
 end
