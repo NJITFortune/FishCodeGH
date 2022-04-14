@@ -135,153 +135,29 @@ for jj = 1:length(fed)
 
 
     for i = 1:length(fed(jj).bin)
-        for ii = 1:length(bintims)
-        fedprob(i, jj) = fed(jj).bin()
-
-end
-
-
-
-
-
-   
-
-
-%% Bin summary for dark tranistions
-   
-for jj = 1:length(darkd)
-clear k;
-    for k = 1:(transbinnum * 2)
-        darkprob(k,jj) = darkd(jj).binary(k); 
-        darkamp(k,jj) = darkd(jj).binAmps(k);
-        darktims(k,jj) = darkd(jj).bintims(k);
-     
-        if darkprob(k,jj) > 0
-        upamp(k, jj) = darkamp(k,jj);
         
+        fedprob(i, jj) = fed(jj).bin(i).binary;
+        fedamp(i, jj) = fed(jj).bin(i).binAmp;
+        fedtims(i, jj) = fed(jj).bin(i).bintim;
+
+        if fedprob(i, jj) > 0
+            upamp(i, jj) = fedamp(i, jj);
         else
-        downamp(k, jj) = darkamp(k,jj);
+            downamp(i, jj) = fedamp(i, jj);
         end
+
     end
 
 end
+
+
+
 
 %change zeros to nans for plotting
 upamp(upamp==0) = nan;
 downamp(downamp==0) = nan;
 
 
-for k = 1:transbinnum * 2
-    %calculate proportion of ones (increases in amp from previous bin)
-    pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
-    %number of ones
-    onecount(k) = length(find(darkprob(k,:)>0));
-    %total amp counts per bin
-    totalcount(k) = length(darkprob(k,:));
-    %define bins around transition for plotting
-    pcttim(k) = k*(binsize/60);
-   
-end
-
-
-
-figure(27); clf; title('Light to Dark transition summary');hold on;
-    
-    %plot proportion of amplitude increases from previous bins
-    plot(pcttim-((binsize/2)/60), pctdark, '.-');
-
-    %generate random jiggle for amp plotting  through scatter
-    for k = 1:transbinnum * 2
-
-        scatter(pcttim(k)-((binsize/2)/60), upamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
-        scatter(pcttim(k)-((binsize/2)/60), downamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
-       
-    end
-    %plot bin lines
-    plot([pcttim', pcttim'], ylim, 'm-');
-    %plot dark to light transition line
-    plot([transtim, transtim], ylim, 'k-');
-
-% out.pctdark = pctdark;
-% out.pctdarktim = pcttim;
-% out.darkupamp = upamp;
-% out.darkdownamp = downamp;
-
-%% chi square by hand for number check
-for k = 1:(transbinnum * 2)-1
-%     clear n1; clear n2;
-%     clear N1;clear N2;
-%   
-    %observed data
-    n1 = onecount(k);
-    N1 = totalcount(k);
-    n2 = onecount(k+1);
-    N2 = totalcount(k+1);
-    %pooled estimate of proportion
-    p0 = (n1+n2)/(N1+N2);
-    %expected counts under null
-    n10 = N1 * p0;
-    n20 = N2 * p0;
-   % Chi-square test, by hand
-   observed = [n1 N1-n1 n2 N2-n2];
-   expected = [n10 N1-n10 n20 N2-n20];
-   chi2stat(k,:) = sum((observed-expected).^2 ./ expected);
-   p(k,:) = 1 - chi2cdf(chi2stat(k),1);
-    
-   pval2sigs(k,:) = round(p(k,:), 2, 'significant');
-
-   %plot p-values on summary plot
-   text(pcttim(k), pctdark(k), num2str(pval2sigs(k)));
-end
-
-out.pctdarkpvalues = pval2sigs;
-
-% %% chi square by hand method 2
-% %basically just checks math
-% for k = 1:(transbinnum * 2)-1
-% %     clear n1; clear n2;
-% %     clear N1;clear N2;
-% %   
-%     %observed data
-%     n1 = onecount(k);
-%     N1 = totalcount(k);
-%     n2 = onecount(k+1);
-%     N2 = totalcount(k+1);
-%     %pooled estimate of proportion
-%     p0 = (n1+n2)/(N1+N2);
-%     %expected counts under null
-%     n10 = N1 * p0;
-%     n20 = N2 * p0;
-%     % Chi-square test, by hand
-%        observed = [n1 N1-n1 n2 N2-n2];
-%        expected = [n10 N1-n10 n20 N2-n20];
-%        [h(k,:), p2(k,:), stats(k,:)] = chi2gof([1 2 3 4],'freq',observed,'expected',expected,'ctrs',[1 2 3 4],'nparams',2);
-%     text(pcttim(k), pctdark(k), num2str(p2(k)));
-%         
-% end
-
-%% Bin summary for feeding tranistions
-   
-for jj = 1:length(fed)
-clear k;
-    for k = 1:(transbinnum * 2) 
-        fedprob(k,jj) = fed(jj).binary(k); 
-        fedamp(k,jj) = fed(jj).binAmps(k);
-        fedtims(k,jj) = fed(jj).bintims(k);
-     
-        if fedprob(k,jj) > 0
-        fedupamp(k, jj) = fedamp(k,jj);
-        
-        else
-        feddownamp(k, jj) = fedamp(k,jj);
-        end
-    end
-
-end
-
-%change zeros to nans for plotting
-fedupamp(fedupamp==0) = nan;
-feddownamp(feddownamp==0) = nan;
 
 
 for k = 1:transbinnum * 2
