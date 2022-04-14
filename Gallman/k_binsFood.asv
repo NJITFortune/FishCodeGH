@@ -70,13 +70,27 @@ ld = in.info.ld;
         fftAmp = fftAmp(lidx);
 
 
-        
+
 fedtim = [in.info.feedingtimes];
+%binrange = transbinnum*binsize;
+
+%find time around transitions
+
 
 for jj = 2:length(fedtim)-1
 
-    predidx = find(bintimhour <= fedtim(jj)+((transbinnum*binsize)/60) & bintimhour >= fedtim(jj)-((transbinnum*binsize)/60));
+    fedidx = find(timcont <= fedtim(jj)+((transbinnum*binsize)/60) & timcont >= fedtim(jj)-((transbinnum*binsize)/60));
+    fed(jj).tim = timcont(fedidx);
+    fed(jj).amp = fftAmp(fedidx);
 
+end
+
+%average aplitude data within each bin
+for k = 1:length(fed)
+        fed(k).meanAmp(:) = mean(fed(k).Amp);
+        bin(k).middletim(:) = bintimhour(k+1) - ((binsize/2)/60);
+        
+       %plot(bin(k).middletim, bin(k).meanAmp, '.', 'MarkerSize', 16, 'Color','r');
 end
 
 %% Divide into bins
