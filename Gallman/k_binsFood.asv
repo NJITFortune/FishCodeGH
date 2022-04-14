@@ -2,12 +2,12 @@
 %% prep 
 clearvars -except kg kg2
 
-in = kg(114);
+in = kg(1);
 channel = 1;
 %kg(12) starts with light
 
 %binsize in minutes
-binsize = 20;
+binsize = 10;
 transbinnum = 8;
 %% outliers
 
@@ -70,10 +70,14 @@ ld = in.info.ld;
         fftAmp = fftAmp(lidx);
 
 
-%plot to check
-%     figure(5); clf; hold on;
-%         plot(timcont, fftAmp, '.');
-%         plot([lighttimes' lighttimes'], ylim, 'k-', 'LineWidth', 0.5);
+        
+fedtim = [in.info.feedingtimes];
+
+for jj = 2:length(fedtim)-1
+
+    predidx = find(bintimhour <= fedtim(jj)+((transbinnum*binsize)/60) & bintimhour >= fedtim(jj)-((transbinnum*binsize)/60));
+
+end
 
 %% Divide into bins
 
@@ -89,6 +93,9 @@ bintimmin = (lighttimes(1)*60) + (binsize * (binz-1));
 bintimhour = bintimmin/60;
 
     
+
+
+
 %plot to check
 %     figure(5); clf; hold on;
 %         plot(timcont, fftAmp, '.');
@@ -200,16 +207,16 @@ end
 %     end
 %% food transitions
 
-fedtim = in.info.feedingtimes;
+fedtim = [in.info.feedingtimes];
 
 
 
 %how many bins around the transistion 
-%transbinnum = 8;
+%fedtransbinnum = ;
 transtim = transbinnum*binsize/60;
 
 %dark transistions
-for jj = 2:length(fedtim)
+for jj = 2:length(fedtim)-1
 
 
     predidx = find(bintimhour <= fedtim(jj)+((transbinnum*binsize)/60) & bintimhour >= fedtim(jj)-((transbinnum*binsize)/60));
@@ -343,56 +350,56 @@ out.pctdarkpvalues = pval2sigs;
 
 %% Bin summary for feeding tranistions
    
-for jj = 1:length(darkd)
+for jj = 1:length(fed)
 clear k;
-    for k = 1:(transbinnum * 2)
-        darkprob(k,jj) = darkd(jj).binary(k); 
-        darkamp(k,jj) = darkd(jj).binAmps(k);
-        darktims(k,jj) = darkd(jj).bintims(k);
+    for k = 1:(transbinnum * 2) 
+        fedprob(k,jj) = fed(jj).binary(k); 
+        fedamp(k,jj) = fed(jj).binAmps(k);
+        fedtims(k,jj) = fed(jj).bintims(k);
      
-        if darkprob(k,jj) > 0
-        upamp(k, jj) = darkamp(k,jj);
+        if fedprob(k,jj) > 0
+        fedupamp(k, jj) = fedamp(k,jj);
         
         else
-        downamp(k, jj) = darkamp(k,jj);
+        feddownamp(k, jj) = fedamp(k,jj);
         end
     end
 
 end
 
 %change zeros to nans for plotting
-upamp(upamp==0) = nan;
-downamp(downamp==0) = nan;
+fedupamp(fedupamp==0) = nan;
+feddownamp(feddownamp==0) = nan;
 
 
 for k = 1:transbinnum * 2
     %calculate proportion of ones (increases in amp from previous bin)
-    pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
+    pctfed(k) =  length(find(fedprob(k,:)>0)) / length(fedprob(k,:));
     %number of ones
-    onecount(k) = length(find(darkprob(k,:)>0));
+    fedonecount(k) = length(find(fedprob(k,:)>0));
     %total amp counts per bin
-    totalcount(k) = length(darkprob(k,:));
+    fedtotalcount(k) = length(fedprob(k,:));
     %define bins around transition for plotting
-    pcttim(k) = k*(binsize/60);
+    pctfedtim(k) = k*(binsize/60);
    
 end
 
 
 
-figure(27); clf; title('Light to Dark transition summary');hold on;
+figure(28); clf; title('feeding transition summary');hold on;
     
     %plot proportion of amplitude increases from previous bins
-    plot(pcttim-((binsize/2)/60), pctdark, '.-');
+    plot(pctfedtim-((binsize/2)/60), pctfed, '.-');
 
     %generate random jiggle for amp plotting  through scatter
-    for k = 1:transbinnum * 2
+    for k = 1:(transbinnum * 2)
 
-        scatter(pcttim(k)-((binsize/2)/60), upamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
-        scatter(pcttim(k)-((binsize/2)/60), downamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
+        scatter(pctfedtim(k)-((binsize/2)/60), fedupamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
+        scatter(pctfedtim(k)-((binsize/2)/60), feddownamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
        
     end
     %plot bin lines
-    plot([pcttim', pcttim'], ylim, 'm-');
+    plot([pctfedtim', pctfedtim'], ylim, 'm-');
     %plot dark to light transition line
     plot([transtim, transtim], ylim, 'k-');
 
@@ -407,10 +414,10 @@ for k = 1:(transbinnum * 2)-1
 %     clear N1;clear N2;
 %   
     %observed data
-    n1 = onecount(k);
-    N1 = totalcount(k);
-    n2 = onecount(k+1);
-    N2 = totalcount(k+1);
+    n1 = fedonecount(k);
+    N1 = fedtotalcount(k);
+    n2 = fedonecount(k+1);
+    N2 = fedtotalcount(k+1);
     %pooled estimate of proportion
     p0 = (n1+n2)/(N1+N2);
     %expected counts under null
@@ -425,10 +432,10 @@ for k = 1:(transbinnum * 2)-1
    pval2sigs(k,:) = round(p(k,:), 2, 'significant');
 
    %plot p-values on summary plot
-   text(pcttim(k), pctdark(k), num2str(pval2sigs(k)));
+   text(pctfedtim(k), pctfed(k), num2str(pval2sigs(k)));
 end
 
-out.pctdarkpvalues = pval2sigs;
+out.pctfedpvalues = pval2sigs;
 
 % %% chi square by hand method 2
 % %basically just checks math
