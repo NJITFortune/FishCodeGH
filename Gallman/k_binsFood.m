@@ -198,116 +198,35 @@ end
 %     text(darkd(jj).bintims(j), darkd(jj).binAmps(j), num2str(darkd(jj).binary(j)), 'FontSize', 12);
 %         end
 %     end
-%% filter for derivative estimate
+%% food transitions
+
+fedtim = in.info.feedingtimes;
+
+
+
+%how many bins around the transistion 
+%fedtransbinnum = ;
+transtim = transbinnum*binsize/60;
+
+%dark transistions
+for jj = 2:length(fedtim)
+
+
+    predidx = find(bintimhour <= fedtim(jj)+((transbinnum*binsize)/60) & bintimhour >= fedtim(jj)-((transbinnum*binsize)/60));
+    
+    %jj-1 so we start at 1
+    fed(jj-1).binary(:) = [bin(predidx).binary];
+    fed(jj-1).bintims(:) = [bin(predidx).tim]; 
    
-% [f,e] = butter(5, , 'low');
+    fed(jj-1).binmidtims(:) = [bin(predidx).middletim];
+    fed(jj-1).binAmps(:) = [bin(predidx).meanAmp];
+    
+        
+end
 
  
 
-%% dark summary by day for stats
 
-%dark
-for jj = 2:length(darkdays)
-
-    darkidx = find(timcont>= darkdays(jj-1) & timcont < darkdays(jj));
-    dday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
-    dday(jj-1).amp(:) = fftAmp(darkidx);
-
-end
-
-[darktimxx, darkampyy] = k_spliney([dday.tim], [dday.amp], 0.6);
-darkdy= gradient(darkampyy)./gradient(darktimxx);
-%fdarkdy = filtfilt(f,e, darkdy);
-%plot(x(2:end),dy)
-
-%plot darkday amp
-figure(8); clf; title('Dark to light transition average'); hold on; 
-    plot([dday.tim], [dday.amp], '.');
-   
-
-
-
-
-for jj = 1:length(dday)
-    for j = 1:length(dday(jj).tim)
-     if dday(jj).tim(j) < ld/2
-         ddarkhalfamp(j,:) = dday(jj).amp(j);
-         ddarkhalftim(j,:) = dday(jj).tim(j);
-     else
-         dlighthalfamp(j,:) = dday(jj).amp(j);
-         dlighthalftim(j,:) = dday(jj).tim(j);
-     end
-    end
-    plot(dlighthalftim, dlighthalfamp, 'm.');    
-
-end
-   
-    plot(darktimxx, darkampyy, 'k-', 'LineWidth', 3);
-    plot(darktimxx, darkdy, 'b-', 'LineWidth', 1.5);
-    plot(darktimxx, darkdy, 'c-', 'LineWidth', 1.5);
-    plot([ld ld], ylim, 'k-', 'LineWidth', 2);
-
-%Calculate chisqu of means
-
-[~,dpvalue] = ttest2(ddarkhalfamp,dlighthalfamp,'Vartype','unequal');
-
-%txt = 'pvalue =' + num2str(pvalue)
-text(ld/2,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
-
-% out.dldarkhalfamp = ddarkhalfamp;
-% out.dldarkhalftim = ddarkhalftim;
-% out.dllighthalfamp = dlighthalfamp;
-% out.dllighthalftim = dlighthalftim;
-% out.dlpvaluettest = dpvalue;
-
-%% light summary by day for stats
-%light
-% for kk = 2:length(lightdays)
-% 
-%     lightidx = find(timcont >= lightdays(kk-1) & timcont < lightdays(kk));
-%     lday(kk-1).tim(:) = timcont(lightidx) - timcont(lightidx(1));
-%     lday(kk-1).amp(:) = fftAmp(lightidx);
-% 
-% end
-% 
-% [lighttimxx, lightampyy] = k_spliney([lday.tim], [lday.amp], 0.9);
-% lightdy= gradient(lightampyy)./gradient(lighttimxx);
-% 
-% %plot lightday amp
-% figure(9); clf; title('Light to dark transition average'); hold on; 
-%     plot([lday.tim], [lday.amp], '.');
-% 
-% for kk = 1:length(lday)
-%     for k = 1:length(lday(kk).tim)
-%      if lday(kk).tim(k) < ld/2
-%          lighthalfamp(k,:) = lday(kk).amp(k);
-%          lighthalftim(k,:) = lday(kk).tim(k);
-%      else
-%          darkhalfamp(k,:) = lday(kk).amp(k);
-%          darkhalftim(k,:) = lday(kk).tim(k);
-%      end
-%     end
-%     plot(lighthalftim, lighthalfamp, 'm.');       
-% 
-% end
-% 
-%     plot(lighttimxx, lightampyy, 'k-', 'LineWidth', 3);
-%       plot(lighttimxx, lightdy, 'b-', 'LineWidth', 1.5);
-%     plot([ld/2 ld/2], ylim, 'k-', 'LineWidth', 2);
-%     plot([ld/2+1 ld/2+1], ylim, 'm-', 'LineWidth', 2);
-% 
-% %Calculate chisqu of means
-% 
-% [~, lpvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
-% 
-% %txt = 'pvalue =' + num2str(pvalue)
-% text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
-
-% out.lddarkhalfamp = darkhalfamp;
-% out.lddarkhalftim = darkhalftim;
-% out.ldlighthalfamp = lighthalfamp;
-% out.ldlighthalftim = lighthalftim;
-% out.ldpvaluettest = lpvalue;
 
 %% Bin summary for dark tranistions
    
@@ -422,6 +341,119 @@ out.pctdarkpvalues = pval2sigs;
 %         
 % end
 
+%% Bin summary for feeding tranistions
+   
+for jj = 1:length(fed)
+clear k;
+    for k = 1:(transbinnum * 2)
+        fedprob(k,jj) = fed(jj).binary(k); 
+        fedamp(k,jj) = fed(jj).binAmps(k);
+        fedtims(k,jj) = fed(jj).bintims(k);
+     
+        if fedprob(k,jj) > 0
+        fedupamp(k, jj) = fedamp(k,jj);
+        
+        else
+        feddownamp(k, jj) = fedamp(k,jj);
+        end
+    end
+
+end
+
+%change zeros to nans for plotting
+fedupamp(fedupamp==0) = nan;
+feddownamp(feddownamp==0) = nan;
+
+
+for k = 1:transbinnum * 2
+    %calculate proportion of ones (increases in amp from previous bin)
+    pctfed(k) =  length(find(fedprob(k,:)>0)) / length(fedprob(k,:));
+    %number of ones
+    fedonecount(k) = length(find(fedprob(k,:)>0));
+    %total amp counts per bin
+    fedtotalcount(k) = length(fedprob(k,:));
+    %define bins around transition for plotting
+    pctfedtim(k) = k*(binsize/60);
+   
+end
+
+
+
+figure(27); clf; title('Light to Dark transition summary');hold on;
+    
+    %plot proportion of amplitude increases from previous bins
+    plot(pctfedtim-((binsize/2)/60), pctfed, '.-');
+
+    %generate random jiggle for amp plotting  through scatter
+    for k = 1:transbinnum * 2
+
+        scatter(pctfedtim(k)-((binsize/2)/60), fedupamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
+        scatter(pctfedtim(k)-((binsize/2)/60), feddownamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
+       
+    end
+    %plot bin lines
+    plot([pctfedtim', pctfedtim'], ylim, 'm-');
+    %plot dark to light transition line
+    plot([transtim, transtim], ylim, 'k-');
+
+% out.pctdark = pctdark;
+% out.pctdarktim = pcttim;
+% out.darkupamp = upamp;
+% out.darkdownamp = downamp;
+
+%% chi square by hand for number check
+for k = 1:(transbinnum * 2)-1
+%     clear n1; clear n2;
+%     clear N1;clear N2;
+%   
+    %observed data
+    n1 = fedonecount(k);
+    N1 = fedtotalcount(k);
+    n2 = fedonecount(k+1);
+    N2 = fedtotalcount(k+1);
+    %pooled estimate of proportion
+    p0 = (n1+n2)/(N1+N2);
+    %expected counts under null
+    n10 = N1 * p0;
+    n20 = N2 * p0;
+   % Chi-square test, by hand
+   observed = [n1 N1-n1 n2 N2-n2];
+   expected = [n10 N1-n10 n20 N2-n20];
+   chi2stat(k,:) = sum((observed-expected).^2 ./ expected);
+   p(k,:) = 1 - chi2cdf(chi2stat(k),1);
+    
+   pval2sigs(k,:) = round(p(k,:), 2, 'significant');
+
+   %plot p-values on summary plot
+   text(pctfedtim(k), pctfed(k), num2str(pval2sigs(k)));
+end
+
+out.pctfedpvalues = pval2sigs;
+
+% %% chi square by hand method 2
+% %basically just checks math
+% for k = 1:(transbinnum * 2)-1
+% %     clear n1; clear n2;
+% %     clear N1;clear N2;
+% %   
+%     %observed data
+%     n1 = onecount(k);
+%     N1 = totalcount(k);
+%     n2 = onecount(k+1);
+%     N2 = totalcount(k+1);
+%     %pooled estimate of proportion
+%     p0 = (n1+n2)/(N1+N2);
+%     %expected counts under null
+%     n10 = N1 * p0;
+%     n20 = N2 * p0;
+%     % Chi-square test, by hand
+%        observed = [n1 N1-n1 n2 N2-n2];
+%        expected = [n10 N1-n10 n20 N2-n20];
+%        [h(k,:), p2(k,:), stats(k,:)] = chi2gof([1 2 3 4],'freq',observed,'expected',expected,'ctrs',[1 2 3 4],'nparams',2);
+%     text(pcttim(k), pctdark(k), num2str(p2(k)));
+%         
+% end
+
 %% Bin summary for light tranistions
    
 % for jj = 1:length(lightd)
@@ -482,56 +514,56 @@ out.pctdarkpvalues = pval2sigs;
 % out.lightupamp = upamp;
 % out.lightdownamp = downamp;
 % out.transtim = transtim;
-%% chi square by hand for number check
-for k = 1:(transbinnum * 2)-1
-%     clear n1; clear n2;
-%     clear N1;clear N2;
-%   
-    %observed data
-    n1 = lonecount(k);
-    N1 = ltotalcount(k);
-    n2 = lonecount(k+1);
-    N2 = ltotalcount(k+1);
-    %pooled estimate of proportion
-    p0 = (n1+n2)/(N1+N2);
-    %expected counts under null
-    n10 = N1 * p0;
-    n20 = N2 * p0;
-   % Chi-square test, by hand
-   observed = [n1 N1-n1 n2 N2-n2];
-   expected = [n10 N1-n10 n20 N2-n20];
-   chi2stat(k,:) = sum((observed-expected).^2 ./ expected);
-   lp(k,:) = 1 - chi2cdf(chi2stat(k),1);
-    
-   lpval2sigs(k,:) = round(lp(k,:), 2, 'significant');
-
-   %plot p-values on summary plot
-   text(pcttim(k), pctlight(k), num2str(lpval2sigs(k)));
-end
-
-%out.pctlightpvalues = lpval2sigs;
-
-% %% chi square by hand method 2
-% %basically just checks math
+% %% chi square by hand for number check
 % for k = 1:(transbinnum * 2)-1
 % %     clear n1; clear n2;
 % %     clear N1;clear N2;
 % %   
 %     %observed data
-%     n1 = onecount(k);
-%     N1 = totalcount(k);
-%     n2 = onecount(k+1);
-%     N2 = totalcount(k+1);
+%     n1 = lonecount(k);
+%     N1 = ltotalcount(k);
+%     n2 = lonecount(k+1);
+%     N2 = ltotalcount(k+1);
 %     %pooled estimate of proportion
 %     p0 = (n1+n2)/(N1+N2);
 %     %expected counts under null
 %     n10 = N1 * p0;
 %     n20 = N2 * p0;
-%     % Chi-square test, by hand
-%        observed = [n1 N1-n1 n2 N2-n2];
-%        expected = [n10 N1-n10 n20 N2-n20];
-%        [h(k,:), p2(k,:), stats(k,:)] = chi2gof([1 2 3 4],'freq',observed,'expected',expected,'ctrs',[1 2 3 4],'nparams',2);
-%     text(pcttim(k), pctdark(k), num2str(p2(k)));
-%         
+%    % Chi-square test, by hand
+%    observed = [n1 N1-n1 n2 N2-n2];
+%    expected = [n10 N1-n10 n20 N2-n20];
+%    chi2stat(k,:) = sum((observed-expected).^2 ./ expected);
+%    lp(k,:) = 1 - chi2cdf(chi2stat(k),1);
+%     
+%    lpval2sigs(k,:) = round(lp(k,:), 2, 'significant');
+% 
+%    %plot p-values on summary plot
+%    text(pcttim(k), pctlight(k), num2str(lpval2sigs(k)));
 % end
-
+% 
+% %out.pctlightpvalues = lpval2sigs;
+% 
+% % %% chi square by hand method 2
+% % %basically just checks math
+% % for k = 1:(transbinnum * 2)-1
+% % %     clear n1; clear n2;
+% % %     clear N1;clear N2;
+% % %   
+% %     %observed data
+% %     n1 = onecount(k);
+% %     N1 = totalcount(k);
+% %     n2 = onecount(k+1);
+% %     N2 = totalcount(k+1);
+% %     %pooled estimate of proportion
+% %     p0 = (n1+n2)/(N1+N2);
+% %     %expected counts under null
+% %     n10 = N1 * p0;
+% %     n20 = N2 * p0;
+% %     % Chi-square test, by hand
+% %        observed = [n1 N1-n1 n2 N2-n2];
+% %        expected = [n10 N1-n10 n20 N2-n20];
+% %        [h(k,:), p2(k,:), stats(k,:)] = chi2gof([1 2 3 4],'freq',observed,'expected',expected,'ctrs',[1 2 3 4],'nparams',2);
+% %     text(pcttim(k), pctdark(k), num2str(p2(k)));
+% %         
+% % end
+% 
