@@ -115,12 +115,26 @@ for jj = 1:length(fed)
 
 
     %average aplitude data within each bin
-    for k = 1:length(fed.bin)
+    for k = 1:length(fed(jj).bin)
 
-        bin(k).meanAmp(:) = mean(bin(k).Amp);
+        fed(jj).bin(k).meanAmp(:) = mean(fed(jj).bin(k).binAmp);
     
     end
 
+    for kk = 2:length(fed(jj).bin)
+
+        if fed(jj).bin(kk).meanAmp > fed(jj).bin(kk-1).meanAmp
+
+            fed(jj).bin(kk).binary(:) = 1;
+        else
+            fed(jj).bin(k).binary(:) = 0;
+        end
+
+    
+    end
+
+
+    for i = 1:length()
 
 
 end
@@ -128,23 +142,6 @@ end
 
 
 
-%% probability estimate
-
-% if the next dot increased in amp over the previous = 1
-% if the next dot decreased in amp over previous = 0;
-
-for k = 2:length(bin)
-    
-    if bin(k).meanAmp > bin(k-1).meanAmp
-        bin(k).binary(:) = 1;
-    else
-        bin(k).binary(:) = 0;
-    end
-
-%     text(bin(k).middletim, bin(k).meanAmp, num2str(bin(k).binary)); 
-    
-
-end
 
    
 
