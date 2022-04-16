@@ -70,9 +70,9 @@ ax(4) = subplot(414); hold on; title('light transitions');
 
             %signal off vs on
             threshold = 2;
-            onidx = find(out.e(2).s.inputsig > threshold);
+            onidx = find([out.e(2).s.inputsig] > threshold);
             onsig = (ones(1, length(onidx)))*4;
-            offidx = find(out.e(2).s.inputsig < threshold);
+            offidx = find([out.e(2).s.inputsig] < threshold);
             offsig = (ones(1, length(offidx)));
             
             ax(4) = subplot(414); 
