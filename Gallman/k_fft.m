@@ -8,6 +8,8 @@ tmpfft = fftmaker(in, uFs);
     
     peakfreq = tmpfft.fftfreq(peakIDX);
     sumamp = sum(tmpfft.fftdata(tmpfft.fftfreq > (peakfreq - rango) & tmpfft.fftfreq < (peakfreq + rango)));
+
+    
     
     
 function out = fftmaker(data, Fs)
