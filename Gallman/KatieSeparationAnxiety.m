@@ -198,6 +198,9 @@ for j=2:length(iFiles)
     end
 
 
+    if currlofreq > 490
+        currlofreq = 450;
+    end
 
 %          currhifreq = mean([tmphifreq1 tmphifreq2]);        
 %     currlofreq = mean([tmplofreq1 tmplofreq2]);        
