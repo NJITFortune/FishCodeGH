@@ -85,7 +85,7 @@ for k = 1:length(iFiles)
             % zAmp
             out(j).s(k).zAmp = k_zAmp(data4analysis);
             % FFT Machine
-            [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp, out(j).s(k).sumfftAmp] = k_fftplussig(data4analysis, Fs, sigfreq); 
+            [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp, out(j).s(k).inputsig] = k_fftplussig(data4analysis, Fs, sigfreq); 
         
       
             out(j).s(k).light = mean(data(:,lightchan));
