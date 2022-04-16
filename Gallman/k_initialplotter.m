@@ -67,7 +67,20 @@ ax(4) = subplot(414); hold on; title('light transitions');
 % Add input signal times, if we have them...
     if isfield(out.e(2).s, 'inputsig')
         if ~isempty([out.e(2).s.inputsig])
-            ax(4) = subplot(414); plot([out.e(2).s.timcont]/3600, [out.e(2).s.inputsig], '.', 'Markersize', 8);
+
+            %signal off vs on
+            threshold = 2;
+            if (out.e(2).s.inputsig > threshold)
+             
+
+            onidx = find(out.e(2).s.inputsig > threshold);
+            offidx = find(out.e(2).s.inputsig < threshold);
+            
+            %plot
+            ax(4) = subplot(414); hold on;
+            plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
+            plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
+           % ax(4) = subplot(414); plot([out.e(2).s.timcont]/3600, [out.e(2).s.inputsig], '.', 'Markersize', 8);
         end
     end
 
