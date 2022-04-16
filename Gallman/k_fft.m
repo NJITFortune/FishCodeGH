@@ -1,4 +1,4 @@
-function [peakfreq, peakamp, sumamp] = k_fft(in, uFs)
+function [peakfreq, peakamp, sumamp] = k_fft(in, uFs, sigfreq)
 
 rango = 10; % Range in Hz for summing amplitude.
 
@@ -9,7 +9,7 @@ tmpfft = fftmaker(in, uFs);
     peakfreq = tmpfft.fftfreq(peakIDX);
     sumamp = sum(tmpfft.fftdata(tmpfft.fftfreq > (peakfreq - rango) & tmpfft.fftfreq < (peakfreq + rango)));
 
-    
+    issig = mean(tmpfft.fftdata(tempfft.fftfreq > sigfreq))
     
     
 function out = fftmaker(data, Fs)
