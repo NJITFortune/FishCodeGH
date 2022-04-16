@@ -9,7 +9,7 @@ tmpfft = fftmaker(in, uFs);
     peakfreq = tmpfft.fftfreq(peakIDX);
     sumamp = sum(tmpfft.fftdata(tmpfft.fftfreq > (peakfreq - rango) & tmpfft.fftfreq < (peakfreq + rango)));
 
-    issig = mean(tmpfft.fftdata(tempfft.fftfreq > sigfreq))
+    issig = mean(tmpfft.fftdata(tempfft.fftfreq > sigfreq-2 & tempfft.fftfreq < sigfreq+2))/ 
     
     
 function out = fftmaker(data, Fs)
