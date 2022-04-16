@@ -65,7 +65,11 @@ ax(4) = subplot(414); hold on; title('light transitions');
    end  
 
 % Add input signal times, if we have them...
-    if isfield(out.e(2).s.inputsig)
+    if isfield(out.e(2).s, 'inputsig')
+        if ~isempty([out.e(2).s.inputsig])
+            ax(4) = subplot(414); plot([out.e(2).s.timcont], [out.e(2).s.inputsig], '.', 'Markersize', 8);
+        end
+    end
 
 
 % Add temptimes, if we have them... 
