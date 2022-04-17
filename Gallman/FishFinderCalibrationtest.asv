@@ -240,14 +240,14 @@ linkaxes(ax, 'x');
     clear hitube1ampchunk2;
     clear hitube1timchunk2;
 
- hifishchunk2idx = find(hitube1timff > 29 & hitube1timff <= 57.2);
+ hifishchunk2idx = find(hitube1timff);
 %     
         for j = 1:length(hifishchunk2idx)
-            hitube1ampchunk2(j) = hitube1ampff(hifishchunk2idx(j))*2;
+            hitube1ampchunk2(j) = hitube1ampff(hifishchunk2idx(j))*1.5;
             hitube1timchunk2(j) = hitube1timff(hifishchunk2idx(j));
 
         end
-
+%%
 
     clear hifishchunk3idx;
     clear hitube1ampchunk3;
@@ -346,7 +346,7 @@ linkaxes(ax, 'x');
   %  lofishchunk1idx = find(lotube2timff);
     
         for j = 1:length(lotube2timff)
-            lotube2ampchunk1(j) = lotube2ampff(j)*3;
+            lotube2ampchunk1(j) = lotube2ampff(j)*2.8;
             lotube2timchunk1(j) = lotube2timff(j);
         end
 %%
@@ -399,8 +399,8 @@ clear LoAmp;
 clear LoTim;
 
 %combine chunks   
-LoAmp = [lotube1ampff, lotube2ampff];%, lotube1ampchunk2, lotube1ampchunk3];
-LoTim = [lotube1timff, lotube2timff];%, lotube1timchunk2, lotube1timchunk3];
+LoAmp = [lotube1ampff, lotube2ampchunk1];%, lotube1ampchunk2, lotube1ampchunk3];
+LoTim = [lotube1timff, lotube2timchunk1];%, lotube1timchunk2, lotube1timchunk3];
 LoFreq = [lotube1freqff, lotube2freqff];
 
 
