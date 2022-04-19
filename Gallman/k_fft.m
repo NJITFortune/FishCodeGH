@@ -1,4 +1,4 @@
-function [peakfreq, peakamp, sumamp, inputsig] = k_fft(in, uFs, sigfreq)
+function [peakfreq, peakamp, sumamp] = k_fft(in, uFs)
 
 rango = 10; % Range in Hz for summing amplitude.
 
