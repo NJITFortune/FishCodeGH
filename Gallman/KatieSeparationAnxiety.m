@@ -134,7 +134,13 @@ for j=2:length(iFiles)
     
 % Electrode 1
     tmp1 = fftmachine(data1, Fs);
-    tmp1.fftdata = filtfilt(bb,aa,log(tmp1.fftdata));
+    tmp1fftdata = filtfilt(bb,aa,log(tmp1.fftdata));
+    % Electrode 2
+    tmp2 = fftmachine(data2, Fs);
+    tmp2fftdata = filtfilt(bb,aa,log(tmp2.fftdata));
+
+    freqfinder = tmp2fftdata + tmp1fftdata;
+
         tmpidx1h = find(tmp1.fftfreq > midpoint & tmp1.fftfreq < midpoint+rango);
         [out(j).e1hiamp, hifreq1idx] = max(tmp1.fftdata(tmpidx1h));
         tmpidx1l = find(tmp1.fftfreq > midpoint-rango & tmp1.fftfreq < midpoint);
@@ -147,9 +153,7 @@ for j=2:length(iFiles)
         tmphiamp1 = tmp1.fftdata(tmpidx1h(hifreq1idx));
         tmploamp1 = tmp1.fftdata(tmpidx1l(lofreq1idx));
         
-% Electrode 2
-    tmp2 = fftmachine(data2, Fs);
-    tmp2.fftdata = filtfilt(bb,aa,log(tmp2.fftdata));
+
         tmpidx2h = find(tmp2.fftfreq > midpoint & tmp2.fftfreq < midpoint+rango);
         [out(j).e2hiamp, hifreq2idx] = max(tmp2.fftdata(tmpidx2h));
         tmpidx2l = find(tmp2.fftfreq > midpoint-rango & tmp2.fftfreq < midpoint);
