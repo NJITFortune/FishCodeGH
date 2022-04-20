@@ -1,4 +1,4 @@
-function [hourtim, meanoftrialmeans, ld] = k_fftregpulsemeans(in)
+function [hourtim, meanoftrialmeans,mday, ld] = k_fftregpulsemeans(in)
 %% usage
 %processes output from KatieDayTrialDessembler.m of kg by hourexp
 %k_daydessembledplotter.m without the plotting
