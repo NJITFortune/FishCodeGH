@@ -23,6 +23,9 @@ userfilespec = 'Eigen*';
 % Band pass filter in frequency range of fish
     [h,g] = butter(5, [freqs(1)/(Fs/2) freqs(2)/(Fs/2)]);
 
+    % For the log filter thing
+    [bb,aa] = butter(3, [0.02 0.4], 'bandpass');
+
 %% Load data
       
 % Load the first file
@@ -73,7 +76,7 @@ out(1).lofreq = currlofreq;
 
 %midpoint is a check. lo freq can't equal hi freq
 midpoint = currlofreq + ((currhifreq - currlofreq)/2);
-rango = abs(currhifreq - currlofreq)+5; % Freq range in Hz for change in fish freq 
+rango = abs(currhifreq - currlofreq)+2; % Freq range in Hz for change in fish freq 
 
 % Electrode 1
     tmp = fftmachine(data1, Fs);
@@ -131,6 +134,7 @@ for j=2:length(iFiles)
     
 % Electrode 1
     tmp1 = fftmachine(data1, Fs);
+    tmp1.fftdata = filtfilt(bb,aa,log(tmp1.fftdata));
         tmpidx1h = find(tmp1.fftfreq > midpoint & tmp1.fftfreq < midpoint+rango);
         [out(j).e1hiamp, hifreq1idx] = max(tmp1.fftdata(tmpidx1h));
         tmpidx1l = find(tmp1.fftfreq > midpoint-rango & tmp1.fftfreq < midpoint);
@@ -145,6 +149,7 @@ for j=2:length(iFiles)
         
 % Electrode 2
     tmp2 = fftmachine(data2, Fs);
+    tmp2.fftdata = filtfilt(bb,aa,log(tmp2.fftdata));
         tmpidx2h = find(tmp2.fftfreq > midpoint & tmp2.fftfreq < midpoint+rango);
         [out(j).e2hiamp, hifreq2idx] = max(tmp2.fftdata(tmpidx2h));
         tmpidx2l = find(tmp2.fftfreq > midpoint-rango & tmp2.fftfreq < midpoint);
@@ -171,7 +176,7 @@ for j=2:length(iFiles)
 % currhifreq = tmphifreq1;
 % end
 
-currlofreq = tmplofreq1;  
+currlofreq = tmplofreq2;  
 currhifreq = tmphifreq2;
 % 
 % if currhifreq < 440
@@ -192,17 +197,16 @@ currhifreq = tmphifreq2;
     end
 %     
     if tmphiamp1 > tmphiamp2
-        currhifreq = tmphifreq1;
+        currhifreq = tmphifreq1;  
     else
         currhifreq = tmphifreq2;
     end
 
 
-    if currhifreq > currlofreq
-        currhifreq = 
-
-%     if currhifreq <= 450
+%     if (currhifreq-currlofreq) < 5
 %         currhifreq = 480;
+%         currlofreq = tmplofreq2;
+%         
 %     end
 
 %          currhifreq = mean([tmphifreq1 tmphifreq2]);        
@@ -211,9 +215,9 @@ currhifreq = tmphifreq2;
         
         
          figure(101); clf;
-            subplot(121); hold on; plot(tmp1.fftfreq, tmp1.fftdata); xlim(freqs); ylim([0 1]);
+            subplot(121); hold on; plot(tmp1.fftfreq, tmp1.fftdata); xlim(freqs); ylim([0 10]);
                 plot(currhifreq, out(j).e1hiamp, 'or'); plot(currlofreq, out(j).e1loamp, 'om'); 
-            subplot(122); hold on; plot(tmp2.fftfreq, tmp2.fftdata); xlim(freqs); ylim([0 1]);
+            subplot(122); hold on; plot(tmp2.fftfreq, tmp2.fftdata); xlim(freqs); ylim([0 10]);
                 plot(currhifreq, out(j).e2hiamp, 'or'); plot(currlofreq, out(j).e2loamp, 'om'); 
          
         
