@@ -190,12 +190,12 @@ currhifreq = tmphifreq2;
     else
         currlofreq = tmplofreq2;
     end
-%     
-    if tmphiamp1 > tmphiamp2
-        currhifreq = tmphifreq1;  
-    else
-        currhifreq = tmphifreq2;
-    end
+% %     
+%     if tmphiamp1 > tmphiamp2
+%         currhifreq = tmphifreq1;  
+%     else
+%         currhifreq = tmphifreq2;
+%     end
 
 
 %     if (currhifreq - currlofreq) < 10
