@@ -198,11 +198,11 @@ currhifreq = tmphifreq2;
     end
 
 
-%     if (currhifreq-currlofreq) < 5
-%         currhifreq = 450;
-%         currlofreq = tmplofreq2;
-%         
-%     end
+    if (currhifreq-currlofreq) < 5
+        currhifreq = 480;
+        currlofreq = tmplofreq2;
+        
+    end
 
 %          currhifreq = mean([tmphifreq1 tmphifreq2]);        
 %     currlofreq = mean([tmplofreq1 tmplofreq2]);        
