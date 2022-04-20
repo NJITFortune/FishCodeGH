@@ -55,7 +55,7 @@ clear mday;
     meanoftrialmeans = mean(mday); % Takes the mean of the means for a day from each trial 
     
     hourtim = in(1).trial(1).tim;
-    pulsetype = in(1).trial(1).
+   
    
 
     
