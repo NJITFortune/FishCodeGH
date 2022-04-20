@@ -62,12 +62,12 @@ for jj = 1:numotrials
              out(jj).sumfftAmp = [in.e(j).s(timidx).sumfftAmp];
              
              % Time and treatment 
-             out(jj).timcont = timcont(timidx) - timcont(timidx(1)); %+1
-             out(jj).entiretimcont = timcont(timidx);
+             out(jj).timcont = timcont(timidx) - timcont(timidx(1)); %all time overlayed 
+             out(jj).entiretimcont = timcont(timidx); 
              
-             
+             %so we have the daylength for easy access later
              out(jj).ld = in.info.ld; 
-             %out(jj).kg = orgidx; % idx for kg
+             
              
            
 
@@ -86,29 +86,30 @@ for jj = 1:numotrials
             Stimidx = Stimidx:Stimidx + (triallength*ReFs)-1;
             
             if length(sumfftyy) >= Stimidx(end)
+
              % Data   
-             %out(jj).SobwAmp = fftyy(Stimidx);
-%              out(jj).SzAmp = zyy(Stimidx);
              out(jj).SsumfftAmp = sumfftyy(Stimidx);
              
              % Time  
              out(jj).Stimcont = xx(Stimidx) - xx(Stimidx(1)); % Time starting at zero  
              out(jj).Sentiretimcont = xx(Stimidx);
+
             end
     
     
 end
-%above copied from KatieTrialTrendDessembler
+
 
 %% divide trials into days
 
 
     for jj = length(out):-1:1 % For each trial
         
-        ld = out(jj).ld;
+        ld = out(jj).ld; %lazy
 
         % Divide by daylength to get the number of days in the trial
         howmanydaysintrial = floor(triallength / (ld));
+
         % This is the number of sample in a day
         howmanysamplesinaday = ld * ReFs;
 
@@ -119,11 +120,9 @@ end
             dayidx = find(out(jj).Stimcont > (k-1) * (ld), 1) -1; % k-1 so that we start at zero
 
             % Get the datums
-            %trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
-%             trial(jj).day(k).SzAmp = out(jj).SzAmp(dayidx:dayidx+howmanysamplesinaday-1);
             trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
-%             
-               trial(jj).ld = in.info.ld; 
+             
+            trial(jj).ld = in.info.ld; 
 
            
 
@@ -136,7 +135,7 @@ end
     
 %% Divide sample into days to compare against trial day means
 
-%originally ld * 2
+%originally ld * 2 -don't need for pulse data
 howmanydaysinsample = floor(lengthofsampleHOURS / (ld));
 
 tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
@@ -145,14 +144,14 @@ tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
 for k = 1:howmanydaysinsample
     
 
-    %         % Get the index of the start time of the day
+             % Get the index of the start time of the day
                 dayidx = find(xx >= xx(1) + (k-1) * (ld) & xx < xx(1) + k*(ld)); % k-1 so that we start at zero
 
                 if length(dayidx) >= howmanysamplesinaday
-%                 day(k).SobwAmp = obwyy(dayidx);
-%                 day(k).SzAmp = zyy(dayidx);
+             
                 day(k).Ssumfftyy = sumfftyy(dayidx);
                 day(k).tim = tim;
+
                 end
  end
  
@@ -195,7 +194,7 @@ lightreturn = darkpulse + 1;
                 subplot(211); hold on; title('Days');
                 plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
                 plot([darkpulse, darkpulse], ylim, 'k-', 'LineWidth', 1);
-            plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
+                 plot([lightreturn, lightreturn], ylim, 'm-', 'LineWidth', 1);
            
 
         end
