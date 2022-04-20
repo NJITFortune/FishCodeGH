@@ -11,7 +11,7 @@ in = kg(127);
     %113,114,115
 channel = 1;
 ReFs = 60;
-light = 3;
+light = 4;
 
 %% prep
 
