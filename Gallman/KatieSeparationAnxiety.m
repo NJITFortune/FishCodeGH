@@ -199,7 +199,8 @@ currhifreq = tmphifreq2;
 
 
     if (currhifreq - currlowfreq) < 30
-        currhifreq = 480;
+        currhifreq = 460;
+        currlofreq = 430;
         
     end
 
