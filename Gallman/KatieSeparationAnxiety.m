@@ -131,6 +131,7 @@ for j=2:length(iFiles)
     
 % Electrode 1
     tmp1 = fftmachine(data1, Fs);
+    tmp1.fftdata = oo
         tmpidx1h = find(tmp1.fftfreq > midpoint & tmp1.fftfreq < midpoint+rango);
         [out(j).e1hiamp, hifreq1idx] = max(tmp1.fftdata(tmpidx1h));
         tmpidx1l = find(tmp1.fftfreq > midpoint-rango & tmp1.fftfreq < midpoint);
