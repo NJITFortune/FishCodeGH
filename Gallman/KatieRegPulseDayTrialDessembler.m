@@ -5,13 +5,13 @@ function [trial] = KatieRegPulseDayTrialDessembler(in, channel,  ReFs, light)
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
-clearvars -except kg kg2
-% 
-in = kg(127);
-    %113,114,115
-channel = 2;
-ReFs = 60;
-light = 3;
+% clearvars -except kg kg2
+% % 
+% in = kg(127);
+%     %113,114,115
+% channel = 2;
+% ReFs = 60;
+% light = 3;
 
 %% prep
 
