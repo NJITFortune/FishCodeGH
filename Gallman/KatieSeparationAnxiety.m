@@ -76,7 +76,7 @@ out(1).lofreq = currlofreq;
 
 %midpoint is a check. lo freq can't equal hi freq
 midpoint = currlofreq + ((currhifreq - currlofreq)/2);
-rango = abs(currhifreq - currlofreq)+2; % Freq range in Hz for change in fish freq 
+rango = abs(currhifreq - currlofreq)+4; % Freq range in Hz for change in fish freq 
 
 % Electrode 1
     tmp = fftmachine(data1, Fs);
