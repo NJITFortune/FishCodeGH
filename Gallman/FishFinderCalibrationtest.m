@@ -343,11 +343,11 @@ linkaxes(ax, 'x');
     clear lotube1ampchunk1;
     clear lotube1timchunk1;
 
-    lofishchunk1idx = find(lotube1timff);
+    %lofishchunk1idx = find(lotube1timff);
     
-        for j = 1:length(lofishchunk1idx)
-            lotube1ampchunk1(j) = lotube1ampff(lofishchunk1idx(j))/2;
-            lotube1timchunk1(j) = lotube1timff(lofishchunk1idx(j));
+        for j = 1:length(lotube1timff)
+            lotube1ampchunk1(j) = lotube1ampff((j))/2;
+            lotube1timchunk1(j) = lotube1timff((j));
         end
 %%
     %tube2
