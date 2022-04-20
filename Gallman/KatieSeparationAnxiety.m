@@ -215,9 +215,9 @@ currhifreq = tmphifreq2;
         
         
          figure(101); clf;
-            subplot(121); hold on; plot(tmp1.fftfreq, tmp1.fftdata); xlim(freqs); ylim([0 1]);
+            subplot(121); hold on; plot(tmp1.fftfreq, tmp1.fftdata); xlim(freqs); ylim([0 10]);
                 plot(currhifreq, out(j).e1hiamp, 'or'); plot(currlofreq, out(j).e1loamp, 'om'); 
-            subplot(122); hold on; plot(tmp2.fftfreq, tmp2.fftdata); xlim(freqs); ylim([0 1]);
+            subplot(122); hold on; plot(tmp2.fftfreq, tmp2.fftdata); xlim(freqs); ylim([0 10]);
                 plot(currhifreq, out(j).e2hiamp, 'or'); plot(currlofreq, out(j).e2loamp, 'om'); 
          
         
