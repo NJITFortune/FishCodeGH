@@ -183,9 +183,9 @@ for j=2:length(iFiles)
 % else 
 % currhifreq = tmphifreq1;
 % end
-
-currlofreq = tmplofreq2;  
-currhifreq = tmphifreq2;
+% 
+% currlofreq = tmplofreq2;  
+% currhifreq = tmphifreq2;
 % 
 % if currhifreq < 440
 %     currhifreq = 450;
