@@ -9,7 +9,7 @@ clearvars -except kg kg2
 % 
 in = kg(127);
     %113,114,115
-channel = 2;
+channel = 1;
 ReFs = 60;
 light = 3;
 
