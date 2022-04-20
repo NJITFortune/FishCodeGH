@@ -139,7 +139,7 @@ for j=2:length(iFiles)
     tmp2 = fftmachine(data2, Fs);
     tmp2fftdata = filtfilt(bb,aa,log(tmp2.fftdata));
 
-    freqfinder = tmp2fftdata + tmp1fftdata;
+    freqfinder = (tmp2fftdata + tmp1fftdata) / 2;
 
         tmpidx1h = find(tmp1.fftfreq > midpoint & tmp1.fftfreq < midpoint+rango);
         %[out(j).e1hiamp, hifreq1idx] = max(tmp1.fftdata(tmpidx1h));
