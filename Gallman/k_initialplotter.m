@@ -23,7 +23,7 @@ function k_initialplotter(out)
 
 %% Continuous data plot
 
-figure(2); clf; 
+figure(3); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
     lowest = min([out.e(2).s(ttsf{2}).sumfftAmp]);
