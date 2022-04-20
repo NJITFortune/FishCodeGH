@@ -171,7 +171,7 @@ for j=2:length(iFiles)
 % currhifreq = tmphifreq1;
 % end
 
-currlofreq = tmplofreq1;  
+currlofreq = tmplofreq2;  
 currhifreq = tmphifreq2;
 % 
 % if currhifreq < 440
@@ -198,11 +198,11 @@ currhifreq = tmphifreq2;
     end
 
 
-    if (currhifreq - currlofreq) < 10
-        currhifreq = 450;
-        currlofreq = tmphifreq1;
-        
-    end
+%     if (currhifreq - currlofreq) < 10
+%         currhifreq = 450;
+%         currlofreq = tmphifreq1;
+%         
+%     end
 
 %          currhifreq = mean([tmphifreq1 tmphifreq2]);        
 %     currlofreq = mean([tmplofreq1 tmplofreq2]);        
