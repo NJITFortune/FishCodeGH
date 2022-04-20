@@ -152,8 +152,7 @@ end
 %             
                trial(jj).ld = ld; 
 
-           
-
+          
         end
             % Make a time sequence for the datums (easier than extracting from
             % xx...)
