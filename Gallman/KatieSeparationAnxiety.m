@@ -23,6 +23,9 @@ userfilespec = 'Eigen*';
 % Band pass filter in frequency range of fish
     [h,g] = butter(5, [freqs(1)/(Fs/2) freqs(2)/(Fs/2)]);
 
+    % For the log filter thing
+    [bb,aa] = butter(3, [0.02 0.4], 'bandpass');
+
 %% Load data
       
 % Load the first file
