@@ -200,6 +200,7 @@ currhifreq = tmphifreq2;
 
     if (currhifreq - currlowfreq) < 30
         currhifreq = 480;
+        
     end
 
 %          currhifreq = mean([tmphifreq1 tmphifreq2]);        
