@@ -7,11 +7,11 @@
     %starts with light = 4
 clearvars -except kg kg2
 % 
-in = kg(113);
+in = kg(127);
     %113,114,115
 channel = 1;
 ReFs = 60;
-light = 4;
+light = 3;
 
 %% prep
 
