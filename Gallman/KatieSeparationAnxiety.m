@@ -198,11 +198,11 @@ currhifreq = tmphifreq2;
 %     end
 
 
-%     if (currhifreq - currlofreq) < 10
-%         currhifreq = 450;
-%         currlofreq = tmphifreq1;
-%         
-%     end
+    if tmploamp2 < tmphiamp2
+        currhifreq = 450;
+        currlofreq = tmphifreq1;
+        
+    end
 
 %          currhifreq = mean([tmphifreq1 tmphifreq2]);        
 %     currlofreq = mean([tmplofreq1 tmplofreq2]);        
