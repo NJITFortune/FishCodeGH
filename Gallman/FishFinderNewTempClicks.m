@@ -7,7 +7,7 @@
 
 %% assign amplitude data to fish by frequency
 
-  
+ 
 
 %make better variables to play with
 %time
@@ -18,7 +18,7 @@ lotube2tim = [out(intube2lo).timcont]/3600;
 %amp
 hitube1amp = [out(intube1hi).e1hiamp];
 hitube2amp = [out(intube2hi).e2hiamp];
-lotube1amp = [out(intube1lo).e1loamp];
+lotube1amp = [out([out.lotube]==1).loamp];
 lotube2amp = [out(intube2lo).e2loamp];
 %freq
 hitube1freq = [out(intube1hi).hifreq];
