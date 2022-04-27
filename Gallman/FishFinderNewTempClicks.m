@@ -23,7 +23,7 @@ lotube2amp = [out([out.lotube]==2).loamp];
 %freq
 hitube1freq = [out(intube1hi).hifreq];
 hitube2freq = [out(intube2hi).hifreq];
-lotube1freq = [out(intube1lo).lofreq];
+lotube1freq = [out([out.lotube]==1).lofreq];
 lotube2freq = [out(intube2lo).lofreq];
         
 %% filter by fish frequency
