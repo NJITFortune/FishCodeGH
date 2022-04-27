@@ -19,7 +19,7 @@ lotube2tim = [out(intube2lo).timcont]/3600;
 hitube1amp = [out(intube1hi).e1hiamp];
 hitube2amp = [out(intube2hi).e2hiamp];
 lotube1amp = [out([out.lotube]==1).loamp];
-lotube2amp = [out(intube2lo).e2loamp];
+lotube2amp = [out([out.lotube]==2).loamp];
 %freq
 hitube1freq = [out(intube1hi).hifreq];
 hitube2freq = [out(intube2hi).hifreq];
