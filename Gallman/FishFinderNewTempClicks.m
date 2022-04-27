@@ -21,7 +21,7 @@ hitube2amp = [out([out.hitube]==2).hiamp];
 lotube1amp = [out([out.lotube]==1).loamp];
 lotube2amp = [out([out.lotube]==2).loamp];
 %freq
-hitube1freq = [out(intube1hi).hifreq];
+hitube1freq = [out([out.hitube]==1).hifreq];
 hitube2freq = [out(intube2hi).hifreq];
 lotube1freq = [out([out.lotube]==1).lofreq];
 lotube2freq = [out([out.lotube]==2).lofreq];
