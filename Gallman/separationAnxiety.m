@@ -164,7 +164,7 @@ if fixme == 1
     if length(xfreq) == 1
 
     % Get the lower freq peak
-        lowfreqidx = find(f1.fftfreq > 420 & f1.fftfreq < xfreq);
+        lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < xfreq);
             [~, lmaxidx] = max(summedFFT(lowfreqidx));
             currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
