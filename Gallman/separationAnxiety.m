@@ -153,7 +153,7 @@ fixme = 0;
 
 if fixme == 1
 
-    fprintf('Last low was %3.1f and high was %3.1f \n', out(j-1).lofreq, out(j-1).hifreq);
+    fprintf('Last low was %3.1f and high was %3.1f \n', out(j-2).lofreq, out(j-2).hifreq);
 
     figure(1); clf; hold on;
         plot(f1.fftfreq, summedFFT);
