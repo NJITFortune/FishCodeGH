@@ -830,7 +830,7 @@ clear j;
     end
 
 %ititialize mean vector
-multimean4 = zeros(1, length(multi(2).Hifftyy4));
+%multimean4 = zeros(1, length(multi(2).Hifftyy4));
     
 % ax(2) = subplot(312); title('multiple fish'); hold on; 
 %     for kk = 2:length(multi)
