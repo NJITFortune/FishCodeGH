@@ -118,6 +118,11 @@ for j = 2:length(iFiles)
                daycount = daycount + 1;
         end
 
+
+    % There are 86400 seconds in a day.
+    out(j).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400);
+    out(j).tim24 = (hour*60*60) + (minute*60) + second;
+
     summedFFT =  f1.fftdata + f2.fftdata;
     figure(2); clf; hold on;
         plot(f1.fftfreq, summedFFT);
