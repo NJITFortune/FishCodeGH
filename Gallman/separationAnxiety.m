@@ -123,6 +123,10 @@ for j = 2:length(iFiles)
     out(j).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400);
     out(j).tim24 = (hour*60*60) + (minute*60) + second;
 
+    %light and temp for j = 1
+    out(j).temp = mean(data(1,tempchan));
+    out(j).light = mean(data(1,lightchan));
+
     summedFFT =  f1.fftdata + f2.fftdata;
     figure(2); clf; hold on;
         plot(f1.fftfreq, summedFFT);
