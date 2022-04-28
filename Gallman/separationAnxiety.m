@@ -114,7 +114,7 @@ for j = 2:length(iFiles)
     minute = str2double(iFiles(j).name(numstart+3:numstart+4));
     second = str2double(iFiles(j).name(numstart+6:numstart+7));
                 
-        if j > 2 && ((hour*60*60) + (minute*60) + second) < out(j-1).tim24
+        if j > 2 & ((hour*60*60) + (minute*60) + second) < out(j-1).tim24
                daycount = daycount + 1;
         end
 
