@@ -11,6 +11,8 @@ ReFs = 10;
  %get the spline estimates for each sample
     for k = 1:length(onefish124idx)
 
+        
+
     %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
     [one(k).xx, one(k).fftyy, ~] =  metamucil(kg(onefish124idx(k)), channel, ReFs, light);
 
