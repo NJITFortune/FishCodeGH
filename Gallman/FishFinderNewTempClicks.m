@@ -10,43 +10,41 @@
  %Indicies when each fish was in each tube
     %threshold for ratio at 2.5
         %when each fish was in tube 2
-        length([out([out.hitube]==2).hiamp])
-        length([out([out.hitube]==1).hiamp])
-        intube2hi = find([out([out.hitube]==2).hiamp] ./ [out([out.hitube]==1).hiamp] > 2.5);
-            %plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], 'b.');
-        intube2lo = find([out([out.lotube]==2).loamp] ./ [out([out.lotube]==1).loamp] > 2.5);
-            %plot([out(intube2lo).timcont], [out(intube2lo).e2loamp], 'm.');
-
-        %when each fish was in tube 1
-        intube1hi = find([out([out.hitube]==1).hiamp] ./ [out([out.hitube]==2).hiamp] > 2.5);
-             %plot([out(intube1hi).timcont], [out(intube1hi).e1hiamp], 'bo');
-        intube1lo = find([out([out.lotube]==1).loamp] ./ [out([out.lotube]==2).loamp] > 2.5);
-            %plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
+%         intube2hi = find([out([out.hitube]==2).hiamp] ./ [out([out.hitube]==1).hiamp] > 2.5);
+%             %plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], 'b.');
+%         intube2lo = find([in.e2loamp] ./ [in.e1loamp] > 2.5);
+%             %plot([out(intube2lo).timcont], [out(intube2lo).e2loamp], 'm.');
+% 
+%         %when each fish was in tube 1
+%         intube1hi = find([in.e1hiamp] ./ [in.e2hiamp] > 2.5);
+%              %plot([out(intube1hi).timcont], [out(intube1hi).e1hiamp], 'bo');
+%         intube1lo = find([in.e1loamp] ./ [in.e2loamp] > 2.5);
+%             %plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
 
 %make better variables to play with
 %time
-hitube1tim = [out(intube1hi).timcont]/3600;
-hitube2tim = [out(intube2hi).timcont]/3600;
-lotube1tim = [out(intube1lo).timcont]/3600;
-lotube2tim = [out(intube2lo).timcont]/3600;
+hitube1tim = [out([out.hitube]==1).timcont]/3600;
+hitube2tim = [out([out.hitube]==2).timcont]/3600;
+lotube1tim = [out([out.lotube]==1).timcont]/3600;
+lotube2tim = [out([out.lotube]==2).timcont]/3600;
 %amp
-hitube1amp = [out(intube1hi).hiamp];
-hitube2amp = [out(intube2hi).hiamp];
-lotube1amp = [out(intube1lo).loamp];
-lotube2amp = [out(intube2lo).loamp];
+hitube1amp = [out([out.hitube]==1).hiamp];
+hitube2amp = [out([out.hitube]==2).hiamp];
+lotube1amp = [out([out.lotube]==1).loamp];
+lotube2amp = [out([out.lotube]==2).loamp];
 %freq
-hitube1freq = [out(intube1hi).hifreq];
-hitube2freq = [out(intube2hi).hifreq];
-lotube1freq = [out(intube1lo).lofreq];
-lotube2freq = [out(intube2lo).lofreq];
+hitube1freq = [out([out.hitube]==1).hifreq];
+hitube2freq = [out([out.hitube]==2).hifreq];
+lotube1freq = [out([out.lotube]==1).lofreq];
+lotube2freq = [out([out.lotube]==2).lofreq];
 
 
 
 
-        intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
-        intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
-        plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp] ./ [out(intube2hi).e1hiamp], 'b.');
-        plot([out(intube2lo).timcont], [out(intube2lo).e2loamp] ./ [out(intube2lo).e1loamp], 'r.');
+%         intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
+%         intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
+%         plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp] ./ [out(intube2hi).e1hiamp], 'b.');
+%         plot([out(intube2lo).timcont], [out(intube2lo).e2loamp] ./ [out(intube2lo).e1loamp], 'r.');
 
         
 %% filter by fish frequency
