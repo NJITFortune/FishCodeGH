@@ -1,4 +1,4 @@
-function [hourtim, meanoftrialmeans, amprange, ld, pulsetype] = k_fftdaymeans(in)
+function [hourtim, meanoftrialmeans,mday, ld] = k_fftregpulsemeans(in)
 %% usage
 %processes output from KatieDayTrialDessembler.m of kg by hourexp
 %k_daydessembledplotter.m without the plotting
@@ -42,10 +42,9 @@ clear mday;
          % To get average across days, divide by number of days
             
             mday(jj,:) = mday(jj,:) / length(in(j).trial(jj).day);
-            trialampmax(jj,:) =  max([in(j).trial(jj).trialmax]);
-            trialampmin(jj,:) = min([in(j).trial(jj).trialmin]);
+            
     end
-    amprange(j,:) = [min(trialampmin), max(trialampmax)];
+    
     
  end  
 
@@ -55,8 +54,7 @@ clear mday;
     meanoftrialmeans = mean(mday); % Takes the mean of the means for a day from each trial 
     
     hourtim = in(1).trial(1).tim;
-   
-   
+    
 
     
     

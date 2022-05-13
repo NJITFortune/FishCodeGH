@@ -11,9 +11,14 @@ ReFs = 10;
  %get the spline estimates for each sample
     for k = 1:length(onefish124idx)
 
-    %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
-    [one(k).xx, one(k).fftyy, ~] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
+        
 
+    %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
+    [one(k).xx, one(k).fftyy, ~] =  metamucil(kg(onefish124idx(k)), channel, ReFs, light);
+
+       [xx, sumfftyy] = metamucil(timcont, sumfft);
+
+    one(k).xx = one(k).xx/3600;
     one(k).lighttimes = abs(kg(onefish124idx(k)).info.luz);
     one(k).timcont = [kg(onefish124idx(k)).e(1).s.timcont]/3600;
     one(k).fft = [kg(onefish124idx(k)).e(1).s.sumfftAmp];
@@ -52,15 +57,15 @@ clear k;
 
 
 %% kg2 data index
- multifish124idx = [16 18 19];
- 
-    for kk = 1:length(multifish124idx)
-        
-      [two(kk).hixx, two(kk).loxx, two(kk).HiAmp, two(kk).HiTim, two(kk).LoAmp, two(kk).LoTim, two(kk).Hifftyy, ~,  two(kk).Lofftyy, ~, two(kk).Hilighttimes, two(kk).Lolighttimes] =  k_multifftsubspliner(kg2(multifish124idx(kk)), ReFs, light);
-      
-    end
-    
- 
+%  multifish124idx = [16 18 19];
+%  
+%     for kk = 1:length(multifish124idx)
+%         
+%       [two(kk).hixx, two(kk).loxx, two(kk).HiAmp, two(kk).HiTim, two(kk).LoAmp, two(kk).LoTim, two(kk).Hifftyy, ~,  two(kk).Lofftyy, ~, two(kk).Hilighttimes, two(kk).Lolighttimes] =  k_multifftsubspliner(kg2(multifish124idx(kk)), ReFs, light);
+%       
+%     end
+%     
+%  
 %% plots
 %all together
 figure(42); clf; title('phase plots by fish'); hold on;
@@ -82,40 +87,40 @@ figure(42); clf; title('phase plots by fish'); hold on;
     end
     
     
-    for kk = 1:length(two)
-
-    
-        
-        ax(k +kk) = subplot(16,1,(k +kk)); hold on;
-
-                    plot(two(kk).HiTim, two(kk).HiAmp, '.');
-                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2);
-                    clear j;
-                    for j = 1:length(two(kk).Hilighttimes)
-
-                        plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-                    end
-
-        
-    end
-    
-    for kkk = 1:length(two)
-        
-        a = (k + kk + kkk);
-        
-        ax(k+ kk + kkk) = subplot(16,1,a); hold on;
-
-                        plot(two(kk).LoTim, two(kk).LoAmp, '.');
-                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2);
-                        
-                        clear j;
-                        for j = 1:length(two(kkk).Lolighttimes)
-                            
-                            plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-                            
-                        end
-                    
-    end
+%     for kk = 1:length(two)
+% 
+%     
+%         
+%         ax(k +kk) = subplot(16,1,(k +kk)); hold on;
+% 
+%                     plot(two(kk).HiTim, two(kk).HiAmp, '.');
+%                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2);
+%                     clear j;
+%                     for j = 1:length(two(kk).Hilighttimes)
+% 
+%                         plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+%                     end
+% 
+%         
+%     end
+%     
+%     for kkk = 1:length(two)
+%         
+%         a = (k + kk + kkk);
+%         
+%         ax(k+ kk + kkk) = subplot(16,1,a); hold on;
+% 
+%                         plot(two(kk).LoTim, two(kk).LoAmp, '.');
+%                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2);
+%                         
+%                         clear j;
+%                         for j = 1:length(two(kkk).Lolighttimes)
+%                             
+%                             plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+%                             
+%                         end
+%                     
+%     end
 %     
  
 linkaxes(ax, 'x');
@@ -160,53 +165,46 @@ clear ax;
                 
     end
 clear kk;    
-    for kk = 1:1
-
-    
-        
-        ax(k +kk) = subplot(6,1,(k +kk)); title(num2str(multifish124idx(kk))); hold on;
-
-                    plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', lightsky);
-                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', mediumV);
-                    clear j;
-                    for j = 1:length(two(kk).Hilighttimes)
-
-                        plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-                    end
-
-        
-    end
-    clear kkk;
-    for kkk = 1:1
-        
-        a = (k + kk + kkk);
-        
-        ax(k+ kk + kkk) = subplot(6,1,a); hold on;
-
-                        plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', lightsky);
-                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', mediumV);
-                        
-                        clear j;
-                        for j = 1:length(two(kkk).Lolighttimes)
-                            
-                            plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-                            
-                        end
-                    
-    end
+%     for kk = 1:1
+% 
+%     
+%         
+%         ax(k +kk) = subplot(6,1,(k +kk)); title(num2str(multifish124idx(kk))); hold on;
+% 
+%                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', lightsky);
+%                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', mediumV);
+%                     clear j;
+%                     for j = 1:length(two(kk).Hilighttimes)
+% 
+%                         plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+%                     end
+% 
+%         
+%     end
+%     clear kkk;
+%     for kkk = 1:1
+%         
+%         a = (k + kk + kkk);
+%         
+%         ax(k+ kk + kkk) = subplot(6,1,a); hold on;
+% 
+%                         plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', lightsky);
+%                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', mediumV);
+%                         
+%                         clear j;
+%                         for j = 1:length(two(kkk).Lolighttimes)
+%                             
+%                             plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+%                             
+%                         end
+%                     
+%     end
 %     
  
 linkaxes(ax, 'x');
 
 
-
-
-
-
-
-                    
-                    
-                    
+    
 %exp 2
 %colors
 %single fish
@@ -235,41 +233,41 @@ clear ax;
                end
                 
     end
-clear kk;    
-        kk = 2;
-
-    
-        
-        ax(5) = subplot(6,1,5); title(num2str(multifish124idx(kk))); hold on;
-
-                    plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', paleV);
-                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', turq);
-                    clear j;
-                    for j = 1:length(two(kk).Hilighttimes)
-
-                        plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-                    end
-
-        
- 
-    clear kkk;
-     kkk = 2;
-        
-        
-        
-        ax(6) = subplot(6,1,6); title(num2str(multifish124idx(kkk))); hold on;
-
-                        plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', paleV);
-                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', turq);
-                        
-                        clear j;
-                        for j = 1:length(two(kkk).Lolighttimes)
-                            
-                            plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-                            
-                        end
-                    
-    
+% clear kk;    
+%         kk = 2;
+% 
+%     
+%         
+%         ax(5) = subplot(6,1,5); title(num2str(multifish124idx(kk))); hold on;
+% 
+%                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', paleV);
+%                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 2, 'Color', turq);
+%                     clear j;
+%                     for j = 1:length(two(kk).Hilighttimes)
+% 
+%                         plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+%                     end
+% 
+%         
+%  
+%     clear kkk;
+%      kkk = 2;
+%         
+%         
+%         
+%         ax(6) = subplot(6,1,6); title(num2str(multifish124idx(kkk))); hold on;
+% 
+%                         plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', paleV);
+%                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 2, 'Color', turq);
+%                         
+%                         clear j;
+%                         for j = 1:length(two(kkk).Lolighttimes)
+%                             
+%                             plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+%                             
+%                         end
+%                     
+%     
  
 linkaxes(ax, 'x');
                                        
@@ -303,42 +301,42 @@ clear ax;
                end
                 
     end
-clear kk;    
-        kk = 3;
-
-    
-        
-        ax(3) = subplot(4,1,kk); title(num2str(multifish124idx(kk))); hold on;
-
-                    plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', lightsalmon);
-                    plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 5, 'Color', lightsky);
-                    clear j;
-                    for j = 1:length(two(kk).Hilighttimes)
-
-                        plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-                    end
-
-        
- 
-    clear kkk;
-     kkk = 3;
-        
-        
-        
-        ax(4) = subplot(414); title(num2str(multifish124idx(kkk))); hold on;
-
-                        plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', lightsalmon);
-                        plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 5, 'Color', lightsky);
-                        
-                        clear j;
-                        for j = 1:length(two(kkk).Lolighttimes)
-                            
-                            plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
-                            
-                        end
-                    
-    
- 
+% clear kk;    
+%         kk = 3;
+% 
+%     
+%         
+%         ax(3) = subplot(4,1,kk); title(num2str(multifish124idx(kk))); hold on;
+% 
+%                     plot(two(kk).HiTim, two(kk).HiAmp, '.', 'Color', lightsalmon);
+%                     plot(two(kk).hixx, two(kk).Hifftyy,  'LineWidth', 5, 'Color', lightsky);
+%                     clear j;
+%                     for j = 1:length(two(kk).Hilighttimes)
+% 
+%                         plot([two(kk).Hilighttimes(j), two(kk).Hilighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+%                     end
+% 
+%         
+%  
+%     clear kkk;
+%      kkk = 3;
+%         
+%         
+%         
+%         ax(4) = subplot(414); title(num2str(multifish124idx(kkk))); hold on;
+% 
+%                         plot(two(kk).LoTim, two(kk).LoAmp, '.', 'Color', lightsalmon);
+%                         plot(two(kkk).loxx, two(kkk).Lofftyy, 'LineWidth', 5, 'Color', lightsky);
+%                         
+%                         clear j;
+%                         for j = 1:length(two(kkk).Lolighttimes)
+%                             
+%                             plot([two(kkk).Lolighttimes(j), two(kkk).Lolighttimes(j)], ylim, 'k-', 'LineWidth', 0.5);
+%                             
+%                         end
+%                     
+%     
+%  
 linkaxes(ax, 'x');
                                        
                     

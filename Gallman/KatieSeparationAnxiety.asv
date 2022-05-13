@@ -141,10 +141,10 @@ for j=2:length(iFiles)
 
     freqfinder = (tmp2fftdata + tmp1fftdata) / 2;
 
-        tmpidx1h = find(tmp1.fftfreq > midpoint & tmp1.fftfreq < 600);
+        tmpidx1h = find(tmp1.fftfreq > midpoint & tmp1.fftfreq < midpoint);
         %[out(j).e1hiamp, hifreq1idx] = max(tmp1.fftdata(tmpidx1h));
         [out(j).e1hiamp, hifreq1idx] = max(freqfinder(tmpidx1h));
-        tmpidx1l = find(tmp1.fftfreq < midpoint & tmp1.fftfreq > 200);
+        tmpidx1l = find(tmp1.fftfreq > midpoint & tmp1.fftfreq < midpoint);
         %[out(j).e1loamp, lofreq1idx] = max(tmp1.fftdata(tmpidx1l));
         [out(j).e1loamp, lofreq1idx] = max(freqfinder(tmpidx1l));
         
@@ -156,10 +156,10 @@ for j=2:length(iFiles)
         tmploamp1 = tmp1.fftdata(tmpidx1l(lofreq1idx));
         
 
-        tmpidx2h = find(tmp2.fftfreq > midpoint & tmp2.fftfreq < 600);
+        tmpidx2h = find(tmp2.fftfreq > midpoint & tmp2.fftfreq < midpoint);
         %[out(j).e2hiamp, hifreq2idx] = max(tmp2.fftdata(tmpidx2h));
         [out(j).e2hiamp, hifreq2idx] = max(freqfinder(tmpidx2h));
-        tmpidx2l = find(tmp2.fftfreq < midpoint & tmp2.fftfreq > 200);
+        tmpidx2l = find(tmp2.fftfreq > midpoint & tmp2.fftfreq < midpoint);
         %[out(j).e2loamp, lofreq2idx] = max(tmp2.fftdata(tmpidx2l));
         [out(j).e2loamp, lofreq2idx] = max(freqfinder(tmpidx2l));
     
@@ -183,9 +183,9 @@ for j=2:length(iFiles)
 % else 
 % currhifreq = tmphifreq1;
 % end
-% 
-% currlofreq = tmplofreq2;  
-% currhifreq = tmphifreq2;
+
+currlofreq = tmplofreq2;  
+currhifreq = tmphifreq2;
 % 
 % if currhifreq < 440
 %     currhifreq = 450;
@@ -197,7 +197,7 @@ for j=2:length(iFiles)
 
 
 
-% % 
+% 
     if tmploamp1 > tmploamp2
         currlofreq = tmplofreq1;
     else

@@ -14,16 +14,17 @@ function k_initialplotter(out)
     ttsf{1} = 1:length([out.e(1).s.timcont]); % ttsf is indices for sumfftAmp
     ttsf{2} = 1:length([out.e(2).s.timcont]);
     
-% If we have removed outliers via KatieRemover, get the indices...    
+% If we have removed outliers via KatieRemover, get the indices...  
+ if isfield(out, 'idx')
     if ~isempty(out.idx)
 %         tto{1} = out.idx(1).obwidx; tto{2} = out.idx(2).obwidx; % tto is indices for obwAmp
 %         ttz{1} = out.idx(1).zidx; ttz{2} = out.idx(2).zidx; % ttz is indices for zAmp
         ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
     end
-
+ end
 %% Continuous data plot
 
-figure(2); clf; 
+figure(3); clf; 
     set(gcf, 'Position', [200 100 2*560 2*420]);
 
     lowest = min([out.e(2).s(ttsf{2}).sumfftAmp]);
@@ -63,6 +64,24 @@ ax(4) = subplot(414); hold on; title('light transitions');
        ax(1) = subplot(411); plot([out.info.feedingtimes' out.info.feedingtimes']', ylim, 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
     end
    end  
+
+% Add input signal times, if we have them...
+    if isfield(out.e(2).s, 'inputsig')
+        if ~isempty([out.e(2).s.inputsig])
+
+            %signal off vs on
+            threshold = 2;
+            onidx = find([out.e(2).s.inputsig] > threshold);
+            onsig = (ones(1, length(onidx)))*4;
+          %  offidx = find([out.e(2).s.inputsig] < threshold);
+           % offsig = (ones(1, length(offidx)));
+            
+            ax(4) = subplot(414); 
+            plot([out.e(2).s.timcont]/3600, [out.e(2).s.inputsig], 'r.', 'Markersize', 8);
+            %plot([out.e(2).s(onidx).timcont]/3600, onsig, 'r.', 'Markersize', 8);
+           % plot([out.e(2).s(offidx).timcont]/3600, offsig, 'r.', 'Markersize', 8);
+        end
+    end
 
 
 % Add temptimes, if we have them... 

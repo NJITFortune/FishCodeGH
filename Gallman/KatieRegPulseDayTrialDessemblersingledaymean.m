@@ -161,8 +161,7 @@ end
             trial(jj).tim = 1/ReFs:1/ReFs:(ld);
             
     end
-    length(trial(end).tim)
-    length(trial(end).day(end).SsumfftAmp)
+   
 
 %% Divide sample into days to compare against trial day means
 

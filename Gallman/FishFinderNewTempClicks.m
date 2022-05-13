@@ -7,33 +7,33 @@
 
 %% assign amplitude data to fish by frequency
 
-   
-%Indicies when each fish was in each tube
-    %threshold for ratio at 2.5
-        %when each fish was in tube 2
-        intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
-        intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
-            
-        %when each fish was in tube 1
-        intube1hi = find([out.e1hiamp] ./ [out.e2hiamp] > 2.5);      
-        intube1lo = find([out.e1loamp] ./ [out.e2loamp] > 2.5);
+ 
 
 %make better variables to play with
 %time
-hitube1tim = [out(intube1hi).timcont]/3600;
-hitube2tim = [out(intube2hi).timcont]/3600;
-lotube1tim = [out(intube1lo).timcont]/3600;
-lotube2tim = [out(intube2lo).timcont]/3600;
+hitube1tim = [out([out.hitube]==1).timcont]/3600;
+hitube2tim = [out([out.hitube]==2).timcont]/3600;
+lotube1tim = [out([out.lotube]==1).timcont]/3600;
+lotube2tim = [out([out.lotube]==2).timcont]/3600;
 %amp
-hitube1amp = [out(intube1hi).e1hiamp];
-hitube2amp = [out(intube2hi).e2hiamp];
-lotube1amp = [out(intube1lo).e1loamp];
-lotube2amp = [out(intube2lo).e2loamp];
+hitube1amp = [out([out.hitube]==1).hiamp];
+hitube2amp = [out([out.hitube]==2).hiamp];
+lotube1amp = [out([out.lotube]==1).loamp];
+lotube2amp = [out([out.lotube]==2).loamp];
 %freq
-hitube1freq = [out(intube1hi).hifreq];
-hitube2freq = [out(intube2hi).hifreq];
-lotube1freq = [out(intube1lo).lofreq];
-lotube2freq = [out(intube2lo).lofreq];
+hitube1freq = [out([out.hitube]==1).hifreq];
+hitube2freq = [out([out.hitube]==2).hifreq];
+lotube1freq = [out([out.lotube]==1).lofreq];
+lotube2freq = [out([out.lotube]==2).lofreq];
+
+
+
+
+        intube2hi = find([out.e2hiamp] ./ [out.e1hiamp] > 2.5);
+        intube2lo = find([out.e2loamp] ./ [out.e1loamp] > 2.5);
+        plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp] ./ [out(intube2hi).e1hiamp], 'b.');
+        plot([out(intube2lo).timcont], [out(intube2lo).e2loamp] ./ [out(intube2lo).e1loamp], 'r.');
+
         
 %% filter by fish frequency
 %hifreq
@@ -167,6 +167,8 @@ figure(452); clf; hold on;
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
             
+
+            
     ax(2) = subplot(512); title('low frequency fish'); hold on; %ylim([0,3]);
             %raw amp
             plot(lotube1timff, lotube1ampff, 'bo');
@@ -187,10 +189,12 @@ figure(452); clf; hold on;
             plot(lotube2timff, lotube2freqff,'r.'); 
     
     ax(4) = subplot(514); title('light cycle'); hold on;
-            plot([out.timcont]/3600, [out.temp]);
+            %plot([out.timcont]/3600, [out.temp]);
+            plot(hitube1timff, hitube1ampff ./ hitube2ampff, 'bo');
 
     ax(5) = subplot(515); title('light cycle'); hold on;
-            plot([out.timcont]/3600, [out.light]);
+            %plot([out.timcont]/3600, [out.light]);
+            plot(lotube1timff, lotube1ampff ./ lotube2ampff, 'bo');
 
 linkaxes(ax, 'x');
 

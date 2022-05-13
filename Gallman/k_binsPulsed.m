@@ -2,7 +2,7 @@
 %% prep 
 clearvars -except kg kg2
 
-in = kg(114);
+in = kg(115);
 channel = 1;
 %kg(12) starts with light
 
@@ -12,7 +12,7 @@ ld = in.info.ld;
 %binsize in minutes
 %binsize = floor(binportion*60);
 transbinnum = 8;
-binsize = 15;
+binsize = 60;
 %% outliers
 
 % Prepare the data with outliers
