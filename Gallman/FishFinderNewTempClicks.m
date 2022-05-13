@@ -7,7 +7,19 @@
 
 %% assign amplitude data to fish by frequency
 
- 
+ %Indicies when each fish was in each tube
+    %threshold for ratio at 2.5
+        %when each fish was in tube 2
+        intube2hi = find([out([out.hitube]==2).hiamp] ./ [out([out.hitube]==1).hiamp] > 2.5);
+            %plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], 'b.');
+        intube2lo = find([in.e2loamp] ./ [in.e1loamp] > 2.5);
+            %plot([out(intube2lo).timcont], [out(intube2lo).e2loamp], 'm.');
+
+        %when each fish was in tube 1
+        intube1hi = find([in.e1hiamp] ./ [in.e2hiamp] > 2.5);
+             %plot([out(intube1hi).timcont], [out(intube1hi).e1hiamp], 'bo');
+        intube1lo = find([in.e1loamp] ./ [in.e2loamp] > 2.5);
+            %plot([out(intube1lo).timcont], [out(intube1lo).e1loamp], 'mo');
 
 %make better variables to play with
 %time
@@ -17,7 +29,7 @@ lotube1tim = [out([out.lotube]==1).timcont]/3600;
 lotube2tim = [out([out.lotube]==2).timcont]/3600;
 %amp
 hitube1amp = [out([out.hitube]==1).hiamp];
-hitube2amp = [out([out.hitube]==2).hiamp];
+hitube2amp = intube2hi;
 lotube1amp = [out([out.lotube]==1).loamp];
 lotube2amp = [out([out.lotube]==2).loamp];
 %freq
