@@ -201,12 +201,12 @@ figure(452); clf; hold on;
             plot(lotube2timff, lotube2freqff,'r.'); 
     
     ax(4) = subplot(514); title('light cycle'); hold on;
-            %plot([out.timcont]/3600, [out.temp]);
-            plot(hitube1timff, hitube1ampff ./ hitube2ampff, 'bo');
+            plot([out.timcont]/3600, [out.temp]);
+            
 
     ax(5) = subplot(515); title('light cycle'); hold on;
-            %plot([out.timcont]/3600, [out.light]);
-            plot(lotube1timff, lotube1ampff ./ lotube2ampff, 'bo');
+            plot([out.timcont]/3600, [out.light]);
+            
 
 linkaxes(ax, 'x');
 
