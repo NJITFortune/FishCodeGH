@@ -200,7 +200,7 @@ figure(452); clf; hold on;
             plot(lotube2tim, lotube2freq, 'k.');
             plot(lotube2timff, lotube2freqff,'r.'); 
     
-    ax(4) = subplot(514); title('light cycle'); hold on;
+    ax(4) = subplot(514); title('temperature'); hold on;
             plot([out.timcont]/3600, [out.temp]);
             
 
