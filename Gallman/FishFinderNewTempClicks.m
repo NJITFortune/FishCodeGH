@@ -10,6 +10,8 @@
  %Indicies when each fish was in each tube
     %threshold for ratio at 2.5
         %when each fish was in tube 2
+        length([out([out.hitube]==2).hiamp])
+        length([out([out.hitube]==1).hiamp])
         intube2hi = find([out([out.hitube]==2).hiamp] ./ [out([out.hitube]==1).hiamp] > 2.5);
             %plot([out(intube2hi).timcont], [out(intube2hi).e2hiamp], 'b.');
         intube2lo = find([out([out.lotube]==2).loamp] ./ [out([out.lotube]==1).loamp] > 2.5);
