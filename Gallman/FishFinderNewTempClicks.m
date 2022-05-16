@@ -345,27 +345,27 @@ linkaxes(ax, 'x');
 
   %tube1
     clear lofishchunk1idx;
-    clear lotube1ampchunk1;
-    clear lotube1timchunk1;
+    clear lotube2ampchunk1;
+    clear lotube2timchunk1;
 
    
 
-    %lofishchunk1idx = find(lotube1timff);
+    lofishchunk1idx = find(lotube2timff < 167);
     
-        for j = 1:length(lotube1timff)
-            lotube1ampchunk1(j) = lotube1ampff((j))/2;
-            lotube1timchunk1(j) = lotube1timff((j));
+        for j = 1:length(lofishchunk1idx)
+            lotube2ampchunk1(j) = lotube2ampff((j));
+            lotube2timchunk1(j) = lotube1timff((j));
         end
 %%
     %tube2
     clear lofishchunk2idx;
-    clear lotube1ampchunk2;
-    clear lotube1timchunk2;
-    lofishchunk2idx = find(lotube1timff >= 65 & lotube1timff<113);
+    clear lotube2ampchunk2;
+    clear lotube2timchunk2;
+    lofishchunk2idx = find(lotube2timff >= 167 & lotube2timff<226);
     
         for j = 1:length(lofishchunk2idx)
-            lotube1ampchunk2(j) = lotube1ampff(lofishchunk2idx(j))*2.7;
-            lotube1timchunk2(j) = lotube1timff(lofishchunk2idx(j));
+            lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j))2.7;
+            lotube2timchunk2(j) = lotube2timff(lofishchunk2idx(j));
         end
         
     %tube2
