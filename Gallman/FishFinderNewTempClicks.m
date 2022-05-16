@@ -452,25 +452,16 @@ figure(487); clf; hold on;
 linkaxes(ax, 'x');
 %% threshold for in-tube data
 
-hitube1idx = find(hitube1amp > hifishthresh);
-hitube2idx = find(hitube2amp > hifishthresh);
+hiidx = find(HiAmp > hifishthresh);
+loidx = find(LoAmp > lofishthresh);
 
-%make better variables to play with
-%time
-hitube1tim = [out([out.hitube]==1).timcont]/3600;
-hitube2tim = [out([out.hitube]==2).timcont]/3600;
-lotube1tim = [out([out.lotube]==1).timcont]/3600;
-lotube2tim = [out([out.lotube]==2).timcont]/3600;
-%amp
-hitube1amp = [out([out.hitube]==1).hiamp];
-hitube2amp = [out([out.hitube]==2).hiamp];
-lotube1amp = [out([out.lotube]==1).loamp];
-lotube2amp = [out([out.lotube]==2).loamp];
-%freq
-hitube1freq = [out([out.hitube]==1).hifreq];
-hitube2freq = [out([out.hitube]==2).hifreq];
-lotube1freq = [out([out.lotube]==1).lofreq];
-lotube2freq = [out([out.lotube]==2).lofreq];
+HiAmp = HiAmp(hiidx);
+HiTim = HiTim(hiidx);
+HiFreq = HiFreq(hiidx);
+
+LoAmp = LoAmp(loidx);
+LoTim = LoTim(loidx);
+LoFreq = LoFreq(loidx);
 %% save into output structure
 %hi freq fish
 % out.HiAmp = HiAmp;
