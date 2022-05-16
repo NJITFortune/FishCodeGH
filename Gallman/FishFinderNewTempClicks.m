@@ -25,11 +25,6 @@ hitube2freq = [out([out.hitube]==2).hifreq];
 lotube1freq = [out([out.lotube]==1).lofreq];
 lotube2freq = [out([out.lotube]==2).lofreq];
 
-%% remove low amplitude (not in tube) data
-
-%high frequency fish plot
-
-
         
 %% filter by fish frequency
 %hifreq
@@ -437,12 +432,15 @@ linkaxes(ax, 'x');
 
 
 %% plot for final check
+hifishthresh = 0.05;
+lofishthresh = 0.2;
 figure(487); clf; hold on;
 % 
     ax(1) = subplot(311); title('high freq fish'); hold on; %ylim([0,3]);
             plot(HiTim, HiAmp, 'bo');
             plot(LoTim, LoAmp, 'mo');
-            yline(hifishthresh)
+            yline(hifishthresh, 'b-');
+            yline(lowfishtresh, 'm-');
             
            
     ax(2) = subplot(312); title('low freq fish'); hold on; %ylim([0,3]);
