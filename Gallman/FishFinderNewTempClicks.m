@@ -162,7 +162,7 @@ figure(452); clf; hold on;
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
-            
+            yline(hifishthresh)
 
             
     ax(2) = subplot(512); title('low frequency fish'); hold on; %ylim([0,3]);
