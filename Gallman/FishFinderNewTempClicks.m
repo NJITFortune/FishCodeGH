@@ -154,7 +154,7 @@ clear lotube2freqff;
 hifishthresh = 0.05;
 lofishthresh = 0.2;
 
-hiloidx = find(hitube2timff > 226 & hitube2timff <263);
+hiloidx = find(hitube2timff > 226 & hitube2timff < 263);
 
 figure(452); clf; hold on;
 
