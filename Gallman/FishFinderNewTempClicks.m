@@ -170,7 +170,7 @@ figure(452); clf; hold on;
             %raw amp
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
-            plot(hitube2timff(hiloidx), hitube2ampff(hiloidx), 'mo');
+            plot(hitube2timff(hiloidx), hitube2ampff(hiloidx), 'k.');
             yline(lofishthresh);
             
                      
