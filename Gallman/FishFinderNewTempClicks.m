@@ -155,6 +155,10 @@ clear lotube2freqff;
     close(figure(1));
 
 %% plot to check frequency filtering
+%threshold for in-tube data
+hifishthresh = 0.05;
+lofishthresh = 0.05;
+
 figure(452); clf; hold on;
 
 
@@ -162,13 +166,14 @@ figure(452); clf; hold on;
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
-            yline(hifishthresh)
+            yline(hifishthresh);
 
             
     ax(2) = subplot(512); title('low frequency fish'); hold on; %ylim([0,3]);
             %raw amp
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
+            yline(lofishthresh);
             
                      
     ax(3) = subplot(513); title('combined chunks'); hold on; %ylim([300, 700]);
