@@ -156,7 +156,7 @@ clear lotube2freqff;
 
 %% plot to check frequency filtering
 %threshold for in-tube data
-hifishthresh = 0.05;
+hifishthresh = 0.2;
 lofishthresh = 0.05;
 
 figure(452); clf; hold on;
