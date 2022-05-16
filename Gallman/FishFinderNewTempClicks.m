@@ -200,8 +200,26 @@ figure(452); clf; hold on;
 linkaxes(ax, 'x');
 
 %% threshold for in-tube data
-hifishthresh = 0.05;
-lofishthresh = 0.05;
+
+hitube1idx = find(hitube1amp > hifishthresh);
+hitube2idx = find(hitube2amp > hifishthresh);
+
+%make better variables to play with
+%time
+hitube1tim = [out([out.hitube]==1).timcont]/3600;
+hitube2tim = [out([out.hitube]==2).timcont]/3600;
+lotube1tim = [out([out.lotube]==1).timcont]/3600;
+lotube2tim = [out([out.lotube]==2).timcont]/3600;
+%amp
+hitube1amp = [out([out.hitube]==1).hiamp];
+hitube2amp = [out([out.hitube]==2).hiamp];
+lotube1amp = [out([out.lotube]==1).loamp];
+lotube2amp = [out([out.lotube]==2).loamp];
+%freq
+hitube1freq = [out([out.hitube]==1).hifreq];
+hitube2freq = [out([out.hitube]==2).hifreq];
+lotube1freq = [out([out.lotube]==1).lofreq];
+lotube2freq = [out([out.lotube]==2).lofreq];
 
 %% HIGH FREQUENCY FISH chunking for calibration
 
