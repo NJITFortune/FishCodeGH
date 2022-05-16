@@ -194,6 +194,10 @@ figure(452); clf; hold on;
 
 linkaxes(ax, 'x');
 
+%% threshold for in-tube data
+hifishthresh = 0.05;
+lofishthresh = 0.05;
+
 %% HIGH FREQUENCY FISH chunking for calibration
 
 %chunk 1 = tim >= 40 & tim < 200
