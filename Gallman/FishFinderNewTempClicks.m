@@ -432,7 +432,7 @@ linkaxes(ax, 'x');
 
 %% plot for final check
 hifishthresh = 0.05;
-lofishthresh = 0.15;
+lofishthresh = 0.2;
 figure(487); clf; hold on;
 % 
     ax(1) = subplot(311); title('high freq fish'); hold on; %ylim([0,3]);
