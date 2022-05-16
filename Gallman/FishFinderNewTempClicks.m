@@ -355,6 +355,7 @@ linkaxes(ax, 'x');
         for j = 1:length(lofishchunk1idx)
             lotube2ampchunk1(j) = lotube2ampff((j));
             lotube2timchunk1(j) = lotube2timff((j));
+            
         end
 %%
     %tube2
@@ -397,8 +398,8 @@ clear LoTim;
 
 
 %combine chunks   
-LoAmp = [lotube1ampchunk1, lotube2ampff];%, lotube1ampchunk2, lotube1ampchunk3];
-LoTim = [lotube1timchunk1, lotube2timff];%, lotube1timchunk2, lotube1timchunk3];
+LoAmp = [lotube1ampchunk1, lotube2ampchunk1, lotube2ampchunk2, lotube2ampchunk3, lotube2ampchunk4];%, lotube1ampchunk2, lotube1ampchunk3];
+LoTim = [lotube1timchunk1, lotube2timchunk1, lotube2timchunk2, lotube2timchunk3, lotube2timchunk4];%, lotube1timchunk2, lotube1timchunk3];
 LoFreq = [lotube1freqff, lotube2freqff];
 
 
