@@ -287,8 +287,8 @@ clear HiTim;
 % HiAmp = [hitube1ampchunk1, hitube1ampchunk2, hitube1ampchunk3, hitube1ampchunk4, hitube2ampff];
 % HiTim = [hitube1timchunk1, hitube1timchunk2, hitube1timchunk3, hitube1timchunk4, hitube2timff];
 % HiFreq = [hitube1freqff, hitube2freqff];
-HiAmp = [hitube1ampff, hitube2ampchunk1];
-HiTim = [hitube1timff, hitube2timchunk1];
+HiAmp = [hitube1ampff, hitube2ampff];
+HiTim = [hitube1timff, hitube2timff];
 HiFreq = [hitube1freqff, hitube2freqff];
 
 %% plot
@@ -385,7 +385,7 @@ linkaxes(ax, 'x');
     clear lofishchunk3idx;
     clear lotube2ampchunk3;
     clear lotube2timchunk3;
-    lofishchunk4idx = find(lotube2timff >= 263 );
+    lofishchunk4idx = find(lotube2timff >= 226 );
     
         for j = 1:length(lofishchunk4idx)
             lotube2ampchunk4(j) = lotube2ampff(lofishchunk4idx(j))/1.2;
@@ -438,8 +438,8 @@ figure(487); clf; hold on;
     ax(1) = subplot(311); title('high freq fish'); hold on; %ylim([0,3]);
             plot(HiTim, HiAmp, 'bo');
             plot(LoTim, LoAmp, 'mo');
-            yline(hifishthresh, 'b-');
-            yline(lowfishtresh, 'm-');
+            yline(hifishthresh, 'k-');
+            yline(lofishthresh, 'k-');
             
            
     ax(2) = subplot(312); title('low freq fish'); hold on; %ylim([0,3]);
