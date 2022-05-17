@@ -372,7 +372,7 @@ linkaxes(ax, 'x');
     clear lofishchunk3idx;
     clear lotube2ampchunk3;
     clear lotube2timchunk3;
-    lofishchunk3idx = find(lotube2timff >= 220.49 );
+    lofishchunk3idx = find(lotube2timff >= 220.49 & lotube2timff < 301);
     
         for j = 1:length(lofishchunk3idx)
             lotube2ampchunk3(j) = lotube2ampff(lofishchunk3idx(j))*4;
