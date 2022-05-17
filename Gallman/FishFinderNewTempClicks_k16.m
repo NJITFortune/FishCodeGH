@@ -460,22 +460,22 @@ linkaxes(ax, 'x');
 
 %% plot for final check
 hifishthresh = 0.4;
-lofishthresh = 0.5;
+lofishthresh = 3.5;
 figure(487); clf; hold on;
 % 
     ax(1) = subplot(311); title('high freq fish'); hold on; %ylim([0,3]);
-            plot(HiTim, HiAmp, 'bo');
-           % plot(LoTim, LoAmp, 'mo');
-            yline(hifishthresh, 'k-');
+           % plot(HiTim, HiAmp, 'bo');
+            plot(LoTim, LoAmp, 'mo');
+            %yline(hifishthresh, 'k-');
             yline(lofishthresh, 'k-');
             
            
     ax(2) = subplot(312); title('low freq fish'); hold on; %ylim([0,3]);
-            plot(HiTim, HiFreq, 'bo');
+           % plot(HiTim, HiFreq, 'bo');
             plot(LoTim, LoFreq, 'mo');
 
     ax(3) = subplot(313); title('light cycle'); hold on;
-            plot([out.timcont]/3600, [out.light]);
+            plot([out(1).s.timcont]/3600, [out(1).s.light]);
             
 linkaxes(ax, 'x');
 %% threshold for in-tube data
