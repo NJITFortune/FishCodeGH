@@ -429,8 +429,8 @@ clear LoFreq;
 
 
 %combine chunks   
-LoAmp = [lotube1ampchunk1, lotube2ampchunk1, lotube2ampchunk2, lotube2ampchunk3];%, lotube1ampchunk2, lotube1ampchunk3];
-LoTim = [lotube1timff,  lotube2timchunk1, lotube2timchunk2, lotube2timchunk3];%, lotube1timchunk2, lotube1timchunk3];
+LoAmp = [lotube1ampchunk1, lotube1ampchunk5, lotube2ampchunk1, lotube2ampchunk2];%, lotube1ampchunk2, lotube1ampchunk3];
+LoTim = [lotube1timchunk1, lotube1timchunk5,  lotube2timchunk1, lotube2timchunk2];%, lotube1timchunk2, lotube1timchunk3];
 LoFreq = [lotube1freqff, lotube2freqff];
 
 
