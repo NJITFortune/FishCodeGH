@@ -498,11 +498,11 @@ LoFreq = LoFreq(loidx);
 % out.LoTim = LoTim;
 
 
-% for j = 1:length(HiAmp)
-%     fish.his(j).HiAmp(:) = HiAmp(j);
-%     fish.his(j).HiTim(:) = HiTim(j);
-%     fish.his(j).HiFreq(:) = HiFreq(j);
-% end
+for j = 1:length(HiAmp)
+    fish.his(j).HiAmp(:) = [];
+    fish.his(j).HiTim(:) = [];
+    fish.his(j).HiFreq(:) = [];
+end
 
 %lo freq fish
 for j = 1:length(LoAmp)
