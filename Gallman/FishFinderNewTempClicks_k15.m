@@ -462,7 +462,7 @@ linkaxes(ax, 'x');
 
 
 %% plot for final check
-hifishthresh = 0.05;
+hifishthresh = 0.4;
 lofishthresh = 0.5;
 figure(487); clf; hold on;
 % 
