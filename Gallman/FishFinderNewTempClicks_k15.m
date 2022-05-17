@@ -376,7 +376,7 @@ linkaxes(ax, 'x');
     
         for j = 1:length(lofishchunk3idx)
             lotube2ampchunk3(j) = lotube2ampff(lofishchunk3idx(j))*2.5;
-            lotube2timchunk4(j) = lotube2timff(lofishchunk3idx(j));
+            lotube2timchunk3(j) = lotube2timff(lofishchunk3idx(j));
         end
 %%
      %tube2
