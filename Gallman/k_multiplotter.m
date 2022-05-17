@@ -10,15 +10,11 @@ function k_multiplotter(out)
 
 % If we have removed outliers via KatieRemover, get the indices... 
     if isfield(out, 'idx')
-        if ~isfield(out.idx.Hiidx)
-            tthi = [out.idx.Hiidx]; % tthi is indices for HiAmp
-        end
-        if ~isempty(out.idx.Loidx)
+        if ~isempty(out.idx)
+           % tthi = [out.idx.Hiidx]; % tthi is indices for HiAmp
             ttlo = [out.idx.Loidx]; % ttlo is indices for LoAmp
         end
     end
-
-     ttlo = [out.idx.Loidx]; % ttlo is indices for LoAmp
 
 % figure(1); clf; plot(tthi);
 % colors
