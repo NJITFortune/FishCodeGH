@@ -154,7 +154,6 @@ clear lotube2freqff;
 hifishthresh = 0.05;
 lofishthresh = 0.15;
 
-hiloidx = find(hitube2timff > 226 & hitube2timff < 263);
 
 figure(452); clf; hold on;
 
@@ -170,7 +169,7 @@ figure(452); clf; hold on;
             %raw amp
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
-            plot(hitube2timff(hiloidx), hitube2ampff(hiloidx), 'k.');
+           
             yline(lofishthresh);
             
                      
