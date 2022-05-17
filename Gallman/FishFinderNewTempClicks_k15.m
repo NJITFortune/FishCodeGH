@@ -222,7 +222,7 @@ linkaxes(ax, 'x');
  hifishchunk2idx = find(hitube2timff >= 139 & hitube2timff < 253);
 %     
         for j = 1:length(hifishchunk2idx)
-            hitube2ampchunk2(j) = hitube2ampff( hifishchunk2idx(j))*1.7;
+            hitube2ampchunk2(j) = hitube2ampff( hifishchunk2idx(j))*1.6;
             hitube2timchunk2(j) = hitube2timff( hifishchunk2idx(j));
 
         end
@@ -235,7 +235,7 @@ linkaxes(ax, 'x');
  hifishchunk3idx = find(hitube2timff >= 235);
 %     
         for j = 1:length(hifishchunk3idx)
-            hitube2ampchunk3(j) = hitube2ampff( hifishchunk3idx(j))*3;
+            hitube2ampchunk3(j) = hitube2ampff( hifishchunk3idx(j))*6;
             hitube2timchunk3(j) = hitube2timff( hifishchunk3idx(j));
 
         end
@@ -247,7 +247,7 @@ linkaxes(ax, 'x');
  hifishchunk2idx = find(hitube1timff);
 %     
         for j = 1:length(hifishchunk2idx)
-            hitube1ampchunk2(j) = hitube1ampff(hifishchunk2idx(j))*1.5;
+            hitube1ampchunk2(j) = hitube1ampff(hifishchunk2idx(j))*1.4;
             hitube1timchunk2(j) = hitube1timff(hifishchunk2idx(j));
 
         end
