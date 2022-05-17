@@ -284,7 +284,7 @@ clear HiAmp;
 clear HiTim;
 
  HiAmp = [hitube1ampff, hitube2ampchunk1];
-HiTim = [hitube1timff,hitube1timchunk2,hitube1timchunk4, hitube2timchunk1, hitube2timchunk2, hitube2timchunk3];
+HiTim = [hitube1timff, hitube2timchunk1];
 % HiFreq = [hitube1freqff, hitube2freqff];
 %HiAmp = [hitube1ampff, hitube2ampff];
 %HiTim = [hitube1timff, hitube2timff];
@@ -349,10 +349,10 @@ linkaxes(ax, 'x');
 
    
 
-    lofishchunk1idx = find(lotube2timff < 325);
+    lofishchunk1idx = find(lotube2timff < 233);
     
         for j = 1:length(lofishchunk1idx)
-            lotube2ampchunk1(j) = lotube2ampff(lofishchunk1idx(j));
+            lotube2ampchunk1(j) = lotube2ampff(lofishchunk1idx(j))*4;
             lotube2timchunk1(j) = lotube2timff(lofishchunk1idx(j));
             
         end
@@ -361,10 +361,10 @@ linkaxes(ax, 'x');
     clear lofishchunk2idx;
     clear lotube2ampchunk2;
     clear lotube2timchunk2;
-    lofishchunk2idx = find(lotube2timff >= 325 & lotube2timff<399);
+    lofishchunk2idx = find(lotube2timff >= 233);
     
         for j = 1:length(lofishchunk2idx)
-            lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j))*2.3;
+            lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j));
             lotube2timchunk2(j) = lotube2timff(lofishchunk2idx(j));
         end
  %%       
@@ -440,9 +440,9 @@ LoFreq = [lotube1freqff, lotube2freqff];
     ax(1) = subplot(311); title('low freq fish'); hold on; %ylim([0,1]);
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
-             plot(lotube2timchunk1, lotube2ampchunk1, 'ko');        
-                plot(lotube2timchunk2, lotube2ampchunk2, 'ko');
-               plot(lotube2timchunk3, lotube2ampchunk3, 'ko');
+              plot(lotube2timchunk1, lotube2ampchunk1, 'ko');        
+%                 plot(lotube2timchunk2, lotube2ampchunk2, 'ko');
+%                plot(lotube2timchunk3, lotube2ampchunk3, 'ko');
 %               plot(lotube2timchunk4, lotube2ampchunk4, 'ko');
 %                plot(lotube1timchunk5, lotube1ampchunk5, 'ko');
 %                 plot(lotube1timchunk6, lotube1ampchunk6, 'ko');
