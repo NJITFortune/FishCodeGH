@@ -349,10 +349,10 @@ linkaxes(ax, 'x');
 
    
 
-    lofishchunk1idx = find(lotube2timff < 157);
+    lofishchunk1idx = find(lotube2timff < 325);
     
         for j = 1:length(lofishchunk1idx)
-            lotube2ampchunk1(j) = lotube2ampff(lofishchunk1idx(j))/1.3;
+            lotube2ampchunk1(j) = lotube2ampff(lofishchunk1idx(j));
             lotube2timchunk1(j) = lotube2timff(lofishchunk1idx(j));
             
         end
@@ -361,10 +361,10 @@ linkaxes(ax, 'x');
     clear lofishchunk2idx;
     clear lotube2ampchunk2;
     clear lotube2timchunk2;
-    lofishchunk2idx = find(lotube2timff >= 157 & lotube2timff<220.49);
+    lofishchunk2idx = find(lotube2timff >= 325 & lotube2timff<399);
     
         for j = 1:length(lofishchunk2idx)
-            lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j))*1.6;
+            lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j))*2.3;
             lotube2timchunk2(j) = lotube2timff(lofishchunk2idx(j));
         end
  %%       
@@ -372,10 +372,10 @@ linkaxes(ax, 'x');
     clear lofishchunk3idx;
     clear lotube2ampchunk3;
     clear lotube2timchunk3;
-    lofishchunk3idx = find(lotube2timff >= 220.49 & lotube2timff < 301);
+    lofishchunk3idx = find(lotube2timff >= 399);
     
         for j = 1:length(lofishchunk3idx)
-            lotube2ampchunk3(j) = lotube2ampff(lofishchunk3idx(j))*4;
+            lotube2ampchunk3(j) = lotube2ampff(lofishchunk3idx(j));
             lotube2timchunk3(j) = lotube2timff(lofishchunk3idx(j));
         end
 %%
@@ -425,11 +425,12 @@ linkaxes(ax, 'x');
  %%
 clear LoAmp;
 clear LoTim;
+clear LoFreq;
 
 
 %combine chunks   
-LoAmp = [lotube1ampchunk1, lotube1ampchunk5,lotube1ampchunk6, lotube2ampchunk1, lotube2ampchunk2, lotube2ampchunk3, lotube2ampchunk4];%, lotube1ampchunk2, lotube1ampchunk3];
-LoTim = [lotube1timchunk1, lotube1timchunk5, lotube1timchunk6, lotube2timchunk1, lotube2timchunk2, lotube2timchunk3, lotube2timchunk4];%, lotube1timchunk2, lotube1timchunk3];
+LoAmp = [lotube1ampff, lotube2ampchunk1, lotube2ampchunk2, lotube2ampchunk3];%, lotube1ampchunk2, lotube1ampchunk3];
+LoTim = [lotube1timff,  lotube2timchunk1, lotube2timchunk2, lotube2timchunk3];%, lotube1timchunk2, lotube1timchunk3];
 LoFreq = [lotube1freqff, lotube2freqff];
 
 
@@ -439,10 +440,9 @@ LoFreq = [lotube1freqff, lotube2freqff];
     ax(1) = subplot(311); title('low freq fish'); hold on; %ylim([0,1]);
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
-%              plot(lotube2timchunk1, lotube2ampchunk1, 'ko');
-% %          
-%                plot(lotube2timchunk2, lotube2ampchunk2, 'ko');
-%               plot(lotube2timchunk3, lotube2ampchunk3, 'ko');
+             plot(lotube2timchunk1, lotube2ampchunk1, 'ko');        
+                plot(lotube2timchunk2, lotube2ampchunk2, 'ko');
+               plot(lotube2timchunk3, lotube2ampchunk3, 'ko');
 %               plot(lotube2timchunk4, lotube2ampchunk4, 'ko');
 %                plot(lotube1timchunk5, lotube1ampchunk5, 'ko');
 %                 plot(lotube1timchunk6, lotube1ampchunk6, 'ko');
@@ -454,7 +454,7 @@ LoFreq = [lotube1freqff, lotube2freqff];
     ax(2) = subplot(312); title('low freq fish'); hold on; %ylim([0,3]);
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
-           % plot(LoTim, LoAmp, 'k.');
+            plot(LoTim, LoAmp, 'k.');
     ax(3) = subplot(313); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
             
@@ -463,13 +463,13 @@ linkaxes(ax, 'x');
 
 %% plot for final check
 hifishthresh = 0.4;
-lofishthresh = 0.5;
+lofishthresh = 0.3;
 figure(487); clf; hold on;
 % 
     ax(1) = subplot(311); title('high freq fish'); hold on; %ylim([0,3]);
-            plot(HiTim, HiAmp, 'bo');
-           % plot(LoTim, LoAmp, 'mo');
-            yline(hifishthresh, 'k-');
+           % plot(HiTim, HiAmp, 'bo');
+            plot(LoTim, LoAmp, 'mo');
+           % yline(hifishthresh, 'k-');
             yline(lofishthresh, 'k-');
             
            
