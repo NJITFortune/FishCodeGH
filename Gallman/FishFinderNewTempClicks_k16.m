@@ -157,8 +157,8 @@ figure(452); clf; hold on;
 
     ax(1) = subplot(511); title('high frequency fish'); hold on; %ylim([0,2]);
             %raw amp
-            plot(hitube1timff, hitube1ampff, 'bo');
-            plot(hitube2timff, hitube2ampff, 'mo');
+%             plot(hitube1timff, hitube1ampff, 'bo');
+%             plot(hitube2timff, hitube2ampff, 'mo');
             yline(hifishthresh);
 
             
@@ -171,11 +171,11 @@ figure(452); clf; hold on;
             
                      
     ax(3) = subplot(513); title('combined chunks'); hold on; %ylim([300, 700]);
-           plot(hitube1tim, hitube1freq, 'k.');
-          plot(hitube1timff, hitube1freqff,'b.'); 
-
-            plot(hitube2tim, hitube2freq, 'k.');
-         plot(hitube2timff, hitube2freqff,'b.'); 
+%            plot(hitube1tim, hitube1freq, 'k.');
+%           plot(hitube1timff, hitube1freqff,'b.'); 
+% 
+%             plot(hitube2tim, hitube2freq, 'k.');
+%          plot(hitube2timff, hitube2freqff,'b.'); 
 
             plot(lotube1tim, lotube1freq, 'k.');
          plot(lotube1timff, lotube1freqff,'m.'); 
