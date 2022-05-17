@@ -149,7 +149,7 @@ clear lotube2freqff;
 %% plot to check frequency filtering
 %threshold for in-tube data
 hifishthresh = 0.05;
-lofishthresh = 0.15;
+lofishthresh = 2;
 
 
 figure(452); clf; hold on;
@@ -188,7 +188,7 @@ figure(452); clf; hold on;
             
 
     ax(5) = subplot(515); title('light cycle'); hold on;
-            plot([out(1).timcont]/3600, [out(1).s.light]);
+            plot([out(1).s.timcont]/3600, [out(1).s.light]);
             
 
 linkaxes(ax, 'x');
@@ -346,10 +346,10 @@ linkaxes(ax, 'x');
 
    
 
-    lofishchunk1idx = find(lotube2timff < 157);
+    lofishchunk1idx = find(lotube2timff < 107.5);
     
         for j = 1:length(lofishchunk1idx)
-            lotube2ampchunk1(j) = lotube2ampff(lofishchunk1idx(j))/1.3;
+            lotube2ampchunk1(j) = lotube2ampff(lofishchunk1idx(j))*1.6;
             lotube2timchunk1(j) = lotube2timff(lofishchunk1idx(j));
             
         end
@@ -436,14 +436,14 @@ LoFreq = [lotube1freqff, lotube2freqff];
     ax(1) = subplot(311); title('low freq fish'); hold on; %ylim([0,1]);
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
-             plot(lotube2timchunk1, lotube2ampchunk1, 'ko');
-%          
-               plot(lotube2timchunk2, lotube2ampchunk2, 'ko');
-              plot(lotube2timchunk3, lotube2ampchunk3, 'ko');
-              plot(lotube2timchunk4, lotube2ampchunk4, 'ko');
-               plot(lotube1timchunk5, lotube1ampchunk5, 'ko');
-                plot(lotube1timchunk6, lotube1ampchunk6, 'ko');
-             plot(lotube1timchunk1, lotube1ampchunk1, 'ko');
+              plot(lotube2timchunk1, lotube2ampchunk1, 'ko');
+% %          
+%                plot(lotube2timchunk2, lotube2ampchunk2, 'ko');
+%               plot(lotube2timchunk3, lotube2ampchunk3, 'ko');
+%               plot(lotube2timchunk4, lotube2ampchunk4, 'ko');
+%                plot(lotube1timchunk5, lotube1ampchunk5, 'ko');
+%                 plot(lotube1timchunk6, lotube1ampchunk6, 'ko');
+%              plot(lotube1timchunk1, lotube1ampchunk1, 'ko');
 %              plot(lotube1timchunk2, lotube1ampchunk2, 'ko');
 %              plot(lotube1timchunk3, lotube1ampchunk3, 'ko');
 %             
@@ -451,9 +451,9 @@ LoFreq = [lotube1freqff, lotube2freqff];
     ax(2) = subplot(312); title('low freq fish'); hold on; %ylim([0,3]);
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
-            plot(LoTim, LoAmp, 'k.');
+          %  plot(LoTim, LoAmp, 'k.');
     ax(3) = subplot(313); title('light cycle'); hold on;
-            plot([out.timcont]/3600, [out.light]);
+            plot([out(1).s.timcont]/3600, [out(1).s.light]);
             
 linkaxes(ax, 'x');
 
