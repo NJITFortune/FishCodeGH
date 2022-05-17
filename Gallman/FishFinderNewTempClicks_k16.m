@@ -279,6 +279,7 @@ linkaxes(ax, 'x');
 %%
 clear HiAmp;
 clear HiTim;
+clear HiFreq;
 
  HiAmp = [hitube1ampff, hitube2ampchunk1, hitube2ampchunk2, hitube2ampchunk3, hitube2ampchunk4];
 HiTim = [hitube1timff, hitube2timchunk1, hitube2timchunk2, hitube2timchunk3, hitube2timchunk4];
