@@ -271,10 +271,10 @@ linkaxes(ax, 'x');
     clear hitube1timchunk4;
 
 
- hifishchunk4idx = find(hitube1timff > 147);
+ hifishchunk4idx = find(hitube1timff >= 245);
 %     
         for j = 1:length(hifishchunk4idx)
-            hitube1ampchunk4(j) = hitube1ampff(hifishchunk4idx(j))*2.3;
+            hitube1ampchunk4(j) = hitube1ampff(hifishchunk4idx(j));
             hitube1timchunk4(j) = hitube1timff(hifishchunk4idx(j));
 
         end
@@ -283,8 +283,8 @@ linkaxes(ax, 'x');
 clear HiAmp;
 clear HiTim;
 
- HiAmp = [hitube1ampff, hitube2ampchunk1, hitube2ampchunk2, hitube2ampchunk3, hitube2ampchunk4];
-HiTim = [hitube1timff, hitube2timchunk1, hitube2timchunk2, hitube2timchunk3, hitube2timchunk4];
+ HiAmp = [hitube1ampchunk1,hitube1ampchunk2,hitube1ampchunk4, hitube2ampchunk1, hitube2ampchunk2, hitube2ampchunk3];
+HiTim = [hitube1timchunk1,hitube1timchunk2,hitube1timchunk4, hitube2timchunk1, hitube2timchunk2, hitube2timchunk3];
 % HiFreq = [hitube1freqff, hitube2freqff];
 %HiAmp = [hitube1ampff, hitube2ampff];
 %HiTim = [hitube1timff, hitube2timff];
@@ -318,7 +318,7 @@ figure(453); clf; hold on;
             
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
-         %   plot(hitube2timff, hitube2ampff, 'mo');
+            plot(hitube2timff, hitube2ampff, 'mo');
             %adjusted tube 2
 %             plot(hitube2timchunk1, hitube2ampchunk1, 'ko');
 %             plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
