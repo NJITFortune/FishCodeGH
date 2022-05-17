@@ -429,8 +429,8 @@ clear LoFreq;
 
 
 %combine chunks   
-LoAmp = [lotube1ampchunk1, lotube2ampchunk1, lotube2ampchunk2, lotube2ampchunk3];%, lotube1ampchunk2, lotube1ampchunk3];
-LoTim = [lotube1timff,  lotube2timchunk1, lotube2timchunk2, lotube2timchunk3];%, lotube1timchunk2, lotube1timchunk3];
+LoAmp = [lotube1ampchunk1, lotube1ampchunk5, lotube2ampchunk1, lotube2ampchunk2];%, lotube1ampchunk2, lotube1ampchunk3];
+LoTim = [lotube1timchunk1, lotube1timchunk5,  lotube2timchunk1, lotube2timchunk2];%, lotube1timchunk2, lotube1timchunk3];
 LoFreq = [lotube1freqff, lotube2freqff];
 
 
@@ -447,7 +447,7 @@ LoFreq = [lotube1freqff, lotube2freqff];
 %                plot(lotube1timchunk5, lotube1ampchunk5, 'ko');
 %                 plot(lotube1timchunk6, lotube1ampchunk6, 'ko');
              plot(lotube1timchunk1, lotube1ampchunk1, 'ko');
-              plot(lotube1timchunk2, lotube1ampchunk2, 'ko');
+              plot(lotube1timchunk5, lotube1ampchunk5, 'ko');
 %              plot(lotube1timchunk3, lotube1ampchunk3, 'ko');
 %             
            
@@ -462,14 +462,14 @@ linkaxes(ax, 'x');
 
 
 %% plot for final check
-hifishthresh = 0.4;
-lofishthresh = 0.3;
+hifishthresh = 0.13;
+lofishthresh = 0;
 figure(487); clf; hold on;
 % 
     ax(1) = subplot(311); title('high freq fish'); hold on; %ylim([0,3]);
-            plot(HiTim, HiAmp, 'bo');
+           % plot(HiTim, HiAmp, 'bo');
             plot(LoTim, LoAmp, 'mo');
-           % yline(hifishthresh, 'k-');
+            %yline(hifishthresh, 'k-');
             yline(lofishthresh, 'k-');
             
            
