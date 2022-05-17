@@ -358,33 +358,33 @@ linkaxes(ax, 'x');
     clear lofishchunk2idx;
     clear lotube2ampchunk2;
     clear lotube2timchunk2;
-    lofishchunk2idx = find(lotube2timff >= 157 & lotube2timff<220.49);
+    lofishchunk2idx = find(lotube2timff >= 107.5);
     
         for j = 1:length(lofishchunk2idx)
-            lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j))*1.6;
+            lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j));
             lotube2timchunk2(j) = lotube2timff(lofishchunk2idx(j));
         end
  %%       
  %tube2
     clear lofishchunk3idx;
-    clear lotube2ampchunk3;
-    clear lotube2timchunk3;
-    lofishchunk3idx = find(lotube2timff >= 220.49 & lotube2timff < 301);
+    clear lotube1ampchunk1;
+    clear lotube1timchunk1;
+    lofishchunk1idx = find(lotube1timff < 86);
     
-        for j = 1:length(lofishchunk3idx)
-            lotube2ampchunk3(j) = lotube2ampff(lofishchunk3idx(j))*4;
-            lotube2timchunk3(j) = lotube2timff(lofishchunk3idx(j));
+        for j = 1:length(lofishchunk1idx)
+            lotube1ampchunk1(j) = lotube1ampff(lofishchunk1idx(j))*1.7;
+            lotube1timchunk1(j) = lotube1timff(lofishchunk1idx(j));
         end
 %%
      %tube2
-    clear lofishchunk4idx;
-    clear lotube2ampchunk4;
+    clear lofishchunk2idx;
+    clear lotube1ampchunk4;
     clear lotube2timchunk4;
-    lofishchunk4idx = find(lotube2timff >= 301);
+    lofishchunk2idx = find(lotube1timff >= 86);
     
-        for j = 1:length(lofishchunk4idx)
-            lotube2ampchunk4(j) = lotube2ampff(lofishchunk4idx(j))*2.4;
-            lotube2timchunk4(j) = lotube2timff(lofishchunk4idx(j));
+        for j = 1:length(lofishchunk2idx)
+            lotube1ampchunk2(j) = lotube1ampff(lofishchunk2idx(j));
+            lotube1timchunk2(j) = lotube1timff(lofishchunk2idx(j));
         end
         %%
          %tube1
@@ -438,13 +438,13 @@ LoFreq = [lotube1freqff, lotube2freqff];
             plot(lotube2timff, lotube2ampff, 'mo');
               plot(lotube2timchunk1, lotube2ampchunk1, 'ko');
 % %          
-%                plot(lotube2timchunk2, lotube2ampchunk2, 'ko');
+                plot(lotube2timchunk2, lotube2ampchunk2, 'ko');
 %               plot(lotube2timchunk3, lotube2ampchunk3, 'ko');
 %               plot(lotube2timchunk4, lotube2ampchunk4, 'ko');
 %                plot(lotube1timchunk5, lotube1ampchunk5, 'ko');
 %                 plot(lotube1timchunk6, lotube1ampchunk6, 'ko');
-%              plot(lotube1timchunk1, lotube1ampchunk1, 'ko');
-%              plot(lotube1timchunk2, lotube1ampchunk2, 'ko');
+             plot(lotube1timchunk1, lotube1ampchunk1, 'ko');
+              plot(lotube1timchunk2, lotube1ampchunk2, 'ko');
 %              plot(lotube1timchunk3, lotube1ampchunk3, 'ko');
 %             
            
