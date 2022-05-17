@@ -422,6 +422,7 @@ linkaxes(ax, 'x');
  %%
 clear LoAmp;
 clear LoTim;
+clear LoFreq;
 
 
 %combine chunks   
