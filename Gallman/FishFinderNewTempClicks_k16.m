@@ -499,7 +499,7 @@ LoFreq = LoFreq(loidx);
 % out.LoTim = LoTim;
 
 
-for j = 1:length(HiAmp)
+for j = 1:length(LoAmp)
     fish.his(j).HiAmp(:) = [];
     fish.his(j).HiTim(:) = [];
     fish.his(j).HiFreq(:) = [];
