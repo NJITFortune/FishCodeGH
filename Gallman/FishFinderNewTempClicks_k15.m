@@ -468,9 +468,9 @@ figure(487); clf; hold on;
 % 
     ax(1) = subplot(311); title('high freq fish'); hold on; %ylim([0,3]);
             plot(HiTim, HiAmp, 'bo');
-            plot(LoTim, LoAmp, 'mo');
-           % yline(hifishthresh, 'k-');
-            yline(lofishthresh, 'k-');
+            %plot(LoTim, LoAmp, 'mo');
+            yline(hifishthresh, 'k-');
+            %yline(lofishthresh, 'k-');
             
            
     ax(2) = subplot(312); title('low freq fish'); hold on; %ylim([0,3]);
