@@ -188,7 +188,7 @@ figure(452); clf; hold on;
             
 
     ax(5) = subplot(515); title('light cycle'); hold on;
-            plot([out(1).timcont]/3600, [out(1).s.light]);
+            plot([out(1).s.timcont]/3600, [out(1).s.light]);
             
 
 linkaxes(ax, 'x');
