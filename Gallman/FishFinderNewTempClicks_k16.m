@@ -184,11 +184,11 @@ figure(452); clf; hold on;
             plot(lotube2timff, lotube2freqff,'r.'); 
     
     ax(4) = subplot(514); title('temperature'); hold on;
-            plot([out.s.timcont]/3600, [out.s.temp]);
+            plot([out(1).s.timcont]/3600, [out(1).s.temp]);
             
 
     ax(5) = subplot(515); title('light cycle'); hold on;
-            plot([out.timcont]/3600, [out.light]);
+            plot([out(1).timcont]/3600, [out(1).s.light]);
             
 
 linkaxes(ax, 'x');
