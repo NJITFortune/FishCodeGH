@@ -35,7 +35,7 @@ figure(66); clf; title('By fish'); hold on;
         
 
     axs(2) = subplot(512); hold on; title('Low frequency fish');
-        plot([out.fish.los.LoTim], [out.fish.los.LoAmp], 'k.');
+      %  plot([out.fish.los.LoTim], [out.fish.los.LoAmp], 'k.');
         plot([out.fish.los(ttlo).LoTim], [out.fish.los(ttlo).LoAmp], '.','Color', orange);
    
 
