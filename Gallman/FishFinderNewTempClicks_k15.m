@@ -405,10 +405,10 @@ linkaxes(ax, 'x');
     clear lofishchunk5idx;
     clear lotube1ampchunk5;
     clear lotube1timchunk5;
-    lofishchunk5idx = find(lotube1timff >= 305 & lotube1timff < 349.4);
+    lofishchunk5idx = find(lotube1timff >= 233);
     
         for j = 1:length(lofishchunk5idx)
-            lotube1ampchunk5(j) = lotube1ampff(lofishchunk5idx(j))/2;
+            lotube1ampchunk5(j) = lotube1ampff(lofishchunk5idx(j));
             lotube1timchunk5(j) = lotube1timff(lofishchunk5idx(j));
         end
  %%
@@ -429,7 +429,7 @@ clear LoFreq;
 
 
 %combine chunks   
-LoAmp = [lotube1ampff, lotube2ampchunk1, lotube2ampchunk2, lotube2ampchunk3];%, lotube1ampchunk2, lotube1ampchunk3];
+LoAmp = [lotube1ampchunk1, lotube2ampchunk1, lotube2ampchunk2, lotube2ampchunk3];%, lotube1ampchunk2, lotube1ampchunk3];
 LoTim = [lotube1timff,  lotube2timchunk1, lotube2timchunk2, lotube2timchunk3];%, lotube1timchunk2, lotube1timchunk3];
 LoFreq = [lotube1freqff, lotube2freqff];
 
@@ -447,7 +447,7 @@ LoFreq = [lotube1freqff, lotube2freqff];
 %                plot(lotube1timchunk5, lotube1ampchunk5, 'ko');
 %                 plot(lotube1timchunk6, lotube1ampchunk6, 'ko');
              plot(lotube1timchunk1, lotube1ampchunk1, 'ko');
-%              plot(lotube1timchunk2, lotube1ampchunk2, 'ko');
+              plot(lotube1timchunk2, lotube1ampchunk2, 'ko');
 %              plot(lotube1timchunk3, lotube1ampchunk3, 'ko');
 %             
            
