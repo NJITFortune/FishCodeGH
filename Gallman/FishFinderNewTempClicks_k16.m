@@ -422,6 +422,7 @@ linkaxes(ax, 'x');
  %%
 clear LoAmp;
 clear LoTim;
+clear LoFreq;
 
 
 %combine chunks   
@@ -480,12 +481,12 @@ figure(487); clf; hold on;
 linkaxes(ax, 'x');
 %% threshold for in-tube data
 
-hiidx = find(HiAmp > hifishthresh);
+%hiidx = find(HiAmp > hifishthresh);
 loidx = find(LoAmp > lofishthresh);
 
-HiAmp = HiAmp(hiidx);
-HiTim = HiTim(hiidx);
-HiFreq = HiFreq(hiidx);
+% HiAmp = HiAmp(hiidx);
+% HiTim = HiTim(hiidx);
+% HiFreq = HiFreq(hiidx);
 
 LoAmp = LoAmp(loidx);
 LoTim = LoTim(loidx);
@@ -499,9 +500,9 @@ LoFreq = LoFreq(loidx);
 
 
 for j = 1:length(HiAmp)
-    fish.his(j).HiAmp(:) = HiAmp(j);
-    fish.his(j).HiTim(:) = HiTim(j);
-    fish.his(j).HiFreq(:) = HiFreq(j);
+    fish.his(j).HiAmp(:) = [];
+    fish.his(j).HiTim(:) = [];
+    fish.his(j).HiFreq(:) = [];
 end
 
 %lo freq fish
