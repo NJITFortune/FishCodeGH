@@ -386,7 +386,7 @@ linkaxes(ax, 'x');
     lofishchunk4idx = find(lotube2timff >= 301);
     
         for j = 1:length(lofishchunk4idx)
-            lotube2ampchunk4(j) = lotube2ampff(lofishchunk4idx(j));
+            lotube2ampchunk4(j) = lotube2ampff(lofishchunk4idx(j))*2.4;
             lotube2timchunk4(j) = lotube2timff(lofishchunk4idx(j));
         end
 %%
@@ -421,7 +421,7 @@ LoFreq = [lotube1freqff, lotube2freqff];
 %          
                plot(lotube2timchunk2, lotube2ampchunk2, 'ko');
               plot(lotube2timchunk3, lotube2ampchunk3, 'ko');
-           %   plot(lotube2timchunk4, lotube2ampchunk4, 'ko');
+              plot(lotube2timchunk4, lotube2ampchunk4, 'ko');
                plot(lotube1timchunk5, lotube1ampchunk5, 'ko');
 
 %           %    % plot(lotube1timchunk1, lotube1ampchunk1, 'ko');
