@@ -219,10 +219,10 @@ linkaxes(ax, 'x');
     clear hitube2ampchunk2;
     clear hitube2timchunk2;
 
- hifishchunk2idx = find(hitube2timff > 120);
+ hifishchunk2idx = find(hitube2timff >= 139);
 %     
         for j = 1:length(hifishchunk2idx)
-            hitube2ampchunk2(j) = hitube2ampff( hifishchunk2idx(j))*3.5;
+            hitube2ampchunk2(j) = hitube2ampff( hifishchunk2idx(j))*1.7;
             hitube2timchunk2(j) = hitube2timff( hifishchunk2idx(j));
 
         end
@@ -309,7 +309,7 @@ figure(453); clf; hold on;
 %             plot(hitube1timchunk6, hitube1ampchunk6, 'ko');
 % %             plot(hitube1timchunk4, hitube1ampchunk4, 'ko');
                plot(hitube2timchunk1, hitube2ampchunk1, 'ko');
-%                plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
+                plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
 %              plot(hitube2timchunk3, hitube2ampchunk3, 'ko');
 %             plot(hitube2timchunk4, hitube2ampchunk4, 'ko');
 %             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
