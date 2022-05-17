@@ -451,7 +451,7 @@ LoFreq = [lotube1freqff, lotube2freqff];
     ax(2) = subplot(312); title('low freq fish'); hold on; %ylim([0,3]);
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
-            plot(LoTim, LoAmp, 'k.');
+          %  plot(LoTim, LoAmp, 'k.');
     ax(3) = subplot(313); title('light cycle'); hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.light]);
             
