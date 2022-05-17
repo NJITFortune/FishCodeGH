@@ -421,7 +421,7 @@ LoFreq = [lotube1freqff, lotube2freqff];
 %          
                plot(lotube2timchunk2, lotube2ampchunk2, 'ko');
               plot(lotube2timchunk3, lotube2ampchunk3, 'ko');
-           %   plot(lotube2timchunk4, lotube2ampchunk4, 'ko');
+              plot(lotube2timchunk4, lotube2ampchunk4, 'ko');
                plot(lotube1timchunk5, lotube1ampchunk5, 'ko');
 
 %           %    % plot(lotube1timchunk1, lotube1ampchunk1, 'ko');
