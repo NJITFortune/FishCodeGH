@@ -10,20 +10,17 @@
 
 %make better variables to play with
 %time
-hitube1tim = [out([out.hitube]==1).timcont]/3600;
-hitube2tim = [out([out.hitube]==2).timcont]/3600;
-lotube1tim = [out([out.lotube]==1).timcont]/3600;
-lotube2tim = [out([out.lotube]==2).timcont]/3600;
+
+lotube1tim = [out(1).s.timcont]/3600;
+lotube2tim = [out(2).s.timcont]/3600;
 %amp
-hitube1amp = [out([out.hitube]==1).hiamp];
-hitube2amp = [out([out.hitube]==2).hiamp];
-lotube1amp = [out([out.lotube]==1).loamp];
-lotube2amp = [out([out.lotube]==2).loamp];
+
+lotube1amp = [out(1).s.sumfftAmp];
+lotube2amp = [out(2).s.sumfftAmp];
 %freq
-hitube1freq = [out([out.hitube]==1).hifreq];
-hitube2freq = [out([out.hitube]==2).hifreq];
-lotube1freq = [out([out.lotube]==1).lofreq];
-lotube2freq = [out([out.lotube]==2).lofreq];
+
+lotube1freq = [out(1).s.fftFreq];
+lotube2freq = [out(2).s.fftFreq];
 
         
 %% filter by fish frequency
@@ -34,29 +31,29 @@ clear hitube1freqff;
          
 figure(1); clf;
 
-    histogram(hitube1freq, 100); hold on;
-    
-    %Lower lim
-    fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
-    [cutofffreqL, ~]  = ginput(1);
-    plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
-    drawnow; 
-    
-    %Upper lim
-    fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
-    [cutofffreqH, ~]  = ginput(1);
-    plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
-    drawnow; 
-    
-    for j=1:length(hitube1amp)
-         if hitube1freq(j) > cutofffreqL && hitube1freq(j) < cutofffreqH
-                hitube1ampff(j) = hitube1amp(j);
-                hitube1timff(j) = hitube1tim(j);
-                hitube1freqff(j) = hitube1freq(j);
-         end
-    end
-
-    pause(1);
+%     histogram(hitube1freq, 100); hold on;
+%     
+%     %Lower lim
+%     fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
+%     [cutofffreqL, ~]  = ginput(1);
+%     plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+%     drawnow; 
+%     
+%     %Upper lim
+%     fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
+%     [cutofffreqH, ~]  = ginput(1);
+%     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+%     drawnow; 
+%     
+%     for j=1:length(hitube1amp)
+%          if hitube1freq(j) > cutofffreqL && hitube1freq(j) < cutofffreqH
+%                 hitube1ampff(j) = hitube1amp(j);
+%                 hitube1timff(j) = hitube1tim(j);
+%                 hitube1freqff(j) = hitube1freq(j);
+%          end
+%     end
+% 
+%     pause(1);
     
     
 figure(1); clf;
@@ -152,7 +149,7 @@ clear lotube2freqff;
 %% plot to check frequency filtering
 %threshold for in-tube data
 hifishthresh = 0.05;
-lofishthresh = 0.15;
+lofishthresh = 2;
 
 
 figure(452); clf; hold on;
@@ -160,8 +157,8 @@ figure(452); clf; hold on;
 
     ax(1) = subplot(511); title('high frequency fish'); hold on; %ylim([0,2]);
             %raw amp
-            plot(hitube1timff, hitube1ampff, 'bo');
-            plot(hitube2timff, hitube2ampff, 'mo');
+%             plot(hitube1timff, hitube1ampff, 'bo');
+%             plot(hitube2timff, hitube2ampff, 'mo');
             yline(hifishthresh);
 
             
@@ -174,11 +171,11 @@ figure(452); clf; hold on;
             
                      
     ax(3) = subplot(513); title('combined chunks'); hold on; %ylim([300, 700]);
-           plot(hitube1tim, hitube1freq, 'k.');
-          plot(hitube1timff, hitube1freqff,'b.'); 
-
-            plot(hitube2tim, hitube2freq, 'k.');
-         plot(hitube2timff, hitube2freqff,'b.'); 
+%            plot(hitube1tim, hitube1freq, 'k.');
+%           plot(hitube1timff, hitube1freqff,'b.'); 
+% 
+%             plot(hitube2tim, hitube2freq, 'k.');
+%          plot(hitube2timff, hitube2freqff,'b.'); 
 
             plot(lotube1tim, lotube1freq, 'k.');
          plot(lotube1timff, lotube1freqff,'m.'); 
@@ -187,11 +184,11 @@ figure(452); clf; hold on;
             plot(lotube2timff, lotube2freqff,'r.'); 
     
     ax(4) = subplot(514); title('temperature'); hold on;
-            plot([out.timcont]/3600, [out.temp]);
+            plot([out(1).s.timcont]/3600, [out(1).s.temp]);
             
 
     ax(5) = subplot(515); title('light cycle'); hold on;
-            plot([out.timcont]/3600, [out.light]);
+            plot([out(1).s.timcont]/3600, [out(1).s.light]);
             
 
 linkaxes(ax, 'x');
@@ -232,7 +229,7 @@ linkaxes(ax, 'x');
     clear hitube2ampchunk3;
     clear hitube2timchunk3;
 
- hifishchunk3idx = find(hitube2timff >= 235 & hitube2timff < 304);
+ hifishchunk3idx = find(hitube2timff >= 253 & hitube2timff < 304);
 %     
         for j = 1:length(hifishchunk3idx)
             hitube2ampchunk3(j) = hitube2ampff( hifishchunk3idx(j));
@@ -282,6 +279,7 @@ linkaxes(ax, 'x');
 %%
 clear HiAmp;
 clear HiTim;
+clear HiFreq;
 
  HiAmp = [hitube1ampff, hitube2ampchunk1, hitube2ampchunk2, hitube2ampchunk3, hitube2ampchunk4];
 HiTim = [hitube1timff, hitube2timchunk1, hitube2timchunk2, hitube2timchunk3, hitube2timchunk4];
@@ -349,10 +347,10 @@ linkaxes(ax, 'x');
 
    
 
-    lofishchunk1idx = find(lotube2timff < 157);
+    lofishchunk1idx = find(lotube2timff < 107.5);
     
         for j = 1:length(lofishchunk1idx)
-            lotube2ampchunk1(j) = lotube2ampff(lofishchunk1idx(j))/1.3;
+            lotube2ampchunk1(j) = lotube2ampff(lofishchunk1idx(j))*1.6;
             lotube2timchunk1(j) = lotube2timff(lofishchunk1idx(j));
             
         end
@@ -361,64 +359,76 @@ linkaxes(ax, 'x');
     clear lofishchunk2idx;
     clear lotube2ampchunk2;
     clear lotube2timchunk2;
-    lofishchunk2idx = find(lotube2timff >= 157 & lotube2timff<220.49);
+    lofishchunk2idx = find(lotube2timff >= 107.5);
     
         for j = 1:length(lofishchunk2idx)
-            lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j))*1.6;
+            lotube2ampchunk2(j) = lotube2ampff(lofishchunk2idx(j));
             lotube2timchunk2(j) = lotube2timff(lofishchunk2idx(j));
         end
  %%       
  %tube2
     clear lofishchunk3idx;
-    clear lotube2ampchunk3;
-    clear lotube2timchunk3;
-    lofishchunk3idx = find(lotube2timff >= 220.49 & lotube2timff < 301);
+    clear lotube1ampchunk1;
+    clear lotube1timchunk1;
+    lofishchunk1idx = find(lotube1timff < 86);
     
-        for j = 1:length(lofishchunk3idx)
-            lotube2ampchunk3(j) = lotube2ampff(lofishchunk3idx(j))*4;
-            lotube2timchunk3(j) = lotube2timff(lofishchunk3idx(j));
+        for j = 1:length(lofishchunk1idx)
+            lotube1ampchunk1(j) = lotube1ampff(lofishchunk1idx(j))*2.5;
+            lotube1timchunk1(j) = lotube1timff(lofishchunk1idx(j));
         end
 %%
      %tube2
-    clear lofishchunk4idx;
-    clear lotube2ampchunk4;
+    clear lofishchunk2idx;
+    clear lotube1ampchunk4;
     clear lotube2timchunk4;
-    lofishchunk4idx = find(lotube2timff >= 301);
+    lofishchunk2idx = find(lotube1timff >= 86);
     
-        for j = 1:length(lofishchunk4idx)
-            lotube2ampchunk4(j) = lotube2ampff(lofishchunk4idx(j))*2.4;
-            lotube2timchunk4(j) = lotube2timff(lofishchunk4idx(j));
+        for j = 1:length(lofishchunk2idx)
+            lotube1ampchunk2(j) = lotube1ampff(lofishchunk2idx(j));
+            lotube1timchunk2(j) = lotube1timff(lofishchunk2idx(j));
+        end
+        %%
+         %tube1
+    clear lofishchunk1idx;
+    clear lotube1ampchunk1;
+    clear lotube1timchunk1;
+    lofishchunk1idx = find(lotube1timff < 305);
+    
+        for j = 1:length(lofishchunk1idx)
+            lotube1ampchunk1(j) = lotube1ampff(lofishchunk1idx(j));
+            lotube1timchunk1(j) = lotube1timff(lofishchunk1idx(j));
         end
 %%
-  %tube2
+  %tube1
     clear lofishchunk5idx;
     clear lotube1ampchunk5;
     clear lotube1timchunk5;
-    lofishchunk5idx = find(lotube1timff >= 305 &lotube1timff < 339.4);
+    lofishchunk5idx = find(lotube1timff >= 305 & lotube1timff < 349.4);
     
         for j = 1:length(lofishchunk5idx)
             lotube1ampchunk5(j) = lotube1ampff(lofishchunk5idx(j))/2;
             lotube1timchunk5(j) = lotube1timff(lofishchunk5idx(j));
         end
  %%
- %tube2
-    clear lofishchunk5idx;
-    clear lotube1ampchunk5;
-    clear lotube1timchunk5;
-    lofishchunk5idx = find(lotube1timff >= 305 &lotube1timff < 339.4);
+ %tube1
+    clear lofishchunk6idx;
+    clear lotube1ampchunk6;
+    clear lotube1timchunk6;
+    lofishchunk6idx = find(lotube1timff >= 349.4);
     
-        for j = 1:length(lofishchunk5idx)
-            lotube1ampchunk5(j) = lotube1ampff(lofishchunk5idx(j))/2;
-            lotube1timchunk5(j) = lotube1timff(lofishchunk5idx(j));
+        for j = 1:length(lofishchunk6idx)
+            lotube1ampchunk6(j) = lotube1ampff(lofishchunk6idx(j))/4;
+            lotube1timchunk6(j) = lotube1timff(lofishchunk6idx(j));
         end
  %%
 clear LoAmp;
 clear LoTim;
+clear LoFreq;
 
 
 %combine chunks   
-LoAmp = [lotube1ampff, lotube2ampchunk1, lotube2ampchunk2, lotube2ampchunk4];%, lotube1ampchunk2, lotube1ampchunk3];
-LoTim = [lotube1timff, lotube2timchunk1, lotube2timchunk2, lotube2timchunk4];%, lotube1timchunk2, lotube1timchunk3];
+LoAmp = [lotube1ampchunk1, lotube1ampchunk2, lotube2ampchunk1, lotube2ampchunk2];%, lotube1ampchunk2, lotube1ampchunk3];
+LoTim = [lotube1timchunk1, lotube1timchunk2, lotube2timchunk1, lotube2timchunk2];%, lotube1timchunk2, lotube1timchunk3];
 LoFreq = [lotube1freqff, lotube2freqff];
 
 
@@ -428,15 +438,15 @@ LoFreq = [lotube1freqff, lotube2freqff];
     ax(1) = subplot(311); title('low freq fish'); hold on; %ylim([0,1]);
             plot(lotube1timff, lotube1ampff, 'bo');
             plot(lotube2timff, lotube2ampff, 'mo');
-             plot(lotube2timchunk1, lotube2ampchunk1, 'ko');
-%          
-               plot(lotube2timchunk2, lotube2ampchunk2, 'ko');
-              plot(lotube2timchunk3, lotube2ampchunk3, 'ko');
-              plot(lotube2timchunk4, lotube2ampchunk4, 'ko');
-               plot(lotube1timchunk5, lotube1ampchunk5, 'ko');
-
-%           %    % plot(lotube1timchunk1, lotube1ampchunk1, 'ko');
-%              plot(lotube1timchunk2, lotube1ampchunk2, 'ko');
+              plot(lotube2timchunk1, lotube2ampchunk1, 'ko');
+% %          
+                plot(lotube2timchunk2, lotube2ampchunk2, 'ko');
+%               plot(lotube2timchunk3, lotube2ampchunk3, 'ko');
+%               plot(lotube2timchunk4, lotube2ampchunk4, 'ko');
+%                plot(lotube1timchunk5, lotube1ampchunk5, 'ko');
+%                 plot(lotube1timchunk6, lotube1ampchunk6, 'ko');
+             plot(lotube1timchunk1, lotube1ampchunk1, 'ko');
+              plot(lotube1timchunk2, lotube1ampchunk2, 'ko');
 %              plot(lotube1timchunk3, lotube1ampchunk3, 'ko');
 %             
            
@@ -445,39 +455,39 @@ LoFreq = [lotube1freqff, lotube2freqff];
             plot(lotube2timff, lotube2ampff, 'mo');
             plot(LoTim, LoAmp, 'k.');
     ax(3) = subplot(313); title('light cycle'); hold on;
-            plot([out.timcont]/3600, [out.light]);
+            plot([out(1).s.timcont]/3600, [out(1).s.light]);
             
 linkaxes(ax, 'x');
 
 
 %% plot for final check
-hifishthresh = 0.05;
-lofishthresh = 0.2;
+hifishthresh = 0.4;
+lofishthresh = 3.5;
 figure(487); clf; hold on;
 % 
     ax(1) = subplot(311); title('high freq fish'); hold on; %ylim([0,3]);
-            plot(HiTim, HiAmp, 'bo');
+           % plot(HiTim, HiAmp, 'bo');
             plot(LoTim, LoAmp, 'mo');
-            yline(hifishthresh, 'k-');
+            %yline(hifishthresh, 'k-');
             yline(lofishthresh, 'k-');
             
            
     ax(2) = subplot(312); title('low freq fish'); hold on; %ylim([0,3]);
-            plot(HiTim, HiFreq, 'bo');
+           % plot(HiTim, HiFreq, 'bo');
             plot(LoTim, LoFreq, 'mo');
 
     ax(3) = subplot(313); title('light cycle'); hold on;
-            plot([out.timcont]/3600, [out.light]);
+            plot([out(1).s.timcont]/3600, [out(1).s.light]);
             
 linkaxes(ax, 'x');
 %% threshold for in-tube data
 
-hiidx = find(HiAmp > hifishthresh);
+%hiidx = find(HiAmp > hifishthresh);
 loidx = find(LoAmp > lofishthresh);
 
-HiAmp = HiAmp(hiidx);
-HiTim = HiTim(hiidx);
-HiFreq = HiFreq(hiidx);
+% HiAmp = HiAmp(hiidx);
+% HiTim = HiTim(hiidx);
+% HiFreq = HiFreq(hiidx);
 
 LoAmp = LoAmp(loidx);
 LoTim = LoTim(loidx);
@@ -490,10 +500,10 @@ LoFreq = LoFreq(loidx);
 % out.LoTim = LoTim;
 
 
-for j = 1:length(HiAmp)
-    fish.his(j).HiAmp(:) = HiAmp(j);
-    fish.his(j).HiTim(:) = HiTim(j);
-    fish.his(j).HiFreq(:) = HiFreq(j);
+for j = 1:length(LoAmp)
+    fish.his(j).HiAmp(:) = [];
+    fish.his(j).HiTim(:) = [];
+    fish.his(j).HiFreq(:) = [];
 end
 
 %lo freq fish
