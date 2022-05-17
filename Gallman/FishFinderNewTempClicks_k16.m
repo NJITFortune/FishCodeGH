@@ -8,14 +8,19 @@
 %% assign amplitude data to fish by frequency
 
 
+%make better variables to play with
+%time
 
-lotube1amp = [out([out.lotube]==1).loamp];
-lotube2amp = [out([out.lotube]==2).loamp];
+lotube1tim = [out(1).s.timcont]/3600;
+lotube2tim = [out(2).s.timcont]/3600;
+%amp
+
+lotube1amp = [out(1).s.sumfftAmp];
+lotube2amp = [out(2).s.sumfftAmp];
 %freq
-hitube1freq = [out([out.hitube]==1).hifreq];
-hitube2freq = [out([out.hitube]==2).hifreq];
-lotube1freq = [out([out.lotube]==1).lofreq];
-lotube2freq = [out([out.lotube]==2).lofreq];
+
+lotube1freq = [out(1).s.fftFreq];
+lotube2freq = [out(2).s.fftFreq];
 
         
 %% filter by fish frequency
@@ -26,29 +31,29 @@ clear hitube1freqff;
          
 figure(1); clf;
 
-    histogram(hitube1freq, 100); hold on;
-    
-    %Lower lim
-    fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
-    [cutofffreqL, ~]  = ginput(1);
-    plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
-    drawnow; 
-    
-    %Upper lim
-    fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
-    [cutofffreqH, ~]  = ginput(1);
-    plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
-    drawnow; 
-    
-    for j=1:length(hitube1amp)
-         if hitube1freq(j) > cutofffreqL && hitube1freq(j) < cutofffreqH
-                hitube1ampff(j) = hitube1amp(j);
-                hitube1timff(j) = hitube1tim(j);
-                hitube1freqff(j) = hitube1freq(j);
-         end
-    end
-
-    pause(1);
+%     histogram(hitube1freq, 100); hold on;
+%     
+%     %Lower lim
+%     fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
+%     [cutofffreqL, ~]  = ginput(1);
+%     plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+%     drawnow; 
+%     
+%     %Upper lim
+%     fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
+%     [cutofffreqH, ~]  = ginput(1);
+%     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+%     drawnow; 
+%     
+%     for j=1:length(hitube1amp)
+%          if hitube1freq(j) > cutofffreqL && hitube1freq(j) < cutofffreqH
+%                 hitube1ampff(j) = hitube1amp(j);
+%                 hitube1timff(j) = hitube1tim(j);
+%                 hitube1freqff(j) = hitube1freq(j);
+%          end
+%     end
+% 
+%     pause(1);
     
     
 figure(1); clf;
