@@ -453,7 +453,7 @@ LoFreq = [lotube1freqff, lotube2freqff];
             plot(lotube2timff, lotube2ampff, 'mo');
             plot(LoTim, LoAmp, 'k.');
     ax(3) = subplot(313); title('light cycle'); hold on;
-            plot([out.timcont]/3600, [out.light]);
+            plot([out(1).s.timcont]/3600, [out(1).S.light]);
             
 linkaxes(ax, 'x');
 
