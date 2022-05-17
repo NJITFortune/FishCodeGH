@@ -46,9 +46,7 @@ clickcnt = 0;
 f1 = fftmachine(e1, Fs);
 f2 = fftmachine(e2, Fs);
 
-figure(1); clf; 
-    subplot(121); tmp = fftmachine(e1, Fs); plot(tmp.fftfreq, tmp.fftdata); xlim([freqs(1) freqs(2)]);
-    subplot(122); tmp = fftmachine(e2, Fs); plot(tmp.fftfreq, tmp.fftdata); xlim([freqs(1) freqs(2)]);
+
 
 figure(2); clf;
     subplot(211); specgram(e1,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
@@ -58,7 +56,7 @@ figure(2); clf;
 % Plot the summed FFT for the user to click
 summedFFT =  f1.fftdata + f2.fftdata;
 
-figure(3); clf; hold on;
+figure(1); clf; hold on;
     plot(f1.fftfreq, summedFFT);
     xlim(freqs);
 
