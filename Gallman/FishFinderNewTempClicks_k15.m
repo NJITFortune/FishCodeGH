@@ -152,7 +152,7 @@ clear lotube2freqff;
 %% plot to check frequency filtering
 %threshold for in-tube data
 hifishthresh = 0.05;
-lofishthresh = 0.2;
+lofishthresh = 0.15;
 
 hiloidx = find(hitube2timff > 226 & hitube2timff < 263);
 
