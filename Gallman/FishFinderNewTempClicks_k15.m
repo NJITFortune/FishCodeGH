@@ -318,7 +318,7 @@ figure(453); clf; hold on;
             
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
-            plot(hitube2timff, hitube2ampff, 'mo');
+         %   plot(hitube2timff, hitube2ampff, 'mo');
             %adjusted tube 2
 %             plot(hitube2timchunk1, hitube2ampchunk1, 'ko');
 %             plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
