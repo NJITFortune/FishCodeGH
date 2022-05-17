@@ -10,15 +10,11 @@ function k_multiplotter(out)
 
 % If we have removed outliers via KatieRemover, get the indices... 
     if isfield(out, 'idx')
-        if ~isfield(out.idx.Hiidx)
-            tthi = [out.idx.Hiidx]; % tthi is indices for HiAmp
-        end
-        if ~isempty(out.idx.Loidx)
+        if ~isempty(out.idx)
+           % tthi = [out.idx.Hiidx]; % tthi is indices for HiAmp
             ttlo = [out.idx.Loidx]; % ttlo is indices for LoAmp
         end
     end
-
-     ttlo = [out.idx.Loidx]; % ttlo is indices for LoAmp
 
 % figure(1); clf; plot(tthi);
 % colors
@@ -39,14 +35,14 @@ figure(66); clf; title('By fish'); hold on;
         
 
     axs(2) = subplot(512); hold on; title('Low frequency fish');
-        plot([out.fish.los.LoTim], [out.fish.los.LoAmp], 'k.');
+      %  plot([out.fish.los.LoTim], [out.fish.los.LoAmp], 'k.');
         plot([out.fish.los(ttlo).LoTim], [out.fish.los(ttlo).LoAmp], '.','Color', orange);
    
 
     axs(3) = subplot(513); hold on; title('Frequency ');
         plot([out.fish.his.HiTim], [out.fish.his.HiFreq], 'k.');
             plot([out.fish.his(tthi).HiTim], [out.fish.his(tthi).HiFreq], '.','Color', teal); 
-        plot([out.fish.los.LoTim], [out.fish.los.LoFreq], 'k.');
+       % plot([out.fish.los.LoTim], [out.fish.los.LoFreq], 'k.');
             plot([out.fish.los(ttlo).LoTim], [out.fish.los(ttlo).LoFreq], '.','Color', orange);
         
     axs(4) = subplot(514); hold on; title('Temperature');
