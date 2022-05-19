@@ -31,7 +31,7 @@ figure(1);
     % We start one window before the click
     baseidx = clk - len;
 
-    dotwidth = 1/(len*2):1/(len*2):2;
+    dotwidth = 1/(len*2):1/(len*2):12;
 
 % Make a quick plot
 qp = figure("Name", "Quick Plot", "Visible", "off"); clf;
