@@ -1,4 +1,4 @@
-% QuickPlotGrid(cave(5))
+QuickPlotGrid(cave(5))
 
 listofish = 1: length(cave (5). fish);
 figure(1);
