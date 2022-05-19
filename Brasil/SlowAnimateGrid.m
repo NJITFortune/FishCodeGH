@@ -31,15 +31,19 @@ figure(1);
     % We start one window before the click
     baseidx = clk - len;
 
+    dotwidth = 1/(len*2):1/(len*2):2;
+
 % Make a quick plot
-figure(3); clf;
+figure(3, "Visible", "off"); clf;
 subplot (121); hold on;
 
-    plot(cave(5).fish(curfish).x(baseidx:baseidx+(len*3)), cave(5).fish(curfish).y(baseidx:baseidx+(len*3)), 'b.');
-    plot(cave(5).fish(closestfish).x(baseidx:baseidx+(len*3)),cave(5).fish(closestfish).y(baseidx:baseidx+(len*3)), 'm.');
+for j = 2:len*2
+    plot(cave(5).fish(curfish).x(baseidx:baseidx+(len*3)), cave(5).fish(curfish).y(baseidx:baseidx+(len*3)), 'b.', 'MarkerSize', dotwidth(j));
+    plot(cave(5).fish(closestfish).x(baseidx:baseidx+(len*3)),cave(5).fish(closestfish).y(baseidx:baseidx+(len*3)), 'm.', 'MarkerSize', dotwidth(j));
         axis([-200 200 -200 200])
         text (0,150, ['curfish = ' num2str(curfish)], 'Color', 'b')
-        text (0,100, ['otherfish = ' num2str(closestfish)], 'Color', 'm')
+        text (0,140, ['otherfish = ' num2str(closestfish)], 'Color', 'm')
+end
 
 subplot(122); hold on;
 
@@ -47,7 +51,9 @@ subplot(122); hold on;
     plot(cave(5).fish(closestfish).freq(baseidx:baseidx+(len*3), 1), cave(5).fish(closestfish).freq(baseidx:baseidx+(len*3),2), 'm.');
 ylim ( [200 500]) ;
 
+drawnow;
 
+% Make an animation
 step = 5;
 
 figure(3); clf;
