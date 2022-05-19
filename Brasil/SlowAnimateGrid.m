@@ -44,7 +44,7 @@ for j = 2:len*2
         text (0,150, ['curfish = ' num2str(curfish)], 'Color', 'b')
         text (0,140, ['otherfish = ' num2str(closestfish)], 'Color', 'm')
 end
-qp("Visible", "on");
+set("qp", "Visible", "on");
 
 subplot(122); hold on;
 
