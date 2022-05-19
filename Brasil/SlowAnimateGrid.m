@@ -40,8 +40,8 @@ subplot (121); hold on;
     plot(cave(5).fish(curfish).x(baseidx:baseidx+(len*3)), cave(5).fish(curfish).y(baseidx:baseidx+(len*3)), 'b-');
     plot(cave(5).fish(closestfish).x(baseidx:baseidx+(len*3)),cave(5).fish(closestfish).y(baseidx:baseidx+(len*3)), 'm-');
 for j = 2:len*2
-    plot(cave(5).fish(curfish).x(j), cave(5).fish(curfish).y(j), 'b.', 'MarkerSize', dotwidth(j));
-    plot(cave(5).fish(closestfish).x(j),cave(5).fish(closestfish).y(j), 'm.', 'MarkerSize', dotwidth(j));
+    plot(cave(5).fish(curfish).x(baseidx+j-1), cave(5).fish(curfish).y(baseidx+j-1), 'b.', 'MarkerSize', dotwidth(j));
+    plot(cave(5).fish(closestfish).x(baseidx+j-1),cave(5).fish(closestfish).y(baseidx+j-1), 'm.', 'MarkerSize', dotwidth(j));
         axis([-200 200 -200 200])
 end
         text (0,150, ['curfish = ' num2str(curfish)], 'Color', 'b')
