@@ -31,7 +31,7 @@ figure(1);
     % We start one window before the click
     baseidx = clk - len;
 
-    dotwidth = 8:1/(len*2):16;
+    dotwidth = 12:1/(len*2):24;
 
 % Make a quick plot
 figure(3); clf;
