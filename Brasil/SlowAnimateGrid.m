@@ -24,26 +24,27 @@ figure(1);
     end
 
     [~, idx] = min(a);
-    idx=ofish(idx);
+    closestfish=ofish(idx);
 
-    len = 200;
+    len = 200; % How many steps is our window
 
+    % We start one window before the click
     baseidx = clk - len;
 
-
+% Make a quick plot
 figure(3); clf;
 subplot (121); hold on;
 
     plot(cave(5).fish(curfish).x(baseidx:baseidx+(len*3)), cave(5).fish(curfish).y(baseidx:baseidx+(len*3)), 'b.');
-    plot(cave(5).fish(idx).x(baseidx:baseidx+(len*3)),cave(5).fish(idx).y(baseidx:baseidx+(len*3)), 'm.');
+    plot(cave(5).fish(closestfish).x(baseidx:baseidx+(len*3)),cave(5).fish(closestfish).y(baseidx:baseidx+(len*3)), 'm.');
         axis([-200 200 -200 200])
         text (0,150, ['curfish = ' num2str(curfish)], 'Color', 'b')
-        text (0,100, ['otherfish = ' num2str(idx)], 'Color', 'm')
+        text (0,100, ['otherfish = ' num2str(closestfish)], 'Color', 'm')
 
 subplot(122); hold on;
 
     plot(cave(5).fish(curfish).freq(baseidx:baseidx+(len*3),1), cave(5).fish(curfish).freq(baseidx:baseidx+(len*3),2), 'b.');
-    plot(cave(5).fish(idx).freq(baseidx:baseidx+(len*3), 1), cave(5).fish(idx).freq(baseidx:baseidx+(len*3),2), 'm.');
+    plot(cave(5).fish(closestfish).freq(baseidx:baseidx+(len*3), 1), cave(5).fish(closestfish).freq(baseidx:baseidx+(len*3),2), 'm.');
 ylim ( [200 500]) ;
 
 
@@ -53,15 +54,15 @@ figure(3); clf;
 subplot (121); hold on;
 
     plot(cave(5).fish(curfish).x(baseidx:baseidx+(len*3)), cave(5).fish(curfish).y(baseidx:baseidx+(len*3)), 'b.');
-    plot(cave(5).fish(idx).x(baseidx:baseidx+(len*3)),cave(5).fish(idx).y(baseidx:baseidx+(len*3)), 'm.');
+    plot(cave(5).fish(closestfish).x(baseidx:baseidx+(len*3)),cave(5).fish(closestfish).y(baseidx:baseidx+(len*3)), 'm.');
         axis([-200 200 -200 200])
         text (0,150, ['curfish = ' num2str(curfish)], 'Color', 'b')
-        text (0,100, ['otherfish = ' num2str(idx)], 'Color', 'm')
+        text (0,100, ['otherfish = ' num2str(closestfish)], 'Color', 'm')
 
 subplot(122); hold on;
 
     plot(cave(5).fish(curfish).freq(baseidx:baseidx+(len*3),1), cave(5).fish(curfish).freq(baseidx:baseidx+(len*3),2), 'b.');
-    plot(cave(5).fish(idx).freq(baseidx:baseidx+(len*3), 1), cave(5).fish(idx).freq(baseidx:baseidx+(len*3),2), 'm.');
+    plot(cave(5).fish(closestfish).freq(baseidx:baseidx+(len*3), 1), cave(5).fish(closestfish).freq(baseidx:baseidx+(len*3),2), 'm.');
 ylim ( [200 500]) ;
 
 
