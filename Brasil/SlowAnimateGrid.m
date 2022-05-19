@@ -54,23 +54,23 @@ ylim ( [200 500]) ;
 drawnow;
 
 % Make an animation
-step = 5;
-
-figure(3); clf;
-subplot (121); hold on;
-
-    plot(cave(5).fish(curfish).x(baseidx:baseidx+(len*3)), cave(5).fish(curfish).y(baseidx:baseidx+(len*3)), 'b.');
-    plot(cave(5).fish(closestfish).x(baseidx:baseidx+(len*3)),cave(5).fish(closestfish).y(baseidx:baseidx+(len*3)), 'm.');
-        axis([-200 200 -200 200])
-        text (0,150, ['curfish = ' num2str(curfish)], 'Color', 'b')
-        text (0,100, ['otherfish = ' num2str(closestfish)], 'Color', 'm')
-
-subplot(122); hold on;
-
-    plot(cave(5).fish(curfish).freq(baseidx:baseidx+(len*3),1), cave(5).fish(curfish).freq(baseidx:baseidx+(len*3),2), 'b.');
-    plot(cave(5).fish(closestfish).freq(baseidx:baseidx+(len*3), 1), cave(5).fish(closestfish).freq(baseidx:baseidx+(len*3),2), 'm.');
-ylim ( [200 500]) ;
-
+% step = 5;
+% 
+% figure(3); clf;
+% subplot (121); hold on;
+% 
+%     plot(cave(5).fish(curfish).x(baseidx:baseidx+(len*3)), cave(5).fish(curfish).y(baseidx:baseidx+(len*3)), 'b.');
+%     plot(cave(5).fish(closestfish).x(baseidx:baseidx+(len*3)),cave(5).fish(closestfish).y(baseidx:baseidx+(len*3)), 'm.');
+%         axis([-200 200 -200 200])
+%         text (0,150, ['curfish = ' num2str(curfish)], 'Color', 'b')
+%         text (0,100, ['otherfish = ' num2str(closestfish)], 'Color', 'm')
+% 
+% subplot(122); hold on;
+% 
+%     plot(cave(5).fish(curfish).freq(baseidx:baseidx+(len*3),1), cave(5).fish(curfish).freq(baseidx:baseidx+(len*3),2), 'b.');
+%     plot(cave(5).fish(closestfish).freq(baseidx:baseidx+(len*3), 1), cave(5).fish(closestfish).freq(baseidx:baseidx+(len*3),2), 'm.');
+% ylim ( [200 500]) ;
+% 
 
 
 % cave(5)
