@@ -26,7 +26,7 @@ figure(1);
     [~, idx] = min(a);
     closestfish=ofish(idx);
 
-    len = 200; % How many steps is our window
+    len = 50; % How many steps is our window
 
     % We start one window before the click
     baseidx = clk - len;
