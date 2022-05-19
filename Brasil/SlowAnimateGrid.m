@@ -1,42 +1,70 @@
+% Make original plot
 QuickPlotGrid(cave(5))
 
-listofish = 1: length(cave (5). fish);
+% Make a list of fish
+    listofish = 1:length(cave(5).fish);
+
+% User tells us the event to examine    
 figure(1);
+    [x, y] = ginput(1);
+    clk = find(cave (5) .fish(1). freq(:,1) > x, 1, 'first');
 
-[x, y] = ginput(1);
-clk = find(cave (5) .fish(1). freq(:,1) > x, 1, 'first');
-
-for j=listofish
-    dF(j) = abs(y - nanmean (cave (5). fish(j).freq(clk-20: clk+20,2)));
-end
-
+% Find which fish is closest (frequency of EOD) to the click - this is the chosen one    
+    for j=listofish
+        dF(j) = abs(y - nanmean(cave(5).fish(j).freq(clk-20:clk+20,2)));
+    end
+    % curfish is the chosen fish
     [~, curfish] = min(dF);
-    ofish = listofish(listofish ~= curfish);
-%Clk = 1400;
+        % ofish are the other individuals in the recording
+        ofish = listofish(listofish ~= curfish);
 
-for j=1:length(ofish)
-    a(j) = pdist2([cave(5).fish(curfish).x(clk), cave(5).fish(curfish).y(clk)], [cave(5).fish(ofish(j)).x(clk), cave(5).fish(ofish(j)).y(clk)]);
-end
+% Get the distance (XY) from the chosen fish to each of the others        
+    for j=1:length(ofish)
+        a(j) = pdist2([cave(5).fish(curfish).x(clk), cave(5).fish(curfish).y(clk)], [cave(5).fish(ofish(j)).x(clk), cave(5).fish(ofish(j)).y(clk)]);
+    end
 
     [~, idx] = min(a);
     idx=ofish(idx);
 
     len = 200;
 
+    baseidx = clk - len;
+
+
 figure(3); clf;
 subplot (121); hold on;
 
-    plot(cave(5).fish(curfish).x(clk-len:clk+len), cave(5).fish(curfish).y(clk-len:clk+len), 'b.');
-    plot(cave(5).fish(idx).x(clk-len:clk+len),cave(5).fish(idx).y(clk-len:clk+len), 'm.');
+    plot(cave(5).fish(curfish).x(baseidx:baseidx+(len*3)), cave(5).fish(curfish).y(baseidx:baseidx+(len*3)), 'b.');
+    plot(cave(5).fish(idx).x(baseidx:baseidx+(len*3)),cave(5).fish(idx).y(baseidx:baseidx+(len*3)), 'm.');
         axis([-200 200 -200 200])
         text (0,150, ['curfish = ' num2str(curfish)], 'Color', 'b')
         text (0,100, ['otherfish = ' num2str(idx)], 'Color', 'm')
 
 subplot(122); hold on;
 
-    plot(cave(5).fish(curfish).freq(clk-len:clk+len,1), cave(5).fish(curfish).freq(clk-len:clk+len,2), 'b.');
-    plot(cave(5).fish(idx).freq(clk-len:clk+len, 1), cave(5).fish(idx).freq(clk-len:clk+len,2), 'm.');
+    plot(cave(5).fish(curfish).freq(baseidx:baseidx+(len*3),1), cave(5).fish(curfish).freq(baseidx:baseidx+(len*3),2), 'b.');
+    plot(cave(5).fish(idx).freq(baseidx:baseidx+(len*3), 1), cave(5).fish(idx).freq(baseidx:baseidx+(len*3),2), 'm.');
 ylim ( [200 500]) ;
+
+
+step = 5;
+
+figure(3); clf;
+subplot (121); hold on;
+
+    plot(cave(5).fish(curfish).x(baseidx:baseidx+(len*3)), cave(5).fish(curfish).y(baseidx:baseidx+(len*3)), 'b.');
+    plot(cave(5).fish(idx).x(baseidx:baseidx+(len*3)),cave(5).fish(idx).y(baseidx:baseidx+(len*3)), 'm.');
+        axis([-200 200 -200 200])
+        text (0,150, ['curfish = ' num2str(curfish)], 'Color', 'b')
+        text (0,100, ['otherfish = ' num2str(idx)], 'Color', 'm')
+
+subplot(122); hold on;
+
+    plot(cave(5).fish(curfish).freq(baseidx:baseidx+(len*3),1), cave(5).fish(curfish).freq(baseidx:baseidx+(len*3),2), 'b.');
+    plot(cave(5).fish(idx).freq(baseidx:baseidx+(len*3), 1), cave(5).fish(idx).freq(baseidx:baseidx+(len*3),2), 'm.');
+ylim ( [200 500]) ;
+
+
 
 % cave(5)
 % 1 interacting with 5 during chirps and 6 during scallops
