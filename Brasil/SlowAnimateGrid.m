@@ -37,7 +37,7 @@ figure(1);
 figure(3); clf;
 subplot (121); hold on;
 
-    plot(cave(5).fish(curfish).x(baseidx:baseidx+(len*3)), cave(5).fish(curfish).y(baseidx:baseidx+(len*3)), '-', 'Color', 'interp');
+    plot(cave(5).fish(curfish).x(baseidx:baseidx+(len*3)), cave(5).fish(curfish).y(baseidx:baseidx+(len*3)), '-', 'Color', [(a/numel(data(:,1))),0,0]);
     plot(cave(5).fish(closestfish).x(baseidx:baseidx+(len*3)),cave(5).fish(closestfish).y(baseidx:baseidx+(len*3)), '-', 'Color', 'interp');
 for j = 2:len*3
     plot(cave(5).fish(curfish).x(baseidx+j-1), cave(5).fish(curfish).y(baseidx+j-1), 'b.', 'MarkerSize', dotwidth(j));
