@@ -23,7 +23,7 @@ end
 
     len = 200;
 
-figure(1); clf;
+figure(3); clf;
 subplot (121); hold on;
 
     plot(cave(5).fish(curfish).x(clk-len:clk+len), cave(5).fish(curfish).y(clk-len:clk+len), 'b.');
