@@ -34,7 +34,7 @@ figure(1);
     dotwidth = 1/(len*2):1/(len*2):12;
 
 % Make a quick plot
-qp = figure("Name", "Quick Plot", "Visible", "off"); clf;
+figure(3); clf;
 subplot (121); hold on;
 
 for j = 2:len*2
