@@ -1,16 +1,25 @@
-Fs = 1/Ch1.interval;
-tim = 1/Fs:1/Fs:Ch1.length/Fs;
+function out = PulsePhase(ChEOD, ChSTIM, regions, dur)
+% Usage: out = PulsePhase(ChEOD, ChSTIM, regions, dur)
+% • ChEOD is the Spike2 channel with EOD (Ch1 for NSB)
+% • ChSTIM is the Spike2 channel with STIMULUS (Ch4 for NSB)
+% • regions are the start times for stimuli (could be Ch31.times)
+% • dur is the duration in seconds of the stimuli
 
-eod = Ch1.values;
-stim = Ch4.values;
+%% Setup
+    Fs = 1/ChEOD.interval;
+    tim = 1/Fs:1/Fs:ChEOD.length/Fs;
 
-SIU = [270, 430];
-nSIU = [180 350];
-dur = 70;
+    eod = ChEOD.values;
+    stim = ChSTIM.values;
 
-eodthresh = 0.2;
-stimthresh = 1;
+figure(1); clf; plot(eod(tim < 10)); title('Click Threshold for EOD');
+    [~, eodthresh] = ginput(1);
+    pause(1);
+figure(1); clf; plot(eod(tim < 10)); title('Click Threshold for STIMULUS');
+    [~, stimthresh] = ginput(1);
+    pause(1); close(1);
 
+%% Get time stamps for the EOD and STIMULUS    
     Zeod = zeros(1,length(eod));
         Zeod(eod > eodthresh) = 1;
         Zeod = diff(Zeod); Zeod(end+1) = 0;
@@ -19,24 +28,42 @@ stimthresh = 1;
         Zstim = diff(Zstim); Zstim(end+1) = 0;
 
 eodIDXs = find(Zeod == 1);
+    eodTIMs = tim(eodIDXs);
 stimIDXs = find(Zstim == 1);
+    stimTIMs = tim(stimIDXs);
 
-%% 
+%% Quick plot
 
 figure(1); clf;
-    subplot(211); plot(tim(eodIDXs(2:end)), 1 ./ diff(tim(eodIDXs)));
+    ax(1) = subplot(211); plot(tim(eodIDXs(2:end)), 1 ./ diff(tim(eodIDXs)), '.');
         meanFreq = mean(1 ./ diff(tim(eodIDXs)));
         stdFreq = std(1 ./ diff(tim(eodIDXs)));
         title(['MeanFreq: ' num2str(meanFreq) ' STD: ' num2str(stdFreq)])
-    subplot(212); plot(tim(stimIDXs(2:end)), 1 ./ diff(tim(stimIDXs)));
+        ylim([meanFreq - 40, meanFreq + 150])
+    ax(2) = subplot(212); plot(tim(stimIDXs(2:end)), 1 ./ diff(tim(stimIDXs)), '.');
+        ylim([meanFreq - 40, meanFreq + 150])
 
-%%
+    linkaxes(ax, 'x')
 
-tt = find(tim(eodIDXs) > SIU(1) & tim(eodIDXs) < SIU(1) + dur);
+%% Get and analyze datums
 
-for j=2:length(tt)-1
+for kk = 1:length(regions)
 
-    preISIdur = tim(eodIDXs(tt(j))) - tim(eodIDXs(tt(j-1)))
+    tt = find(stimTIMs > SIU(kk) & stimTIMs < SIU(kk) + dur);
 
+    for j=length(tt):-1:1
+        preTIM = eodTIMs(eodTIMs < stimTIMs(tt(j)));
+            preDUR(j) = stimTIMs(tt(j)) - preTIM(end);
+        postTIM = eodTIMs(eodTIMs > stimTIMs(tt(j)));
+            postDUR(j) = postTIM(2) - postTIM(1);
+            preISIdur(j) =  preTIM(end) - preTIM(end-1);
+            siuPhase(j) = 2*pi*(preDUR(j) / (postTIM(1)-preTIM(end)));
+    end
 
 end
+
+figure(2); clf;     
+    subplot(211); plot(siuPhase, preISIdur./postDUR, '.');
+    subplot(212); histogram(preISIdur - postDUR); 
+
+    out = 0;
