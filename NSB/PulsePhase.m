@@ -24,7 +24,7 @@ if nargin < 5
         [~, stimthresh] = ginput(1);
         pause(1); close(1);
 end
-fprintf('EOD threshold is %2.4f, STIM threshold is %f2.4f', eodthresh, stimthresh);
+fprintf('EOD threshold is %2.4f, STIM threshold is %2.4f /n', eodthresh, stimthresh);
 
 %% Get time stamps for the EOD and STIMULUS    
     Zeod = zeros(1,length(eod));
