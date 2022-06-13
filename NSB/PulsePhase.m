@@ -4,6 +4,7 @@ function out = PulsePhase(ChEOD, ChSTIM, regions, dur, threshes)
 % • ChSTIM is the Spike2 channel with STIMULUS (Ch4 for NSB)
 % • regions are the start times for stimuli (could be Ch31.times)
 % • dur is the duration in seconds of the stimuli
+% • threshes are the voltages to get EOD and STIM spikes e.g. [0.2 1]
 
 %% Setup
     Fs = 1/ChEOD.interval;
