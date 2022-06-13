@@ -12,10 +12,10 @@ function out = PulsePhase(ChEOD, ChSTIM, regions, dur)
     eod = ChEOD.values;
     stim = ChSTIM.values;
 
-figure(1); clf; plot(eod(tim < 10)); title('Click Threshold for EOD');
+figure(1); clf; plot(eod(tim < 5)); title('Click Threshold for EOD');
     [~, eodthresh] = ginput(1);
     pause(1);
-figure(1); clf; plot(eod(tim < 10)); title('Click Threshold for STIMULUS');
+figure(1); clf; plot(stim(tim < 5)); title('Click Threshold for STIMULUS');
     [~, stimthresh] = ginput(1);
     pause(1); close(1);
 
