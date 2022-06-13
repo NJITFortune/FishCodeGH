@@ -1,4 +1,4 @@
-function out = PulsePhase(ChEOD, ChSTIM, regions, dur)
+function out = PulsePhase(ChEOD, ChSTIM, regions, dur, threshes)
 % Usage: out = PulsePhase(ChEOD, ChSTIM, regions, dur)
 % • ChEOD is the Spike2 channel with EOD (Ch1 for NSB)
 % • ChSTIM is the Spike2 channel with STIMULUS (Ch4 for NSB)
@@ -12,12 +12,19 @@ function out = PulsePhase(ChEOD, ChSTIM, regions, dur)
     eod = ChEOD.values;
     stim = ChSTIM.values;
 
-figure(1); clf; plot(eod(tim < 5)); title('Click Threshold for EOD');
-    [~, eodthresh] = ginput(1);
-    pause(1);
-figure(1); clf; plot(stim(tim < 5)); title('Click Threshold for STIMULUS');
-    [~, stimthresh] = ginput(1);
-    pause(1); close(1);
+% User specified the thresholds
+if nargin == 5; eodthresh = threshes(1); stimthresh = threshes(2); end
+
+% Get the thresholds via clicks
+if nargin < 5 
+    figure(1); clf; plot(eod(tim < 5)); title('Click Threshold for EOD');
+        [~, eodthresh] = ginput(1);
+        pause(1);
+    figure(1); clf; plot(stim(tim < 5)); title('Click Threshold for STIMULUS');
+        [~, stimthresh] = ginput(1);
+        pause(1); close(1);
+end
+fprintf('EOD threshold is %f2.4, STIM threshold is %f2.4', eodthresh, stimthresh);
 
 %% Get time stamps for the EOD and STIMULUS    
     Zeod = zeros(1,length(eod));
