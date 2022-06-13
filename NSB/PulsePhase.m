@@ -49,7 +49,7 @@ figure(1); clf;
 
 for kk = 1:length(regions)
 
-    tt = find(stimTIMs > SIU(kk) & stimTIMs < SIU(kk) + dur);
+    tt = find(stimTIMs > regions(kk) & stimTIMs < regions(kk) + dur);
 
     for j=length(tt):-1:1
         preTIM = eodTIMs(eodTIMs < stimTIMs(tt(j)));
