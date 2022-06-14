@@ -81,9 +81,11 @@ figure(3); clf;
         siuPhase = siuPhase - pi;
         siuPhase(siuPhase <=0) = siuPhase(siuPhase <=0) + (2*pi);
 
+    subplot(211);
         plot(siuPhase, preISIdur./postDUR, '.');
             hold on; plot([pi, pi], ylim, 'k');
         ylim([0.95 1.1]); xlim([0 2*pi]);
 
-
+    subplot(212)
+        histogram(siuPhase);
     out = 0;
