@@ -80,8 +80,9 @@ figure(2); clf;
 figure(3); clf;   
         siuPhase = siuPhase - pi;
         siuPhase(siuPhase <=0) = siuPhase(siuPhase <=0) + (2*pi);
-        
+
         plot(siuPhase, preISIdur./postDUR, '.');
+            hold on; plot([pi, pi], ylim, 'k');
         ylim([0.95 1.1]); xlim([0 2*pi]);
 
 
