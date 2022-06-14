@@ -76,4 +76,14 @@ figure(2); clf;
     subplot(212); histogram(preISIdur - postDUR); 
         xlim([-0.001 0.001]);
 
+
+figure(3); clf;   
+    tpre = find(siuPhase <= pi;); tpost = find(siuPhase > pi);
+    preISIdur = [preISIdur(tpost) preISIdur(tpre)];
+    postDUR = [postDUR(tpost) postDUR(tpre)];
+    
+    plot(siuPhase, preISIdur ./ postDUR, '.');
+        ylim([0.95 1.1]); xlim([0 2*pi]);
+
+
     out = 0;
