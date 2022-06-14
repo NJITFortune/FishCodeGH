@@ -78,7 +78,7 @@ figure(2); clf;
 
 
 figure(3); clf;   
-    tpre = find(siuPhase <= pi;); tpost = find(siuPhase > pi);
+    tpre = find(siuPhase <= pi); tpost = find(siuPhase > pi);
     preISIdur = [preISIdur(tpost) preISIdur(tpre)];
     postDUR = [postDUR(tpost) postDUR(tpre)];
     
