@@ -81,8 +81,9 @@ figure(3); clf;
     tpre = find(siuPhase <= pi); tpost = find(siuPhase > pi);
     a = preISIdur./postDUR;
     b = [a(tpost), a(tpre)];
+    c = [siuPhase(tpost), siuPhase(tpre)];
     
-    plot(siuPhase, b, '.');
+    plot(c, b, '.');
         ylim([0.95 1.1]); xlim([0 2*pi]);
 
 
