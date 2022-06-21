@@ -42,7 +42,7 @@ preAmp  = KatiepreAssembler(userfilespec);
         SampleWindw = 0.250; % 250 ms window
         
 % Fish limit frequencies for OBW calculation (unlikely to be changed)
-        topFreqOBW = 800;
+        topFreqOBW = 420;%800
         botFreqOBW = 200;
 
 out(1).s(length(iFiles)).Fs = Fs;
