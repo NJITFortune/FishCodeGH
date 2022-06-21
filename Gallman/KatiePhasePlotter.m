@@ -14,9 +14,9 @@ ReFs = 10;
         
 
     %[one(k).xx, one(k).fftyy, one(k).lighttimes] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
-    [one(k).xx, one(k).fftyy, ~] =  metamucil(kg(onefish124idx(k)), channel, ReFs, light);
+    [one(k).xx, one(k).fftyy, ~] =  k_fftsubspliner(kg(onefish124idx(k)), channel, ReFs, light);
 
-       [xx, sumfftyy] = metamucil(timcont, sumfft);
+      % [xx, sumfftyy] = metamucil(timcont, sumfft);
 
     one(k).xx = one(k).xx/3600;
     one(k).lighttimes = abs(kg(onefish124idx(k)).info.luz);

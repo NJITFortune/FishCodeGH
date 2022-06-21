@@ -56,7 +56,7 @@ ReFs = 10;
         twidx1 = find(one(k).xx >= one(k).lighttimes(3) & one(k).xx <= (one(k).lighttimes(3) + 48));
         twlightidx1 = find(one(k).lighttimes >= one(k).lighttimes(3) & one(k).lighttimes <= (one(k).lighttimes(3) + 48));
        
-        
+        one(k).lighttimes(3)
         one(k).lighttimes1 = one(k).lighttimes(twlightidx1);
         one(k).xx1 = one(k).xx(twidx1);
         one(k).fftyy1 = one(k).fftyy(twidx1);
@@ -122,7 +122,7 @@ ReFs = 10;
         end
 
 %% multifish data 
-[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(16), ReFs, light);
+%[hixx, loxx, HiAmp, HiTim, LoAmp, LoTim, Hifftyy, ~,  Lofftyy, ~, Hilighttimes, Lolighttimes] =  k_multifftsubspliner(kg2(16), ReFs, light);
 
 %% plots - 
 salmon = [250/255 128/255 114/255];
@@ -167,14 +167,14 @@ figure(4); clf; title("the whole enchilada..."); hold on;
 
      xa(3) = subplot(313); title("multiple fish"); hold on;
 
-
-            plot(hixx, (Hifftyy-mean(Hifftyy))/max(abs(Hifftyy- mean(Hifftyy))), 'LineWidth', 2, 'Color', mediumV);
-            plot(loxx, (Lofftyy-mean(Lofftyy))/max(abs(Lofftyy- mean(Lofftyy))), 'LineWidth', 2, 'Color', deepsky);
-
-           
-            for j = 1:length(Hilighttimes)
-                plot([Hilighttimes(j), Hilighttimes(j)], ylim, 'k-');
-            end
+% 
+%             plot(hixx, (Hifftyy-mean(Hifftyy))/max(abs(Hifftyy- mean(Hifftyy))), 'LineWidth', 2, 'Color', mediumV);
+%             plot(loxx, (Lofftyy-mean(Lofftyy))/max(abs(Lofftyy- mean(Lofftyy))), 'LineWidth', 2, 'Color', deepsky);
+% 
+%            
+%             for j = 1:length(Hilighttimes)
+%                 plot([Hilighttimes(j), Hilighttimes(j)], ylim, 'k-');
+%             end
 
      linkaxes(xa, 'x');
 

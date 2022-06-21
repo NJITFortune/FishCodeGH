@@ -1,4 +1,4 @@
-function out  = KatieAssembler(userfilespec, Fs, numstart)
+function out  = KatieAssembler(userfilespec, numstart)
 % This function reads the original data collection files
 % It filters the data and saves it into a single structure
 % Performs these analyses: OBW, zAMP
@@ -13,17 +13,28 @@ lightchan = 4; % Either 5 or 4
 
 daycount = 0;
 
+preAmp  = KatiepreAssembler(userfilespec);
 
+    maxamp(1) = max(preAmp(1).amp);
+    maxamp(2) = max(preAmp(2).amp);
+
+   if isfield(preAmp, 'idx') 
+       out.maxampidx = preamp.idx;
+   end
 %% SET UP 
 % Get the list of files to be analyzed  
         iFiles = dir(userfilespec);
+            % Get sample frequency
+            load(iFiles(1).name, 'tim');
+            Fs = 1 / (tim(2) - tim(1));
+            clear tim
                
 % Set up filters
         % High pass filter cutoff frequency
-            highp = 200;
+            highp = 200; %200 %k = 9 800-1200
             [b,a] = butter(5, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
         % Low pass filter cutoff frequency
-            lowp = 2000;    
+            lowp = 1200;    %1500
             [f,e] = butter(5, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
                     
 % How much of the sample that we will use (each sample is 1 second)  
@@ -37,7 +48,7 @@ daycount = 0;
 out(1).s(length(iFiles)).Fs = Fs;
 out(1).s(length(iFiles)).name = [];
         
-        
+    
 %% CYCLE THROUGH EVERY FILE IN DIRECTORY
 
     ff = waitbar(0, 'Cycling through files.');
@@ -74,16 +85,18 @@ for k = 1:length(iFiles)
 
         for j = 1:2 % Perform analyses on the two channels
         
+            
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
             [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
-            data4analysis = data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j);            
-            
+            data4analysis = (data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j));     
+            data4analysis = (data4analysis - mean(data4analysis)) / maxamp(j);
+           % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
-            % OBW
-            [~,~,~,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
-            % zAmp
-            out(j).s(k).zAmp = k_zAmp(data4analysis);
+%             % OBW
+             [~,~,~,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+%             % zAmp
+%             out(j).s(k).zAmp = k_zAmp(data4analysis);
             % FFT Machine
             [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
         
@@ -95,6 +108,7 @@ for k = 1:length(iFiles)
         % There are 86400 seconds in a day.
         out(j).s(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
         out(j).s(k).tim24 = (hour*60*60) + (minute*60) + second;
+        out(j).maxamp = maxamp(j);
         
         end
         
