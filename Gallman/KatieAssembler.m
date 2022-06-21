@@ -34,7 +34,7 @@ preAmp  = KatiepreAssembler(userfilespec);
             highp = 200; %200 %k = 9 800-1200
             [b,a] = butter(5, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
         % Low pass filter cutoff frequency
-            lowp = 1200;    %1500
+            lowp = 440;%1200;    %1500
             [f,e] = butter(5, lowp/(Fs/2), 'low'); % Filter to eliminate high frequency contamination
                     
 % How much of the sample that we will use (each sample is 1 second)  
