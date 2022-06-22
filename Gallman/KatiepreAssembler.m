@@ -33,7 +33,7 @@ function maxAmp  = KatiepreAssembler(userfilespec)
 
     ff = waitbar(0, 'Cycling through files.');
 
-for k = 1512%1:length(iFiles) %1417:2600 %1836 %1579
+for k = 5619%1:length(iFiles) %1417:2600 %1836 %1579
 
      waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
         
