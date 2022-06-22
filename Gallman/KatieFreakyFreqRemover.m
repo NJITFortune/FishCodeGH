@@ -29,7 +29,7 @@ function out = KatieFreakyFreqRemover(in)
                 out(j).s(k).fftFreq = in(j).s(k).fftFreq;
                 out(j).s(k).temp = in(j).s(k).temp;
                 out(j).s(k).light = in(j).s(k).light;
-                out(j).s(k).light = in(j).s(k).light;
+                out(j).s(k).peakfftAmp = in(j).s(k).peakfftAmp;
             end
         end
 
