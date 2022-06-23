@@ -18,7 +18,7 @@ function maxAmp  = KatiepreAssembler(userfilespec)
                
 % Set up filters
         % High pass filter cutoff frequency
-            highp = 320; %200
+            highp = 200; %200
             [b,a] = butter(5, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
         % Low pass filter cutoff frequency
             lowp = 1200;    %2000
@@ -33,7 +33,7 @@ function maxAmp  = KatiepreAssembler(userfilespec)
 
     ff = waitbar(0, 'Cycling through files.');
 
-for k = 844%1:length(iFiles) %1417:2600 %1836 %1579
+for k = 1:length(iFiles) %1417:2600 %1836 %1579
 
      waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
         
