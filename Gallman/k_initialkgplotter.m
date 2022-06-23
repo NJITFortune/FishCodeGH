@@ -1,40 +1,40 @@
-function k_initialplotter(out)
+function k_initialkgplotter(out)
 % plot the data for fun
 % Usage: k_initialplotter(kg(#));
 %close all;
 %% Preparations
 
 % All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
-    tto{1} = 1:length([out.e(2).s.timcont]); % tto is indices for obwAmp
-    tto{2} = tto{1};
+%     tto{1} = 1:length([out.e(2).s.timcont]); % tto is indices for obwAmp
+%     tto{2} = tto{1};
 % 
 %     ttz{1} = tto{1}; % ttz is indices for zAmp
 %     ttz{2} = tto{1};
-% 
-%     ttsf{1} = 1:length([out.e(1).s.timcont]); % ttsf is indices for sumfftAmp
-%     ttsf{2} = 1:length([out.e(2).s.timcont]);
-%     
+
+    ttsf{1} = 1:length([out.e(1).s.timcont]); % ttsf is indices for sumfftAmp
+    ttsf{2} = 1:length([out.e(2).s.timcont]);
+    
 % If we have removed outliers via KatieRemover, get the indices...  
  if isfield(out, 'idx')
     if ~isempty(out.idx)
-         tto{1} = out.idx(1).obwidx; tto{2} = out.idx(2).obwidx; % tto is indices for obwAmp
+         %tto{1} = out.idx(1).obwidx; tto{2} = out.idx(2).obwidx; % tto is indices for obwAmp
 %         ttz{1} = out.idx(1).zidx; ttz{2} = out.idx(2).zidx; % ttz is indices for zAmp
-   %     ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+        ttsf{1} = out.idx(1).sumfftidx; ttsf{2} = out.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
     end
  end
 %% Continuous data plot
 
-figure(4); clf; hold on;
+figure(3); clf; hold on;
     %set(gcf, 'Position', [200 100 2*560 2*420]);
 
 
 
 ax(1) = subplot(411); hold on; title('obwAmp'); %ylim([0,5]);
-%    plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
-%    plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp],'.');
+   plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
+   plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp],'.');
 
-       plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
-       plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
+%        plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
+%        plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
 
 ax(2) = subplot(412); hold on; title(['fish frequency']);   
 %    

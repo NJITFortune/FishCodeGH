@@ -1,4 +1,4 @@
-function [newtim, newampFilled] = metamucil(oldtim, oldamp, regularinterval)
+function [newtim, normsubfft, newampFilled] = k_regularmetamucil(oldtim, oldamp, regularinterval)
 % Usage: [newtim, newampNaN, newampFilled] = metamucil(oldtim, oldamp)
 %
 % oldtim and oldamp are the recording times in seconds and data from kg
@@ -12,7 +12,7 @@ function [newtim, newampFilled] = metamucil(oldtim, oldamp, regularinterval)
 % The old data has a minimum interval of 60 seconds. 
 %% Normalize data to its spread using dB
 
-dBamp = 20*log10(oldamp/max(oldamp));
+%dBamp = 20*log10(oldamp/max(oldamp));
 %% Regularize the data at precisely 60 second intervals
 
 %regularinterval = 10; %in seconds
@@ -33,11 +33,11 @@ dd = find(d > 0); % We only need to fill gaps (0 is not a gap!)
 
 if dd(1) == 1 % There is a gap after the first data point
     newtim = oldtim(1):regularinterval: oldtim(2) - regularinterval/3; % This is weird, but don't worry
-    newampNaN = [dBamp(1) NaN(1, d(1))];
+    newampNaN = [oldamp(1) NaN(1, d(1))];
 
 else % Copy the first batch of data into the new data and add first missing values
     newtim = oldtim(1:dd(1));
-    newampNaN = dBamp(1:dd(1));
+    newampNaN = oldamp(1:dd(1));
 
     insertims = (((1:d(dd(1))) * regularinterval) + newtim(end)); 
     insertamps = NaN(1, d(dd(1)));
@@ -51,7 +51,7 @@ for j = 2:length(dd) % The rest of the data
 
     % Append the good old data to the new data
     newtim = [newtim oldtim(dd(j-1) + 1:dd(j))];
-    newampNaN = [newampNaN dBamp(dd(j-1) + 1:dd(j))];
+    newampNaN = [newampNaN oldamp(dd(j-1) + 1:dd(j))];
 
     % Insert the missing times and NaNs at the end
     insertims = (((1:d(dd(j))) * regularinterval) + newtim(end)); 
@@ -65,16 +65,21 @@ end
 % Make a filled version
     newampFilled = fillmissing(newampNaN, 'linear');
 
-%     %detrend ydata
+% Normalization methods
+   %mean subtraction
+   normsubfft = newampFilled - mean(newampFilled);
+
+
+   %detrend ydata
 %    dtsubfftyy = detrend(newampFilled,0,'SamplePoints', newtim); %changed from polynomial detrend to mean subtraction 
 %    normsubfftyytrend = 1./(newampFilled - dtsubfftyy);
 %    tnormsubfftyy = newampFilled .* normsubfftyytrend;
 
 % %Plot old and new data
-figure; clf;
-    ax(1) = subplot(211); hold on; plot(oldtim, oldamp, '*-'); hold on; plot(newtim, newampNaN, 'o');
-    ax(2) = subplot(212); hold on; plot(oldtim, oldamp, '*-'); hold on; plot(newtim, newampFilled, 'o');
-    linkaxes(ax, 'x');
+% figure; clf;
+%     ax(1) = subplot(211); hold on; plot(oldtim, oldamp, '*-'); hold on; plot(newtim, newampNaN, 'o');
+%     ax(2) = subplot(212); hold on; plot(oldtim, oldamp, '*-'); hold on; plot(newtim, newampFilled, 'o');
+%     linkaxes(ax, 'x');
 %     pea = imread('/Applications/MATLAB_R2021b.app/toolbox/images/imdata/peacock.jpg');
 %     figure; imshow(pea, 'InitialMagnification',1000); pause(1); close(gcf);
 %A lasting impression

@@ -1,12 +1,12 @@
 % A new attempt at frequency tracking two Eigenmannia in the tank
-
+clearvars -except kg kg2
 Fs = 40000;
 freqs = [200 650]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
 maxchange = 20; % Maximum change in Hz between samples
-mindiff = 5; % Minimum frequency difference (Hz) between the two fish
+mindiff = 2; % Minimum frequency difference (Hz) between the two fish
 
 
 clickcnt = 0;
@@ -48,17 +48,18 @@ f2 = fftmachine(e2, Fs);
 
 
 
-figure(2); clf;
-    subplot(211); specgram(e1,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
-    subplot(212); specgram(e2,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
-    colormap('HOT');     
+% figure(1); clf;
+%     subplot(211); specgram(e1,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
+%     subplot(212); specgram(e2,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
+%     colormap('HOT');     
 
 % Plot the summed FFT for the user to click
 summedFFT =  f1.fftdata + f2.fftdata;
 
-figure(1); clf; hold on;
+figure(2); clf; hold on;
     plot(f1.fftfreq, summedFFT);
     xlim(freqs);
+   % xticks(linspace(freqs(1),freqs(2), 30));
 
 [xfreq, ~] = ginput(1);
     
@@ -138,6 +139,7 @@ for j = 2:length(iFiles)
     figure(2); clf; hold on;
         plot(f1.fftfreq, summedFFT);
         xlim(freqs);
+       
 
     % Get the lower freq peak
         lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < oldmidpoint);
@@ -174,6 +176,7 @@ if fixme == 1
     figure(1); clf; hold on;
         plot(f1.fftfreq, summedFFT);
         xlim(freqs);
+         xticks(linspace(freqs(1),freqs(2), 30));
 
     [xfreq, ~] = ginput;
 

@@ -10,10 +10,10 @@
 %for when i'm too lazy to function
 clearvars -except kg kg2
 
-in = kg(97);
+in = kg(95);
 channel = 1;
-ReFs = 60;
-light = 4;
+ReFs = 20;
+light = 3;
 
 %% prep
 
@@ -44,7 +44,7 @@ end
     timcont = [in.e(channel).s(ttsf{channel}).timcont];
     sumfft = [in.e(channel).s(ttsf{channel}).sumfftAmp];
 
-    [xx, sumfftyy] = metamucil(timcont, sumfft);
+    [xx, sumfftyy] = metamucil(timcont, sumfft, ReFs);
 
 
 %light is a label for whether the subjective day starts with light or with dark
@@ -85,6 +85,9 @@ ld = in.info.ld;
     xx = xx(idx);
     sumfftyy = sumfftyy(idx);
 
+    
+   
+    
 
 %% Define trials and days
 
@@ -155,14 +158,14 @@ end
             % Make a time sequence for the datums (easier than extracting from
             % xx...)
 %            trial(jj).tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
-            trial(jj).tim = 1/ReFs:1/ReFs:(ld*2);
+            trial(jj).tim = ReFs:ReFs:(ld*2*3600);
             
     end
     
 %% Divide sample into days to compare against trial day means
 
 %tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
-tim = 1/ReFs:1/ReFs:(ld*2);
+tim = ReFs:ReFs:(ld*2)*3600;
 %spline data
 
 for k = 1:howmanydaysinsample
@@ -188,8 +191,8 @@ for k = 1:howmanydaysinsample
  
     for jj = 1:length(out)
         
-        plot(out(jj).Sentiretimcont/3600, out(jj).SsumfftAmp, '.', 'LineWidth', 3);
-        
+        plot(out(jj).Sentiretimcont/3600, out(jj).SsumfftAmp, '.', 'MarkerSize', 6);
+        plot(out(jj).Sentiretimcont/3600, movmean(out(jj).SsumfftAmp, 5), 'k-', 'LineWidth', 1);
         
     end
     
@@ -207,61 +210,120 @@ for k = 1:howmanydaysinsample
 
         %create temporary vector to calculate mean by trial
         mday(jj,:) = zeros(1, length(trial(jj).tim));
-
+        
 
         for k=1:length(trial(jj).day)
-
-                %fill temporary vector with data from each day 
+            %length(trial(jj).day(k).SsumfftAmp)
+            %length(mday(jj,:))
+                %fill temporary vector with amplitude data from each day 
                 mday(jj,:) = mday(jj,:) + trial(jj).day(k).SsumfftAmp;
-
+                %fill temporary vector with time data from each day 
+                
+                %length(trial(jj).day(k).SsumfftAmp);
                 %plot every day 
                 subplot(211); hold on; title('Days');
-                plot(trial(jj).tim, trial(jj).day(k).SsumfftAmp);
+                plot(trial(jj).tim/3600, trial(jj).day(k).SsumfftAmp);
                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
         end
             
             maxamp = max(mday(jj));
             minamp = min(mday(jj));
-            max(maxamp)
+           
          % To get average across days, divide by number of days
-            mday(jj,:) = mday(jj,:) / length(trial(jj).day);
+            daymean(jj,:) = mday(jj,:) / length(trial(jj).day);
 
+            
+            
+            %plot([topdaytim], [topdayamp]);
             %plot day average by trial
             subplot(212); hold on; title('Day average by trial');
-            plot(trial(jj).tim, mday(jj,:), '-', 'Linewidth', 1);
+            plot(trial(jj).tim/3600, daymean(jj,:), '-', 'Linewidth', 1);
             plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
     end
+
+    
     
     % Mean of means
-    meanofmeans = nanmean(mday); % Takes the mean of the means for a day from each trial 
+    meanofmeans = nanmean(daymean); % Takes the mean of the means for a day from each trial 
 
     %plot average of days across trials
     subplot(212); hold on;
-    plot(trial(jj).tim, meanofmeans, 'k-', 'LineWidth', 3);
-    
+    plot(trial(jj).tim/3600, meanofmeans, 'k-', 'LineWidth', 3);
 
+
+    
+    figure(13); clf; title('raw data above mean'); hold on;
+        for jj=1:length(trial) 
+
+        %create temporary vector to calculate mean by trial
+       
+            for k=1:length(trial(jj).day)
+                %length(trial(jj).day(k).SsumfftAmp)
+                %length(mday(jj,:))
+                    %fill temporary vector with amplitude data from each day 
+                    ampday(jj,:) = trial(jj).day(k).SsumfftAmp;
+                    %fill temporary vector with time data from each day 
+                    timday(jj,:) =  trial(jj).tim;
+    
+                    %length(trial(jj).day(k).SsumfftAmp)
+    
+                    %plot every day 
+                    plot(trial(jj).tim/3600, trial(jj).day(k).SsumfftAmp);
+                    plot([ld ld], ylim, 'k-', 'LineWidth', 1);
+    
+            end
+        end
+
+        %take above the mean
+            fftidx = find(ampday >= meanofmeans);
+            topdayamp = ampday(fftidx);
+            topdaytim = timday(fftidx);
+                
+           % plot(topdaytim, topdayamp, '.');
+            plot(trial(jj).tim/3600, meanofmeans, 'k-', 'LineWidth', 3)
+
+%             [abovetim, sortidx] = sort(topdaytim);
+%             aboveamp = topdayamp(sortidx);
+% 
+%              [newtim, newamp] = metamucil(abovetim', aboveamp');
+
+             [timnoreps, oldtimidx, timnorepsidx] = unique(topdaytim);
+             ampnoreps = accumarray(timnorepsidx, topdayamp, [], @mean);
+
+             [newtim, newamp] = metamucil(timnoreps', ampnoreps', 10);
    
 %plot averages for days without trial division 
 figure(28); clf; hold on; 
 
 
      for k = 1:length(day)
-            plot(day(k).tim, day(k).Ssumfftyy);
+            plot(day(k).tim/3600, day(k).Ssumfftyy);
             meanday(k,:) = day(k).Ssumfftyy;
      end
         
             mmday= nanmean(meanday);
-            plot(day(1).tim, mmday, 'k-', 'LineWidth', 3);
+            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
  
+% spliney = csaps([trial(1).tim], meanofmeans, .99);
+% sumfftyy = fnval([trial(1).tim], spliney);
 %compare day mean calculations            
-figure(29); clf; hold on;
-    plot(day(1).tim, mmday);
-    plot(trial(jj).tim, meanofmeans);
+figure(31); clf; hold on;
+    plot(day(1).tim/3600, mmday);
+     plot(day(1).tim/3600, movmean(mmday,5), 'r', 'LineWidth', 3);
+     plot(day(1).tim/3600,smoothdata(mmday, 'SamplePoints',day(1).tim), 'LineWidth', 3);
+%     plot(day(1).tim, movmean(mmday,10), 'c', 'LineWidth', 5);
+%     plot(day(1).tim, movmean(mmday,20), 'm', 'LineWidth', 5);
+    plot(trial(jj).tim/3600, meanofmeans);
+   % plot(abovetim/3600, aboveamp,'k-', 'LineWidth', 1);
+  %  plot(timnoreps/3600, ampnoreps, '.');
+   % plot(newtim/3600, movmean(newamp, 5), 'c-');
+    %plot(trial(1).tim, sumfftyy, 'k-', 'LineWidth', 3);
     plot([ld ld], ylim, 'k-', 'LineWidth', 3);
     legend('day mean', 'trial mean');
      legend('boxoff')
 % 
+
 % 
