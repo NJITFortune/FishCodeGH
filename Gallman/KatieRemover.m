@@ -6,7 +6,7 @@ function out = KatieRemover(in)
     % % OBW        
     figure(1); clf;
    
-        histogram([in(k).s.obwAmp], 100); xlim([0,4]);hold on;
+        histogram([in(k).s.obwAmp], 100); hold on; %xlim([0,4]);
         
         %Lower lim
         %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
