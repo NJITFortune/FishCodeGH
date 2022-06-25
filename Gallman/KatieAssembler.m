@@ -31,7 +31,7 @@ preAmp  = KatiepreAssembler(userfilespec);
                
 % Set up filters
         % High pass filter cutoff frequency
-            highp = 450;%200; %200 %k = 9 800-1200
+            highp = 200; %200 %k = 9 800-1200
             [b,a] = butter(5, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
         % Low pass filter cutoff frequency
             lowp = 1200;    %1500
@@ -43,7 +43,7 @@ preAmp  = KatiepreAssembler(userfilespec);
         
 % Fish limit frequencies for OBW calculation (unlikely to be changed)
         topFreqOBW = 800;%800
-        botFreqOBW = 450;%200;
+        botFreqOBW = 200;
 
 out(1).s(length(iFiles)).Fs = Fs;
 out(1).s(length(iFiles)).name = [];
