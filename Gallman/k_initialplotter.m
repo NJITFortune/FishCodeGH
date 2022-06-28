@@ -37,8 +37,8 @@ ax(1) = subplot(411); hold on; title('obwAmp'); %ylim([0,5]);
        plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
 
 ax(2) = subplot(412); hold on; title(['fish frequency']);   
-%    
-     plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.fftFreq], '.k', 'Markersize', 8);
+    
+    plot([out.e(2).s.timcont]/(60*60), [out.e(2).s.fftFreq], '.k', 'Markersize', 8);
     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.fftFreq], '.k', 'Markersize', 8);
 ax(3) = subplot(413); hold on; title('temp');
     
