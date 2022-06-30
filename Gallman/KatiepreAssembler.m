@@ -18,7 +18,7 @@ function maxAmp  = KatiepreAssembler(userfilespec)
                
 % Set up filters
         % High pass filter cutoff frequency
-            highp = 450; %200
+            highp = 200; %200
             [b,a] = butter(5, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
         % Low pass filter cutoff frequency
             lowp = 1200;    %2000
