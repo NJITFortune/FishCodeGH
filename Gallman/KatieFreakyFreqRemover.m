@@ -23,7 +23,7 @@ function out = KatieFreakyFreqRemover(in)
         %freqidx = find([in(j).s.fftFreq] > cutofffreqL & [in(j).s.fftFreq] < cutofffreqH);
 
 
-        tt = find(in(j).s.fftFreq > cutofffreqL & in(j).s.fftFreq < cutofffreqH);
+        tt = find([in(j).s.fftFreq] > cutofffreqL & [in(j).s.fftFreq] < cutofffreqH);
     
             out(j).s = in(j).s(tt);
 
