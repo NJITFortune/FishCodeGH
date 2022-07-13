@@ -20,7 +20,7 @@ function out = KatieRemover(in)
         plot([cutoffampH, cutoffampH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
         drawnow; 
         
-        out(k).obwidx = find([in(k).s.obwAmp] > cutoffampL & [in(k).s.obwAmp] < cutoffampH);
+        out(k).obwidx = find(in(k).s.obwAmp > cutoffampL & in(k).s.obwAmp < cutoffampH);
         pause(1);
     %     
     % % zAmp        
