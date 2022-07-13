@@ -22,19 +22,14 @@ function out = KatieFreakyFreqRemover(in)
         
         %freqidx = find([in(j).s.fftFreq] > cutofffreqL & [in(j).s.fftFreq] < cutofffreqH);
 
-        for k = 1:length([in(j).s.obwAmp])
-            if in(j).s(k).fftFreq > cutofffreqL && in(j).s(k).fftFreq < cutofffreqH
-                out(j).s(k).obwAmp = in(j).s(k).obwAmp;
-                out(j).s(k).timcont = in(j).s(k).timcont;
-                out(j).s(k).fftFreq = in(j).s(k).fftFreq;
-                out(j).s(k).temp = in(j).s(k).temp;
-                out(j).s(k).light = in(j).s(k).light;
-                out(j).s(k).peakfftAmp = in(j).s(k).peakfftAmp;
-                out(j).s(k).sumfftAmp = in(j).s(k).sumfftAmp;
-            end
-        end
 
-     end
+        tt = find(in(j).s.fftFreq > cutofffreqL & in(j).s.fftFreq < cutofffreqH);
+    
+            out(j).s = in(j).s(tt);
+
+        
+    end
+
         pause(1);
     
 
