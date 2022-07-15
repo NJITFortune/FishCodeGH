@@ -19,7 +19,7 @@ preAmp  = KatiepreAssembler(userfilespec);
     maxamp(2) = max(preAmp(2).amp);
 
    if isfield(preAmp, 'idx') 
-       out.maxampidx = preamp.idx;
+       out.maxampidx = maxAmp(1).idk;
    end
 %% SET UP 
 % Get the list of files to be analyzed  
