@@ -23,6 +23,7 @@ function out = KatieTempLabeler(in)
         ipt = findchangepts([in(1).s.light], 'MinThreshold', 2.5);
         
         
+        if ~
         %create luz vector for light change times
             %lights on is +
             %lights off is -
