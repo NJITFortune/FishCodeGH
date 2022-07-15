@@ -23,27 +23,31 @@ function out = KatieTempLabeler(in)
         ipt = findchangepts([in(1).s.light], 'MinThreshold', 2.5);
         
         
-        if ~
-        %create luz vector for light change times
-            %lights on is +
-            %lights off is -
-        for j = 1:length(ipt)
-            
-            changepts(j) = [in(1).s(ipt(j)).timcont]/3600;
-            if in(1).s(ipt(j)).light < 2.5
-                changepts(j) = -changepts(j);
-            end
-            
-        end
-            
-        if changepts > 0
-        plot([abs(changepts)' abs(changepts)'], [-1, 6], 'y-');
-        else
-        plot([abs(changepts)' abs(changepts)'], [-1, 6], 'k-');
-        end
-        
-        out.luz = changepts;
+        if ~isempty(ipt)
+            %create luz vector for light change times
+                %lights on is +
+                %lights off is -
+            for j = 1:length(ipt)
 
+                changepts(j) = [in(1).s(ipt(j)).timcont]/3600;
+                if in(1).s(ipt(j)).light < 2.5
+                    changepts(j) = -changepts(j);
+                end
+
+            end
+
+            if changepts > 0
+            plot([abs(changepts)' abs(changepts)'], [-1, 6], 'y-');
+            else
+            plot([abs(changepts)' abs(changepts)'], [-1, 6], 'k-');
+            end
+
+            out.luz = changepts;
+        
+        else
+            
+        out.luz = [[in(1).s(1).timcont], [in(1).s(end).timcont];
+        end
 %temp changes
     %output saved in vector temptims
     %plots to check
