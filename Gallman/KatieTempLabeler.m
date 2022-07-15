@@ -46,8 +46,10 @@ function out = KatieTempLabeler(in)
         
         else
             
-        out.luz = [[in(1).s(1).timcont], [in(1).s(end).timcont];
+         out.luz = [[in(1).s(1).timcont], [in(1).s(length([in(1).s.timcont])).timcont];
+            
         end
+    
 %temp changes
     %output saved in vector temptims
     %plots to check
