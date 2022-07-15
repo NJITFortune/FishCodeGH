@@ -46,7 +46,7 @@ function out = KatieTempLabeler(in)
         
         else
             
-         out.luz = [[in(1).s(1).timcont], [in(1).s(length([in(1).s.timcont])).timcont];
+         out.luz = [[in(1).s(1).timcont], [in(1).s(length([in(1).s.timcont])).timcont]];
             
         end
     
