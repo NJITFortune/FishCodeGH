@@ -70,7 +70,8 @@ function out = KatieTempLabeler(in)
         [r, lrx, ~, ~, ~] = risetime([in(1).s.temp], [in(1).s.timcont]/3600);
         [f, ~, ufx, ~, ~] = falltime([in(1).s.temp], [in(1).s.timcont]/3600);
         
-        if ~isempty(lrx)
+        if ~isempty(lrx) && ~isempty(ufx)
+         
         %save rise indicis in center of temp change
             %lower cross plus risetime/2
         for j = 1:length(lrx)
