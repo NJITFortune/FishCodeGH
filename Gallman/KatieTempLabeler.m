@@ -70,7 +70,7 @@ function out = KatieTempLabeler(in)
         [r, lrx, ~, ~, ~] = risetime([in(1).s.temp], [in(1).s.timcont]/3600);
         [f, ~, ufx, ~, ~] = falltime([in(1).s.temp], [in(1).s.timcont]/3600);
         
-        
+        if ~isempty(lrx)
         %save rise indicis in center of temp change
             %lower cross plus risetime/2
         for j = 1:length(lrx)
@@ -98,7 +98,7 @@ function out = KatieTempLabeler(in)
             out.temptims(j,:) = tempsort(j);
             plot([out.temptims(j), out.temptims(j)], ylim, 'b-');
         end
-   
+        end
 %% manual labels
  %enter into command line
     out.ld = input('Enter the LD schedule: '); %temp code is 99 if constant light or dark
