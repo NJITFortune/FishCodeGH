@@ -89,10 +89,12 @@ for k = 1:length(iFiles)
 
         for j = 1:2 % Perform analyses on the two channels
         
-            % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
+            % FIND THE MAXIMUM
+            % find the 250ms window where the amplitude is greatest 
             [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
-            data4analysis = data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j);            
-            
+            data4analysis = data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j);   
+            %normalization step - subtract mean and divide by maximum
+            data4analysis = (data4analysis - mean(data4analysis)) / maxamp(j);
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
             % OBW
