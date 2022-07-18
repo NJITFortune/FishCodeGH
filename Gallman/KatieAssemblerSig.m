@@ -27,6 +27,11 @@ preAmp  = KatiepreAssembler(userfilespec);
 %% SET UP 
 % Get the list of files to be analyzed  
         iFiles = dir(userfilespec);
+
+% Get sample frequency
+        load(iFiles(1).name, 'tim');
+        Fs = 1 / (tim(2) - tim(1));
+        clear tim
                
 % Set up filters
         % High pass filter cutoff frequency
