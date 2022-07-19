@@ -154,6 +154,10 @@ for k = 1:howmanydaysinsample
  %% plot to check
 
 %plot averages for days without trial division 
+figure(55); clf; hold on;
+    for k = 1:length(day)
+        plot()
+
 figure(56); clf; hold on; 
 
  mday = zeros(1, length(day(1).tim));
