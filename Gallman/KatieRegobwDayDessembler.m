@@ -180,8 +180,16 @@ figure(55); clf; hold on;
 %average over single day    
 figure(56); clf; hold on; 
 
- mday = zeros(1, length(day(1).tim));
-
+ 
+ 
+    if light < 4
+        fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+    else
+        fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+    end
+    
+    %mean two ways to prove math
+    mday = zeros(1, length(day(1).tim));        
      for k = 1:length(day)
             plot(day(k).tim/3600, day(k).Sobwyy);
             meanday(k,:) = day(k).Sobwyy;
@@ -195,9 +203,7 @@ figure(56); clf; hold on;
             plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
             
-            if light < 4
-            fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-            end
+            
 
 
 
