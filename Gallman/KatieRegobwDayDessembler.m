@@ -94,10 +94,6 @@ end
 %     obw = [in.e(channel).s(ttsf{channel}).sumfftAmp];
 
 
-    %xx = lighttimes(1):ReFs:lighttimes(end);
-    timidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
-    timcont = timcont(timidx);
-    obw = obw(timidx);  
 %% take top of data set 
 
     %find peaks
@@ -106,11 +102,16 @@ end
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
 
+    
     %regularize data to ReFs interval
-    [xx, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, ReFs);
+    [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, ReFs);
     %[regtim, regobw] = metamucil(timcont, obw, ReFs);
    
 
+     %xx = lighttimes(1):ReFs:lighttimes(end);
+    timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
+    xx = xx(timidx);
+    obwyy = obwyy(timidx);  
 %% Define day length
 
  %day
@@ -135,14 +136,14 @@ for k = 1:howmanydaysinsample
                 if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
 
                   %  day(k).Ssumfftyy = regobwpeaks(ddayidx);
-                    day(k).Sobwyy = regobwminusmean(ddayidx);
+                    day(k).Sobwyy = obwyy(ddayidx);
 %                    day(k).nonormregsumfft = nonormregsumfft(ddayidx);
                     %day(k).Ssumfftyy = dBamp(ddayidx);
                     day(k).tim = tim;
                     day(k).entiretimcont = xx(ddayidx);
                     day(k).ld = in.info.ld;
                    % day(k).amprange = max(regsumfft(ddayidx))-min(regsumfft(ddayidx));
-                    day(k).amprange = max(regobwminusmean(ddayidx));
+                    day(k).amprange = max(obwyy(ddayidx));
                 end
 
 %                 rawddayidx = find(timcont >= xx(1) + (k-1) * daylengthSECONDS & timcont < xx(1) + k* daylengthSECONDS); % k-1 so that we start at zero
