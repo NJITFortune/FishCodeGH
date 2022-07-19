@@ -164,7 +164,9 @@ figure(55); clf; hold on;
     end
 
    % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
-    a = ylim;
+   
+    a = ylim; %all of above is just to get the max for the plot lines...
+    
     for j = 1:length(lighttimes)-1
         if mod(j,2) == 1
         fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
@@ -192,7 +194,7 @@ figure(56); clf; hold on;
             plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
             plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
-
+            fill[
      
 
 
