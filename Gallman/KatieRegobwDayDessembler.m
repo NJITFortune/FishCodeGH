@@ -108,7 +108,7 @@ end
     %[regtim, regobw] = metamucil(timcont, obw, ReFs);
    
 
-     %xx = lighttimes(1):ReFs:lighttimes(end);
+    %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
     obwyy = regobwminusmean(timidx);  
@@ -156,7 +156,8 @@ for k = 1:howmanydaysinsample
  end
  
  %% plot to check
-
+%time vectors currently in seconds, divide by 3600 to get hours
+ 
 %days over experiment time
 figure(55); clf; hold on;
     for k = 1:length(day)
@@ -181,10 +182,10 @@ figure(55); clf; hold on;
 figure(56); clf; hold on; 
 
  
- 
-    if light < 4
+    %create fill box 
+    if light < 4 %we start with dark
         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-    else
+    else %we start with light
         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
     end
     
