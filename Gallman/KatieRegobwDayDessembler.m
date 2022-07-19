@@ -10,7 +10,7 @@
 % % %for when i'm too lazy to function
  clearvars -except kg kg2 rkg
 % % 
-in = rkg(1);
+in = rkg(54);
 channel = 1;
 ReFs = 20;
 light = 3;
