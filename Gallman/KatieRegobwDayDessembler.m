@@ -161,16 +161,16 @@ figure(55); clf; hold on;
     end
 
     plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
-    a = ylim;
-    for j = 1:length(lighttimes)-1
-        if mod(j,2) == 1
-        fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-        end
-    end
-
-    for k = 1:length(day)
-        plot(day(k).entiretimcont/3600, day(k).Sobwyy, 'LineWidth', 2);
-    end
+%     a = ylim;
+%     for j = 1:length(lighttimes)-1
+%         if mod(j,2) == 1
+%         fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%         end
+%     end
+% 
+%     for k = 1:length(day)
+%         plot(day(k).entiretimcont/3600, day(k).Sobwyy, 'LineWidth', 2);
+%     end
 
 %average over single day    
 figure(56); clf; hold on; 
