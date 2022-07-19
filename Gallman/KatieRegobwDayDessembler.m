@@ -110,7 +110,7 @@ end
 
      %xx = lighttimes(1):ReFs:lighttimes(end);
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
-    xx = xx(timidx);
+    xx = regtim(timidx);
     obwyy = obwyy(timidx);  
 %% Define day length
 
