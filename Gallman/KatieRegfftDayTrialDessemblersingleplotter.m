@@ -85,9 +85,7 @@ ld = in.info.ld;
     xx = xx(idx);
     sumfftyy = sumfftyy(idx);
 
-    
    
-    
 
 %% Define trials and days
 
