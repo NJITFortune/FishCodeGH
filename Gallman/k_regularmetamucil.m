@@ -22,7 +22,8 @@ b = mod(oldtim, regularinterval); % How far is each time point away from regular
 
 d = (diff(oldtim)/regularinterval) - 1;  % Diff tells us the gaps, and the -1 is so that 0 is no gap 
                             % and otherwise the number we need to insert.
-
+d = (diff(oldtim/regularinterval)) - 1;
+                            
 dd = find(d > 0); % We only need to fill gaps (0 is not a gap!)
 
 % This is painful for the weird case that the first data has a gap after it
