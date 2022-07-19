@@ -8,7 +8,7 @@
 
 
 % % %for when i'm too lazy to function
- clearvars -except kg kg2 rkg
+ clearvars -except kg kg2 rkg k
 % % 
 in = rkg(55);
 channel = 2;
@@ -127,24 +127,24 @@ end
 % needs to be in seconds
 tim = ReFs:ReFs:(ld*2)*3600;
 
-for k = 1:howmanydaysinsample
+for j = 1:howmanydaysinsample
     
               %resampled data  
     %         % Get the index of the start time of the day
-                ddayidx = find(xx >= xx(1) + (k-1) * daylengthSECONDS & xx < xx(1) + k* daylengthSECONDS); % k-1 so that we start at zero
+                ddayidx = find(xx >= xx(1) + (j-1) * daylengthSECONDS & xx < xx(1) + j* daylengthSECONDS); % k-1 so that we start at zero
 
                 if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
 
                     %amplitude data
-                    day(k).Sobwyy = obwyy(ddayidx);
+                    day(j).Sobwyy = obwyy(ddayidx);
                     %new time base from 0 the length of day by ReFS
-                    day(k).tim = tim;
+                    day(j).tim = tim;
                     %old time base divided by day for plotting chronologically
-                    day(k).entiretimcont = xx(ddayidx);
+                    day(j).entiretimcont = xx(ddayidx);
                     %not sure why we need how long the day is in hours...
-                    day(k).ld = in.info.ld;
+                    day(j).ld = in.info.ld;
                     %max amp of each day
-                    day(k).amprange = max(obwyy(ddayidx));
+                    day(j).amprange = max(obwyy(ddayidx));
                     
                 end
 
@@ -160,8 +160,8 @@ for k = 1:howmanydaysinsample
  
 %days over experiment time
 figure(55); clf; hold on;
-    for k = 1:length(day)
-        plot(day(k).entiretimcont/3600, day(k).Sobwyy);
+    for j = 1:length(day)
+        plot(day(j).entiretimcont/3600, day(j).Sobwyy);
     end
 
    % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
@@ -174,8 +174,8 @@ figure(55); clf; hold on;
         end
     end
 
-    for k = 1:length(day)
-        plot(day(k).entiretimcont/3600, day(k).Sobwyy, 'LineWidth', 1);
+    for j = 1:length(day)
+        plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1);
     end
 
 %average over single day    
@@ -191,10 +191,10 @@ figure(56); clf; hold on;
     
     %mean two ways to prove math
     mday = zeros(1, length(day(1).tim));        
-     for k = 1:length(day)
-            plot(day(k).tim/3600, day(k).Sobwyy);
-            meanday(k,:) = day(k).Sobwyy;
-            mday = mday + day(k).Sobwyy;
+     for j = 1:length(day)
+            plot(day(j).tim/3600, day(j).Sobwyy);
+            meanday(j,:) = day(j).Sobwyy;
+            mday = mday + day(j).Sobwyy;
             
      end
         
