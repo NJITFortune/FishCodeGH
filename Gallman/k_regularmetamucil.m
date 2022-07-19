@@ -1,22 +1,18 @@
 function [newtim, normsubfft, newampFilled] = k_regularmetamucil(oldtim, oldamp, regularinterval)
-% Usage: [newtim, newampNaN, newampFilled] = metamucil(oldtim, oldamp)
+% Usage: [newtim, newampmeansubtracted, newampFilled] = metamucil(oldtim, oldamp)
 %
 % oldtim and oldamp are the recording times in seconds and data from kg
 % e.g. [kg(1).e(1).s.timcont] and [kg(1).e(1).s.sumfftAmp]
 % BUT better to input the data with outliers already removed.
 %
-% newtim is the regularized sample times (hardwired to 60 seconds)
+% newtim is the regularized sample times (based on the regularinterval)
 % newampNaN has NaNs for missing data
 % newampFilled has missing data filled using 'linear' interpolation
-
+%
 % The old data has a minimum interval of 60 seconds. 
-%% Normalize data to its spread using dB
-
-%dBamp = 20*log10(oldamp/max(oldamp));
 %% Regularize the data at precisely 60 second intervals
 
 %regularinterval = 10; %in seconds
-
 
 b = mod(oldtim, regularinterval); % How far is each time point away from regular 60 second intervals
     oldtim(b < regularinterval/2) = oldtim(b < regularinterval/2) - b(b < regularinterval/2); % for data that is less than 30 seconds away, round down.
