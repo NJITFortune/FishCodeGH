@@ -10,7 +10,7 @@
 % % %for when i'm too lazy to function
  clearvars -except kg kg2 rkg
 % % 
-in = kg(12);
+in = rkg(1);
 channel = 1;
 ReFs = 20;
 light = 3;
@@ -154,22 +154,22 @@ for k = 1:howmanydaysinsample
  %% plot to check
 
 %plot averages for days without trial division 
-% figure(56); clf; hold on; 
-% 
-%  mday = zeros(1, length(day(1).tim));
-% 
-%      for k = 1:length(day)
-%             plot(day(k).tim/3600, day(k).Ssumfftyy);
-%             meanday(k,:) = day(k).Ssumfftyy;
-%             mday = mday + day(k).Ssumfftyy;
-%             
-%      end
-%         
-%             mmday= mean(meanday);
-%             othermday = mday/(length(day));
-%             plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
-%             plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-%             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+figure(56); clf; hold on; 
+
+ mday = zeros(1, length(day(1).tim));
+
+     for k = 1:length(day)
+            plot(day(k).tim/3600, day(k).Sobwyy);
+            meanday(k,:) = day(k).Sobwyy;
+            mday = mday + day(k).Sobwyy;
+            
+     end
+        
+            mmday= mean(meanday);
+            othermday = mday/(length(day));
+            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
+            plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+            plot([ld ld], ylim, 'k-', 'LineWidth', 3);
 
      
 
