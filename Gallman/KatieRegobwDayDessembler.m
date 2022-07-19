@@ -168,6 +168,9 @@ figure(55); clf; hold on;
         end
     end
 
+    for k = 1:length(day)
+        plot(day(k).entiretimcont/3600, day(k).Sobwyy);
+    end
 figure(56); clf; hold on; 
 
  mday = zeros(1, length(day(1).tim));
