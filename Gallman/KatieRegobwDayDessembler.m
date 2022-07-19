@@ -161,6 +161,9 @@ figure(55); clf; hold on;
     end
 
     plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+    for j = 1:length(lighttimes)
+        if j
+        fill(lighttimes)
 
 figure(56); clf; hold on; 
 

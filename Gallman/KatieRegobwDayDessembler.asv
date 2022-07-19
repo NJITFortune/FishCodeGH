@@ -10,7 +10,7 @@
 % % %for when i'm too lazy to function
  clearvars -except kg kg2 rkg
 % % 
-in = kg(12);
+in = rkg(1);
 channel = 1;
 ReFs = 20;
 light = 3;
@@ -106,35 +106,19 @@ end
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
 
-
-    %data above spline
-    %[subffttim, subfft, ~, lighttimes] =  k_fftabovespline(in, timcont, sumfft, ReFs, light); %squiggle is the spline for plotting
-
     %regularize data to ReFs interval
     [xx, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, ReFs);
     %[regtim, regobw] = metamucil(timcont, obw, ReFs);
-    
-    %take the top of the data set
-    
-
-     
-    %convert amp to dB
-   % dBamp = 20*log10(regsumfft/max(regsumfft));
-
-    %raw data
-%     idx = find(timcont >= lighttimes(1) & timcont <= lighttimes(end));
-%     timcont = timcont(idx);
-%     sumfft = sumfft(idx);
-    
+   
 
 %% Define day length
 
  %day
     daylengthSECONDS = (ld*2) * 3600;  
     lengthofsampleHOURS = (lighttimes(end) - lighttimes(1)) / 3600; 
-    % This is the number of sample in a day
+    % This is the number of data samples in a day
     howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
-    %how many days total
+    %how many days in total experiment
     howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
 
 
@@ -155,6 +139,7 @@ for k = 1:howmanydaysinsample
 %                    day(k).nonormregsumfft = nonormregsumfft(ddayidx);
                     %day(k).Ssumfftyy = dBamp(ddayidx);
                     day(k).tim = tim;
+                    day(k).entiretimcont = xx(ddayidx);
                     day(k).ld = in.info.ld;
                    % day(k).amprange = max(regsumfft(ddayidx))-min(regsumfft(ddayidx));
                     day(k).amprange = max(regobwminusmean(ddayidx));
@@ -170,22 +155,32 @@ for k = 1:howmanydaysinsample
  %% plot to check
 
 %plot averages for days without trial division 
-% figure(56); clf; hold on; 
-% 
-%  mday = zeros(1, length(day(1).tim));
-% 
-%      for k = 1:length(day)
-%             plot(day(k).tim/3600, day(k).Ssumfftyy);
-%             meanday(k,:) = day(k).Ssumfftyy;
-%             mday = mday + day(k).Ssumfftyy;
-%             
-%      end
-%         
-%             mmday= mean(meanday);
-%             othermday = mday/(length(day));
-%             plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
-%             plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-%             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+figure(55); clf; hold on;
+    for k = 1:length(day)
+        plot(day(k).entiretimcont/3600, day(k).Sobwyy);
+    end
+
+    plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+    for j = 1:length(lighttimes)
+        if j
+        fill(lighttimes)
+
+figure(56); clf; hold on; 
+
+ mday = zeros(1, length(day(1).tim));
+
+     for k = 1:length(day)
+            plot(day(k).tim/3600, day(k).Sobwyy);
+            meanday(k,:) = day(k).Sobwyy;
+            mday = mday + day(k).Sobwyy;
+            
+     end
+        
+            mmday= mean(meanday);
+            othermday = mday/(length(day));
+            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
+            plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+            plot([ld ld], ylim, 'k-', 'LineWidth', 3);
 
      
 
