@@ -25,7 +25,7 @@ d = (diff(oldtim)/regularinterval) - 1;  % Diff tells us the gaps, and the -1 is
                             % and otherwise the number we need to insert.
                           
 dd = find(d > 0); % We only need to fill gaps (0 is not a gap!)
-dd
+length(dd)
 % This is painful for the weird case that the first data has a gap after it
 
 if dd(1) == 1 % There is a gap after the first data point
