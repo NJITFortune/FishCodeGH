@@ -194,8 +194,9 @@ figure(56); clf; hold on;
             plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
             plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+            a = ylim;
             if light < 3
-            fill([0 0 ld ld], [ylim ylim], [0.9, 0.9, 0.9]);
+            fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
             end
 
 
