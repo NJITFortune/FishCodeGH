@@ -36,15 +36,15 @@ end
 
             % If we have removed outliers via KatieRemover, get the indices...    
             if ~isempty(in.idx) 
-                ttsf{channel} = in.idx(channel).sumfftidx; % ttsf is indices for sumfftAmp
+                tto{channel} = in.idx(channel).obwidx; % ttsf is indices for sumfftAmp
             end
 
 %regularize data across time in ReFs second intervals
 
-    timcont = [in.e(channel).s(ttsf{channel}).timcont];
-    sumfft = [in.e(channel).s(ttsf{channel}).sumfftAmp];
+    timcont = [in.e(channel).s(tto{channel}).timcont];
+    obwAmp = [in.e(channel).s(tto{channel}).obwAmp];
 
-    [xx, sumfftyy] = metamucil(timcont, sumfft, ReFs);
+    [xx, obwyy] = metamucil(timcont, obwAmp, ReFs);
 
 
 %light is a label for whether the subjective day starts with light or with dark
@@ -83,7 +83,7 @@ ld = in.info.ld;
 
     idx = find(xx >= lighttimes(1) & xx <= lighttimes(end));
     xx = xx(idx);
-    sumfftyy = sumfftyy(idx);
+    obwyy = obwyy(idx);
 
    
 
@@ -121,9 +121,9 @@ for jj = 1:numotrials
             % Get the rest of the indices for the trial  
             Stimidx = Stimidx:Stimidx + samplesinatrial;
             
-            if length(sumfftyy) >= Stimidx(end)
+            if length(obwyy) >= Stimidx(end)
              % Data   
-             out(jj).SsumfftAmp = sumfftyy(Stimidx);
+             out(jj).SobwAmp = obwyy(Stimidx);
              
              % Time  
              out(jj).Stimcont = xx(Stimidx) - xx(Stimidx(1)); % Time starting at zero  
@@ -146,7 +146,7 @@ end
             dayidx = find(out(jj).Stimcont > (k-1) * (ld*2*3600), 1) -1; % k-1 so that we start at zero
 
             % Get the datums
-            trial(jj).day(k).SsumfftAmp = out(jj).SsumfftAmp(dayidx:dayidx+howmanysamplesinaday-1);
+            trial(jj).day(k).SobwAmp = out(jj).SobwAmp(dayidx:dayidx+howmanysamplesinaday-1);
 %             
                trial(jj).ld = ld; 
 
@@ -174,7 +174,7 @@ for k = 1:howmanydaysinsample
 
                 if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
 
-                    day(k).Ssumfftyy = sumfftyy(ddayidx);
+                    day(k).Sobwyy = obwyy(ddayidx);
                     day(k).tim = tim;
                     
                 end
@@ -189,8 +189,8 @@ for k = 1:howmanydaysinsample
  
     for jj = 1:length(out)
         
-        plot(out(jj).Sentiretimcont/3600, out(jj).SsumfftAmp, '.', 'MarkerSize', 6);
-        plot(out(jj).Sentiretimcont/3600, movmean(out(jj).SsumfftAmp, 5), 'k-', 'LineWidth', 1);
+        plot(out(jj).Sentiretimcont/3600, out(jj).SobwAmp, '.', 'MarkerSize', 6);
+        plot(out(jj).Sentiretimcont/3600, movmean(out(jj).SobwAmp, 5), 'k-', 'LineWidth', 1);
         
     end
     
@@ -214,13 +214,13 @@ for k = 1:howmanydaysinsample
             %length(trial(jj).day(k).SsumfftAmp)
             %length(mday(jj,:))
                 %fill temporary vector with amplitude data from each day 
-                mday(jj,:) = mday(jj,:) + trial(jj).day(k).SsumfftAmp;
+                mday(jj,:) = mday(jj,:) + trial(jj).day(k).SobwAmp;
                 %fill temporary vector with time data from each day 
                 
                 %length(trial(jj).day(k).SsumfftAmp);
                 %plot every day 
                 subplot(211); hold on; title('Days');
-                plot(trial(jj).tim/3600, trial(jj).day(k).SsumfftAmp);
+                plot(trial(jj).tim/3600, trial(jj).day(k).SobwAmp);
                 plot([ld ld], ylim, 'k-', 'LineWidth', 1);
 
         end
@@ -261,14 +261,14 @@ for k = 1:howmanydaysinsample
                 %length(trial(jj).day(k).SsumfftAmp)
                 %length(mday(jj,:))
                     %fill temporary vector with amplitude data from each day 
-                    ampday(jj,:) = trial(jj).day(k).SsumfftAmp;
+                    ampday(jj,:) = trial(jj).day(k).SobwAmp;
                     %fill temporary vector with time data from each day 
                     timday(jj,:) =  trial(jj).tim;
     
                     %length(trial(jj).day(k).SsumfftAmp)
     
                     %plot every day 
-                    plot(trial(jj).tim/3600, trial(jj).day(k).SsumfftAmp);
+                    plot(trial(jj).tim/3600, trial(jj).day(k).SobwAmp);
                     plot([ld ld], ylim, 'k-', 'LineWidth', 1);
     
             end
