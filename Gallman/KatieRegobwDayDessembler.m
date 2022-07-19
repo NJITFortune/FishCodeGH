@@ -11,7 +11,7 @@
  clearvars -except kg kg2 rkg
 % % 
 in = rkg(55);
-channel = 1;
+channel = 2;
 ReFs = 20;
 light = 3;
 
