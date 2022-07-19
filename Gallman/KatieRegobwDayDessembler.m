@@ -10,7 +10,7 @@
 % % %for when i'm too lazy to function
  clearvars -except kg kg2 rkg
 % % 
-in = rkg(1);
+in = rkg(2);
 channel = 1;
 ReFs = 20;
 light = 3;
@@ -154,7 +154,7 @@ for k = 1:howmanydaysinsample
  
  %% plot to check
 
-%plot averages for days without trial division 
+%days over experiment time
 figure(55); clf; hold on;
     for k = 1:length(day)
         plot(day(k).entiretimcont/3600, day(k).Sobwyy);
@@ -171,6 +171,8 @@ figure(55); clf; hold on;
     for k = 1:length(day)
         plot(day(k).entiretimcont/3600, day(k).Sobwyy, 'LineWidth', 2);
     end
+
+%average over single day    
 figure(56); clf; hold on; 
 
  mday = zeros(1, length(day(1).tim));
