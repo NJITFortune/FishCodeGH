@@ -161,9 +161,9 @@ figure(55); clf; hold on;
     end
 
     plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
-    for j = 1:length(lighttimes)
-        if j
-        fill(lighttimes)
+    for j = 1:length(lighttimes)-1
+        if mod(j,2) == 1
+        fill(lighttimes(j) lighttimes(j) lighttimes(j+1) lighttimes(j+1), )
 
 figure(56); clf; hold on; 
 
