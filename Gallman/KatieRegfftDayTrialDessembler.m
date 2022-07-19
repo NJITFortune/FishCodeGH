@@ -1,4 +1,4 @@
-function [trial] = KatieRegfftDayTrialDessembler(in, channel,  ReFs, light)
+%function [trial] = KatieRegfftDayTrialDessembler(in, channel,  ReFs, light)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 %
@@ -8,7 +8,7 @@ function [trial] = KatieRegfftDayTrialDessembler(in, channel,  ReFs, light)
 
 
 %for when i'm too lazy to function
-% clearvars -except kg kg2
+clearvars -except kg kg2 rkg
 % 
 % in = kg(12);
 % channel = 1;
