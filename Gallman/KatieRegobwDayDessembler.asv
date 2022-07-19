@@ -1,4 +1,4 @@
-%function [day] = KatieRegobwDayDessembler(in, channel,  ReFs)
+%function [day] = KatieRegobwDayDessembler(in, channel,  ReFs, light)
 %% usage
 %[day] = KatieRegobwDayDessembler(kg(#), channel, ReFs)
 %
@@ -13,7 +13,7 @@
 in = kg(12);
 channel = 1;
 ReFs = 20;
-% light = 3;
+light = 3;
 
 %% prep
 
@@ -60,7 +60,7 @@ if in.info.luz(1) < 0
         end
     end
 
-else 
+else %we start with light
     lighttimeslong = lighttimeslong(2:end);
     if isempty(in.info.poweridx) %if there are no values in poweridx []
         if light < 4
@@ -85,13 +85,13 @@ end
     %convert to seconds because xx is in seconds
     lighttimes = floor(lighttimes*3600);
 
-
+%trim data to lighttimes
     %raw data
-%     timcont = [in.e(channel).s(tto{channel}).timcont];
-%     obw = [in.e(channel).s(tto{channel}).obwAmp];
+    timcont = [in.e(channel).s(tto{channel}).timcont];
+    obw = [in.e(channel).s(tto{channel}).obwAmp];
 
-    timcont = [in.e(channel).s(ttsf{channel}).timcont];
-    obw = [in.e(channel).s(ttsf{channel}).sumfftAmp];
+%     timcont = [in.e(channel).s(ttsf{channel}).timcont];
+%     obw = [in.e(channel).s(ttsf{channel}).sumfftAmp];
 
 
     %xx = lighttimes(1):ReFs:lighttimes(end);
@@ -127,7 +127,7 @@ end
 %     sumfft = sumfft(idx);
     
 
-%% Define trials and days
+%% Define day length
 
  %day
     daylengthSECONDS = (ld*2) * 3600;  
@@ -139,9 +139,8 @@ end
 
 
 %% Divide sample into days 
-%tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+% needs to be in seconds
 tim = ReFs:ReFs:(ld*2)*3600;
-%spline data
 
 for k = 1:howmanydaysinsample
     
@@ -152,7 +151,7 @@ for k = 1:howmanydaysinsample
                 if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
 
                   %  day(k).Ssumfftyy = regobwpeaks(ddayidx);
-                    day(k).Ssumfftyy = regobwminusmean(ddayidx);
+                    day(k).Sobwyy = regobwminusmean(ddayidx);
 %                    day(k).nonormregsumfft = nonormregsumfft(ddayidx);
                     %day(k).Ssumfftyy = dBamp(ddayidx);
                     day(k).tim = tim;
