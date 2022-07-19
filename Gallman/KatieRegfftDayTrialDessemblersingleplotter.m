@@ -30,7 +30,7 @@ end
 %outliers
     % Prepare the data with outliers
 
-            ttsf{channel} = 1:length([in.e(channel).s.timcont]); % ttsf is indices for sumfftAmp
+            tto{channel} = 1:length([in.e(channel).s.timcont]); % ttsf is indices for sumfftAmp
             
     % Prepare the data without outliers
 
