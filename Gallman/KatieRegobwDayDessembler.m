@@ -1,6 +1,6 @@
-function [day] = KatieRegDayDessembler(in, channel,  ReFs)
+%function [day] = KatieRegobwDayDessembler(in, channel,  ReFs, light)
 %% usage
-%[day] = KatieRegDayDessembler(kg(#), channel, ReFs)
+%[day] = KatieRegobwDayDessembler(kg(#), channel, ReFs)
 %
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
@@ -8,12 +8,12 @@ function [day] = KatieRegDayDessembler(in, channel,  ReFs)
 
 
 % % %for when i'm too lazy to function
-%  clearvars -except kg kg2 rgk
-% % % 
-% in = kg(12);
-% channel = 1;
-% ReFs = 20;
-% light = 3;
+ clearvars -except kg kg2 rkg
+% % 
+in = kg(12);
+channel = 1;
+ReFs = 20;
+light = 3;
 
 %% prep
 
@@ -22,11 +22,9 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 %outliers
     % Prepare the data with outliers
-
             tto{channel} = 1:length([in.e(channel).s.timcont]); % ttsf is indices for sumfftAmp
           %  ttsf{channel} = 1:length([in.e(channel).s.timcont]); % ttsf is indices for sumfftAmp
     % Prepare the data without outliers
-
             % If we have removed outliers via KatieRemover, get the indices...    
             if ~isempty(in.idx) 
                 tto{channel} = in.idx(channel).obwidx; % ttsf is indices for obwAmp
@@ -35,8 +33,10 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 %% crop data to lighttimes 
 
-    ld = in.info.ld;
+%create positive vector of lighttimes
 lighttimeslong = abs(in.info.luz);
+
+%if we start with dark...
 if in.info.luz(1) < 0
 
     %fit light vector to power idx
@@ -60,7 +60,7 @@ if in.info.luz(1) < 0
         end
     end
 
-else 
+else %we start with light
     lighttimeslong = lighttimeslong(2:end);
     if isempty(in.info.poweridx) %if there are no values in poweridx []
         if light < 4
@@ -85,13 +85,13 @@ end
     %convert to seconds because xx is in seconds
     lighttimes = floor(lighttimes*3600);
 
-
+%trim data to lighttimes
     %raw data
-%     timcont = [in.e(channel).s(tto{channel}).timcont];
-%     obw = [in.e(channel).s(tto{channel}).obwAmp];
+    timcont = [in.e(channel).s(tto{channel}).timcont];
+    obw = [in.e(channel).s(tto{channel}).obwAmp];
 
-    timcont = [in.e(channel).s(ttsf{channel}).timcont];
-    obw = [in.e(channel).s(ttsf{channel}).sumfftAmp];
+%     timcont = [in.e(channel).s(ttsf{channel}).timcont];
+%     obw = [in.e(channel).s(ttsf{channel}).sumfftAmp];
 
 
     %xx = lighttimes(1):ReFs:lighttimes(end);
@@ -106,42 +106,25 @@ end
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
 
-
-    %data above spline
-    %[subffttim, subfft, ~, lighttimes] =  k_fftabovespline(in, timcont, sumfft, ReFs, light); %squiggle is the spline for plotting
-
     %regularize data to ReFs interval
     [xx, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, ReFs);
     %[regtim, regobw] = metamucil(timcont, obw, ReFs);
-    
-    %take the top of the data set
-    
+   
 
-     
-    %convert amp to dB
-   % dBamp = 20*log10(regsumfft/max(regsumfft));
-
-    %raw data
-%     idx = find(timcont >= lighttimes(1) & timcont <= lighttimes(end));
-%     timcont = timcont(idx);
-%     sumfft = sumfft(idx);
-    
-
-%% Define trials and days
+%% Define day length
 
  %day
     daylengthSECONDS = (ld*2) * 3600;  
     lengthofsampleHOURS = (lighttimes(end) - lighttimes(1)) / 3600; 
-    % This is the number of sample in a day
+    % This is the number of data samples in a day
     howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
-    %how many days total
+    %how many days in total experiment
     howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
 
 
 %% Divide sample into days 
-%tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
+% needs to be in seconds
 tim = ReFs:ReFs:(ld*2)*3600;
-%spline data
 
 for k = 1:howmanydaysinsample
     
@@ -152,7 +135,7 @@ for k = 1:howmanydaysinsample
                 if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
 
                   %  day(k).Ssumfftyy = regobwpeaks(ddayidx);
-                    day(k).Ssumfftyy = regobwminusmean(ddayidx);
+                    day(k).Sobwyy = regobwminusmean(ddayidx);
 %                    day(k).nonormregsumfft = nonormregsumfft(ddayidx);
                     %day(k).Ssumfftyy = dBamp(ddayidx);
                     day(k).tim = tim;
