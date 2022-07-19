@@ -163,7 +163,7 @@ figure(55); clf; hold on;
         plot(day(k).entiretimcont/3600, day(k).Sobwyy);
     end
 
-    plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+   % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
     a = ylim;
     for j = 1:length(lighttimes)-1
         if mod(j,2) == 1
