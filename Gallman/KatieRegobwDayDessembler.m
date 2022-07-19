@@ -169,7 +169,7 @@ figure(55); clf; hold on;
     end
 
     for k = 1:length(day)
-        plot(day(k).entiretimcont/3600, day(k).Sobwyy);
+        plot(day(k).entiretimcont/3600, day(k).Sobwyy, 'LineWidth', 2);
     end
 figure(56); clf; hold on; 
 
