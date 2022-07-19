@@ -139,6 +139,7 @@ for k = 1:howmanydaysinsample
 %                    day(k).nonormregsumfft = nonormregsumfft(ddayidx);
                     %day(k).Ssumfftyy = dBamp(ddayidx);
                     day(k).tim = tim;
+                    day(k).entiretimcont = xx(ddayidx);
                     day(k).ld = in.info.ld;
                    % day(k).amprange = max(regsumfft(ddayidx))-min(regsumfft(ddayidx));
                     day(k).amprange = max(regobwminusmean(ddayidx));
@@ -156,7 +157,9 @@ for k = 1:howmanydaysinsample
 %plot averages for days without trial division 
 figure(55); clf; hold on;
     for k = 1:length(day)
-        plot()
+        plot(day(k).entiretimcont/3600, day(k).Sobwyy);
+    end
+    
 
 figure(56); clf; hold on; 
 
