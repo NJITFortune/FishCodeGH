@@ -13,7 +13,7 @@
 in = rkg(k);
 channel = 1;
 ReFs = 20;
-light = 4;
+light = 3;
 
 %% prep
 
