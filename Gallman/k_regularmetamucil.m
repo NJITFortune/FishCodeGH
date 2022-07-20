@@ -20,6 +20,8 @@ if oldtim(1) > rawtim(1)
     
     %gapampmax = max(rawamp(gapidx));
     gapamp = repmat(max(rawamp(gapidx)), length(gapidx)-1);
+    length(gapidx)
+    length(gapamp)
     oldamp = [rawamp(1) gapamp oldamp];
      
 end
