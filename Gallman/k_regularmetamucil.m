@@ -17,7 +17,8 @@ function [newtim, normsubfft, newampFilled] = k_regularmetamucil(oldtim, oldamp,
 if oldtim(1) > rawtim(1)
     gapidx = find(rawtim < oldtim(1));
     oldtim = [rawtim(gapidx) oldtim];
-    oldamp = [rawamp(gapidx) oldamp];
+   % oldamp = [rawamp(gapidx) oldamp];
+     oldamp = [rawamp(1) oldamp];
 end
 %% Regularize the data at precisely 60 second intervals
 
