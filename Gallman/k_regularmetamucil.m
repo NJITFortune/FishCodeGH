@@ -1,4 +1,4 @@
-function [newtim, normsubfft, newampFilled] = k_regularmetamucil(oldtim, oldamp, regularinterval)
+function [newtim, normsubfft, newampFilled] = k_regularmetamucil(oldtim, oldamp, rawtim, rawamp, regularinterval)
 % Usage: [newtim, newampmeansubtracted, newampFilled] = metamucil(oldtim, oldamp)
 %
 % oldtim and oldamp are the recording times in seconds and data from kg
@@ -10,13 +10,18 @@ function [newtim, normsubfft, newampFilled] = k_regularmetamucil(oldtim, oldamp,
 % newampFilled has missing data filled using 'linear' interpolation
 %
 % The old data has a minimum interval of 60 seconds. 
+
+%% Oldtim starts with first peak, not first light change
+%finding peaks of peaks creates oldtim, need rawtim to start the day 
+
+if oldtim(1) > timcont(1)
+    peaktimgap = oldtim(1) - timcont(1);
+    gapidx = find(timcont < peaktimgap
 %% Regularize the data at precisely 60 second intervals
 
-%regularinterval = 10; %in seconds
-
-b = mod(oldtim, regularinterval); % How far is each time point away from regular 60 second intervals
-    oldtim(b < regularinterval/2) = oldtim(b < regularinterval/2) - b(b < regularinterval/2); % for data that is less than 30 seconds away, round down.
-    oldtim(b >= regularinterval/2) = oldtim(b >= regularinterval/2) + (regularinterval - b(b >= regularinterval/2)); % for data this is 30-60 seconds away, round up.
+b = mod(oldtim, regularinterval); % How far is each time point away from ReFs second intervals
+    oldtim(b < regularinterval/2) = oldtim(b < regularinterval/2) - b(b < regularinterval/2); % for data that is less than ReFs seconds away, round down.
+    oldtim(b >= regularinterval/2) = oldtim(b >= regularinterval/2) + (regularinterval - b(b >= regularinterval/2)); % for data this is ReFs-2*ReFs seconds away, round up.
 
 %% Now we need to fill in the gaps, both in time and insert NaNs for amplitude    
 
