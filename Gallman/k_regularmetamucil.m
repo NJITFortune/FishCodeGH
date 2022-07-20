@@ -23,6 +23,7 @@ if oldtim(1) > rawtim(1)
     length(gapidx)
     length(gapamp)
     gapamp
+    oldamp
     oldamp = [rawamp(1) gapamp oldamp];
      
 end
