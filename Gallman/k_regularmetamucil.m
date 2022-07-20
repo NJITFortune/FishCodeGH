@@ -18,10 +18,13 @@ if oldtim(1) > rawtim(1)
     gapidx = find(rawtim < oldtim(1));
     oldtim = [rawtim(gapidx) oldtim];
     
-    %gapampmax = max(rawamp(gapidx));
-    gapamp = repmat(max(rawamp(gapidx)), length(gapidx)-1, 1);
-   
-    oldamp = [rawamp(1) gapamp' oldamp];
+    %methods to fill amp in tim gap
+        %fill with raw data
+        oldamp = [rawamp(gapidx) oldamp];
+        
+        %fill with max of raw data
+        gapamp = repmat(max(rawamp(gapidx)), length(gapidx)-1, 1);
+        oldamp = [rawamp(1) gapamp' oldamp];
      
 end
 %% Regularize the data at precisely 60 second intervals
