@@ -101,6 +101,10 @@ end
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
+    
+    %still too spikey... what happens if we do it again
+    [obwpeaks, ccLOCS] = findpeaks(obw(cLOCS));
+    peaktim = timcont(LOCS(CcLOCS));
 
     figure(45); clf; hold on;   
         plot(peaktim, obwpeaks);
