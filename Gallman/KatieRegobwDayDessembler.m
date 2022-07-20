@@ -102,6 +102,10 @@ end
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
 
+    figure(45); clf; hold on;   
+        plot(peaktim, obwpeaks);
+        plot(timcont, obw);
+        plot([lighttimes' lighttimes'], ylim, 'k-');
     
     %regularize data to ReFs interval
     [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, ReFs);
