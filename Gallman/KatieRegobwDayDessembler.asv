@@ -8,12 +8,12 @@
 
 
 % % %for when i'm too lazy to function
- clearvars -except kg kg2 rkg
+ clearvars -except kg kg2 rkg k
 % % 
-in = rkg(1);
+in = rkg(k);
 channel = 1;
 ReFs = 20;
-light = 3;
+light = 4;
 
 %% prep
 
@@ -101,14 +101,21 @@ end
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
+    
+    %still too spikey... what happens if we do it again
+    [obwpeaks, ccLOCS] = findpeaks(obw(cLOCS));
 
+    figure(45); clf; hold on;   
+        plot(peaktim, obwpeaks);
+        plot(timcont, obw);
+        plot([lighttimes' lighttimes'], ylim, 'k-');
     
     %regularize data to ReFs interval
     [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, ReFs);
     %[regtim, regobw] = metamucil(timcont, obw, ReFs);
    
 
-     %xx = lighttimes(1):ReFs:lighttimes(end);
+    %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
     obwyy = regobwminusmean(timidx);  
@@ -127,24 +134,24 @@ end
 % needs to be in seconds
 tim = ReFs:ReFs:(ld*2)*3600;
 
-for k = 1:howmanydaysinsample
+for j = 1:howmanydaysinsample
     
               %resampled data  
     %         % Get the index of the start time of the day
-                ddayidx = find(xx >= xx(1) + (k-1) * daylengthSECONDS & xx < xx(1) + k* daylengthSECONDS); % k-1 so that we start at zero
+                ddayidx = find(xx >= xx(1) + (j-1) * daylengthSECONDS & xx < xx(1) + j* daylengthSECONDS); % k-1 so that we start at zero
 
                 if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
 
                     %amplitude data
-                    day(k).Sobwyy = obwyy(ddayidx);
+                    day(j).Sobwyy = obwyy(ddayidx);
                     %new time base from 0 the length of day by ReFS
-                    day(k).tim = tim;
+                    day(j).tim = tim;
                     %old time base divided by day for plotting chronologically
-                    day(k).entiretimcont = xx(ddayidx);
+                    day(j).entiretimcont = xx(ddayidx);
                     %not sure why we need how long the day is in hours...
-                    day(k).ld = in.info.ld;
+                    day(j).ld = in.info.ld;
                     %max amp of each day
-                    day(k).amprange = max(obwyy(ddayidx));
+                    day(j).amprange = max(obwyy(ddayidx));
                     
                 end
 
@@ -156,44 +163,52 @@ for k = 1:howmanydaysinsample
  end
  
  %% plot to check
-
+%time vectors currently in seconds, divide by 3600 to get hours
+ 
 %days over experiment time
 figure(55); clf; hold on;
-    for k = 1:length(day)
-        plot(day(k).entiretimcont/3600, day(k).Sobwyy);
+    for j = 1:length(day)
+        plot(day(j).entiretimcont/3600, day(j).Sobwyy);
     end
 
    % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
    
     a = ylim; %all of above is just to get the max for the plot lines...
-    
-    for j = 1:length(lighttimes)-1
-        if mod(j,2) == 1
-        fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+    if light < 4 %the first lighttime is dark
+        for j = 1:length(lighttimes)-1
+            if mod(j,2) == 1 %if j is odd
+            fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            end
+        end
+    else %the second lighttime is dark 
+        for j = 1:length(lighttimes)-1
+            if mod(j,2) == 0 %if j is even
+            fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            end
         end
     end
-
-    for k = 1:length(day)
-        plot(day(k).entiretimcont/3600, day(k).Sobwyy, 'LineWidth', 1);
+    
+    for j = 1:length(day)
+        plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1);
     end
 
 %average over single day    
 figure(56); clf; hold on; 
 
  
- 
-    if light < 4
+    %create fill box 
+    if light < 4 %we start with dark
         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-    else
+    else %we start with light
         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
     end
     
     %mean two ways to prove math
     mday = zeros(1, length(day(1).tim));        
-     for k = 1:length(day)
-            plot(day(k).tim/3600, day(k).Sobwyy);
-            meanday(k,:) = day(k).Sobwyy;
-            mday = mday + day(k).Sobwyy;
+     for j = 1:length(day)
+            plot(day(j).tim/3600, day(j).Sobwyy);
+            meanday(j,:) = day(j).Sobwyy;
+            mday = mday + day(j).Sobwyy;
             
      end
         
