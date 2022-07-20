@@ -14,9 +14,9 @@ function [newtim, normsubfft, newampFilled] = k_regularmetamucil(oldtim, oldamp,
 %% Oldtim starts with first peak, not first light change
 %finding peaks of peaks creates oldtim, need rawtim to start the day 
 
-if oldtim(1) > timcont(1)
-    gapidx = find(timcont < oldtim(1) - timcont(1));
-    oldtim = [timcont(gapidx) oldtim];
+if oldtim(1) > rawtim(1)
+    gapidx = find(rawtim < oldtim(1) - rawtim(1));
+    oldtim = [rawtim(gapidx) oldtim];
     oldamp = [rawamp(gapidx) oldamp];
 end
 %% Regularize the data at precisely 60 second intervals
