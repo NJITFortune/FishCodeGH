@@ -164,7 +164,7 @@ for j = 1:howmanydaysinsample
 %time vectors currently in seconds, divide by 3600 to get hours
  
 %days over experiment time
-figure(55); clf; hold on;
+figure(65); clf; hold on;
     for j = 1:length(day)
         plot(day(j).entiretimcont/3600, day(j).Sobwyy);
     end
