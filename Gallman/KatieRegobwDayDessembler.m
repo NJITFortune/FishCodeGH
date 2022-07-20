@@ -109,7 +109,7 @@ end
         plot([lighttimes' lighttimes'], ylim, 'k-');
     
     %regularize data to ReFs interval
-    [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, ReFs);
+    [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw ReFs);
     %[regtim, regobw] = metamucil(timcont, obw, ReFs);
    
 
