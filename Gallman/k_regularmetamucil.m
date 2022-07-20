@@ -20,13 +20,14 @@ if oldtim(1) > rawtim(1)
     
     %methods to fill amp in tim gap
         %fill with raw data
-        oldamp = [rawamp(gapidx) oldamp];
+       % oldamp = [rawamp(gapidx) oldamp];
         
         %fill with max of raw data
-        gapamp = repmat(max(rawamp(gapidx)), length(gapidx)-1, 1);
-        oldamp = [rawamp(1) gapamp' oldamp];
+%         gapamp = repmat(max(rawamp(gapidx)), length(gapidx)-1, 1);
+%         oldamp = [rawamp(1) gapamp' oldamp];
         
         %fill with NaNs
+         oldamp = [rawamp(1)  NaN(1,length(gapidx)-1,'single') oldamp];
      
 end
 %% Regularize the data at precisely 60 second intervals
