@@ -20,11 +20,8 @@ if oldtim(1) > rawtim(1)
     
     %gapampmax = max(rawamp(gapidx));
     gapamp = repmat(max(rawamp(gapidx)), length(gapidx)-1, 1);
-    length(gapidx)
-    length(gapamp)
-    gapamp
-    oldamp
-    oldamp = [rawamp(1) gapamp oldamp];
+   
+    oldamp = [rawamp(1) gapamp' oldamp];
      
 end
 %% Regularize the data at precisely 60 second intervals
