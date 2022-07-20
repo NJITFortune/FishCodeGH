@@ -25,6 +25,8 @@ if oldtim(1) > rawtim(1)
         %fill with max of raw data
         gapamp = repmat(max(rawamp(gapidx)), length(gapidx)-1, 1);
         oldamp = [rawamp(1) gapamp' oldamp];
+        
+        %fill with NaNs
      
 end
 %% Regularize the data at precisely 60 second intervals
