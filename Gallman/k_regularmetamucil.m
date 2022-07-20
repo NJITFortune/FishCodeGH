@@ -17,6 +17,8 @@ function [newtim, normsubfft, newampFilled] = k_regularmetamucil(oldtim, oldamp,
 if oldtim(1) > rawtim(1)
     gapidx = find(rawtim < oldtim(1));
     oldtim = [rawtim(gapidx) oldtim];
+    
+    gapampmax = max(rawamp(gapidx));
     oldamp = [rawamp(gapidx) oldamp];
      
 end
