@@ -15,8 +15,10 @@ function [newtim, normsubfft, newampFilled] = k_regularmetamucil(oldtim, oldamp,
 %finding peaks of peaks creates oldtim, need rawtim to start the day 
 
 if oldtim(1) > timcont(1)
-    peaktimgap = oldtim(1) - timcont(1);
-    gapidx = find(timcont < peaktimgap
+    gapidx = find(timcont < oldtim(1) - timcont(1));
+    oldtim = [timcont(gapidx) oldtim];
+    oldamp = [rawamp(gapidx) oldamp];
+end
 %% Regularize the data at precisely 60 second intervals
 
 b = mod(oldtim, regularinterval); % How far is each time point away from ReFs second intervals
