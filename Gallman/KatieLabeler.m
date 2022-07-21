@@ -7,11 +7,11 @@ function out  = KatieLabeler(in)
     
     out.ld = input('Enter the LD schedule: ');
     startim = input('Enter the start time for the experiment: ');
-    out.qual = input('Enter Quality of data (1-3): ');
-    out.fishid = input('Enter fish name or identifier: ');
-    out.feedingtimes = input('Enter feeding times in hours from start: ');
-    out.socialtimes = input('Enter social times in hours from start (neg = disconnected; pos = connected: ');
-    out.poweridx = input('Enter the values of timcont in hours over which to perform power analysis: ');
+%     out.qual = input('Enter Quality of data (1-3): ');
+%     out.fishid = input('Enter fish name or identifier: ');
+%     out.feedingtimes = input('Enter feeding times in hours from start: ');
+%     out.socialtimes = input('Enter social times in hours from start (neg = disconnected; pos = connected: ');
+%     out.poweridx = input('Enter the values of timcont in hours over which to perform power analysis: ');
     
     
 % LIGHT CYCLE ON/OFF STARTS 
