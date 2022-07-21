@@ -143,7 +143,7 @@ for j = 1:howmanydaysinsample
                     %amplitude data
                     day(j).Sobwyy = obwyy(ddayidx);
                     %new time base from 0 the length of day by ReFS
-                    day(j).tim = tim;
+                    day(j).tim = tim-tim(1);
                     %old time base divided by day for plotting chronologically
                     day(j).entiretimcont = xx(ddayidx);
                     %not sure why we need how long the day is in hours...
