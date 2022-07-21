@@ -57,11 +57,11 @@ ax(4) = subplot(414); hold on; title('light transitions');
     xlabel('Continuous');
         
 % Add feedingtimes, if we have them... 
-   if isfield(out.info, 'feedingtimes')
-    if ~isempty([out.info.feedingtimes])
-       ax(1) = subplot(411); plot([out.info.feedingtimes' out.info.feedingtimes']', ylim, 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
-    end
-   end  
+%    if isfield(out.info, 'feedingtimes')
+%     if ~isempty([out.info.feedingtimes])
+%        ax(1) = subplot(411); plot([out.info.feedingtimes' out.info.feedingtimes']', ylim, 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
+%     end
+%    end  
 
 % Add input signal times, if we have them...
     if isfield(out.e(2).s, 'inputsig')
