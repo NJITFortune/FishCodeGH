@@ -114,7 +114,7 @@ end
     %filter data
         %cut off frequency
         highWn = 0.005/(ReFs/2);
-        lowWn = 0.05/(ReFs/2);
+        lowWn = 0.1/(ReFs/2);
 
         %high pass removes feeding trend
         [bb,aa] = butter(5, highWn, 'high');
@@ -130,11 +130,11 @@ end
     xx = regtim(timidx);
     obwyy = datadata(timidx);  
 
-%     %plot
-%     figure(2);clf; hold on;
-%         plot(xx, obwyy);
-%         plot(xx, filtdata);
-%         plot(xx, datadata);
+    %plot
+    figure(2);clf; hold on;
+        plot(xx, obwyy);
+        plot(xx, filtdata);
+        plot(xx, datadata);
 
 %% Define day length
 
