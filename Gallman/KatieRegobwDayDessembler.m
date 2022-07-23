@@ -110,7 +110,10 @@ end
     
     %regularize data to ReFs interval
     [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs);
-    %[regtim, regobw] = metamucil(timcont, obw, ReFs);
+    
+    %filter data
+        %high pass removes feeding trend
+        
    
 
     %trim everything to lighttimes
