@@ -90,12 +90,11 @@ end
     timcont = [in.e(channel).s(tto{channel}).timcont];
     obw = [in.e(channel).s(tto{channel}).obwAmp];
 
-%     timcont = [in.e(channel).s(ttsf{channel}).timcont];
-%     obw = [in.e(channel).s(ttsf{channel}).sumfftAmp];
 
 
-%% take top of data set 
+%% process data
 
+%Take top of dataset
     %find peaks
     [PKS,LOCS] = findpeaks(obw);
     %find peaks of the peaks
@@ -108,31 +107,34 @@ end
 %         plot(timcont, obw);
 %         plot([lighttimes' lighttimes'], ylim, 'k-');
     
+%Regularize
     %regularize data to ReFs interval
     [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs);
     
     %filter data
         %cut off frequency
         highWn = 0.005/(ReFs/2);
+        lowWn = 0.05/(ReFs/2);
 
         %high pass removes feeding trend
         [bb,aa] = butter(5, highWn, 'high');
         filtdata = filtfilt(bb,aa, double(regobwminusmean)); %double vs single matrix?
 
         %low pass removes spikey-ness
-        
+        [dd,cc] = butter(5, lowWn, 'low');
+        datadata = filtfilt(dd,cc, filtdata);
 
-
-   
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
-    obwyy = regobwminusmean(timidx);  
+    obwyy = datadata(timidx);  
 
-    %plot
-    figure(2);clf; hold on;
-        plot(xx, obwyy);
+%     %plot
+%     figure(2);clf; hold on;
+%         plot(xx, obwyy);
+%         plot(xx, filtdata);
+%         plot(xx, datadata);
 
 %% Define day length
 
