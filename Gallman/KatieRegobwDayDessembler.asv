@@ -110,13 +110,18 @@ end
     
     %regularize data to ReFs interval
     [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs);
-    %[regtim, regobw] = metamucil(timcont, obw, ReFs);
+    
    
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
     obwyy = regobwminusmean(timidx);  
+
+    %plot
+    figure(2);clf; hold on;
+        plot(xx, obwyy);
+
 %% Define day length
 
  %day
