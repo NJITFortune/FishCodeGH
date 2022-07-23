@@ -114,6 +114,8 @@ end
     %filter data
         %high pass removes feeding trend
         [bb,aa] = butter(5, 0.005/(ReFs/2), 'high');
+        filtdata = filtfilt(bb,aa, double(obwyy));
+
 
    
 
