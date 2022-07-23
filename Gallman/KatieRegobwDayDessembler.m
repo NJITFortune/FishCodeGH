@@ -117,6 +117,11 @@ end
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
     obwyy = regobwminusmean(timidx);  
+
+    %plot
+    figure(2);clf; hold on;
+        plot(xx, obwyy);
+
 %% Define day length
 
  %day
