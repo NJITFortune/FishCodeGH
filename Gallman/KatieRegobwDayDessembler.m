@@ -114,7 +114,7 @@ end
     %filter data
         %cut off frequency
         highWn = 0.005/(ReFs/2);
-        lowWn = 0.25/(ReFs/2);
+        lowWn = 0.05/(ReFs/2);
 
         %high pass removes feeding trend
         [bb,aa] = butter(5, highWn, 'high');
