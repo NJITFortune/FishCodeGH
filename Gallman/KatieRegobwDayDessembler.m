@@ -130,11 +130,11 @@ end
     xx = regtim(timidx);
     obwyy = datadata(timidx);  
 
-    %plot
-    figure(2);clf; hold on;
-        plot(regtim, regobwminusmean, 'k-');
-        plot(regtim, filtdata, 'm');
-        plot(regtim, datadata, 'b');
+%     %plot
+%     figure(2);clf; hold on;
+%         plot(regtim, regobwminusmean, 'k-');
+%         plot(regtim, filtdata, 'm');
+%         plot(regtim, datadata, 'b');
 
 %% Define day length
 
