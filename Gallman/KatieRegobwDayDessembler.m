@@ -112,9 +112,15 @@ end
     [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs);
     
     %filter data
+        %cut off frequency
+        highWn = 0.005/(ReFs/2);
+
         %high pass removes feeding trend
-        [bb,aa] = butter(5, 0.005/(ReFs/2), 'high');
-        filtdata = filtfilt(bb,aa, double(obwyy));
+        [bb,aa] = butter(5, highWn, 'high');
+        filtdata = filtfilt(bb,aa, double(regobwminusmean)); %double vs single matrix?
+
+        %low pass removes spikey-ness
+        
 
 
    
