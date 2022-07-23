@@ -132,9 +132,9 @@ end
 
     %plot
     figure(2);clf; hold on;
-        plot(xx, obwyy);
-        plot(xx, filtdata);
-        plot(xx, datadata);
+        plot(regtim, regobwminusmean);
+        plot(regtim, filtdata);
+        plot(regtim, datadata);
 
 %% Define day length
 
