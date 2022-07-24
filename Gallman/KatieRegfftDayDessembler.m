@@ -1,6 +1,7 @@
-%function [day] = KatieRegobwDayDessembler(in, channel,  ReFs, light)
+function [day] = KatieRegfftDayDessembler(in, channel,  ReFs, light)
 %% usage
-%actually
+%actually KatieRegobwDayDessembler, just too lazy to rewrite hourdays code
+%so overwrote this one instead
 %[day] = KatieRegobwDayDessembler(kg(#), channel, ReFs)
 %
 %light is a label for whether the subjective day starts with light or with dark
