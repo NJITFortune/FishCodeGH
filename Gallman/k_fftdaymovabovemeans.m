@@ -29,7 +29,7 @@ ld = in(1).day(1).ld;
         for k = 1:length(in(j).day) %days within each trial
         
               %fill temporary vector with data from each day 
-                mday(k,:) = in(j).day(k).Ssumfftyy;
+                mday(k,:) = in(j).day(k).Sobwyy;
                 amprange(k,:) = in(j).day(k).amprange;
               
                 %plot(in(j).trial(jj).day(k).SsumfftAmp)
