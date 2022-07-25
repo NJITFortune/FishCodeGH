@@ -48,6 +48,8 @@ out(1).s(length(iFiles)).name = [];
 
     ff = waitbar(0, 'Cycling through files.');
  datasubset = 1657;
+
+ figure(27); hold on;
 for k = 1:datasubset
        
      waitbar(k/datasubset, ff, 'Assembling', 'modal');
@@ -94,7 +96,7 @@ for k = 1:datasubset
                     posZs = find(z == 1); 
                     newidx = find(tim >= tim(posZs(1)) & tim < tim(posZs(1)) + .2); 
 
-               figure(27); hold on;
+               
                 plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
             end
            % data4analysis = (data4analysis - mean(data4analysis));
