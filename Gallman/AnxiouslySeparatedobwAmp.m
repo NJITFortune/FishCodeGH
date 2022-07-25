@@ -14,7 +14,7 @@ iFiles = dir('Eigen*');
 ff = waitbar(0, 'Cycling through files.');
 for j = 1:length(in.s)
 
-     waitbar(k/length(iFiles), ff, 'Working on it...', 'modal');
+     waitbar(j/length(iFiles), ff, 'Working on it...', 'modal');
     
   %load in raw data  
     load(iFiles(j).name, 'data');
