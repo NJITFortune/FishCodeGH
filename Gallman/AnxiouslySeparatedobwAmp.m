@@ -1,5 +1,6 @@
-in = kg2(2);
+
 clearvars -except kg kg2 rkg k
+in = kg2(2);
 %% prep
 
 Fs = 40000;
@@ -11,7 +12,7 @@ iFiles = dir('Eigen*');
 
 %% obwAmp of anxiously separated data
 
-for j = 1:length([in.s])
+for j = 1:length(in.s)
     
   %load in raw data  
     load(iFiles(j).name, 'data');
