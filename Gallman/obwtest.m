@@ -69,15 +69,15 @@ for k = 1:datasubset
             data(:,2) = filtfilt(b,a, data(:,2)); % High pass filter
           %  data(:,2) = filtfilt(f,e, data(:,2)); % Low pass filter   
 % 
-%         % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
-%  
-%                 hour = str2double(iFiles(k).name(numstart:numstart+1));        %numstart based on time stamp text location
-%                 minute = str2double(iFiles(k).name(numstart+3:numstart+4));
-%                 second = str2double(iFiles(k).name(numstart+6:numstart+7));
-%                 
-%             if k > 1 && ((hour*60*60) + (minute*60) + second) < out(2).s(k-1).tim24
-%                    daycount = daycount + 1;
-%             end
+        % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
+ 
+                hour = str2double(iFiles(k).name(numstart:numstart+1));        %numstart based on time stamp text location
+                minute = str2double(iFiles(k).name(numstart+3:numstart+4));
+                second = str2double(iFiles(k).name(numstart+6:numstart+7));
+                
+            if k > 1 && ((hour*60*60) + (minute*60) + second) < out(2).s(k-1).tim24
+                   daycount = daycount + 1;
+            end
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
@@ -147,10 +147,10 @@ for k = 1:datasubset
             out(j).s(k).light = mean(data(:,lightchan));
             out(j).s(k).temp = mean(data(:,tempchan));
     
-%             
-%         % There are 86400 seconds in a day.
-%         out(j).s(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
-%         out(j).s(k).tim24 = (hour*60*60) + (minute*60) + second;
+            
+        % There are 86400 seconds in a day.
+        out(j).s(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
+        out(j).s(k).tim24 = (hour*60*60) + (minute*60) + second;
 
         
         end
