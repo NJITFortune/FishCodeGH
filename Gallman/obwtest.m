@@ -89,7 +89,7 @@ for k = 1:datasubset
             if mod(k-1, 100) == 0
                 %find the first zero crossing
                     z = zeros(1,length(data4analysis)); %create vector length of data
-                    z(in > 0) = 1; %fill with 1s for all filtered data greater than 0
+                    z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
                     z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
                     posZs = find(z == 1); 
                     newidx = find(tim >= tim(posZs(1)) & tim < tim(posZs(1)) + .2); 
