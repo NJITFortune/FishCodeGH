@@ -125,7 +125,7 @@ end
         
 
  
- 
+ %%
  figure(28);clf; hold on;
         
         ax(1) = subplot(411); title('obwAmp'); hold on;
@@ -141,7 +141,7 @@ end
             plot([out(1).s.timcont]/3600, [out(1).s.light]);
             plot([out(2).s.timcont]/3600, [out(2).s.light]);
     
-    linkaxes('ax', x)
+    linkaxes(ax, 'x')
         
         
         
