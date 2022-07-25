@@ -248,7 +248,7 @@ oldcurrlofreq = currlofreq;
 oldcurrhifreq = currhifreq;
 % pause(0.3)
 end
-
+%%
 figure(3); clf; hold on; 
 
     ax(1) = subplot(211); title('frequency'); hold on;
