@@ -155,7 +155,7 @@ for k = [461 465]
         end
         
 end
-linkaxes(ax, 'x');
+linkaxes(ax, 'xy');
         pause(1); close(ff);
         
 
