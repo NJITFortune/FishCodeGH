@@ -67,8 +67,8 @@ pause(1); close(ff);
 %%
     figure(66); clf; hold on;
        ax(1) = subplot(211); title('low frequency'); hold on;
-         plot([in.s([in.s.lotube]==1).timcont]/3600, [out([in.s.lotube]==1).loflo] + [out([in.s.lotube]==1).lobw]/2, 'b.');
-         plot([in.s([in.s.lotube]==2).timcont]/3600, [out([in.s.lotube]==2).loflo] + [out([in.s.lotube]==2).lobw]/2, 'c.');   
+         plot([in.s([in.s.lotube]==1).timcont]/3600, [out([in.s.lotube]==1).lobw], 'b.');
+         plot([in.s([in.s.lotube]==2).timcont]/3600, [out([in.s.lotube]==2).lobw], 'c.');   
        ax(2) = subplot(212); title('high frequency'); hold on;  
-         plot([in.s([in.s.hitube]==1).timcont]/3600, [out([in.s.hitube]==1).hiflo] + [out([in.s.hitube]==1).hibw]/2, 'r.');
-         plot([in.s([in.s.hitube]==2).timcont]/3600, [out([in.s.hitube]==2).hiflo] + [out([in.s.hitube]==2).hibw]/2, 'm.');  
+         plot([in.s([in.s.hitube]==1).timcont]/3600, [out([in.s.hitube]==1).hibw], 'r.');
+         plot([in.s([in.s.hitube]==2).timcont]/3600, [out([in.s.hitube]==2).hibw], 'm.');  
