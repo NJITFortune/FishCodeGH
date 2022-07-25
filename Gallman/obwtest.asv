@@ -50,7 +50,7 @@ out(1).s(length(iFiles)).name = [];
  datasubset = 1657;
 
  figure(27); clf; hold on;
-for k = 1:datasubset
+for k = [461 465]
        
      waitbar(k/datasubset, ff, 'Assembling', 'modal');
 
@@ -99,25 +99,27 @@ for k = 1:datasubset
             % FFT Machine
             [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
 
-           if mod(k-1, 50) == 0 && j == 1
-                %find the first zero crossing
-                    z = zeros(1,length(data4analysis)); %create vector length of data
-                    z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
-                    z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
-                    posZs = find(z == 1); 
-                    newidx = find(tim >= tim(posZs(1)) & tim < tim(posZs(1)) + .02); 
-            
-                if out(j).s(k).fftFreq > 525
-               ax(1)=subplot(211); title('high freq');hold on;     
-                plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
-                end
+            obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
 
-                if out(j).s(k).fftFreq < 440
-               ax(2)=subplot(212);title('low freq'); hold on;     
-                plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
-                end 
-            end
-      
+%            if mod(k-1, 50) == 0 && j == 1
+%                 %find the first zero crossing
+%                     z = zeros(1,length(data4analysis)); %create vector length of data
+%                     z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
+%                     z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
+%                     posZs = find(z == 1); 
+%                     newidx = find(tim >= tim(posZs(1)) & tim < tim(posZs(1)) + .02); 
+%             
+%                 if out(j).s(k).fftFreq > 525
+%                ax(1)=subplot(211); title('high freq');hold on;     
+%                 plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
+%                 end
+% 
+%                 if out(j).s(k).fftFreq < 440
+%                ax(2)=subplot(212);title('low freq'); hold on;     
+%                 plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
+%                 end 
+%             end
+%       
             out(j).s(k).light = mean(data(:,lightchan));
             out(j).s(k).temp = mean(data(:,tempchan));
     
@@ -147,7 +149,7 @@ end
         ax(3) = subplot(413); title('frequency'); hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
             plot([out(1).s.timcont]/3600, [out(1).s.flo], 'o-');
-            plot([out(1).s.timcont]/3600, [out(1).s.fhi]);
+            plot([out(1).s.timcont]/3600, [out(1).s.fhi], 'o-');
         ax(4) = subplot(414); title('light'); hold on;ylim([-1, 6]);
             plot([out(1).s.timcont]/3600, [out(1).s.light]);
             plot([out(2).s.timcont]/3600, [out(2).s.light]);
