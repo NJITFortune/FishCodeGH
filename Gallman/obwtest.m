@@ -50,8 +50,8 @@ out(1).s(length(iFiles)).name = [];
  datasubset = 1657;
 
  %figure(27); clf; hold on;
- figure(26); clf ; hold on;
-for k = [461 465]
+ %figure(26); clf ; hold on;
+for k = 1:datasubset
 %  figure(k);clf; hold on;  
      waitbar(k/datasubset, ff, 'Assembling', 'modal');
 
@@ -106,13 +106,13 @@ for k = [461 465]
                
                
 %             
-            if k < 465
-            ax(1) = subplot(211); title('small bw'); hold on;
-                plot( data4analysis);
-            else
-            ax(2) = subplot(212); title('big bw'); hold on;
-                plot( data4analysis );
-            end
+%             if k < 465
+%             ax(1) = subplot(211); title('small bw'); hold on;
+%                 plot( data4analysis);
+%             else
+%             ax(2) = subplot(212); title('big bw'); hold on;
+%                 plot( data4analysis );
+%             end
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
@@ -156,30 +156,30 @@ for k = [461 465]
         end
         
 end
-linkaxes(ax, 'xy');
+%linkaxes(ax, 'xy');
         pause(1); close(ff);
         
 
  
  %%
-%  figure(28);clf; hold on;
-%         
-%         ax(1) = subplot(411); title('obwAmp vs fftamp'); hold on;
-%             plot([out(1).s.timcont]/3600, [out(1).s.obwAmp]);
-%             plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp]);
-%         ax(2) = subplot(412); title('bw'); hold on;
-%             plot([out(1).s.timcont]/3600, [out(1).s.bw]);
-%            % plot([out(2).s.timcont]/3600, [out(2).s.bw]);
-%         ax(3) = subplot(413); title('frequency'); hold on;
-%             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
-%             plot([out(1).s.timcont]/3600, [out(1).s.flo], 'o-');
-%             plot([out(1).s.timcont]/3600, [out(1).s.fhi], 'o-');
-%         ax(4) = subplot(414); title('light'); hold on;ylim([-1, 6]);
-%             plot([out(1).s.timcont]/3600, [out(1).s.light]);
-%             plot([out(2).s.timcont]/3600, [out(2).s.light]);
-%     
-%     linkaxes(ax, 'x')
-%         
+ figure(28);clf; hold on;
+        
+        ax(1) = subplot(411); title('obwAmp vs fftamp'); hold on;
+            plot([out(1).s.timcont]/3600, [out(1).s.obwAmp]);
+            plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp]);
+        ax(2) = subplot(412); title('bw'); hold on;
+            plot([out(1).s.timcont]/3600, [out(1).s.bw]);
+           % plot([out(2).s.timcont]/3600, [out(2).s.bw]);
+        ax(3) = subplot(413); title('frequency'); hold on;
+            plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
+            plot([out(1).s.timcont]/3600, [out(1).s.flo], 'o-');
+            plot([out(1).s.timcont]/3600, [out(1).s.fhi], 'o-');
+        ax(4) = subplot(414); title('light'); hold on;ylim([-1, 6]);
+            plot([out(1).s.timcont]/3600, [out(1).s.light]);
+            plot([out(2).s.timcont]/3600, [out(2).s.light]);
+    
+    linkaxes(ax, 'x')
+        
 %         
 %         
 %         
