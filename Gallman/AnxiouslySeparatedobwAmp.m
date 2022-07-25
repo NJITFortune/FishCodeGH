@@ -11,7 +11,7 @@ iFiles = dir('Eigen*');
 
 %% obwAmp of anxiously separated data
 
-for j = 1:length(in.s)
+for j = 1:length([in.s])
     
   %load in raw data  
     load(iFiles(j).name, 'data');
