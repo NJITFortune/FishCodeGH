@@ -112,7 +112,10 @@ for k = 1:datasubset
                 plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
                 end
 
-                if 
+                if out(j).s(k).fftFreq < 435
+               ax(2)=subplot(212); hold on;     
+                plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
+                end 
             end
       
             out(j).s(k).light = mean(data(:,lightchan));
