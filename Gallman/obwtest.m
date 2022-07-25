@@ -108,7 +108,7 @@ for k = 1:datasubset
                     newidx = find(tim >= tim(posZs(1)) & tim < tim(posZs(1)) + .2); 
             
                 if out(j).s(k).fftFreq > 525
-               ax(1)=subplot(211); hold on;     
+               ax(1)=subplot(211); title('hold on;     
                 plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
                 end
 
