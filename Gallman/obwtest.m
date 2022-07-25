@@ -86,6 +86,9 @@ for k = [461 465]
             
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
             [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
+
+            if k == 465; out(j).s(k).startim = out(j).s(k).startim + 0.001; end
+
             data4analysis = (data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j));     
             data4analysis = (data4analysis - mean(data4analysis)); 
             rawtim = (tim(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j));
@@ -95,7 +98,7 @@ for k = [461 465]
                 plot( data4analysis);
             else
             ax(2) = subplot(212); title('big bw'); hold on;
-                plot( data4analysis);
+                plot( data4analysis );
             end
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
