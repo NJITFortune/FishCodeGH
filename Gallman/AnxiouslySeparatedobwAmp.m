@@ -59,6 +59,7 @@ pause(1); close(ff);
        ax(1) = subplot(211); title('low frequency'); hold on;
         plot([in.s([in.s.lotube]==1).timcont]/3600, [out([in.s.lotube]==1).loAmpobw], 'b.');
         plot([in.s([in.s.lotube]==2).timcont]/3600, [out([in.s.lotube]==2).loAmpobw], 'c.');
+      ax(2) = subplot(212); title('high frequency'); hold on;   
         plot([in.s([in.s.hitube]==1).timcont]/3600, [out([in.s.hitube]==1).hiAmpobw], 'r.');
         plot([in.s([in.s.hitube]==2).timcont]/3600, [out([in.s.hitube]==2).hiAmpobw], 'm.');
     
