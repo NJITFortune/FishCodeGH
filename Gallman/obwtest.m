@@ -47,7 +47,7 @@ out(1).s(length(iFiles)).name = [];
 %% CYCLE THROUGH EVERY FILE IN DIRECTORY
 
     ff = waitbar(0, 'Cycling through files.');
- datasubset = 1657;
+ datasubset = 1657/2;
 
  figure(27); hold on;
 for k = 1:datasubset
@@ -106,9 +106,13 @@ for k = 1:datasubset
                     z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
                     posZs = find(z == 1); 
                     newidx = find(tim >= tim(posZs(1)) & tim < tim(posZs(1)) + .2); 
-
-               
+            
+                if out(j).s(k).fftFreq > 525
+               ax(1)=subplot(211); hold on;     
                 plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
+                end
+
+                if 
             end
       
             out(j).s(k).light = mean(data(:,lightchan));
