@@ -87,7 +87,7 @@ for k = 1:datasubset
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
             [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
 
-            if k == 465; out(j).s(k).startim = out(j).s(k).startim + 0.001; end
+           % if k == 465; out(j).s(k).startim = out(j).s(k).startim + 0.001; end
 
             data4analysis = (data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j));     
             data4analysis = (data4analysis - mean(data4analysis)); 
