@@ -248,8 +248,8 @@ oldcurrlofreq = currlofreq;
 oldcurrhifreq = currhifreq;
 % pause(0.3)
 end
-
-figure(3); clf; hold on; 
+%%
+figure(4); clf; hold on; 
 
     ax(1) = subplot(211); title('frequency'); hold on;
         plot([out([out.lotube]==1).timcont]/3600, [out([out.lotube]==1).lofreq], 'b-o'); 
