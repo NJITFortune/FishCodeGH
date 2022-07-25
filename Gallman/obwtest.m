@@ -108,12 +108,12 @@ for k = 1:datasubset
                     newidx = find(tim >= tim(posZs(1)) & tim < tim(posZs(1)) + .2); 
             
                 if out(j).s(k).fftFreq > 525
-               ax(1)=subplot(211); title('hold on;     
+               ax(1)=subplot(211); title('high freq');hold on;     
                 plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
                 end
 
                 if out(j).s(k).fftFreq < 440
-               ax(2)=subplot(212); hold on;     
+               ax(2)=subplot(212);title('low freq'); hold on;     
                 plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
                 end 
             end
@@ -130,7 +130,7 @@ for k = 1:datasubset
         end
         
 end
-
+linkaxes(ax, 'x');
         pause(1); close(ff);
         
 
