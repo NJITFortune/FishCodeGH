@@ -58,6 +58,6 @@ pause(1); close(ff);
 
         plot([in.s([in.s.lotube]==1).timcont]/3600, [out([in.s.lotube]==1).loAmpobw], 'b.');
         plot([in.s([in.s.lotube]==2).timcont]/3600, [out([in.s.lotube]==2).loAmpobw], 'c.');
-        plot([in.s([in.s.hitube]==1).timcont]/3600, [out([in.s.hitube]==1).loAmpobw], 'r.');
-        plot([in.s([in.s.hitube]==2).timcont]/3600, [out([in.s.hitube]==2).loAmpobw], 'm.');
+        plot([in.s([in.s.hitube]==1).timcont]/3600, [out([in.s.hitube]==1).hiAmpobw], 'r.');
+        plot([in.s([in.s.hitube]==2).timcont]/3600, [out([in.s.hitube]==2).hiAmpobw], 'm.');
     
