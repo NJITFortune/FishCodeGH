@@ -47,7 +47,7 @@ out(1).s(length(iFiles)).name = [];
 %% CYCLE THROUGH EVERY FILE IN DIRECTORY
 
     ff = waitbar(0, 'Cycling through files.');
- datasubset = 1657/2;
+ datasubset = 1657;
 
  figure(27); hold on;
 for k = 1:datasubset
@@ -99,7 +99,7 @@ for k = 1:datasubset
             % FFT Machine
             [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
 
-           if mod(k-1, 200) == 0 && j == 1
+           if mod(k-1, 100) == 0 && j == 1
                 %find the first zero crossing
                     z = zeros(1,length(data4analysis)); %create vector length of data
                     z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
