@@ -92,10 +92,10 @@ for k = [461 465]
             
             if k < 465
             ax(1) = subplot(211); title('small bw'); hold on;
-                plot(rawtim, data4analysis);
+                plot( data4analysis);
             else
             ax(2) = subplot(212); title('big bw'); hold on;
-                plot(rawtim, data4analysis);
+                plot( data4analysis);
             end
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,7 +140,7 @@ for k = [461 465]
         end
         
 end
-%linkaxes(ax, 'x');
+linkaxes(ax, 'x');
         pause(1); close(ff);
         
 
