@@ -51,7 +51,7 @@ out(1).s(length(iFiles)).name = [];
 
  %figure(27); clf; hold on;
 for k = [461 465]
-  figure(k); hold on;  
+  figure(k);clf; hold on;  
      waitbar(k/datasubset, ff, 'Assembling', 'modal');
 
     
