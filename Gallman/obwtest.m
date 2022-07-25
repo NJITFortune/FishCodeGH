@@ -130,7 +130,7 @@ for k = 1:datasubset
         end
         
 end
-linkaxes(ax, 'x');
+%linkaxes(ax, 'x');
         pause(1); close(ff);
         
 
