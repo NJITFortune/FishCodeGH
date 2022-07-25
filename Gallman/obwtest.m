@@ -138,15 +138,16 @@ end
  %%
  figure(28);clf; hold on;
         
-        ax(1) = subplot(411); title('obwAmp'); hold on;
+        ax(1) = subplot(411); title('obwAmp vs fftamp'); hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.obwAmp]);
-            plot([out(2).s.timcont]/3600, [out(2).s.obwAmp]);
+            plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp]);
         ax(2) = subplot(412); title('bw'); hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.bw]);
            % plot([out(2).s.timcont]/3600, [out(2).s.bw]);
         ax(3) = subplot(413); title('frequency'); hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
-            %plot([out(2).s.timcont]/3600, [out(2).s.fftFreq]);
+            plot([out(1).s.timcont]/3600, [out(1).s.flo]);
+            plot([out(1).s.timcont]/3600, [out(1).s.fhi]);
         ax(4) = subplot(414); title('light'); hold on;ylim([-1, 6]);
             plot([out(1).s.timcont]/3600, [out(1).s.light]);
             plot([out(2).s.timcont]/3600, [out(2).s.light]);
