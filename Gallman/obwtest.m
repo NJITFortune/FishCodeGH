@@ -99,7 +99,7 @@ for k = 1:datasubset
             % FFT Machine
             [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
 
-           if mod(k-1, 100) == 0 && j == 1
+           if mod(k-1, 50) == 0 && j == 1
                 %find the first zero crossing
                     z = zeros(1,length(data4analysis)); %create vector length of data
                     z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
@@ -112,7 +112,7 @@ for k = 1:datasubset
                 plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
                 end
 
-                if out(j).s(k).fftFreq < 435
+                if out(j).s(k).fftFreq < 425
                ax(2)=subplot(212); hold on;     
                 plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
                 end 
