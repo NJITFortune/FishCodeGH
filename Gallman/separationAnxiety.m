@@ -248,19 +248,33 @@ oldcurrlofreq = currlofreq;
 oldcurrhifreq = currhifreq;
 % pause(0.3)
 end
-%%
+
 figure(3); clf; hold on; 
 
-%     ax(1) = subplot(211); title('frequency'); hold on;
-%         plot([out([out.lotube]==1).timcont]/3600, [out([out.lotube]==1).lofreq], 'b-o'); 
-%         plot([out([out.lotube]==2).timcont]/3600, [out([out.lotube]==2).lofreq], 'c-o'); 
-%         plot([out([out.hitube]==1).timcont]/3600, [out([out.hitube]==1).hifreq], 'r-o'); 
-%         plot([out([out.hitube]==2).timcont]/3600, [out([out.hitube]==2).hifreq], 'm-o');
-%         
-%     ax(2) = subplot(212); title('amplitude'); hold on; 
+    ax(1) = subplot(211); title('frequency'); hold on;
+        plot([out([out.lotube]==1).timcont]/3600, [out([out.lotube]==1).lofreq], 'b-o'); 
+        plot([out([out.lotube]==2).timcont]/3600, [out([out.lotube]==2).lofreq], 'c-o'); 
+        plot([out([out.hitube]==1).timcont]/3600, [out([out.hitube]==1).hifreq], 'r-o'); 
+        plot([out([out.hitube]==2).timcont]/3600, [out([out.hitube]==2).hifreq], 'm-o');
+        
+    ax(2) = subplot(212); title('amplitude'); hold on; 
         plot([out([out.lotube]==1).timcont]/3600, [out([out.lotube]==1).loamp], 'b.'); 
         plot([out([out.lotube]==2).timcont]/3600, [out([out.lotube]==2).loamp], 'c.'); 
         plot([out([out.hitube]==1).timcont]/3600, [out([out.hitube]==1).hiamp], 'r.'); 
         plot([out([out.hitube]==2).timcont]/3600, [out([out.hitube]==2).hiamp], 'm.');
 
-  %  linkaxes(ax, 'x');
+   linkaxes(ax, 'x');
+%% 
+
+figure(3); clf; hold on; 
+
+    ax(1) = subplot(211); title('frequency'); hold on;
+        plot([out([out.lotube]==1).timcont]/3600, [out([out.lotube]==1).loamp], 'b.'); 
+        plot([out([out.lotube]==2).timcont]/3600, [out([out.lotube]==2).loamp], 'c.'); 
+        
+    ax(2) = subplot(212); title('amplitude'); hold on; 
+      
+        plot([out([out.hitube]==1).timcont]/3600, [out([out.hitube]==1).hiamp], 'r.'); 
+        plot([out([out.hitube]==2).timcont]/3600, [out([out.hitube]==2).hiamp], 'm.');
+
+   linkaxes(ax, 'x');
