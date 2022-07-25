@@ -80,7 +80,7 @@ for k = [461 465]
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
-        for j = 1:2 % Perform analyses on the two channels
+        for j = 1%:2 % Perform analyses on the two channels
         
             
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
@@ -98,6 +98,8 @@ for k = [461 465]
 %             out(j).s(k).zAmp = k_zAmp(data4analysis);
             % FFT Machine
             [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
+
+            obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
 
 %            if mod(k-1, 50) == 0 && j == 1
 %                 %find the first zero crossing
@@ -136,27 +138,27 @@ end
 
  
  %%
- figure(28);clf; hold on;
-        
-        ax(1) = subplot(411); title('obwAmp vs fftamp'); hold on;
-            plot([out(1).s.timcont]/3600, [out(1).s.obwAmp]);
-            plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp]);
-        ax(2) = subplot(412); title('bw'); hold on;
-            plot([out(1).s.timcont]/3600, [out(1).s.bw]);
-           % plot([out(2).s.timcont]/3600, [out(2).s.bw]);
-        ax(3) = subplot(413); title('frequency'); hold on;
-            plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
-            plot([out(1).s.timcont]/3600, [out(1).s.flo], 'o-');
-            plot([out(1).s.timcont]/3600, [out(1).s.fhi], 'o-');
-        ax(4) = subplot(414); title('light'); hold on;ylim([-1, 6]);
-            plot([out(1).s.timcont]/3600, [out(1).s.light]);
-            plot([out(2).s.timcont]/3600, [out(2).s.light]);
-    
-    linkaxes(ax, 'x')
-        
-        
-        
-        
+%  figure(28);clf; hold on;
+%         
+%         ax(1) = subplot(411); title('obwAmp vs fftamp'); hold on;
+%             plot([out(1).s.timcont]/3600, [out(1).s.obwAmp]);
+%             plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp]);
+%         ax(2) = subplot(412); title('bw'); hold on;
+%             plot([out(1).s.timcont]/3600, [out(1).s.bw]);
+%            % plot([out(2).s.timcont]/3600, [out(2).s.bw]);
+%         ax(3) = subplot(413); title('frequency'); hold on;
+%             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
+%             plot([out(1).s.timcont]/3600, [out(1).s.flo], 'o-');
+%             plot([out(1).s.timcont]/3600, [out(1).s.fhi], 'o-');
+%         ax(4) = subplot(414); title('light'); hold on;ylim([-1, 6]);
+%             plot([out(1).s.timcont]/3600, [out(1).s.light]);
+%             plot([out(2).s.timcont]/3600, [out(2).s.light]);
+%     
+%     linkaxes(ax, 'x')
+%         
+%         
+%         
+%         
         
          
     
