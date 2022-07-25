@@ -112,7 +112,7 @@ for k = 1:datasubset
                 plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
                 end
 
-                if out(j).s(k).fftFreq < 425
+                if out(j).s(k).fftFreq < 430
                ax(2)=subplot(212); hold on;     
                 plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
                 end 
