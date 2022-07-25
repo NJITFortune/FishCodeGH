@@ -91,7 +91,19 @@ for k = [461 465]
 
             data4analysis = (data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j));     
             data4analysis = (data4analysis - mean(data4analysis)); 
-            rawtim = (tim(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j));
+            
+
+
+            %find the first zero crossing
+                    z = zeros(1,length(data4analysis)); %create vector length of data
+                    z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
+                    z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
+                    posZs = find(z == 1); 
+                    newidx = find(tim >= tim(posZs(1)) & tim < tim(posZs(1)) + .2); 
+           data4analysis = data4analysis(newidx);
+                    
+               
+               
             
             if k < 465
             ax(1) = subplot(211); title('small bw'); hold on;
