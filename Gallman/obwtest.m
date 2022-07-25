@@ -123,10 +123,10 @@ for k = [461 465]
             out(j).s(k).light = mean(data(:,lightchan));
             out(j).s(k).temp = mean(data(:,tempchan));
     
-            
-        % There are 86400 seconds in a day.
-        out(j).s(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
-        out(j).s(k).tim24 = (hour*60*60) + (minute*60) + second;
+%             
+%         % There are 86400 seconds in a day.
+%         out(j).s(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
+%         out(j).s(k).tim24 = (hour*60*60) + (minute*60) + second;
 
         
         end
