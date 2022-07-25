@@ -34,7 +34,7 @@ daycount = 0;
                     
 % How much of the sample that we will use (each sample is 1 second)  
 % This is important because the fish moves
-        SampleWindw = 0.250; % 250 ms window
+        SampleWindw = 0.30; % 250 ms window
         
 % Fish limit frequencies for OBW calculation (unlikely to be changed)
         topFreqOBW = 800;%800
@@ -99,7 +99,7 @@ for k = [461 465]
                     z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
                     z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
                     posZs = find(z == 1); 
-                    newidx = find(tim >= tim(posZs(1)) & tim < tim(posZs(1)) + .2); 
+                    newidx = find(tim >= tim(posZs(1)) & tim < tim(posZs(1)) + .25); 
            data4analysis = data4analysis(newidx);
                     
                
@@ -155,7 +155,7 @@ for k = [461 465]
         end
         
 end
-linkaxes(ax, 'x');
+%linkaxes(ax, 'x');
         pause(1); close(ff);
         
 
