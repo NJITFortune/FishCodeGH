@@ -26,7 +26,7 @@ daycount = 0;
                
 % Set up filters
         % High pass filter cutoff frequency
-            highp = 200; %200 %k = 9 800-1200
+            highp = 100; %200 %k = 9 800-1200
             [b,a] = butter(5, highp/(Fs/2), 'high'); % Filter to eliminate 60Hz contamination
         % Low pass filter cutoff frequency
             lowp = 1200;    %1500
@@ -63,10 +63,10 @@ for k = 1:datasubset
        % Filter data  
           
             data(:,1) = filtfilt(b,a, data(:,1)); % High pass filter
-            data(:,1) = filtfilt(f,e, data(:,1)); % Low pass filter   
+           % data(:,1) = filtfilt(f,e, data(:,1)); % Low pass filter   
             
             data(:,2) = filtfilt(b,a, data(:,2)); % High pass filter
-            data(:,2) = filtfilt(f,e, data(:,2)); % Low pass filter   
+          %  data(:,2) = filtfilt(f,e, data(:,2)); % Low pass filter   
 
         % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
  
@@ -105,7 +105,7 @@ for k = 1:datasubset
                     z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
                     z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
                     posZs = find(z == 1); 
-                    newidx = find(tim >= tim(posZs(1)) & tim < tim(posZs(1)) + .2); 
+                    newidx = find(tim >= tim(posZs(1)) & tim < tim(posZs(1)) + .02); 
             
                 if out(j).s(k).fftFreq > 525
                ax(1)=subplot(211); title('high freq');hold on;     
