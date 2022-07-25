@@ -53,6 +53,8 @@ for j = 1:length(in.s)
 
 end
 
+pause(1); close(ff);
+
     figure(65); clf; hold on;
 
         plot([in.s([in.s.lotube]==1).timcont]/3600, out([in.s.lotube]==1).loAmpobw, 'b.');
