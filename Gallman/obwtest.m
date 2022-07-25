@@ -50,9 +50,9 @@ out(1).s(length(iFiles)).name = [];
  datasubset = 1657;
 
  %figure(27); clf; hold on;
- figure(26); clf ; hold on;
+ %figure(26); clf ; hold on;
 for k = [461 465]
-%  figure(k);clf; hold on;  
+  figure(k);clf; hold on;  
      waitbar(k/datasubset, ff, 'Assembling', 'modal');
 
     
@@ -105,13 +105,13 @@ for k = [461 465]
                
                
 %             
-            if k < 465
-            ax(1) = subplot(211); title('small bw'); hold on;
-                plot( data4analysis);
-            else
-            ax(2) = subplot(212); title('big bw'); hold on;
-                plot( data4analysis );
-            end
+%             if k < 465
+%             ax(1) = subplot(211); title('small bw'); hold on;
+%                 plot( data4analysis);
+%             else
+%             ax(2) = subplot(212); title('big bw'); hold on;
+%                 plot( data4analysis );
+%             end
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
@@ -122,7 +122,7 @@ for k = [461 465]
             % FFT Machine
             [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
 
-          %  obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+            obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
 
 %            if mod(k-1, 50) == 0 && j == 1
 %                 %find the first zero crossing
@@ -155,7 +155,7 @@ for k = [461 465]
         end
         
 end
-linkaxes(ax, 'xy');
+%linkaxes(ax, 'xy');
         pause(1); close(ff);
         
 
