@@ -11,7 +11,7 @@ iFiles = dir('Eigen*');
  [h,g] = butter(5, [freqs(1)/(Fs/2) freqs(2)/(Fs/2)]);
 
 %% obwAmp of anxiously separated data
-
+ff = waitbar(0, 'Cycling through files.');
 for j = 1:length(in.s)
     
   %load in raw data  
