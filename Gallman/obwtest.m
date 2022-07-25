@@ -86,7 +86,7 @@ for k = 1:datasubset
             data4analysis = (data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j));     
             data4analysis = (data4analysis - mean(data4analysis)); 
 
-            if mod(k-1, 100) == 0
+            if mod(k-1, 200) == 0 && j == 1
                 %find the first zero crossing
                     z = zeros(1,length(data4analysis)); %create vector length of data
                     z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
@@ -95,7 +95,7 @@ for k = 1:datasubset
                     newidx = find(tim >= tim(posZs(1)) & tim < tim(posZs(1)) + .2); 
 
                figure(27); hold on;
-                plot(tim(newidx), data4analysis(newidx));
+                plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
             end
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
