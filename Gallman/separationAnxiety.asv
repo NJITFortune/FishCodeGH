@@ -263,4 +263,4 @@ figure(3); clf; hold on;
         plot([out([out.hitube]==1).timcont]/3600, [out([out.hitube]==1).hiamp], 'r.'); 
         plot([out([out.hitube]==2).timcont]/3600, [out([out.hitube]==2).hiamp], 'm.');
 
-  %  linkaxes(ax, 'x');
+    linkaxes(ax, 'x');
