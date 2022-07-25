@@ -34,7 +34,7 @@ daycount = 0;
                     
 % How much of the sample that we will use (each sample is 1 second)  
 % This is important because the fish moves
-        SampleWindw = 0.30; % 250 ms window
+        SampleWindw = 0.25; % 250 ms window
         
 % Fish limit frequencies for OBW calculation (unlikely to be changed)
         topFreqOBW = 800;%800
@@ -51,9 +51,9 @@ out(1).s(length(iFiles)).name = [];
 
  %figure(27); clf; hold on;
  %figure(26); clf ; hold on;
-for k = [461 465]
-  figure(k);clf; hold on;  
-     waitbar(k/datasubset, ff, 'Assembling', 'modal');
+for k = 1:length(iFiles)
+%  figure(k);clf; hold on;  
+     waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
 
     
        % LOAD THE DATA FILE
@@ -69,25 +69,25 @@ for k = [461 465]
             data(:,2) = filtfilt(b,a, data(:,2)); % High pass filter
           %  data(:,2) = filtfilt(f,e, data(:,2)); % Low pass filter   
 % 
-%         % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
-%  
-%                 hour = str2double(iFiles(k).name(numstart:numstart+1));        %numstart based on time stamp text location
-%                 minute = str2double(iFiles(k).name(numstart+3:numstart+4));
-%                 second = str2double(iFiles(k).name(numstart+6:numstart+7));
-%                 
-%             if k > 1 && ((hour*60*60) + (minute*60) + second) < out(2).s(k-1).tim24
-%                    daycount = daycount + 1;
-%             end
+        % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
+ 
+                hour = str2double(iFiles(k).name(numstart:numstart+1));        %numstart based on time stamp text location
+                minute = str2double(iFiles(k).name(numstart+3:numstart+4));
+                second = str2double(iFiles(k).name(numstart+6:numstart+7));
+                
+            if k > 1 && ((hour*60*60) + (minute*60) + second) < out(2).s(k-1).tim24
+                   daycount = daycount + 1;
+            end
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
-        for j = 1%:2 % Perform analyses on the two channels
+        for j = 1:2 % Perform analyses on the two channels
         
             
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
             [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
 
-            if k == 465; out(j).s(k).startim = out(j).s(k).startim + 0.001; end
+           % if k == 465; out(j).s(k).startim = out(j).s(k).startim + 0.001; end
 
             data4analysis = (data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j));     
             data4analysis = (data4analysis - mean(data4analysis)); 
@@ -99,7 +99,8 @@ for k = [461 465]
                     z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
                     z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
                     posZs = find(z == 1); 
-                    newidx = find(tim >= tim(posZs(1)) & tim < tim(posZs(1)) + .25); 
+                    newidx = find(tim >= tim(posZs(1)) & tim <= tim(posZs(end)));
+
            data4analysis = data4analysis(newidx);
                     
                
@@ -122,7 +123,7 @@ for k = [461 465]
             % FFT Machine
             [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
 
-            obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+           % obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
 
 %            if mod(k-1, 50) == 0 && j == 1
 %                 %find the first zero crossing
@@ -146,39 +147,39 @@ for k = [461 465]
             out(j).s(k).light = mean(data(:,lightchan));
             out(j).s(k).temp = mean(data(:,tempchan));
     
-%             
-%         % There are 86400 seconds in a day.
-%         out(j).s(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
-%         out(j).s(k).tim24 = (hour*60*60) + (minute*60) + second;
+            
+        % There are 86400 seconds in a day.
+        out(j).s(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
+        out(j).s(k).tim24 = (hour*60*60) + (minute*60) + second;
 
         
         end
         
 end
-linkaxes(ax, 'x');
+%linkaxes(ax, 'xy');
         pause(1); close(ff);
         
 
  
  %%
-%  figure(28);clf; hold on;
-%         
-%         ax(1) = subplot(411); title('obwAmp vs fftamp'); hold on;
-%             plot([out(1).s.timcont]/3600, [out(1).s.obwAmp]);
-%             plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp]);
-%         ax(2) = subplot(412); title('bw'); hold on;
-%             plot([out(1).s.timcont]/3600, [out(1).s.bw]);
-%            % plot([out(2).s.timcont]/3600, [out(2).s.bw]);
-%         ax(3) = subplot(413); title('frequency'); hold on;
-%             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
-%             plot([out(1).s.timcont]/3600, [out(1).s.flo], 'o-');
-%             plot([out(1).s.timcont]/3600, [out(1).s.fhi], 'o-');
-%         ax(4) = subplot(414); title('light'); hold on;ylim([-1, 6]);
-%             plot([out(1).s.timcont]/3600, [out(1).s.light]);
-%             plot([out(2).s.timcont]/3600, [out(2).s.light]);
-%     
-%     linkaxes(ax, 'x')
-%         
+ figure(28);clf; hold on;
+        
+        ax(1) = subplot(411); title('obwAmp vs fftamp'); hold on;
+            plot([out(1).s.timcont]/3600, [out(1).s.obwAmp], '.');
+            plot([out(2).s.timcont]/3600, [out(2).s.obwAmp], '.');
+        ax(2) = subplot(412); title('bw'); hold on;
+            plot([out(1).s.timcont]/3600, [out(1).s.bw]);
+           % plot([out(2).s.timcont]/3600, [out(2).s.bw]);
+        ax(3) = subplot(413); title('frequency'); hold on;
+            plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
+            plot([out(1).s.timcont]/3600, [out(1).s.flo], 'o-');
+            plot([out(1).s.timcont]/3600, [out(1).s.fhi], 'o-');
+        ax(4) = subplot(414); title('light'); hold on;ylim([-1, 6]);
+            plot([out(1).s.timcont]/3600, [out(1).s.light]);
+            plot([out(2).s.timcont]/3600, [out(2).s.light]);
+    
+    linkaxes(ax, 'x')
+        
 %         
 %         
 %         
