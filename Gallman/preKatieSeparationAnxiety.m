@@ -76,8 +76,8 @@ figure(2); clf; hold on;
 
     % Put the data into the output structure  
         %low frequency fish
-        data4analysis = abs(e1(lowfreqidx(lmaxidx))-mean(e1(lowfreqidx)));
-        [~,~,~,e1lowpeakobwamp] = obw(e1(lowfreqidx(lmaxidx)), Fs, f1.fftfreq(lowfreqidx));
+        
+        [~,~,~,e1lowpeakobwamp] = obw(e1(lowfreqidx), Fs, [100 xfreq]);
         [~,~,~,e2lowpeakobwamp] = obw(e2(lowfreqidx(lmaxidx)), Fs, f2.fftfreq(lowfreqidx));
 
         out(1).loamp = max([e1lowpeakobwamp, e2lowpeakobwamp]);
