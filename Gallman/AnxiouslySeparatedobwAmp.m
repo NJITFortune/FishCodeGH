@@ -28,7 +28,7 @@ for j = 1:length(in.s)
 
   %perform obw on both fish
     %low frequency fish
-    if in.s(j).lotube == 1
+    if [in.s(j).lotube] == 1
         lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < midpoint);
         [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e1(lowfreqidx), Fs, [freqs(1) midpoint]);
     end
