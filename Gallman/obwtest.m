@@ -88,7 +88,18 @@ for k = 1:datasubset
             data4analysis = (data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j));     
             data4analysis = (data4analysis - mean(data4analysis)); 
 
-            if mod(k-1, 200) == 0 && j == 1
+            
+           % data4analysis = (data4analysis - mean(data4analysis));
+            % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            
+%             % OBW
+            [out(j).s(k).bw,out(j).s(k).flo,out(j).s(k).fhi,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+%             % zAmp
+%             out(j).s(k).zAmp = k_zAmp(data4analysis);
+            % FFT Machine
+            [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
+
+           if mod(k-1, 200) == 0 && j == 1
                 %find the first zero crossing
                     z = zeros(1,length(data4analysis)); %create vector length of data
                     z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
@@ -99,16 +110,6 @@ for k = 1:datasubset
                
                 plot(tim(newidx)-tim(newidx(1)), data4analysis(newidx));
             end
-           % data4analysis = (data4analysis - mean(data4analysis));
-            % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            
-%             % OBW
-            [out(j).s(k).bw,out(j).s(k).flo,out(j).s(k).fhi,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
-%             % zAmp
-%             out(j).s(k).zAmp = k_zAmp(data4analysis);
-            % FFT Machine
-            [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
-        
       
             out(j).s(k).light = mean(data(:,lightchan));
             out(j).s(k).temp = mean(data(:,tempchan));
