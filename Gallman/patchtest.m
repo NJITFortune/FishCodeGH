@@ -2,8 +2,8 @@
 
 figure(22); clf; title('freq-nonphase adjusted'); hold on
 
-y1idx = find([out(1).s.pflo] < 440 );
-y2idx = find([out(1).s.pfhi] > 340);
+y1idx = find([out(1).s.pfhi] < 440 );
+y2idx = find([out(1).s.pflo] > 340);
 
 x = [out(1).s(y1idx).timcont]/3600;
 y1 = [out(1).s(y1idx).pflo];
