@@ -76,7 +76,7 @@ figure(28);clf; hold on;
                 end
             end
             patch([x fliplr(x)], [y1 fliplr(y2)],'r');
-            plot(x,y3, 'k-');
+            plot(x,y3, 'k-', 'LineWidth', 2);
             
        
     
