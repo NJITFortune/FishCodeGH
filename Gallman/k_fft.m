@@ -1,6 +1,6 @@
 function [peakfreq, peakamp, sumamp] = k_fft(in, uFs)
 
-rango = 2; % Range in Hz for summing amplitude. %OG 10hz changed to test
+rango = 5; % Range in Hz for summing amplitude. %OG 10hz changed to test
 
 tmpfft = fftmaker(in, uFs);
 
