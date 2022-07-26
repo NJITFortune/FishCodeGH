@@ -104,8 +104,8 @@ figure(28);clf; hold on;
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
-            plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color','b');
-            plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp], '.', 'MarkerSize', 10, 'Color','r');
+            plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp]/2, '.', 'MarkerSize', 30,'LineWidth', 1, 'Color','b');
+            plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp]/2, '.', 'MarkerSize', 10, 'Color','r');
 
              plot([out(1).s.timcont]/3600, [out(1).s.peakfftAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
             plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp], '.', 'MarkerSize', 10, 'Color',ylw);
