@@ -35,9 +35,9 @@ figure(28);clf; hold on;
                 end
             end
 
-           
+            plot([out(2).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 15, 'Color',Coral);
             plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], 'o', 'MarkerSize', 8,'LineWidth', 1, 'Color',Bluishgreen);
-         plot([out(2).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 15, 'Color',Coral);
+        
         ax(2) = subplot(312); title('Frequency-nonphase'); hold on;
 
             plot([out(1).s.timcont]/3600, [out(1).s.flo]);
