@@ -120,10 +120,10 @@ for kk = datasubset
 %            
            
             figure(26); clf ;title('obw-nonphase'); hold on;
-                obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);xlim([0,2]);
+                obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);xlim([0,1]);
 
             figure(25); clf; title('obw-phase');hold on;
-                obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]); xlim([0,2]);
+                obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]); xlim([0,1]);
     
 
             % zAmp
