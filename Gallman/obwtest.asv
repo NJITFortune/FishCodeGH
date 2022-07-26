@@ -48,9 +48,9 @@ out(1).s(length(iFiles)).name = [];
 
     ff = waitbar(0, 'Cycling through files.');
  datasubset = 5783:6724;
-
+ datasubset = 11;   
  %figure(27); clf; hold on;
- %figure(26); clf ; hold on;
+ figure(26); clf ; hold on;
 for kk = datasubset
 %  figure(k);clf; hold on;  
      waitbar(kk/length(iFiles), ff, 'Assembling', 'modal');
@@ -75,9 +75,9 @@ for kk = datasubset
                 minute = str2double(iFiles(kk).name(numstart+3:numstart+4));
                 second = str2double(iFiles(kk).name(numstart+6:numstart+7));
                 
-%             if kk > 1 && ((hour*60*60) + (minute*60) + second) < out(1).s(kk-1).tim24
-%                    daycount = daycount + 1;
-%             end
+            if kk > datasubset(1) && ((hour*60*60) + (minute*60) + second) < out(1).s(kk-1).tim24
+                   daycount = daycount + 1;
+            end
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
@@ -104,7 +104,7 @@ for kk = datasubset
                
                
 %             
-%             if k < 465
+%             
 %             ax(1) = subplot(211); title('small bw'); hold on;
 %                 plot( data4analysis);
 %             else
@@ -117,7 +117,16 @@ for kk = datasubset
 %             % OBW
             [out(j).s(kk).bw,out(j).s(kk).flo,out(j).s(kk).fhi,out(j).s(kk).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
             [out(j).s(kk).pbw,out(j).s(kk).pflo,out(j).s(kk).pfhi,out(j).s(kk).pobwAmp] = obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]);
-%             % zAmp
+%            
+           
+%             figure(26); clf ;title('obw-nonphase'); hold on;
+%                 obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);xlim([0,1]);
+% 
+%             figure(25); clf; title('obw-phase');hold on;
+%                 obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]); xlim([0,1]);
+%     
+
+            % zAmp
 %             out(j).s(k).zAmp = k_zAmp(data4analysis);
             % FFT Machine
             [out(j).s(kk).fftFreq, out(j).s(kk).peakfftAmp, out(j).s(kk).sumfftAmp] = k_fft(data4analysis, Fs); 
@@ -161,28 +170,28 @@ end
 
  
  %%
- figure(28);clf; hold on;
-        
-        ax(1) = subplot(511); title('obwAmp vs fftamp'); hold on;
-            plot([out(1).s.timcont]/3600, [out(2).s.pobwAmp], '.');
-             plot([out(1).s.timcont]/3600, [out(1).s.obwAmp], '.');
-        ax(2) = subplot(512); title('bw'); hold on;
-            plot([out(1).s.timcont]/3600, [out(1).s.bw]);
-            plot([out(1).s.timcont]/3600, [out(1).s.pbw]);
-        ax(3) = subplot(513); title('frequency'); hold on;
-            plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
-            plot([out(1).s.timcont]/3600, [out(1).s.flo], 'o-');
-            plot([out(1).s.timcont]/3600, [out(1).s.fhi], 'o-');
-         ax(4) = subplot(514); title('frequency'); hold on;
-            plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
-            plot([out(1).s.timcont]/3600, [out(1).s.pflo], 'o-');
-            plot([out(1).s.timcont]/3600, [out(1).s.pfhi], 'o-');
-        ax(5) = subplot(515); title('light'); hold on;ylim([-1, 6]);
-            plot([out(1).s.timcont]/3600, [out(1).s.light]);
-            plot([out(2).s.timcont]/3600, [out(2).s.light]);
-    
-    linkaxes(ax, 'x')
-        
+%  figure(28);clf; hold on;
+%         
+%         ax(1) = subplot(511); title('Mean square amplitude'); hold on;
+%             plot([out(2).s.timcont]/3600, [out(1).s.pobwAmp], 'o');
+%             plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], '.');
+%         ax(2) = subplot(512); title('99% occupied bandwidth'); hold on;
+%             plot([out(1).s.timcont]/3600, [out(1).s.bw]);
+%             plot([out(1).s.timcont]/3600, [out(1).s.pbw]);
+%         ax(3) = subplot(513); title('Frequency-nonphase'); hold on;
+%             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
+%             plot([out(1).s.timcont]/3600, [out(1).s.flo], 'o-');
+%             plot([out(1).s.timcont]/3600, [out(1).s.fhi], 'o-');
+%          ax(4) = subplot(514); title('Frequency-phase'); hold on;
+%             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
+%             plot([out(1).s.timcont]/3600, [out(1).s.pflo], 'o-');
+%             plot([out(1).s.timcont]/3600, [out(1).s.pfhi], 'o-');
+%         ax(5) = subplot(515); title('light'); hold on;ylim([-1, 6]);
+%             plot([out(1).s.timcont]/3600, [out(1).s.light]);
+%             plot([out(2).s.timcont]/3600, [out(2).s.light]);
+%     
+%     linkaxes(ax, 'x')
+%         
 %         
 %         
 %         
