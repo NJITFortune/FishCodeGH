@@ -52,7 +52,7 @@ figure(28);clf; hold on;
             patch([[out(1).s.timcont]/3600 fliplr([out(1).s.timcont]/3600)], [[out(1).s.flo] fliplr([out(1).s.fhi])],'b');
             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq], 'k-', 'LineWidth', 2);
             
-         ax(3) = subplot(313); title('Frequency-phase'); hold on;
+         ax(3) = subplot(313); title('Frequency-phase'); ylim([250 550]);hold on;
             
             y1idx = find([out(1).s.pflo] > 385);
 
