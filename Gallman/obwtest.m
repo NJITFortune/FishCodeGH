@@ -6,7 +6,7 @@
 %
 % Usage: kg(#).e = KatieAssembler(userfilespec, Fs, numstart)
 %
-clearvars -except kg kg2 rkg k
+clearvars -except kg kg2 rkg 
 userfilespec = 'Eigen*';
 numstart = 23;
 % This should not change, but if for some reason...
