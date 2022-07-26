@@ -50,7 +50,7 @@ out(1).s(length(iFiles)).name = [];
  datasubset = 5783:6724;
  datasubset = 11;   
  %figure(27); clf; hold on;
- figure(26); clf ; hold on;
+ %figure(26); clf ; hold on;
 for kk = datasubset
 %  figure(k);clf; hold on;  
      waitbar(kk/length(iFiles), ff, 'Assembling', 'modal');
@@ -81,7 +81,7 @@ for kk = datasubset
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
-        for j = 2 % Perform analyses on the two channels
+        for j = 1:2 % Perform analyses on the two channels
         
             
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
@@ -91,7 +91,7 @@ for kk = datasubset
 
             data4analysis = (data(tim > out(j).s(kk).startim & tim < out(j).s(kk).startim+SampleWindw, j));     
             data4analysis = (data4analysis - mean(data4analysis)); 
-            
+            nonphasetim = (tim(tim > out(j).s(kk).startim & tim < out(j).s(kk).startim+SampleWindw, j));  
             %find the first zero crossing
                     z = zeros(1,length(data4analysis)); %create vector length of data
                     z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
@@ -105,10 +105,10 @@ for kk = datasubset
 figure(26); clf ;title('raw data'); hold on;
             
             ax(1) = subplot(211); title('nonphase'); hold on;
-                plot( data4analysis);xlim([0,250]);
+                plot( data4analysis);%xlim([0,250]);
          
             ax(2) = subplot(212); title('phase'); hold on;
-                plot( phaseddata4analysis );xlim([0,250]);
+                plot( phaseddata4analysis );%xlim([0,250]);
            linkaxes(ax, 'xy');
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
