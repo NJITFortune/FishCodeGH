@@ -105,10 +105,10 @@ for kk = datasubset
 figure(26); clf ;title('raw data'); hold on;
             
             ax(1) = subplot(211); title('nonphase'); hold on;
-                plot( data4analysis);
+                plot( data4analysis);xlim([0,500]);
          
             ax(2) = subplot(212); title('phase'); hold on;
-                plot( phaseddata4analysis );
+                plot( phaseddata4analysis );xlim([0,500]);
            linkaxes(ax, 'xy');
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
