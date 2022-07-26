@@ -8,6 +8,6 @@ y2 = [out(1).s.fhi];
 
 plot([out(1).s.timcont]/3600, [out(1).s.flo]);
 plot([out(1).s.timcont]/3600, [out(1).s.fhi]);
-patch([x fliplr(x)], [y1 fliplr(y2)],  'red', 'alpha', 0.3);
+patch([x fliplr(x)], [y1 fliplr(y2)],'r');
 
 plot([out(1).s.timcont]/3600, [out(1).s.fftFreq], 'k-', 'LineWidth',3);
