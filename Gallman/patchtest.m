@@ -25,13 +25,13 @@ figure(28);clf; hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.flo]);
             plot([out(1).s.timcont]/3600, [out(1).s.fhi]);
             patch([[out(1).s.timcont]/3600 fliplr([out(1).s.timcont]/3600)], [[out(1).s.flo] fliplr([out(1).s.fhi])],'r');
-            plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
+            plot([out(1).s.timcont]/3600, [out(1).s.fftFreq], 'k-');
             
          ax(4) = subplot(514); title('Frequency-phase'); hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.pflo]);
             plot([out(1).s.timcont]/3600, [out(1).s.pfhi]);
             patch([[out(1).s.timcont]/3600 fliplr([out(1).s.timcont]/3600)], [[out(1).s.pflo] fliplr([out(1).s.pfhi])],'b');
-            plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
+            plot([out(1).s.timcont]/3600, [out(1).s.fftFreq], 'k-');
             
         ax(5) = subplot(515); title('light'); hold on;ylim([-1, 6]);
             plot([out(1).s.timcont]/3600, [out(1).s.light]);
