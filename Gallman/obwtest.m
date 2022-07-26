@@ -109,7 +109,7 @@ figure(26); clf ;title('raw data'); hold on;
          
             ax(2) = subplot(212); title('phase'); hold on;
                 plot( phaseddata4analysis );
-           
+           linkaxes(ax, 'xy');
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
