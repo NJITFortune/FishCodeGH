@@ -104,8 +104,8 @@ lightlines = [21 25 29 33 37 41 45 49 53];
             plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
             plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp], '.', 'MarkerSize', 10, 'Color',ylw);
 
-             plot([out(1).s.timcont]/3600, [out(1).s.peakfftAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',Coral);
-            plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp], '.', 'MarkerSize', 10, 'Color',ylw);
+             plot([out(1).s.timcont]/3600, [out(1).s.peakfftAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color','b');
+            plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp], '.', 'MarkerSize', 10, 'Color','r');
             
         
         ax(2) = subplot(212); title('Frequency');xlim([27 43]); ylim([300 500]); hold on;
