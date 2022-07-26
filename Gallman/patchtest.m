@@ -120,7 +120,7 @@ lightlines = [21 25 29 33 37 41 45 49 53];
             end
 
               plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
-            plot([out(1).s.timcont]/3600, [out(1).s.pfftFreqfhi]);
+            plot([out(1).s.timcont]/3600, [out(1).s.pfftFreq]);
             
          
     
