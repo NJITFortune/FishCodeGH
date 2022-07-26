@@ -19,7 +19,8 @@
 % patch([x fliplr(x)], [y1 fliplr(y2)],'r');
 % 
 % plot(x, [out(1).s(y1idx).fftFreq], 'k-', 'LineWidth',3);
-
+%coral
+Coral = [255/255, 127/255, 80/255];
 
 figure(28);clf; hold on;
         
