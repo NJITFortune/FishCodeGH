@@ -51,15 +51,15 @@ out(1).s(length(iFiles)).name = [];
 
  %figure(27); clf; hold on;
  %figure(26); clf ; hold on;
-for k = 1:length(iFiles)
+for kk = 1:length(iFiles)
 %  figure(k);clf; hold on;  
-     waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
+     waitbar(kk/length(iFiles), ff, 'Assembling', 'modal');
 
     
        % LOAD THE DATA FILE
-        load(iFiles(k).name, 'data', 'tim');
-        out(1).s(k).Fs = 1 / (tim(2)-tim(1)); % Extract the sample rate
-        out(2).s(k).Fs = out(1).s(k).Fs;
+        load(iFiles(kk).name, 'data', 'tim');
+        out(1).s(kk).Fs = 1 / (tim(2)-tim(1)); % Extract the sample rate
+        out(2).s(kk).Fs = out(1).s(kk).Fs;
         
        % Filter data  
           
@@ -71,11 +71,11 @@ for k = 1:length(iFiles)
 % 
         % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
  
-                hour = str2double(iFiles(k).name(numstart:numstart+1));        %numstart based on time stamp text location
-                minute = str2double(iFiles(k).name(numstart+3:numstart+4));
-                second = str2double(iFiles(k).name(numstart+6:numstart+7));
+                hour = str2double(iFiles(kk).name(numstart:numstart+1));        %numstart based on time stamp text location
+                minute = str2double(iFiles(kk).name(numstart+3:numstart+4));
+                second = str2double(iFiles(kk).name(numstart+6:numstart+7));
                 
-            if k > 1 && ((hour*60*60) + (minute*60) + second) < out(2).s(k-1).tim24
+            if kk > 1 && ((hour*60*60) + (minute*60) + second) < out(2).s(kk-1).tim24
                    daycount = daycount + 1;
             end
             
@@ -85,11 +85,11 @@ for k = 1:length(iFiles)
         
             
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
-            [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
+            [out(j).s(kk).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
 
            % if k == 465; out(j).s(k).startim = out(j).s(k).startim + 0.001; end
 
-            data4analysis = (data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j));     
+            data4analysis = (data(tim > out(j).s(kk).startim & tim < out(j).s(kk).startim+SampleWindw, j));     
             data4analysis = (data4analysis - mean(data4analysis)); 
             
 
@@ -117,11 +117,11 @@ for k = 1:length(iFiles)
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
 %             % OBW
-            [out(j).s(k).bw,out(j).s(k).flo,out(j).s(k).fhi,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+            [out(j).s(kk).bw,out(j).s(kk).flo,out(j).s(kk).fhi,out(j).s(kk).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
 %             % zAmp
 %             out(j).s(k).zAmp = k_zAmp(data4analysis);
             % FFT Machine
-            [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
+            [out(j).s(kk).fftFreq, out(j).s(kk).peakfftAmp, out(j).s(kk).sumfftAmp] = k_fft(data4analysis, Fs); 
 
            % obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
 
@@ -144,13 +144,13 @@ for k = 1:length(iFiles)
 %                 end 
 %             end
 %       
-            out(j).s(k).light = mean(data(:,lightchan));
-            out(j).s(k).temp = mean(data(:,tempchan));
+            out(j).s(kk).light = mean(data(:,lightchan));
+            out(j).s(kk).temp = mean(data(:,tempchan));
     
             
         % There are 86400 seconds in a day.
-        out(j).s(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
-        out(j).s(k).tim24 = (hour*60*60) + (minute*60) + second;
+        out(j).s(kk).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
+        out(j).s(kk).tim24 = (hour*60*60) + (minute*60) + second;
 
         
         end
