@@ -38,7 +38,7 @@ figure(28);clf; hold on;
             plot([out(2).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 15, 'Color',Coral);
             plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], 'o', 'MarkerSize', 8,'LineWidth', 1.5, 'Color',Bluishgreen);
         
-        ax(2) = subplot(312); title('Frequency-nonphase'); hold on;
+        ax(2) = subplot(312); title('Frequency-nonphase'); ylim([300 500]); hold on;
 
             plot([out(1).s.timcont]/3600, [out(1).s.flo]);
             plot([out(1).s.timcont]/3600, [out(1).s.fhi]);
@@ -52,7 +52,7 @@ figure(28);clf; hold on;
             patch([[out(1).s.timcont]/3600 fliplr([out(1).s.timcont]/3600)], [[out(1).s.flo] fliplr([out(1).s.fhi])],'b');
             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq], 'k-', 'LineWidth', 2);
             
-         ax(3) = subplot(313); title('Frequency-phase'); ylim([250 550]);hold on;
+         ax(3) = subplot(313); title('Frequency-phase'); ylim([300 500]);hold on;
             
             y1idx = find([out(1).s.pflo] > 385);
 
