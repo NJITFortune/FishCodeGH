@@ -28,65 +28,68 @@ ylw = [255/255 153/255 204/255];
 teal = [0/255 114/255 178/255];
 lightlines = [21 25 29 33 37 41 45 49 53];
 
-% figure(28);clf; hold on;
-%         
-%         ax(1) = subplot(311); title('Mean square amplitude'); xlim([27 43]);hold on;
-%             plot([out(1).s.timcont]/3600, [out(1).s.obwAmp], '.', 'MarkerSize', 30,'Color', teal);
-%             a = ylim;
-%             for j = 1:length(lightlines)-1
-%                 if mod(j,2) == 0 %if j is even
-%                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 .15 .15 0], [0.9, 0.9, 0.9]);
-%                 end
-%             end
-%             plot([out(1).s.timcont]/3600, [out(1).s.obwAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
-%             plot([out(1).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 10, 'Color',ylw);
-% 
-%             
-%             
-%         
-%         ax(2) = subplot(312); title('Frequency-nonphase');xlim([27 43]); ylim([300 500]); hold on;
-% 
-%             plot([out(1).s.timcont]/3600, [out(1).s.flo]);
-%             plot([out(1).s.timcont]/3600, [out(1).s.fhi]);
-%             a = ylim;
-%             for j = 1:length(lightlines)-1
-%                 if mod(j,2) == 0 %if j is even
-%                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [a(1) 550 550 a(1)], [0.9, 0.9, 0.9]);
-%                 end
-%             end
-% 
-%             patch([[out(1).s.timcont]/3600 fliplr([out(1).s.timcont]/3600)], [[out(1).s.flo] fliplr([out(1).s.fhi])],'b');
-%             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq], 'k-', 'LineWidth', 2);
-%             
-%          ax(3) = subplot(313); title('Frequency-phase'); xlim([27 43]); ylim([300 500]);hold on;
-%             
-%             y1idx = find([out(1).s.pflo] > 385);
-% 
-%                 x = [out(1).s.timcont]/3600;
-%                 x = x(y1idx);
-%                 y2 = [out(1).s.pflo];
-%                 y2 = y2(y1idx);
-%                 y1 = [out(1).s.pfhi];
-%                 y1 = y1(y1idx);
-%                 y3 = [out(1).s.fftFreq];
-%                 y3 = y3(y1idx);
-%                 
-%                 plot(x, y1);
-%                 plot(x, y2);
-%             
-% 
-%             a = ylim;
-%             for j = 1:length(lightlines)-1
-%                 if mod(j,2) == 0 %if j is even
-%                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%                 end
-%             end
-%             patch([x fliplr(x)], [y1 fliplr(y2)],'r');
-%             plot(x,y3, 'k-', 'LineWidth', 2);
-%             
-%        
-%     
-%     linkaxes(ax, 'x')
+figure(28);clf; hold on;
+        
+        ax(1) = subplot(311); title('Mean square amplitude'); xlim([27 43]);hold on;
+        plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp], '.', 'MarkerSize', 30,'Color', teal);
+            plot([out(1).s.timcont]/3600, [out(1).s.obwAmp], '.', 'MarkerSize', 30,'Color', teal);
+            a = ylim;
+            for j = 1:length(lightlines)-1
+                if mod(j,2) == 0 %if j is even
+                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 .15 .15 0], [0.9, 0.9, 0.9]);
+                end
+            end
+            plot([out(1).s.timcont]/3600, [out(1).s.obwAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
+            plot([out(1).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 10, 'Color',ylw);
+
+            plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp], '.', 'MarkerSize', 30,'Color', teal);
+
+            
+            
+        
+        ax(2) = subplot(312); title('Frequency-nonphase');xlim([27 43]); ylim([300 500]); hold on;
+
+            plot([out(1).s.timcont]/3600, [out(1).s.flo]);
+            plot([out(1).s.timcont]/3600, [out(1).s.fhi]);
+            a = ylim;
+            for j = 1:length(lightlines)-1
+                if mod(j,2) == 0 %if j is even
+                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [a(1) 550 550 a(1)], [0.9, 0.9, 0.9]);
+                end
+            end
+
+            patch([[out(1).s.timcont]/3600 fliplr([out(1).s.timcont]/3600)], [[out(1).s.flo] fliplr([out(1).s.fhi])],'b');
+            plot([out(1).s.timcont]/3600, [out(1).s.fftFreq], 'k-', 'LineWidth', 2);
+            
+         ax(3) = subplot(313); title('Frequency-phase'); xlim([27 43]); ylim([300 500]);hold on;
+            
+            y1idx = find([out(1).s.pflo] > 385);
+
+                x = [out(1).s.timcont]/3600;
+                x = x(y1idx);
+                y2 = [out(1).s.pflo];
+                y2 = y2(y1idx);
+                y1 = [out(1).s.pfhi];
+                y1 = y1(y1idx);
+                y3 = [out(1).s.fftFreq];
+                y3 = y3(y1idx);
+                
+                plot(x, y1);
+                plot(x, y2);
+            
+
+            a = ylim;
+            for j = 1:length(lightlines)-1
+                if mod(j,2) == 0 %if j is even
+                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                end
+            end
+            patch([x fliplr(x)], [y1 fliplr(y2)],'r');
+            plot(x,y3, 'k-', 'LineWidth', 2);
+            
+       
+    
+    linkaxes(ax, 'x')
 
 
 
@@ -98,14 +101,14 @@ lightlines = [21 25 29 33 37 41 45 49 53];
             a = ylim;
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 0 %if j is even
-                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 .15 .15 0], [0.9, 0.9, 0.9]);
+                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
             plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
             plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp], '.', 'MarkerSize', 10, 'Color',ylw);
 
-             plot([out(1).s.timcont]/3600, [out(1).s.peakfftAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
-            plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp], '.', 'MarkerSize', 10, 'Color',ylw);
+             plot([out(1).s.timcont]/3600, [out(1).s.peakfftAmp]+.02, '.', 'MarkerSize', 30,'LineWidth', 1, 'Color','b');
+            plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp]-0.02, '.', 'MarkerSize', 10, 'Color','r');
             
         
         ax(2) = subplot(212); title('Frequency');xlim([27 43]); ylim([300 500]); hold on;
@@ -115,7 +118,7 @@ lightlines = [21 25 29 33 37 41 45 49 53];
             a = ylim;
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 0 %if j is even
-                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [a(1) 550 550 a(1)], [0.9, 0.9, 0.9]);
+                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
                 end
             end
 
