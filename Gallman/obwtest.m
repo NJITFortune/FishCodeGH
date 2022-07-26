@@ -81,7 +81,7 @@ for kk = datasubset
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
-        for j = 1:2%orm analyses on the two channels
+        for j = 1%orm analyses on the two channels
         
             
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
@@ -103,14 +103,7 @@ for kk = datasubset
            phaseddata4analysis = data4analysis(newidx);
                     phasetim = tim(newidx)-tim(newidx(1));
 %                
-figure(26); clf ;title('raw data'); hold on;
-            
-            ax(1) = subplot(211); title('nonphase'); hold on;
-                plot( nonphasetim,data4analysis);%xlim([0,250]);
-         
-            ax(2) = subplot(212); title('phase'); hold on;
-                plot(phasetim, phaseddata4analysis );%xlim([0,250]);
-           linkaxes(ax, 'xy');
+
 
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
