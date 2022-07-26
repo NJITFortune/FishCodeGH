@@ -35,7 +35,7 @@ daycount = 0;
 % How much of the sample that we will use (each sample is 1 second)  
 % This is important because the fish moves
         SampleWindw = 0.25; % 250 ms window
-        SampleWindw = 0.01;
+        %SampleWindw = 0.01;
 % Fish limit frequencies for OBW calculation (unlikely to be changed)
         topFreqOBW = 700;%800
         botFreqOBW = 200;
@@ -81,7 +81,7 @@ for kk = datasubset
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
-        for j = 1%:2%orm analyses on the two channels
+        for j = 1:2%orm analyses on the two channels
         
             
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
