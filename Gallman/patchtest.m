@@ -27,7 +27,7 @@ Bluishgreen = [103/255, 189/255, 170/255];
 figure(28);clf; hold on;
         
         ax(1) = subplot(311); title('Mean square amplitude'); hold on;
-            plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], 'o', 'MarkerSize', 10,'Color', Bluishgreen);
+            plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], 'o', 'MarkerSize', 8,'Color', Bluishgreen);
             a = ylim;
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 0 %if j is even
@@ -36,7 +36,7 @@ figure(28);clf; hold on;
             end
 
             plot([out(2).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 15, 'Color',Coral);
-            plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], 'o', 'MarkerSize', 10, 'Color',Bluishgreen);
+            plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], 'o', 'MarkerSize', 8,'LineWidth', 2, 'Color',Bluishgreen);
         
         ax(2) = subplot(312); title('Frequency-nonphase'); hold on;
 
