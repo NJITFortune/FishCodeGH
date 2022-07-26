@@ -13,7 +13,7 @@ plot(x, y1);
 plot(x, y2);
 %patch([x fliplr(x)], [y1 fliplr(y2)],'r');
 
-plot([out(1).s(y1idx).timcont]/3600, [out(1).s(y1idx).fftFreq], 'k-', 'LineWidth',3);
+%plot([out(1).s(y1idx).timcont]/3600, [out(1).s(y1idx).fftFreq], 'k-', 'LineWidth',3);
 
 
 % figure(28);clf; hold on;
