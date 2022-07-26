@@ -29,8 +29,16 @@ figure(28);clf; hold on;
             plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], 'o');
         
         ax(2) = subplot(412); title('Frequency-nonphase'); hold on;
+
             plot([out(1).s.timcont]/3600, [out(1).s.flo]);
             plot([out(1).s.timcont]/3600, [out(1).s.fhi]);
+            a = ylim;
+            for j = 1:length(lightlines)-1
+                if mod(j,2) == 0 %if j is even
+                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                end
+            end
+
             patch([[out(1).s.timcont]/3600 fliplr([out(1).s.timcont]/3600)], [[out(1).s.flo] fliplr([out(1).s.fhi])],'r');
             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq], 'k-');
             
