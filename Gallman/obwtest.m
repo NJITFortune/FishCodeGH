@@ -47,7 +47,7 @@ out(1).s(length(iFiles)).name = [];
 %% CYCLE THROUGH EVERY FILE IN DIRECTORY
 
     ff = waitbar(0, 'Cycling through files.');
- datasubset = 1657;
+ datasubset = 5783;
 
  %figure(27); clf; hold on;
  %figure(26); clf ; hold on;
