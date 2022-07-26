@@ -163,17 +163,17 @@ end
  %%
  figure(28);clf; hold on;
         
-        ax(1) = subplot(511); title('obwAmp vs fftamp'); hold on;
+        ax(1) = subplot(511); title('Mean square amplitude'); hold on;
             plot([out(2).s.timcont]/3600, [out(1).s.pobwAmp], 'o');
             plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], '.');
-        ax(2) = subplot(512); title('bw'); hold on;
+        ax(2) = subplot(512); title('99% occupied bandwidth'); hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.bw]);
             plot([out(1).s.timcont]/3600, [out(1).s.pbw]);
-        ax(3) = subplot(513); title('frequency'); hold on;
+        ax(3) = subplot(513); title('Frequency-nonphase'); hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
             plot([out(1).s.timcont]/3600, [out(1).s.flo], 'o-');
             plot([out(1).s.timcont]/3600, [out(1).s.fhi], 'o-');
-         ax(4) = subplot(514); title('frequency'); hold on;
+         ax(4) = subplot(514); title('Frequency-phase'); hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
             plot([out(1).s.timcont]/3600, [out(1).s.pflo], 'o-');
             plot([out(1).s.timcont]/3600, [out(1).s.pfhi], 'o-');
