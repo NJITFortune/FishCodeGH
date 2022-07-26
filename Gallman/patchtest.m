@@ -50,7 +50,7 @@ figure(28);clf; hold on;
             end
 
             patch([[out(1).s.timcont]/3600 fliplr([out(1).s.timcont]/3600)], [[out(1).s.flo] fliplr([out(1).s.fhi])],'b');
-            plot([out(1).s.timcont]/3600, [out(1).s.fftFreq], 'k-');
+            plot([out(1).s.timcont]/3600, [out(1).s.fftFreq], 'k-', 'LineWidth', 2);
             
          ax(3) = subplot(313); title('Frequency-phase'); hold on;
             
