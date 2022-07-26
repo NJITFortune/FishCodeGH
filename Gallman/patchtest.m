@@ -26,6 +26,7 @@ Bluishgreen = [103/255, 189/255, 170/255];
 
 %teal
 teal = [0.3010 0.7450 0.9330];
+lightlines = [21 25 29 33 37 41 45 49 53];
 
 figure(28);clf; hold on;
         
