@@ -98,7 +98,7 @@ lightlines = [21 25 29 33 37 41 45 49 53];
             a = ylim;
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 0 %if j is even
-                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 .15 .15 0], [0.9, 0.9, 0.9]);
+                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
             plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
@@ -115,7 +115,7 @@ lightlines = [21 25 29 33 37 41 45 49 53];
             a = ylim;
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 0 %if j is even
-                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [a(1) 550 550 a(1)], [0.9, 0.9, 0.9]);
+                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
                 end
             end
 
