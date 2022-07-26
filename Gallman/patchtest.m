@@ -34,9 +34,11 @@ figure(28);clf; hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq], 'k-');
             
          ax(3) = subplot(413); title('Frequency-phase'); hold on;
-            plot([out(1).s.timcont]/3600, [out(1).s.pflo]);
-            plot([out(1).s.timcont]/3600, [out(1).s.pfhi]);
-            patch([[out(1).s.timcont]/3600 fliplr([out(1).s.timcont]/3600)], [[out(1).s.pflo] fliplr([out(1).s.pfhi])],'b');
+            y1idx = find([out(1).s.pflo] > 400 & [out(1).s.pflo]<430);
+            y2idx = find([out(1).s.pfhi] > 400 & [out(1).s.pfhi] < 430);
+            plot([out(1).s.timcont]/3600, [out(1).s(y1idx).pflo]);
+            plot([out(1).s.timcont]/3600, [out(1).s(y2idx).pfhi]);
+            patch([[out(1).s.timcont]/3600 fliplr([out(1).s.timcont]/3600)], [[out(1).s(y1idx).pflo] fliplr([out(1).s(y2idx).pfhi])],'b');
             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq], 'k-');
             
         ax(4) = subplot(515); title('light'); hold on;ylim([-1, 6]);
