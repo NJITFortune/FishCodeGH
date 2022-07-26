@@ -119,11 +119,11 @@ for kk = datasubset
             [out(j).s(kk).pbw,out(j).s(kk).pflo,out(j).s(kk).pfhi,out(j).s(kk).pobwAmp] = obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]);
 %            
            
-            figure(26); clf ;title('obw-nonphase'); hold on;
-                obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
-
-            figure(25); clf; title('obw-phase'); hold on;
-                obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]);
+%             figure(26); clf ;title('obw-nonphase'); hold on;
+%                 obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+% 
+%             figure(25); clf; title('obw-phase'); hold on;
+%                 obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]);
     
 
             % zAmp
