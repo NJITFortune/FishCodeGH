@@ -21,11 +21,13 @@
 % plot(x, [out(1).s(y1idx).fftFreq], 'k-', 'LineWidth',3);
 %coral
 Coral = [255/255, 127/255, 80/255];
+%Bluish green
+Bluishgreen = [103/255, 189/255, 170/255];
 
 figure(28);clf; hold on;
         
         ax(1) = subplot(311); title('Mean square amplitude'); hold on;
-            plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], 'o');
+            plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], 'o', Bluishgreen);
             a = ylim;
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 0 %if j is even
@@ -33,8 +35,8 @@ figure(28);clf; hold on;
                 end
             end
 
-            plot([out(2).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 10);
-            plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], 'o');
+            plot([out(2).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 10, 'Color',Coral);
+            plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], 'o', Bluishgreen);
         
         ax(2) = subplot(312); title('Frequency-nonphase'); hold on;
 
@@ -47,7 +49,7 @@ figure(28);clf; hold on;
                 end
             end
 
-            patch([[out(1).s.timcont]/3600 fliplr([out(1).s.timcont]/3600)], [[out(1).s.flo] fliplr([out(1).s.fhi])],'r');
+            patch([[out(1).s.timcont]/3600 fliplr([out(1).s.timcont]/3600)], [[out(1).s.flo] fliplr([out(1).s.fhi])],Bluishgreen);
             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq], 'k-');
             
          ax(3) = subplot(313); title('Frequency-phase'); hold on;
@@ -73,7 +75,7 @@ figure(28);clf; hold on;
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
                 end
             end
-            patch([x fliplr(x)], [y1 fliplr(y2)],'b');
+            patch([x fliplr(x)], [y1 fliplr(y2)],Coral);
             plot(x,y3, 'k-');
             
        
