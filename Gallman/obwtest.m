@@ -165,7 +165,7 @@ end
  figure(28);clf; hold on;
         
         ax(1) = subplot(411); title('obwAmp vs fftamp'); hold on;
-            plot([out(2).s.timcont]/3600, [out(2).s.obwAmp]/20, '.');
+            plot([out(2).s.timcont]/3600, [out(2).s.obwAmp]/10, '.');
              plot([out(1).s.timcont]/3600, [out(1).s.obwAmp], '.');
         ax(2) = subplot(412); title('bw'); hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.bw]);
