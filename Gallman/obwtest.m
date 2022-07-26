@@ -47,11 +47,11 @@ out(1).s(length(iFiles)).name = [];
 %% CYCLE THROUGH EVERY FILE IN DIRECTORY
 
     ff = waitbar(0, 'Cycling through files.');
- datasubset = 5783;
+ datasubset = 5783:6724;
 
  %figure(27); clf; hold on;
  %figure(26); clf ; hold on;
-for kk = 1:length(iFiles)
+for kk = datasubset
 %  figure(k);clf; hold on;  
      waitbar(kk/length(iFiles), ff, 'Assembling', 'modal');
 
@@ -92,8 +92,6 @@ for kk = 1:length(iFiles)
             data4analysis = (data(tim > out(j).s(kk).startim & tim < out(j).s(kk).startim+SampleWindw, j));     
             data4analysis = (data4analysis - mean(data4analysis)); 
             
-
-
             %find the first zero crossing
                     z = zeros(1,length(data4analysis)); %create vector length of data
                     z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
