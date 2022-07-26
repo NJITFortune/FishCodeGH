@@ -16,7 +16,7 @@
 figure(28);clf; hold on;
         
         ax(1) = subplot(511); title('Mean square amplitude'); hold on;
-            plot([out(2).s.timcont]/3600, [out(1).s.pobwAmp], '.');
+            plot([out(2).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 2);
             plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], 'o');
         ax(2) = subplot(512); title('99% occupied bandwidth'); hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.bw]);
