@@ -103,14 +103,14 @@ for kk = datasubset
            phaseddata4analysis = data4analysis(newidx);
                     phasetim = tim(newidx)-tim(newidx(1));
 %                
-figure(26); clf ;title('raw data'); hold on;
-            
-            ax(1) = subplot(211); title('nonphase'); hold on;
-                plot( nonphasetim,data4analysis);%xlim([0,250]);
-         
-            ax(2) = subplot(212); title('phase'); hold on;
-                plot(phasetim, phaseddata4analysis );%xlim([0,250]);
-           linkaxes(ax, 'xy');
+% figure(29); clf ;title('raw data'); hold on;
+%             
+%             ax(1) = subplot(211); title('nonphase'); hold on;
+%                 plot( nonphasetim,data4analysis);%xlim([0,250]);
+%          
+%             ax(2) = subplot(212); title('phase'); hold on;
+%                 plot(phasetim, phaseddata4analysis );%xlim([0,250]);
+%            linkaxes(ax, 'xy');
 
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,11 +120,11 @@ figure(26); clf ;title('raw data'); hold on;
             [out(j).s(kk).pbw,out(j).s(kk).pflo,out(j).s(kk).pfhi,out(j).s(kk).pobwAmp] = obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]);
 %            
            
-%             figure(26); clf ;title('obw-nonphase');hold on;set(gcf,'renderer','Painters'); 
-%                 obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);xlim([0,1]);
-% 
-%             figure(25); clf; title('obw-phase');hold on;set(gcf,'renderer','Painters');
-%                 obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]); xlim([0,1]);
+            figure(26); clf ;title('obw-nonphase');hold on;set(gcf,'renderer','Painters'); 
+                obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);xlim([0,1]);
+
+            figure(25); clf; title('obw-phase');hold on;set(gcf,'renderer','Painters');
+                obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]); xlim([0,1]);
 %     
 
             % zAmp
