@@ -30,19 +30,23 @@ lightlines = [21 25 29 33 37 41 45 49 53];
 
 figure(28);clf; hold on;
         
-        ax(1) = subplot(311); title('Mean square amplitude'); xlim(hold on;
-            plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], '.', 'MarkerSize', 30,'Color', teal);
+        ax(1) = subplot(311); title('Mean square amplitude'); xlim([27 43]);hold on;
+            plot([out(1).s.timcont]/3600, [out(1).s.obwAmp], '.', 'MarkerSize', 30,'Color', teal);
             a = ylim;
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 0 %if j is even
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 .15 .15 0], [0.9, 0.9, 0.9]);
                 end
             end
-            plot([out(2).s.timcont]/3600, [out(1).s.obwAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
-            plot([out(2).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 10, 'Color',ylw);
+            plot([out(1).s.timcont]/3600, [out(1).s.obwAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
+            plot([out(1).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 10, 'Color',ylw);
+
+            plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp], '.', 'MarkerSize', 10, 'Color',ylw);
+            
+
             
         
-        ax(2) = subplot(312); title('Frequency-nonphase'); ylim([300 500]); hold on;
+        ax(2) = subplot(312); title('Frequency-nonphase');xlim([27 43]); ylim([300 500]); hold on;
 
             plot([out(1).s.timcont]/3600, [out(1).s.flo]);
             plot([out(1).s.timcont]/3600, [out(1).s.fhi]);
@@ -56,7 +60,7 @@ figure(28);clf; hold on;
             patch([[out(1).s.timcont]/3600 fliplr([out(1).s.timcont]/3600)], [[out(1).s.flo] fliplr([out(1).s.fhi])],'b');
             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq], 'k-', 'LineWidth', 2);
             
-         ax(3) = subplot(313); title('Frequency-phase'); ylim([300 500]);hold on;
+         ax(3) = subplot(313); title('Frequency-phase'); xlim([27 43]); ylim([300 500]);hold on;
             
             y1idx = find([out(1).s.pflo] > 385);
 
