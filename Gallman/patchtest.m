@@ -10,7 +10,7 @@ x = x(y1idx);
 y2 = [out(1).s.pflo];
 y2 = y2(y1idx);
 y1 = [out(1).s.pfhi];
-y1 = y1(y1idx)
+y1 = y1(y1idx);
 
 plot(x, y1);
 %plot(x, y2);
