@@ -75,9 +75,9 @@ for kk = datasubset
                 minute = str2double(iFiles(kk).name(numstart+3:numstart+4));
                 second = str2double(iFiles(kk).name(numstart+6:numstart+7));
                 
-%             if kk > 1 && ((hour*60*60) + (minute*60) + second) < out(1).s(kk-1).tim24
-%                    daycount = daycount + 1;
-%             end
+            if kk > datasubset(1) && ((hour*60*60) + (minute*60) + second) < out(1).s(kk-1).tim24
+                   daycount = daycount + 1;
+            end
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
@@ -149,7 +149,7 @@ for kk = datasubset
             
         % There are 86400 seconds in a day.
         out(j).s(kk).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
-       % out(j).s(kk).tim24 = (hour*60*60) + (minute*60) + second;
+        out(j).s(kk).tim24 = (hour*60*60) + (minute*60) + second;
 
         
         end
