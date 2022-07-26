@@ -6,7 +6,7 @@ y1idx = find([out(1).s.pfhi] < 440 );
 y2idx = find([out(1).s.pflo] > 340);
 
 x = [out(1).s(y1idx).timcont]/3600;
-y1 = [out(1).s(y1idx).pflo];
+y1 = [out(1).s(y1idx').pflo];
 y2 = [out(1).s(y1idx).pfhi];
 
 plot(x, y1);[]
