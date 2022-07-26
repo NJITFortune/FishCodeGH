@@ -7,7 +7,7 @@ y2idx = find([out(1).s.pfhi] > 340);
 
 x = [out(1).s(y1idx).timcont]/3600;
 y1 = [out(1).s(y1idx).pflo];
-y2 = [out(1).s(y2idx).pfhi];
+y2 = [out(1).s(y1idx).pfhi];
 
 plot(x, y1);
 plot(x, y2);
