@@ -99,7 +99,7 @@ for kk = datasubset
                     posZs = find(z == 1); 
                     newidx = find(tim >= tim(posZs(1)) & tim <= tim(posZs(end)));
 
-           data4analysis = data4analysis(newidx);
+           phaseddata4analysis = data4analysis(newidx);
                     
                
                
@@ -116,6 +116,7 @@ for kk = datasubset
             
 %             % OBW
             [out(j).s(kk).bw,out(j).s(kk).flo,out(j).s(kk).fhi,out(j).s(kk).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+            [out(j).s(kk).pbw,out(j).s(kk).pflo,out(j).s(kk).pfhi,out(j).s(kk).pobwAmp] = obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]);
 %             % zAmp
 %             out(j).s(k).zAmp = k_zAmp(data4analysis);
             % FFT Machine
@@ -162,17 +163,21 @@ end
  %%
  figure(28);clf; hold on;
         
-        ax(1) = subplot(411); title('obwAmp vs fftamp'); hold on;
-            plot([out(2).s.timcont]/3600, [out(2).s.obwAmp]/10, '.');
-             plot([out(1).s.timcont]/3600, [out(1).s.obwAmp], 'm.');
-        ax(2) = subplot(412); title('bw'); hold on;
+        ax(1) = subplot(511); title('obwAmp vs fftamp'); hold on;
+            plot([out(1).s.timcont]/3600, [out(2).s.pobwAmp], '.');
+             plot([out(1).s.timcont]/3600, [out(1).s.obwAmp], '.');
+        ax(2) = subplot(512); title('bw'); hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.bw]);
-           % plot([out(2).s.timcont]/3600, [out(2).s.bw]);
-        ax(3) = subplot(413); title('frequency'); hold on;
+            plot([out(1).s.timcont]/3600, [out(1).s.pbw]);
+        ax(3) = subplot(513); title('frequency'); hold on;
             plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
             plot([out(1).s.timcont]/3600, [out(1).s.flo], 'o-');
             plot([out(1).s.timcont]/3600, [out(1).s.fhi], 'o-');
-        ax(4) = subplot(414); title('light'); hold on;ylim([-1, 6]);
+         ax(4) = subplot(514); title('frequency'); hold on;
+            plot([out(1).s.timcont]/3600, [out(1).s.fftFreq]);
+            plot([out(1).s.timcont]/3600, [out(1).s.pflo], 'o-');
+            plot([out(1).s.timcont]/3600, [out(1).s.pfhi], 'o-');
+        ax(5) = subplot(515); title('light'); hold on;ylim([-1, 6]);
             plot([out(1).s.timcont]/3600, [out(1).s.light]);
             plot([out(2).s.timcont]/3600, [out(2).s.light]);
     
