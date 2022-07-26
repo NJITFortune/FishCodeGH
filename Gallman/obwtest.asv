@@ -81,7 +81,7 @@ for kk = datasubset
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
-        for j = 1:2 % Perform analyses on the two channels
+        for j = 2 % Perform analyses on the two channels
         
             
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
@@ -102,15 +102,14 @@ for kk = datasubset
            phaseddata4analysis = data4analysis(newidx);
                     
                
-               
-%             
-%             
-%             ax(1) = subplot(211); title('small bw'); hold on;
-%                 plot( data4analysis);
-%             else
-%             ax(2) = subplot(212); title('big bw'); hold on;
-%                 plot( data4analysis );
-%             end
+figure(26); clf ;title('raw data'); hold on;
+            
+            ax(1) = subplot(211); title('nonphase'); hold on;
+                plot( data4analysis);xlim([0,250]);
+         
+            ax(2) = subplot(212); title('phase'); hold on;
+                plot( phaseddata4analysis );xlim([0,250]);
+           linkaxes(ax, 'xy');
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
