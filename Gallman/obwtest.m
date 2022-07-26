@@ -91,7 +91,8 @@ for kk = datasubset
 
             data4analysis = (data(tim > out(j).s(kk).startim & tim < out(j).s(kk).startim+SampleWindw, j));     
             data4analysis = (data4analysis - mean(data4analysis)); 
-            nonphasetim = (tim(tim > out(j).s(kk).startim & tim < out(j).s(kk).startim+SampleWindw, j));  
+           timidx = find(tim > out(j).s(kk).startim & tim < out(j).s(kk).startim+SampleWindw);
+            nonphasetim = tim(timidx)-tim(timidx(1));  
             %find the first zero crossing
                     z = zeros(1,length(data4analysis)); %create vector length of data
                     z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
@@ -100,7 +101,7 @@ for kk = datasubset
                     newidx = find(tim >= tim(posZs(1)) & tim <= tim(posZs(end)));
 
            phaseddata4analysis = data4analysis(newidx);
-                    phasetim = tim(newidx);
+                    phasetim = tim(newidx)-tim(newidx(1));
                
 figure(26); clf ;title('raw data'); hold on;
             
