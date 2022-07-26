@@ -34,8 +34,8 @@ daycount = 0;
                     
 % How much of the sample that we will use (each sample is 1 second)  
 % This is important because the fish moves
-        SampleWindw = 0.25; % 250 ms window
-        SampleWindw = 250;
+        SampleWindw = 0.025; % 250 ms window
+        
 % Fish limit frequencies for OBW calculation (unlikely to be changed)
         topFreqOBW = 700;%800
         botFreqOBW = 200;
