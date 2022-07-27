@@ -48,7 +48,7 @@ out(1).s(length(iFiles)).name = [];
 
     ff = waitbar(0, 'Cycling through files.');
  datasubset = 6638:8170;
-% datasubset = [6950 7100];   
+ datasubset = [6950 7100];   
  %figure(27); clf; hold on;
  figure(25); clf ; hold on;
 for kk = datasubset
@@ -75,13 +75,13 @@ for kk = datasubset
                 minute = str2double(iFiles(kk).name(numstart+3:numstart+4));
                 second = str2double(iFiles(kk).name(numstart+6:numstart+7));
                 
-            if kk > datasubset(1) && ((hour*60*60) + (minute*60) + second) < out(1).s(kk-1).tim24
-                   daycount = daycount + 1;
-            end
+%             if kk > datasubset(1) && ((hour*60*60) + (minute*60) + second) < out(1).s(kk-1).tim24
+%                    daycount = daycount + 1;
+%             end
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
-        for j = 1:2%orm analyses on the two channels
+        for j = 1%orm analyses on the two channels
         
             
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
@@ -109,7 +109,7 @@ for kk = datasubset
 %                 plot( nonphasetim,data4analysis);%xlim([0,250]);
 %          
 %             ax(2) = subplot(212); title('phase'); hold on;
-                 %hasetim, phaseddata4analysis); 
+                 plot(phasetim, phaseddata4analysis); 
 
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
