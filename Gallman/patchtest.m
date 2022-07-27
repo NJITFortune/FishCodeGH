@@ -98,6 +98,12 @@ lightlines = [21 25 29 33 37 41 45 49 53];
         
        % ax(1) = subplot(211); title('Mean square amplitude'); xlim([27 43]);hold on;
             %plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp], '.', 'MarkerSize', 0.1,'Color', teal);
+             plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp], '.', 'MarkerSize', 10, 'Color','r');
+
+           %  plot([out(1).s.timcont]/3600, [out(1).s.peakfftAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
+            plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp], '.', 'MarkerSize', 10, 'Color',ylw);
+            plot([out(1).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 10, 'Color',Coral);
+            plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10, 'Color','b');
             a = ylim;
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 0 %if j is even
