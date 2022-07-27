@@ -47,13 +47,13 @@ out(1).s(length(iFiles)).name = [];
 %% CYCLE THROUGH EVERY FILE IN DIRECTORY
 
     ff = waitbar(0, 'Cycling through files.');
- datasubset = 5783:6724;
- %datasubset = 714;   
+ datasubset = 6638:8170;
+ datasubset = [7100];   
  %figure(27); clf; hold on;
  %figure(26); clf ; hold on;
 for kk = datasubset
-%  figure(k);clf; hold on;  
-     waitbar(kk/length(iFiles), ff, 'Assembling', 'modal');
+ % figure(1);clf; hold on;  
+     waitbar(kk/length(datasubset), ff, 'Assembling', 'modal');
 
     
        % LOAD THE DATA FILE
@@ -109,8 +109,7 @@ for kk = datasubset
 %                 plot( nonphasetim,data4analysis);%xlim([0,250]);
 %          
 %             ax(2) = subplot(212); title('phase'); hold on;
-%                 plot(phasetim, phaseddata4analysis );%xlim([0,250]);
-%            linkaxes(ax, 'xy');
+                 %plot(phasetim, phaseddata4analysis); 
 
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -128,10 +127,10 @@ for kk = datasubset
 % %     
 
             % zAmp
-%             out(j).s(k).zAmp = k_zAmp(data4analysis);
+             out(j).s(kk).zAmp = k_zAmp(phaseddata4analysis);
             % FFT Machine
             [out(j).s(kk).fftFreq, out(j).s(kk).peakfftAmp, out(j).s(kk).sumfftAmp] = k_fft(data4analysis, Fs); 
-
+             [out(j).s(kk).pfftFreq, out(j).s(kk).ppeakfftAmp, out(j).s(kk).psumfftAmp] = k_fft(phaseddata4analysis, Fs); 
            % obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
 
 %            if mod(k-1, 50) == 0 && j == 1
