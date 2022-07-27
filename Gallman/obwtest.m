@@ -123,7 +123,7 @@ for kk = datasubset
 %                 obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);xlim([0,1]);
 % 
 %             figure(24); clf; title('obw-phase');hold on;set(gcf,'renderer','Painters');
-                obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]); xlim([0,1]);
+                obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]); %xlim([0,1]);
 % %     
 
             % zAmp
