@@ -52,7 +52,7 @@ out(1).s(length(iFiles)).name = [];
  %figure(27); clf; hold on;
  %figure(26); clf ; hold on;
 for kk = datasubset
-  figure(k);clf; hold on;  
+  figure(kk);clf; hold on;  
      waitbar(kk/length(iFiles), ff, 'Assembling', 'modal');
 
     
