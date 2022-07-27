@@ -94,47 +94,82 @@ lightlines = [21 25 29 33 37 41 45 49 53];
 
 
 
-    figure(29);clf; hold on;
+figure(29);clf; hold on;
         
         ax(1) = subplot(211); title('Mean square amplitude'); xlim([27 43]);hold on;
-            %plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp], '.', 'MarkerSize', 0.1,'Color', teal);
-             plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp], '.', 'MarkerSize', 10, 'Color','r');
-
-           %  plot([out(1).s.timcont]/3600, [out(1).s.peakfftAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
-            plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp], '.', 'MarkerSize', 10, 'Color',ylw);
-            plot([out(1).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 10, 'Color',Coral);
-            plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10, 'Color','b');
-            a = ylim;
+           
+%             plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp], '.', 'MarkerSize', 0.1);      
+%             plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp], '.', 'MarkerSize', 0.1);
+%             plot([out(1).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 0.1);
+%             plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 0.1);
+            a = [0 1];
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 0 %if j is even
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
-            %plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp]/2, '.', 'MarkerSize', 30,'LineWidth', 1, 'Color','b');
-            plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp], '.', 'MarkerSize', 10, 'Color','r');
-
-           %  plot([out(1).s.timcont]/3600, [out(1).s.peakfftAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
-            plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp], '.', 'MarkerSize', 10, 'Color',ylw);
-            plot([out(1).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 10, 'Color',Coral);
-            plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10, 'Color','b');
-            legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
+            
+            plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp], '.', 'MarkerSize', 10);
+            plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp], '.', 'MarkerSize', 10);
+            plot([out(1).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 10);
+            plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10);
+           % legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
 
          ax(2) = subplot(212); title('Frequency');xlim([27 43]);  hold on;
 
-            a = ylim;
+            
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 0 %if j is even
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
-            %plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp]/2, '.', 'MarkerSize', 30,'LineWidth', 1, 'Color','b');
-            plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp]/max([out(1).s.psumfftAmp]), '.', 'MarkerSize', 10, 'Color','r');
-
-           %  plot([out(1).s.timcont]/3600, [out(1).s.peakfftAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
-            plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp]/max([out(1).s.ppeakfftAmp]), '.', 'MarkerSize', 10, 'Color',ylw);
-            plot([out(1).s.timcont]/3600, [out(1).s.pobwAmp]/max([out(1).s.pobwAmp]), '.', 'MarkerSize', 10, 'Color',Coral);
-           plot([out(1).s.timcont]/3600, [out(1).s.zAmp]/max([out(1).s.zAmp]), '.', 'MarkerSize', 10, 'Color','b');
+        
+            plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp]/max([out(1).s.psumfftAmp]), '.', 'MarkerSize', 10);
+            plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp]/max([out(1).s.ppeakfftAmp]), '.', 'MarkerSize', 10);
+            plot([out(1).s.timcont]/3600, [out(1).s.pobwAmp]/max([out(1).s.pobwAmp]), '.', 'MarkerSize', 10);
+            plot([out(1).s.timcont]/3600, [out(1).s.zAmp]/max([out(1).s.zAmp]), '.', 'MarkerSize', 10);
             %legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
-%          
-%     
+    
      linkaxes(ax, 'x')
+
+figure(4); clf; hold on;
+
+         ax(1) = subplot(211); title('Mean square amplitude'); xlim([27 43]);hold on;
+
+            for j = 1:length(lightlines)-1
+                if mod(j,2) == 0 %if j is even
+                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
+                end
+            end
+                [timcont, sumfftdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.psumfftAmp], 20);
+                    plot(timcont/3600, sumfftdata);
+
+                [timcont, peakfftdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.ppeakfftAmp], 20);
+                    plot(timcont/3600, peakfftdata);
+            
+                [timcont, obwdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.pobwAmp], 20);
+                    plot(timcont/3600, obwdata);
+
+                [timcont, zdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.zAmp], 20);    
+                    plot(timcont/3600, zdata);
+            
+
+         ax(1) = subplot(211); title('Mean square amplitude'); xlim([27 43]);hold on;
+
+            for j = 1:length(lightlines)-1
+                if mod(j,2) == 0 %if j is even
+                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
+                end
+            end
+                [timcont, sumfftdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.psumfftAmp]/max([out(1).s.psumfftAmp]), 20);
+                    plot(timcont/3600, sumfftdata);
+
+                [timcont, peakfftdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.ppeakfftAmp]/max([out(1).s.ppeakfftAmp]), 20);
+                    plot(timcont/3600, peakfftdata);
+            
+                [timcont, obwdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.pobwAmp]/max([out(1).s.pobwAmp]), 20);
+                    plot(timcont/3600, obwdata);
+
+                [timcont, zdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.zAmp]/max([out(1).s.pobwAmp]), 20);    
+                    plot(timcont/3600, zdata); 
+     
