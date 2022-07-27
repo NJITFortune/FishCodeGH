@@ -26,8 +26,8 @@ Bluishgreen = [103/255, 189/255, 170/255];
 ylw = [255/255 153/255 204/255];
 %teal
 teal = [0/255 114/255 178/255];
-lightlines = [21 25 29 33 37 41 45 49 53];
-lightlines = lightlines - 20;
+lightlines = abs(rkg(1).info.luz([out(1).s.timcont]/3600));
+
 % figure(28);clf; hold on;
 %         
 %         ax(1) = subplot(311); title('Mean square amplitude'); xlim([27 43]);hold on;
