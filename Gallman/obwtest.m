@@ -53,7 +53,7 @@ out(1).s(length(iFiles)).name = [];
  %figure(26); clf ; hold on;
 for kk = datasubset
  % figure(1);clf; hold on;  
-     waitbar(kk/length(iFiles), ff, 'Assembling', 'modal');
+     waitbar(kk/length(datasubset), ff, 'Assembling', 'modal');
 
     
        % LOAD THE DATA FILE
