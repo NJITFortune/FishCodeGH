@@ -109,10 +109,10 @@ figure(29);clf; hold on;
                 end
             end
             
-            plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp], '.', 'MarkerSize', 10);
-            plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp], '.', 'MarkerSize', 10);
-            plot([out(1).s.timcont]/3600, [out(1).s.pobwAmp], '.', 'MarkerSize', 10);
-            plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10);
+            plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp], '.', 'MarkerSize', 10);
+            plot([out(1).s.timcont]/3600, [out(1).s.peakfftAmp], '.', 'MarkerSize', 10);
+            plot([out(1).s.timcont]/3600, [out(1).s.obwAmp], '.', 'MarkerSize', 10);
+            %plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10);
            % legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
 
          ax(2) = subplot(212); title('Frequency');xlim([27 43]);  hold on;
@@ -124,9 +124,9 @@ figure(29);clf; hold on;
                 end
             end
         
-            plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp]/max([out(1).s.psumfftAmp]), '.', 'MarkerSize', 10);
-            plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp]/max([out(1).s.ppeakfftAmp]), '.', 'MarkerSize', 10);
-            plot([out(1).s.timcont]/3600, [out(1).s.pobwAmp]/max([out(1).s.pobwAmp]), '.', 'MarkerSize', 10);
+            plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp]/max([out(1).s.sumfftAmp]), '.', 'MarkerSize', 10);
+            plot([out(1).s.timcont]/3600, [out(1).s.peakfftAmp]/max([out(1).s.peakfftAmp]), '.', 'MarkerSize', 10);
+            plot([out(1).s.timcont]/3600, [out(1).s.obwAmp]/max([out(1).s.obwAmp]), '.', 'MarkerSize', 10);
             plot([out(1).s.timcont]/3600, [out(1).s.zAmp]/max([out(1).s.zAmp]), '.', 'MarkerSize', 10);
             %legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
     
