@@ -27,7 +27,7 @@ ylw = [255/255 153/255 204/255];
 %teal
 teal = [0/255 114/255 178/255];
 lightidx = find(abs([rkg(1).info.luz]) >= [out(1).s(datasubset(1)).timcont]/3600 & abs([rkg(1).info.luz]) <= [out(1).s(datasubset(2)).timcont]/3600);
-lightlines = abs(rkg(1).info.luz(lightidx));
+lightlines = [
 
 % figure(28);clf; hold on;
 %         
