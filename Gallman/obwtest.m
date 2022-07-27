@@ -48,7 +48,7 @@ out(1).s(length(iFiles)).name = [];
 
     ff = waitbar(0, 'Cycling through files.');
  datasubset = 6746:8272;
- datasubset = [6750];   
+% datasubset = [6750];   
  figure(27); clf; hold on;
  %figure(26); clf ; hold on;
 for kk = datasubset
@@ -75,9 +75,9 @@ for kk = datasubset
                 minute = str2double(iFiles(kk).name(numstart+3:numstart+4));
                 second = str2double(iFiles(kk).name(numstart+6:numstart+7));
                 
-%             if kk > datasubset(1) && ((hour*60*60) + (minute*60) + second) < out(1).s(kk-1).tim24
-%                    daycount = daycount + 1;
-%             end
+            if kk > datasubset(1) && ((hour*60*60) + (minute*60) + second) < out(1).s(kk-1).tim24
+                   daycount = daycount + 1;
+            end
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
