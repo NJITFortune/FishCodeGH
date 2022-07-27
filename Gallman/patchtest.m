@@ -115,7 +115,7 @@ figure(29);clf; hold on;
             %plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10);
            % legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
 
-         ax(2) = subplot(212); title('Frequency');xlim([27 43]);  hold on;
+         ax(2) = subplot(212); title('normalized');xlim([27 43]);  hold on;
 
             
             for j = 1:length(lightlines)-1
