@@ -75,9 +75,9 @@ for kk = datasubset
                 minute = str2double(iFiles(kk).name(numstart+3:numstart+4));
                 second = str2double(iFiles(kk).name(numstart+6:numstart+7));
                 
-            if kk > datasubset(1) && ((hour*60*60) + (minute*60) + second) < out(1).s(kk-1).tim24
-                   daycount = daycount + 1;
-            end
+%             if kk > datasubset(1) && ((hour*60*60) + (minute*60) + second) < out(1).s(kk-1).tim24
+%                    daycount = daycount + 1;
+%             end
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
