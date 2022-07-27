@@ -119,7 +119,7 @@ lightlines = [21 25 29 33 37 41 45 49 53];
             plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10, 'Color','b');
             legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
 
-         ax(2) = subplot(212); title('Frequency');xlim([27 43]); ylim([300 500]); hold on;
+         ax(2) = subplot(212); title('Frequency');xlim([27 43]);  hold on;
 
             a = ylim;
             for j = 1:length(lightlines)-1
