@@ -97,14 +97,14 @@ figure(28);clf; hold on;
     figure(29);clf; hold on;
         
         ax(1) = subplot(211); title('Mean square amplitude'); xlim([27 43]);hold on;
-            %plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp], '.', 'MarkerSize', 30,'Color', teal);
+            plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp], '.', 'MarkerSize', 0,'Color', teal);
             a = ylim;
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 0 %if j is even
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
-            plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp]/2, '.', 'MarkerSize', 30,'LineWidth', 1, 'Color','b');
+            %plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp]/2, '.', 'MarkerSize', 30,'LineWidth', 1, 'Color','b');
             plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp]/2, '.', 'MarkerSize', 10, 'Color','r');
 
              plot([out(1).s.timcont]/3600, [out(1).s.peakfftAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
