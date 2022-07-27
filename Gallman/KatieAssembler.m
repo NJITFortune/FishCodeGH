@@ -42,7 +42,7 @@ daycount = 0;
         SampleWindw = 0.250; % 250 ms window
         
 % Fish limit frequencies for OBW calculation (unlikely to be changed)
-        topFreqOBW = 800;%800
+        topFreqOBW = 700;%800
         botFreqOBW = 200;
 
 out(1).s(length(iFiles)).Fs = Fs;
@@ -90,16 +90,23 @@ for k = 1:length(iFiles)
             [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
             data4analysis = (data(tim > out(j).s(k).startim & tim < out(j).s(k).startim + SampleWindw, j));     
             data4analysis = (data4analysis - mean(data4analysis));
-            
 
+            %shift data so that it always starts and ends on the same phase
+                    %find the first zero crossing
+                    z = zeros(1,length(data4analysis)); %create vector length of data
+                    z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
+                    z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
+                    posZs = find(z == 1); 
+                    newidx = find(tim >= tim(posZs(1)) & tim <= tim(posZs(end)));
 
-           % data4analysis = (data4analysis - mean(data4analysis));
+           data4analysis = data4analysis(newidx);
+
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
-%             % OBW
-             [~,~,~,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
-%             % zAmp
-%             out(j).s(k).zAmp = k_zAmp(data4analysis);
+%           % OBW
+            [out(j).s(k).bw,out(j).s(k).flo,out(j).s(k).fhi,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+%           % zAmp
+            out(j).s(k).zAmp = k_zAmp(data4analysis);
             % FFT Machine
             [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
         
