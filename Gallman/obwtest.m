@@ -13,7 +13,7 @@ numstart = 23;
 tempchan = 3; % Either 4 or 3
 lightchan = 4; % Either 5 or 4
 
-daycount = 0;
+daycount = 9;
 
 
 %% SET UP 
