@@ -128,12 +128,12 @@ lightlines = [21 25 29 33 37 41 45 49 53];
                 end
             end
             %plot([out(1).s.timcont]/3600, [out(1).s.sumfftAmp]/2, '.', 'MarkerSize', 30,'LineWidth', 1, 'Color','b');
-            plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp]/max([out(1).s.psumfftAmp]), '.', 'MarkerSize', 10, 'Color','r');
+          %  plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp]/max([out(1).s.psumfftAmp]), '.', 'MarkerSize', 10, 'Color','r');
 
            %  plot([out(1).s.timcont]/3600, [out(1).s.peakfftAmp], '.', 'MarkerSize', 30,'LineWidth', 1, 'Color',teal);
             plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp]/max([out(1).s.ppeakfftAmp]), '.', 'MarkerSize', 10, 'Color',ylw);
             plot([out(1).s.timcont]/3600, [out(1).s.pobwAmp]/max([out(1).s.pobwAmp]), '.', 'MarkerSize', 10, 'Color',Coral);
-            plot([out(1).s.timcont]/3600, [out(1).s.zAmp]/max([out(1).s.zAmp]), '.', 'MarkerSize', 10, 'Color','b');
+          %  plot([out(1).s.timcont]/3600, [out(1).s.zAmp]/max([out(1).s.zAmp]), '.', 'MarkerSize', 10, 'Color','b');
             %legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
 %          
 %     
