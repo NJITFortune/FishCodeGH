@@ -1,4 +1,4 @@
-function [regtim, datadata] = k_peaksofpeaksfilt(timcont, obw, ReFs)
+function [regtim,  regobwpeaks] = k_peaksofpeaksfilt(timcont, obw, ReFs)
 
 %% process data
 
@@ -24,10 +24,10 @@ function [regtim, datadata] = k_peaksofpeaksfilt(timcont, obw, ReFs)
         highWn = 0.005/(ReFs/2);
         lowWn = 0.1/(ReFs/2);
 
-        %high pass removes feeding trend
-        [bb,aa] = butter(5, highWn, 'high');
-        filtdata = filtfilt(bb,aa, double(regobwpeaks)); %double vs single matrix?
-
-        %low pass removes spikey-ness
-        [dd,cc] = butter(5, lowWn, 'low');
-        datadata = filtfilt(dd,cc, filtdata);
+%         %high pass removes feeding trend
+%         [bb,aa] = butter(5, highWn, 'high');
+%         filtdata = filtfilt(bb,aa, double(regobwpeaks)); %double vs single matrix?
+% 
+%         %low pass removes spikey-ness
+%         [dd,cc] = butter(5, lowWn, 'low');
+%         datadata = filtfilt(dd,cc, filtdata);
