@@ -50,7 +50,7 @@ out(1).s(length(iFiles)).name = [];
  datasubset = 6638:8170;
  datasubset = [6950 7100];   
  %figure(27); clf; hold on;
- figure(26); clf ; hold on;
+% figure(25); clf ; hold on;
 for kk = datasubset
  % figure(1);clf; hold on;  
      waitbar(kk/length(datasubset), ff, 'Assembling', 'modal');
@@ -119,11 +119,11 @@ for kk = datasubset
             [out(j).s(kk).pbw,out(j).s(kk).pflo,out(j).s(kk).pfhi,out(j).s(kk).pobwAmp] = obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]);
 %            
 %            
-%             figure(26); clf ;title('obw-nonphase');hold on;set(gcf,'renderer','Painters'); 
-%                 obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);xlim([0,1]);
-% 
-%             figure(25); clf; title('obw-phase');hold on;set(gcf,'renderer','Painters');
-%                 obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]); xlim([0,1]);
+            figure(25); clf ;title('obw-nonphase');hold on;set(gcf,'renderer','Painters'); 
+                obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);xlim([0,1]);
+
+            figure(24); clf; title('obw-phase');hold on;set(gcf,'renderer','Painters');
+                obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]); xlim([0,1]);
 % %     
 
             % zAmp
