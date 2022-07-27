@@ -26,8 +26,9 @@ Bluishgreen = [103/255, 189/255, 170/255];
 ylw = [255/255 153/255 204/255];
 %teal
 teal = [0/255 114/255 178/255];
-lightlines = [21 25 29 33 37 41 45 49 53];
-lightlines = lightlines - 20;
+lightidx = find(rkg(1).info.luz >= [out(1).s(1).timcont]/3600) & rkg(1).info.luz <= [out(1).s(end).timcont]/3600))
+lightlines = abs(rkg(1).info.luz([out(1).s.timcont]/3600));
+
 % figure(28);clf; hold on;
 %         
 %         ax(1) = subplot(311); title('Mean square amplitude'); xlim([27 43]);hold on;
@@ -115,7 +116,7 @@ figure(29);clf; hold on;
             %plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10);
            % legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
 
-         ax(2) = subplot(212); title('Frequency');xlim([27 43]);  hold on;
+         ax(2) = subplot(212); title('normalized');  hold on;
 
             
             for j = 1:length(lightlines)-1
@@ -154,20 +155,20 @@ figure(4); clf; hold on;
 %                     plot(timcont/3600, zdata);
 %             
 
-         ax(2) = subplot(212); title('Mean square amplitude'); ;hold on;
+         ax(2) = subplot(212); title('Mean square amplitude'); hold on;
 
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 1 %if j is even
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
-                [timcont, sumfftdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(2).s.sumfftAmp]/max([out(2).s.sumfftAmp]), 20);
+                [timcont, sumfftdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(channel).s.sumfftAmp]/max([out(channel).s.sumfftAmp]), 20);
                     plot(timcont/3600, sumfftdata);
 
-                [timcont, peakfftdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(2).s.peakfftAmp]/max([out(2).s.peakfftAmp]), 20);
+                [timcont, peakfftdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(channel).s.peakfftAmp]/max([out(channel).s.peakfftAmp]), 20);
                     plot(timcont/3600, peakfftdata);
             
-                [timcont, obwdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(2).s.obwAmp]/max([out(2).s.obwAmp]), 20);
+                [timcont, obwdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(channel).s.obwAmp]/max([out(channel).s.obwAmp]), 20);
                     plot(timcont/3600, obwdata);
 
 %                 [timcont, zdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.zAmp]/max([out(1).s.zAmp]), 20);    
