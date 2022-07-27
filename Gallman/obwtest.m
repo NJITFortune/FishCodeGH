@@ -128,7 +128,7 @@ for kk = datasubset
 % %     
 
             % zAmp
-             out(j).s(k).zAmp = k_zAmp(data4analysis);
+             out(j).s(kk).zAmp = k_zAmp(data4analysis);
             % FFT Machine
             [out(j).s(kk).fftFreq, out(j).s(kk).peakfftAmp, out(j).s(kk).sumfftAmp] = k_fft(data4analysis, Fs); 
              [out(j).s(kk).pfftFreq, out(j).s(kk).ppeakfftAmp, out(j).s(kk).psumfftAmp] = k_fft(phaseddata4analysis, Fs); 
