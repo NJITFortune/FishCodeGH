@@ -27,7 +27,7 @@ ylw = [255/255 153/255 204/255];
 %teal
 teal = [0/255 114/255 178/255];
 lightlines = [21 25 29 33 37 41 45 49 53];
-
+lightlines = lightlines - 20;
 % figure(28);clf; hold on;
 %         
 %         ax(1) = subplot(311); title('Mean square amplitude'); xlim([27 43]);hold on;
@@ -104,7 +104,7 @@ figure(29);clf; hold on;
 %             plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 0.1);
             a = [0 1];
             for j = 1:length(lightlines)-1
-                if mod(j,2) == 0 %if j is even
+                if mod(j,2) == 1 %if j is even
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
@@ -119,7 +119,7 @@ figure(29);clf; hold on;
 
             
             for j = 1:length(lightlines)-1
-                if mod(j,2) == 0 %if j is even
+                if mod(j,2) == 1 %if j is even
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
@@ -137,7 +137,7 @@ figure(4); clf; hold on;
          ax(1) = subplot(211); title('Mean square amplitude');hold on;
 
             for j = 1:length(lightlines)-1
-                if mod(j,2) == 0 %if j is even
+                if mod(j,2) == 1 %if j is even
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
@@ -157,7 +157,7 @@ figure(4); clf; hold on;
          ax(2) = subplot(212); title('Mean square amplitude'); ;hold on;
 
             for j = 1:length(lightlines)-1
-                if mod(j,2) == 0 %if j is even
+                if mod(j,2) == 1 %if j is even
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
