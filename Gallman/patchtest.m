@@ -137,7 +137,7 @@ figure(29);clf; hold on;
     
      linkaxes(ax, 'x')
 
-figure(4); clf; hold on;
+figure(30); clf; hold on;
 
          ax(1) = subplot(211); title('Mean square amplitude');hold on;
 
