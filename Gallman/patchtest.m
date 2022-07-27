@@ -154,7 +154,7 @@ figure(4); clf; hold on;
                     plot(timcont/3600, zdata);
             
 
-         ax(1) = subplot(211); title('Mean square amplitude'); xlim([27 43]);hold on;
+         ax(2) = subplot(212); title('Mean square amplitude'); xlim([27 43]);hold on;
 
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 0 %if j is even
