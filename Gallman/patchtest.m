@@ -170,6 +170,6 @@ figure(4); clf; hold on;
                 [timcont, obwdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.pobwAmp]/max([out(1).s.pobwAmp]), 20);
                     plot(timcont/3600, obwdata);
 
-                [timcont, zdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.zAmp]/max([out(1).s.pobwAmp]), 20);    
+                [timcont, zdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.zAmp]/max([out(1).s.zAmp]), 20);    
                     plot(timcont/3600, zdata); 
      
