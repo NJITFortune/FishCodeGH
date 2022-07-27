@@ -52,7 +52,7 @@ out(1).s(length(iFiles)).name = [];
  %figure(27); clf; hold on;
  %figure(26); clf ; hold on;
 for kk = datasubset
-  figure(1);clf; hold on;  
+ % figure(1);clf; hold on;  
      waitbar(kk/length(iFiles), ff, 'Assembling', 'modal');
 
     
@@ -109,7 +109,7 @@ for kk = datasubset
 %                 plot( nonphasetim,data4analysis);%xlim([0,250]);
 %          
 %             ax(2) = subplot(212); title('phase'); hold on;
-                 plot(phasetim, phaseddata4analysis); hold on;%xlim([0,250]);
+                % plot(phasetim, phaseddata4analysis); hold on;%xlim([0,250]);
 %            linkaxes(ax, 'xy');
 
            % data4analysis = (data4analysis - mean(data4analysis));
