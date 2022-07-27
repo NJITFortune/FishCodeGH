@@ -13,14 +13,14 @@ lightchan = 4; % Either 5 or 4
 
 daycount = 0;
 
-preAmp  = KatiepreAssembler(userfilespec);
-
-    maxamp(1) = max(preAmp(1).amp);
-    maxamp(2) = max(preAmp(2).amp);
-
-   if isfield(preAmp, 'idx') 
-       out.maxampidx = maxAmp(1).idk;
-   end
+% preAmp  = KatiepreAssembler(userfilespec);
+% 
+%     maxamp(1) = max(preAmp(1).amp);
+%     maxamp(2) = max(preAmp(2).amp);
+% 
+%    if isfield(preAmp, 'idx') 
+%        out.maxampidx = maxAmp(1).idk;
+%    end
 %% SET UP 
 % Get the list of files to be analyzed  
         iFiles = dir(userfilespec);
@@ -86,10 +86,13 @@ for k = 1:length(iFiles)
         for j = 1:2 % Perform analyses on the two channels
         
             
-            % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
+            % trim data to max amp SampleWindow
             [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
-            data4analysis = (data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j));     
-            data4analysis = (data4analysis - mean(data4analysis)) / maxamp(j);
+            data4analysis = (data(tim > out(j).s(k).startim & tim < out(j).s(k).startim + SampleWindw, j));     
+            data4analysis = (data4analysis - mean(data4analysis));
+            
+
+
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
