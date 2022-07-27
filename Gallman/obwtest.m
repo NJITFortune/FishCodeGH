@@ -50,9 +50,9 @@ out(1).s(length(iFiles)).name = [];
  datasubset = 6638:8170;
  datasubset = [6950 7100];   
  %figure(27); clf; hold on;
-% figure(25); clf ; hold on;
+ figure(25); clf ; hold on;
 for kk = datasubset
-  figure(kk);clf; hold on;  
+  %figure(kk);clf; hold on;  
      waitbar(kk/length(datasubset), ff, 'Assembling', 'modal');
 
     
@@ -109,7 +109,7 @@ for kk = datasubset
 %                 plot( nonphasetim,data4analysis);%xlim([0,250]);
 %          
 %             ax(2) = subplot(212); title('phase'); hold on;
-                % plot(phasetim, phaseddata4analysis); 
+                 plot(phasetim, phaseddata4analysis); 
 
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -123,7 +123,7 @@ for kk = datasubset
 %                 obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);xlim([0,1]);
 % 
 %             figure(24); clf; title('obw-phase');hold on;set(gcf,'renderer','Painters');
-                obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]); xlim([0,1]);
+               % obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]); xlim([0,1]);
 % %     
 
             % zAmp
