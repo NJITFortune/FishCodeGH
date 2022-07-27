@@ -49,7 +49,7 @@ out(1).s(length(iFiles)).name = [];
     ff = waitbar(0, 'Cycling through files.');
  datasubset = 6746:8272;
 % datasubset = [6750];   
- figure(27); clf; hold on;
+ %figure(27); clf; hold on;
  %figure(26); clf ; hold on;
 for kk = datasubset
  % figure(1);clf; hold on;  
@@ -81,7 +81,7 @@ for kk = datasubset
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
-        for j = 1%orm analyses on the two channels
+        for j = 1:2%orm analyses on the two channels
         
             
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
