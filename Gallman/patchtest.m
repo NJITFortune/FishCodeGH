@@ -27,7 +27,7 @@ ylw = [255/255 153/255 204/255];
 %teal
 teal = [0/255 114/255 178/255];
 
- numbercycles = floor(out(1).s(datasubset(2)).timcont/(4*60*60)); %number of cycles in data
+ numbercycles = floor([out(1).s(datasubset(2)).timcont]/(4*60*60)); %number of cycles in data
         timz = 1:1:numbercycles;
       
 
