@@ -134,7 +134,7 @@ lightlines = [21 25 29 33 37 41 45 49 53];
             plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp]/max([out(1).s.ppeakfftAmp]), '.', 'MarkerSize', 10, 'Color',ylw);
             plot([out(1).s.timcont]/3600, [out(1).s.pobwAmp]/max([out(1).s.pobwAmp]), '.', 'MarkerSize', 10, 'Color',Coral);
             plot([out(1).s.timcont]/3600, [out(1).s.zAmp]/max([out(1).s.zAmp]), '.', 'MarkerSize', 10, 'Color','b');
-            legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
+            %legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
 %          
 %     
      linkaxes(ax, 'x')
