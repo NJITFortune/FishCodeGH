@@ -48,7 +48,7 @@ out(1).s(length(iFiles)).name = [];
 
     ff = waitbar(0, 'Cycling through files.');
  datasubset = 6638:8170;
-% datasubset = [6750];   
+ datasubset = [7100];   
  %figure(27); clf; hold on;
  %figure(26); clf ; hold on;
 for kk = datasubset
