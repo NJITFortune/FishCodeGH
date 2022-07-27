@@ -26,8 +26,8 @@ Bluishgreen = [103/255, 189/255, 170/255];
 ylw = [255/255 153/255 204/255];
 %teal
 teal = [0/255 114/255 178/255];
-lightidx = find([rkg(1).info.luz] >= [out(1).s(1).timcont]/3600 & [rkg(1).info.luz] <= [out(1).s(end).timcont]/3600);
-lightlines = abs([rkg(1).info.luz(lightidx)]);
+lightidx = find([rkg(1).info.luz] >= [out(1).s(datasubset(1)).timcont]/3600 & [rkg(1).info.luz] <= [out(1).s(datasubset(2)).timcont]/3600);
+lightlines = abs(rkg(1).info.luz(lightidx));
 
 % figure(28);clf; hold on;
 %         
