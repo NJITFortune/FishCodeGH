@@ -5,7 +5,7 @@ freqs = [300 650]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
-maxchange = 9; % Maximum change in Hz between samples
+maxchange = 6; % Maximum change in Hz between samples
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
 
 
@@ -178,7 +178,7 @@ for j = 2:length(iFiles)
 
     % Get the midpoint and plot it for fun          
             midpoint = currlofreq + ((currhifreq - currlofreq)/2);
-            plot([midpoint, midpoint], [0 1], 'k');
+%            plot([midpoint, midpoint], [0 1], 'k');
             text(350, 0.5, num2str(j));
             drawnow;
 
