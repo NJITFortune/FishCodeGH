@@ -175,14 +175,9 @@ for j = 2:length(iFiles)
     % Get the higher freq peak
         hifreqidx = find(f1.fftfreq > oldmidpoint & f1.fftfreq < freqs(2));
             [~, hmaxidx] = max(summedFFT(hifreqidx));
-            currhifreq = f1.fftfreq(hifreqidx(hmaxidx));        
+            currhifreq = f1.fftfreq(hifreqidx(hmaxidx));      
+        hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
 
-    % Get the midpoint and plot it for fun          
-            midpoint = currlofreq + ((currhifreq - currlofreq)/2);
-            text(350, 0.5, num2str(j));
-
-
- 
  
 % FIX ERRORS
 % Max frequency change
@@ -213,29 +208,26 @@ mindiff = 2; % Minimum frequency difference (Hz) between the two fish
         
        %if max change in higher fish frequency
         if abs(currhifreq-oldcurrhifreq) > maxchangehi
-              if currhifreq > 419 && currlofreq < 421 || lopeakamp < 0.1
-              currhifreq = oldcurrlofreq;
+          if currhifreq > 419 && ccurrhifreq < 421 || hipeakamp < 0.1
+              currhifreq = oldcurrhifreq;
           else
                 if j > 3 
-                   if  ~(mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq) 
-                    currhifreq = oldcurrlofreq;
-                   elseif  ~(currhifreq< oldmidpoint && abs(currhifreq-oldcurrlofreq) < maxchangelo2)
-                    currhifreq = oldcurrlofreq;
+                   if  ~(mean([out(j-1).hifreq, out(j-2).hifreq]) == oldcurrhifreq) 
+                    currhifreq = oldcurrhifreq;
+                   elseif  ~(currhifreq< oldmidpoint && abs(currhifreq-oldcurrhifreq) < maxchangelo2)
+                    currhifreq = oldcurrhifreq;
                    end
                 else
-                currlofreq = oldcurrlofreq;
+                currhifreq = oldcurrhifreq;
                 end
 
           end
         end 
         
-fixme = 0;        
+     
         if abs(currlofreq-currhifreq) < mindiff
-            fixme = 1;
-            if fixme == 1
-                currlofreq=oldcurrlofreq;
+                currlofreq = oldcurrlofreq;
                 currhifreq = oldcurrhifreq;
-            end
         end
         
 
@@ -247,6 +239,8 @@ fixme = 0;
             plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);           
             midpoint = currlofreq + ((currhifreq - currlofreq)/2);
             plot([midpoint, midpoint], [0 1], 'k');
+            text(350, 0.5, num2str(j));
+            draw now
     
  
     % Put the data into the output structure   
@@ -268,6 +262,7 @@ fixme = 0;
          out(j).midpoint = midpoint;
 
         %higher frequency fish
+            [~, hmaxidx] = find(
             out(j).hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
             out(j).hifreq = currhifreq;
             out(j).hmaxidx = hifreqidx(hmaxidx);
