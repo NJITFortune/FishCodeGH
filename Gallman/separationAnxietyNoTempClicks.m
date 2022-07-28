@@ -170,6 +170,7 @@ for j = 2:length(iFiles)
             [~, lmaxidx] = max(summedFFT(lowfreqidx));
             currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
 %            plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
+        lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
 
     % Get the higher freq peak
         hifreqidx = find(f1.fftfreq > oldmidpoint & f1.fftfreq < freqs(2));
@@ -187,6 +188,7 @@ for j = 2:length(iFiles)
 % Max frequency change
 maxchangelo1 = 5; % Maximum change in Hz between samples
 maxchangelo2 = 10;
+minloamp = 0.1;
 maxchange2 = 15;
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
 
@@ -203,22 +205,21 @@ fixme = 0;
         
 fixme = 0;    
         if abs(currlofreq-oldcurrlofreq) > maxchangelo1
-          if currlofreq > 419 && currlofreq < 421
+          if currlofreq > 419 && currlofreq < 421 || lopeakamp < 0.1
               currlofreq = oldcurrlofreq;
           else
-             fixme = 1; 
-                if fixme == 1  
-                    if j > 3
-                       if  ~(mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq) 
-                        currlofreq = oldcurrlofreq;
-                       elseif  ~(currlofreq < oldmidpoint && abs(currlofreq-oldcurrlofreq) < maxchangelo2)
-                        currlofreq = oldcurrlofreq;
-                       end
-                    else
+                if j > 3 
+                   if  ~(mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq) 
                     currlofreq = oldcurrlofreq;
-                    end
+                   elseif  ~(currlofreq < oldmidpoint && abs(currlofreq-oldcurrlofreq) < maxchangelo2)
+                    currlofreq = oldcurrlofreq;
+                   end
+                else
+                currlofreq = oldcurrlofreq;
                 end
+
           end
+              
         end 
         
       
