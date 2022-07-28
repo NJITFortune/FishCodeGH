@@ -199,7 +199,7 @@ if fixme == 1
     figure(1); clf; hold on;
         plot(f1.fftfreq, summedFFT);
         xlim(freqs);
-         xticks(linspace(freqs(1),freqs(2), 30));
+         %xticks(linspace(freqs(1),freqs(2), 30));
 
     [xfreq, ~] = ginput;
 
