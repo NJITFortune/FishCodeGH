@@ -5,7 +5,7 @@ freqs = [300 650]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
-maxchange = 5; % Maximum change in Hz between samples
+maxchange = 20; % Maximum change in Hz between samples
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
 
 
@@ -168,13 +168,13 @@ for j = 2:length(iFiles)
         lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < oldmidpoint);
             [~, lmaxidx] = max(summedFFT(lowfreqidx));
             currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
-%            plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
+            plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
 
     % Get the higher freq peak
         hifreqidx = find(f1.fftfreq > oldmidpoint & f1.fftfreq < freqs(2));
             [~, hmaxidx] = max(summedFFT(hifreqidx));
             currhifreq = f1.fftfreq(hifreqidx(hmaxidx));        
-%            plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
+            plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
 
     % Get the midpoint and plot it for fun          
             midpoint = currlofreq + ((currhifreq - currlofreq)/2);
@@ -189,26 +189,12 @@ fixme = 0;
 
 %When to fix conditionals
     %if max change in higher fish frequency
-        if abs(currhifreq-oldcurrhifreq) > maxchange
-%             %if this is because currhifreq is the noise harmonic
-%             if currhifreq > 419 && currhifreq <421
-                %go back to previous fish frequency
-                currhifreq = oldcurrhifreq;
-%             else %otherwise have the user intervene
-%             fixme = 1; 
-%             end
-        end 
+        if abs(currhifreq-oldcurrhifreq) > maxchange; fixme = 1; end 
         
     
-        if abs(currlofreq-oldcurrlofreq) > maxchange
-%             %if this is because currhifreq is the noise harmonic
-%             if currlofreq > 419 && currlofreq <421
-                %go back to previous fish frequency
-                currlofreq = oldcurrlofreq;
-%             else %otherwise have the user intervene
-%             fixme = 1;
-%             end
-        end 
+        if abs(currlofreq-oldcurrlofreq) > maxchange; fixme = 1; end
+
+             
         
         if abs(currlofreq-currhifreq) < mindiff; fixme = 1; end
 
@@ -274,16 +260,7 @@ fixme = 0;
 
     end
 
-    figure(2); 
-    
-            plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
-            plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
-            
-            midpoint = currlofreq + ((currhifreq - currlofreq)/2);
-            plot([midpoint, midpoint], [0 1], 'k');
-    
-    
-    
+   
 
     % Put the data into the output structure   
         %lower frequency fish
