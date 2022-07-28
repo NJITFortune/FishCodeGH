@@ -187,15 +187,10 @@ for j = 2:length(iFiles)
 
 fixme = 0;
 
-%When to fix conditionals
-    %if max change in higher fish frequency
-        if abs(currhifreq-oldcurrhifreq) > maxchange; fixme = 1; end 
-        
-    
-        if abs(currlofreq-oldcurrlofreq) > maxchange; fixme = 1; end
+    %When to fix conditionals
 
-             
-        
+        if abs(currhifreq-oldcurrhifreq) > maxchange; fixme = 1; end 
+        if abs(currlofreq-oldcurrlofreq) > maxchange; fixme = 1; end    
         if abs(currlofreq-currhifreq) < mindiff; fixme = 1; end
 
 %if fixing conditional met, FIX!
