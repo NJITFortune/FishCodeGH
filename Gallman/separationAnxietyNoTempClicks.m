@@ -245,6 +245,7 @@ mindiff = 2; % Minimum frequency difference (Hz) between the two fish
  
     % Put the data into the output structure   
         %lower frequency fish
+       [~, lmaxidx] = find(f1.fftfreq(lowfreqidx) == currlofreq);
             out(j).lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
             out(j).lofreq = currlofreq;
             out(j).lmaxidx = lowfreqidx(lmaxidx);
@@ -262,7 +263,7 @@ mindiff = 2; % Minimum frequency difference (Hz) between the two fish
          out(j).midpoint = midpoint;
 
         %higher frequency fish
-            [~, hmaxidx] = find(
+         [~, hmaxidx] = find(f1.fftfreq(hifreqidx) == currhifreq);
             out(j).hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
             out(j).hifreq = currhifreq;
             out(j).hmaxidx = hifreqidx(hmaxidx);
