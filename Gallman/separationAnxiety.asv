@@ -1,5 +1,5 @@
 % A new attempt at frequency tracking two Eigenmannia in the tank
-clearvars -except kg kg2
+clearvars -except kg kg2 rkg k
 Fs = 40000;
 freqs = [200 650]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
@@ -80,15 +80,21 @@ figure(2); clf; hold on;
     % Get the midpoint and plot it for fun
             midpoint = currlofreq + ((currhifreq - currlofreq)/2);
             plot([midpoint, midpoint], [0 1], 'k');
-
+%%
     % Put the data into the output structure   
         %lower frequency fish
             out(1).lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
             out(1).lmaxidx = lowfreqidx(lmaxidx);
             out(1).lowfreqidx = lowfreqidx;
             out(1).lofreq = currlofreq;
-            if f1.fftdata(lowfreqidx(lmaxidx)) > f2.fftdata(lowfreqidx(lmaxidx)); out(1).lotube = 1; end 
-            if f2.fftdata(lowfreqidx(lmaxidx)) > f1.fftdata(lowfreqidx(lmaxidx)); out(1).lotube = 2; end 
+            if f1.fftdata(lowfreqidx(lmaxidx)) > f2.fftdata(lowfreqidx(lmaxidx))
+                out(1).lotube = 1; 
+               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e1(lowfreqidx)', Fs, [freqs(1) midpoint]);
+            end 
+            if f2.fftdata(lowfreqidx(lmaxidx)) > f1.fftdata(lowfreqidx(lmaxidx))
+                out(1).lotube = 2; 
+               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e2(lowfreqidx)', Fs, [freqs(1) midpoint]);
+            end 
 
             out(1).midpoint = midpoint;
 
@@ -97,8 +103,14 @@ figure(2); clf; hold on;
             out(1).hmaxidx = hifreqidx(hmaxidx);
             out(1).hifreqidx = hifreqidx;
             out(1).hifreq = currhifreq;
-            if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx)); out(1).hitube = 1; end 
-            if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx)); out(1).hitube = 2; end 
+            if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx))
+                out(1).hitube = 1;
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1(hifreqidx)', Fs, [midpoint freqs(2)]);
+            end 
+            if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx))
+                out(1).hitube = 2; 
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx)', Fs, [midpoint freqs(2)]);
+            end 
 
 
 oldmidpoint = midpoint;
@@ -247,11 +259,11 @@ end
             
             if f1.fftdata(lowfreqidx(lmaxidx)) > f2.fftdata(lowfreqidx(lmaxidx))
                 out(j).lotube = 1; 
-               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e1(lowfreqidx), Fs, [freqs(1) midpoint]);
+               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e1(lowfreqidx)', Fs, [freqs(1) midpoint]);
             end 
             if f2.fftdata(lowfreqidx(lmaxidx)) > f1.fftdata(lowfreqidx(lmaxidx))
                 out(j).lotube = 2; 
-                [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e2(lowfreqidx), Fs, [freqs(1) midpoint]);
+                [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e2(lowfreqidx)', Fs, [freqs(1) midpoint]);
             end 
 
          out(j).midpoint = midpoint;
@@ -261,8 +273,14 @@ end
             out(j).hifreq = currhifreq;
             out(j).hmaxidx = hifreqidx(hmaxidx);
             out(j).hifreqidx = hifreqidx;
-            if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx)); out(j).hitube = 1; end 
-            if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx)); out(j).hitube = 2; end 
+            if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx))
+                out(j).hitube = 1; 
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1(hifreqidx)', Fs, [midpoint freqs(2)]);
+            end 
+            if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx))
+                out(j).hitube = 2; 
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx)', Fs, [midpoint freqs(2)]);
+            end 
 
 
 oldmidpoint = midpoint;
