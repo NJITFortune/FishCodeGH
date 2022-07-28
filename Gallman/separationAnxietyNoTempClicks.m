@@ -185,7 +185,7 @@ maxchangelo1 = 5; % Maximum change in Hz between samples
 maxchangelo2 = 15;
 minloamp = 0.1;
 maxchangehi = 15;
-mindiff = 2; % Minimum frequency difference (Hz) between the two fish
+mindiff = 10; % Minimum frequency difference (Hz) between the two fish
 
   
         if abs(currlofreq-oldcurrlofreq) > maxchangelo1
