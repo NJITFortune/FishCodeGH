@@ -229,13 +229,14 @@ if fixme == 1
 
         lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
         lxfreqidx = find(f1.fftfreq(lowfreqidx) >= xfreq(1), 50);
-        lmaxidx = find(f1.fftdata(lowfreqidx) == max(f1.fftdata(lxfreqidx)));
+        lmaxidx = find(summedFFT(lowfreqidx) == max(summedFFT(lowfreqidx(lxfreqidx))));
         currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
         plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
 
 
         hifreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
-        hmaxidx = find(f1.fftfreq(hifreqidx) >= xfreq(2), 1);
+        hxfreqidx = find(f1.fftfreq(hifreqidx) >= xfreq(2), 50);
+        hmaxidx = find(summedFFT(hifreqidx) == max(summedFFT(hifreqidx(hxfreqidx))));
         currhifreq = f1.fftfreq(hifreqidx(hmaxidx));
         plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
 
