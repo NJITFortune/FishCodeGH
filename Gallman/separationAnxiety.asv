@@ -190,24 +190,24 @@ fixme = 0;
 %When to fix conditionals
     %if max change in higher fish frequency
         if abs(currhifreq-oldcurrhifreq) > maxchange
-            %if this is because currhifreq is the noise harmonic
-            if currhifreq > 419 && currhifreq <421
+%             %if this is because currhifreq is the noise harmonic
+%             if currhifreq > 419 && currhifreq <421
                 %go back to previous fish frequency
                 currhifreq = oldcurrhifreq;
-            else %otherwise have the user intervene
-            fixme = 1; 
+%             else %otherwise have the user intervene
+%             fixme = 1; 
             end
         end 
         
     
         if abs(currlofreq-oldcurrlofreq) > maxchange
-            %if this is because currhifreq is the noise harmonic
-            if currlofreq > 419 && currlofreq <421
+%             %if this is because currhifreq is the noise harmonic
+%             if currlofreq > 419 && currlofreq <421
                 %go back to previous fish frequency
                 currlofreq = oldcurrlofreq;
-            else %otherwise have the user intervene
-            fixme = 1;
-            end
+%             else %otherwise have the user intervene
+%             fixme = 1;
+%             end
         end 
         
         if abs(currlofreq-currhifreq) < mindiff; fixme = 1; end
