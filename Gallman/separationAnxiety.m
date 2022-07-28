@@ -97,8 +97,14 @@ figure(2); clf; hold on;
             out(1).hmaxidx = hifreqidx(hmaxidx);
             out(1).hifreqidx = hifreqidx;
             out(1).hifreq = currhifreq;
-            if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx)); out(1).hitube = 1; end 
-            if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx)); out(1).hitube = 2; end 
+            if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx))
+                out(1).hitube = 1;
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1(hifreqidx), Fs, [midpoint freqs(2)]);
+            end 
+            if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx))
+                out(1).hitube = 2; 
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx), Fs, [midpoint freqs(2)]);
+            end 
 
 
 oldmidpoint = midpoint;
@@ -263,9 +269,12 @@ end
             out(j).hifreqidx = hifreqidx;
             if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx))
                 out(j).hitube = 1; 
-                
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1(hifreqidx), Fs, [midpoint freqs(2)]);
             end 
-            if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx)); out(j).hitube = 2; end 
+            if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx))
+                out(j).hitube = 2; 
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx), Fs, [midpoint freqs(2)]);
+            end 
 
 
 oldmidpoint = midpoint;
