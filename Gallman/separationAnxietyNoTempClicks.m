@@ -207,7 +207,7 @@ fixme = 0;
         if abs(currlofreq-currhifreq) < mindiff
             fixme = 1;
             if fixme == 1
-                currlofreq-oldcurrlofreq;
+                currlofreq=oldcurrlofreq;
                 currhifreq = oldcurrhifreq;
             end
         end
