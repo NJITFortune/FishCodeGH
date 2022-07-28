@@ -187,13 +187,32 @@ for j = 2:length(iFiles)
 
 fixme = 0;
 
+%When to fix conditionals
+    %if max change in higher fish frequency
+        if abs(currhifreq-oldcurrhifreq) > maxchange
+            %if this is because currhifreq is the noise harmonic
+            if currhifreq > 419 && currhifreq <421
+                %go back to previous fish frequency
+                currhifreq = oldcurrhifreq;
+            else %otherwise have the user intervene
+            fixme = 1; 
+            end
+        end 
+        
+    
+        if abs(currlofreq-oldcurrlofreq) > maxchange
+            %if this is because currhifreq is the noise harmonic
+            if currlofreq > 419 && currlofreq <421
+                %go back to previous fish frequency
+                currlofreq = oldcurrlofreq;
+            else %otherwise have the user intervene
+            fixme = 1;
+            end
+        end 
+        
+        if abs(currlofreq-currhifreq) < mindiff; fixme = 1; end
 
-
-    if abs(currhifreq-oldcurrhifreq) > maxchange; fixme = 1; end 
-    if abs(currlofreq-oldcurrlofreq) > maxchange; fixme = 1; end 
-    if abs(currlofreq-currhifreq) < mindiff; fixme = 1; end
-
-
+%if fixing conditional met, FIX!
 if fixme == 1
 
     fprintf('Last low was %3.1f and high was %3.1f \n', out(j-2).lofreq, out(j-2).hifreq);
