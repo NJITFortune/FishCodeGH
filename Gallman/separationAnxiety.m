@@ -80,7 +80,7 @@ figure(2); clf; hold on;
     % Get the midpoint and plot it for fun
             midpoint = currlofreq + ((currhifreq - currlofreq)/2);
             plot([midpoint, midpoint], [0 1], 'k');
-
+%%
     % Put the data into the output structure   
         %lower frequency fish
             out(1).lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
