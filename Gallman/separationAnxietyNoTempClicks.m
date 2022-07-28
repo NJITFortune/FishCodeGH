@@ -205,7 +205,7 @@ fixme = 0;
            end
         end 
         
-        if mean([out(j-1).lofreq
+        if ([out(j-1).lofreq
         
 fixme = 0;        
         if abs(currlofreq-currhifreq) < mindiff
