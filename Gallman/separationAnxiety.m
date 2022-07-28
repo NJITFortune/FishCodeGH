@@ -130,7 +130,7 @@ oldcurrlofreq = currlofreq;
 %light and temp for j = 1
     out(1).temp = mean(data(1,tempchan));
     out(1).light = mean(data(1,lightchan));
-%%            
+            
 for j = 2%:length(iFiles)
 
     load(iFiles(j).name, 'data');
