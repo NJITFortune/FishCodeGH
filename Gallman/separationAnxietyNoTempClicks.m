@@ -211,7 +211,7 @@ mindiff = 10; % Minimum frequency difference (Hz) between the two fish
 %           if currhifreq > 419 && currhifreq < 421 || hipeakamp < 0.1
 %               currhifreq = oldcurrhifreq;
 %           else
-%                 if j > 3 
+                 if j > 3 
                    if  ~(mean([out(j-1).hifreq, out(j-2).hifreq]) == oldcurrhifreq) 
                     currhifreq = oldcurrhifreq;
                    elseif  ~(currhifreq< oldmidpoint && abs(currhifreq-oldcurrhifreq) < maxchangelo2)
