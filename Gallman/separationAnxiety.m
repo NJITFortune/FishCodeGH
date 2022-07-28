@@ -234,7 +234,7 @@ if fixme == 1
 
 
         hifreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
-        hmaxidx = find(f1.fftfreq(hifreqidx) >= xfreq(2), 1);
+        hmaxidx = find(f1.fftfreq(hifreqidx) > xfreq(2), 1);
         currhifreq = f1.fftfreq(hifreqidx(hmaxidx));
         plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
 
