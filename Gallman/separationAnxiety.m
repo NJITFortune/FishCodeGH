@@ -89,7 +89,7 @@ figure(2); clf; hold on;
             out(1).lofreq = currlofreq;
             if f1.fftdata(lowfreqidx(lmaxidx)) > f2.fftdata(lowfreqidx(lmaxidx))
                 out(1).lotube = 1; 
-               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw([e1(lowfreqidx)], Fs, [freqs(1) midpoint]);
+               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e1(lowfreqidx), Fs, [freqs(1) midpoint]);
             end 
             if f2.fftdata(lowfreqidx(lmaxidx)) > f1.fftdata(lowfreqidx(lmaxidx))
                 out(1).lotube = 2; 
