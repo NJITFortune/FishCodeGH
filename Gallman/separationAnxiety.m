@@ -228,14 +228,14 @@ if fixme == 1
         xfreq = sort(xfreq);
 
         lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
-        lxfreqidx = find(f1.fftfreq(lowfreqidx) >= xfreq(1), 50);
+        lxfreqidx = find(f1.fftfreq(lowfreqidx) >= xfreq(1), 25);
         lmaxidx = find(summedFFT(lowfreqidx) == max(summedFFT(lowfreqidx(lxfreqidx))));
         currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
         plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
 
 
         hifreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
-        hxfreqidx = find(f1.fftfreq(hifreqidx) >= xfreq(2), 50);
+        hxfreqidx = find(f1.fftfreq(hifreqidx) >= xfreq(2), 25);
         hmaxidx = find(summedFFT(hifreqidx) == max(summedFFT(hifreqidx(hxfreqidx))));
         currhifreq = f1.fftfreq(hifreqidx(hmaxidx));
         plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
@@ -303,10 +303,10 @@ figure(4); clf; hold on;
         plot([out([out.hitube]==2).timcont]/3600, [out([out.hitube]==2).hifreq], 'm-o');
         
     ax(2) = subplot(212); title('amplitude'); hold on; 
-        plot([out([out.lotube]==1).timcont]/3600, [out([out.lotube]==1).loamp], 'b.'); 
-        plot([out([out.lotube]==2).timcont]/3600, [out([out.lotube]==2).loamp], 'c.'); 
-        plot([out([out.hitube]==1).timcont]/3600, [out([out.hitube]==1).hiamp], 'r.'); 
-        plot([out([out.hitube]==2).timcont]/3600, [out([out.hitube]==2).hiamp], 'm.');
+        plot([out([out.lotube]==1).timcont]/3600, [out([out.lotube]==1).loAmpobw], 'b.'); 
+        plot([out([out.lotube]==2).timcont]/3600, [out([out.lotube]==2).loAmpobw], 'c.'); 
+        plot([out([out.hitube]==1).timcont]/3600, [out([out.hitube]==1).hiAmpobw], 'r.'); 
+        plot([out([out.hitube]==2).timcont]/3600, [out([out.hitube]==2).hiAmpobw], 'm.');
 
    linkaxes(ax, 'x');
 %% 
@@ -314,12 +314,12 @@ figure(4); clf; hold on;
 figure(3); clf; hold on; 
 
     ax(1) = subplot(211); title('frequency'); hold on;
-        plot([out([out.lotube]==1).timcont]/3600, [out([out.lotube]==1).loamp], 'b.'); 
-        plot([out([out.lotube]==2).timcont]/3600, [out([out.lotube]==2).loamp], 'c.'); 
+        plot([out([out.lotube]==1).timcont]/3600, [out([out.lotube]==1).loAmpobw], 'b.'); 
+        plot([out([out.lotube]==2).timcont]/3600, [out([out.lotube]==2).loAmpobw], 'c.'); 
         
     ax(2) = subplot(212); title('amplitude'); hold on; 
       
-        plot([out([out.hitube]==1).timcont]/3600, [out([out.hitube]==1).hiamp], 'r.'); 
-        plot([out([out.hitube]==2).timcont]/3600, [out([out.hitube]==2).hiamp], 'm.');
+        plot([out([out.hitube]==1).timcont]/3600, [out([out.hitube]==1).hiAmpobw], 'r.'); 
+        plot([out([out.hitube]==2).timcont]/3600, [out([out.hitube]==2).hiAmpobw], 'm.');
 
    linkaxes(ax, 'x');
