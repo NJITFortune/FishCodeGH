@@ -1,7 +1,7 @@
 % A new attempt at frequency tracking two Eigenmannia in the tank
 clearvars -except kg kg2 rkg k
 Fs = 40000;
-freqs = [200 650]; %freq range of typical eigen EOD
+freqs = [425 650]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
@@ -89,11 +89,11 @@ figure(2); clf; hold on;
             out(1).lofreq = currlofreq;
             if f1.fftdata(lowfreqidx(lmaxidx)) > f2.fftdata(lowfreqidx(lmaxidx))
                 out(1).lotube = 1; 
-               [out(1).lobw, out(1).loflo, out(1).lofhi, out(1).loAmpobw] = obw(e1(lowfreqidx)', Fs, [freqs(1) midpoint]);
+               [out(1).lobw, out(1).loflo, out(1).lofhi, out(1).loAmpobw] = obw(e1(lowfreqidx), Fs, [freqs(1) midpoint]);
             end 
             if f2.fftdata(lowfreqidx(lmaxidx)) > f1.fftdata(lowfreqidx(lmaxidx))
                 out(1).lotube = 2; 
-               [out(1).lobw, out(1).loflo, out(1).lofhi, out(1).loAmpobw] = obw(e2(lowfreqidx)', Fs, [freqs(1) midpoint]);
+               [out(1).lobw, out(1).loflo, out(1).lofhi, out(1).loAmpobw] = obw(e2(lowfreqidx), Fs, [freqs(1) midpoint]);
             end 
 
             out(1).midpoint = midpoint;
@@ -105,11 +105,11 @@ figure(2); clf; hold on;
             out(1).hifreq = currhifreq;
             if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx))
                 out(1).hitube = 1;
-               [out(1).hibw, out(1).hiflo, out(1).hifhi, out(1).hiAmpobw] = obw(e1(hifreqidx)', Fs, [midpoint freqs(2)]);
+               [out(1).hibw, out(1).hiflo, out(1).hifhi, out(1).hiAmpobw] = obw(e1(hifreqidx), Fs, [midpoint freqs(2)]);
             end 
             if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx))
                 out(1).hitube = 2; 
-               [out(1).hibw, out(1).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx)', Fs, [midpoint freqs(2)]);
+               [out(1).hibw, out(1).hiflo, out(1).hifhi, out(1).hiAmpobw] = obw(e2(hifreqidx), Fs, [midpoint freqs(2)]);
             end 
 
 
@@ -228,13 +228,13 @@ if fixme == 1
         xfreq = sort(xfreq);
 
         lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
-        lmaxidx = find(f1.fftfreq(lowfreqidx) >= xfreq(1), 1);
+        lmaxidx = find(max(summedFFT(lowfreqidx) >= xfreq(1), 1);
         currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
         plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
 
 
         hifreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
-        hmaxidx = find(f1.fftfreq(hifreqidx) >= xfreq(2), 1);
+        hmaxidx = find(max(summedFFT(hifreqidx)) > xfreq(2), 1);
         currhifreq = f1.fftfreq(hifreqidx(hmaxidx));
         plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
 
@@ -262,11 +262,11 @@ end
             
             if f1.fftdata(lowfreqidx(lmaxidx)) > f2.fftdata(lowfreqidx(lmaxidx))
                 out(j).lotube = 1; 
-               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e1(lowfreqidx)', Fs, [freqs(1) midpoint]);
+               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e1(lowfreqidx), Fs, [freqs(1) midpoint]);
             end 
             if f2.fftdata(lowfreqidx(lmaxidx)) > f1.fftdata(lowfreqidx(lmaxidx))
                 out(j).lotube = 2; 
-                [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e2(lowfreqidx)', Fs, [freqs(1) midpoint]);
+                [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e2(lowfreqidx), Fs, [freqs(1) midpoint]);
             end 
 
          out(j).midpoint = midpoint;
@@ -278,11 +278,11 @@ end
             out(j).hifreqidx = hifreqidx;
             if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx))
                 out(j).hitube = 1; 
-               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1(hifreqidx)', Fs, [midpoint freqs(2)]);
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1(hifreqidx), Fs, [midpoint freqs(2)]);
             end 
             if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx))
                 out(j).hitube = 2; 
-               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx)', Fs, [midpoint freqs(2)]);
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx), Fs, [midpoint freqs(2)]);
             end 
 
 
