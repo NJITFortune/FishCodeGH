@@ -89,11 +89,11 @@ figure(2); clf; hold on;
             out(1).lofreq = currlofreq;
             if f1.fftdata(lowfreqidx(lmaxidx)) > f2.fftdata(lowfreqidx(lmaxidx))
                 out(1).lotube = 1; 
-               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e1(lowfreqidx), Fs, [freqs(1) midpoint]);
+               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e1(lowfreqidx)', Fs, [freqs(1) midpoint]);
             end 
             if f2.fftdata(lowfreqidx(lmaxidx)) > f1.fftdata(lowfreqidx(lmaxidx))
                 out(1).lotube = 2; 
-               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e2(lowfreqidx), Fs, [freqs(1) midpoint]);
+               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e2(lowfreqidx)', Fs, [freqs(1) midpoint]);
             end 
 
             out(1).midpoint = midpoint;
@@ -105,11 +105,11 @@ figure(2); clf; hold on;
             out(1).hifreq = currhifreq;
             if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx))
                 out(1).hitube = 1;
-               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1(hifreqidx), Fs, [midpoint freqs(2)]);
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1(hifreqidx)', Fs, [midpoint freqs(2)]);
             end 
             if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx))
                 out(1).hitube = 2; 
-               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx), Fs, [midpoint freqs(2)]);
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx)', Fs, [midpoint freqs(2)]);
             end 
 
 
@@ -136,6 +136,9 @@ for j = 2:length(iFiles)
     load(iFiles(j).name, 'data');
     f1 = fftmachine(filtfilt(h,g,data(:,1)), Fs);
     f2 = fftmachine(filtfilt(h,g,data(:,2)), Fs);
+
+    e1 = filtfilt(h,g,data(:,1));
+    e2 = filtfilt(h,g,data(:,2));
 
     % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
     hour = str2double(iFiles(j).name(numstart:numstart+1)); %numstart based on time stamp text location
@@ -259,11 +262,11 @@ end
             
             if f1.fftdata(lowfreqidx(lmaxidx)) > f2.fftdata(lowfreqidx(lmaxidx))
                 out(j).lotube = 1; 
-               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e1(lowfreqidx), Fs, [freqs(1) midpoint]);
+               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e1(lowfreqidx)', Fs, [freqs(1) midpoint]);
             end 
             if f2.fftdata(lowfreqidx(lmaxidx)) > f1.fftdata(lowfreqidx(lmaxidx))
                 out(j).lotube = 2; 
-                [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e2(lowfreqidx), Fs, [freqs(1) midpoint]);
+                [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e2(lowfreqidx)', Fs, [freqs(1) midpoint]);
             end 
 
          out(j).midpoint = midpoint;
@@ -275,11 +278,11 @@ end
             out(j).hifreqidx = hifreqidx;
             if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx))
                 out(j).hitube = 1; 
-               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1(hifreqidx), Fs, [midpoint freqs(2)]);
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1(hifreqidx)', Fs, [midpoint freqs(2)]);
             end 
             if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx))
                 out(j).hitube = 2; 
-               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx), Fs, [midpoint freqs(2)]);
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx)', Fs, [midpoint freqs(2)]);
             end 
 
 
