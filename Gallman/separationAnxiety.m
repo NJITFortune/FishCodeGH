@@ -82,7 +82,9 @@ figure(2); clf; hold on;
             plot([midpoint, midpoint], [0 1], 'k');
 
     % Put the data into the output structure            
-        out(1).loamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
+        out(1).lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
+        out(1).lmaxidx = lowfreqidx(lmaxidx);
+        out(1).lowfreqidx = lowfreqidx;
         out(1).lofreq = currlofreq;
         if f1.fftdata(lowfreqidx(lmaxidx)) > f2.fftdata(lowfreqidx(lmaxidx)); out(1).lotube = 1; end 
         if f2.fftdata(lowfreqidx(lmaxidx)) > f1.fftdata(lowfreqidx(lmaxidx)); out(1).lotube = 2; end 
