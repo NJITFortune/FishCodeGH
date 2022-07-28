@@ -187,6 +187,8 @@ for j = 2:length(iFiles)
 
 fixme = 0;
 
+if 
+
     if abs(currhifreq-oldcurrhifreq) > maxchange; fixme = 1; end 
     if abs(currlofreq-oldcurrlofreq) > maxchange; fixme = 1; end 
     if abs(currlofreq-currhifreq) < mindiff; fixme = 1; end
