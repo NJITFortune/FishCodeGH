@@ -131,7 +131,7 @@ oldcurrlofreq = currlofreq;
     out(1).temp = mean(data(1,tempchan));
     out(1).light = mean(data(1,lightchan));
 %% 2:end            
-for j = 2575%2:length(iFiles)
+for j = 2:length(iFiles)
 
     load(iFiles(j).name, 'data');
     f1 = fftmachine(filtfilt(h,g,data(:,1)), Fs);
@@ -145,9 +145,9 @@ for j = 2575%2:length(iFiles)
     minute = str2double(iFiles(j).name(numstart+3:numstart+4));
     second = str2double(iFiles(j).name(numstart+6:numstart+7));
                 
-%         if j > 2 && ((hour*60*60) + (minute*60) + second) < out(j-1).tim24
-%                daycount = daycount + 1;
-%         end
+        if j > 2 && ((hour*60*60) + (minute*60) + second) < out(j-1).tim24
+               daycount = daycount + 1;
+        end
 
 
     % There are 86400 seconds in a day.
@@ -234,7 +234,7 @@ if fixme == 1
 
 
         hifreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
-        hmaxidx = find(max(summedFFT(hifreqidx)) > xfreq(2), 1);
+        hmaxidx = find(max(summedFFT(hifreqidx)) >= xfreq(2), 1);
         currhifreq = f1.fftfreq(hifreqidx(hmaxidx));
         plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
 
