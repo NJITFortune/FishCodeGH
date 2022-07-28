@@ -206,8 +206,8 @@ fixme = 0;
              fixme = 1; 
             if fixme == 1  
                 if j > 3
-                   if  ~(mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq) && currlofreq < oldmidpoint && currlofreq
-  
+                   if  ~(mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq) && currlofreq < oldmidpoint 
+                    if cu
                     currlofreq = oldcurrlofreq;
                    end
                 end
