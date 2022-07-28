@@ -240,7 +240,7 @@ mindiff = 2; % Minimum frequency difference (Hz) between the two fish
             midpoint = currlofreq + ((currhifreq - currlofreq)/2);
             plot([midpoint, midpoint], [0 1], 'k');
             text(350, 0.5, num2str(j));
-            draw now
+            draw now;
     
  
     % Put the data into the output structure   
