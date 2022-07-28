@@ -186,7 +186,7 @@ for j = 2:length(iFiles)
 % FIX ERRORS
 % Max frequency change
 maxchangelo1 = 5; % Maximum change in Hz between samples
-maxchangelo2 = 15;
+maxchangelo2 = 10;
 maxchange2 = 15;
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
 
