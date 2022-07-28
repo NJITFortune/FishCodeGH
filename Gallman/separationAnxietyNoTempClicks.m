@@ -240,7 +240,7 @@ fixme = 0;
 
         % Get the midpoint and plot it for fun          
                 midpoint = currlofreq + ((currhifreq - currlofreq)/2);
-                plot([midpoint, midpoint], [0 1], 'k');
+ %               plot([midpoint, midpoint], [0 1], 'k');
 
                 clickcnt = clickcnt + 1;
 
@@ -252,7 +252,7 @@ fixme = 0;
             lxfreqidx = find(f1.fftfreq(lowfreqidx) >= xfreq(1), 25);
             lmaxidx = find(summedFFT(lowfreqidx) == max(summedFFT(lowfreqidx(lxfreqidx))));
             currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
-            plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
+ %           plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
 
 
             hifreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
@@ -273,12 +273,14 @@ fixme = 0;
 
 
     end
+    
+    
+    
 
     figure(2); 
     
             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
-            plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
-            
+            plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);           
             midpoint = currlofreq + ((currhifreq - currlofreq)/2);
             plot([midpoint, midpoint], [0 1], 'k');
     
