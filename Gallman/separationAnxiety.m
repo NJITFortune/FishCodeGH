@@ -261,7 +261,10 @@ end
             out(j).hifreq = currhifreq;
             out(j).hmaxidx = hifreqidx(hmaxidx);
             out(j).hifreqidx = hifreqidx;
-            if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx)); out(j).hitube = 1; end 
+            if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx))
+                out(j).hitube = 1; 
+                
+            end 
             if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx)); out(j).hitube = 2; end 
 
 
