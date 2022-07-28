@@ -212,7 +212,7 @@ fixme = 0;
            end
         end 
         
-        if ([out(j-1).lofreq
+      
         
 fixme = 0;        
         if abs(currlofreq-currhifreq) < mindiff
