@@ -81,18 +81,24 @@ figure(2); clf; hold on;
             midpoint = currlofreq + ((currhifreq - currlofreq)/2);
             plot([midpoint, midpoint], [0 1], 'k');
 
-    % Put the data into the output structure            
-        out(1).lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
-        out(1).lmaxidx = lowfreqidx(lmaxidx);
-        out(1).lowfreqidx = lowfreqidx;
-        out(1).lofreq = currlofreq;
-        if f1.fftdata(lowfreqidx(lmaxidx)) > f2.fftdata(lowfreqidx(lmaxidx)); out(1).lotube = 1; end 
-        if f2.fftdata(lowfreqidx(lmaxidx)) > f1.fftdata(lowfreqidx(lmaxidx)); out(1).lotube = 2; end 
+    % Put the data into the output structure   
+        %lower frequency fish
+            out(1).lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
+            out(1).lmaxidx = lowfreqidx(lmaxidx);
+            out(1).lowfreqidx = lowfreqidx;
+            out(1).lofreq = currlofreq;
+            if f1.fftdata(lowfreqidx(lmaxidx)) > f2.fftdata(lowfreqidx(lmaxidx)); out(1).lotube = 1; end 
+            if f2.fftdata(lowfreqidx(lmaxidx)) > f1.fftdata(lowfreqidx(lmaxidx)); out(1).lotube = 2; end 
 
-        out(1).hiamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
-        out(1).hifreq = currhifreq;
-        if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx)); out(1).hitube = 1; end 
-        if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx)); out(1).hitube = 2; end 
+            out(1).midpoint = midpoint;
+
+        %higher frequency fish
+            out(1).hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
+            out(1).hmaxidx = hifreqidx(hmaxidx);
+            out(1).hifreqidx = hifreqidx;
+            out(1).hifreq = currhifreq;
+            if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx)); out(1).hitube = 1; end 
+            if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx)); out(1).hitube = 2; end 
 
 
 oldmidpoint = midpoint;
@@ -232,17 +238,28 @@ end
 
 
 
-    % Put the data into the output structure            
-        out(j).loamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
-        out(j).lofreq = currlofreq;
-        if f1.fftdata(lowfreqidx(lmaxidx)) > f2.fftdata(lowfreqidx(lmaxidx)); out(j).lotube = 1; end 
-        if f2.fftdata(lowfreqidx(lmaxidx)) > f1.fftdata(lowfreqidx(lmaxidx)); out(j).lotube = 2; end 
+    % Put the data into the output structure   
+        %lower frequency fish
+            out(j).lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
+            out(j).lofreq = currlofreq;
+            out(j).lmaxidx = lowfreqidx(lmaxidx);
+            out(j).lowfreqidx = lowfreqidx;
+            
+            if f1.fftdata(lowfreqidx(lmaxidx)) > f2.fftdata(lowfreqidx(lmaxidx))
+                out(j).lotube = 1; 
+                out(j).loobwamp = 
+            end 
+            if f2.fftdata(lowfreqidx(lmaxidx)) > f1.fftdata(lowfreqidx(lmaxidx)); out(j).lotube = 2; end 
 
+         out(j).midpoint = midpoint;
 
-        out(j).hiamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
-        out(j).hifreq = currhifreq;
-        if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx)); out(j).hitube = 1; end 
-        if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx)); out(j).hitube = 2; end 
+        %higher frequency fish
+            out(j).hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
+            out(j).hifreq = currhifreq;
+            out(j).hmaxidx = hifreqidx(hmaxidx);
+            out(j).hifreqidx = hifreqidx;
+            if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx)); out(j).hitube = 1; end 
+            if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx)); out(j).hitube = 2; end 
 
 
 oldmidpoint = midpoint;
