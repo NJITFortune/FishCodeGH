@@ -19,6 +19,8 @@ daycount = 0;
 %% SET UP 
 % Get the list of files to be analyzed  
         iFiles = dir(userfilespec);
+        datasubset = 6638:8170;
+        iFiles = iFiles(datasubset);
             % Get sample frequency
             load(iFiles(1).name, 'tim');
             Fs = 1 / (tim(2) - tim(1));
