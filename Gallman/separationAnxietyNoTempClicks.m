@@ -202,12 +202,12 @@ fixme = 0;
              fixme = 1; 
             if fixme == 1  
                 if j > 3
-                   if  mean[out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq
-                        currlofreq = currlofreq;
-                   else
+                   if  ~(mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq)
+  
                     currlofreq = oldcurrlofreq;
                    end
-                else
+                end
+            else
                     currlofreq = oldcurrlofreq;
            end
         end 
