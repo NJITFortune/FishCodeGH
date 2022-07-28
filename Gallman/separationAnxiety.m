@@ -190,89 +190,89 @@ fixme = 0;
 %When to fix conditionals
     %if max change in higher fish frequency
         if abs(currhifreq-oldcurrhifreq) > maxchange
-            %if this is because currhifreq is the noise harmonic
-            if currhifreq > 419 && currhifreq <421
+%             %if this is because currhifreq is the noise harmonic
+%             if currhifreq > 419 && currhifreq <421
                 %go back to previous fish frequency
                 currhifreq = oldcurrhifreq;
-            else %otherwise have the user intervene
-            fixme = 1; 
-            end
+%             else %otherwise have the user intervene
+%             fixme = 1; 
+%             end
         end 
         
     
         if abs(currlofreq-oldcurrlofreq) > maxchange
-            %if this is because currhifreq is the noise harmonic
-            if currlofreq > 419 && currlofreq <421
+%             %if this is because currhifreq is the noise harmonic
+%             if currlofreq > 419 && currlofreq <421
                 %go back to previous fish frequency
                 currlofreq = oldcurrlofreq;
-            else %otherwise have the user intervene
-            fixme = 1;
-            end
+%             else %otherwise have the user intervene
+%             fixme = 1;
+%             end
         end 
         
         if abs(currlofreq-currhifreq) < mindiff; fixme = 1; end
 
 %if fixing conditional met, FIX!
-if fixme == 1
+    if fixme == 1
 
-    fprintf('Last low was %3.1f and high was %3.1f \n', out(j-2).lofreq, out(j-2).hifreq);
+        fprintf('Last low was %3.1f and high was %3.1f \n', out(j-2).lofreq, out(j-2).hifreq);
 
-    figure(1); clf; hold on;
-        plot(f1.fftfreq, summedFFT);
-        xlim(freqs);
-         %xticks(linspace(freqs(1),freqs(2), 30));
+        figure(1); clf; hold on;
+            plot(f1.fftfreq, summedFFT);
+            xlim(freqs);
+             %xticks(linspace(freqs(1),freqs(2), 30));
 
-    [xfreq, ~] = ginput;
+        [xfreq, ~] = ginput;
 
-    if length(xfreq) == 1
+        if length(xfreq) == 1
 
-    % Get the lower freq peak
-        lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < xfreq);
-            [~, lmaxidx] = max(summedFFT(lowfreqidx));
+        % Get the lower freq peak
+            lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < xfreq);
+                [~, lmaxidx] = max(summedFFT(lowfreqidx));
+                currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
+                plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
+
+        % Get the higher freq peak
+            hifreqidx = find(f1.fftfreq > xfreq & f1.fftfreq < freqs(2));
+                [~, hmaxidx] = max(summedFFT(hifreqidx));
+                currhifreq = f1.fftfreq(hifreqidx(hmaxidx));        
+                plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
+
+        % Get the midpoint and plot it for fun          
+                midpoint = currlofreq + ((currhifreq - currlofreq)/2);
+                plot([midpoint, midpoint], [0 1], 'k');
+
+                clickcnt = clickcnt + 1;
+
+        else
+
+            xfreq = sort(xfreq);
+
+            lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
+            lxfreqidx = find(f1.fftfreq(lowfreqidx) >= xfreq(1), 25);
+            lmaxidx = find(summedFFT(lowfreqidx) == max(summedFFT(lowfreqidx(lxfreqidx))));
             currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
 
-    % Get the higher freq peak
-        hifreqidx = find(f1.fftfreq > xfreq & f1.fftfreq < freqs(2));
-            [~, hmaxidx] = max(summedFFT(hifreqidx));
-            currhifreq = f1.fftfreq(hifreqidx(hmaxidx));        
+
+            hifreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
+            hxfreqidx = find(f1.fftfreq(hifreqidx) >= xfreq(2), 25);
+            hmaxidx = find(summedFFT(hifreqidx) == max(summedFFT(hifreqidx(hxfreqidx))));
+            currhifreq = f1.fftfreq(hifreqidx(hmaxidx));
             plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
 
-    % Get the midpoint and plot it for fun          
-            midpoint = currlofreq + ((currhifreq - currlofreq)/2);
-            plot([midpoint, midpoint], [0 1], 'k');
+                midpoint = currlofreq + ((currhifreq - currlofreq)/2);
+                plot([midpoint, midpoint], [0 1], 'k');
 
-            clickcnt = clickcnt + 1;
+                clickcnt = clickcnt + 2;
 
-    else
+            pause(1);
 
-        xfreq = sort(xfreq);
-
-        lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
-        lxfreqidx = find(f1.fftfreq(lowfreqidx) >= xfreq(1), 25);
-        lmaxidx = find(summedFFT(lowfreqidx) == max(summedFFT(lowfreqidx(lxfreqidx))));
-        currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
-        plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
+        end
 
 
-        hifreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
-        hxfreqidx = find(f1.fftfreq(hifreqidx) >= xfreq(2), 25);
-        hmaxidx = find(summedFFT(hifreqidx) == max(summedFFT(hifreqidx(hxfreqidx))));
-        currhifreq = f1.fftfreq(hifreqidx(hmaxidx));
-        plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
-
-            midpoint = currlofreq + ((currhifreq - currlofreq)/2);
-            plot([midpoint, midpoint], [0 1], 'k');
-
-            clickcnt = clickcnt + 2;
-
-        pause(1);
 
     end
-
-
-
-end
 
 
 
