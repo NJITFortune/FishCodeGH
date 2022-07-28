@@ -203,17 +203,20 @@ fixme = 0;
         
 fixme = 0;    
         if abs(currlofreq-oldcurrlofreq) > maxchangelo1
+          if currlofreq > 419 && currlofreq < 421
+              currlofreq = oldcurrlofreq;
+          else
              fixme = 1; 
-            if fixme == 1  
-                if j > 3
-                   if  ~(mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq) && currlofreq < oldmidpoint 
-                    if cu
+                if fixme == 1  
+                    if j > 3
+                       if  ~(mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq) && currlofreq < oldmidpoint 
+                        currlofreq = oldcurrlofreq;
+                       end
+                    else
                     currlofreq = oldcurrlofreq;
-                   end
+                    end
                 end
-            else
-                    currlofreq = oldcurrlofreq;
-           end
+          end
         end 
         
       
