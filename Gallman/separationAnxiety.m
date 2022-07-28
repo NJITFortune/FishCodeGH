@@ -131,7 +131,7 @@ oldcurrlofreq = currlofreq;
     out(1).temp = mean(data(1,tempchan));
     out(1).light = mean(data(1,lightchan));
 %% 2:end            
-for j = 2:length(iFiles)
+for j = 2575%2:length(iFiles)
 
     load(iFiles(j).name, 'data');
     f1 = fftmachine(filtfilt(h,g,data(:,1)), Fs);
@@ -228,13 +228,13 @@ if fixme == 1
         xfreq = sort(xfreq);
 
         lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
-        lmaxidx = find(max(summedFFT(lowfreqidx) >= xfreq(1), 1);
+        lmaxidx = find(max(summedFFT(lowfreqidx)) >= xfreq(1), 1);
         currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
         plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
 
 
         hifreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < freqs(2));
-        hmaxidx = find(f1.fftfreq(hifreqidx) > xfreq(2), 1);
+        hmaxidx = find(max(summedFFT(hifreqidx)) > xfreq(2), 1);
         currhifreq = f1.fftfreq(hifreqidx(hmaxidx));
         plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
 
