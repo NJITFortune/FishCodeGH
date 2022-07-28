@@ -190,7 +190,8 @@ fixme = 0;
     %if max change in higher fish frequency
         if abs(currhifreq-oldcurrhifreq) > maxchange
             fixme = 1; 
-            if fixme == 1            
+            if fixme == 1     
+                
                 currhifreq = oldcurrhifreq;
             end
         end 
