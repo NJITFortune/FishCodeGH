@@ -184,7 +184,10 @@ for j = 2:length(iFiles)
  %           drawnow;
 
 % FIX ERRORS
-
+% Max frequency change
+maxchangelo = 5; % Maximum change in Hz between samples
+maxchange2 = 15;
+mindiff = 2; % Minimum frequency difference (Hz) between the two fish
 
 fixme = 0;
 
@@ -202,12 +205,12 @@ fixme = 0;
              fixme = 1; 
             if fixme == 1  
                 if j > 3
-                   if  (mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq
-   
-                   else
+                   if  ~(mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq)
+  
                     currlofreq = oldcurrlofreq;
                    end
-                else
+                end
+            else
                     currlofreq = oldcurrlofreq;
            end
         end 
