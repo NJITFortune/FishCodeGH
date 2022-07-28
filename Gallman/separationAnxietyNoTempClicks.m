@@ -5,7 +5,7 @@ freqs = [300 650]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
-maxchange1 = 4; % Maximum change in Hz between samples
+maxchange1 = 5; % Maximum change in Hz between samples
 maxchange2 = 15;
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
 
@@ -204,6 +204,8 @@ fixme = 0;
                 currlofreq = oldcurrlofreq;
            end
         end 
+        
+        if out(j-1).lofreq
         
 fixme = 0;        
         if abs(currlofreq-currhifreq) < mindiff
