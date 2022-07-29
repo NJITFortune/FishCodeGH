@@ -173,7 +173,9 @@ for j = 2:length(iFiles)
             if  lopeakamp < 0.1; currlofreq = oldcurrlofreq; end
             if j > 3 
                    if  mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq 
-                    currlofreq = ;
+                       [~, lmaxidx] = max(summedFFT(lowfreqidx) < max(summedFFT(lowfreqidx))));
+                      
+                         currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
                    end
             end
 %currlofreq > 419 && currlofreq < 421 ||
