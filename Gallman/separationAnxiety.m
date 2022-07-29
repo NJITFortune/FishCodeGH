@@ -171,6 +171,11 @@ for j = 2:length(iFiles)
             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
         lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
             if  lopeakamp < 0.1; currlofreq = oldcurrlofreq; end
+            if j > 3 
+                   if  mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq 
+                    currlofreq = ;
+                   end
+            end
 %currlofreq > 419 && currlofreq < 421 ||
             
     % Get the higher freq peak
