@@ -47,8 +47,8 @@ f1 = fftmachine(e1, Fs);
 f2 = fftmachine(e2, Fs);
 
 figure(3); clf; 
-    subplot(121); tmp = fftmachine(data1, Fs); plot(tmp.fftfreq, tmp.fftdata); xlim([freqs(1) freqs(2)]);
-    subplot(122); tmp = fftmachine(data2, Fs); plot(tmp.fftfreq, tmp.fftdata); xlim([freqs(1) freqs(2)]);
+    subplot(121);  plot(f1.fftfreq, f1.fftdata); xlim([freqs(1) freqs(2)]);
+    subplot(122);  plot(tmp.fftfreq, f2.fftdata); xlim([freqs(1) freqs(2)]);
 
 % figure(1); clf;
 %     subplot(211); specgram(e1,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
