@@ -184,7 +184,8 @@ for j = 2:length(iFiles)
 maxchangelo1 = 5; % Maximum change in Hz between samples
 maxchangelo2 = 10;
 minloamp = 0.1;
-maxchangehi = 5;
+maxchangehi = 10;
+maxchangehi2 = 15;
 mindiff = 10; % Minimum frequency difference (Hz) between the two fish
 
   
@@ -214,7 +215,7 @@ mindiff = 10; % Minimum frequency difference (Hz) between the two fish
                  if j > 3 
                    if  ~(mean([out(j-1).hifreq, out(j-2).hifreq]) == oldcurrhifreq) 
                     currhifreq = oldcurrhifreq;
-                   elseif  ~(currhifreq< oldmidpoint && abs(currhifreq-oldcurrhifreq) < maxchangelo2)
+                   elseif  ~(currhifreq< oldmidpoint && abs(currhifreq-oldcurrhifreq) < maxchangehi2)
                     currhifreq = oldcurrhifreq;
                    end
                 else
