@@ -211,9 +211,9 @@ fixme = 0;
 
 %if fixing conditional met, FIX!
     if fixme == 1
-
+        if j > 3
         fprintf('Last low was %3.1f and high was %3.1f \n', out(j-2).lofreq, out(j-2).hifreq);
-
+        end
         figure(1); clf; hold on;
             plot(f1.fftfreq, summedFFT);
             xlim(freqs);
