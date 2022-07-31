@@ -31,7 +31,7 @@ teal = [0/255 114/255 178/255];
         timz = 1:1:9;
       
 
-lightlines = .247 + (4*(timz-1));
+lightlines = 2.17 + (4*(timz-1));
 
 % figure(28);clf; hold on;
 %         
