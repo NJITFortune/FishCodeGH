@@ -20,7 +20,7 @@ daycount = 0;
 % Get the list of files to be analyzed  
         iFiles = dir(userfilespec);
         datasubset = 6638:8170;
-        iFiles = iFiles(datasubset);
+        %iFiles = iFiles(datasubset);
             % Get sample frequency
             load(iFiles(1).name, 'tim');
             Fs = 1 / (tim(2) - tim(1));
@@ -55,7 +55,7 @@ out(1).s(length(iFiles)).name = [];
  %figure(25); clf ; hold on;
 for kk = datasubset
   %figure(kk);clf; hold on;  
-     waitbar(kk/length(datasubset), ff, 'Assembling', 'modal');
+     waitbar(kk/length(iFiles), ff, 'Assembling', 'modal');
 
     
        % LOAD THE DATA FILE
