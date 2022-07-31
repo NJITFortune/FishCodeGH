@@ -140,7 +140,7 @@ figure(29);clf; hold on;
 figure(30); clf; hold on;
 
          ax(1) = subplot(211); title('Mean square amplitude');hold on;
-
+            a = [0 1];
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 1 %if j is even
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
@@ -160,7 +160,7 @@ figure(30); clf; hold on;
 %             
 
          ax(2) = subplot(212); title('Mean square amplitude'); hold on;
-
+            a = [0 1];
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 1 %if j is even
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
