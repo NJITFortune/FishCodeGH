@@ -146,14 +146,14 @@ figure(30); clf; hold on;
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
-                [timcont, sumfftdata] = k_peaksofpeaksfilt([out(channel).s.timcont], [out(channel).s.psumfftAmp], 20);
-                    plot(timcont/3600, sumfftdata);
+                [stimcont, sumfftdata] = k_peaksofpeaksfilt([out(channel).s.timcont], [out(channel).s.psumfftAmp], 20);
+                    plot(stimcont/3600, sumfftdata);
 
-                [timcont, peakfftdata] = k_peaksofpeaksfilt([out(channel).s.timcont], [out(channel).s.ppeakfftAmp], 20);
-                    plot(timcont/3600, peakfftdata);
+                [ptimcont, peakfftdata] = k_peaksofpeaksfilt([out(channel).s.timcont], [out(channel).s.ppeakfftAmp], 20);
+                    plot(ptimcont/3600, peakfftdata);
             
-                [timcont, obwdata] = k_peaksofpeaksfilt([out(channel).s.timcont], [out(channel).s.pobwAmp], 20);
-                    plot(timcont/3600, obwdata);
+                [otimcont, obwdata] = k_peaksofpeaksfilt([out(channel).s.timcont], [out(channel).s.pobwAmp], 20);
+                    plot(otimcont/3600, obwdata);
 
 %                 [timcont, zdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.zAmp], 20);    
 %                     plot(timcont/3600, zdata);
@@ -166,14 +166,14 @@ figure(30); clf; hold on;
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
-                [timcont, sumfftdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(channel).s.psumfftAmp]/max([out(channel).s.psumfftAmp]), 20);
-                    plot(timcont/3600, sumfftdata);
+                [stimcont, sumfftdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(channel).s.psumfftAmp]/max([out(channel).s.psumfftAmp]), 20);
+                    plot(stimcont/3600, sumfftdata);
 
-                [timcont, peakfftdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(channel).s.ppeakfftAmp]/max([out(channel).s.ppeakfftAmp]), 20);
-                    plot(timcont/3600, peakfftdata);
+                [ptimcont, peakfftdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(channel).s.ppeakfftAmp]/max([out(channel).s.ppeakfftAmp]), 20);
+                    plot(ptimcont/3600, peakfftdata);
             
-                [timcont, obwdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(channel).s.pobwAmp]/max([out(channel).s.pobwAmp]), 20);
-                    plot(timcont/3600, obwdata);
+                [otimcont, obwdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(channel).s.pobwAmp]/max([out(channel).s.pobwAmp]), 20);
+                    plot(otimcont/3600, obwdata);
 
 %                 [timcont, zdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.zAmp]/max([out(1).s.zAmp]), 20);    
 %                     plot(timcont/3600, zdata); 
