@@ -181,7 +181,7 @@ for j = 2:length(iFiles)
  
 % FIX ERRORS
 % Max frequency change
-maxchangelo1 = 7; % Maximum change in Hz between samples
+maxchangelo1 = 5; % Maximum change in Hz between samples
 maxchangelo2 = 10;
 minloamp = 0.1;
 maxchangehi = 10;
