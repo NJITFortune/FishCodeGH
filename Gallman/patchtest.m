@@ -101,7 +101,7 @@ channel = 1;
 
 figure(29);clf; hold on;
         
-        ax(1) = subplot(211); title('Mean square amplitude'); hold on;
+        ax(1) = subplot(211); title('Mean square amplitude'); xlim([0 25]);hold on;
            
 %             plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp], '.', 'MarkerSize', 0.1);      
 %             plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp], '.', 'MarkerSize', 0.1);
@@ -120,7 +120,7 @@ figure(29);clf; hold on;
             %plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10);
            % legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
 
-         ax(2) = subplot(212); title('normalized');  hold on;
+         ax(2) = subplot(212); title('normalized'); xlim([0 25]); hold on;
 
             
             for j = 1:length(lightlines)-1
@@ -139,7 +139,7 @@ figure(29);clf; hold on;
 
 figure(30); clf; hold on;
 
-         ax(1) = subplot(211); title('Mean square amplitude');hold on;
+         ax(1) = subplot(211); title('Mean square amplitude');xlim([0 25]); hold on;
 
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 1 %if j is even
@@ -159,7 +159,7 @@ figure(30); clf; hold on;
 %                     plot(timcont/3600, zdata);
 %             
 
-         ax(2) = subplot(212); title('Mean square amplitude'); hold on;
+         ax(2) = subplot(212); title('Mean square amplitude'); xlim([0 25]);hold on;
 
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 1 %if j is even
