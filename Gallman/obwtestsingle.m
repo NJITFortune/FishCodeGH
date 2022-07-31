@@ -6,7 +6,7 @@
 %
 % Usage: kg(#).e = KatieAssembler(userfilespec, Fs, numstart)
 %
-clearvars -except kg kg2 rkg 
+clearvars -except kg kg2 rkg out
 userfilespec = 'Eigen*';
 numstart = 23;
 % This should not change, but if for some reason...
@@ -52,7 +52,7 @@ tout(1).s(length(iFiles)).name = [];
  
  datasubset = [6950 7100];   
  %figure(27); clf; hold on;
- figure(25); clf ; hold on;
+figure(25); clf ; hold on;
 for kk = datasubset
   %figure(kk);clf; hold on;  
      waitbar(kk/length(iFiles), ff, 'Assembling', 'modal');
