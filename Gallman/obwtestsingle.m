@@ -110,7 +110,7 @@ for kk = datasubset
 %                 plot( nonphasetim,data4analysis);%xlim([0,250]);
 %          
 %             ax(2) = subplot(212); title('phase'); hold on;
-                 plot(phasetim, phaseddata4analysis); 
+                 plot(phasetim, phaseddata4analysis/max(phaseddata4analysis)); 
 
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
