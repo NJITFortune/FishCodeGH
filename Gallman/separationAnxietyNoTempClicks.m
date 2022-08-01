@@ -205,7 +205,7 @@ mindiff = 5; % Minimum frequency difference (Hz) between the two fish
         end 
         
        %if max change in higher fish frequency
-        if abs(currhifreq-oldcurrhifreq) > maxchangehi || currhifreq < 590 
+        if abs(currhifreq-oldcurrhifreq) > maxchangehi %|| currhifreq < 590 
           if currhifreq > 419 && currhifreq < 421 || hipeakamp < 0.1
               currhifreq = oldcurrhifreq;
           else
@@ -238,6 +238,7 @@ mindiff = 5; % Minimum frequency difference (Hz) between the two fish
             midpoint = currlofreq + ((currhifreq - currlofreq)/2);
             plot([midpoint, midpoint], [0 1], 'k');
             text(350, 0.5, num2str(j));
+            drawnow;
            
     
  
