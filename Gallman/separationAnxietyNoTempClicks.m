@@ -17,8 +17,6 @@ clickcnt = 0;
     %day count starts at 0
     daycount = 0;
     
-    %day count starts at 0
-    daycount = 0;
     
     %Initialize nonelectrode data channels
     tempchan = 3; 
@@ -183,14 +181,15 @@ for j = 2:length(iFiles)
 maxchangelo1 = 5; % Maximum change in Hz between samples
 maxchangelo2 = 10;
 minloamp = 0.1;
-maxchangehi = 5;
-mindiff = 10; % Minimum frequency difference (Hz) between the two fish
+maxchangehi = 10;
+maxchangehi2 = 15;
+mindiff = 5; % Minimum frequency difference (Hz) between the two fish
 
   
         if abs(currlofreq-oldcurrlofreq) > maxchangelo1
-%           if currlofreq > 419 && currlofreq < 421 || lopeakamp < 0.1
-%               currlofreq = oldcurrlofreq;
-%           else
+          if currlofreq > 419 && currlofreq < 421 || lopeakamp < 0.1
+              currlofreq = oldcurrlofreq;
+          else
                 if j > 3 
                    if  ~(mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq) 
                     currlofreq = oldcurrlofreq;
@@ -201,26 +200,26 @@ mindiff = 10; % Minimum frequency difference (Hz) between the two fish
                 currlofreq = oldcurrlofreq;
                 end
 
-%           end
+          end
               
         end 
         
        %if max change in higher fish frequency
         if abs(currhifreq-oldcurrhifreq) > maxchangehi || currhifreq < 590 
-%           if currhifreq > 419 && currhifreq < 421 || hipeakamp < 0.1
-%               currhifreq = oldcurrhifreq;
-%           else
+          if currhifreq > 419 && currhifreq < 421 || hipeakamp < 0.1
+              currhifreq = oldcurrhifreq;
+          else
                  if j > 3 
                    if  ~(mean([out(j-1).hifreq, out(j-2).hifreq]) == oldcurrhifreq) 
                     currhifreq = oldcurrhifreq;
-                   elseif  ~(currhifreq< oldmidpoint && abs(currhifreq-oldcurrhifreq) < maxchangelo2)
+                   elseif  ~(currhifreq< oldmidpoint && abs(currhifreq-oldcurrhifreq) < maxchangehi2)
                     currhifreq = oldcurrhifreq;
                    end
                 else
                 currhifreq = oldcurrhifreq;
                 end
 
-%           end
+          end
         end 
         
      
