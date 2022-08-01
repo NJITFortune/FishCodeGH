@@ -190,7 +190,7 @@ for j = 2:length(iFiles)
             if currlofreq > 419 && currlofreq < 421 ||hipeakamp <0.1; currhifreq = oldcurrhifreq; end %currlofreq > 419 && currlofreq < 421 ||
   
         % Get the lower freq peak
-        lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < currhifreq-(currhifreq-oldmidpoint/2));
+        lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < currhifreq);
             [~, lmaxidx] = max(summedFFT(lowfreqidx));
             currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
