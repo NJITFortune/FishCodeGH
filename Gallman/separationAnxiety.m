@@ -318,7 +318,7 @@ end
 %%
 %plot fixme
 fixedidx = find([out.fixme] > 0);
-fixedy = [out.lofreq] + abs([out.hifreq] -[out.lofreq]);
+fixedy = [out.lofreq] + ([out.hifreq] +[out.lofreq])/2;
 
 figure(4); clf; hold on; 
 
