@@ -6,7 +6,7 @@
 %
 % Usage: kg(#).e = KatieAssembler(userfilespec, Fs, numstart)
 %
-clearvars -except kg kg2 rkg 
+clearvars -except kg kg2 rkg out
 userfilespec = 'Eigen*';
 numstart = 23;
 % This should not change, but if for some reason...
@@ -42,26 +42,25 @@ daycount = 0;
         topFreqOBW = 700;%800
         botFreqOBW = 200;
 
-out(1).s(length(iFiles)).Fs = Fs;
-out(1).s(length(iFiles)).name = [];
+tout(1).s(length(iFiles)).Fs = Fs;
+tout(1).s(length(iFiles)).name = [];
         
     
 %% CYCLE THROUGH EVERY FILE IN DIRECTORY
 
     ff = waitbar(0, 'Cycling through files.');
  
-% datasubset = [6950 7100];   
+ datasubset = [6950 7100];   
  %figure(27); clf; hold on;
- %figure(25); clf ; hold on;
+figure(25); clf ; hold on;
 for kk = datasubset
-  %figure(kk);clf; hold on;  
+ % figure(kk);clf; hold on;  
      waitbar(kk/length(iFiles), ff, 'Assembling', 'modal');
 
     
        % LOAD THE DATA FILE
         load(iFiles(kk).name, 'data', 'tim');
-        out(1).s(kk).Fs = 1 / (tim(2)-tim(1)); % Extract the sample rate
-        out(2).s(kk).Fs = out(1).s(kk).Fs;
+      
         
        % Filter data  
           
@@ -76,24 +75,24 @@ for kk = datasubset
                 hour = str2double(iFiles(kk).name(numstart:numstart+1));        %numstart based on time stamp text location
                 minute = str2double(iFiles(kk).name(numstart+3:numstart+4));
                 second = str2double(iFiles(kk).name(numstart+6:numstart+7));
-                
-            if kk > datasubset(1) && ((hour*60*60) + (minute*60) + second) < out(1).s(kk-1).tim24
-                   daycount = daycount + 1;
-            end
+%                 
+%             if kk > datasubset(1) && ((hour*60*60) + (minute*60) + second) < out(1).s(kk-1).tim24
+%                    daycount = daycount + 1;
+%             end
             
        % PICK YOUR WINDOW - THIS IS A CRITICAL STEP THAT MAY NEED REVISION
 
-        for j = 1:2%orm analyses on the two channels
+        for j = 1%orm analyses on the two channels
         
             
             % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
-            [out(j).s(kk).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
+            [tout(j).s(kk).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
 
            % if k == 465; out(j).s(k).startim = out(j).s(k).startim + 0.001; end
 
-            data4analysis = (data(tim > out(j).s(kk).startim & tim < out(j).s(kk).startim+SampleWindw, j));     
+            data4analysis = (data(tim > tout(j).s(kk).startim & tim < tout(j).s(kk).startim+SampleWindw, j));     
             data4analysis = (data4analysis - mean(data4analysis)); 
-           timidx = find(tim > out(j).s(kk).startim & tim < out(j).s(kk).startim+SampleWindw);
+           timidx = find(tim > tout(j).s(kk).startim & tim < tout(j).s(kk).startim+SampleWindw);
             nonphasetim = tim(timidx)-tim(timidx(1));  
             %find the first zero crossing
                     z = zeros(1,length(data4analysis)); %create vector length of data
@@ -111,28 +110,28 @@ for kk = datasubset
 %                 plot( nonphasetim,data4analysis);%xlim([0,250]);
 %          
 %             ax(2) = subplot(212); title('phase'); hold on;
-                % plot(phasetim, phaseddata4analysis); 
+                 plot(phasetim, phaseddata4analysis/max(phaseddata4analysis)); 
 
            % data4analysis = (data4analysis - mean(data4analysis));
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
 %             % OBW
-            [out(j).s(kk).bw,out(j).s(kk).flo,out(j).s(kk).fhi,out(j).s(kk).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
-            [out(j).s(kk).pbw,out(j).s(kk).pflo,out(j).s(kk).pfhi,out(j).s(kk).pobwAmp] = obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]);
+            [tout(j).s(kk).bw,tout(j).s(kk).flo,tout(j).s(kk).fhi,tout(j).s(kk).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
+            [tout(j).s(kk).pbw,tout(j).s(kk).pflo,tout(j).s(kk).pfhi,tout(j).s(kk).pobwAmp] = obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]);
 %            
 %            
 %             figure(25); clf ;title('obw-nonphase');hold on;set(gcf,'renderer','Painters'); 
 %                 obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);xlim([0,1]);
 % 
 %             figure(24); clf; title('obw-phase');hold on;set(gcf,'renderer','Painters');
-               % obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]); xlim([0,1]);
+              %  obw(phaseddata4analysis, Fs, [botFreqOBW topFreqOBW]); xlim([0,1]);
 % %     
 
             % zAmp
-             out(j).s(kk).zAmp = k_zAmp(phaseddata4analysis);
+             tout(j).s(kk).zAmp = k_zAmp(phaseddata4analysis);
             % FFT Machine
-            [out(j).s(kk).fftFreq, out(j).s(kk).peakfftAmp, out(j).s(kk).sumfftAmp] = k_fft(data4analysis, Fs); 
-             [out(j).s(kk).pfftFreq, out(j).s(kk).ppeakfftAmp, out(j).s(kk).psumfftAmp] = k_fft(phaseddata4analysis, Fs); 
+            [tout(j).s(kk).fftFreq, tout(j).s(kk).peakfftAmp, tout(j).s(kk).sumfftAmp] = k_fft(data4analysis, Fs); 
+             [tout(j).s(kk).pfftFreq, tout(j).s(kk).ppeakfftAmp, tout(j).s(kk).psumfftAmp] = k_fft(phaseddata4analysis, Fs); 
            % obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
 
 %            if mod(k-1, 50) == 0 && j == 1
@@ -154,13 +153,13 @@ for kk = datasubset
 %                 end 
 %             end
 %       
-            out(j).s(kk).light = mean(data(:,lightchan));
-            out(j).s(kk).temp = mean(data(:,tempchan));
+            tout(j).s(kk).light = mean(data(:,lightchan));
+            tout(j).s(kk).temp = mean(data(:,tempchan));
     
             
         % There are 86400 seconds in a day.
-        out(j).s(kk).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
-        out(j).s(kk).tim24 = (hour*60*60) + (minute*60) + second;
+        tout(j).s(kk).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
+        tout(j).s(kk).tim24 = (hour*60*60) + (minute*60) + second;
 
         
         end

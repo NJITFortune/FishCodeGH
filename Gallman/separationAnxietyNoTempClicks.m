@@ -4,7 +4,9 @@ Fs = 40000;
 freqs = [300 650]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
-
+% Max frequency change
+maxchange1 = 5; % Maximum change in Hz between samples
+maxchange2 = 15;
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
 
 
@@ -13,6 +15,9 @@ clickcnt = 0;
 % File handling
 
     numstart = 23; %1st position in file name of time stamp
+    %day count starts at 0
+    daycount = 0;
+    
     %day count starts at 0
     daycount = 0;
     
@@ -202,7 +207,7 @@ mindiff = 10; % Minimum frequency difference (Hz) between the two fish
         end 
         
        %if max change in higher fish frequency
-        if abs(currhifreq-oldcurrhifreq) > maxchangehi %|| currhifreq < 590 
+        if abs(currhifreq-oldcurrhifreq) > maxchangehi || currhifreq < 590 
 %           if currhifreq > 419 && currhifreq < 421 || hipeakamp < 0.1
 %               currhifreq = oldcurrhifreq;
 %           else
