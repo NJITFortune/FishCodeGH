@@ -1,7 +1,7 @@
 % A new attempt at frequency tracking two Eigenmannia in the tank
 clearvars -except kg kg2 rkg k
 Fs = 40000;
-freqs = [310 650]; %freq range of typical eigen EOD
+freqs = [200 550]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
@@ -45,10 +45,10 @@ f1 = fftmachine(e1, Fs);
 f2 = fftmachine(e2, Fs);
 
 
-figure(11); clf;
-    subplot(211); specgram(e1,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
-    subplot(212); specgram(e2,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
-    colormap('HOT');     
+% figure(11); clf;
+%     subplot(211); specgram(e1,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
+%     subplot(212); specgram(e2,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
+%     colormap('HOT');     
 
 
 % Plot the summed FFT for the user to click
