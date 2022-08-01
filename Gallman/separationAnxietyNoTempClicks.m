@@ -183,7 +183,7 @@ maxchangelo2 = 10;
 minloamp = 0.1;
 maxchangehi = 20;
 maxchangehi2 = 55;
-mindiff = 15; % Minimum frequency difference (Hz) between the two fish
+mindiff = 1; % Minimum frequency difference (Hz) between the two fish
 
   
         if abs(currlofreq-oldcurrlofreq) > maxchangelo1
