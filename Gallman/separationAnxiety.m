@@ -1,11 +1,11 @@
 % A new attempt at frequency tracking two Eigenmannia in the tank
 clearvars -except kg kg2 rkg k
 Fs = 40000;
-freqs = [310 650]; %freq range of typical eigen EOD
+freqs = [200 650]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
-maxchange = 25; % Maximum change in Hz between samples
+maxchange = 5; % Maximum change in Hz between samples
 mindiff = 3; % Minimum frequency difference (Hz) between the two fish
 
 
