@@ -190,7 +190,7 @@ for j = 2:length(iFiles)
             if currlofreq > 419 && currlofreq < 421 ||hipeakamp <0.1; currhifreq = oldcurrhifreq; end %currlofreq > 419 && currlofreq < 421 ||
   
         % Get the lower freq peak
-        lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < (currhifreq-oldmidpoint/2));
+        lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < currhifreq-(currhifreq-oldmidpoint/2));
             [~, lmaxidx] = max(summedFFT(lowfreqidx));
             currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
@@ -200,7 +200,7 @@ for j = 2:length(iFiles)
 %               currlofreq = oldcurrlofreq;
          
     % Get the midpoint and plot it for fun          
-            midpoint = currlofreq + (abs(currhifreq - currlofreq)/2);
+            midpoint = currlofreq + abs(currhifreq - currlofreq)/2;
             plot([midpoint, midpoint], [0 1], 'k');
             text(350, 0.5, num2str(j));
             drawnow;
