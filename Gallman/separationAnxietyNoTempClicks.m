@@ -163,7 +163,7 @@ for j = 2:length(iFiles)
        
 
     % Get the lower freq peak
-        lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < oldmidpoint-oldmidpoint/2);
+        lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < (oldmidpoint-oldmidpoint/2));
             [~, lmaxidx] = max(summedFFT(lowfreqidx));
             currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
 %            plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
