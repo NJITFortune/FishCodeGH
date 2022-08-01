@@ -270,6 +270,11 @@ fixme = 0;
 
     end
 
+    if fixme == 0
+        out(j).fixme = 0;
+    else
+        out(j).fixme = 1;
+    end
    
 
     % Put the data into the output structure   
@@ -311,6 +316,10 @@ oldcurrhifreq = currhifreq;
 % pause(0.3)
 end
 %%
+%plot fixme
+fixedidx = find([out.fixme] > 0);
+fixedy = [out.lofreq] + abs([out.hifreq] -[out.lofreq]);
+
 figure(4); clf; hold on; 
 
     ax(1) = subplot(211); title('frequency'); hold on;
@@ -318,6 +327,7 @@ figure(4); clf; hold on;
         plot([out([out.lotube]==2).timcont]/3600, [out([out.lotube]==2).lofreq], 'c-o'); 
         plot([out([out.hitube]==1).timcont]/3600, [out([out.hitube]==1).hifreq], 'r-o'); 
         plot([out([out.hitube]==2).timcont]/3600, [out([out.hitube]==2).hifreq], 'm-o');
+        plot([out(fixedidx).timcont]/3600, fixedy(fixedidx), 'k-.'), 
         
     ax(2) = subplot(212); title('amplitude'); hold on; 
         plot([out([out.lotube]==1).timcont]/3600, [out([out.lotube]==1).loAmpobw], 'b.'); 
