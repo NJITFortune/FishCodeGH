@@ -6,7 +6,7 @@ userfilespec = 'Eigen*';
 
 % Max frequency change
 maxchange = 20; % Maximum change in Hz between samples
-mindiff = 3; % Minimum frequency difference (Hz) between the two fish
+mindiff = 2; % Minimum frequency difference (Hz) between the two fish
 
 
 clickcnt = 0;
