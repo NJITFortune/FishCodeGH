@@ -5,7 +5,7 @@ freqs = [310 650]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
-maxchange = 30; % Maximum change in Hz between samples
+maxchange = 20; % Maximum change in Hz between samples
 mindiff = 12; % Minimum frequency difference (Hz) between the two fish
 
 
@@ -182,7 +182,7 @@ for j = 2:length(iFiles)
 %currlofreq > 419 && currlofreq < 421 ||
             
     % Get the higher freq peak
-        hifreqidx = find(f1.fftfreq > currlofreq & f1.fftfreq < freqs(2));
+        hifreqidx = find(f1.fftfreq > currlofreq + oldmidpoint/2 & f1.fftfreq < freqs(2));
             [~, hmaxidx] = max(summedFFT(hifreqidx));
             currhifreq = f1.fftfreq(hifreqidx(hmaxidx));        
           %  plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
@@ -278,13 +278,6 @@ fixme = 0;
     end
    
     
-    figure(2); 
-            plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
-            plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);           
-            midpoint = currlofreq + ((currhifreq - currlofreq)/2);
-            plot([midpoint, midpoint], [0 1], 'k');
-            text(350, 0.5, num2str(j));
-            drawnow;
 
     % Put the data into the output structure   
         %lower frequency fish
