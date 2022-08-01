@@ -17,8 +17,7 @@ clickcnt = 0;
     %day count starts at 0
     daycount = 0;
     
-    %day count starts at 0
-    daycount = 0;
+  
     
     %Initialize nonelectrode data channels
     tempchan = 3; 
