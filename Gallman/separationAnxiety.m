@@ -215,6 +215,7 @@ fixme = 0;
         end
         figure(1); clf; hold on;
             plot(f1.fftfreq, summedFFT);
+            plot([420 420], ylim, 'm-');
             xlim(freqs);
              %xticks(linspace(freqs(1),freqs(2), 30));
 
