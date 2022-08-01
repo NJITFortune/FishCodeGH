@@ -1,7 +1,7 @@
 % A new attempt at frequency tracking two Eigenmannia in the tank
 clearvars -except kg kg2 rkg k
 Fs = 40000;
-freqs = [200 550]; %freq range of typical eigen EOD
+freqs = [310 550]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
@@ -163,7 +163,7 @@ for j = 2:length(iFiles)
        
 
     % Get the lower freq peak
-        lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < oldmidpoint);
+        lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < oldmidpoint-oldmidpoint/2);
             [~, lmaxidx] = max(summedFFT(lowfreqidx));
             currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
 %            plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
