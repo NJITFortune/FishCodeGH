@@ -182,7 +182,7 @@ for j = 2:length(iFiles)
 %currlofreq > 419 && currlofreq < 421 ||
             
     % Get the higher freq peak
-        hifreqidx = find(f1.fftfreq > currlofreq + oldmidpoint/2 & f1.fftfreq < freqs(2));
+        hifreqidx = find(f1.fftfreq > (currlofreq + (oldmidpoint-currlofreq)/2) & f1.fftfreq < freqs(2));
             [~, hmaxidx] = max(summedFFT(hifreqidx));
             currhifreq = f1.fftfreq(hifreqidx(hmaxidx));        
           %  plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
