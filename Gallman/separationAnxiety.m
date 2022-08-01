@@ -200,7 +200,7 @@ for j = 2:length(iFiles)
 %               currlofreq = oldcurrlofreq;
          
     % Get the midpoint and plot it for fun          
-            midpoint = currlofreq + ((currhifreq - currlofreq)/2);
+            midpoint = currlofreq + (abs(currhifreq - currlofreq)/2);
             plot([midpoint, midpoint], [0 1], 'k');
             text(350, 0.5, num2str(j));
             drawnow;
