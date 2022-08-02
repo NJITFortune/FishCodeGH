@@ -1,7 +1,7 @@
 % A new attempt at frequency tracking two Eigenmannia in the tank
 clearvars -except kg kg2 rkg k
 Fs = 40000;
-freqs = [200 650]; %freq range of typical eigen EOD
+freqs = [210 650]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
@@ -172,22 +172,24 @@ for j = 2:length(iFiles)
             currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
         lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
-            if  lopeakamp < 0.1; currlofreq = oldcurrlofreq; end
+        
+            if  currlofreq < 220 || lopeakamp < 0.1; currlofreq = oldcurrlofreq; end
             if j > 3 %&& currlofreq > 419 && currlofreq < 421
                    if  mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq 
                        [~, lmaxidx] = max(summedFFT(lowfreqidx) < max(summedFFT(lowfreqidx)));
                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
                    end
+                   if currlofreq < 220; currlofreq = out(j-2).lofreq; end
             end
 %currlofreq > 419 && currlofreq < 421 ||
             
     % Get the higher freq peak
-        hifreqidx = find(f1.fftfreq > oldcurrlofreq + (oldmidpoint-currlofreq)/2 & f1.fftfreq < freqs(2)); %currlofreq + (oldmidpoint-currlofreq)/2)
+        hifreqidx = find(f1.fftfreq > oldmidpoint & f1.fftfreq < freqs(2)); %currlofreq + (oldmidpoint-currlofreq)/2)
             [~, hmaxidx] = max(summedFFT(hifreqidx));
             currhifreq = f1.fftfreq(hifreqidx(hmaxidx));        
             plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
         hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
-            if  currhifreq > 539 ||hipeakamp <  0.1; currhifreq = oldcurrhifreq; end %currlofreq > 419 && currlofreq < 421 ||
+            if   hipeakamp <  0.1; currhifreq = oldcurrhifreq; end %currlofreq > 419 && currlofreq < 421 || currhifreq > 539
   
         
             
@@ -206,9 +208,9 @@ fixme = 0;
 
     %When to fix conditionals
 
-        if abs(currhifreq-oldcurrhifreq) > maxchange; fixme = 1;  fprintf('currhifreq was %3.1f and oldcurrhifreq was %3.1f maxchange = \n', out(j-2).lofreq, out(j-2).hifreq); end 
-        if abs(currlofreq-oldcurrlofreq) > maxchange; fixme = 1; end    
-        if abs(currlofreq-currhifreq) < mindiff; fixme = 1; end
+        if abs(currhifreq-oldcurrhifreq) > maxchange; fixme = 1;  fprintf('currhifreq was %3.1f and oldcurrhifreq was %3.1f maxchange = %3.1f \n', currhifreq, oldcurrhifreq, maxchange); end 
+        if abs(currlofreq-oldcurrlofreq) > maxchange; fixme = 1; fprintf('currlofreq was %3.1f and oldcurrlofreq was %3.1f maxchange = %3.1f \n', currlofreq, oldcurrlofreq, maxchange);end    
+        if abs(currlofreq-currhifreq) < mindiff; fixme = 1;  fprintf('currlofreq was %3.1f and currhifreq was %3.1f mindiff = %3.1f \n', currlofreq, currhifreq, mindiff); end
 
 %if fixing conditional met, FIX!
     if fixme == 1
@@ -279,6 +281,14 @@ fixme = 0;
         out(j).fixme = 1;
     end
    
+    
+%      figure(2); 
+%             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
+%             plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);           
+%             midpoint = currlofreq + ((currhifreq - currlofreq)/2);
+%             plot([midpoint, midpoint], [0 1], 'k');
+%             text(350, 0.5, num2str(j));
+%             drawnow;
     
 
     % Put the data into the output structure   
