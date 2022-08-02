@@ -204,7 +204,8 @@ for j = 1:howmanyhalfdaysinsample
 
                 if length(halfdayidx) >= howmanysamplesinahalfday %important so that we know when to stop
 
-                    if light == 
+                    if light < 4 %we start with dark
+                        
 
 
 
