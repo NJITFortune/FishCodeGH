@@ -173,7 +173,7 @@ for j = 2:length(iFiles)
             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
         lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
         
-            if  lopeakamp < 0.1; currlofreq = oldcurrlofreq; end
+            if  currlofreq < 220 || lopeakamp < 0.1; currlofreq = oldcurrlofreq; end
             if j > 3 %&& currlofreq > 419 && currlofreq < 421
                    if  mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq 
                        [~, lmaxidx] = max(summedFFT(lowfreqidx) < max(summedFFT(lowfreqidx)));
