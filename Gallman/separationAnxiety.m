@@ -1,11 +1,11 @@
 % A new attempt at frequency tracking two Eigenmannia in the tank
 clearvars -except kg kg2 rkg k
 Fs = 40000;
-freqs = [210 550]; %freq range of typical eigen EOD
+freqs = [310 550]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
-maxchange = 20; % Maximum change in Hz between samples
+maxchange = 30; % Maximum change in Hz between samples
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
 
 
@@ -133,7 +133,7 @@ oldcurrlofreq = currlofreq;
     out(1).temp = mean(data(1,tempchan));
     out(1).light = mean(data(1,lightchan));
 %% 2:end            
-for j = 2514:8276%2:length(iFiles)
+for j = 2:length(iFiles) %2514:8276%
 
     load(iFiles(j).name, 'data');
     f1 = fftmachine(filtfilt(h,g,data(:,1)), Fs);
@@ -197,7 +197,7 @@ for j = 2514:8276%2:length(iFiles)
 % %                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
 % %                    end
                     if currlofreq < 310
-                        lowfreqidx = find(f1.fftfreq > 421 & f1.fftfreq < currhifreq-oldmidpoint);
+                        lowfreqidx = find(f1.fftfreq > 440 & f1.fftfreq < currhifreq-oldmidpoint);
                         [~, lmaxidx] = max(summedFFT(lowfreqidx));
                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
                     end
