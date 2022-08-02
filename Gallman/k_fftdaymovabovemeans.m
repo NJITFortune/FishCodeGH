@@ -1,4 +1,4 @@
-%function [hourtim, meanofexperimentmeans, hourampmax, ld] = k_fftdaymovabovemeans(in)
+function [hourtim, meanofexperimentmeans, hourampmax, ld] = k_fftdaymovabovemeans(in)
 %% usage
 %processes output from KatieDayTrialDessembler.m of kg by hourexp
 %k_daydessembledplotter.m without the plotting
@@ -13,7 +13,7 @@
 
 %in.trial and %in.day
 
-in = dark(5).h;
+%in = dark(5).h;
 
 ld = in(1).day(1).ld;
 
