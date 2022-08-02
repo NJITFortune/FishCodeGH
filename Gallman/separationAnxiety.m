@@ -174,7 +174,7 @@ for j = 2:length(iFiles) %2514:8276%
         hifreqidx = find(f1.fftfreq > oldmidpoint & f1.fftfreq < freqs(2)); %currlofreq + (oldmidpoint-currlofreq)/2)
             [~, hmaxidx] = max(summedFFT(hifreqidx));
             currhifreq = f1.fftfreq(hifreqidx(hmaxidx));        
-            plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
+         %   plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
         hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
         
             if   hipeakamp <  0.1 || currhifreq > 419 && currhifreq < 421; currhifreq = oldcurrhifreq; end %currlofreq > 419 && currlofreq < 421 || currhifreq > 539
@@ -191,15 +191,15 @@ for j = 2:length(iFiles) %2514:8276%
         lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < oldmidpoint);
             [~, lmaxidx] = max(summedFFT(lowfreqidx));
             currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
-            plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
+          %  plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
         lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
         
-            if   lopeakamp < 0.1; currlofreq = oldcurrlofreq; end
-%             if j > 3 %&& currlofreq > 419 && currlofreq < 421
-% %                    if  mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq 
-% %                        [~, lmaxidx] = max(summedFFT(lowfreqidx) < max(summedFFT(lowfreqidx)));
-% %                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
-% %                    end
+            if currlofreq > 419 && currlofreq < 421 ||  lopeakamp < 0.1; currlofreq = oldcurrlofreq; end
+            if j > 3 %&& currlofreq > 419 && currlofreq < 421
+%                    if  mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq 
+%                        [~, lmaxidx] = max(summedFFT(lowfreqidx) < max(summedFFT(lowfreqidx)));
+%                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
+%                    end
                     if currlofreq < 410
                         lowfreqidx = find(f1.fftfreq > 425 & f1.fftfreq < currhifreq-oldmidpoint);
                         [~, lmaxidx] = max(summedFFT(lowfreqidx));
@@ -208,11 +208,12 @@ for j = 2:length(iFiles) %2514:8276%
                              currlofreq = 440;
                          end
                     end
+            end
     % Get the midpoint and plot it for fun          
             midpoint = currlofreq + abs(currhifreq - currlofreq)/2;
-            plot([midpoint, midpoint], [0 1], 'k');
-            text(350, 0.5, num2str(j));
-            drawnow;
+%             plot([midpoint, midpoint], [0 1], 'k');
+%             text(350, 0.5, num2str(j));
+%             drawnow;
 
 % FIX ERRORS
 
@@ -295,13 +296,13 @@ fixme = 0;
     end
    
     
-%      figure(2); 
-%             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
-%             plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);           
-%             midpoint = currlofreq + ((currhifreq - currlofreq)/2);
-%             plot([midpoint, midpoint], [0 1], 'k');
-%             text(350, 0.5, num2str(j));
-%             drawnow;
+     figure(2); 
+            plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
+            plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);           
+            midpoint = currlofreq + ((currhifreq - currlofreq)/2);
+            plot([midpoint, midpoint], [0 1], 'k');
+            text(350, 0.5, num2str(j));
+            drawnow;
     
 
     % Put the data into the output structure   
