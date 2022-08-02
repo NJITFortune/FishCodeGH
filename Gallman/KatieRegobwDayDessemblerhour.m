@@ -183,7 +183,7 @@ for j = 1:howmanydaysinsample
 %time vectors currently in seconds, divide by 3600 to get hours
  
 %days over experiment time
-figure(65); clf; hold on;
+figure(k); clf; hold on;
     for j = 1:length(day)
         plot(day(j).entiretimcont/3600, day(j).Sobwyy);
     end
@@ -210,7 +210,7 @@ figure(65); clf; hold on;
     end
 
 %average over single day    
-figure(66); clf; hold on; 
+figure(k+1); clf; hold on; 
 
  
     %create fill box 
