@@ -200,6 +200,9 @@ for j = 2:length(iFiles) %2514:8276%
                         lowfreqidx = find(f1.fftfreq > 440 & f1.fftfreq < currhifreq-oldmidpoint);
                         [~, lmaxidx] = max(summedFFT(lowfreqidx));
                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
+                         if isempty(currlofreq)
+                             currlofreq = 455;
+                         end
                     end
     % Get the midpoint and plot it for fun          
             midpoint = currlofreq + abs(currhifreq - currlofreq)/2;
