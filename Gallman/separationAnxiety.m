@@ -206,6 +206,8 @@ for j = 2:length(iFiles) %2514:8276%
                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
                          if isempty(currlofreq)
                              currlofreq = 440;
+                             lowfreqidx = find(f1.fftfreq == currlofreq);
+                            [~, lmaxidx] = max(summedFFT(lowfreqidx));
                          end
                     end
             end
