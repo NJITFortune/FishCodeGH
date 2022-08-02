@@ -209,10 +209,19 @@ for j = 1:howmanyhalfdaysinsample
 
                     if light < 4 %if we start with dark
                         if mod(j,2) == 1 %if j is odd
-                          day(j).  
+                          day(j).halftype = 3;
+                        else
+                          day(j).halftype = 4;
+                        end
+                    else %we start with light
+                        if mod(j,2) == 1 %if j is odd
+                          day(j).halftype = 4;
+                        else
+                          day(j).halftype = 3;
+                        end
+                    end
                     
                 end
-
 
  end
 
