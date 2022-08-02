@@ -195,22 +195,7 @@ for j = 2:length(iFiles) %2514:8276%
         lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
         
             if currlofreq > 419 && currlofreq < 421 ||  lopeakamp < 0.1; currlofreq = oldcurrlofreq; end
-            if j > 3 %&& currlofreq > 419 && currlofreq < 421
-%                    if  mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq 
-%                        [~, lmaxidx] = max(summedFFT(lowfreqidx) < max(summedFFT(lowfreqidx)));
-%                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
-%                    end
-                    if currlofreq < 410
-                        lowfreqidx = find(f1.fftfreq > 425 & f1.fftfreq < currhifreq-oldmidpoint);
-                        [~, lmaxidx] = max(summedFFT(lowfreqidx));
-                         currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
-                         if isempty(currlofreq)
-                             currlofreq = 440;
-                             lowfreqidx = find(f1.fftfreq == currlofreq);
-                            [~, lmaxidx] = max(summedFFT(lowfreqidx));
-                         end
-                    end
-            end
+            
     % Get the midpoint and plot it for fun          
             midpoint = currlofreq + abs(currhifreq - currlofreq)/2;
 %             plot([midpoint, midpoint], [0 1], 'k');
@@ -227,6 +212,25 @@ fixme = 0;
         if abs(currhifreq-oldcurrhifreq) > maxchange; fixme = 1;  fprintf('currhifreq was %3.1f and oldcurrhifreq was %3.1f maxchange = %3.1f \n', currhifreq, oldcurrhifreq, maxchange); end 
         if abs(currlofreq-oldcurrlofreq) > maxchange; fixme = 1; fprintf('currlofreq was %3.1f and oldcurrlofreq was %3.1f maxchange = %3.1f \n', currlofreq, oldcurrlofreq, maxchange);end    
         if abs(currlofreq-currhifreq) < mindiff; fixme = 1;  fprintf('currlofreq was %3.1f and currhifreq was %3.1f mindiff = %3.1f \n', currlofreq, currhifreq, mindiff); end
+
+
+            if j > 3 %&& currlofreq > 419 && currlofreq < 421
+%                    if  mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq 
+%                        [~, lmaxidx] = max(summedFFT(lowfreqidx) < max(summedFFT(lowfreqidx)));
+%                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
+%                    end
+                    if currlofreq < 410
+                        lowfreqidx = find(f1.fftfreq > 425 & f1.fftfreq < currhifreq-oldmidpoint);
+                        [~, lmaxidx] = max(summedFFT(lowfreqidx));
+                         currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
+                         if isempty(currlofreq)
+                             currlofreq = 440;
+                             lowfreqidx = find(ft.fftfreq == currlofreq);
+                             [~, lmaxidx] = max(summedFFT(lowfreqidx));
+                             if isempty(lmaxidx); fixme = 1; end
+                         end
+                    end
+            end
 
 %if fixing conditional met, FIX!
     if fixme == 1
