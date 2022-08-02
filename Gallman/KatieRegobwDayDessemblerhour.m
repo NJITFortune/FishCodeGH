@@ -1,4 +1,4 @@
-function [day] = KatieRegobwDayDessemblerhour(in, channel,  ReFs, light)
+function [day] = KatieRegobwDayDessemblerhour(in, channel,  ReFs, light, k)
 %% usage
 %[day] = KatieRegobwDayDessembler(kg(#), channel, ReFs)
 %
