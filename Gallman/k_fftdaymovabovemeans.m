@@ -34,9 +34,9 @@ ld = in(1).day(1).ld;
                 mday(k,:) = in(j).day(k).Sobwyy;
                 ampmax(k,:) = in(j).day(k).ampmax;
                 ampmin(k,:) = in(j).day(k).ampmin;
-                amprange(k,:) = in(j).day(k).amprange;
+                fish(j).amprange(k,:) = in(j).day(k).amprange;
                 %plot(in(j).trial(jj).day(k).SsumfftAmp)
-
+                amprange(k,:) = in(j).day(k).amprange;
                
         end
     
@@ -58,8 +58,7 @@ ld = in(1).day(1).ld;
       expampmin(j,:) = min(ampmin);
 
       
-      fishamprange(j,:) = [amprange];      
-            fishamprange
+     fish
  end
            
    
