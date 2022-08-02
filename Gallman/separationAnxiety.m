@@ -183,7 +183,8 @@ for j = 2:length(iFiles) %2514:8276%
             end
             
             if j > 2000 && currhifreq > 479
-                currhifreq = 
+                currhifreq = 460;
+            end
             
 %               currlofreq = oldcurrlofreq;
          % Get the lower freq peak
