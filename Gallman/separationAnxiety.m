@@ -281,6 +281,14 @@ fixme = 0;
     end
    
     
+     figure(2); 
+            plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
+            plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);           
+            midpoint = currlofreq + ((currhifreq - currlofreq)/2);
+            plot([midpoint, midpoint], [0 1], 'k');
+            text(350, 0.5, num2str(j));
+            drawnow;
+    
 
     % Put the data into the output structure   
         %lower frequency fish
