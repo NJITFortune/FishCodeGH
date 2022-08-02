@@ -207,23 +207,23 @@ for j = 2:length(iFiles) %2514:8276%
 
 fixme = 0;
 
-            if j > 3 %&& currlofreq > 419 && currlofreq < 421
-%                    if  mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq 
-%                        [~, lmaxidx] = max(summedFFT(lowfreqidx) < max(summedFFT(lowfreqidx)));
+%             if j > 3 %&& currlofreq > 419 && currlofreq < 421
+% %                    if  mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq 
+% %                        [~, lmaxidx] = max(summedFFT(lowfreqidx) < max(summedFFT(lowfreqidx)));
+% %                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
+% %                    end
+%                     if currlofreq < 410
+%                         lowfreqidx = find(f1.fftfreq > 425 & f1.fftfreq < currhifreq-oldmidpoint);
+%                         [~, lmaxidx] = max(summedFFT(lowfreqidx));
 %                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
-%                    end
-                    if currlofreq < 410
-                        lowfreqidx = find(f1.fftfreq > 425 & f1.fftfreq < currhifreq-oldmidpoint);
-                        [~, lmaxidx] = max(summedFFT(lowfreqidx));
-                         currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
-                         if isempty(currlofreq)
-                             currlofreq = 440;
-                             lowfreqidx = find(f1.fftfreq == currlofreq);
-                             [~, lmaxidx] = max(summedFFT(lowfreqidx));
-                             if isempty(lmaxidx); fixme = 1; end
-                         end
-                    end
-            end
+%                          if isempty(currlofreq)
+%                              currlofreq = 440;
+%                              lowfreqidx = find(f1.fftfreq == currlofreq);
+%                              [~, lmaxidx] = max(summedFFT(lowfreqidx));
+%                              if isempty(lmaxidx); fixme = 1; end
+%                          end
+%                     end
+%             end
 
     %When to fix conditionals
 
