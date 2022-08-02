@@ -204,29 +204,16 @@ for j = 1:howmanyhalfdaysinsample
 
                 if length(halfdayidx) >= howmanysamplesinahalfday %important so that we know when to stop
 
-                    if light < 4 %we start with dark
-                        
+                    day(j).halfdaymax = max(obwyy(halfdayidx));
+                    day(j).halfdaymin = min(obwyy(halfdayidx));
 
-
-
-                    %amplitude data
-                    day(j).Sobwyy = obwyy(ddayidx);
-                    %new time base from 0 the length of day by ReFS
-                    day(j).tim = tim;
-                    %old time base divided by day for plotting chronologically
-                    day(j).entiretimcont = xx(ddayidx);
-                    %not sure why we need how long the day is in hours...
-                    day(j).ld = in.info.ld;
-                    %max amp of each day
-                    day(j).amprange = max(obwyy(ddayidx));
+                    if light < 4 %if we start with dark
+                        if mod(j,2) == 1 %if j is odd
+                          day(j).  
                     
                 end
 
-%                 rawddayidx = find(timcont >= xx(1) + (k-1) * daylengthSECONDS & timcont < xx(1) + k* daylengthSECONDS); % k-1 so that we start at zero
-%                 %if length(rawddayidx) >= howmanysamplesinaday %important so that we know when to stop
-%                     day(k).timcont = timcont(rawddayidx)-timcont(rawddayidx(1));
-%                     day(k).rawamp = sumfft(rawddayidx);
-%                 %end
+
  end
 
 
