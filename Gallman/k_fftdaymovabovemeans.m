@@ -1,4 +1,4 @@
-function [hourtim, meanofexperimentmeans, hourampmax, hourampmin,expavgmax,expavgmin, ld] = k_fftdaymovabovemeans(in)
+function [hourtim, meanofexperimentmeans, hourampmax, hourampmin,expavgmax,expavgmin,expavgrange, ld] = k_fftdaymovabovemeans(in)
 %% usage
 %processes output from KatieDayTrialDessembler.m of kg by hourexp
 %k_daydessembledplotter.m without the plotting
@@ -34,6 +34,7 @@ ld = in(1).day(1).ld;
                 mday(k,:) = in(j).day(k).Sobwyy;
                 ampmax(k,:) = in(j).day(k).ampmax;
                 ampmin(k,:) = in(j).day(k).ampmin;
+                amprange(k,:) = in(j).day(k).amprange;
                 %plot(in(j).trial(jj).day(k).SsumfftAmp)
 
                
@@ -44,10 +45,12 @@ ld = in(1).day(1).ld;
        daymean(j,:) = mean(mday);
        avgmax(j,:) = mean(ampmax);
        avgmin(j,:) = mean(ampmin);
+       avgrange(j,:) = mean(amprange);
       else
        daymean(j,:) = mday;
        avgmax(j,:) = ampmax;
        avgmin(j,:) = ampmin;
+       avgrange(j,:) = amprange;
       end
 
       %max amp range by exp
@@ -68,6 +71,7 @@ ld = in(1).day(1).ld;
     %average max and min
     expavgmax = mean(avgmax);
     expavgmin = mean(avgmin);
+    expavgrange = mean(avgrange);
     
         %expmean = smoothdata(meanofexperimentmeans, 'SamplePoints',in(1).trial(1).tim);
     
