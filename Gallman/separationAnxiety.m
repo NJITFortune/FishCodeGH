@@ -182,6 +182,9 @@ for j = 2:length(iFiles) %2514:8276%
                 if currhifreq > 539; currhifreq = out(j-2).hifreq; end
             end
             
+            if j > 2000 && currhifreq > 479
+                currhifreq = 
+            
 %               currlofreq = oldcurrlofreq;
          % Get the lower freq peak
         lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < oldmidpoint);
