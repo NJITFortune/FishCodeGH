@@ -13,7 +13,7 @@ function [hourtim, meanofexperimentmeans, hourampmax, hourampmin,expavgmax,expav
 
 %in.trial and %in.day
 
-in = dark(5).h;
+%in = dark(5).h;
 
 ld = in(1).day(1).ld;
 
