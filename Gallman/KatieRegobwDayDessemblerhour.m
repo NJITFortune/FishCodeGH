@@ -210,7 +210,7 @@ figure(k); clf; hold on;
     end
 
 %average over single day    
-figure(k+1); clf; hold on; 
+figure(k); clf; hold on; 
 
  
     %create fill box 
