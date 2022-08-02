@@ -207,13 +207,6 @@ for j = 2:length(iFiles) %2514:8276%
 
 fixme = 0;
 
-    %When to fix conditionals
-
-        if abs(currhifreq-oldcurrhifreq) > maxchange; fixme = 1;  fprintf('currhifreq was %3.1f and oldcurrhifreq was %3.1f maxchange = %3.1f \n', currhifreq, oldcurrhifreq, maxchange); end 
-        if abs(currlofreq-oldcurrlofreq) > maxchange; fixme = 1; fprintf('currlofreq was %3.1f and oldcurrlofreq was %3.1f maxchange = %3.1f \n', currlofreq, oldcurrlofreq, maxchange);end    
-        if abs(currlofreq-currhifreq) < mindiff; fixme = 1;  fprintf('currlofreq was %3.1f and currhifreq was %3.1f mindiff = %3.1f \n', currlofreq, currhifreq, mindiff); end
-
-
             if j > 3 %&& currlofreq > 419 && currlofreq < 421
 %                    if  mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq 
 %                        [~, lmaxidx] = max(summedFFT(lowfreqidx) < max(summedFFT(lowfreqidx)));
@@ -225,12 +218,21 @@ fixme = 0;
                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
                          if isempty(currlofreq)
                              currlofreq = 440;
-                             lowfreqidx = find(ft.fftfreq == currlofreq);
+                             lowfreqidx = find(f1.fftfreq == currlofreq);
                              [~, lmaxidx] = max(summedFFT(lowfreqidx));
                              if isempty(lmaxidx); fixme = 1; end
                          end
                     end
             end
+
+    %When to fix conditionals
+
+        if abs(currhifreq-oldcurrhifreq) > maxchange; fixme = 1;  fprintf('currhifreq was %3.1f and oldcurrhifreq was %3.1f maxchange = %3.1f \n', currhifreq, oldcurrhifreq, maxchange); end 
+        if abs(currlofreq-oldcurrlofreq) > maxchange; fixme = 1; fprintf('currlofreq was %3.1f and oldcurrlofreq was %3.1f maxchange = %3.1f \n', currlofreq, oldcurrlofreq, maxchange);end    
+        if abs(currlofreq-currhifreq) < mindiff; fixme = 1;  fprintf('currlofreq was %3.1f and currhifreq was %3.1f mindiff = %3.1f \n', currlofreq, currhifreq, mindiff); end
+
+
+            
 
 %if fixing conditional met, FIX!
     if fixme == 1
