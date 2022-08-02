@@ -58,7 +58,7 @@ ld = in(1).day(1).ld;
       expampmin(j,:) = min(ampmin);
 
       
-      fishamprange(j,:) = amprange;      
+      fishamprange(j,:) = [amprange];      
             fishamprange
  end
            
