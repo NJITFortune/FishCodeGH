@@ -168,7 +168,10 @@ for j = 1:howmanydaysinsample
                     %not sure why we need how long the day is in hours...
                     day(j).ld = in.info.ld;
                     %max amp of each day
-                    day(j).amprange = max(obwyy(ddayidx));
+                   
+                     day(j).ampmax = max(obwyy(ddayidx));
+                    day(j).ampmin = min(obwyy(ddayidx));
+                    day(j).amprange = max(obwyy(ddayidx))-min(obwyy(ddayidx));
                     
                 end
 
