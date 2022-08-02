@@ -133,7 +133,7 @@ oldcurrlofreq = currlofreq;
     out(1).temp = mean(data(1,tempchan));
     out(1).light = mean(data(1,lightchan));
 %% 2:end            
-for j = 2514%2:length(iFiles)
+for j = 2514:8276%2:length(iFiles)
 
     load(iFiles(j).name, 'data');
     f1 = fftmachine(filtfilt(h,g,data(:,1)), Fs);
