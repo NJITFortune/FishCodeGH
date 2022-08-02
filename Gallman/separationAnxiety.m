@@ -179,7 +179,7 @@ for j = 2:length(iFiles)
 %                        [~, lmaxidx] = max(summedFFT(lowfreqidx) < max(summedFFT(lowfreqidx)));
 %                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
 %                    end
-                   if currlofreq < 220; currlofreq = out(j-2).lofreq; end
+                   if currlofreq < 240; currlofreq = out(j-2).lofreq; end
             end
 %currlofreq > 419 && currlofreq < 421 ||
             
