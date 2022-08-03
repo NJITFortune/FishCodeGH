@@ -213,7 +213,7 @@ fixme = 0;
 %                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
 %                    end
                     if currlofreq < 410
-                        lowfreqidx = find(f1.fftfreq > 425 & f1.fftfreq < currhifreq-oldmidpoint);
+                        lowfreqidx = find(f1.fftfreq > 425 & f1.fftfreq < currhifreq-(mindiff+1));
                         [~, lmaxidx] = max(summedFFT(lowfreqidx));
                          currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
                          if isempty(currlofreq)
