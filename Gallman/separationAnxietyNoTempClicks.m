@@ -34,7 +34,7 @@ clickcnt = 0;
 
 %% first data file
       
-    load(iFiles(1).name, 'data');
+    load(iFiles(10).name, 'data');
     e1 = filtfilt(h,g,data(:,1));
     e2 = filtfilt(h,g,data(:,2));
 
