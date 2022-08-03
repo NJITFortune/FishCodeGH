@@ -243,7 +243,7 @@ fixme = 0;
             plot(f1.fftfreq, summedFFT);
             plot([420 420], ylim, 'm-');
             xlim(freqs);
-             xticks(linspace(freqs(1),freqs(2), 50));
+             %xticks(linspace(freqs(1),freqs(2), 50));
 
         [xfreq, ~] = ginput;
 
