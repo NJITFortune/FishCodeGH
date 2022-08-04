@@ -196,6 +196,10 @@ for j = 2:length(iFiles) %2514:8276%
         
             if currlofreq > 419 && currlofreq < 421 ||  lopeakamp < 0.1; currlofreq = oldcurrlofreq; end
             
+            if j > 3
+                if currlofreq > 540 || currlofreq < 422 ; currlofreq = out(j-2).lofreq; end
+            end
+
     % Get the midpoint and plot it for fun          
             midpoint = currlofreq + abs(currhifreq - currlofreq)/2;
             plot([midpoint, midpoint], [0 1], 'k');
