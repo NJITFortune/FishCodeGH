@@ -7,7 +7,7 @@ userfilespec = 'Eigen*';
 % Max frequency change
 maxchange = 30; % Maximum change in Hz between samples
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
-maxdiff = 20; 
+maxdiff = 30; 
 
 clickcnt = 0;
 
@@ -254,7 +254,7 @@ fixme = 0;
         if abs(currlofreq-oldcurrlofreq) > maxchange; fixme = 1; fprintf('currlofreq was %3.1f and oldcurrlofreq was %3.1f maxchange = %3.1f \n', currlofreq, oldcurrlofreq, maxchange);end    
         if abs(currlofreq-currhifreq) < mindiff; fixme = 1;  fprintf('currlofreq was %3.1f and currhifreq was %3.1f mindiff = %3.1f \n', currlofreq, currhifreq, mindiff); end
 
-
+        if abs(currlofreq-currhifreq) > maxdiff; fixme = 1;  fprintf('currlofreq was %3.1f and currhifreq was %3.1f maxdiff = %3.1f \n', currlofreq, currhifreq, maxdiff); end
             
 
 %if fixing conditional met, FIX!
