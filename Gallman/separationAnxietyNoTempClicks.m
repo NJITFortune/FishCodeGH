@@ -187,7 +187,7 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
 
   
         if abs(currlofreq-oldcurrlofreq) > maxchangelo1
-          if currlofreq > 419 && currlofreq < 421 || lopeakamp < 0.1 || currlofreq < 220
+          if currlofreq > 419 && currlofreq < 421 || lopeakamp < 0.1 %|| currlofreq < 220
               currlofreq = oldcurrlofreq;
           else
                 if j > 3 
@@ -206,7 +206,7 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
         
        %if max change in higher fish frequency
         if abs(currhifreq-oldcurrhifreq) > maxchangehi %|| currhifreq < 590 
-          if  hipeakamp < 0.1 || currhifreq > 539% || currhifreq > 419 && currhifreq < 421 
+          if  hipeakamp < 0.1 %|| currhifreq > 539% || currhifreq > 419 && currhifreq < 421 
               currhifreq = oldcurrhifreq;
           else
                  if j > 3 
