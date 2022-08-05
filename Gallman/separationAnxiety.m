@@ -1,7 +1,7 @@
 % A new attempt at frequency tracking two Eigenmannia in the tank
 clearvars -except kg kg2 rkg k
 Fs = 40000;
-freqs = [310 650]; %freq range of typical eigen EOD
+freqs = [210 650]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
@@ -176,10 +176,10 @@ for j = 2:length(iFiles) %2514:8276%
             plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
         hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
         
-            if   hipeakamp <  0.1 ; currhifreq = oldcurrhifreq; end %|| currhifreq > 419 && currhifreq < 421
-            if j > 3
-                if currhifreq > 539 ; currhifreq = out(j-2).hifreq; end
-            end
+            if   hipeakamp <  0.1 || currhifreq > 419 && currhifreq < 421; currhifreq = oldcurrhifreq; end %|| currhifreq > 419 && currhifreq < 421
+%             if j > 3
+%                 if currhifreq < 417 ; currhifreq = oldcurrhifreq; end
+%             end
             
 %             if j > 3 && currhifreq > 500
 %                 currhifreq = 460;
@@ -229,23 +229,23 @@ fixme = 0;
 %             end
 
 
-                   if j > 3 %&& currlofreq > 419 && currlofreq < 421
-                           if  mean([out(j-1).hifreq, out(j-2).hifreq]) == oldcurrhifreq 
-                               [~, hmaxidx] = max(summedFFT(hifreqidx) < max(summedFFT(hifreqidx)));
-                                 currhifreq = f1.fftfreq(hifreqidx(hmaxidx));
-                           end
-%                             if currlofreq < 410
-%                                 lowfreqidx = find(f1.fftfreq > 425 & f1.fftfreq < currhifreq-(mindiff+1));
-%                                 [~, lmaxidx] = max(summedFFT(lowfreqidx));
-%                                  currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
-%                                  if isempty(currlofreq)
-%                                      currlofreq = 440;
-%                                      lowfreqidx = find(f1.fftfreq == currlofreq);
-%                                      [~, lmaxidx] = max(summedFFT(lowfreqidx));
-%                                      if isempty(lmaxidx); fixme = 1; end
-%                                  end
-%                             end
-                    end
+%                    if j > 3 %&& currlofreq > 419 && currlofreq < 421
+%                            if  mean([out(j-1).hifreq, out(j-2).hifreq]) == oldcurrhifreq 
+%                                [~, hmaxidx] = max(summedFFT(hifreqidx) < max(summedFFT(hifreqidx)));
+%                                  currhifreq = f1.fftfreq(hifreqidx(hmaxidx));
+%                            end
+% %                             if currlofreq < 410
+% %                                 lowfreqidx = find(f1.fftfreq > 425 & f1.fftfreq < currhifreq-(mindiff+1));
+% %                                 [~, lmaxidx] = max(summedFFT(lowfreqidx));
+% %                                  currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
+% %                                  if isempty(currlofreq)
+% %                                      currlofreq = 440;
+% %                                      lowfreqidx = find(f1.fftfreq == currlofreq);
+% %                                      [~, lmaxidx] = max(summedFFT(lowfreqidx));
+% %                                      if isempty(lmaxidx); fixme = 1; end
+% %                                  end
+% %                             end
+%                     end
 
 
     %When to fix conditionals
