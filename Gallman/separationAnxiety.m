@@ -229,6 +229,26 @@ fixme = 0;
 %                     end
 %             end
 
+
+                   if j > 3 %&& currlofreq > 419 && currlofreq < 421
+                           if  mean([out(j-1).hifreq, out(j-2).hifreq]) == oldcurrhifreq 
+                               [~, hmaxidx] = max(summedFFT(hifreqidx) < max(summedFFT(hifreqidx)));
+                                 currhifreq = f1.fftfreq(hifreqidx(hmaxidx));
+                           end
+%                             if currlofreq < 410
+%                                 lowfreqidx = find(f1.fftfreq > 425 & f1.fftfreq < currhifreq-(mindiff+1));
+%                                 [~, lmaxidx] = max(summedFFT(lowfreqidx));
+%                                  currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
+%                                  if isempty(currlofreq)
+%                                      currlofreq = 440;
+%                                      lowfreqidx = find(f1.fftfreq == currlofreq);
+%                                      [~, lmaxidx] = max(summedFFT(lowfreqidx));
+%                                      if isempty(lmaxidx); fixme = 1; end
+%                                  end
+%                             end
+                    end
+
+
     %When to fix conditionals
 
         if abs(currhifreq-oldcurrhifreq) > maxchange; fixme = 1;  fprintf('currhifreq was %3.1f and oldcurrhifreq was %3.1f maxchange = %3.1f \n', currhifreq, oldcurrhifreq, maxchange); end 
