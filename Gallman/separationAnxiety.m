@@ -7,7 +7,7 @@ userfilespec = 'Eigen*';
 % Max frequency change
 maxchange = 30; % Maximum change in Hz between samples
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
-
+maxdiff = 20; 
 
 clickcnt = 0;
 
@@ -165,8 +165,7 @@ for j = 2:length(iFiles) %2514:8276%
         plot(f1.fftfreq, summedFFT);
         xlim(freqs);
        
-
-%     
+    
 %             end
 %currlofreq > 419 && currlofreq < 421 ||
             
