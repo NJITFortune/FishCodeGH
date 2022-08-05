@@ -1,32 +1,38 @@
-function [newtim, normsubfft, newampFilled] = k_regularmetamucil(oldtim, oldamp, regularinterval)
-% Usage: [newtim, newampNaN, newampFilled] = metamucil(oldtim, oldamp)
+function [newtim, normsubfft, newampFilled] = k_regularmetamucil(oldtim, oldamp, rawtim, rawamp, regularinterval)
+% Usage: [newtim, newampmeansubtracted, newampFilled] = metamucil(oldtim, oldamp)
 %
 % oldtim and oldamp are the recording times in seconds and data from kg
 % e.g. [kg(1).e(1).s.timcont] and [kg(1).e(1).s.sumfftAmp]
 % BUT better to input the data with outliers already removed.
 %
-% newtim is the regularized sample times (hardwired to 60 seconds)
+% newtim is the regularized sample times (based on the regularinterval)
 % newampNaN has NaNs for missing data
 % newampFilled has missing data filled using 'linear' interpolation
-
+%
 % The old data has a minimum interval of 60 seconds. 
-%% Normalize data to its spread using dB
 
-%dBamp = 20*log10(oldamp/max(oldamp));
+%% Oldtim starts with first peak, not first light change
+%finding peaks of peaks creates oldtim, need rawtim to start the day 
+
+if oldtim(1) > rawtim(1) %if first peak starts after tim(1)
+    gapidx = find(rawtim < oldtim(1)); %get indicies for time gap
+    
+    oldtim = [rawtim(gapidx) oldtim];  %add time indicies to oldtim
+    oldamp = [rawamp(1)  NaN(1,length(gapidx)-1,'single') oldamp]; %add NaNs to old amp size of gap after first raw amp value
+     
+end
 %% Regularize the data at precisely 60 second intervals
 
-%regularinterval = 10; %in seconds
-
-
-b = mod(oldtim, regularinterval); % How far is each time point away from regular 60 second intervals
-    oldtim(b < regularinterval/2) = oldtim(b < regularinterval/2) - b(b < regularinterval/2); % for data that is less than 30 seconds away, round down.
-    oldtim(b >= regularinterval/2) = oldtim(b >= regularinterval/2) + (regularinterval - b(b >= regularinterval/2)); % for data this is 30-60 seconds away, round up.
+b = mod(oldtim, regularinterval); % How far is each time point away from ReFs second intervals
+    oldtim(b < regularinterval/2) = oldtim(b < regularinterval/2) - b(b < regularinterval/2); % for data that is less than ReFs seconds away, round down.
+    oldtim(b >= regularinterval/2) = oldtim(b >= regularinterval/2) + (regularinterval - b(b >= regularinterval/2)); % for data this is ReFs-2*ReFs seconds away, round up.
 
 %% Now we need to fill in the gaps, both in time and insert NaNs for amplitude    
 
+% find the interval between oldtim samples, divide by regular interval. 
 d = (diff(oldtim)/regularinterval) - 1;  % Diff tells us the gaps, and the -1 is so that 0 is no gap 
                             % and otherwise the number we need to insert.
-
+                          
 dd = find(d > 0); % We only need to fill gaps (0 is not a gap!)
 
 % This is painful for the weird case that the first data has a gap after it

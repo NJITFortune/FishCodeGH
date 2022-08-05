@@ -1,4 +1,4 @@
-function [trial] = KatieRegfftDayTrialDessembler(in, channel,  ReFs, light)
+%function [trial] = KatieRegfftDayTrialDessembler(in, channel,  ReFs, light)
 %% usage
 %[trial, day] = KatieDayTrialDessembler(kg(#), channel, triallength, ReFs)
 %
@@ -8,7 +8,7 @@ function [trial] = KatieRegfftDayTrialDessembler(in, channel,  ReFs, light)
 
 
 %for when i'm too lazy to function
-% clearvars -except kg kg2
+clearvars -except kg kg2 rkg
 % 
 % in = kg(12);
 % channel = 1;
@@ -197,19 +197,19 @@ for k = 1:howmanydaysinsample
 %  %change back to hours because my brain doesnt think in seconds
 % 
 %  %trials across time - check division with lighttimes 
-%  figure(26); clf; title('trials across time');  hold on;
-%  
-%     for jj = 1:length(out)
-%         
-%         plot(out(jj).Sentiretimcont/3600, out(jj).SsumfftAmp, '.', 'MarkerSize', 6);
-%         plot(out(jj).Sentiretimcont/3600, movmean(out(jj).SsumfftAmp, 5), 'k-', 'LineWidth', 1);
-%         
-%     end
-%     
-%     for j = 1:length(lighttimes)
-%         
-%         plot([lighttimes(j)/3600, lighttimes(j)/3600], ylim, 'k-', 'LineWidth', 0.5);
-%     end
+ figure(26); clf; title('trials across time');  hold on;
+ 
+    for jj = 1:length(out)
+        
+        plot(out(jj).Sentiretimcont/3600, out(jj).SsumfftAmp, '.', 'MarkerSize', 6);
+        plot(out(jj).Sentiretimcont/3600, movmean(out(jj).SsumfftAmp, 5), 'k-', 'LineWidth', 1);
+        
+    end
+    
+    for j = 1:length(lighttimes)
+        
+        plot([lighttimes(j)/3600, lighttimes(j)/3600], ylim, 'k-', 'LineWidth', 0.5);
+    end
 %     
 % 
 %  

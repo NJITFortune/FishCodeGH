@@ -18,7 +18,7 @@ figure (1); hold on; title('sumfftAmp');
         yyaxis left; plot([in(1).s.timcont]/(60*60), [in(1).s.temp], '.r', 'Markersize', 8);
     
   ax(3) = subplot(313); hold on; title('light transitions');
-    plot([in(2).s.timcont]/(60*60), [in(1).s.light], '.', 'Markersize', 8);
+    plot([in(1).s.timcont]/(60*60), [in(1).s.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
     

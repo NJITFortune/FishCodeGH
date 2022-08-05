@@ -1,4 +1,4 @@
-function out  = KatieAssemblerSig(userfilespec, Fs, numstart, sigfreq)
+function out  = KatieAssemblerSig(userfilespec, numstart, sigfreq)
 % This function reads the original data collection files
 % It filters the data and saves it into a single structure
 % Performs these analyses: OBW, zAMP
@@ -11,12 +11,27 @@ function out  = KatieAssemblerSig(userfilespec, Fs, numstart, sigfreq)
 tempchan = 3; % Either 4 or 3
 lightchan = 4; % Either 5 or 4
 
-daycount = 0;
+daycount = 0; %necessary to create time vector
+
+%for normalization against max Amp
+preAmp  = KatiepreAssembler(userfilespec);
+
+    maxamp(1) = max(preAmp(1).amp);
+    maxamp(2) = max(preAmp(2).amp);
+
+   if isfield(preAmp, 'idx') 
+       out.maxampidx = maxAmp(1).idk;
+   end
 
 
 %% SET UP 
 % Get the list of files to be analyzed  
         iFiles = dir(userfilespec);
+
+% Get sample frequency
+        load(iFiles(1).name, 'tim');
+        Fs = 1 / (tim(2) - tim(1));
+        clear tim
                
 % Set up filters
         % High pass filter cutoff frequency
@@ -74,10 +89,12 @@ for k = 1:length(iFiles)
 
         for j = 1:2 % Perform analyses on the two channels
         
-            % [~, idx] = max(abs(data(:,j))); % FIND THE MAXIMUM
+            % FIND THE MAXIMUM
+            % find the 250ms window where the amplitude is greatest 
             [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
-            data4analysis = data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j);            
-            
+            data4analysis = data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j);   
+            %normalization step - subtract mean and divide by maximum
+            data4analysis = (data4analysis - mean(data4analysis)) / maxamp(j);
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
             % OBW
@@ -95,6 +112,7 @@ for k = 1:length(iFiles)
         % There are 86400 seconds in a day.
         out(j).s(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
         out(j).s(k).tim24 = (hour*60*60) + (minute*60) + second;
+        out(j).maxamp = maxamp(j);
         
         end
         

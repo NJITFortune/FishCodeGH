@@ -1,7 +1,5 @@
-function [day, halfday] = KatieRegfftDayDessembler(in, channel,  ReFs, light)
+%function [day] = KatieRegobwDayDessembler(in, channel,  ReFs, light)
 %% usage
-%actually KatieRegobwDayDessembler, just too lazy to rewrite hourdays code
-%so overwrote this one instead
 %[day] = KatieRegobwDayDessembler(kg(#), channel, ReFs)
 %
 %light is a label for whether the subjective day starts with light or with dark
@@ -10,13 +8,13 @@ function [day, halfday] = KatieRegfftDayDessembler(in, channel,  ReFs, light)
 
 
 % % %for when i'm too lazy to function
-%  clearvars -except kg kg2 rkg k
-% % % 
-% in = rkg(k);
-% channel = 1;
-% ReFs = 20;
-% light = 3;
-% 
+ clearvars -except kg kg2 rkg k
+% % 
+in = rkg(k);
+channel = 1;
+ReFs = 20;
+light = 3;
+
 %% prep
 
 % redefine length of light cycle
@@ -170,9 +168,7 @@ for j = 1:howmanydaysinsample
                     %not sure why we need how long the day is in hours...
                     day(j).ld = in.info.ld;
                     %max amp of each day
-                    day(j).ampmax = max(obwyy(ddayidx));
-                    day(j).ampmin = min(obwyy(ddayidx));
-                    day(j).amprange = max(obwyy(ddayidx))-min(obwyy(ddayidx));
+                    day(j).amprange = max(obwyy(ddayidx));
                     
                 end
 
@@ -182,116 +178,64 @@ for j = 1:howmanydaysinsample
 %                     day(k).rawamp = sumfft(rawddayidx);
 %                 %end
  end
-%  %% half day max and min
-%  %Define halfday length
-% 
-%  %day
-%     halfdaylengthSECONDS = ld * 3600;  
-%     lengthofsampleHOURS = (lighttimes(end) - lighttimes(1)) / 3600; 
-%     % This is the number of data samples in a day
-%     howmanysamplesinahalfday = floor(halfdaylengthSECONDS / ReFs);
-%     %how many days in total experiment
-%     howmanyhalfdaysinsample = (floor(lengthofsampleHOURS /ld));
-% 
-% 
-% %% Divide sample into days 
-% % needs to be in seconds
-% %tim = ReFs:ReFs:ld*3600;
-% 
-% for j = 1:howmanyhalfdaysinsample
-%     
-%               %resampled data  
-%     %         % Get the index of the start time of the day
-%                 halfdayidx = find(xx >= xx(1) + (j-1) * halfdaylengthSECONDS & xx < xx(1) + j* halfdaylengthSECONDS); % k-1 so that we start at zero
-% 
-%                 if length(halfdayidx) >= howmanysamplesinahalfday %important so that we know when to stop
-% 
-%                     halfday(j).halfdaymax = max(obwyy(halfdayidx));
-%                     halfday(j).halfdaymin = min(obwyy(halfdayidx));
-% 
-%                     if light < 4 %if we start with dark
-%                         if mod(j,2) == 1 %if j is odd
-%                           halfday(j).halftype = 3;
-%                         else
-%                           day(j).halftype = 4;
-%                         end
-%                     else %we start with light
-%                         if mod(j,2) == 1 %if j is odd
-%                           day(j).halftype = 4;
-%                         else
-%                           day(j).halftype = 3;
-%                         end
-%                     end
-%                     
-%                 end
-% 
-%  end
+ 
+ %% plot to check
+%time vectors currently in seconds, divide by 3600 to get hours
+ 
+%days over experiment time
+figure(65); clf; hold on;
+    for j = 1:length(day)
+        plot(day(j).entiretimcont/3600, day(j).Sobwyy);
+    end
+
+   % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+   
+    a = ylim; %all of above is just to get the max for the plot lines...
+    if light < 4 %the first lighttime is dark
+        for j = 1:length(lighttimes)-1
+            if mod(j,2) == 1 %if j is odd
+            fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            end
+        end
+    else %the second lighttime is dark 
+        for j = 1:length(lighttimes)-1
+            if mod(j,2) == 0 %if j is even
+            fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            end
+        end
+    end
+    
+    for j = 1:length(day)
+        plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
+    end
+
+%average over single day    
+figure(66); clf; hold on; 
+
+ 
+    %create fill box 
+    if light < 4 %we start with dark
+        fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+    else %we start with light
+        fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+    end
+    
+    %mean two ways to prove math
+    mday = zeros(1, length(day(1).tim));        
+     for j = 1:length(day)
+            plot(day(j).tim/3600, day(j).Sobwyy);
+            meanday(j,:) = day(j).Sobwyy;
+            mday = mday + day(j).Sobwyy;
+            
+     end
+        
+            mmday= mean(meanday);
+            othermday = mday/(length(day));
+            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
+            plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+            plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+            
+            
 
 
 
-
-
-
-
-
-%% 
-%  %% plot to check
-% %time vectors currently in seconds, divide by 3600 to get hours
-%  
-% %days over experiment time
-% figure(65); clf; hold on;
-%     for j = 1:length(day)
-%         plot(day(j).entiretimcont/3600, day(j).Sobwyy);
-%     end
-% 
-%    % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
-%    
-%     a = ylim; %all of above is just to get the max for the plot lines...
-%     if light < 4 %the first lighttime is dark
-%         for j = 1:length(lighttimes)-1
-%             if mod(j,2) == 1 %if j is odd
-%             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%             end
-%         end
-%     else %the second lighttime is dark 
-%         for j = 1:length(lighttimes)-1
-%             if mod(j,2) == 0 %if j is even
-%             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%             end
-%         end
-%     end
-%     
-%     for j = 1:length(day)
-%         plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
-%     end
-% 
-% %average over single day    
-% figure(66); clf; hold on; 
-% 
-%  
-%     %create fill box 
-%     if light < 4 %we start with dark
-%         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%     else %we start with light
-%         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%     end
-%     
-%     %mean two ways to prove math
-%     mday = zeros(1, length(day(1).tim));        
-%      for j = 1:length(day)
-%             plot(day(j).tim/3600, day(j).Sobwyy);
-%             meanday(j,:) = day(j).Sobwyy;
-%             mday = mday + day(j).Sobwyy;
-%             
-%      end
-%         
-%             mmday= mean(meanday);
-%             othermday = mday/(length(day));
-%             plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
-%             plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-%             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
-%             
-%             
-% 
-% 
-% 

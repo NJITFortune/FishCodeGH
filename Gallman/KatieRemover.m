@@ -10,17 +10,17 @@ function out = KatieRemover(in)
         
         %Lower lim
         %fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
-        [cutofffreqL, ~]  = ginput(1);
-        plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+        [cutoffampL, ~]  = ginput(1);
+        plot([cutoffampL, cutoffampL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
         drawnow; 
         
         %Upper lim
         %fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
-        [cutofffreqH, ~]  = ginput(1);
-        plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+        [cutoffampH, ~]  = ginput(1);
+        plot([cutoffampH, cutoffampH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
         drawnow; 
         
-        out(k).obwidx = find([in(k).s.obwAmp] > cutofffreqL & [in(k).s.obwAmp] < cutofffreqH);
+        out(k).obwidx = find([in(k).s.obwAmp] > cutoffampL & [in(k).s.obwAmp] < cutoffampH);
         pause(1);
     %     
     % % zAmp        
