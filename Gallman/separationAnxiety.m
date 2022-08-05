@@ -7,7 +7,7 @@ userfilespec = 'Eigen*';
 % Max frequency change
 maxchange = 30; % Maximum change in Hz between samples
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
-maxdiff = 30; 
+%maxdiff = 30; 
 
 clickcnt = 0;
 
@@ -195,9 +195,9 @@ for j = 2:length(iFiles) %2514:8276%
         
             if currlofreq > 419 && currlofreq < 424 ||  lopeakamp < 0.1; currlofreq = oldcurrlofreq; end %currlofreq > 419 && currlofreq < 421 || 
             
-            if j > 3
-                if currlofreq < 400; currlofreq = out(j-2).lofreq; end
-            end
+%             if j > 3
+%                 if currlofreq < 400; currlofreq = out(j-2).lofreq; end
+%             end
 
     % Get the midpoint and plot it for fun          
             midpoint = currlofreq + abs(currhifreq - currlofreq)/2;
@@ -254,7 +254,7 @@ fixme = 0;
         if abs(currlofreq-oldcurrlofreq) > maxchange; fixme = 1; fprintf('currlofreq was %3.1f and oldcurrlofreq was %3.1f maxchange = %3.1f \n', currlofreq, oldcurrlofreq, maxchange);end    
         if abs(currlofreq-currhifreq) < mindiff; fixme = 1;  fprintf('currlofreq was %3.1f and currhifreq was %3.1f mindiff = %3.1f \n', currlofreq, currhifreq, mindiff); end
 
-        if abs(currlofreq-currhifreq) > maxdiff; fixme = 1;  fprintf('currlofreq was %3.1f and currhifreq was %3.1f maxdiff = %3.1f \n', currlofreq, currhifreq, maxdiff); end
+    %    if abs(currlofreq-currhifreq) > maxdiff; fixme = 1;  fprintf('currlofreq was %3.1f and currhifreq was %3.1f maxdiff = %3.1f \n', currlofreq, currhifreq, maxdiff); end
             
 
 %if fixing conditional met, FIX!
