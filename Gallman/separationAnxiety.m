@@ -177,7 +177,7 @@ for j = 2:length(iFiles) %2514:8276%
             plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
         hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
         
-            if   hipeakamp <  0.1 || currhifreq > 419 && currhifreq < 421; currhifreq = oldcurrhifreq; end %currlofreq > 419 && currlofreq < 421 || currhifreq > 539
+            if   hipeakamp <  0.1 ; currhifreq = oldcurrhifreq; end %|| currhifreq > 419 && currhifreq < 421
 %             if j > 3
 %                 if currhifreq > 470 ; currhifreq = out(j-2).hifreq; end
 %             end
@@ -194,7 +194,7 @@ for j = 2:length(iFiles) %2514:8276%
             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
         lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
         
-            if currlofreq > 419 && currlofreq < 421 ||  lopeakamp < 0.1; currlofreq = oldcurrlofreq; end
+            if  lopeakamp < 0.1; currlofreq = oldcurrlofreq; end %currlofreq > 419 && currlofreq < 421 || 
             
 %             if j > 3
 %                 if currlofreq > 540 || currlofreq < 422 ; currlofreq = out(j-2).lofreq; end
