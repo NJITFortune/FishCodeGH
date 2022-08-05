@@ -178,9 +178,9 @@ for j = 2:length(iFiles) %2514:8276%
         hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
         
             if   hipeakamp <  0.1 ; currhifreq = oldcurrhifreq; end %|| currhifreq > 419 && currhifreq < 421
-%             if j > 3
-%                 if currhifreq > 470 ; currhifreq = out(j-2).hifreq; end
-%             end
+            if j > 3
+                if currhifreq > 539 ; currhifreq = out(j-2).hifreq; end
+            end
             
 %             if j > 3 && currhifreq > 500
 %                 currhifreq = 460;
@@ -196,9 +196,9 @@ for j = 2:length(iFiles) %2514:8276%
         
             if currlofreq > 419 && currlofreq < 421 ||  lopeakamp < 0.1; currlofreq = oldcurrlofreq; end %currlofreq > 419 && currlofreq < 421 || 
             
-%             if j > 3
-%                 if currlofreq > 540 || currlofreq < 422 ; currlofreq = out(j-2).lofreq; end
-%             end
+            if j > 3
+                if currlofreq <  || currlofreq < 422 ; currlofreq = out(j-2).lofreq; end
+            end
 
     % Get the midpoint and plot it for fun          
             midpoint = currlofreq + abs(currhifreq - currlofreq)/2;
