@@ -7,7 +7,7 @@ userfilespec = 'Eigen*';
 % Max frequency change
 maxchange = 30; % Maximum change in Hz between samples
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
-
+maxdiff = 20; 
 
 clickcnt = 0;
 
@@ -165,8 +165,7 @@ for j = 2:length(iFiles) %2514:8276%
         plot(f1.fftfreq, summedFFT);
         xlim(freqs);
        
-
-%     
+    
 %             end
 %currlofreq > 419 && currlofreq < 421 ||
             
@@ -177,10 +176,10 @@ for j = 2:length(iFiles) %2514:8276%
             plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
         hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
         
-            if   hipeakamp <  0.1 || currhifreq > 419 && currhifreq < 421; currhifreq = oldcurrhifreq; end %currlofreq > 419 && currlofreq < 421 || currhifreq > 539
-%             if j > 3
-%                 if currhifreq > 470 ; currhifreq = out(j-2).hifreq; end
-%             end
+            if   hipeakamp <  0.1 ; currhifreq = oldcurrhifreq; end %|| currhifreq > 419 && currhifreq < 421
+            if j > 3
+                if currhifreq > 539 ; currhifreq = out(j-2).hifreq; end
+            end
             
 %             if j > 3 && currhifreq > 500
 %                 currhifreq = 460;
@@ -194,10 +193,10 @@ for j = 2:length(iFiles) %2514:8276%
             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
         lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
         
-            if currlofreq > 419 && currlofreq < 421 ||  lopeakamp < 0.1; currlofreq = oldcurrlofreq; end
+            if currlofreq > 419 && currlofreq < 424 ||  lopeakamp < 0.1; currlofreq = oldcurrlofreq; end %currlofreq > 419 && currlofreq < 421 || 
             
             if j > 3
-                if currlofreq > 540 || currlofreq < 422 ; currlofreq = out(j-2).lofreq; end
+                if currlofreq < 400; currlofreq = out(j-2).lofreq; end
             end
 
     % Get the midpoint and plot it for fun          
@@ -228,6 +227,26 @@ fixme = 0;
 %                          end
 %                     end
 %             end
+
+
+                   if j > 3 %&& currlofreq > 419 && currlofreq < 421
+                           if  mean([out(j-1).hifreq, out(j-2).hifreq]) == oldcurrhifreq 
+                               [~, hmaxidx] = max(summedFFT(hifreqidx) < max(summedFFT(hifreqidx)));
+                                 currhifreq = f1.fftfreq(hifreqidx(hmaxidx));
+                           end
+%                             if currlofreq < 410
+%                                 lowfreqidx = find(f1.fftfreq > 425 & f1.fftfreq < currhifreq-(mindiff+1));
+%                                 [~, lmaxidx] = max(summedFFT(lowfreqidx));
+%                                  currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
+%                                  if isempty(currlofreq)
+%                                      currlofreq = 440;
+%                                      lowfreqidx = find(f1.fftfreq == currlofreq);
+%                                      [~, lmaxidx] = max(summedFFT(lowfreqidx));
+%                                      if isempty(lmaxidx); fixme = 1; end
+%                                  end
+%                             end
+                    end
+
 
     %When to fix conditionals
 
