@@ -1,9 +1,9 @@
-function out = fmfilteredmidxings(in)
+function out = fmfileredmidxings(in)
 %% define variables
 %non-function usage
 % clearvars -except fm fmv
 % in = fm(1);
-
+%in = fm(12);
 
     medfiltnum = 11; 
 %    cutoffreq = 1;
@@ -22,11 +22,9 @@ function out = fmfilteredmidxings(in)
     in.s(j).nose(:,1) = medfilt1(in.s(j).nose(:,1), medfiltnum);
     in.s(j).nose(:,2) = medfilt1(in.s(j).nose(:,2), medfiltnum);
 
-    xmax = max(in.s(j).nose(:,1));
-    xmin = min(in.s(j).nose(:,1));
-    xmid = (xmax - xmin)/2 +xmin;
-%    
-
+    
+    xmid = 320; %each video is 640 across
+    
     z = zeros(1,length(in.s(j).nose)); %create vector length of data
     z(in.s(j).nose(:,1) > xmid) = 1; %fill with 1s for all filtered data greater than xmid
     z = diff(z); %subtract the X(2) - X(1) to find the xings greater than the midline

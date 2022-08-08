@@ -1,4 +1,4 @@
-function out = fmfilteredvelocity(in)
+function out = fmfilteredvelocity(in, fr)
 %% define variables
 %non-function usage
 % clearvars -except fm
@@ -23,16 +23,16 @@ function out = fmfilteredvelocity(in)
     in.s(j).nose(:,2) = medfilt1(in.s(j).nose(:,2), medfiltnum);
     in.s(j).fin(:,1) = medfilt1(in.s(j).fin(:,1), medfiltnum);
     in.s(j).fin(:,2) = medfilt1(in.s(j).fin(:,2), medfiltnum);
-    in.s(j).tail(:,1) = medfilt1(in.s(j).tail(:,1), medfiltnum);
-    in.s(j).tail(:,2) = medfilt1(in.s(j).tail(:,2), medfiltnum);
+%     in.s(j).tail(:,1) = medfilt1(in.s(j).tail(:,1), medfiltnum);
+%     in.s(j).tail(:,2) = medfilt1(in.s(j).tail(:,2), medfiltnum);
     
 
     % Calculate velocity from filtered posistion data
-        for jj = length(in.s(1).nose)-1:-1:1
-    
-            ss(j).dNose(jj) = pdist2(in.s(j).nose(jj,1:2), in.s(j).nose(jj+1,1:2)); 
-            ss(j).dFin(jj) = pdist2(in.s(j).fin(jj,1:2), in.s(j).fin(jj+1,1:2)); 
-            ss(j).dTail(jj) = pdist2(in.s(j).tail(jj,1:2), in.s(j).tail(jj+1,1:2)); 
+        for jj = (length(in.s(1).nose)-1):-1:1
+          
+            ss(j).dNose(jj) = ((pdist2(in.s(j).nose(jj,1:2), in.s(j).nose(jj+1,1:2)))/16)*fr; 
+            ss(j).dFin(jj) = ((pdist2(in.s(j).fin(jj,1:2), in.s(j).fin(jj+1,1:2)))/16)*fr; 
+%             ss(j).dTail(jj) = pdist2(in.s(j).tail(jj,1:2), in.s(j).tail(jj+1,1:2)); 
     
         end 
   
@@ -43,10 +43,9 @@ for j = length(ss):-1:1
 
         smean = filtfilt(b,a, medfilt1(ss(j).dNose, medfiltnum) );
         smean  = smean + filtfilt(b,a, medfilt1(ss(j).dFin,  medfiltnum) );
-        smean = smean + filtfilt(b,a, medfilt1(ss(j).dTail, medfiltnum) );    
+       % smean = smean + filtfilt(b,a, medfilt1(ss(j).dTail, medfiltnum) );    
     
-        ss(j).savg = smean / 3;
-        ss(j).variance = var(ss(j).savg);
+        ss(j).savg = smean / 2;
         ss(j).velmean = mean(ss(j).savg);
         ss(j).velstd = std(ss(j).savg);
 end
