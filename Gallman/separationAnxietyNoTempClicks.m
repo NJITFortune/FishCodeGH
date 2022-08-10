@@ -176,6 +176,7 @@ for j = 2:length(iFiles)
         hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
 
 
+          if   hipeakamp <  0.1 || currhifreq > 419 && currhifreq < 421; currhifreq = oldcurrhifreq; end
          if currlofreq > 419 && currlofreq < 424 ||  lopeakamp < 0.1; currlofreq = oldcurrlofreq; end %currlofreq > 419 && currlofreq < 421 || 
             
             if j > 3
