@@ -54,7 +54,7 @@ figure(11); clf;
 
 
 % Plot the summed FFT for the user to click
-summedFFT =  f1.fftdata + f2.fftdata;
+summedFFT =   f2.fftdata;%f1.fftdata +
 
 figure(2); clf; hold on;
     plot(f2.fftfreq, summedFFT);
@@ -158,7 +158,7 @@ for j = 2:length(iFiles)
     out(j).temp = mean(data(1,tempchan));
     out(j).light = mean(data(1,lightchan));
 
-    summedFFT = f1.fftdata +  f2.fftdata;%
+    summedFFT =  f2.fftdata;%f1.fftdata + 
     figure(2); clf; hold on;
         plot(f2.fftfreq, summedFFT);
         xlim(freqs);
