@@ -52,10 +52,10 @@ figure(11); clf;
 
 
 % Plot the summed FFT for the user to click
-summedFFT =  f1.fftdata + f2.fftdata;
+summedFFT =  f2.fftdata;%f1.fftdata + f2.fftdata;
 
 figure(2); clf; hold on;
-    plot(f1.fftfreq, summedFFT);
+    plot(f2.fftfreq, summedFFT);
     xlim(freqs);
    % xticks(linspace(freqs(1),freqs(2), 30));
 
@@ -64,15 +64,15 @@ figure(2); clf; hold on;
 % Get intial frequencies
 
     % Get the lower freq peak
-        lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < xfreq);
+        lowfreqidx = find(f2.fftfreq > freqs(1) & f2.fftfreq < xfreq);
             [~, lmaxidx] = max(summedFFT(lowfreqidx));
-            currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
+            currlofreq = f2.fftfreq(lowfreqidx(lmaxidx));
             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
 
     % Get the higher freq peak
-        hifreqidx = find(f1.fftfreq > xfreq & f1.fftfreq < freqs(2));
+        hifreqidx = find(f2.fftfreq > xfreq & f2.fftfreq < freqs(2));
             [~, hmaxidx] = max(summedFFT(hifreqidx));
-            currhifreq = f1.fftfreq(hifreqidx(hmaxidx));        
+            currhifreq = f2.fftfreq(hifreqidx(hmaxidx));        
             plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
 
     % Get the midpoint and plot it for fun
@@ -156,9 +156,9 @@ for j = 2:length(iFiles)
     out(j).temp = mean(data(1,tempchan));
     out(j).light = mean(data(1,lightchan));
 
-    summedFFT =  f1.fftdata + f2.fftdata;
+    summedFFT =  f2.fftdata;%f1.fftdata + 
     figure(2); clf; hold on;
-        plot(f1.fftfreq, summedFFT);
+        plot(f2.fftfreq, summedFFT);
         xlim(freqs);
        
 
@@ -241,7 +241,7 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
             drawnow;
            
     
- 
+ %%
     % Put the data into the output structure   
         %lower frequency fish
        
