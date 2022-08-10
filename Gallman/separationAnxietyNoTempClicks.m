@@ -183,8 +183,10 @@ for j = 2:length(iFiles)
                 if currlofreq > 299 && currlofreq < 301 ; currlofreq = out(j-2).lofreq; end
                 if currlofreq > 359 && currlofreq < 361 ; currlofreq = out(j-2).lofreq; end
             end
- 
+%% clicks 
 % FIX ERRORS
+fixme = 0;
+%% no clicks
 % % Max frequency change
 % maxchangelo1 = 20; % Maximum change in Hz between samples
 % maxchangelo2 = 10;
