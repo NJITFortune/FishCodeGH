@@ -54,7 +54,7 @@ figure(11); clf;
 
 
 % Plot the summed FFT for the user to click
-summedFFT =  f2.fftdata;%f1.fftdata + f2.fftdata;
+summedFFT =  f1.fftdata + f2.fftdata;
 
 figure(2); clf; hold on;
     plot(f2.fftfreq, summedFFT);
@@ -158,21 +158,21 @@ for j = 2:length(iFiles)
     out(j).temp = mean(data(1,tempchan));
     out(j).light = mean(data(1,lightchan));
 
-    summedFFT =  f2.fftdata;%f1.fftdata + 
+    summedFFT = f1.fftdata +  f2.fftdata;%
     figure(2); clf; hold on;
         plot(f2.fftfreq, summedFFT);
         xlim(freqs);
        
 
     % Get the lower freq peak
-        lowfreqidx = find(f1.fftfreq > freqs(1) & f1.fftfreq < oldcurrhifreq);
+        lowfreqidx = find(f2.fftfreq > freqs(1) & f2.fftfreq < oldcurrhifreq);
             [~, lmaxidx] = max(summedFFT(lowfreqidx));
             currlofreq = f1.fftfreq(lowfreqidx(lmaxidx));
 %            plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
         lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
 
     % Get the higher freq peak
-        hifreqidx = find(f1.fftfreq > oldmidpoint & f1.fftfreq < freqs(2));
+        hifreqidx = find(f2.fftfreq > oldmidpoint & f2.fftfreq < freqs(2));
             [~, hmaxidx] = max(summedFFT(hifreqidx));
             currhifreq = f1.fftfreq(hifreqidx(hmaxidx));      
         hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
