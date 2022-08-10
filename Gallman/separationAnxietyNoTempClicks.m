@@ -184,7 +184,19 @@ for j = 2:length(iFiles)
             if j > 3
                 if currlofreq > 299 && currlofreq < 301 ; currlofreq = out(j-2).lofreq; end
                 if currlofreq > 359 && currlofreq < 361 ; currlofreq = out(j-2).lofreq; end
-                if currlofreq > 250; currlofreq = out(j-2).lofreq; end
+                %if currlofreq > 250; currlofreq = out(j-2).lofreq; end
+
+                 if currlofreq < 410
+                        lowfreqidx = find(f2.fftfreq > 425 & f2.fftfreq < currhifreq-(mindiff+1));
+                        [~, lmaxidx] = max(summedFFT(lowfreqidx));
+                         currlofreq = f2.fftfreq(lowfreqidx(lmaxidx));
+                         if isempty(currlofreq)
+                             currlofreq = 440;
+                             lowfreqidx = find(f2.fftfreq == currlofreq);
+                             [~, lmaxidx] = max(summedFFT(lowfreqidx));
+                             if isempty(lmaxidx); fixme = 1; end
+                         end
+                 end
             end
 %% clicks 
 % FIX ERRORS
