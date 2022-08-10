@@ -185,57 +185,57 @@ for j = 2:length(iFiles)
             end
  
 % FIX ERRORS
-% Max frequency change
-maxchangelo1 = 20; % Maximum change in Hz between samples
-maxchangelo2 = 10;
-minloamp = 0.1;
-maxchangehi = 20;
-maxchangehi2 = 55;
-mindiff = 3; % Minimum frequency difference (Hz) between the two fish
-
-  
-        if abs(currlofreq-oldcurrlofreq) > maxchangelo1
-          if currlofreq > 419 && currlofreq < 421 || lopeakamp < 0.1 %|| currlofreq < 220
-              currlofreq = oldcurrlofreq;
-          else
-                if j > 3 
-                   if  ~(mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq) 
-                    currlofreq = oldcurrlofreq;
-                   elseif  ~(currlofreq > mean([out(j-2).midpoint, out(j-1).midpoint]))% && abs(currlofreq-oldcurrlofreq) < maxchangelo2)
-                    currlofreq = oldcurrlofreq;
-                   end
-                else
-                currlofreq = oldcurrlofreq;
-                end
-
-          end
-              
-        end 
-        
-       %if max change in higher fish frequency
-        if abs(currhifreq-oldcurrhifreq) > maxchangehi %|| currhifreq < 590 
-          if  hipeakamp < 0.1 %|| currhifreq > 539% || currhifreq > 419 && currhifreq < 421 
-              currhifreq = oldcurrhifreq;
-          else
-                 if j > 3 
-                   if  ~(mean([out(j-1).hifreq, out(j-2).hifreq]) == oldcurrhifreq) 
-                    currhifreq = oldcurrhifreq;
-                   elseif  ~(currhifreq < mean([out(j-2).midpoint, out(j-1).midpoint])) %&& abs(currhifreq-oldcurrhifreq) < maxchangehi2)
-                    currhifreq = oldcurrhifreq;
-                   end
-                else
-                currhifreq = oldcurrhifreq;
-                end
-
-          end
-        end 
-        
-     
-        if abs(currlofreq-currhifreq) < mindiff
-                %currlofreq = oldcurrlofreq;
-                currhifreq = oldcurrhifreq;
-        end
-        
+% % Max frequency change
+% maxchangelo1 = 20; % Maximum change in Hz between samples
+% maxchangelo2 = 10;
+% minloamp = 0.1;
+% maxchangehi = 20;
+% maxchangehi2 = 55;
+% mindiff = 3; % Minimum frequency difference (Hz) between the two fish
+% 
+%   
+%         if abs(currlofreq-oldcurrlofreq) > maxchangelo1
+%           if currlofreq > 419 && currlofreq < 421 || lopeakamp < 0.1 %|| currlofreq < 220
+%               currlofreq = oldcurrlofreq;
+%           else
+%                 if j > 3 
+%                    if  ~(mean([out(j-1).lofreq, out(j-2).lofreq]) == oldcurrlofreq) 
+%                     currlofreq = oldcurrlofreq;
+%                    elseif  ~(currlofreq > mean([out(j-2).midpoint, out(j-1).midpoint]))% && abs(currlofreq-oldcurrlofreq) < maxchangelo2)
+%                     currlofreq = oldcurrlofreq;
+%                    end
+%                 else
+%                 currlofreq = oldcurrlofreq;
+%                 end
+% 
+%           end
+%               
+%         end 
+%         
+%        %if max change in higher fish frequency
+%         if abs(currhifreq-oldcurrhifreq) > maxchangehi %|| currhifreq < 590 
+%           if  hipeakamp < 0.1 %|| currhifreq > 539% || currhifreq > 419 && currhifreq < 421 
+%               currhifreq = oldcurrhifreq;
+%           else
+%                  if j > 3 
+%                    if  ~(mean([out(j-1).hifreq, out(j-2).hifreq]) == oldcurrhifreq) 
+%                     currhifreq = oldcurrhifreq;
+%                    elseif  ~(currhifreq < mean([out(j-2).midpoint, out(j-1).midpoint])) %&& abs(currhifreq-oldcurrhifreq) < maxchangehi2)
+%                     currhifreq = oldcurrhifreq;
+%                    end
+%                 else
+%                 currhifreq = oldcurrhifreq;
+%                 end
+% 
+%           end
+%         end 
+%         
+%      
+%         if abs(currlofreq-currhifreq) < mindiff
+%                 %currlofreq = oldcurrlofreq;
+%                 currhifreq = oldcurrhifreq;
+%         end
+%         
    
     [~, lmaxidx] = find(f1.fftfreq(lowfreqidx) == currlofreq);
     [~, hmaxidx] = find(f1.fftfreq(hifreqidx) == currhifreq);
