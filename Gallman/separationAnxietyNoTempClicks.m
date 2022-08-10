@@ -3,7 +3,9 @@ clearvars -except kg kg2 rkg k
 Fs = 40000;
 freqs = [200 650]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
-
+% Max frequency change
+maxchange = 30; % Maximum change in Hz between samples
+mindiff = 2; % Minimum frequency difference (Hz) between the two fish
 % Max frequency change
 
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
