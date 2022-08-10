@@ -184,6 +184,7 @@ for j = 2:length(iFiles)
             if j > 3
                 if currlofreq > 299 && currlofreq < 301 ; currlofreq = out(j-2).lofreq; end
                 if currlofreq > 359 && currlofreq < 361 ; currlofreq = out(j-2).lofreq; end
+                if currlofreq > 250; currlofreq = out(j-2).lofreq; end
             end
 %% clicks 
 % FIX ERRORS
