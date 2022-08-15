@@ -1,5 +1,6 @@
 function k_peakampmultiplotter(out)
 %out = kg2(k).s
+
 %make better variables to play with
 %time
 hitube1tim = [out([out.hitube]==1).timcont]/3600;
