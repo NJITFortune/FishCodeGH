@@ -99,3 +99,40 @@ close(1);
 %% plot result of frequency filtering
 
 for tube = 2:-1:1
+ 
+    figure(452); clf; hold on;
+
+
+    ax(1) = subplot(511); title('high frequency fish'); hold on; %ylim([0,2]);
+            plot(hitube1timff, hitube1ampff, 'bo')
+            plot(hitube2timff, hitube2ampff, 'mo');
+          
+            
+    ax(2) = subplot(512); title('low frequency fish'); hold on; %ylim([0,3]);
+            %raw amp
+            plot(lo(tube).tim, lo(tube).obwamp, 'bo');
+           
+            
+                     
+    ax(3) = subplot(513); title('combined chunks'); hold on; %ylim([300, 700]);
+           plot(hitube1tim, hitube1freq, 'k.');
+             plot(hitube1timff, hitube1freqff,'b.'); 
+
+           plot(hitube2tim, hitube2freq, 'k.');
+             plot(hitube2timff, hitube2freqff,'c.'); 
+
+           plot(lotube1tim, lotube1freq, 'k.');
+             plot(lotube1timff, lotube1freqff,'r.'); 
+
+           plot(lotube2tim, lotube2freq, 'k.');
+             plot(lotube2timff, lotube2freqff,'m.'); 
+        
+    ax(4) = subplot(514); title('temperature'); hold on;
+            plot([out.timcont]/3600, [out.temp]);
+            
+
+    ax(5) = subplot(515); title('light cycle'); hold on;
+            plot([out.timcont]/3600, [out.light]);
+            
+
+linkaxes(ax, 'x');
