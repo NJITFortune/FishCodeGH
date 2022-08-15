@@ -98,39 +98,49 @@ close(1);
 
 %% plot result of frequency filtering
 
-for tube = 2:-1:1
+
  
     figure(452); clf; hold on;
 
 
     ax(1) = subplot(511); title('high frequency fish'); hold on; %ylim([0,2]);
-            plot(hitube1timff, hitube1ampff, 'bo')
-            plot(hitube2timff, hitube2ampff, 'mo');
+%             plot(hi(1).tim, hi(1).obwamp, 'bo');
+%             plot(oldhi(1).tim, oldhi(1).obwamp, 'k.');
+%             
+%             plot(hi(2).tim, hi(2).obwamp, 'co');
+%             plot(oldhi(2).tim, oldhi(2).obwamp, 'k.');
+            
+            
+            plot(hi(1).tim, hi(1).pkamp, 'bo');
+            plot(oldhi(1).tim, oldhi(1).pkamp, 'k.');
+            
+            plot(hi(2).tim, hi(2).pkamp, 'co');
+            plot(oldhi(2).tim, oldhi(2).pkamp, 'k.');
           
             
     ax(2) = subplot(512); title('low frequency fish'); hold on; %ylim([0,3]);
-            plot(lo(tube).tim, lo(tube).obwamp, 'bo');
-            plot(oldlo(tube).tim, oldlo(tube).obwamp, 'k.');
+%             plot(lo(1).tim, lo(1).obwamp, 'ro');
+%             plot(oldlo(1).tim, oldlo(1).obwamp, 'k.');
+%             
+%             plot(lo(2).tim, lo(2).obwamp, 'mo');
+%             plot(oldlo(2).tim, oldlo(2).obwamp, 'k.');
             
-            plot(lo(tube).tim, lo(tube).obwamp, 'bo');
-            plot(oldlo(tube).tim, oldlo(tube).obwamp, 'k.');
             
+            plot(lo(1).tim, lo(1).pkamp, 'ro');
+            plot(oldlo(1).tim, oldlo(1).pkamp, 'k.');
             
-            plot(lo(tube).tim, lo(tube).pkamp, 'bo');
-            plot(oldlo(tube).tim, oldlo(tube).pkamp, 'k.');
+            plot(lo(2).tim, lo(2).pkamp, 'mo');
+            plot(oldlo(2).tim, oldlo(2).pkamp, 'k.');
                      
-    ax(3) = subplot(513); title('combined chunks'); hold on; %ylim([300, 700]);
-           plot(hitube1tim, hitube1freq, 'k.');
-             plot(hitube1timff, hitube1freqff,'b.'); 
-
-           plot(hitube2tim, hitube2freq, 'k.');
-             plot(hitube2timff, hitube2freqff,'c.'); 
-
-           plot(lotube1tim, lotube1freq, 'k.');
-             plot(lotube1timff, lotube1freqff,'r.'); 
-
-           plot(lotube2tim, lotube2freq, 'k.');
-             plot(lotube2timff, lotube2freqff,'m.'); 
+    ax(3) = subplot(513); title('fish frequencies'); hold on; %ylim([300, 700]);
+    
+            plot(hi(1).tim, hi(1).freq, 'bo');
+            plot(oldhi(1).tim, oldhi(1).freq, 'k.');
+            
+            plot(hi(2).tim, hi(2).freq, 'co');
+            plot(oldhi(2).tim, oldhi(2).freq, 'k.');
+    
+          
         
     ax(4) = subplot(514); title('temperature'); hold on;
             plot([out.timcont]/3600, [out.temp]);
