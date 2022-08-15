@@ -98,9 +98,7 @@ close(1);
 
 %% plot result of frequency filtering
 
-
- 
-    figure(452); clf; hold on;
+ figure(452); clf; hold on;
 
 
     ax(1) = subplot(511); title('high frequency fish'); hold on; %ylim([0,2]);
