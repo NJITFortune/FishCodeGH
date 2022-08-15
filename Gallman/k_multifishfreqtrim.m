@@ -109,10 +109,12 @@ for tube = 2:-1:1
           
             
     ax(2) = subplot(512); title('low frequency fish'); hold on; %ylim([0,3]);
-            %raw amp
             plot(lo(tube).tim, lo(tube).obwamp, 'bo');
-           
+            plot(oldlo(tube).tim, oldlo(tube).obwamp, 'k.');
             
+            
+            plot(lo(tube).tim, lo(tube).pkamp, 'bo');
+             plot(oldlo(tube).tim, oldlo(tube).pkamp, 'k.');
                      
     ax(3) = subplot(513); title('combined chunks'); hold on; %ylim([300, 700]);
            plot(hitube1tim, hitube1freq, 'k.');
