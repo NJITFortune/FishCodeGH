@@ -1,4 +1,4 @@
-function k_fishcalplotter(in,  str) 
+function k_fishcalplotter(in, out, str) 
 % in = hi; %lo
 % out = kg2(k).s;
 % str = 'high frequency fish';
