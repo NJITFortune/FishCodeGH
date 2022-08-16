@@ -1,4 +1,4 @@
-function out = KatiesingleMultiRemover(in)
+function out = KatiesingleMultiRemover(in, thresh)
 
 % OBW        
 figure(1); clf;
