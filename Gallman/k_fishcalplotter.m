@@ -1,10 +1,10 @@
-function k_fishcalplotter(in, out, str) 
+function thresh = k_fishcalplotter(in, out, str) 
 % in = hi; %lo
 % out = kg2(k).s;
 % str = 'high frequency fish';
 
-upperthresh = .62;
-lowerthresh = 0.25;
+thresh.upper = .62;
+thresh.lower = 0.25;
 
 figure(455); clf; title(str); hold on;
 
@@ -24,8 +24,8 @@ figure(455); clf; title(str); hold on;
             plot(in(1).tim, in(1).pkamp, 'bo');
             plot(in(2).tim, in(2).pkamp, 'mo');
             
-            yline(lowerthresh, 'k-');
-            yline(upperthresh, 'k-');
+            yline(thresh.lower, 'k-');
+            yline(thresh.upper, 'k-');
     
     ax(3) = subplot(313); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
