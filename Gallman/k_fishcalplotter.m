@@ -1,7 +1,7 @@
-function k_fishcalplotter(in, out) 
-in = hi; %lo
-out = kg2(k).s;
-str = 'high frequency fish';
+function k_fishcalplotter(in, out, str) 
+% in = hi; %lo
+% out = kg2(k).s;
+% str = 'high frequency fish';
 
 upperthresh = .6;
 lowerthresh = 0.01;
