@@ -109,12 +109,12 @@ close(1);
 %             plot(hi(2).tim, hi(2).obwamp, 'co');
 %             plot(oldhi(2).tim, oldhi(2).obwamp, 'k.');
             
-            
+            plot(oldhi(1).tim, oldhi(1).pkamp, 'ko');
             plot(hi(1).tim, hi(1).pkamp, 'bo');
-            plot(oldhi(1).tim, oldhi(1).pkamp, 'k.');
             
+            plot(oldhi(2).tim, oldhi(2).pkamp, 'ko');
             plot(hi(2).tim, hi(2).pkamp, 'co');
-            plot(oldhi(2).tim, oldhi(2).pkamp, 'k.');
+            
           
             
     ax(2) = subplot(512); title('low frequency fish'); hold on; %ylim([0,3]);
@@ -124,26 +124,28 @@ close(1);
 %             plot(lo(2).tim, lo(2).obwamp, 'mo');
 %             plot(oldlo(2).tim, oldlo(2).obwamp, 'k.');
             
-            
+            plot(oldlo(1).tim, oldlo(1).pkamp, 'ko');
             plot(lo(1).tim, lo(1).pkamp, 'ro');
-            plot(oldlo(1).tim, oldlo(1).pkamp, 'k.');
             
+            plot(oldlo(2).tim, oldlo(2).pkamp, 'ko');
             plot(lo(2).tim, lo(2).pkamp, 'mo');
-            plot(oldlo(2).tim, oldlo(2).pkamp, 'k.');
+            
                      
     ax(3) = subplot(513); title('fish frequencies'); hold on; %ylim([300, 700]);
     
+            
+            plot(oldhi(1).tim, oldhi(1).freq, 'ko');
             plot(hi(1).tim, hi(1).freq, 'bo');
-            plot(oldhi(1).tim, oldhi(1).freq, 'k.');
             
+            plot(oldhi(2).tim, oldhi(2).freq, 'ko');
             plot(hi(2).tim, hi(2).freq, 'co');
-            plot(oldhi(2).tim, oldhi(2).freq, 'k.');
             
+            plot(oldlo(1).tim, oldlo(1).freq, 'ko');
             plot(lo(1).tim, lo(1).freq, 'ro');
-            plot(oldlo(1).tim, oldlo(1).freq, 'k.');
             
+            plot(oldlo(2).tim, oldlo(2).freq, 'ko');   
             plot(lo(2).tim, lo(2).pkamp, 'mo');
-            plot(oldlo(2).tim, oldlo(2).freq, 'k.');      
+               
         
     ax(4) = subplot(514); title('temperature'); hold on;
             plot([out.timcont]/3600, [out.temp]);
