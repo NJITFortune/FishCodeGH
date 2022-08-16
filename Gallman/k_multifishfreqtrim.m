@@ -144,7 +144,7 @@ close(1);
             plot(lo(1).tim, lo(1).freq, 'ro');
             
             plot(oldlo(2).tim, oldlo(2).freq, 'ko');   
-            plot(lo(2).tim, lo(2).pkamp, 'mo');
+            plot(lo(2).tim, lo(2).freq, 'mo');
                
         
 %     ax(4) = subplot(514); title('temperature'); hold on;
