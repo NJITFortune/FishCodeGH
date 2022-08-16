@@ -1,11 +1,11 @@
 function sout = KatieFinalfishsplit(in)
 
 %concatenate both tubes
-PkAmp = [hi(1).pkamp, hi(2).pkamp];
-ObwAmp = [hi(1).obwamp, hi(2).obwamp];
+PkAmp = [in(1).pkamp, in(2).pkamp];
+ObwAmp = [in(1).obwamp, in(2).obwamp];
 
-Tim = [hi(1).tim, hi(2).tim];
-Freq = [hi(1).freq, hi(2).freq];
+Tim = [in(1).tim, in(2).tim];
+Freq = [in(1).freq, in(2).freq];
 
 for j = 1:length(Tim)
     sout(j).pkAmp(:) = PkAmp;
