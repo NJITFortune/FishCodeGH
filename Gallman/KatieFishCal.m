@@ -3,7 +3,7 @@ in = hi; %lo
 out = kg2(k).s;
 str = 'high frequency fish';
 
-upperthresh = 2;
+upperthresh = .6;
 lowerthresh = 0.01;
 
 figure(455); clf; title(str); hold on;
