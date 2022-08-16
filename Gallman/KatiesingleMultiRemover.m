@@ -1,5 +1,5 @@
-function out = KatiesingleMultiRemover(in, thresh)
-
+function out = KatiesingleMultiRemover(in)
+%, thresh
 % OBW        
 figure(1); clf;
 
@@ -28,8 +28,8 @@ figure(1); clf;
 figure(1); clf;
 
     histogram([in.pkAmp], 100); hold on;
-    plot([thresh.upper, thresh.upper], ylim, 'k-');
-    plot([thresh.lower, thresh.lower], ylim, 'k-');
+%     plot([thresh.upper, thresh.upper], ylim, 'k-');
+%     plot([thresh.lower, thresh.lower], ylim, 'k-');
     
     %Lower lim
     fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
