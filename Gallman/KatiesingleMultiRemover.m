@@ -18,7 +18,7 @@ figure(1); clf;
     drawnow; 
     
     for j=1:length(in)
-         if in(j).HiAmp > cutofffreqL && in(j).HiAmp < cutofffreqH
+         if in(j).obwAmp > cutofffreqL && in(j).obwAmp < cutofffreqH
              out(j).obwidx = j;
          end
     end
