@@ -16,7 +16,7 @@ function maxval = k_normcheckplot(inumb, out)
      ttpk = out.loidx.pkidx;
  end
     
- maxval = max([in(ttpk).pkamp]);
+ maxval = max([in(ttpk).pkAmp]);
  %maxval = ;
 %%    
 
@@ -26,14 +26,14 @@ figure(457); clf;  hold on;
     ax(1) = subplot(311); title(str); hold on; %ylim([0,2]);
            
            
-            plot([in(ttpk).timcont]/3600, [in(ttpk).pkamp], 'o');
+            plot([in(ttpk).timcont]/3600, [in(ttpk).pkAmp], 'o');
             
           %  plot([in(tto).timcont]/3600, [in(tto).obwamp], 'o');
           
             
     ax(2) = subplot(312); title('divided by max'); hold on; %ylim([0,3]);
 %
-            plot([in(ttpk).timcont]/3600, [in(ttpk).pkamp]/max([in(ttpk).pkamp]), 'o');
+            plot([in(ttpk).timcont]/3600, [in(ttpk).pkAmp]/max([in(ttpk).pkAmp]), 'o');
     
     ax(3) = subplot(313); title('light cycle'); hold on;
             plot([out.s.timcont]/3600, [out.s.light]);
