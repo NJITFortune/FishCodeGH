@@ -26,9 +26,9 @@ figure(457); clf;  hold on;
 
     ax(1) = subplot(311); title(str); hold on; %ylim([0,2]);
            
-            plot([in.timcont]/3600, [in.pkAmp], 'ko');
-            plot([in(ttpk).timcont]/3600, [in(ttpk).pkAmp], 'o');
-            
+%             plot([in.timcont]/3600, [in.pkAmp], 'ko');
+%             plot([in(ttpk).timcont]/3600, [in(ttpk).pkAmp], 'o');
+%             
             plot([in.timcont]/3600, [in.obwAmp], 'o');
             plot([in(tto).timcont]/3600, [in(tto).obwAmp], 'o');
           legend('pkAmp', 'obwAmp','Location','northoutside','NumColumns',2);
