@@ -52,7 +52,7 @@ for tube = 2:-1:1
 
 
 
-            hifreqidx = find(oldhi(tube).freq > cutofffreqL && oldhi(tube).freq < cutofffreqH);
+            hifreqidx = find(oldhi(tube).freq > cutofffreqL & oldhi(tube).freq < cutofffreqH);
                     hi(tube).obwamp = oldhi(tube).obwamp(hifreqidx);
                     hi(tube).pkamp = oldhi(tube).pkamp(hifreqidx);
 
@@ -83,7 +83,7 @@ for tube = 2:-1:1
 
 
 
-            lofreqidx = find(oldlo(tube).freq > cutofffreqL && oldlo(tube).freq < cutofffreqH);
+            lofreqidx = find(oldlo(tube).freq > cutofffreqL & oldlo(tube).freq < cutofffreqH);
                     lo(tube).obwamp = oldlo(tube).obwamp(lofreqidx);
                     lo(tube).pkamp = oldlo(tube).pkamp(lofreqidx);
 
