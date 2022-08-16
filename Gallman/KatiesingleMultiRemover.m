@@ -17,11 +17,9 @@ figure(1); clf;
     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow; 
     
-    for j=1:length(in)
-         if in(j).obwAmp > cutofffreqL && in(j).obwAmp < cutofffreqH
-             out(j).obwidx = 
-         end
-    end
+   
+            out.obwidx = find(in.obwAmp > cutofffreqL & in.obwAmp < cutofffreqH);
+     
 
     pause(1);
  
@@ -42,13 +40,10 @@ figure(1); clf;
     [cutofffreqH, ~]  = ginput(1);
     plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
     drawnow; 
-    for j=1:length(in)
-         if in(j).pkAmp > cutofffreqL && in(j).pkAmp < cutofffreqH
-             out(j).pkidx = j;
-         end
-    end
+ 
+         
+             out.pkidx = find(in.pkAmp > cutofffreqL & in.pkAmp < cutofffreqH);
+       
     pause(1);
     close(1);
-end
-    
 
