@@ -31,7 +31,7 @@ figure(457); clf;  hold on;
             
           %  plot([in.timcont]/3600, [in.obwAmp], 'o');
             plot([in(tto).timcont]/3600, [in(tto).obwAmp]/max([in(tto).obwAmp]), 'o');
-          legend('pkAmp', 'obwAmp','Location','northwest','NumColumns',2);
+          legend('pkAmp', 'obwAmp','Location','northoutside','NumColumns',2);
             
     ax(2) = subplot(312); title('frequency'); hold on; %ylim([0,3]);
 %
