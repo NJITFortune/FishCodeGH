@@ -5,10 +5,10 @@ out = kg2(k).s;
 upperthresh = 2;
 lowerthresh = 0.01;
 
-figure(455); clf; hold on;
+figure(455); clf; title hold on;
 
 
-    ax(1) = subplot(311); title('high frequency fish'); hold on; %ylim([0,2]);
+    ax(1) = subplot(311); title('precal'); hold on; %ylim([0,2]);
 %             plot(in(1).tim, in(1).obwamp, 'bo');
 %             plot(in(2).tim, in(2).obwamp, 'co');
            
@@ -16,7 +16,7 @@ figure(455); clf; hold on;
             plot(in(2).tim, in(2).pkamp, 'mo');
           
             
-    ax(2) = subplot(312); title('low frequency fish'); hold on; %ylim([0,3]);
+    ax(2) = subplot(312); title('postcal'); hold on; %ylim([0,3]);
 %             plot(in(1).tim, in(1).obwamp, 'bo');
 %             plot(lo(2).tim, in(2).obwamp, 'mo');
           
