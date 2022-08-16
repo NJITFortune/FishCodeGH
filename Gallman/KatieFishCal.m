@@ -5,7 +5,7 @@ out = kg2(k).s;
 upperthresh = 2;
 lowerthresh = 0.01;
 
-figure(452); clf; hold on;
+figure(455); clf; hold on;
 
 
     ax(1) = subplot(311); title('high frequency fish'); hold on; %ylim([0,2]);
@@ -21,7 +21,7 @@ figure(452); clf; hold on;
 %             plot(lo(2).tim, in(2).obwamp, 'mo');
           
             plot(in(1).tim, in(1).pkamp, 'bo');
-            plot(on(2).tim, in(2).pkamp, 'mo');
+            plot(in(2).tim, in(2).pkamp, 'mo');
             
             yline(lowerthresh, 'k-');
             yline(upperthresh, 'k-');
