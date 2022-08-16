@@ -94,7 +94,7 @@ for tube = 2:-1:1
         pause(1);
 end
     
-close(1);
+
 
 %% plot result of frequency filtering
 
@@ -153,3 +153,5 @@ close(1);
             
 
 linkaxes(ax, 'x');
+
+close(1);
