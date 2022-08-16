@@ -12,7 +12,7 @@ end
 upperthresh = .65;
 lowerthresh = 0.01;
 
-figure(455); clf; title(str); hold on;
+figure(456); clf; title(str); hold on;
 
 
     ax(1) = subplot(311); title(str); hold on; %ylim([0,2]);
