@@ -22,7 +22,7 @@ figure(455); clf; title(str); hold on;
 %             plot(lo(2).tim, in(2).obwamp, 'mo');
           
             plot(in(1).tim, in(1).pkamp, 'bo');
-            plot(in(2).tim, in(2).pkamp*2.75, 'mo');
+            plot(in(2).tim, in(2).pkamp*1.3, 'mo');
             
 %             yline(thresh.lower, 'k-');
 %             yline(thresh.upper, 'k-');
