@@ -21,7 +21,7 @@ oldlo(2).obwamp = [out([out.lotube]==2).loAmpobw];
 %amp fft peak
 oldhi(1).pkamp = [out([out.hitube]==1).hipeakamp];
 oldhi(2).pkamp = [out([out.hitube]==2).hipeakamp];
-oldlo(2).pkamp = [out([out.lotube]==1).lopeakamp];
+oldlo(1).pkamp = [out([out.lotube]==1).lopeakamp];
 oldlo(2).pkamp = [out([out.lotube]==2).lopeakamp];
 
 %freq
@@ -83,12 +83,12 @@ for tube = 1%:-1:1
 
 
 
-            lofreqidx(tube) = find(oldlo(tube).freq > cutofffreqL & oldlo(tube).freq < cutofffreqH);
-                    lo(tube).obwamp = oldlo(tube).obwamp(lofreqidx(tube));
-                    lo(tube).pkamp = oldlo(tube).pkamp(lofreqidx(tube));
+            lofreqidx = find([oldlo(tube).freq] > cutofffreqL & oldlo(tube).freq < cutofffreqH);
+                    lo(tube).obwamp = oldlo(tube).obwamp(lofreqidx);
+                    lo(tube).pkamp = oldlo(tube).pkamp(lofreqidx);
 
-                    lo(tube).tim = oldlo(tube).tim(lofreqidx(tube));
-                    lo(tube).freq = oldlo(tube).freq(lofreqidx(tube));
+                    lo(tube).tim = oldlo(tube).tim(lofreqidx);
+                    lo(tube).freq = oldlo(tube).freq(lofreqidx);
 
 
         pause(1);
