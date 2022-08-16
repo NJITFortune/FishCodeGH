@@ -1,4 +1,4 @@
-function out  = KatieTrimmer(in)
+function out  = KatieMultiTrimmer(in)
 % Usage:kg(#).e = KatieTrimmer(kg(#).e);
 % Optional data trimming
         
