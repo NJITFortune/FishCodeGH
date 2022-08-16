@@ -64,7 +64,7 @@ oldlo(2).freq = [out([out.lotube]==2).lofreq];
 % end
 %low
 %hifreq
-for tube = 2%:-1:1
+for tube = 1%:-1:1
     figure(1); clf;
 
         histogram(oldlo(tube).freq , 100); hold on;
