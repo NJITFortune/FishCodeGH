@@ -55,16 +55,16 @@ oldlo(2).freq = [out([out.lotube]==2).lofreq];
 %             hifreqidx = find(oldhi(tube).freq > cutofffreqL & oldhi(tube).freq < cutofffreqH);
 %                     hi(tube).obwamp = oldhi(tube).obwamp(hifreqidx);
 %                     hi(tube).pkamp = oldhi(tube).pkamp(hifreqidx);
-% 
-%                     hi(tube).tim = oldhi(tube).tim(hifreqidx);
-%                     hi(tube).freq = oldhi(tube).freq(hifreqidx);
-% 
-% 
-%         pause(1);
-% end
+
+                    hi(tube).tim = oldhi(tube).tim(hifreqidx);
+                    hi(tube).freq = oldhi(tube).freq(hifreqidx);
+
+
+        pause(1);
+end
 %low
 %hifreq
-for tube = 1%:-1:1
+for tube = 2:-1:1
     figure(1); clf;
 
         histogram(oldlo(tube).freq , 100); hold on;
@@ -154,4 +154,4 @@ close(1);
 
 linkaxes(ax, 'x');
 
-close(1);
+
