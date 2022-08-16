@@ -58,6 +58,7 @@ for tube = 2:-1:1
 
                     hi(tube).tim = oldhi(tube).tim(hifreqidx);
                     hi(tube).freq = oldhi(tube).freq(hifreqidx);
+                    
 
 
         pause(1);
