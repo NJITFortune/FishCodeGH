@@ -18,7 +18,7 @@ figure(1); clf;
     drawnow; 
     
    
-            out.obwidx = find(in.obwAmp > cutofffreqL & in.obwAmp < cutofffreqH);
+            out.obwidx = find([in.obwAmp] > cutofffreqL & [in.obwAmp] < cutofffreqH);
      
 
     pause(1);
@@ -42,7 +42,7 @@ figure(1); clf;
     drawnow; 
  
          
-             out.pkidx = find(in.pkAmp > cutofffreqL & in.pkAmp < cutofffreqH);
+             out.pkidx = find([in.pkAmp] > cutofffreqL & [in.pkAmp] < cutofffreqH);
        
     pause(1);
     close(1);
