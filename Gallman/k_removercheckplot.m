@@ -32,11 +32,11 @@ figure(457); clf;  hold on;
     ax(2) = subplot(312); title('frequency'); hold on; %ylim([0,3]);
 %
           
-            plot([in.timcont]/3600, [in.freq], 'o');
-               
+            plot([in.timcont]/3600, [in.freq], 'ko');
+            plot([in(ttpk).timcont]/3600, [in(ttpk).freq], 'o');
     
     ax(3) = subplot(313); title('light cycle'); hold on;
-            plot([out.timcont]/3600, [out.light]);
+            plot([out.s.timcont]/3600, [out.s.light]);
             
 
 linkaxes(ax, 'x');
