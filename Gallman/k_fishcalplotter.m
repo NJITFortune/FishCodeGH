@@ -3,7 +3,7 @@ function k_fishcalplotter(in, out, str)
 % out = kg2(k).s;
 % str = 'high frequency fish';
 
-upperthresh = .65;
+upperthresh = .62;
 lowerthresh = 0.25;
 
 figure(455); clf; title(str); hold on;
