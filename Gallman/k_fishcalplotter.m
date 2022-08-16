@@ -21,8 +21,8 @@ figure(455); clf; title(str); hold on;
 %             plot(in(1).tim, in(1).obwamp, 'bo');
 %             plot(lo(2).tim, in(2).obwamp, 'mo');
           
-            plot(in(1).tim, in(1).pkamp*1.1, 'bo');
-            plot(in(2).tim, in(2).pkamp, 'mo');
+            plot(in(1).tim, in(1).pkamp, 'bo');
+            plot(in(2).tim, in(2).pkamp*1.1, 'mo');
             
 %             yline(thresh.lower, 'k-');
 %             yline(thresh.upper, 'k-');
