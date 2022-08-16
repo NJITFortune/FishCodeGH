@@ -1,8 +1,11 @@
-function k_removercheckplot(inumb, out) 
+%function k_removercheckplot(inumb, out) 
 % innumb determines whether the input is for the high or low frequency fish
 % out = kg2(k);
 % str = 'high frequency fish' etc.
 
+
+inumb = 6;
+out = kg2(k);
 %% prep
  if inumb == 6
      in = out.hifish;
