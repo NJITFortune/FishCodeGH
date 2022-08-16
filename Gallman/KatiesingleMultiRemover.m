@@ -19,7 +19,7 @@ figure(1); clf;
     
     for j=1:length(in)
          if in(j).obwAmp > cutofffreqL && in(j).obwAmp < cutofffreqH
-             out(j).obwidx = j;
+             out(j).obwidx(:) = j;
          end
     end
 
