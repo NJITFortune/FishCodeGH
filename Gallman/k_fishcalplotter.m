@@ -4,7 +4,7 @@ function thresh = k_fishcalplotter(in, out, str)
 % str = 'high frequency fish';
 
 thresh.upper = 2;
-thresh.lower = 0.25;
+thresh.lower = 0.7;
 
 figure(455); clf; title(str); hold on;
 
