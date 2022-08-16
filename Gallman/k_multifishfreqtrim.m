@@ -102,7 +102,7 @@ close(1);
  figure(452); clf; hold on;
 
 
-    ax(1) = subplot(511); title('high frequency fish'); hold on; %ylim([0,2]);
+    ax(1) = subplot(411); title('high frequency fish'); hold on; %ylim([0,2]);
 %             plot(hi(1).tim, hi(1).obwamp, 'bo');
 %             plot(oldhi(1).tim, oldhi(1).obwamp, 'k.');
 %             
@@ -117,7 +117,7 @@ close(1);
             
           
             
-    ax(2) = subplot(512); title('low frequency fish'); hold on; %ylim([0,3]);
+    ax(2) = subplot(412); title('low frequency fish'); hold on; %ylim([0,3]);
 %             plot(lo(1).tim, lo(1).obwamp, 'ro');
 %             plot(oldlo(1).tim, oldlo(1).obwamp, 'k.');
 %             
@@ -131,7 +131,7 @@ close(1);
             plot(lo(2).tim, lo(2).pkamp, 'mo');
             
                      
-    ax(3) = subplot(513); title('fish frequencies'); hold on; %ylim([300, 700]);
+    ax(3) = subplot(413); title('fish frequencies'); hold on; %ylim([300, 700]);
     
             
             plot(oldhi(1).tim, oldhi(1).freq, 'ko');
@@ -147,11 +147,11 @@ close(1);
             plot(lo(2).tim, lo(2).pkamp, 'mo');
                
         
-    ax(4) = subplot(514); title('temperature'); hold on;
-            plot([out.timcont]/3600, [out.temp]);
-            
+%     ax(4) = subplot(514); title('temperature'); hold on;
+%             plot([out.timcont]/3600, [out.temp]);
+%             
 
-    ax(5) = subplot(515); title('light cycle'); hold on;
+    ax(4) = subplot(414); title('light cycle'); hold on;
             plot([out.timcont]/3600, [out.light]);
             
 
