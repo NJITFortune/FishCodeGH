@@ -28,8 +28,10 @@ figure(456); clf; title(str); hold on;
 %             plot(in(1).tim, in(1).obwamp, 'bo');
 %             plot(lo(2).tim, in(2).obwamp, 'mo');
           
+            plot(in(tube).timc, in(tube).pkamp, 'bo');
             plot(in(tube).timchunk1, in(tube).pkampchunk1, 'co');
-            plot(in(tube).timchunk2, in(tube).pkampchunk2, 'co');
+           % plot(in(tube).timchunk2, in(tube).pkampchunk2, 'co');
+           
             
             plot(in(othertube).tim, in(othertube).pkamp, 'ro');
             
