@@ -1,12 +1,12 @@
 
 in = hi; %lo
 out = kg2(k).s;
-
+str = 'high frequency fish';
 
 upperthresh = 2;
 lowerthresh = 0.01;
 
-figure(455); clf; title hold on;
+figure(455); clf; title(str); hold on;
 
 
     ax(1) = subplot(311); title('precal'); hold on; %ylim([0,2]);
