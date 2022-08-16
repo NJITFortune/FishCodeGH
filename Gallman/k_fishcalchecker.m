@@ -1,3 +1,4 @@
+
 function k_fishcalchecker(in, out, str, tube) 
 % in = hi; %lo
 % out = kg2(k).s;
