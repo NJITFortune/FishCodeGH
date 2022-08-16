@@ -1,4 +1,4 @@
-function k_normcheckplot(inumb, out) 
+function maxval = k_normcheckplot(inumb, out) 
 % innumb determines whether the input is for the high or low frequency fish
 % out = kg2(k);
 % str = 'high frequency fish' etc.
@@ -16,6 +16,8 @@ function k_normcheckplot(inumb, out)
      ttpk = out.loidx.pkidx;
  end
     
+ maxval = max([in(ttpk).pkamp]);
+ %maxval = ;
 %%    
 
 figure(457); clf;  hold on;
