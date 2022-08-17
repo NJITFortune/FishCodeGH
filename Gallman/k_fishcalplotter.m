@@ -34,7 +34,7 @@ in = hi;
 linkaxes(ax, 'x');
 
 %%
-figure(543); clf; title(str); hold on;
+figure(543); clf; hold on;
 in = lo;
 
     ax(1) = subplot(311); title('Low frequency fish'); hold on; ylim([0,.05]);
