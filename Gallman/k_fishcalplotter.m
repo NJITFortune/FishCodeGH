@@ -1,4 +1,4 @@
-function  k_fishcalplotter(hi, lo, out, str) 
+function  k_fishcalplotter(hi, lo, out) 
 % in = hi; %lo
 % out = kg2(k).s;
 % str = 'high frequency fish';
@@ -11,7 +11,7 @@ in = hi;
 
     ax(1) = subplot(311); title('High frequency fish'); hold on; ylim([0,.05]);
             plot(in(1).tim, in(1).obwamp, 'bo');
-            plot(in(2).tim, in(2).obwamp*2.5, 'mo');
+            plot(in(2).tim, in(2).obwamp, 'mo');
            
 %             plot(in(1).tim, in(1).pkamp, 'bo');
 %             plot(in(2).tim, in(2).pkamp, 'mo');
@@ -19,7 +19,7 @@ in = hi;
             
     ax(2) = subplot(312); title('postcal'); hold on; ylim([0,.05]);
             plot(in(1).tim, in(1).obwamp, 'bo');
-            plot(in(2).tim, in(2).obwamp*1.6, 'mo');
+            plot(in(2).tim, in(2).obwamp, 'mo');
           
 %             plot(in(1).tim, in(1).pkamp, 'bo');
 %             plot(in(2).tim, in(2).pkamp*1.1, 'mo');
@@ -34,12 +34,12 @@ in = hi;
 linkaxes(ax, 'x');
 
 %%
-figure(456); clf; title(str); hold on;
+figure(543); clf; title(str); hold on;
 in = lo;
 
     ax(1) = subplot(311); title('Low frequency fish'); hold on; ylim([0,.05]);
             plot(in(1).tim, in(1).obwamp, 'bo');
-            plot(in(2).tim, in(2).obwamp*2.5, 'mo');
+            plot(in(2).tim, in(2).obwamp, 'mo');
            
 %             plot(in(1).tim, in(1).pkamp, 'bo');
 %             plot(in(2).tim, in(2).pkamp, 'mo');
@@ -47,7 +47,7 @@ in = lo;
             
     ax(2) = subplot(312); title('postcal'); hold on; ylim([0,.05]);
             plot(in(1).tim, in(1).obwamp, 'bo');
-            plot(in(2).tim, in(2).obwamp*1.6, 'mo');
+            plot(in(2).tim, in(2).obwamp, 'mo');
           
 %             plot(in(1).tim, in(1).pkamp, 'bo');
 %             plot(in(2).tim, in(2).pkamp*1.1, 'mo');
