@@ -320,7 +320,7 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
                     currhifreq = oldcurrhifreq;
                    elseif  ~(currhifreq < mean([out(j-2).midpoint, out(j-1).midpoint])) %&& abs(currhifreq-oldcurrhifreq) < maxchangehi2)
                     currhifreq = oldcurrhifreq;
-                   elseif currhifreq < 580
+                   elseif currhifreq < 601
                        currhifreq = out(j-2).hifreq;
                    end
                 else
