@@ -3,7 +3,7 @@ function out = KatiesingleMultiRemover(in)
 % OBW        
 figure(1); clf;
 
-lowthresh = 0.0006;
+lowthresh = 0.067;
 
     histogram([in.obwAmp], 100); hold on;
     plot([lowthresh lowthresh], ylim, 'k-');
