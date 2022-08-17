@@ -17,7 +17,7 @@ figure(455); clf; title(str); hold on;
 %             plot(in(2).tim, in(2).pkamp, 'mo');
           
             
-    ax(2) = subplot(312); title('postcal'); hold on; ylim([0,.05]);
+    ax(2) = subplot(312); title('postcal'); hold on; %ylim([0,3]);
             plot(in(1).tim, in(1).obwamp, 'bo');
             plot(in(2).tim, in(2).obwamp*1.3, 'mo');
           
