@@ -29,9 +29,8 @@ figure (1); hold on; title('sumfftAmp');
     
     
     tt = find([in.timcont]/(60*60) > x(1) & [in.timcont]/(60*60) < x(2));
-            out(1).s = in(1).s(tt);
-    tt = find([in(2).s.timcont]/(60*60) > x(1) & [in(2).s.timcont]/(60*60) < x(2));
-            out(2).s = in(2).s(tt);
+            out = in(tt);
+    
             
 end            
             

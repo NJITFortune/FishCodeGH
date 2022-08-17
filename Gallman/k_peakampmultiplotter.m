@@ -7,17 +7,17 @@ hitube1tim = [out([out.hitube]==1).timcont]/3600;
 hitube2tim = [out([out.hitube]==2).timcont]/3600;
 lotube1tim = [out([out.lotube]==1).timcont]/3600;
 lotube2tim = [out([out.lotube]==2).timcont]/3600;
-% %amp obw
-% hitube1amp = [out([out.hitube]==1).hiAmpobw];
-% hitube2amp = [out([out.hitube]==2).hiAmpobw];
-% lotube1amp = [out([out.lotube]==1).loAmpobw];
-% lotube2amp = [out([out.lotube]==2).loAmpobw];
+%amp obw
+hitube1amp = [out([out.hitube]==1).hiAmpobw];
+hitube2amp = [out([out.hitube]==2).hiAmpobw];
+lotube1amp = [out([out.lotube]==1).loAmpobw];
+lotube2amp = [out([out.lotube]==2).loAmpobw];
 
-%amp fft peak
-hitube1amp = [out([out.hitube]==1).hipeakamp];
-hitube2amp = [out([out.hitube]==2).hipeakamp];
-lotube1amp = [out([out.lotube]==1).lopeakamp];
-lotube2amp = [out([out.lotube]==2).lopeakamp];
+% %amp fft peak
+% hitube1amp = [out([out.hitube]==1).hipeakamp];
+% hitube2amp = [out([out.hitube]==2).hipeakamp];
+% lotube1amp = [out([out.lotube]==1).lopeakamp];
+% lotube2amp = [out([out.lotube]==2).lopeakamp];
 
 %freq
 hitube1freq = [out([out.hitube]==1).hifreq];
