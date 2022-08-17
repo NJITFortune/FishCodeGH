@@ -53,8 +53,8 @@ figure(66); clf; title('By fish'); hold on;
 
 
     axs(3) = subplot(513); hold on; title('Frequency ');
-        plot([out.hifish(ttohi).timcont]/3600, [out.hifish(ttohi).freq], 'Color', teal); 
-        plot([out.lofish(ttohi).timcont]/3600, [out.lofish(ttolo).freq], 'Color', orange); 
+        plot([out.hifish(ttohi).timcont]/3600, [out.hifish(ttohi).freq],'.', 'Color', teal); 
+        plot([out.lofish(ttohi).timcont]/3600, [out.lofish(ttolo).freq],'.', 'Color', orange); 
 
     axs(4) = subplot(514); hold on; title('Temperature');
             plot([out.s.timcont]/3600, [out.s.temp], 'r.');
