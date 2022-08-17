@@ -6,7 +6,7 @@ function  k_fishcalplotter(hi, lo, out)
 % thresh.upper = 2;
 % thresh.lower = 0.7;
 
-figure(455); clf; title(str); hold on;
+figure(455); clf; hold on;
 in = hi;
 
     ax(1) = subplot(311); title('High frequency fish'); hold on; ylim([0,.05]);
