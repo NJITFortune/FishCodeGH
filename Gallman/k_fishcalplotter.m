@@ -11,19 +11,19 @@ figure(455); clf; hold on;
 in = hi;
 
     ax(1) = subplot(311); title('High frequency fish'); hold on;% ylim([0,.05]);
-%             plot(in(1).tim, in(1).obwamp, 'bo');
-%             plot(in(2).tim, in(2).obwamp, 'mo');
+            plot(in(1).tim, in(1).obwamp, 'bo');
+            plot(in(2).tim, in(2).obwamp, 'mo');
            
-            plot(in(1).tim, in(1).pkamp, 'bo');
-            plot(in(2).tim, in(2).pkamp, 'mo');
+%             plot(in(1).tim, in(1).pkamp, 'bo');
+%             plot(in(2).tim, in(2).pkamp, 'mo');
           
             
     ax(2) = subplot(312); title('postcal'); hold on; %ylim([0,.05]);
-%             plot(in(1).tim, in(1).obwamp*2, 'bo');
-%             plot(in(2).tim, in(2).obwamp, 'mo');
+            plot(in(1).tim, in(1).obwamp*2, 'bo');
+            plot(in(2).tim, in(2).obwamp, 'mo');
           
-            plot(in(1).tim, in(1).pkamp, 'bo');
-            plot(in(2).tim, in(2).pkamp, 'mo');
+%             plot(in(1).tim, in(1).pkamp, 'bo');
+%             plot(in(2).tim, in(2).pkamp, 'mo');
             
 %             yline(thresh.lower, 'k-');
 %             yline(thresh.upper, 'k-');
