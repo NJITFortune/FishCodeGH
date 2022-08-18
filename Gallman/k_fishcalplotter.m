@@ -22,7 +22,7 @@ in = hi;
 %             plot(in(1).tim, in(1).obwamp*2, 'bo');
 %             plot(in(2).tim, in(2).obwamp, 'mo');
           
-            plot(in(1).tim, in(1).pkamp*2, 'bo');
+            plot(in(1).tim, in(1).pkamp*1.5, 'bo');
             plot(in(2).tim, in(2).pkamp, 'mo');
             
 %             yline(thresh.lower, 'k-');
@@ -51,7 +51,7 @@ in = lo;
 %             plot(in(1).tim, in(1).obwamp*2, 'bo');
 %             plot(in(2).tim, in(2).obwamp, 'mo');
           
-            plot(in(1).tim, in(1).pkamp*2, 'bo');
+            plot(in(1).tim, in(1).pkamp*1.5, 'bo');
             plot(in(2).tim, in(2).pkamp, 'mo');
             
 %             yline(thresh.lower, 'k-');
