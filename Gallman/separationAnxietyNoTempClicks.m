@@ -47,10 +47,10 @@ f1 = fftmachine(e1, Fs);
 f2 = fftmachine(e2, Fs);
 
 
-figure(11); clf;
-    subplot(211); specgram(e1,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
-    subplot(212); specgram(e2,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
-    colormap('HOT');     
+% figure(11); clf;
+%     subplot(211); specgram(e1,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
+%     subplot(212); specgram(e2,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
+%     colormap('HOT');     
 
 
 % Plot the summed FFT for the user to click
@@ -294,14 +294,14 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
                     currlofreq = oldcurrlofreq;
                    end
 
-                   if currlofreq < 410
-                        lowfreqidx = find(f2.fftfreq > 425 & f2.fftfreq < currhifreq-oldmidpoint);
-                        [~, lmaxidx] = max(summedFFT(lowfreqidx));
-                         currlofreq = f2.fftfreq(lowfreqidx(lmaxidx));
-                         if isempty(currlofreq)
-                            currlofreq = out(j-2).lofreq;
-                         end
-                   end
+%                    if currlofreq < 410
+%                         lowfreqidx = find(f2.fftfreq > 425 & f2.fftfreq < currhifreq-oldmidpoint);
+%                         [~, lmaxidx] = max(summedFFT(lowfreqidx));
+%                          currlofreq = f2.fftfreq(lowfreqidx(lmaxidx));
+%                          if isempty(currlofreq)
+%                             currlofreq = out(j-2).lofreq;
+%                          end
+%                    end
                 else
                 currlofreq = oldcurrlofreq;
                 end
