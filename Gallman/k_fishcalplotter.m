@@ -5,6 +5,7 @@ function  k_fishcalplotter(hi, lo, out)
 
 % thresh.upper = 2;
 % thresh.lower = 0.7;
+%106.484
 
 figure(455); clf; hold on;
 in = hi;
