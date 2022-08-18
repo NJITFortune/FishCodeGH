@@ -26,14 +26,14 @@ figure(457); clf;  hold on;
     ax(1) = subplot(311); title(str); hold on; %ylim([0,2]);
            
            
-            plot([in(ttpk).timcont]/3600, [in(ttpk).pkAmp], '.');
+            plot([in(ttpk).timcont]/3600, [in(ttpk).pkAmp], 'o');
             
           %  plot([in(tto).timcont]/3600, [in(tto).obwamp], 'o');
           
             
     ax(2) = subplot(312); title('divided by max'); hold on; %ylim([0,3]);
 %
-            plot([in(ttpk).timcont]/3600, [in(ttpk).pkAmp]/max([in(ttpk).pkAmp]), '.');
+            plot([in(ttpk).timcont]/3600, [in(ttpk).pkAmp]/max([in(ttpk).pkAmp]), 'o');
     
     ax(3) = subplot(313); title('light cycle'); hold on;
             plot([out.s.timcont]/3600, [out.s.light]);
