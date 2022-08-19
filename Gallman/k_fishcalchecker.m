@@ -20,7 +20,13 @@ in = hi;
             
     ax(2) = subplot(312); title('postcal'); hold on; ylim([0,.2105]);
 
-            plot([out(out==lotube).timcont]/3600, [out.light]);
+
+            oldhi(1).tim = [out([out.hitube]==1).timcont]/3600;
+oldhi(2).tim = [out([out.hitube]==2).timcont]/3600;
+oldlo(1).tim = [out([out.lotube]==1).timcont]/3600;
+oldlo(2).tim = [out([out.lotube]==2).timcont]/3600;
+
+            plot([out([out.hitube]==1).timcont]/3600, [out([out.hitube]==1).]);
             plot(in(1).tim, in(1).obwamp, 'bo');
             plot(in(2).tim, in(2).obwamp, 'mo');
           
