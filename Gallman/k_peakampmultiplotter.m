@@ -3,10 +3,10 @@ function k_peakampmultiplotter(out)
 
 %make better variables to play with
 %time
-hitube1tim = [out.s([out.s.hitube]==1).timcont]/3600;
-hitube2tim = [out.s([out.s.hitube]==2).timcont]/3600;
-lotube1tim = [out.s([out.s.lotube]==1).timcont]/3600;
-lotube2tim = [out.s([out.s.lotube]==2).timcont]/3600;
+hitube1tim = [out([out.hitube]==1).timcont]/3600;
+hitube2tim = [out([out.hitube]==2).timcont]/3600;
+lotube1tim = [out([out.lotube]==1).timcont]/3600;
+lotube2tim = [out([out.lotube]==2).timcont]/3600;
 %amp obw
 hitube1amp = [out([out.hitube]==1).hiAmpobw];
 hitube2amp = [out([out.hitube]==2).hiAmpobw];
