@@ -61,21 +61,21 @@ pause(1); close(ff);
     figure(65); clf; hold on;
     
        ax(1) = subplot(211); title('low frequency'); hold on;
-        plot([in.s([in.s.lotube]==1).timcont]/3600, [out([in.s.lotube]==1).loAmpobw], 'b.');
-        plot([in.s([in.s.lotube]==2).timcont]/3600, [out([in.s.lotube]==2).loAmpobw], 'c.');
+        plot([in.s([in.s.lotube]==1).timcont]/3600, [out.loAmpobw1], 'b.');
+        plot([in.s([in.s.lotube]==2).timcont]/3600, [out.loAmpobw2], 'c.');
       ax(2) = subplot(212); title('high frequency'); hold on;   
-        plot([in.s([in.s.hitube]==1).timcont]/3600, [out([in.s.hitube]==1).hiAmpobw], 'r.');
-        plot([in.s([in.s.hitube]==2).timcont]/3600, [out([in.s.hitube]==2).hiAmpobw], 'm.');
+        plot([in.s([in.s.hitube]==1).timcont]/3600, [out.hiAmpobw1], 'r.');
+        plot([in.s([in.s.hitube]==2).timcont]/3600, [out.hiAmpobw2], 'm.');
     linkaxes(ax, 'x');
 
 %%
     figure(66); clf; hold on;
        ax(1) = subplot(211); title('low frequency'); hold on;
-         plot([in.s([in.s.lotube]==1).timcont]/3600, [out([in.s.lotube]==1).lobw], 'b.');
-         plot([in.s([in.s.lotube]==2).timcont]/3600, [out([in.s.lotube]==2).lobw], 'c.');   
+         plot([in.s([in.s.lotube]==1).timcont]/3600, [out.lobw1], 'b.');
+         plot([in.s([in.s.lotube]==2).timcont]/3600, [out.lobw2], 'c.');   
        ax(2) = subplot(212); title('high frequency'); hold on;  
-         plot([in.s([in.s.hitube]==1).timcont]/3600, [out([in.s.hitube]==1).hibw], 'r.');
-         plot([in.s([in.s.hitube]==2).timcont]/3600, [out([in.s.hitube]==2).hibw], 'm.');  
+         plot([in.s([in.s.hitube]==1).timcont]/3600, [out.hibw1], 'r.');
+         plot([in.s([in.s.hitube]==2).timcont]/3600, [out.hibw2], 'm.');  
 
 %% save into output structure
 
