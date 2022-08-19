@@ -25,7 +25,7 @@ in = hi;
             plot([out([out.hitube]==1).timcont]/3600, [out([out.hitube]==1).hifhi], 'co');
            
              plot(in(1).tim, in(1).freq, 'ko');
-             plot(in(2).tim, in(2).freq, 'o');
+             plot(in(2).tim, in(2).freq, 'go');
            
 
             plot([out([out.hitube]==2).timcont]/3600, [out([out.hitube]==2).hiflo], 'mo');
@@ -54,7 +54,10 @@ in = lo;
             plot([out([out.lotube]==1).timcont]/3600, [out([out.lotube]==1).loflo], 'bo');
             plot([out([out.lotube]==1).timcont]/3600, [out([out.lotube]==1).lofhi], 'co');
            
-        
+
+             plot(in(1).tim, in(1).freq, 'ko');
+             plot(in(2).tim, in(2).freq, 'go');
+
             plot([out([out.lotube]==2).timcont]/3600, [out([out.lotube]==2).loflo], 'mo');
             plot([out([out.lotube]==2).timcont]/3600, [out([out.lotube]==2).lofhi], 'ro');
 
