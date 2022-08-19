@@ -45,12 +45,12 @@ for j = 1:length(in.s)
     %high frequency fish
     if in.s(j).hitube == 1
         hifreqidx = find(f1.fftfreq > midpoint & f1.fftfreq < freqs(2));
-        [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1(hifreqidx), Fs, [in.s(j).hifeq-rango in.s(j).hifeq+rango]);
+        [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1(hifreqidx), Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
     end
 
     if in.s(j).hitube == 2
         hifreqidx = find(f2.fftfreq > midpoint & f2.fftfreq < freqs(2));
-        [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx), Fs, [in.s(j).hifeq-rango in.s(j).hifeq+rango]);
+        [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx), Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
     end
 
 end
