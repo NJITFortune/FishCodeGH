@@ -330,7 +330,7 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
         
      
         if abs(currlofreq-currhifreq) < mindiff
-                currlofreq = oldcurrlofreq;
+                %currlofreq = oldcurrlofreq;
                 currhifreq = oldcurrhifreq;
         end
    
