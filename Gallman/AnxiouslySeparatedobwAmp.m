@@ -1,6 +1,6 @@
 
 clearvars -except kg kg2 rkg k
-k = 20;
+k = 57;
 in = kg2(k);
 %% prep
 
