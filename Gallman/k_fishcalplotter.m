@@ -11,7 +11,7 @@ figure(455); clf; hold on;
 in = hi;
 
     ax(1) = subplot(311); title('High frequency fish'); hold on;% ylim([0,.05]);
-            plot(in(1).tim, in(1).obwamp, 'bo');
+            plot(in(1).tim, in(1).obwamp*1.75, 'bo');
             plot(in(2).tim, in(2).obwamp, 'mo');
            
 %             plot(in(1).tim, in(1).pkamp, 'bo');
@@ -40,7 +40,7 @@ clear in
 in = lo;
 
     ax(1) = subplot(311); title('Low frequency fish'); hold on; %ylim([0,.05]);
-            plot(in(1).tim, in(1).obwamp, 'bo');
+            plot(in(1).tim, in(1).obwamp*1.75, 'bo');
             plot(in(2).tim, in(2).obwamp, 'mo');%1.75
            
 %             plot(in(1).tim, in(1).pkamp, 'bo');
