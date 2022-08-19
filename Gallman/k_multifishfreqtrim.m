@@ -104,32 +104,32 @@ close(1);
 
 
     ax(1) = subplot(411); title('high frequency fish'); hold on; %ylim([0,2]);
-%             plot(hi(1).tim, hi(1).obwamp, 'bo');
-%             plot(oldhi(1).tim, oldhi(1).obwamp, 'k.');
+            plot(hi(1).tim, hi(1).obwamp, 'bo');
+            plot(oldhi(1).tim, oldhi(1).obwamp, 'k.');
+            
+            plot(hi(2).tim, hi(2).obwamp, 'co');
+            plot(oldhi(2).tim, oldhi(2).obwamp, 'k.');
+            
+%             plot(oldhi(1).tim, oldhi(1).pkamp, 'ko');
+%             plot(hi(1).tim, hi(1).pkamp, 'bo');
 %             
-%             plot(hi(2).tim, hi(2).obwamp, 'co');
-%             plot(oldhi(2).tim, oldhi(2).obwamp, 'k.');
-            
-            plot(oldhi(1).tim, oldhi(1).pkamp, 'ko');
-            plot(hi(1).tim, hi(1).pkamp, 'bo');
-            
-            plot(oldhi(2).tim, oldhi(2).pkamp, 'ko');
-            plot(hi(2).tim, hi(2).pkamp, 'co');
-            
+%             plot(oldhi(2).tim, oldhi(2).pkamp, 'ko');
+%             plot(hi(2).tim, hi(2).pkamp, 'co');
+%             
           
             
     ax(2) = subplot(412); title('low frequency fish'); hold on; %ylim([0,3]);
-%             plot(lo(1).tim, lo(1).obwamp, 'ro');
-%             plot(oldlo(1).tim, oldlo(1).obwamp, 'k.');
+            plot(lo(1).tim, lo(1).obwamp, 'ro');
+            plot(oldlo(1).tim, oldlo(1).obwamp, 'k.');
+            
+            plot(lo(2).tim, lo(2).obwamp, 'mo');
+            plot(oldlo(2).tim, oldlo(2).obwamp, 'k.');
+            
+%             plot(oldlo(1).tim, oldlo(1).pkamp, 'ko');
+%             plot(lo(1).tim, lo(1).pkamp, 'ro');
 %             
-%             plot(lo(2).tim, lo(2).obwamp, 'mo');
-%             plot(oldlo(2).tim, oldlo(2).obwamp, 'k.');
-            
-            plot(oldlo(1).tim, oldlo(1).pkamp, 'ko');
-            plot(lo(1).tim, lo(1).pkamp, 'ro');
-            
-            plot(oldlo(2).tim, oldlo(2).pkamp, 'ko');
-            plot(lo(2).tim, lo(2).pkamp, 'mo');
+%             plot(oldlo(2).tim, oldlo(2).pkamp, 'ko');
+%             plot(lo(2).tim, lo(2).pkamp, 'mo');
             
                      
     ax(3) = subplot(413); title('fish frequencies'); hold on; %ylim([300, 700]);
