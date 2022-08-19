@@ -24,7 +24,10 @@ in = hi;
             plot([out([out.hitube]==1).timcont]/3600, [out([out.hitube]==1).hiflo], 'bo');
             plot([out([out.hitube]==1).timcont]/3600, [out([out.hitube]==1).hifhi], 'co');
            
-        
+             plot(in(1).tim, in(1).freq, 'ko');
+             plot(in(2).tim, in(2).freq, 'o');
+           
+
             plot([out([out.hitube]==2).timcont]/3600, [out([out.hitube]==2).hiflo], 'mo');
             plot([out([out.hitube]==2).timcont]/3600, [out([out.hitube]==2).hifhi], 'ro');
 
