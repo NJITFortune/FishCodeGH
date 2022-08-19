@@ -34,23 +34,23 @@ for j = 1:length(in.s)
     %low frequency fish
     if in.s(j).lotube == 1
         lowfreqidx = find(f1.fftfreq > in.s(j).lofreq-rango & f1.fftfreq < in.s(j).lofreq+rango);
-        [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e1(lowfreqidx), Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
+        [out(j).lobw1, out(j).loflo1, out(j).lofhi1, out(j).loAmpobw1] = obw(e1(lowfreqidx), Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
     end
 
     if in.s(j).lotube == 2
         lowfreqidx = find(f2.fftfreq > in.s(j).lofreq-rango & f2.fftfreq < in.s(j).lofreq+rango);
-        [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e2(lowfreqidx), Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
+        [out(j).lobw2, out(j).loflo2, out(j).lofhi2, out(j).loAmpobw2] = obw(e2(lowfreqidx), Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
     end
 
     %high frequency fish
     if in.s(j).hitube == 1
         hifreqidx = find(f1.fftfreq > in.s(j).hifreq-rango & f1.fftfreq < in.s(j).hifreq+rango);
-        [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1(hifreqidx), Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
+        [out(j).hibw1, out(j).hiflo1, out(j).hifhi1, out(j).hiAmpobw1] = obw(e1(hifreqidx), Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
     end
 
     if in.s(j).hitube == 2
         hifreqidx = find(f2.fftfreq > in.s(j).hifreq-rango  & f2.fftfreq < in.s(j).hifreq+rango);
-        [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx), Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
+        [out(j).hibw2, out(j).hiflo2, out(j).hifhi2, out(j).hiAmpobw2] = obw(e2(hifreqidx), Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
     end
 
 end
@@ -77,16 +77,3 @@ pause(1); close(ff);
          plot([in.s([in.s.hitube]==1).timcont]/3600, [out([in.s.hitube]==1).hibw], 'r.');
          plot([in.s([in.s.hitube]==2).timcont]/3600, [out([in.s.hitube]==2).hibw], 'm.');  
 
-%% save into output structure
-
-for j = 1:length(in.s(j))
-kg2(k).s(j).hiAmpobw = out(j).hiAmpobw;
-kg2(k).s(j).hibw = out(j).hibw;
-kg2(k).s(j).hifhi = out(j).hifhi;
-kg2(k).s(j).hiflo = out(j).hiflo;
-
-kg2(k).s(j).loAmpobw = out(j).loAmpobw;
-kg2(k).s(j).lobw = out(j).lobw;
-kg2(k).s(j).lofhi = out(j).lofhi;
-kg2(k).s(j).loflo = out(j).loflo;
-end
