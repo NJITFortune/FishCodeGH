@@ -3,15 +3,11 @@ function k_peakampmultiplotter(out)
 
 %make better variables to play with
 %time
-hitube1tim = [out([out.hitube]==1).timcont]/3600;
-hitube2tim = [out([out.hitube]==2).timcont]/3600;
-lotube1tim = [out([out.lotube]==1).timcont]/3600;
-lotube2tim = [out([out.lotube]==2).timcont]/3600;
-%amp obw
-hitube1amp = [out([out.hitube]==1).hiAmpobw];
-hitube2amp = [out([out.hitube]==2).hiAmpobw];
-lotube1amp = [out([out.lotube]==1).loAmpobw];
-lotube2amp = [out([out.lotube]==2).loAmpobw];
+hitube1tim = [out([out.s.hitube]==1).timcont]/3600;
+hitube2tim = [out([out.s.hitube]==2).timcont]/3600;
+lotube1tim = [out([out.s.lotube]==1).timcont]/3600;
+lotube2tim = [out([out.s.lotube]==2).timcont]/3600;
+
 
 % %amp fft peak
 % hitube1amp = [out([out.hitube]==1).hipeakamp];
@@ -20,10 +16,16 @@ lotube2amp = [out([out.lotube]==2).loAmpobw];
 % lotube2amp = [out([out.lotube]==2).lopeakamp];
 
 %freq
-hitube1freq = [out([out.hitube]==1).hifreq];
-hitube2freq = [out([out.hitube]==2).hifreq];
-lotube1freq = [out([out.lotube]==1).lofreq];
-lotube2freq = [out([out.lotube]==2).lofreq];
+hitube1freq = [out([out.s.hitube]==1).hifreq];
+hitube2freq = [out([out.s.hitube]==2).hifreq];
+lotube1freq = [out([out.s.lotube]==1).lofreq];
+lotube2freq = [out([out.s.lotube]==2).lofreq];
+
+%%
+hitube1amp = [out.os.hiAmpobw];
+hitube2amp = [out([out.hitube]==2).hiAmpobw];
+lotube1amp = [out([out.lotube]==1).loAmpobw];
+lotube2amp = [out([out.lotube]==2).loAmpobw];
 
 %% plot 
 %threshold for in-tube data
