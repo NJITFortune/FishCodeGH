@@ -22,10 +22,10 @@ lotube1freq = [out.s([out.s.lotube]==1).lofreq];
 lotube2freq = [out.s([out.s.lotube]==2).lofreq];
 
 %%
-hitube1amp = [out.os([out.hitube]==1).hiAmpobw];
-hitube2amp = [out.os([out.hitube]==2).hiAmpobw];
-lotube1amp = [out.os([out.lotube]==1).loAmpobw];
-lotube2amp = [out.os([out.lotube]==2).loAmpobw];
+hitube1amp = [out.os([out.s.hitube]==1).hiAmpobw];
+hitube2amp = [out.os([out.s.hitube]==2).hiAmpobw];
+lotube1amp = [out.os([out.s.lotube]==1).loAmpobw];
+lotube2amp = [out.os([out.s.lotube]==2).loAmpobw];
 
 %% plot 
 %threshold for in-tube data
