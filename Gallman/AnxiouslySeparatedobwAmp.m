@@ -55,6 +55,8 @@ for j = 1:length(in.s)
 
 end
 pause(1); close(ff);
+
+in = out;
 %%
     figure(65); clf; hold on;
     
