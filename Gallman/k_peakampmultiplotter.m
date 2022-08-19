@@ -25,6 +25,7 @@ hitube2freq = [out([out.hitube]==2).hifreq];
 lotube1freq = [out([out.lotube]==1).lofreq];
 lotube2freq = [out([out.lotube]==2).lofreq];
 
+%%
 
 %% plot 
 %threshold for in-tube data
