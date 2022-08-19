@@ -78,12 +78,15 @@ pause(1); close(ff);
          plot([in.s([in.s.hitube]==2).timcont]/3600, [out([in.s.hitube]==2).hibw], 'm.');  
 
 %% save into output structure
-kg2(k).s.hiAmpobw = out.hiAmpobw;
-kg2(k).s.hibw = out.hibw;
-kg2(k).s.hifhi = out.hifhi;
-kg2(k).s.hiflo = out.hiflo;
 
-kg2(k).s.loAmpobw = out.loAmpobw;
-kg2(k).s.lobw = out.lobw;
-kg2(k).s.lofhi = out.lofhi;
-kg2(k).s.loflo = out.loflo;
+for j = 1:length(in.s(j))
+kg2(k).s(j).hiAmpobw = out(j).hiAmpobw;
+kg2(k).s(j).hibw = out(j).hibw;
+kg2(k).s(j).hifhi = out(j).hifhi;
+kg2(k).s(j).hiflo = out(j).hiflo;
+
+kg2(k).s(j).loAmpobw = out(j).loAmpobw;
+kg2(k).s(j).lobw = out(j).lobw;
+kg2(k).s(j).lofhi = out(j).lofhi;
+kg2(k).s(j).loflo = out(j).loflo;
+end
