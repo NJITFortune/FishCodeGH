@@ -15,7 +15,7 @@ in = hi;
 %             plot(in(2).tim, in(2).obwamp, 'mo');
            
             plot(in(1).tim, in(1).pkamp, 'bo');
-            plot(in(2).tim, in(2).pkamp, 'mo');
+            plot(in(2).tim, in(2).pkamp*10, 'mo');
           
             
     ax(2) = subplot(312); title('postcal'); hold on;% ylim([0,.2105]);
@@ -44,7 +44,7 @@ in = lo;
 %             plot(in(2).tim, in(2).obwamp, 'mo');%1.75
            
             plot(in(1).tim, in(1).pkamp, 'bo');
-            plot(in(2).tim, in(2).pkamp, 'mo');
+            plot(in(2).tim, in(2).pkamp*30, 'mo');
           
             
     ax(2) = subplot(312); title('postcal'); hold on; %ylim([0,.2105]);
