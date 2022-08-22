@@ -31,7 +31,7 @@ figure(457); clf;  hold on;
             
     ax(2) = subplot(412); title('obw'); hold on; %ylim([0,3]);        
             plot([in.timcont]/3600, [in.obwAmp], 'ko');
-            plot([in(tto).timcont]/3600, [in(tto).obwAmp], 'bo');
+            plot([in(tto).timcont]/3600, [in(tto).obwAmp], 'co');
          
             
     ax(3) = subplot(413); title('frequency'); hold on; %ylim([0,3]);
