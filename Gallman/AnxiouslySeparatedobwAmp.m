@@ -7,7 +7,7 @@ function out = AnxiouslySeparatedobwAmp(in)
 Fs = 40000;
 freqs = [200 650]; %freq range of typical eigen EOD
 iFiles = dir('Eigen*');
-rango = 5;
+rango = 20;
 
  % Band pass filter in frequency range of fish
  [h,g] = butter(5, [freqs(1)/(Fs/2) freqs(2)/(Fs/2)]);
