@@ -14,13 +14,13 @@ in = hi;
 %             plot(in(1).tim, in(1).obwamp, 'bo');
 %             plot(in(2).tim, in(2).obwamp, 'mo');
            
-            plot(in(1).tim, in(1).pkamp, 'bo');
-            plot(in(2).tim, in(2).pkamp*8, 'mo');
+            plot(in(1).tim, in(1).pkamp*2, 'bo');
+            plot(in(2).tim, in(2).pkamp, 'mo');
           
             
     ax(2) = subplot(312); title('postcal'); hold on;% ylim([0,.2105]);
-            plot(in(1).tim, in(1).obwamp, 'bo');
-            plot(in(2).tim, in(2).obwamp*8, 'mo');
+            plot(in(1).tim, in(1).obwamp*2, 'bo');
+            plot(in(2).tim, in(2).obwamp, 'mo');
           
 %             plot(in(1).tim, in(1).pkamp, 'bo');
 %             plot(in(2).tim, in(2).pkamp, 'mo');
@@ -43,13 +43,13 @@ in = lo;
 %             plot(in(1).tim, in(1).obwamp, 'bo');
 %             plot(in(2).tim, in(2).obwamp, 'mo');%1.75
 %            
-            plot(in(1).tim, in(1).pkamp, 'bo');
-            plot(in(2).tim, in(2).pkamp*8, 'mo');
+            plot(in(1).tim, in(1).pkamp*2, 'bo');
+            plot(in(2).tim, in(2).pkamp, 'mo');
           
             
     ax(2) = subplot(312); title('postcal'); hold on; %ylim([0,.2105]);
-            plot(in(1).tim, in(1).obwamp, 'bo');%*2
-            plot(in(2).tim, in(2).obwamp*, 'mo');
+            plot(in(1).tim, in(1).obwamp*2, 'bo');%*2
+            plot(in(2).tim, in(2).obwamp, 'mo');
           
 %             plot(in(1).tim, in(1).pkamp, 'bo');
 %             plot(in(2).tim, in(2).pkamp, 'mo');
