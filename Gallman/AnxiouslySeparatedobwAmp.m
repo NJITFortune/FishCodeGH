@@ -41,7 +41,9 @@ for j = 1:length(in.s)
         [out(j).lobw1, out(j).loflo1, out(j).lofhi1, out(j).loAmpobw1] = obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
         if mod(j,plotnum) == 0
             figure(j); clf;; hold on; 
-            obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);ylabel('low1');xlim([0,1])
+            obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);ylabel('low1');xlim([0,1]);
+            plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
+            plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
         end
     end
 
@@ -49,7 +51,9 @@ for j = 1:length(in.s)
         [out(j).lobw2, out(j).loflo2, out(j).lofhi2, out(j).loAmpobw2] = obw(e2, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
          if mod(j,plotnum) == 0
             figure(j); clf;  hold on;
-            obw(e2, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);ylabel('low2');xlim([0,1]);
+            obw(e2, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);ylabel('low2');xlim([0,1]); 
+            plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
+             plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
         end
     end
 
@@ -60,6 +64,8 @@ for j = 1:length(in.s)
          if mod(j,plotnum) == 0
             figure(j); clf; hold on;
             obw(e1, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);ylabel('hi1');xlim([0,1]);
+             plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
+             plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
         end
     end
 
@@ -68,6 +74,8 @@ for j = 1:length(in.s)
          if mod(j,plotnum) == 0
             figure(j); clf; hold on;
             obw(e2, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);ylabel('hi2');xlim([0,1]);
+             plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
+             plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
         end
     end
 
