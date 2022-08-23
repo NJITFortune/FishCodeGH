@@ -40,7 +40,7 @@ for j = 1:length(in.s)
 
         [out(j).lobw1, out(j).loflo1, out(j).lofhi1, out(j).loAmpobw1] = obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
         if mod(j,plotnum) == 0
-            figure(j); clf;; hold on; 
+            figure(j); clf; hold on; 
             obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);ylabel('low1');xlim([0,1]);
             plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
             plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
@@ -62,7 +62,7 @@ for j = 1:length(in.s)
         [out(j).hibw1, out(j).hiflo1, out(j).hifhi1, out(j).hiAmpobw1] = obw(e1, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
 
          if mod(j,plotnum) == 0
-            figure(j); clf; hold on;
+            figure(j+10); clf; hold on;
             obw(e1, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);ylabel('hi1');xlim([0,1]);
              plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
              plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
@@ -72,7 +72,7 @@ for j = 1:length(in.s)
     if in.s(j).hitube == 2
         [out(j).hibw2, out(j).hiflo2, out(j).hifhi2, out(j).hiAmpobw2] = obw(e2, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
          if mod(j,plotnum) == 0
-            figure(j); clf; hold on;
+            figure(j+10); clf; hold on;
             obw(e2, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);ylabel('hi2');xlim([0,1]);
              plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
              plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
