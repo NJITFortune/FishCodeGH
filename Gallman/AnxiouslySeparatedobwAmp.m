@@ -35,8 +35,8 @@ for j = 1:length(in.s)
     if in.s(j).lotube == 1
 
         %filter more
-        [n,m] = butter(5, [(in.s(j).lofreq-rango)/(Fs/2) (in.s(j).lofreq+rango)/(fs/2)]);
-        [p,o] = bandstop()
+%         [n,m] = butter(5, [(in.s(j).lofreq-rango)/(Fs/2) (in.s(j).lofreq+rango)/(fs/2)]);
+%         [p,o] = bandstop()
 
         [out(j).lobw1, out(j).loflo1, out(j).lofhi1, out(j).loAmpobw1] = obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
         if mod(j,500) == 0
@@ -48,8 +48,8 @@ for j = 1:length(in.s)
     if in.s(j).lotube == 2
         [out(j).lobw2, out(j).loflo2, out(j).lofhi2, out(j).loAmpobw2] = obw(e2, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
          if mod(j,500) == 0
-            figure(j); clf; title('low2');xlim([0,2]); hold on;
-            obw(e2, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
+            figure(j); clf; xlim([0,2]); hold on;
+            obw(e2, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);title('low2');
         end
     end
 
@@ -58,16 +58,16 @@ for j = 1:length(in.s)
         [out(j).hibw1, out(j).hiflo1, out(j).hifhi1, out(j).hiAmpobw1] = obw(e1, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
 
          if mod(j,500) == 0
-            figure(j); clf;title('hi1');xlim([0,2]); hold on;
-            obw(e1, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
+            figure(j); clf;xlim([0,2]); hold on;
+            obw(e1, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);title('hi1');
         end
     end
 
     if in.s(j).hitube == 2
         [out(j).hibw2, out(j).hiflo2, out(j).hifhi2, out(j).hiAmpobw2] = obw(e2, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
          if mod(j,500) == 0
-            figure(j); clf;title('hi2');xlim([0,2]); hold on;
-            obw(e2, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
+            figure(j); clf;xlim([0,2]); hold on;
+            obw(e2, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);title('hi2');
         end
     end
 
