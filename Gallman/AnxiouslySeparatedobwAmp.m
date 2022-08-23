@@ -38,7 +38,7 @@ for j = 1:length(in.s)
     if in.s(j).lotube == 1
 
             if mean(abs(data(:,1))) > 2
-                fprintf('bad %i', j);
+               %fprintf('bad %i', j);
                 out(j).bad1idx = j;
                 out(j).loAmpobw1 = 0;
             else
@@ -97,7 +97,7 @@ for j = 1:length(in.s)
 
     if in.s(j).hitube == 2
 
-        if mean(abs(data(:,1))) > 2
+        if mean(abs(data(:,1))) > 3
                 out(j).bad2idx = j;
                 out(j).hiAmpobw2 = 0;
         else
