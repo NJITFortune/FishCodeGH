@@ -38,6 +38,7 @@ for j = 1:length(in.s)
     if in.s(j).lotube == 1
 
             if mean(abs(data(:,1))) > 2
+                fprintf('bad %i', j);
                 out(j).bad1idx = j;
                 out(j).loAmpobw1 = 0;
             else
@@ -128,25 +129,25 @@ pause(1); close(ff);
     linkaxes(ax, 'x');
 
 %%
-    figure(66); clf; hold on;
-       ax(1) = subplot(211); title('low frequency fish'); hold on;
-         plot([in.s([in.s.lotube]==1).timcont]/3600, [out.lofhi1], 'b.');
-         plot([in.s([in.s.lotube]==1).timcont]/3600, [out.loflo1], 'b.');
-         plot([in.s([in.s.lotube]==2).timcont]/3600, [out.lofhi2], 'c.'); 
-         plot([in.s([in.s.lotube]==2).timcont]/3600, [out.loflo2], 'c.');
-         
-         plot([in.s([in.s.lotube]==1).timcont]/3600, [in.s([in.s.lotube]==1).lofreq], 'k.');
-         plot([in.s([in.s.lotube]==2).timcont]/3600, [in.s([in.s.lotube]==2).lofreq], 'k.');
-
-       ax(2) = subplot(212); title('high frequency fish'); hold on;  
-         plot([in.s([in.s.hitube]==1).timcont]/3600, [out.hifhi1], 'r.');
-         plot([in.s([in.s.hitube]==1).timcont]/3600, [out.hiflo1], 'r.');
-         plot([in.s([in.s.hitube]==2).timcont]/3600, [out.hifhi2], 'm.'); 
-         plot([in.s([in.s.hitube]==2).timcont]/3600, [out.hiflo2], 'm.'); 
-
-         plot([in.s([in.s.hitube]==1).timcont]/3600, [in.s([in.s.hitube]==1).hifreq], 'k.'); 
-         plot([in.s([in.s.hitube]==2).timcont]/3600, [in.s([in.s.hitube]==2).hifreq], 'k.'); 
-     linkaxes(ax, 'x');
+%     figure(66); clf; hold on;
+%        ax(1) = subplot(211); title('low frequency fish'); hold on;
+%          plot([in.s([in.s.lotube]==1).timcont]/3600, [out.lofhi1], 'b.');
+%          plot([in.s([in.s.lotube]==1).timcont]/3600, [out.loflo1], 'b.');
+%          plot([in.s([in.s.lotube]==2).timcont]/3600, [out.lofhi2], 'c.'); 
+%          plot([in.s([in.s.lotube]==2).timcont]/3600, [out.loflo2], 'c.');
+%          
+%          plot([in.s([in.s.lotube]==1).timcont]/3600, [in.s([in.s.lotube]==1).lofreq], 'k.');
+%          plot([in.s([in.s.lotube]==2).timcont]/3600, [in.s([in.s.lotube]==2).lofreq], 'k.');
+% 
+%        ax(2) = subplot(212); title('high frequency fish'); hold on;  
+%          plot([in.s([in.s.hitube]==1).timcont]/3600, [out.hifhi1], 'r.');
+%          plot([in.s([in.s.hitube]==1).timcont]/3600, [out.hiflo1], 'r.');
+%          plot([in.s([in.s.hitube]==2).timcont]/3600, [out.hifhi2], 'm.'); 
+%          plot([in.s([in.s.hitube]==2).timcont]/3600, [out.hiflo2], 'm.'); 
+% 
+%          plot([in.s([in.s.hitube]==1).timcont]/3600, [in.s([in.s.hitube]==1).hifreq], 'k.'); 
+%          plot([in.s([in.s.hitube]==2).timcont]/3600, [in.s([in.s.hitube]==2).hifreq], 'k.'); 
+%      linkaxes(ax, 'x');
 
 %% save into output structure
 
