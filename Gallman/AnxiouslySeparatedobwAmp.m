@@ -26,8 +26,8 @@ for j = 1:length(in.s)
     e1 = filtfilt(h,g,data(:,1));
     e2 = filtfilt(h,g,data(:,2));
   %fft to get frequency ranges
-    f1 = fftmachine(filtfilt(h,g,data(:,1)), Fs);
-    f2 = fftmachine(filtfilt(h,g,data(:,2)), Fs);
+    f1 = fftmachine(data(:,1), Fs);
+    f2 = fftmachine(data(:,2), Fs);
 
 
     sigf1 = find(f1.fftfreq > 200 & f1.fftfreq < 800);
