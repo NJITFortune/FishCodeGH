@@ -29,6 +29,12 @@ for j = 1:length(in.s)
     f1 = fftmachine(filtfilt(h,g,data(:,1)), Fs);
     f2 = fftmachine(filtfilt(h,g,data(:,2)), Fs);
 
+    sigf1 = find(f1.fftfreq > 200 & f1.fttfreq < 800);
+    noisef1 = find(f1.fftfreq < 100);
+
+    sigf2 = find(f2.fftfreq > 200 & f2.fttfreq < 800);
+    noisef2 = find(f1.fftfreq < 100);
+
   %use frequencies of each fish to define new frequency ranges for obw
     %midpoint = in.s(j).lofreq + ((in.s(j).hifreq - in.s(j).lofreq)/2);
 
@@ -36,7 +42,7 @@ for j = 1:length(in.s)
     %low frequency fish
     if in.s(j).lotube == 1
 
-            if mean(abs(data(:,1))) > 2
+            if max()
                %fprintf('bad %i', j);
                 out(j).bad1idx = j;
                 out(j).loAmpobw1 = -0.10;
