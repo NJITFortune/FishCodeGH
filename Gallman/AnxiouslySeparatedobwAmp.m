@@ -33,6 +33,11 @@ for j = 1:length(in.s)
   %perform obw on both fish
     %low frequency fish
     if in.s(j).lotube == 1
+
+        %filter more
+        [n,m] = butter(5, [(in.s(j).lofreq-rango)/(Fs/2) (in.s(j).lofreq+rango)/(fs/2)]);
+        [p,o] = 
+
         [out(j).lobw1, out(j).loflo1, out(j).lofhi1, out(j).loAmpobw1] = obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
         if mod(j,500) == 0
             figure(j); clf;xlim([0,2]); hold on; 
