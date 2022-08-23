@@ -36,7 +36,7 @@ for j = 1:length(in.s)
 
         %filter more
         [n,m] = butter(5, [(in.s(j).lofreq-rango)/(Fs/2) (in.s(j).lofreq+rango)/(fs/2)]);
-        [p,o] = 
+        [p,o] = bandstop()
 
         [out(j).lobw1, out(j).loflo1, out(j).lofhi1, out(j).loAmpobw1] = obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
         if mod(j,500) == 0
