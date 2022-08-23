@@ -43,7 +43,7 @@ for j = 1:length(in.s)
     %low frequency fish
     if in.s(j).lotube == 1
 
-            if max(sigf1)/max(noisef1) < 1
+            if max(f1.fftdata(sigf1))/max(f1.fftdata(noisef1)) < 1
                %fprintf('bad %i', j);
                 out(j).bad1idx = j;
                 out(j).loAmpobw1 = -0.10;
@@ -67,7 +67,7 @@ for j = 1:length(in.s)
     if in.s(j).lotube == 2
 
 
-        if max(sigf2)/max(noisef2) < 1
+        if max(f2.fftdata(sigf2))/max(f2.fftdata(noisef2)) < 1
                 out(j).bad2idx = j;
                 out(j).loAmpobw2 = -0.1;
         else
@@ -84,7 +84,7 @@ for j = 1:length(in.s)
     %high frequency fish
     if in.s(j).hitube == 1
 
-        if max(sigf1)/max(noisef1) < 1
+        if max(f1.fftdata(sigf1))/max(f1.fftdata(noisef1)) < 1
                 out(j).bad1idx = j;
                 out(j).hiAmpobw1 = -0.1;
         else
@@ -103,7 +103,7 @@ for j = 1:length(in.s)
 
     if in.s(j).hitube == 2
 
-        if max(sigf2)/max(noisef2) < 1
+        if max(f2.fftdata(sigf2))/max(f2.fftdata(noisef2)) < 1
                 out(j).bad2idx = j;
                 out(j).hiAmpobw2 = -0.1;
         else
