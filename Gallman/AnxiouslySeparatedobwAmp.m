@@ -33,23 +33,19 @@ for j = 1:length(in.s)
   %perform obw on both fish
     %low frequency fish
     if in.s(j).lotube == 1
-        lowfreqidx = find(f1.fftfreq > in.s(j).lofreq-rango & f1.fftfreq < in.s(j).lofreq+rango);
         [out(j).lobw1, out(j).loflo1, out(j).lofhi1, out(j).loAmpobw1] = obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
     end
 
     if in.s(j).lotube == 2
-        lowfreqidx = find(f2.fftfreq > in.s(j).lofreq-rango & f2.fftfreq < in.s(j).lofreq+rango);
         [out(j).lobw2, out(j).loflo2, out(j).lofhi2, out(j).loAmpobw2] = obw(e2, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
     end
 
     %high frequency fish
     if in.s(j).hitube == 1
-        hifreqidx = find(f1.fftfreq > in.s(j).hifreq-rango & f1.fftfreq < in.s(j).hifreq+rango);
         [out(j).hibw1, out(j).hiflo1, out(j).hifhi1, out(j).hiAmpobw1] = obw(e1, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
     end
 
     if in.s(j).hitube == 2
-        hifreqidx = find(f2.fftfreq > in.s(j).hifreq-rango  & f2.fftfreq < in.s(j).hifreq+rango);
         [out(j).hibw2, out(j).hiflo2, out(j).hifhi2, out(j).hiAmpobw2] = obw(e2, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
     end
 
