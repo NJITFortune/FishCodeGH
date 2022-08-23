@@ -40,7 +40,7 @@ for j = 1:length(in.s)
             if mean(abs(data(:,1))) > 2
                %fprintf('bad %i', j);
                 out(j).bad1idx = j;
-                out(j).loAmpobw1 = 0;
+                out(j).loAmpobw1 = -0.10;
             else
         %filter more
 %         [n,m] = butter(5, [(in.s(j).lofreq-rango)/(Fs/2) (in.s(j).lofreq+rango)/(fs/2)]);
@@ -63,7 +63,7 @@ for j = 1:length(in.s)
 
         if mean(abs(data(:,2))) > 2
                 out(j).bad2idx = j;
-                out(j).loAmpobw2 = 0;
+                out(j).loAmpobw2 = -0.1;
         else
                 [out(j).lobw2, out(j).loflo2, out(j).lofhi2, out(j).loAmpobw2] = obw(e2, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
 %                  if mod(j,plotnum) == 0
@@ -80,7 +80,7 @@ for j = 1:length(in.s)
 
         if mean(abs(data(:,1))) > 2
                 out(j).bad1idx = j;
-                out(j).hiAmpobw1 = 0;
+                out(j).hiAmpobw1 = -0.1;
         else
 
             [out(j).hibw1, out(j).hiflo1, out(j).hifhi1, out(j).hiAmpobw1] = obw(e1, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
@@ -97,9 +97,9 @@ for j = 1:length(in.s)
 
     if in.s(j).hitube == 2
 
-        if mean(abs(data(:,1))) > 3
+        if mean(abs(data(:,1))) > 2
                 out(j).bad2idx = j;
-                out(j).hiAmpobw2 = 0;
+                out(j).hiAmpobw2 = -0.1;
         else
 
 
