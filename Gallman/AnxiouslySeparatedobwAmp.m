@@ -26,14 +26,14 @@ for j = 1:length(in.s)
     e1 = filtfilt(h,g,data(:,1));
     e2 = filtfilt(h,g,data(:,2));
   %fft to get frequency ranges
-    f1 = fftmachine(filtfilt(h,g,data(:,1)), Fs)
+    f1 = fftmachine(filtfilt(h,g,data(:,1)), Fs);
     f2 = fftmachine(filtfilt(h,g,data(:,2)), Fs);
 
 
-    sigf1 = find(f1.fftfreq > 200 & f1.fttfreq < 800);
+    sigf1 = find(f1.fftfreq > 200 & f1.fftfreq < 800);
     noisef1 = find(f1.fftfreq < 100);
 
-    sigf2 = find(f2.fftfreq > 200 & f2.fttfreq < 800);
+    sigf2 = find(f2.fftfreq > 200 & f2.fftfreq < 800);
     noisef2 = find(f1.fftfreq < 100);
 
   %use frequencies of each fish to define new frequency ranges for obw
