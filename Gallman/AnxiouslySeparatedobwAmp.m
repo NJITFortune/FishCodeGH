@@ -34,6 +34,7 @@ for j = 1:length(in.s)
     %low frequency fish
     if in.s(j).lotube == 1
         [out(j).lobw1, out(j).loflo1, out(j).lofhi1, out(j).loAmpobw1] = obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
+        if mod(j,500) == 0
     end
 
     if in.s(j).lotube == 2
