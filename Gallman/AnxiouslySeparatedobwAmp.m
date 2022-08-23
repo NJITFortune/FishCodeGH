@@ -15,7 +15,7 @@ rango = 50;
 %% obwAmp of anxiously separated data
 ff = waitbar(0, 'Cycling through files.');
 for j = 1:length(in.s)
-j
+
      waitbar(j/length(iFiles), ff, 'Working on it...', 'modal');
     
   %load in raw data  
@@ -26,8 +26,9 @@ j
     e1 = filtfilt(h,g,data(:,1));
     e2 = filtfilt(h,g,data(:,2));
   %fft to get frequency ranges
-    f1 = fftmachine(filtfilt(h,g,data(:,1)), Fs);
+    f1 = fftmachine(filtfilt(h,g,data(:,1)), Fs)
     f2 = fftmachine(filtfilt(h,g,data(:,2)), Fs);
+
 
     sigf1 = find(f1.fftfreq > 200 & f1.fttfreq < 800);
     noisef1 = find(f1.fftfreq < 100);
