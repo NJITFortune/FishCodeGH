@@ -20,6 +20,9 @@ for j = 1:length(in.s)
     
   %load in raw data  
     load(iFiles(j).name, 'data');
+    
+    
+
   %filter data
     e1 = filtfilt(h,g,data(:,1));
     e2 = filtfilt(h,g,data(:,2));
