@@ -34,7 +34,7 @@ for j = 1:length(in.s)
     noisef1 = find(f1.fftfreq < 100);
 
     sigf2 = find(f2.fftfreq > 200 & f2.fftfreq < 800);
-    noisef2 = find(f1.fftfreq < 100);
+    noisef2 = find(f2.fftfreq < 100);
 
   %use frequencies of each fish to define new frequency ranges for obw
     %midpoint = in.s(j).lofreq + ((in.s(j).hifreq - in.s(j).lofreq)/2);
@@ -46,7 +46,7 @@ for j = 1:length(in.s)
             if max(f1.fftdata(sigf1))/max(f1.fftdata(noisef1)) < 1
                %fprintf('bad %i', j);
                 out(j).bad1idx = j;
-                out(j).loAmpobw1 = -0.10;
+                out(j).loAmpobw1 = -1;
             else
         %filter more
 %         [n,m] = butter(5, [(in.s(j).lofreq-rango)/(Fs/2) (in.s(j).lofreq+rango)/(fs/2)]);
@@ -69,7 +69,7 @@ for j = 1:length(in.s)
 
         if max(f2.fftdata(sigf2))/max(f2.fftdata(noisef2)) < 1
                 out(j).bad2idx = j;
-                out(j).loAmpobw2 = -0.1;
+                out(j).loAmpobw2 = -1;
         else
                 [out(j).lobw2, out(j).loflo2, out(j).lofhi2, out(j).loAmpobw2] = obw(e2, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
 %                  if mod(j,plotnum) == 0
@@ -86,7 +86,7 @@ for j = 1:length(in.s)
 
         if max(f1.fftdata(sigf1))/max(f1.fftdata(noisef1)) < 1
                 out(j).bad1idx = j;
-                out(j).hiAmpobw1 = -0.1;
+                out(j).hiAmpobw1 = -1;
         else
 
             [out(j).hibw1, out(j).hiflo1, out(j).hifhi1, out(j).hiAmpobw1] = obw(e1, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
@@ -105,7 +105,7 @@ for j = 1:length(in.s)
 
         if max(f2.fftdata(sigf2))/max(f2.fftdata(noisef2)) < 1
                 out(j).bad2idx = j;
-                out(j).hiAmpobw2 = -0.1;
+                out(j).hiAmpobw2 = -1;
         else
 
 
