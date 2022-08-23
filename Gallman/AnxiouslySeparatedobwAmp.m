@@ -35,8 +35,8 @@ for j = 1:length(in.s)
     if in.s(j).lotube == 1
         [out(j).lobw1, out(j).loflo1, out(j).lofhi1, out(j).loAmpobw1] = obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
         if mod(j,500) == 0
-            figure(j); clf;title('low1');xlim([0,2]); hold on; 
-            obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
+            figure(j); clf;xlim([0,2]); hold on; 
+            obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);title('low1');
         end
     end
 
