@@ -8,7 +8,7 @@ Fs = 40000;
 freqs = [200 650]; %freq range of typical eigen EOD
 iFiles = dir('Eigen*');
 rango = 25;
-plotnum = 300;
+%plotnum = 300;
  % Band pass filter in frequency range of fish
  [h,g] = butter(5, [freqs(1)/(Fs/2) freqs(2)/(Fs/2)]);
 
@@ -37,52 +37,82 @@ for j = 1:length(in.s)
     %low frequency fish
     if in.s(j).lotube == 1
 
+            if mean(abs(data(:,1))) > 2
+                out(j).bad1idx = j;
+                out(j).loAmpobw1 = 0;
+            else
         %filter more
 %         [n,m] = butter(5, [(in.s(j).lofreq-rango)/(Fs/2) (in.s(j).lofreq+rango)/(fs/2)]);
 %         [p,o] = bandstop()
 
-        [out(j).lobw1, out(j).loflo1, out(j).lofhi1, out(j).loAmpobw1] = obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
-        if mod(j,plotnum) == 0
-            figure(j); clf; hold on; 
-            obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);ylabel('low1');xlim([0,1]);
-            plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
-            plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
-        end
+                [out(j).lobw1, out(j).loflo1, out(j).lofhi1, out(j).loAmpobw1] = obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
+%                 if mod(j,plotnum) == 0
+%                     figure(j); clf; hold on; 
+%                     obw(e1, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);ylabel('low1');xlim([0,1]);
+%                     plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
+%                     plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
+%                 end
+
+
+            end
     end
 
     if in.s(j).lotube == 2
-        [out(j).lobw2, out(j).loflo2, out(j).lofhi2, out(j).loAmpobw2] = obw(e2, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
-         if mod(j,plotnum) == 0
-            figure(j); clf;  hold on;
-            obw(e2, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);ylabel('low2');xlim([0,1]); 
-            plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
-             plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
+
+
+        if mean(abs(data(:,2))) > 2
+                out(j).bad2idx = j;
+                out(j).loAmpobw2 = 0;
+        else
+                [out(j).lobw2, out(j).loflo2, out(j).lofhi2, out(j).loAmpobw2] = obw(e2, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);
+%                  if mod(j,plotnum) == 0
+%                     figure(j); clf;  hold on;
+%                     obw(e2, Fs, [in.s(j).lofreq-rango in.s(j).lofreq+rango]);ylabel('low2');xlim([0,1]); 
+%                     plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
+%                      plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
+%                  end
         end
     end
 
     %high frequency fish
     if in.s(j).hitube == 1
-        [out(j).hibw1, out(j).hiflo1, out(j).hifhi1, out(j).hiAmpobw1] = obw(e1, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
 
-         if mod(j,plotnum) == 0
-            figure(j+10); clf; hold on;
-            obw(e1, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);ylabel('hi1');xlim([0,1]);
-             plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
-             plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
+        if mean(abs(data(:,1))) > 2
+                out(j).bad1idx = j;
+                out(j).hiAmpobw1 = 0;
+        else
+
+            [out(j).hibw1, out(j).hiflo1, out(j).hifhi1, out(j).hiAmpobw1] = obw(e1, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
+    
+%              if mod(j,plotnum) == 0
+%                 figure(j+10); clf; hold on;
+%                 obw(e1, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);ylabel('hi1');xlim([0,1]);
+%                  plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
+%                  plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
+%              end
+
         end
     end
 
     if in.s(j).hitube == 2
+
+        if mean(abs(data(:,1))) > 2
+                out(j).bad2idx = j;
+                out(j).hiAmpobw2 = 0;
+        else
+
+
         [out(j).hibw2, out(j).hiflo2, out(j).hifhi2, out(j).hiAmpobw2] = obw(e2, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);
-         if mod(j,plotnum) == 0
-            figure(j+10); clf; hold on;
-            obw(e2, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);ylabel('hi2');xlim([0,1]);
-             plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
-             plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
-        end
+%          if mod(j,plotnum) == 0
+%             figure(j+10); clf; hold on;
+%             obw(e2, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);ylabel('hi2');xlim([0,1]);
+%              plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
+%              plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
+%         end
+         end
     end
 
-end
+ end
 pause(1); close(ff);
 
 
