@@ -137,7 +137,7 @@ pause(1); close(ff);
 %%
     figure(66); clf; hold on;
        ax(1) = subplot(211); title('low frequency fish'); hold on;
-       if ~isempty([out.lofhi])
+       if ~isfield([out.lofhi])
          plot([in.s([in.s.lotube]==1).timcont]/3600, [out.lofhi1], 'b.');
          plot([in.s([in.s.lotube]==1).timcont]/3600, [out.loflo1], 'b.');
          plot([in.s([in.s.lotube]==2).timcont]/3600, [out.lofhi2], 'c.'); 
