@@ -363,11 +363,11 @@ fixme = 0;
             out(j).hifreqidx = hifreqidx;
             if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx))
                 out(j).hitube = 1; 
-               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1, Fs, [midpoint out(j).hifreqidx+rango]);
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1, Fs, [midpoint out(j).hifreq+rango]);
             end 
             if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx))
                 out(j).hitube = 2; 
-               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2, Fs, [midpoint out(j).hifreqidx+rango]);
+               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2, Fs, [midpoint out(j).hifreq+rango]);
             end 
 
 
