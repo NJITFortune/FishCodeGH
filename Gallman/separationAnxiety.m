@@ -5,7 +5,7 @@ freqs = [250 550]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
-maxchange = 30; % Maximum change in Hz between samples
+maxchange = 15; % Maximum change in Hz between samples
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
 %maxdiff = 30; 
 
