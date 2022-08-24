@@ -111,7 +111,7 @@ figure(2); clf; hold on;
             end 
             if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx))
                 out(1).hitube = 2; 
-               [out(1).hibw, out(1).hiflo, out(1).hifhi, out(1).hiAmpobw] = obw(e2(hifreqidx), Fs, [midpoint freqs(2)]);
+               [out(1).hibw, out(1).hiflo, out(1).hifhi, out(1).hiAmpobw] = obw(e2, Fs, [midpoint freqs(2)]);
             end 
 
 
