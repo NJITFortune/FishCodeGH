@@ -90,7 +90,7 @@ for j = 1:length(in.s)
         else
 
             [out(j).hibw1, out(j).hiflo1, out(j).hifhi1, out(j).hiAmpobw1] = obw(e1, Fs, [midpoint in.s(j).hifreq+rango]);
-    
+            
 %              if mod(j,plotnum) == 0
 %                 figure(j+10); clf; hold on;
 %                 obw(e1, Fs, [in.s(j).hifreq-rango in.s(j).hifreq+rango]);ylabel('hi1');xlim([0,1]);
@@ -138,8 +138,9 @@ pause(1); close(ff);
     figure(66); clf; hold on;
        ax(1) = subplot(211); title('low frequency fish'); hold on;
        if isfield(out,'lofhi1')
-         plot([in.s([in.s.lotube]==1).timcont]/3600, [out.lofhi1], 'b.');
-         plot([in.s([in.s.lotube]==1).timcont]/3600, [out.loflo1], 'b.');
+           find(~isempty(out.lofhi1))
+         plot([in.s(find(~isempty(out.lofhi1))).timcont]/3600, [out.lofhi1], 'b.');
+         plot([in.s(find(~isempty(out.lofhi2))).timcont]/3600, [out.loflo1], 'b.');
        end 
        if isfield(out,'lofhi2')
          plot([in.s([in.s.lotube]==2).timcont]/3600, [out.lofhi2], 'c.'); 
