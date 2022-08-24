@@ -178,13 +178,14 @@ for j = 2:length(iFiles) %2514:8276%
         hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
         
             if   hipeakamp <  0.1 || currhifreq > 419 && currhifreq < 421; currhifreq = oldcurrhifreq; end %|| currhifreq > 419 && currhifreq < 421
+
 %             if j > 3
 %                 if currhifreq < 417 ; currhifreq = oldcurrhifreq; end
 %             end
             
-%             if j > 3 && currhifreq > 500
-%                 currhifreq = 460;
-%             end
+            if j > 3 && currhifreq > 475
+                currhifreq =  out(j-2).hifreq;
+            end
 %             
 %               currlofreq = oldcurrlofreq;
          % Get the lower freq peak
