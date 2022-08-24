@@ -138,25 +138,24 @@ pause(1); close(ff);
     figure(66); clf; hold on;
        ax(1) = subplot(211); title('low frequency fish'); hold on;
        if isfield(out,'lofhi1')
-           find(~isempty(out.lofhi1))
-         plot([in.s(find(~isempty(out.lofhi1))).timcont]/3600, [out.lofhi1], 'b.');
-         plot([in.s(find(~isempty(out.lofhi2))).timcont]/3600, [out.loflo1], 'b.');
+         plot([in.s(find(~cellfun(@isempty,{out.lofhi1}))).timcont]/3600, [out.lofhi1], 'b.');
+         plot([in.s(find(~cellfun(@isempty,{out.loflo1}))).timcont]/3600, [out.loflo1], 'b.');
        end 
        if isfield(out,'lofhi2')
-         plot([in.s([in.s.lotube]==2).timcont]/3600, [out.lofhi2], 'c.'); 
-         plot([in.s([in.s.lotube]==2).timcont]/3600, [out.loflo2], 'c.');
+         plot([in.s(find(~cellfun(@isempty,{out.lofhi2}))).timcont]/3600, [out.lofhi2], 'c.'); 
+         plot([in.s(find(~cellfun(@isempty,{out.loflo2}))).timcont]/3600, [out.loflo2], 'c.');
        end  
          plot([in.s([in.s.lotube]==1).timcont]/3600, [in.s([in.s.lotube]==1).lofreq], 'k.');
          plot([in.s([in.s.lotube]==2).timcont]/3600, [in.s([in.s.lotube]==2).lofreq], 'k.');
 
        ax(2) = subplot(212); title('high frequency fish'); hold on;  
        if isfield(out,'hifhi1')
-         plot([in.s([in.s.hitube]==1).timcont]/3600, [out.hifhi1], 'r.');
-         plot([in.s([in.s.hitube]==1).timcont]/3600, [out.hiflo1], 'r.');
+         plot([in.s(find(~cellfun(@isempty,{out.hifhi1}))).timcont]/3600, [out.hifhi1], 'r.');
+         plot([in.s(find(~cellfun(@isempty,{out.hiflo1}))).timcont]/3600, [out.hiflo1], 'r.');
        end
        if isfield(out,'hifhi2')
-         plot([in.s([in.s.hitube]==2).timcont]/3600, [out.hifhi2], 'm.'); 
-         plot([in.s([in.s.hitube]==2).timcont]/3600, [out.hiflo2], 'm.'); 
+         plot([in.s(find(~cellfun(@isempty,{out.hifhi2}))).timcont]/3600, [out.hifhi2], 'm.'); 
+         plot([in.s(find(~cellfun(@isempty,{out.hiflo2}))).timcont]/3600, [out.hiflo2], 'm.'); 
        end
          plot([in.s([in.s.hitube]==1).timcont]/3600, [in.s([in.s.hitube]==1).hifreq], 'k.'); 
          plot([in.s([in.s.hitube]==2).timcont]/3600, [in.s([in.s.hitube]==2).hifreq], 'k.'); 
