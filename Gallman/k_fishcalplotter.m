@@ -32,7 +32,7 @@ in = hi;
             plot([out.timcont]/3600, [out.light]);
             
 
-linkaxes(ax, 'x', 'y');
+linkaxes(ax, 'x');
 
 %%
 figure(543); clf; hold on;
@@ -61,4 +61,4 @@ in = lo;
             plot([out.timcont]/3600, [out.light]);
             
 
-linkaxes(ax, 'x', 'y');
+linkaxes(ax, 'x');
