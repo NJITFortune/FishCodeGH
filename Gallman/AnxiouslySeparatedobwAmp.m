@@ -43,11 +43,11 @@ for j = 1:length(in.s)
     %low frequency fish
     if in.s(j).lotube == 1
 
-            if max(f1.fftdata(sigf1))/max(f1.fftdata(noisef1)) < 1
-               %fprintf('bad %i', j);
-                out(j).bad1idx = j;
-                out(j).loAmpobw1 = -0.1;
-            else
+%             if max(f1.fftdata(sigf1))/max(f1.fftdata(noisef1)) < 1
+%                %fprintf('bad %i', j);
+%                 out(j).bad1idx = j;
+%                 out(j).loAmpobw1 = -0.1;
+%             else
         %filter more
 %         [n,m] = butter(5, [(in.s(j).lofreq-rango)/(Fs/2) (in.s(j).lofreq+rango)/(fs/2)]);
 %         [p,o] = bandstop()
@@ -61,16 +61,16 @@ for j = 1:length(in.s)
 %                 end
 
 
-            end
+%             end
     end
 
     if in.s(j).lotube == 2
 
 
-        if max(f2.fftdata(sigf2))/max(f2.fftdata(noisef2)) < 1
-                out(j).bad2idx = j;
-                out(j).loAmpobw2 = -0.1;
-        else
+%         if max(f2.fftdata(sigf2))/max(f2.fftdata(noisef2)) < 1
+%                 out(j).bad2idx = j;
+%                 out(j).loAmpobw2 = -0.1;
+%         else
                 [out(j).lobw2, out(j).loflo2, out(j).lofhi2, out(j).loAmpobw2] = obw(e2, Fs, [in.s(j).lofreq-rango midpoint]);
 %                  if mod(j,plotnum) == 0
 %                     figure(j); clf;  hold on;
@@ -78,16 +78,16 @@ for j = 1:length(in.s)
 %                     plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
 %                      plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
 %                  end
-        end
+%         end
     end
 
     %high frequency fish
     if in.s(j).hitube == 1
 
-        if max(f1.fftdata(sigf1))/max(f1.fftdata(noisef1)) < 1
-                out(j).bad1idx = j;
-                out(j).hiAmpobw1 = -0.1;
-        else
+%         if max(f1.fftdata(sigf1))/max(f1.fftdata(noisef1)) < 1
+%                 out(j).bad1idx = j;
+%                 out(j).hiAmpobw1 = -0.1;
+%         else
 
             [out(j).hibw1, out(j).hiflo1, out(j).hifhi1, out(j).hiAmpobw1] = obw(e1, Fs, [midpoint in.s(j).hifreq+rango]);
             
@@ -98,15 +98,15 @@ for j = 1:length(in.s)
 %                  plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
 %              end
 
-        end
+%         end
     end
 
     if in.s(j).hitube == 2
 
-        if max(f2.fftdata(sigf2))/max(f2.fftdata(noisef2)) < 1
-                out(j).bad2idx = j;
-                out(j).hiAmpobw2 = -0.1;
-        else
+%         if max(f2.fftdata(sigf2))/max(f2.fftdata(noisef2)) < 1
+%                 out(j).bad2idx = j;
+%                 out(j).hiAmpobw2 = -0.1;
+%         else
 
 
         [out(j).hibw2, out(j).hiflo2, out(j).hifhi2, out(j).hiAmpobw2] = obw(e2, Fs, [midpoint in.s(j).hifreq+rango]);
@@ -116,7 +116,7 @@ for j = 1:length(in.s)
 %              plot(in.s(j).lofreq, 0, 'r.', 'MarkerSize', 10);
 %              plot(in.s(j).hifreq, 0, 'b.', 'MarkerSize', 10);
 %         end
-         end
+%          end
     end
 
  end

@@ -7,12 +7,12 @@ function out  = KatieMultiTrimmer(in)
 figure (1); hold on; title('sumfftAmp');
 
   ax(1) = subplot(311); hold on; title('obwAmp');   
-    yyaxis right; plot([in.timcont]/(60*60), [in.lopeakamp], '.');
+%    yyaxis right; plot([in.timcont]/(60*60), [in.lopeakamp], '.');
     yyaxis right; plot([in.timcont]/(60*60), [in.hipeakamp], '.');
    % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
  
   ax(2) = subplot(312); hold on; title('frequency (black) and temperature (red)');   
-        yyaxis right; plot([in.timcont]/(60*60), [in.lofreq], '.k', 'Markersize', 8);
+   %     yyaxis right; plot([in.timcont]/(60*60), [in.lofreq], '.k', 'Markersize', 8);
         yyaxis right; plot([in.timcont]/(60*60), [in.hifreq], '.k', 'Markersize', 8);
         yyaxis left; plot([in.timcont]/(60*60), [in.temp], '.r', 'Markersize', 8);
         

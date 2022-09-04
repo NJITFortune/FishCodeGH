@@ -12,7 +12,7 @@ oldhi(2).tim = [out([out.hitube]==2).timcont]/3600;
 oldlo(1).tim = [out([out.lotube]==1).timcont]/3600;
 oldlo(2).tim = [out([out.lotube]==2).timcont]/3600;
 
-% %amp obw
+% amp obw
 % oldhi(1).obwamp = [out([out.hitube]==1).hiAmpobw];
 % oldhi(2).obwamp = [out([out.hitube]==2).hiAmpobw];
 % oldlo(1).obwamp = [out([out.lotube]==1).loAmpobw];
@@ -70,7 +70,7 @@ for tube = 2:-1:1
         pause(1);
 end
 %low
-%hifreq
+
 for tube = 2:-1:1
     
     figure(1); clf;

@@ -7,8 +7,8 @@ function k_multifishplotter(out)
     ttohi = 1:length(out.hifish); % tthi is indices for HiAmp
     ttolo = 1:length(out.lofish); % ttlo is indices for LoAmp
 
-    ttkhi = 1:length(out.hifish);
-    ttklo = 1:length(out.lofish);
+%     ttkhi = 1:length(out.hifish);
+%     ttklo = 1:length(out.lofish);
 
 
 % If we have removed outliers via KatieRemover, get the indices... 
@@ -16,7 +16,7 @@ function k_multifishplotter(out)
         if isfield(out, 'hiidx')
             if ~isempty(out.hiidx)
                 ttohi = [out.hiidx.obwidx]; 
-                ttkhi = [out.hiidx.pkidx];
+                %ttkhi = [out.hiidx.pkidx];
             end
         end
 
@@ -24,7 +24,7 @@ function k_multifishplotter(out)
         if isfield(out, 'loidx')
             if ~isempty(out.loidx)
                 ttolo = [out.loidx.obwidx]; 
-                ttklo = [out.loidx.pkidx];
+               % ttklo = [out.loidx.pkidx];
             end
         end
 
@@ -41,7 +41,7 @@ orange = [0.8500 0.3250 0.0980];
 
 %% plots
 
-figure(66); clf; title('By fish'); hold on;
+figure(67); clf; title('By fish'); hold on;
 
     axs(1) = subplot(511); hold on; title('High frequency fish');
      %   plot([out.hifish(ttkhi).timcont]/3600, [out.hifish(ttkhi).pkAmp], 'Color', teal);

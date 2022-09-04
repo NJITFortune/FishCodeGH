@@ -1,11 +1,12 @@
 % A new attempt at frequency tracking two Eigenmannia in the tank
 clearvars -except kg kg2 rkg k
 Fs = 40000;
-freqs = [200 550]; %freq range of typical eigen EOD
+freqs = [200 650]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 % Max frequency change
 maxchange = 30; % Maximum change in Hz between samples
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
+rango = 50;
 % Max frequency change
 
 mindiff = 2; % Minimum frequency difference (Hz) between the two fish
@@ -192,7 +193,7 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
         
   
         if abs(currlofreq-oldcurrlofreq) > maxchangelo1
-          if currlofreq > 419 && currlofreq < 421 || lopeakamp < 0.05 %|| currlofreq < 220
+          if currlofreq > 419 && currlofreq < 421 || lopeakamp < 0.005 %|| currlofreq < 220
               currlofreq = oldcurrlofreq;
           else
                 if j > 3 
@@ -227,25 +228,28 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
 
        %if max change in higher fish frequency
         if abs(currhifreq-oldcurrhifreq) > maxchangehi %|| currhifreq < 590 
-          if  hipeakamp < 0.1 %|| currhifreq > 539% || currhifreq > 419 && currhifreq < 421 
+          if  currhifreq > 419 && currhifreq < 421 %|| currhifreq < 570% || currhifreq > 419 && currhifreq < 421  hipeakamp < 0.1 ||
               currhifreq = oldcurrhifreq;
           else
                  if j > 3 
                    if  currhifreq < mean([out(j-2).midpoint, out(j-1).midpoint])
                     currhifreq = oldcurrhifreq;
                    end
-                
-                end
-
+                    
+                    if currhifreq < 0.005 || currhifreq > 600
+                        currhifreq = oldcurrhifreq;
+                    end
+                 end
           end
         end 
         
-     
+        
+      if j > 3 
        if abs(currlofreq-currhifreq) < mindiff
-                %currlofreq = oldcurrlofreq;
-                currhifreq = oldcurrhifreq;
+                currlofreq = oldcurrlofreq;
+                currhifreq = 425;
         end
-   
+      end  
 
 fixme = 0;
  %When to fix conditionals
@@ -330,40 +334,99 @@ fixme = 0;
             drawnow;
            
     
- %%
-    % Put the data into the output structure   
+
+%% Put the data into the output structure   
+    %eliminate supernoisy data
+    uff1 = fftmachine(data(:,1), Fs);
+    uff2 = fftmachine(data(:,2), Fs);
+
+    sigf1 = find(uff1.fftfreq > 200 & uff1.fftfreq < 800);
+    noisef1 = find(uff1.fftfreq < 100);
+
+    sigf2 = find(uff2.fftfreq > 200 & uff2.fftfreq < 800);
+    noisef2 = find(uff2.fftfreq < 100);
+
         %lower frequency fish
-       
-            out(j).lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
             out(j).lofreq = currlofreq;
             out(j).lmaxidx = lowfreqidx(lmaxidx);
             out(j).lowfreqidx = lowfreqidx;
             
+            %tube 1
             if f1.fftdata(lowfreqidx(lmaxidx)) > f2.fftdata(lowfreqidx(lmaxidx))
                 out(j).lotube = 1; 
-               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e1(lowfreqidx), Fs, [freqs(1) midpoint]);
+               
+            %if Noise > Signal
+                if max(uff1.fftdata(sigf1))/max(uff1.fftdata(noisef1)) < 1
+                    out(j).loAmpobw = -0.1; %set amp to neg
+                    out(j).lopeakamp = -0.1;
+                    out(j).noiseidx = j;
+                    out(j).lobw = out(j-1).lobw; out(j).loflo = out(j-1).loflo; out(j).lofhi = out(j-1).lofhi;
+                else
+            %if Signal > Noise
+               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e1, Fs, [out(j).lofreq-rango midpoint]);
+                out(j).lopeakamp = [f1.fftdata(lowfreqidx(lmaxidx))];
+                end
             end 
+
+            %tube 2
             if f2.fftdata(lowfreqidx(lmaxidx)) > f1.fftdata(lowfreqidx(lmaxidx))
                 out(j).lotube = 2; 
-                [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e2(lowfreqidx), Fs, [freqs(1) midpoint]);
+
+            %if Noise > Signal
+                if max(uff2.fftdata(sigf2))/max(uff2.fftdata(noisef2)) < 1
+                    out(j).loAmpobw = -0.1; %set amp to neg
+                    out(j).lopeakamp = -0.1;
+                    out(j).noiseidx = j;
+                    out(j).lobw = out(j-1).lobw; out(j).loflo = out(j-1).loflo; out(j).lofhi = out(j-1).lofhi;
+                else
+            %if Signal > Noise
+               [out(j).lobw, out(j).loflo, out(j).lofhi, out(j).loAmpobw] = obw(e2, Fs, [out(j).lofreq-rango midpoint]);
+                out(j).lopeakamp = [f2.fftdata(lowfreqidx(lmaxidx))];
+                end
+          
             end 
 
          out(j).midpoint = midpoint;
 
         %higher frequency fish
-         
-            out(j).hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
             out(j).hifreq = currhifreq;
             out(j).hmaxidx = hifreqidx(hmaxidx);
             out(j).hifreqidx = hifreqidx;
+
+            %tube 1
             if f1.fftdata(hifreqidx(hmaxidx)) > f2.fftdata(hifreqidx(hmaxidx))
                 out(j).hitube = 1; 
-               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1(hifreqidx), Fs, [midpoint freqs(2)]);
+
+                %if Noise > Signal
+                if max(uff1.fftdata(sigf1))/max(uff1.fftdata(noisef1)) < 1
+                    out(j).hiAmpobw = -0.1; %set amp to neg
+                    out(j).hipeakamp = -0.1;
+                    out(j).hibw = out(j-1).hibw; out(j).hiflo = out(j-1).hiflo; out(j).hifhi = out(j-1).hifhi;
+                else
+            %if Signal > Noise
+                [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e1, Fs, [midpoint out(j).hifreq+rango]);
+                out(j).hipeakamp = [f1.fftdata(hifreqidx(hmaxidx))];
+                end
+
             end 
+
+            %tube 2
             if f2.fftdata(hifreqidx(hmaxidx)) > f1.fftdata(hifreqidx(hmaxidx))
                 out(j).hitube = 2; 
-               [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2(hifreqidx), Fs, [midpoint freqs(2)]);
+
+                %if Noise > Signal
+                if max(uff2.fftdata(sigf2))/max(uff2.fftdata(noisef2)) < 1
+                    out(j).hiAmpobw = -0.1; %set amp to neg
+                    out(j).hipeakamp = -0.1;
+                    out(j).hibw = out(j-1).hibw; out(j).hiflo = out(j-1).hiflo; out(j).hifhi = out(j-1).hifhi;
+                else
+            %if Signal > Noise
+                [out(j).hibw, out(j).hiflo, out(j).hifhi, out(j).hiAmpobw] = obw(e2, Fs, [midpoint out(j).hifreq+rango]);
+                out(j).hipeakamp = [f2.fftdata(hifreqidx(hmaxidx))];
+                end
+               
             end 
+
 
 
 oldmidpoint = midpoint;
