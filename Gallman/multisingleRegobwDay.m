@@ -1,4 +1,4 @@
-function [multiday] = multisingleRegobwDay(in, channel,  ReFs, light)%multisingleRegobwDay
+function [multiday] = multisingleRegobwDay(in, ReFs, light)%multisingleRegobwDay
 
 %function [day] = KatieRegobwDayDessembler(in, channel,  ReFs, light)
 %% usage
