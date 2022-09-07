@@ -35,7 +35,7 @@ oldlo(2).freq = [out([out.lotube]==2).lofreq];
 oldhi(1).obwamp = [out2.hiAmpobw1];
 oldhi(2).obwamp = [out2.hiAmpobw2];
 oldlo(1).obwamp = [out2.loAmpobw1];
-oldlo(2).obwamp = [out2.loAmpobw2];
+%oldlo(2).obwamp = [out2.loAmpobw2];
 %% filter by fish frequency
 
 %hifreq
