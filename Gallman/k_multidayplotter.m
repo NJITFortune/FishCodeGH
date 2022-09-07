@@ -3,11 +3,15 @@ function k_multidayplotter(day, light)
 %average over single day    
 %figure(56); clf; hold on;
 
+ld = day(1).ld;
+
 for j = length(day):-1:1
     Max(j) = max(day(j).Sobwyy);
     Min(j) = min(day(j).Sobwyy);
 end
-a = [min(Min), max(Max)];
+buff = (max(Max) - min(Min))/5;
+
+a = [min(Min)-buff, max(Max)+buff];
 
  
     %create fill box 

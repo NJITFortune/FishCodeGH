@@ -1,4 +1,4 @@
-function k_meanmultidayplotter(in)
+function k_meanmultidayplotter(in, kidx)
 %% usage
 %processes output from KatieDayTrialDessembler.m of kg by hourexp
 %k_daydessembledplotter.m without the plotting
@@ -16,15 +16,15 @@ function k_meanmultidayplotter(in)
 %in = dark(5).h;
 
 ld = in(1).day(1).ld;
-hourtim = in(j).day(1).tim/3600;
+hourtim = in(1).day(1).tim/3600;
  %all days
  %average day by trial
  
 
-figure(99);clf; title('daymean by fish'); hold on; 
+figure(10);clf; title('daymean by fish'); hold on; 
  for j = 1:length(in) % experiments of x hour length
   
-     
+     leg(j,:) = kidx(j);
         mday = zeros(1, length(in(j).day(1).tim));
 
         for k = 1:length(in(j).day) %days within each trial
@@ -52,7 +52,7 @@ figure(99);clf; title('daymean by fish'); hold on;
 %        avgrange(j,:) = amprange;
       end
 
-      plot(hourtim, daymean(j));
+      plot(hourtim, daymean(j,:), 'DisplayName',num2str(leg(j))); hold on;
       %max amp range by exp
 %       expampmax(j,:) = max(ampmax);
 %       expampmin(j,:) = min(ampmin);
@@ -67,6 +67,10 @@ figure(99);clf; title('daymean by fish'); hold on;
     meanofexperimentmeans = movmean(expmean, 5);
 
     plot(hourtim, meanofexperimentmeans, 'k-', 'LineWidth', 3);
+    plot([ld ld], [ylim], 'k-');hold off;
+    legend
+
+  
 
 %     %average max and min
 %     expavgmax = mean(avgmax);

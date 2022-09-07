@@ -12,10 +12,8 @@ if fish == 6 %hi frequency fish
 
     out.idx = in.hiidx;
     out.info.poweridx = in.info.Hipoweridx;
-    out.obwAmp = in.hifish.obwAmp;
-    out.timcont = in.hifish.timcont;
-    out.peakAmp = in.hifish.pkAmp;
-    out.freq = in.hifish.freq;
+    out.s = in.hifish;
+   
 
 end
 
@@ -24,9 +22,7 @@ if fish == 5 %low frequency fish
 
     out.idx = in.loidx;
     out.info.poweridx = in.info.Lopoweridx;
-    out.obwAmp = in.lofish.obwAmp;
-    out.timcont = in.lofish.timcont;
-    out.peakAmp = in.lofish.pkAmp;
-    out.freq = in.lofish.freq;
+    out.s = in.lofish;
+    
 
 end

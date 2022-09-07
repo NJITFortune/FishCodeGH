@@ -1,4 +1,4 @@
-%function [day] = KatieRegobwDayDessembler(in, channel,  ReFs, light)
+%function [day] = KatieMultiHIRegobwDayDessembler(in, channel,  ReFs, light)
 %% usage
 %[day] = KatieRegobwDayDessembler(kg(#), channel, ReFs)
 %
@@ -13,7 +13,7 @@
 in = kg2(k);
 ReFs = 20;
 light = 3; %start with dark
-fish = 6; %hi freq
+fish = 5; %hi freq
 
 % light = 4; %start with light
 % fish = 5; %lo freq
@@ -153,18 +153,20 @@ end
     
     %filter data
         %cut off frequency
-       % highWn = 0.005/(ReFs/2);
-        lowWn = 0.05/(ReFs/2);
-
-%         %high pass removes feeding trend
-%         [bb,aa] = butter(5, highWn, 'high');
-%         filtdata = filtfilt(bb,aa, double(regobwminusmean)); %double vs single matrix?
+        highWn = 0.005/(ReFs/2);
 
         %low pass removes spikey-ness
+        lowWn = 0.025/(ReFs/2);
         [dd,cc] = butter(5, lowWn, 'low');
-        %datadata = filtfilt(dd,cc, filtdata);
-
         datadata = filtfilt(dd,cc, double(regobwminusmean));
+
+        
+        %high pass removes feeding trend for high frequency experiments
+        if ld < 11
+        [bb,aa] = butter(5, highWn, 'high');
+        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+
+        end
 
 
     %trim everything to lighttimes
