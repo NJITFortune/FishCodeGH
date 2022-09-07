@@ -128,7 +128,7 @@ pause(1); close(ff);
     
        ax(1) = subplot(211); title('low frequency fish amp'); hold on;
         plot([in.s([in.s.lotube]==1).timcont]/3600, [out.loAmpobw1], 'b.');
-        plot([in.s([in.s.lotube]==2).timcont]/3600, [out.loAmpobw2], 'c.');
+%        plot([in.s([in.s.lotube]==2).timcont]/3600, [out.loAmpobw2], 'c.');
       ax(2) = subplot(212); title('high frequency fish amp'); hold on;   
         plot([in.s([in.s.hitube]==1).timcont]/3600, [out.hiAmpobw1], 'r.');
         plot([in.s([in.s.hitube]==2).timcont]/3600, [out.hiAmpobw2], 'm.');
