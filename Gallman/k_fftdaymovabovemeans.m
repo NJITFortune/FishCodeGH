@@ -1,4 +1,4 @@
-function [hourtim, meanofexperimentmeans, expavgrange,fish, ld] = k_fftdaymovabovemeans(in)
+function [exp, fish, ld] = k_fftdaymovabovemeans(in)
 %in = dark(k).h;
 
 ld = in(1).day(1).ld;
@@ -37,16 +37,16 @@ ld = in(1).day(1).ld;
     
     %averages for each x hour set of experiments
     expmean = mean(daymean);
-    meanofexperimentmeans = movmean(expmean, 5);
+    exp.meanofexperimentmeans = movmean(expmean, 5);
 
     %average max and min
-    expavgrange = mean(avgrange);
+    exp.expavgrange = mean(avgrange);
     
         %expmean = smoothdata(meanofexperimentmeans, 'SamplePoints',in(1).trial(1).tim);
     
     
     
-    hourtim = in(j).day(1).tim/3600;
+    exp.hourtim = in(j).day(1).tim/3600;
     
    
    
