@@ -109,20 +109,24 @@ end
     %regularize data to ReFs interval
     [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, lighttimes);
     
-    %filter data
+     %filter data
         %cut off frequency
-       % highWn = 0.005/(ReFs/2);
-        lowWn = 0.05/(ReFs/2);
-
-%         %high pass removes feeding trend
-%         [bb,aa] = butter(5, highWn, 'high');
-%         filtdata = filtfilt(bb,aa, double(regobwminusmean)); %double vs single matrix?
+        highWn = 0.005/(ReFs/2);
 
         %low pass removes spikey-ness
+        lowWn = 0.025/(ReFs/2);
         [dd,cc] = butter(5, lowWn, 'low');
-        %datadata = filtfilt(dd,cc, filtdata);
-
         datadata = filtfilt(dd,cc, double(regobwpeaks));
+
+        
+        %high pass removes feeding trend for high frequency experiments
+        if ld < 11
+        [bb,aa] = butter(5, highWn, 'high');
+        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+
+        end
+    
+    dataminusmean = datadata -     
 
 
     %trim everything to lighttimes
