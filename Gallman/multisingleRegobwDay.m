@@ -126,13 +126,13 @@ end
 
         end
     
-    dataminusmean = datadata -     
+    dataminusmean = datadata - mean(datadata);    
 
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
-    obwyy = datadata(timidx);  
+    obwyy = dataminusmean(timidx);  
 
     rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
     timmy = timcont(rawidx);
