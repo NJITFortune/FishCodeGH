@@ -13,7 +13,7 @@
 in = kg2(k);
 ReFs = 20;
 light = 3; %start with dark
-fish = 6; %hi freq
+fish = 5; %hi freq
 
 % light = 4; %start with light
 % fish = 5; %lo freq
@@ -151,14 +151,14 @@ end
     %regularize data to ReFs interval
     [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, lighttimes);
     
-    %filter data
+   %filter data
         %cut off frequency
         highWn = 0.005/(ReFs/2);
 
         %low pass removes spikey-ness
         lowWn = 0.025/(ReFs/2);
         [dd,cc] = butter(5, lowWn, 'low');
-        datadata = filtfilt(dd,cc, double(regobwminusmean));
+        datadata = filtfilt(dd,cc, double(regobwpeaks));
 
         
         %high pass removes feeding trend for high frequency experiments
@@ -167,16 +167,19 @@ end
         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
 
         end
+    
+    dataminusmean = datadata - mean(datadata);    
 
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
-    obwyy = datadata(timidx);  
+    obwyy = dataminusmean(timidx);  
 
     rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
+
 
 %     %plot
 %     figure(2);clf; hold on;
