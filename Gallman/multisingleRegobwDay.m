@@ -122,7 +122,7 @@ end
         [dd,cc] = butter(5, lowWn, 'low');
         %datadata = filtfilt(dd,cc, filtdata);
 
-        datadata = filtfilt(dd,cc, double(regobwminusmean));
+        datadata = filtfilt(dd,cc, double(regobwpeaks));
 
 
     %trim everything to lighttimes
