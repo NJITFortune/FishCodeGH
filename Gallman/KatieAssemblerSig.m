@@ -94,7 +94,18 @@ for k = 1:length(iFiles)
             [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
             data4analysis = data(tim > out(j).s(k).startim & tim < out(j).s(k).startim+SampleWindw, j);   
             %normalization step - subtract mean and divide by maximum
-            data4analysis = (data4analysis - mean(data4analysis)) / maxamp(j);
+            data4analysis = (data4analysis - mean(data4analysis));
+
+            %shift data so that it always starts and ends on the same phase
+                    %find the first zero crossing
+                    z = zeros(1,length(data4analysis)); %create vector length of data
+                    z(data4analysis > 0) = 1; %fill with 1s for all filtered data greater than 0
+                    z = diff(z); %subtract the X(2) - X(1) to find the positive zero crossings
+                    posZs = find(z == 1); 
+                    newidx = find(tim >= tim(posZs(1)) & tim <= tim(posZs(end)));
+
+           data4analysis = data4analysis(newidx);
+           
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
             % OBW
