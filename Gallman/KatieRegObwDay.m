@@ -86,11 +86,11 @@ end
 %prepare data variables
 
 %outlier removal
- tto = [in.idx.obwidx]; 
+ tto = [in.idx(channel).obwidx]; 
       
 %raw data
-    timcont = [in.s(tto).timcont]; %time in seconds
-    obw = [in.s(tto).obwAmp]/max([in.s(tto).obwAmp]); %divide by max to normalize
+    timcont = [in.e(channel).s(tto).timcont]; %time in seconds
+    obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
 
 %Take top of dataset
     %find peaks
