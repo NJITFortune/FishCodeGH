@@ -14,14 +14,14 @@ lightchan = 4; % Either 5 or 4
 daycount = 0; %necessary to create time vector
 
 %for normalization against max Amp
-preAmp  = KatiepreAssembler(userfilespec);
-
-    maxamp(1) = max(preAmp(1).amp);
-    maxamp(2) = max(preAmp(2).amp);
-
-   if isfield(preAmp, 'idx') 
-       out.maxampidx = maxAmp(1).idk;
-   end
+% preAmp  = KatiepreAssembler(userfilespec);
+% 
+%     maxamp(1) = max(preAmp(1).amp);
+%     maxamp(2) = max(preAmp(2).amp);
+% 
+%    if isfield(preAmp, 'idx') 
+%        out.maxampidx = maxAmp(1).idk;
+%    end
 
 
 %% SET UP 
