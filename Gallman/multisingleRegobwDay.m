@@ -89,12 +89,12 @@ end
  tto = [in.idx.obwidx]; 
       
 %raw data
-    timcont = [in.s(tto).timcont];
-    obw = [in.s(tto).obwAmp]/max([in.s(tto).obwAmp]);
+    timcont = [in.s(tto).timcont]; %time in seconds
+    obw = [in.s(tto).obwAmp]/max([in.s(tto).obwAmp]); %divide by max to normalize
 
 %Take top of dataset
     %find peaks
-    [PKS,LOCS] = findpeaks(obw);
+    [~,LOCS] = findpeaks(obw);
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
