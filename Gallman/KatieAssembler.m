@@ -115,14 +115,18 @@ for k = 1:length(iFiles)
                 out(j).s(k).obwAmp = -0.1;
                 %zAmp
                 out(j).s(k).zAmp = -0.1;
-
+                %fftmachine
+                out(j).s(k).fftFreq = -0.1;
+                out(j).s(k).peakfftAmp = -0.1; out(j).s(k).sumfftAmp = -0.1;
+                
+            else
            % OBW
             [out(j).s(k).bw,out(j).s(k).flo,out(j).s(k).fhi,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
            % zAmp
             out(j).s(k).zAmp = k_zAmp(data4analysis);
            % FFT Machine
             [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
-        
+            end
       
             out(j).s(k).light = mean(data(:,lightchan));
             out(j).s(k).temp = mean(data(:,tempchan));
