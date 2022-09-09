@@ -8,7 +8,7 @@ figure (1); hold on; title('sumfftAmp');
 
   ax(1) = subplot(311); hold on; title('obwAmp');   
     yyaxis right; plot([in(1).s.timcont]/(60*60), [in(1).s.obwAmp], '.');
-    yyaxis right; plot([in(2).timcont]/(60*60), [in(2).s.obwAmp], '.');
+    yyaxis right; plot([in(2).s.timcont]/(60*60), [in(2).s.obwAmp], '.');
    % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
  
   ax(2) = subplot(312); hold on; title('frequency (black) and temperature (red)');   
