@@ -7,7 +7,7 @@ function out  = KatieTrimmer(in)
 figure (1); hold on; title('sumfftAmp');
 
   ax(1) = subplot(311); hold on; title('obwAmp');   
-    yyaxis right; plot([in(1).s.timcont]/(60*60), [in(1).s.lopeakamp], '.');
+    yyaxis right; plot([in(1).s.timcont]/(60*60), [in(1).s.obwamp], '.');
     yyaxis right; plot([in(1).timcont]/(60*60), [in(1).hipeakamp], '.');
    % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
  
