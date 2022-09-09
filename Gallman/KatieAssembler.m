@@ -101,21 +101,32 @@ for k = 1:length(iFiles)
 
            data4analysis = data4analysis(newidx);
 
-            % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            
-            %exclude noisy data
+        % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+        %exclude noisy data
             fft = fftmachine(data(:,j), Fs);
              sig = find(fft.fftfreq > 200 & fft.fftfreq < 800);
              noise = find(fft.fftfreq < 100);
-    
 
-%           % OBW
+         %if Noise > Signal
+            if max(fft.fftdata(sig))/max(fft.fftdata(noise)) < 1 
+                %obw 
+                out(j).s(k).bw = -0.1; out(j).s(k).flo = -0.1; out(j).s(k).fhi = -0.1;
+                out(j).s(k).obwAmp = -0.1;
+                %zAmp
+                out(j).s(k).zAmp = -0.1;
+                %fftmachine
+                out(j).s(k).fftFreq = -0.1;
+                out(j).s(k).peakfftAmp = -0.1; out(j).s(k).sumfftAmp = -0.1;
+                
+            else
+           % OBW
             [out(j).s(k).bw,out(j).s(k).flo,out(j).s(k).fhi,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
-%           % zAmp
+           % zAmp
             out(j).s(k).zAmp = k_zAmp(data4analysis);
-            % FFT Machine
+           % FFT Machine
             [out(j).s(k).fftFreq, out(j).s(k).peakfftAmp, out(j).s(k).sumfftAmp] = k_fft(data4analysis, Fs); 
-        
+            end
       
             out(j).s(k).light = mean(data(:,lightchan));
             out(j).s(k).temp = mean(data(:,tempchan));
