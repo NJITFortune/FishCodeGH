@@ -1,21 +1,35 @@
-function k_multiplotter(out)
+function k_multifishplotter(out)
+% out = kg2(k);
+%plots final cleaned high and low frequency fish amplitudes
 %% Preparations
-
 %outlier removal indicies
 % All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
-    tthi = 1:length(out.fish.his); % tthi is indices for HiAmp
-    ttlo = 1:length(out.fish.los); % ttlo is indices for LoAmp
+    ttohi = 1:length(out.hifish); % tthi is indices for HiAmp
+    ttolo = 1:length(out.lofish); % ttlo is indices for LoAmp
 
- % figure(2); clf; plot(tthi); hold on; 
+%     ttkhi = 1:length(out.hifish);
+%     ttklo = 1:length(out.lofish);
+
 
 % If we have removed outliers via KatieRemover, get the indices... 
-    if isfield(out, 'idx')
-        if ~isempty(out.idx)
-            tthi = [out.idx.Hiidx]; % tthi is indices for HiAmp
-            ttlo = [out.idx.Loidx]; % ttlo is indices for LoAmp
+    %high frequency fish indicies
+        if isfield(out, 'hiidx')
+            if ~isempty(out.hiidx)
+                ttohi = [out.hiidx.obwidx]; 
+                %ttkhi = [out.hiidx.pkidx];
+            end
         end
-    end
 
+    %low frequency fish indicies
+        if isfield(out, 'loidx')
+            if ~isempty(out.loidx)
+                ttolo = [out.loidx.obwidx]; 
+               % ttklo = [out.loidx.pkidx];
+            end
+        end
+
+
+  
 % figure(1); clf; plot(tthi);
 % colors
 teal = [0.2 0.8 0.8];
@@ -27,24 +41,21 @@ orange = [0.8500 0.3250 0.0980];
 
 %% plots
 
-figure(66); clf; title('By fish'); hold on;
+figure(67); clf; title('By fish'); hold on;
 
     axs(1) = subplot(511); hold on; title('High frequency fish');
-      %  plot([out.fish.his.HiTim], [out.fish.his.HiAmp], 'k.');
-        plot([out.fish.his(tthi).HiTim], [out.fish.his(tthi).HiAmp], '.', 'Color', teal);
-        
+     %   plot([out.hifish(ttkhi).timcont]/3600, [out.hifish(ttkhi).pkAmp], 'Color', teal);
+        plot([out.hifish(ttohi).timcont]/3600, [out.hifish(ttohi).obwAmp],'.', 'Color', teal); 
 
     axs(2) = subplot(512); hold on; title('Low frequency fish');
-      %  plot([out.fish.los.LoTim], [out.fish.los.LoAmp], 'k.');
-        plot([out.fish.los(ttlo).LoTim], [out.fish.los(ttlo).LoAmp], '.','Color', orange);
-   
+    %    plot([out.lofish(ttklo).timcont]/3600, [out.lofish(ttklo).pkAmp], 'Color', orange);
+        plot([out.lofish(ttolo).timcont]/3600, [out.lofish(ttolo).obwAmp],'.', 'Color', orange); 
+
 
     axs(3) = subplot(513); hold on; title('Frequency ');
-        plot([out.fish.his.HiTim], [out.fish.his.HiFreq], 'k.');
-            plot([out.fish.his(tthi).HiTim], [out.fish.his(tthi).HiFreq], '.','Color', teal); 
-        plot([out.fish.los.LoTim], [out.fish.los.LoFreq], 'k.');
-            plot([out.fish.los(ttlo).LoTim], [out.fish.los(ttlo).LoFreq], '.','Color', orange);
-        
+        plot([out.hifish(ttohi).timcont]/3600, [out.hifish(ttohi).freq],'.', 'Color', teal); 
+        plot([out.lofish(ttolo).timcont]/3600, [out.lofish(ttolo).freq],'.', 'Color', orange); 
+
     axs(4) = subplot(514); hold on; title('Temperature');
             plot([out.s.timcont]/3600, [out.s.temp], 'r.');
 

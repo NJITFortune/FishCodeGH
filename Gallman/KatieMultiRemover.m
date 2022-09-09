@@ -47,6 +47,7 @@ figure(1); clf;
          end
     end
     pause(1);
+    close(1);
 end
     
 

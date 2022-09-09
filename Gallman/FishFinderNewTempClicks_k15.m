@@ -15,10 +15,10 @@ hitube2tim = [out([out.hitube]==2).timcont]/3600;
 lotube1tim = [out([out.lotube]==1).timcont]/3600;
 lotube2tim = [out([out.lotube]==2).timcont]/3600;
 %amp
-hitube1amp = [out([out.hitube]==1).hiamp];
-hitube2amp = [out([out.hitube]==2).hiamp];
-lotube1amp = [out([out.lotube]==1).loamp];
-lotube2amp = [out([out.lotube]==2).loamp];
+hitube1amp = [out([out.hitube]==1).hiAmpobw];
+hitube2amp = [out([out.hitube]==2).hiAmpobw];
+lotube1amp = [out([out.lotube]==1).loAmpobw];
+lotube2amp = [out([out.lotube]==2).loAmpobw];
 %freq
 hitube1freq = [out([out.hitube]==1).hifreq];
 hitube2freq = [out([out.hitube]==2).hifreq];
@@ -326,7 +326,7 @@ figure(453); clf; hold on;
             plot(hitube1timff, hitube1ampff, 'bo');
             plot(hitube2timff, hitube2ampff, 'mo');
             %adjusted tube 1
-              plot(hitube1timchunk1, hitube1ampchunk1, 'ko');
+            %  plot(hitube1timchunk1, hitube1ampchunk1, 'ko');
              %plot(hitube1timchunk2, hitube1ampchunk2, 'ko');
 % %              plot(hitube1timchunk3, hitube1ampchunk3, 'ko');
 % %              plot(hitube1timchunk4, hitube1ampchunk4, 'ko');
@@ -343,7 +343,7 @@ figure(453); clf; hold on;
             
             %raw amp
             plot(hitube1timff, hitube1ampff, 'bo');
-            plot(hitube2timff, hitube2ampff, 'mo');
+            plot(hitube2timff, hitube2ampff*2.75, 'mo');
             %adjusted tube 2
           %   plot(hitimchunk1, hiampchunk1, 'ko');
 %             plot(hitube2timchunk2, hitube2ampchunk2, 'ko');
@@ -351,7 +351,7 @@ figure(453); clf; hold on;
 %             plot(hitube2timchunk4, hitube2ampchunk4, 'ko');
 %             plot(hitube2timchunk5, hitube2ampchunk5, 'ko');
 %             plot(hitube2timchunk6, hitube2ampchunk6, 'ko');
-              plot(HiTim, HiAmp, 'k.');
+           %   plot(HiTim, HiAmp, 'k.');
 %     ax(3) = subplot(413); title('combined chunks'); hold on;
 %             plot(hitube1timcomb, hitube1ampcomb,'bo'); 
 %             plot(hitube2timcomb, hitube2ampcomb,'mo'); 

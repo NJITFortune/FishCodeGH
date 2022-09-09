@@ -1,4 +1,4 @@
-function [newtim, normsubfft, newampFilled] = k_regularmetamucil(oldtim, oldamp, rawtim, rawamp, regularinterval)
+function [newtim, normsubfft, newampFilled] = k_regularmetamucil(oldtim, oldamp, rawtim, rawamp, regularinterval, lighttimes)
 % Usage: [newtim, newampmeansubtracted, newampFilled] = metamucil(oldtim, oldamp)
 %
 % oldtim and oldamp are the recording times in seconds and data from kg
@@ -20,6 +20,13 @@ if oldtim(1) > rawtim(1) %if first peak starts after tim(1)
     oldtim = [rawtim(gapidx) oldtim];  %add time indicies to oldtim
     oldamp = [rawamp(1)  NaN(1,length(gapidx)-1,'single') oldamp]; %add NaNs to old amp size of gap after first raw amp value
      
+end
+
+%% Oldtim ends before last light change
+if oldtim(end) < lighttimes(end)
+
+    oldtim = [oldtim lighttimes(end)];
+    oldamp = [oldamp oldamp(end)];
 end
 %% Regularize the data at precisely 60 second intervals
 

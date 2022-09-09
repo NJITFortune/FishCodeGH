@@ -118,7 +118,7 @@ for k = 1:length(iFiles)
         % There are 86400 seconds in a day.
         out(j).s(k).timcont = (hour*60*60) + (minute*60) + second + (daycount*86400) ;
         out(j).s(k).tim24 = (hour*60*60) + (minute*60) + second;
-        out(j).maxamp = maxamp(j);
+ 
         
         end
         
