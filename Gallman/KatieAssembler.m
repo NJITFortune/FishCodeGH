@@ -105,6 +105,8 @@ for k = 1:length(iFiles)
             
             %exclude noisy data
             fft = fftmachine(data(:,j), Fs);
+             sig = find(fft.fftfreq > 200 & fft.fftfreq < 800);
+             noise = find(fft.fftfreq < 100);
     
 
 %           % OBW
