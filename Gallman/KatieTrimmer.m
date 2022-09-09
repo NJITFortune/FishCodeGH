@@ -7,18 +7,18 @@ function out  = KatieTrimmer(in)
 figure (1); hold on; title('sumfftAmp');
 
   ax(1) = subplot(311); hold on; title('obwAmp');   
-    yyaxis right; plot([in.s.timcont]/(60*60), [in.lopeakamp], '.');
-    yyaxis right; plot([in.timcont]/(60*60), [in.hipeakamp], '.');
+    yyaxis right; plot([in(1).s.timcont]/(60*60), [in(1).s.obwAmp], '.');
+    yyaxis right; plot([in(2).s.timcont]/(60*60), [in(2).s.obwAmp], '.');
    % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
  
   ax(2) = subplot(312); hold on; title('frequency (black) and temperature (red)');   
-        yyaxis right; plot([in.timcont]/(60*60), [in.lofreq], '.k', 'Markersize', 8);
-        yyaxis right; plot([in.timcont]/(60*60), [in.hifreq], '.k', 'Markersize', 8);
-        yyaxis left; plot([in.timcont]/(60*60), [in.temp], '.r', 'Markersize', 8);
+        yyaxis right; plot([in(1).s.timcont]/(60*60), [in(1).s.fftFreq], '.k', 'Markersize', 8);
+        yyaxis right; plot([in(1).s.timcont]/(60*60), [in(2).s.fftFreq], '.k', 'Markersize', 8);
+        yyaxis left; plot([in(1).s.timcont]/(60*60), [in(1).s.temp], '.r', 'Markersize', 8);
         
     
   ax(3) = subplot(313); hold on; title('light transitions');
-    plot([in.timcont]/(60*60), [in.light], '.', 'Markersize', 8);
+    plot([in(1).s.timcont]/(60*60), [in(1).s.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
     
@@ -28,7 +28,7 @@ figure (1); hold on; title('sumfftAmp');
     [x, ~] = ginput(2);
     
     
-    tt = find([in.timcont]/(60*60) > x(1) & [in.timcont]/(60*60) < x(2));
+    tt = find([in(1).s.timcont]/(60*60) > x(1) & [in(1).s.timcont]/(60*60) < x(2));
             out(1).s = in(1).s(tt);
     tt = find([in(2).s.timcont]/(60*60) > x(1) & [in(2).s.timcont]/(60*60) < x(2));
             out(2).s = in(2).s(tt);
