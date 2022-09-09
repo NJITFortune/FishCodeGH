@@ -66,9 +66,9 @@ for k = 1:length(iFiles)
        % Filter data  
           
             filtdata(:,1) = filtfilt(b,a, data(:,1)); % High pass filter
-            filtdata(:,1) = filtfilt(f,e, data(:,1)); % Low pass filter   
+            filtdata(:,1) = filtfilt(f,e, filtdata(:,1)); % Low pass filter   
             
-            filtdata(:,2) = filtfilt(b,a, filtdata(:,2)); % High pass filter
+            filtdata(:,2) = filtfilt(b,a, data(:,2)); % High pass filter
             filtdata(:,2) = filtfilt(f,e, filtdata(:,2)); % Low pass filter   
 
         % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
