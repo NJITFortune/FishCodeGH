@@ -104,7 +104,8 @@ for k = 1:length(iFiles)
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
             %exclude noisy data
-            fft = fftmachine
+            fft = fftmachine(data(:,j), Fs);
+    
 
 %           % OBW
             [out(j).s(k).bw,out(j).s(k).flo,out(j).s(k).fhi,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
