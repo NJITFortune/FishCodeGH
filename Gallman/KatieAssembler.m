@@ -65,11 +65,11 @@ for k = 1:length(iFiles)
         
        % Filter data  
           
-            data(:,1) = filtfilt(b,a, data(:,1)); % High pass filter
-            data(:,1) = filtfilt(f,e, data(:,1)); % Low pass filter   
+            filtdata(:,1) = filtfilt(b,a, data(:,1)); % High pass filter
+            filtdata(:,1) = filtfilt(f,e, data(:,1)); % Low pass filter   
             
-            data(:,2) = filtfilt(b,a, data(:,2)); % High pass filter
-            data(:,2) = filtfilt(f,e, data(:,2)); % Low pass filter   
+            filtdata(:,2) = filtfilt(b,a, filtdata(:,2)); % High pass filter
+            filtdata(:,2) = filtfilt(f,e, filtdata(:,2)); % Low pass filter   
 
         % Add time stamps (in seconds) relative to computer midnight (COMES FROM THE FILENAME)
  
@@ -87,8 +87,8 @@ for k = 1:length(iFiles)
         
             
             % trim data to max amp SampleWindow
-            [out(j).s(k).startim, ~] = k_FindMaxWindow(data(:,j), tim, SampleWindw);
-            data4analysis = (data(tim > out(j).s(k).startim & tim < out(j).s(k).startim + SampleWindw, j));     
+            [out(j).s(k).startim, ~] = k_FindMaxWindow(filtdata(:,j), tim, SampleWindw);
+            data4analysis = (filtdata(tim > out(j).s(k).startim & tim < out(j).s(k).startim + SampleWindw, j));     
             data4analysis = (data4analysis - mean(data4analysis));
 
             %shift data so that it always starts and ends on the same phase
@@ -103,6 +103,9 @@ for k = 1:length(iFiles)
 
             % ANALYSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
+            %exclude noisy data
+            fft = fftmachine
+
 %           % OBW
             [out(j).s(k).bw,out(j).s(k).flo,out(j).s(k).fhi,out(j).s(k).obwAmp] = obw(data4analysis, Fs, [botFreqOBW topFreqOBW]);
 %           % zAmp
