@@ -49,7 +49,7 @@ if in.info.luz(1) < 0
         else %we start with light
             %poweridx normally starts with dark, so we need to add ld to start with light
             poweridx1 = poweridx(1) + ld;
-            lighttimesidx = lighttimeslong > poweridx1(1) & lighttimeslong < poweridx(2);
+            lighttimesidx = lighttimeslong > poweridx1 & lighttimeslong < poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         end
     end
@@ -70,7 +70,7 @@ else %we start with light
         else %we start with light
             %poweridx normally starts with dark, so we need to add ld to start with light
             poweridx1 = poweridx(1) + ld;
-            lighttimesidx = lighttimeslong > poweridx1(1) & lighttimeslong < poweridx(2);
+            lighttimesidx = lighttimeslong > poweridx1 & lighttimeslong < poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         end
     end
