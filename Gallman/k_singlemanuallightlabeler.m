@@ -10,9 +10,9 @@ function out = k_singlemanuallightlabeler(in)
         out(timz) = startim + (in.info.ld*(timz-1)); %without for-loop
         
          %find the time indicies for the first light cycle
-        lidx = [in(1).s.timcont] < out(2)*(60*60);  
+        lidx = [in.e(1).s.timcont] < out(2)*(60*60);  
     %take the mean of the light values in the first cycle
-        meaninitialbright = mean([in(1).s(lidx).light]);
+        meaninitialbright = mean([in.e(1).s(lidx).light]);
     
     %Assign negative values to luz when lights were off
         if meaninitialbright < 2.5 % Lights in initial period were off
