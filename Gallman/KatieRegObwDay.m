@@ -15,7 +15,7 @@ clearvars -except kg kg2 rkg k hkg2 hkg
 in = hkg(k);
 ReFs = 20;
 light = 3; %start with dark
-channel = 2;
+channel = 1;
 
 % light = 4; %start with light
 % fish = 5; %lo freq
