@@ -12,7 +12,7 @@
 % % %for when i'm too lazy to function
 %  clearvars -except kg kg2 rkg k hkg2 hkg
 % % % 
-in = hkg2(k);
+in = hkg(k);
 ReFs = 20;
 light = 3; %start with dark
 
