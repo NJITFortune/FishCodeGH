@@ -4,6 +4,7 @@ function out = k_singlemanuallightlabeler(in)
 
  startim = input('Enter the start time for the experiment: ');
  % LIGHT CYCLE ON/OFF STARTS 
+ 
     %caclulate hours when the light changed
         numbercycles = floor(in.e(1).s(end).timcont/(in.info.ld*60*60)); %number of cycles in data
         timz = 1:1:numbercycles;
