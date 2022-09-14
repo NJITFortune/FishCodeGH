@@ -120,7 +120,7 @@ end
 
         
         %high pass removes feeding trend for high frequency experiments
-        if ld < 11
+        if ld < 15
         [bb,aa] = butter(5, highWn, 'high');
         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
 
