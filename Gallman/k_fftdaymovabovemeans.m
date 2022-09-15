@@ -1,12 +1,14 @@
-%function [exp, fish, ld] = k_fftdaymovabovemeans(in)
-clearvars -except hkg hkg2 dark light darkmulti lightmulti kg 
-in = darkmulti(k).h;
+function [exp, fish, ld] = k_fftdaymovabovemeans(in)
+% clearvars -except hkg hkg2 dark light darkmulti lightmulti kg 
+% in = darkmulti(k).h;
 
 ld = in(1).day(1).ld;
 
  %all days
  %average day by trial
  
+ clear daymean
+ clear avgrange
 
 %figure(99);clf; hold on; 
  for j = length(in):-1:1 % experiments of x hour length
