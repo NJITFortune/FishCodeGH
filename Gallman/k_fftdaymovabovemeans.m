@@ -25,15 +25,15 @@ ld = in(1).day(1).ld;
                
         end
     
-      if length(in(j).day) > 1  
+    %  if length(in(j).day) > 1  
       %average across days   
        daymean(j,:) = mean(mday);
        avgrange(j,:) = mean(amprange);
-      else
-       daymean(j,:) = mday;
-       avgrange(j,:) = amprange;
-      end
-  
+%       else
+%        daymean(j,:) = mday;
+%        avgrange(j,:) = amprange;
+%       end
+%   
     
  end
            
