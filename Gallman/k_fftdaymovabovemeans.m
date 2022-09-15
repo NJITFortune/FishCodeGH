@@ -7,11 +7,10 @@ ld = in(1).day(1).ld;
  %all days
  %average day by trial
  
- clear daymean
- clear avgrange
+
 
 %figure(99);clf; hold on; 
- for j = length(in):-1:1 % experiments of x hour length
+ for j = 1:length(in) % experiments of x hour length
   
         mday = zeros(1, length(in(j).day(1).tim));
 
