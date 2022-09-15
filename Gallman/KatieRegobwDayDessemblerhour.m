@@ -93,10 +93,18 @@ end
 
 
 %% process data
+%prepare data variables
+
+%outlier removal
+ tto = [in.idx(channel).obwidx]; 
+      
+%raw data
+    timcont = [in.e(channel).s(tto).timcont]; %time in seconds
+    obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
 
 %Take top of dataset
     %find peaks
-    [PKS,LOCS] = findpeaks(obw);
+    [~,LOCS] = findpeaks(obw);
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
@@ -109,26 +117,36 @@ end
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs);
+    [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, lighttimes);
     
-    %filter data
+     %filter data
         %cut off frequency
         highWn = 0.005/(ReFs/2);
-        lowWn = 0.1/(ReFs/2);
-
-        %high pass removes feeding trend
-        [bb,aa] = butter(5, highWn, 'high');
-        filtdata = filtfilt(bb,aa, double(regobwminusmean)); %double vs single matrix?
 
         %low pass removes spikey-ness
+        lowWn = 0.025/(ReFs/2);
         [dd,cc] = butter(5, lowWn, 'low');
-        datadata = filtfilt(dd,cc, filtdata);
+        datadata = filtfilt(dd,cc, double(regobwpeaks));
+
+        
+        %high pass removes feeding trend for high frequency experiments
+        if ld < 11
+        [bb,aa] = butter(5, highWn, 'high');
+        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+
+        end
+    
+    dataminusmean = datadata - mean(datadata);    
 
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
-    obwyy = datadata(timidx);  
+    obwyy = dataminusmean(timidx);  
+
+    rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
+    timmy = timcont(rawidx);
+    obwAmp = obw(rawidx);
 
 %     %plot
 %     figure(2);clf; hold on;
