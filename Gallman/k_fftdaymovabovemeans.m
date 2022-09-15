@@ -27,7 +27,7 @@ ld = in(1).day(1).ld;
        avgrange(j,:) = mean(amprange);
       else
        daymean(j,:) = mday;
-       avgrange(j,:) = amprange';
+       avgrange(j,:) = amprange;
       end
   
     
