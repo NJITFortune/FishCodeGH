@@ -5,7 +5,7 @@ function k_singledaymeanplotter(day)
 
 
 %average over single day    
-figure(56); clf; hold on; 
+%figure(56); clf; hold on; 
 a = [min(day.Sobwyy)-min(day.Sobwyy)/4, max(day.Sobwyy)+max(day.Sobwyy)/4];
  
     %create fill box 
