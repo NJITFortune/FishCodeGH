@@ -14,7 +14,7 @@ ld = in(1).day(1).ld;
   
         mday = zeros(1, length(in(j).day(1).tim));
         clear daymean
-        clear avgrange
+        clear a
 
         for k = length(in(j).day):-1:1 %days within each trial
         
