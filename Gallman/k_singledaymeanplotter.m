@@ -28,7 +28,7 @@ a = [min([day.Sobwyy])-min([day.Sobwyy])/4, max([day.Sobwyy])+max([day.Sobwyy])/
            % othermday = mday/(length(day));
             plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
           %  plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-            plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+            plot([day(1).ld day(1).ld], ylim, 'k-', 'LineWidth', 3);
             
             
 
