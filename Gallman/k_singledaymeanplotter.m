@@ -10,9 +10,9 @@ a = [min([day.Sobwyy])-min([day.Sobwyy])/4, max([day.Sobwyy])+max([day.Sobwyy])/
  
     %create fill box 
     if light < 4 %we start with dark
-        fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+        fill([0 0 day(1).ld day(1).ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
     else %we start with light
-        fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+        fill([day(1).ld day(1).ld day(1).ld*2 day(1).ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
     end
     
     %mean two ways to prove math
