@@ -13,7 +13,7 @@ figure (1); hold on; title('sumfftAmp');
  
   ax(2) = subplot(312); hold on; title('frequency (black) and temperature (red)');   
         yyaxis right; plot([in(1).s.timcont]/(60*60), [in(1).s.fftFreq], '.k', 'Markersize', 8);
-        yyaxis right; plot([in(1).s.timcont]/(60*60), [in(2).s.fftFreq], '.k', 'Markersize', 8);
+        yyaxis right; plot([in(2).s.timcont]/(60*60), [in(2).s.fftFreq], '.k', 'Markersize', 8);
         yyaxis left; plot([in(1).s.timcont]/(60*60), [in(1).s.temp], '.r', 'Markersize', 8);
         
     
@@ -33,8 +33,8 @@ figure (1); hold on; title('sumfftAmp');
     tt = find([in(2).s.timcont]/(60*60) > x(1) & [in(2).s.timcont]/(60*60) < x(2));
             out(2).s = in(2).s(tt);
             
-end            
-            
+close(1)           
+   
     %Make sure these are the ones we want before we over write the data  
 %     A = input('Wtf do you want to do?');
 %     if A == 1 

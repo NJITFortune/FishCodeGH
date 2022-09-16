@@ -9,13 +9,13 @@ function [day] = KatieRegObwDay(in, channel, ReFs, light)%multisingleRegobwDay
     %starts with light = 4
 
 
-% % %for when i'm too lazy to function
-%  clearvars -except kg kg2 rkg k hkg2 hkg
-% % % 
-% in = hkg2(k);
+% %for when i'm too lazy to function
+% clearvars -except kg kg2 rkg k hkg2 hkg
+% % % % 
+% in = hkg(k);
 % ReFs = 20;
 % light = 3; %start with dark
-
+% channel = 1;
 
 % light = 4; %start with light
 % fish = 5; %lo freq
@@ -49,7 +49,7 @@ if in.info.luz(1) < 0
         else %we start with light
             %poweridx normally starts with dark, so we need to add ld to start with light
             poweridx1 = poweridx(1) + ld;
-            lighttimesidx = lighttimeslong > poweridx1(1) & lighttimeslong < poweridx(2);
+            lighttimesidx = lighttimeslong > poweridx1 & lighttimeslong < poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         end
     end
@@ -70,7 +70,7 @@ else %we start with light
         else %we start with light
             %poweridx normally starts with dark, so we need to add ld to start with light
             poweridx1 = poweridx(1) + ld;
-            lighttimesidx = lighttimeslong > poweridx1(1) & lighttimeslong < poweridx(2);
+            lighttimesidx = lighttimeslong > poweridx1 & lighttimeslong < poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         end
     end
@@ -111,7 +111,8 @@ end
     
      %filter data
         %cut off frequency
-        highWn = 0.005/(ReFs/2);
+         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+        %highWn = 0.001/(ReFs/2);
 
         %low pass removes spikey-ness
         lowWn = 0.025/(ReFs/2);
@@ -186,7 +187,7 @@ for j = 1:howmanydaysinsample
 %                     day(k).rawamp = sumfft(rawddayidx);
 %                 %end
  end
- 
+%  
 %  %% plot to check
 % %time vectors currently in seconds, divide by 3600 to get hours
 %  
