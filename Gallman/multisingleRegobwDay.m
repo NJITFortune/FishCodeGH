@@ -1,9 +1,4 @@
 function [multiday] = multisingleRegobwDay(in, ReFs, light)%multisingleRegobwDay
-
-%function [day] = KatieRegobwDayDessembler(in, channel,  ReFs, light)
-%% usage
-%[day] = KatieRegobwDayDessembler(kg(#), channel, ReFs)
-%
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4

@@ -14,7 +14,7 @@ function [day] = KatieRegObwDay(in, channel, ReFs, light)%multisingleRegobwDay
 % % % % 
 % in = hkg(k);
 % ReFs = 20;
-% light = 4; %start with dark
+% light = 3; %start with dark
 % channel = 1;
 
 % light = 4; %start with light
@@ -111,7 +111,8 @@ end
     
      %filter data
         %cut off frequency
-        highWn = 0.005/(ReFs/2);
+         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+        %highWn = 0.001/(ReFs/2);
 
         %low pass removes spikey-ness
         lowWn = 0.025/(ReFs/2);
