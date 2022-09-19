@@ -1,4 +1,4 @@
-function [hi, lo] = k_multifishfreqtrim(out)%, out2)
+function [hi, lo] = k_multifishfreqtrim(out, out2)
 %% usage
 % out = kg2(k).s
 %takes raw fft amp data from each tube and assigns it to high and low freq fish
@@ -13,10 +13,10 @@ oldlo(1).tim = [out([out.lotube]==1).timcont]/3600;
 oldlo(2).tim = [out([out.lotube]==2).timcont]/3600;
 
 % amp obw
-oldhi(1).obwamp = [out([out.hitube]==1).hiAmpobw];
-oldhi(2).obwamp = [out([out.hitube]==2).hiAmpobw];
-oldlo(1).obwamp = [out([out.lotube]==1).loAmpobw];
-oldlo(2).obwamp = [out([out.lotube]==2).loAmpobw];
+% oldhi(1).obwamp = [out([out.hitube]==1).hiAmpobw];
+% oldhi(2).obwamp = [out([out.hitube]==2).hiAmpobw];
+% oldlo(1).obwamp = [out([out.lotube]==1).loAmpobw];
+% oldlo(2).obwamp = [out([out.lotube]==2).loAmpobw];
 
 %amp fft peak
 % oldhi(1).pkamp = [out([out.hitube]==1).hipeakamp];
@@ -32,10 +32,10 @@ oldlo(2).freq = [out([out.lotube]==2).lofreq];
 
 
 %amp obw
-% oldhi(1).obwamp = [out2.hiAmpobw1];
-% oldhi(2).obwamp = [out2.hiAmpobw2];
-% oldlo(1).obwamp = [out2.loAmpobw1];
-% oldlo(2).obwamp = [out2.loAmpobw2];
+oldhi(1).obwamp = [out2.hiAmpobw1];
+oldhi(2).obwamp = [out2.hiAmpobw2];
+oldlo(1).obwamp = [out2.loAmpobw1];
+oldlo(2).obwamp = [out2.loAmpobw2];
 %% filter by fish frequency
 
 %hifreq
