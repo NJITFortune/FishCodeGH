@@ -5,7 +5,9 @@ clearvars -except xxkg hkg k
 in = xxkg(k).e;
 %out = kg2(k).info
 
-    
+ timcont = [in(1).s.timcont]/3600;
+ temp = [in(1).s.temp];
+%%
 %temp changes
     %output saved in vector temptims
     %plots to check
@@ -13,7 +15,7 @@ in = xxkg(k).e;
         figure(59); clf; hold on;
         plot([in(1).s.timcont]/3600, [in(1).s.temp]);
                     
-                    
+                  
         %find idicies where the light changes (threshold of 2.5)  
             %autoplots but does not save. Use to check output
 %             risetime([in(1).s.temp], [in(1).s.timcont]/3600);
