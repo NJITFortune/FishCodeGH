@@ -1,4 +1,4 @@
-function out = k_templines(in)
+function temptims = k_templines(in)
 % Usage: kg(#).info = KatieTempLabeler(kg(#).e)
 
 % clearvars -except kg
@@ -52,8 +52,8 @@ function out = k_templines(in)
         %save vector as output
         %plot to check
         for j = 1:length(tempsort)
-            out.temptims(j,:) = tempsort(j);
-            plot([out.temptims(j), out.temptims(j)], ylim, 'b-');
+            temptims(j,:) = tempsort(j);
+            plot([temptims(j), temptims(j)], ylim, 'b-');
         end
         end
 %% manual labels
