@@ -10,6 +10,9 @@ function  k_fishcalplotter(hi, lo, out)
 figure(455); clf; hold on;
 in = hi;
 
+length(in(2).tim)
+length(in(2).obwamp)
+
     ax(1) = subplot(311); title('High frequency fish'); hold on; %ylim([0,1]);
             plot(in(1).tim, in(1).obwamp, 'bo');
             plot(in(2).tim, in(2).obwamp, 'mo');
