@@ -5,8 +5,8 @@ function temptims = k_templines(in)
 % in = xxkg(k).e;
 %out = kg2(k).info
 
- timcont = [in(1).s.timcont]/3600;
- temp = [in(1).s.temp];
+%  timcont = [in(1).s.timcont]/3600;
+%  temp = [in(1).s.temp];
 %%
 %temp changes
     %output saved in vector temptims
