@@ -48,7 +48,6 @@ function temptims = k_templines(in)
            fall(k,:) = ufx(k)+(f(k)/2);
         end
 
-       
      
         %concatenate rise and fall times into single vector 
         alltemp = vertcat(rise, fall);
