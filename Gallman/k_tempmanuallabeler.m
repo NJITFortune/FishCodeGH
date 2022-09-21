@@ -38,21 +38,21 @@ hotdur = mean(hotter);
 tempdif = diff(temptims);
 tidx = find(tempdif > 7);
 
-for j = 1:length(tidx)
-
-    lineidx = find(temptims == temptims(tidx(j)));
-
-    if tiz(tidx(j)) < 0
-        temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + colddur,  ]
-
-end
-
-    plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
-    yline(mean(temp));
-    
-
-
-temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
+% for j = 1:length(tidx)
+% 
+%     lineidx = find(temptims == temptims(tidx(j)));
+% 
+%     if tiz(tidx(j)) < 0
+%         temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + colddur,  ]
+% 
+% end
+% 
+%     plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
+%     yline(mean(temp));
+%     
+% 
+% 
+% temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
 
 % 
 %     figure(32); clf; hold on;
