@@ -1,12 +1,12 @@
-function temptims = k_templines(in)
+%function temptims = k_templines(in)
 % Usage: kg(#).info = KatieTempLabeler(kg(#).e)
 
-% clearvars -except xxkg hkg k
-% in = xxkg(k).e;
-% %out = kg2(k).info
-% 
-%  timcont = [in(1).s.timcont]/3600;
-%  temp = [in(1).s.temp];
+clearvars -except xxkg hkg k
+in = xxkg(k).e;
+%out = kg2(k).info
+
+ timcont = [in(1).s.timcont]/3600;
+ temp = [in(1).s.temp];
 %%
 %temp changes
     %output saved in vector temptims
@@ -27,7 +27,9 @@ function temptims = k_templines(in)
         %u = uppercross
         [r, lrx, ~, ~, ~] = risetime([in(1).s.temp], [in(1).s.timcont]/3600);
         [f, ~, ufx, ~, ~] = falltime([in(1).s.temp], [in(1).s.timcont]/3600);
-        
+
+if diff()
+%%        
         if ~isempty(lrx) && ~isempty(ufx)
          
         %save rise indicis in center of temp change
