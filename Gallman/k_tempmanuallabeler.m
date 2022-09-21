@@ -15,23 +15,28 @@ figure(45); clf; hold on;
     plot(timcont, temp);
     plot([temptims temptims], ylim, 'k-');
 
+%separate rise from fall    
 for j = 2:length(temptims)
     
     tempidx = find(timcont >= temptims(j-1) & timcont < temptims(j));
 
-    tiz(j-1,:) = mean(temp(tempidx));
+    if mean(temp(tempidx)) > mean(temp)
+        tiz(j-1,:) = temptims(j-1);
+    else
+        tiz(j-1,:) = -temptims(j-1);
+    end
+
 end    
 
+tempdif = diff(temptims);
+tidx = find(tempdif > 7);
 
-% tempdif = diff(temptims);
-% tidx = find(tempdif > 7);
-% 
-%     plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
-%     yline(mean(temp));
-%     
+    plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
+    yline(mean(temp));
+    
 
-% lineidx = find(temptims == temptims(tidx(2)));
-% temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
+lineidx = find(temptims == temptims(tidx(2)));
+temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
 
 % 
 %     figure(32); clf; hold on;
