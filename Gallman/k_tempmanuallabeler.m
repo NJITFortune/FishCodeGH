@@ -12,7 +12,7 @@ temp = [in.e(1).s.temp];
 temptims = [in.info.temptims];
 
 figure(45); clf; hold on;
-    plot(timcont, temp);
+    plot(timcont, temp, 'LineWidth', 1);
     plot([temptims temptims], ylim, 'k-');
 
 %separate rise from fall    
@@ -69,7 +69,7 @@ end
         timz = 1:1:numbercycles;
         testtims(timz) = startim + (6*(timz-1)); %without for-loop
 
-plot([testtims', testtims'], ylim, 'r-', 'LineWidth', 1);
+plot([testtims', testtims'], ylim, 'r-');
 
 %         templines(1) = startim;
 %         for j = 2:length(timz)
