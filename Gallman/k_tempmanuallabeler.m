@@ -37,7 +37,7 @@ figure(45); clf; hold on;
 
         end
 
-    plot([templines, templines], ylim, 'r-');
+    plot([templines', templines'], ylim, 'r-');
 
 
 % 
