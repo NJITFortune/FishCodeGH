@@ -44,25 +44,38 @@ for j = 1:length(tidx)
 
     lineidx = find(temptims == temptims(tidx(j)));
 
-    if tiz(tidx(j)) < 0
-        temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + colddur, temptims() ]
+        if tiz(tidx(j)) < 0
+            temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + colddur, temptims(lineidx:end)];
+        else
+           temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + hotdur, temptims(lineidx:end)]; 
+        end
+
+    end
+
+    if tempdif(tidx) < (tempday +1)*3
+
+    lineidx = find(temptims == temptims(tidx(j)));
+
+        if tiz(tidx(j)) < 0
+            temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + colddur, (temptims(tidx(j)) + colddur) + hotdur, temptims(lineidx:end)];
+        else
+           temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + hotdur,(temptims(tidx(j)) + hotdur) + colddur, temptims(lineidx:end)]; 
+        end
+
+    end
 
 end
 
-    plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
-    yline(mean(temp));
-    
+    plot([temptims temptims], ylim, 'c-');
 
 
-temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
-
-
-    figure(32); clf; hold on;
-         risetime(temp, timcont);
-
-    figure(33); clf; hold on;
-       falltime(temp, timcont);
-
+% 
+%     figure(32); clf; hold on;
+%          risetime(temp, timcont);
+% 
+%     figure(33); clf; hold on;
+%        falltime(temp, timcont);
+% 
 
 
 
