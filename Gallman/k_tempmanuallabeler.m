@@ -11,18 +11,18 @@ timcont = [in.e(1).s.timcont]/3600;
 temp = [in.e(1).s.temp];
 temptims = [in.info.temptims];
 
-% figure(45); clf; hold on;
-%     plot(timcont, temp);
-%     plot([temptims temptims], ylim, 'k-');
+figure(45); clf; hold on;
+    plot(timcont, temp);
+    plot([temptims temptims], ylim, 'k-');
 
 
-
-    figure(32); clf; hold on;
-         risetime(temp, timcont);
-
-    figure(33); clf; hold on;
-       falltime(temp, timcont);
-
+% 
+%     figure(32); clf; hold on;
+%          risetime(temp, timcont);
+% 
+%     figure(33); clf; hold on;
+%        falltime(temp, timcont);
+% 
 
 
 
