@@ -5,39 +5,48 @@
 clearvars -except hkg k xxkg 
 in = xxkg(k);
 
-colddur = 5.6;
-hotdur = 6.3;
+
 
 timcont = [in.e(1).s.timcont]/3600;
 temp = [in.e(1).s.temp];
 temptims = [in.info.temptims];
 
-figure(45); clf; hold on;
-    plot(timcont, temp);
-    plot([temptims temptims], ylim, 'k-');
+% figure(45); clf; hold on;
+%     plot(timcont, temp);
+%     plot([temptims temptims], ylim, 'k-');
 
 
 
- %startim = input('Enter the start time for the experiment: ');
- startim = 63.67;
+    figure(32); clf; hold on;
+        subplot(211) = rise(temp, timcont);
+        subplot(212) = fall(temp, timcont);
 
 
-    %caclulate hours when the light changed
-        numbercycles = floor(timcont(end)/(mean([colddur, hotdur]))); %number of cycles in data
-        timz = 1:1:numbercycles;
 
-        templines(1) = startim;
-        for j = 2:length(timz)
-            
-            if mod(j,2) == 0
-                templines(j) = templines(j-1) + hotdur;
-            else
-                templines(j) = templines(j-1) + colddur;
-            end
 
-        end
+% colddur = 5.6;
+% hotdur = 6.3;
 
-    plot([templines', templines'], ylim, 'r-');
+%  %startim = input('Enter the start time for the experiment: ');
+%  startim = 63.67;
+% 
+% 
+%     %caclulate hours when the light changed
+%         numbercycles = floor(timcont(end)/(mean([colddur, hotdur]))); %number of cycles in data
+%         timz = 1:1:numbercycles;
+% 
+%         templines(1) = startim;
+%         for j = 2:length(timz)
+%             
+%             if mod(j,2) == 0
+%                 templines(j) = templines(j-1) + hotdur;
+%             else
+%                 templines(j) = templines(j-1) + colddur;
+%             end
+% 
+%         end
+% 
+%     plot([templines', templines'], ylim, 'r-');
 
 
 % 
