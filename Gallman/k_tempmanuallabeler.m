@@ -19,7 +19,7 @@ tempdif = diff(temptims);
 tidx = find(tempdif > 7);
 
     plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
-    plot([timcont(1), timcont(end)], mean(temp), 'k-');
+    yline(mean(temp));
     
 
 % lineidx = find(temptims == temptims(tidx(2)));
