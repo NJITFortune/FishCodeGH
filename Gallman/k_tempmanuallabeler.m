@@ -1,10 +1,10 @@
-%function out = k_tempemanuallabeler(in)
+function out = k_tempemanuallabeler(in)
 %in = kg(#).e
 %out = kg(k).info.luz
 
-clearvars -except hkg k xxkg 
-in = xxkg(k);
-
+% clearvars -except hkg k xxkg 
+% in = xxkg(k);
+% 
 
 
 timcont = [in.e(1).s.timcont]/3600;
