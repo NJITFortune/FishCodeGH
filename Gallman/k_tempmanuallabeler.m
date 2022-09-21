@@ -39,7 +39,7 @@ tempdif = diff(temptims);
 tidx = find(tempdif > tempday + 1);
 
 for j = 1:length(tidx)
-
+j
     lineidx = find(temptims == temptims(tidx(j)));
 
     if tempdif(tidx(j)) < (tempday +1)*2
@@ -59,7 +59,7 @@ for j = 1:length(tidx)
         if tiz(tidx(j)) < 0
             temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + colddur, (temptims(tidx(j)) + colddur) + hotdur, temptims(lineidx:end)];
         else
-           temptims = [temptims(1:lineidx-1), temptims(tidx(j)) + hotdur, temptims(tidx(j)) + hotdur + colddur, temptims(lineidx:end)]; 
+           temptims = [temptims(1:lineidx-1), temptims(tidx(j)) + hotdur,(temptims(tidx(j)) + hotdur) + colddur, temptims(lineidx:end)]; 
         end
 
     end
