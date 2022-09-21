@@ -17,8 +17,8 @@ figure(45); clf; hold on;
 
 tempdif = diff(temptims);
 for j = 1:length(temptims)-1
-
     
+
 
 
 % 
