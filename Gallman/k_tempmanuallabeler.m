@@ -68,7 +68,7 @@ for j = 1%:length(tidx)
 
 end
 
-    plot([temptims temptims], ylim, 'c-');
+    plot([temptims' temptims'], ylim, 'c-');
 
 
 % 
