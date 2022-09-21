@@ -16,9 +16,8 @@ figure(45); clf; hold on;
     plot([temptims temptims], ylim, 'k-');
 
 tempdif = diff(temptims);
-for j = 1:length(temptims)-1
-    
-
+tidx = find(tempdif > 7);
+    plot([temptims(tidx), temptims(tidx)], ylim, 'r-');
 
 
 % 
