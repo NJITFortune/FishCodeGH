@@ -26,26 +26,31 @@ figure(45); clf; hold on;
         numbercycles = floor(timcont(end)/(mean([colddur, hotdur]))); %number of cycles in data
         timz = 1:1:numbercycles;
 
+        templines(1) = startim;
         for j = 2:length(timz)
             
-            if 
+            if mod(j,2) == 0
+                templines(j) = templines(j-1) + hotdur;
+            else
+                templines(j) = templines(j-1) + colddur;
+            end
 
         end
 
+    plot([templines, templines], ylim, 'r-');
 
 
-
-
-        out(timz) = startim + (in.info.ld*(timz-1)); %without for-loop
-        
-         %find the time indicies for the first light cycle
-        lidx = [in.e(1).s.timcont] < out(2)*(60*60);  
-    %take the mean of the light values in the first cycle
-        meaninitialbright = mean([in.e(1).s(lidx).light]);
-    
-    %Assign negative values to luz when lights were off
-        if meaninitialbright < 2.5 % Lights in initial period were off
-            out(1:2:end) = -out(1:2:end); % Set initial period and every other subseqent  as off
-        else
-            out(2:2:end) = -out(2:2:end); % Set the second period and every other subsequent as off.
-        end
+% 
+%         out(timz) = startim + (in.info.ld*(timz-1)); %without for-loop
+%         
+%          %find the time indicies for the first light cycle
+%         lidx = [in.e(1).s.timcont] < out(2)*(60*60);  
+%     %take the mean of the light values in the first cycle
+%         meaninitialbright = mean([in.e(1).s(lidx).light]);
+%     
+%     %Assign negative values to luz when lights were off
+%         if meaninitialbright < 2.5 % Lights in initial period were off
+%             out(1:2:end) = -out(1:2:end); % Set initial period and every other subseqent  as off
+%         else
+%             out(2:2:end) = -out(2:2:end); % Set the second period and every other subsequent as off.
+%         end
