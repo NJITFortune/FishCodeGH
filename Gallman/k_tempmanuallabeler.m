@@ -4,7 +4,7 @@
 
 clearvars -except hkg k xxkg 
 in = xxkg(k);
-
+tempday = 6;
 
 
 timcont = [in.e(1).s.timcont]/3600;
@@ -36,31 +36,33 @@ hotdur = mean(hotter);
 % hotdur = 6.3;
 
 tempdif = diff(temptims);
-tidx = find(tempdif > 7);
+tidx = find(tempdif > tempday + 1);
 
-% for j = 1:length(tidx)
-% 
-%     lineidx = find(temptims == temptims(tidx(j)));
-% 
-%     if tiz(tidx(j)) < 0
-%         temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + colddur,  ]
-% 
-% end
-% 
-%     plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
-%     yline(mean(temp));
-%     
-% 
-% 
-% temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
+for j = 1:length(tidx)
 
-% 
-%     figure(32); clf; hold on;
-%          risetime(temp, timcont);
-% 
-%     figure(33); clf; hold on;
-%        falltime(temp, timcont);
-% 
+    if tempdif(tidx) < (tempday +1)*2
+
+    lineidx = find(temptims == temptims(tidx(j)));
+
+    if tiz(tidx(j)) < 0
+        temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + colddur, temptims() ]
+
+end
+
+    plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
+    yline(mean(temp));
+    
+
+
+temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
+
+
+    figure(32); clf; hold on;
+         risetime(temp, timcont);
+
+    figure(33); clf; hold on;
+       falltime(temp, timcont);
+
 
 
 
