@@ -38,8 +38,8 @@ hotdur = mean(hotter);
 tempdif = diff(temptims);
 tidx = find(tempdif > tempday + 1);
 
-for j = 1:length(tidx)
-j
+for j = 1%:length(tidx)
+
     lineidx = find(temptims == temptims(tidx(j)));
 
     if tempdif(tidx(j)) < (tempday +1)*2
