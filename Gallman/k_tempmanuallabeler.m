@@ -16,6 +16,9 @@ figure(45); clf; hold on;
     plot([temptims temptims], ylim, 'k-');
 
 
+for j = 1:length(temptims)
+    
+
 % 
 %     figure(32); clf; hold on;
 %          risetime(temp, timcont);
