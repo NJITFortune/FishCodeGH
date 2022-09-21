@@ -11,6 +11,8 @@ timcont = [in.e(1).s.timcont]/3600;
 temp = [in.e(1).s.temp];
 temptims = [in.info.temptims];
 
+temptims = sort()
+
 figure(45); clf; hold on;
     plot(timcont, temp, 'LineWidth', 1);
     plot([temptims temptims], ylim, 'k-');
