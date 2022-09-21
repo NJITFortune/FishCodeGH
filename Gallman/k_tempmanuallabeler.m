@@ -38,7 +38,7 @@ hotdur = mean(hotter);
 tempdif = diff(temptims);
 tidx = find(tempdif > tempday + 1);
 
-temptims = te
+temptims = temptims';
 
 for j = 1%:length(tidx)
 
