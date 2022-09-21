@@ -22,30 +22,37 @@ for j = 2:length(temptims)
 
     if mean(temp(tempidx)) > mean(temp)
         tiz(j-1,:) = temptims(j-1);
+        hotter(j-1,:) = timtims(j-1);
     else
         tiz(j-1,:) = -temptims(j-1);
+        colder(j-1,:) = temptims(j-1);
     end
 
 end    
 
-% tempdif = diff(temptims);
-% tidx = find(tempdif > 7);
-% 
-% for j = 1:length(tidx)
-% 
-%     lineidx = find(temptims == temptims(tidx(j)));
-% 
-%     if tiz(tidx(j)) < 0
-%         temptims = [temptims(1:lineidx -1), ]
-% 
-% end
-% 
-%     plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
-%     yline(mean(temp));
-%     
-% 
-% 
-% temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
+colddur = mean(colder);
+hotdur = mean(hotter);
+% colddur = 5.6;
+% hotdur = 6.3;
+
+tempdif = diff(temptims);
+tidx = find(tempdif > 7);
+
+for j = 1:length(tidx)
+
+    lineidx = find(temptims == temptims(tidx(j)));
+
+    if tiz(tidx(j)) < 0
+        temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + colddur,  ]
+
+end
+
+    plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
+    yline(mean(temp));
+    
+
+
+temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
 
 % 
 %     figure(32); clf; hold on;
@@ -57,8 +64,7 @@ end
 
 
 
-% colddur = 5.6;
-% hotdur = 6.3;
+
 
 %  %startim = input('Enter the start time for the experiment: ');
   startim = temptims(1)-.5;
