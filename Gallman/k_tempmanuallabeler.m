@@ -61,25 +61,26 @@ temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
 % hotdur = 6.3;
 
 %  %startim = input('Enter the start time for the experiment: ');
-%  startim = 63.67;
+  startim = temptims(1);
 % 
 
     %caclulate hours when the light changed
         numbercycles = floor(timcont(end)/(mean([colddur, hotdur]))); %number of cycles in data
         timz = 1:1:numbercycles;
+        out(timz) = startim + (6*(timz-1)); %without for-loop
 
-        templines(1) = startim;
-        for j = 2:length(timz)
-            
-            if mod(j,2) == 0
-                templines(j) = templines(j-1) + hotdur;
-            else
-                templines(j) = templines(j-1) + colddur;
-            end
-
-        end
-
-    plot([templines', templines'], ylim, 'r-');
+%         templines(1) = startim;
+%         for j = 2:length(timz)
+%             
+%             if mod(j,2) == 0
+%                 templines(j) = templines(j-1) + hotdur;
+%             else
+%                 templines(j) = templines(j-1) + colddur;
+%             end
+% 
+%         end
+% 
+%     plot([templines', templines'], ylim, 'r-');
 
 
 % 
