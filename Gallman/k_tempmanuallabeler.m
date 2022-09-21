@@ -92,7 +92,7 @@ end
         timz = 1:1:numbercycles;
         testtims(timz) = startim + (6*(timz-1)); %without for-loop
 
-plot([testtims', testtims'], ylim, 'r-');
+%plot([testtims', testtims'], ylim, 'r-');
 
 %         templines(1) = startim;
 %         for j = 2:length(timz)
