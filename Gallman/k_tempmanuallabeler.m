@@ -28,24 +28,24 @@ for j = 2:length(temptims)
 
 end    
 
-tempdif = diff(temptims);
-tidx = find(tempdif > 7);
-
-for j = 1:length(tidx)
-
-    lineidx = find(temptims == temptims(tidx(j)));
-
-    if tiz(tidx(j)) < 0
-        temptims = [temptims(1:lineidx -1), ]
-
-end
-
-    plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
-    yline(mean(temp));
-    
-
-
-temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
+% tempdif = diff(temptims);
+% tidx = find(tempdif > 7);
+% 
+% for j = 1:length(tidx)
+% 
+%     lineidx = find(temptims == temptims(tidx(j)));
+% 
+%     if tiz(tidx(j)) < 0
+%         temptims = [temptims(1:lineidx -1), ]
+% 
+% end
+% 
+%     plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
+%     yline(mean(temp));
+%     
+% 
+% 
+% temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
 
 % 
 %     figure(32); clf; hold on;
@@ -67,7 +67,9 @@ temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
     %caclulate hours when the light changed
         numbercycles = floor(timcont(end)/(mean([colddur, hotdur]))); %number of cycles in data
         timz = 1:1:numbercycles;
-        out(timz) = startim + (6*(timz-1)); %without for-loop
+        testtims(timz) = startim + (6*(timz-1)); %without for-loop
+
+plot([testtims, testtims], ylim, 'r-', 'LineWidth', 2);
 
 %         templines(1) = startim;
 %         for j = 2:length(timz)
