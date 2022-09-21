@@ -15,12 +15,20 @@ figure(45); clf; hold on;
     plot(timcont, temp);
     plot([temptims temptims], ylim, 'k-');
 
-tempdif = diff(temptims);
-tidx = find(tempdif > 7);
-
-    plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
-    yline(mean(temp));
+for j = 2:length(temptims)
     
+    tempidx = find(temp >= temptims(j-1) & temp < temptims(j));
+
+    tiz(j-1,:) = mean(temp(tempidx));
+end    
+
+
+% tempdif = diff(temptims);
+% tidx = find(tempdif > 7);
+% 
+%     plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
+%     yline(mean(temp));
+%     
 
 % lineidx = find(temptims == temptims(tidx(2)));
 % temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
