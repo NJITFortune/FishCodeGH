@@ -61,7 +61,7 @@ end
 % hotdur = 6.3;
 
 %  %startim = input('Enter the start time for the experiment: ');
-  startim = temptims(1)-1;
+  startim = temptims(1)-.5;
 % 
 
     %caclulate hours when the light changed
