@@ -65,7 +65,7 @@ end
 % 
 
     %caclulate hours when the light changed
-        numbercycles = floor(timcont(end)/6; %number of cycles in data
+        numbercycles = floor(timcont(end)/6); %number of cycles in data
         timz = 1:1:numbercycles;
         testtims(timz) = startim + (6*(timz-1)); %without for-loop
 
