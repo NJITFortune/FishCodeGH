@@ -18,10 +18,8 @@ temptims = [in.info.temptims];
 
 
     figure(32); clf; hold on;
-        rise(temp, timcont);
-
-    figure(33); clf; hold on;    
-         fall(temp, timcont);
+        subplot(211) = risetime(temp, timcont);
+        subplot(212) = falltime(temp, timcont);
 
 
 
