@@ -28,7 +28,7 @@ in = xxkg(k).e;
         [r, lrx, ~, ~, ~] = risetime([in(1).s.temp], [in(1).s.timcont]/3600);
         [f, ~, ufx, ~, ~] = falltime([in(1).s.temp], [in(1).s.timcont]/3600);
 
-if diff()
+%if diff()
 %%        
         if ~isempty(lrx) && ~isempty(ufx)
          
