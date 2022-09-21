@@ -9,7 +9,7 @@ tempday = 6;
 
 timcont = [in.e(1).s.timcont]/3600;
 temp = [in.e(1).s.temp];
-temptims = [in.info.temptims];
+temptims = in.info.temptims;
 
 figure(45); clf; hold on;
     plot(timcont, temp, 'LineWidth', 1);
