@@ -22,7 +22,7 @@ for j = 2:length(temptims)
 
     if mean(temp(tempidx)) > mean(temp)
         tiz(j-1,:) = temptims(j-1);
-        hotter(j-1,:) = timtims(j-1);
+        hotter(j-1,:) = temptims(j-1);
     else
         tiz(j-1,:) = -temptims(j-1);
         colder(j-1,:) = temptims(j-1);
