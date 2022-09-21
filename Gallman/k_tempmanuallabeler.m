@@ -31,11 +31,20 @@ end
 tempdif = diff(temptims);
 tidx = find(tempdif > 7);
 
+for j = 1:length(tidx)
+
+    lineidx = find(temptims == temptims(tidx(j)));
+
+    if tiz(tidx(j)) < 0
+        temptims = [temptims(1:lineidx -1), ]
+
+end
+
     plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
     yline(mean(temp));
     
 
-lineidx = find(temptims == temptims(tidx(2)));
+
 temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
 
 % 
