@@ -9,13 +9,13 @@ tempday = 6;
 
 timcont = [in.e(1).s.timcont]/3600;
 temp = [in.e(1).s.temp];
-temptims = [in.info.temptims];
+temptims = sort([in.info.temptims])';
 
-temptims = sort()
+
 
 figure(45); clf; hold on;
     plot(timcont, temp, 'LineWidth', 1);
-    plot([temptims temptims], ylim, 'k-');
+    plot([temptims' temptims'], ylim, 'k-');
 
 %separate rise from fall    
 for j = 2:length(temptims)
@@ -40,7 +40,7 @@ hotdur = mean(hotter);
 tempdif = diff(temptims);
 tidx = find(tempdif > tempday + 1);
 
-temptims = temptims';
+
 
 for j = 1:length(tidx)
 
