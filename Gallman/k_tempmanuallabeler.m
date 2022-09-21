@@ -18,11 +18,24 @@ figure(45); clf; hold on;
 
 
 
- startim = input('Enter the start time for the experiment: ');
+ %startim = input('Enter the start time for the experiment: ');
+ startim = 63.67;
+
 
     %caclulate hours when the light changed
         numbercycles = floor(timcont(end)/(mean([colddur, hotdur]))); %number of cycles in data
         timz = 1:1:numbercycles;
+
+        for j = 2:length(timz)
+            
+            if 
+
+        end
+
+
+
+
+
         out(timz) = startim + (in.info.ld*(timz-1)); %without for-loop
         
          %find the time indicies for the first light cycle
