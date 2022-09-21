@@ -17,8 +17,13 @@ figure(45); clf; hold on;
 
 tempdif = diff(temptims);
 tidx = find(tempdif > 7);
+
     plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
 
+
+
+lineidx = find(temptims == temptims(tidx(2)));
+temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
 
 % 
 %     figure(32); clf; hold on;
