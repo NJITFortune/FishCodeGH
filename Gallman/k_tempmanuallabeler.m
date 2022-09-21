@@ -17,7 +17,7 @@ figure(45); clf; hold on;
 
 for j = 2:length(temptims)
     
-    tempidx = find(temp >= temptims(j-1) & temp < temptims(j));
+    tempidx = find(timcont >= temptims(j-1) & timcont < temptims(j));
 
     tiz(j-1,:) = mean(temp(tempidx));
 end    
