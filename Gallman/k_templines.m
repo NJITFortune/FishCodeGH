@@ -1,8 +1,8 @@
-%function temptims = k_templines(in)
+function temptims = k_templines(in)
 % Usage: kg(#).info = KatieTempLabeler(kg(#).e)
 
-clearvars -except xxkg hkg k
-in = xxkg(k).e;
+% clearvars -except xxkg hkg k
+% in = xxkg(k).e;
 %out = kg2(k).info
 
  timcont = [in(1).s.timcont]/3600;
