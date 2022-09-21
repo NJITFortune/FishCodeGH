@@ -12,7 +12,7 @@ temp = [in.e(1).s.temp];
 temptims = [in.info.temptims];
 
 figure(45); clf; hold on;
-    plot(timcont, temp);
+    plot(timcont, temp, 'LineWidth', 1);
     plot([temptims temptims], ylim, 'k-');
 
 %separate rise from fall    
@@ -22,11 +22,18 @@ for j = 2:length(temptims)
 
     if mean(temp(tempidx)) > mean(temp)
         tiz(j-1,:) = temptims(j-1);
+        hotter(j-1,:) = timtims(j-1);
     else
         tiz(j-1,:) = -temptims(j-1);
+        colder(j-1,:) = temptims(j-1);
     end
 
 end    
+
+colddur = mean(colder);
+hotdur = mean(hotter);
+% colddur = 5.6;
+% hotdur = 6.3;
 
 tempdif = diff(temptims);
 tidx = find(tempdif > 7);
@@ -36,7 +43,7 @@ for j = 1:length(tidx)
     lineidx = find(temptims == temptims(tidx(j)));
 
     if tiz(tidx(j)) < 0
-        temptims = [temptims(1:lineidx -1), ]
+        temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + colddur,  ]
 
 end
 
@@ -57,17 +64,18 @@ temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
 
 
 
-% colddur = 5.6;
-% hotdur = 6.3;
+
 
 %  %startim = input('Enter the start time for the experiment: ');
-  startim = temptims(1);
+  startim = temptims(1)-.5;
 % 
 
     %caclulate hours when the light changed
-        numbercycles = floor(timcont(end)/(mean([colddur, hotdur]))); %number of cycles in data
+        numbercycles = floor(timcont(end)/6); %number of cycles in data
         timz = 1:1:numbercycles;
         testtims(timz) = startim + (6*(timz-1)); %without for-loop
+
+plot([testtims', testtims'], ylim, 'r-');
 
 %         templines(1) = startim;
 %         for j = 2:length(timz)
