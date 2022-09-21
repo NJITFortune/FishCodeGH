@@ -15,9 +15,11 @@ figure(45); clf; hold on;
     plot(timcont, temp);
     plot([temptims temptims], ylim, 'k-');
 
+tempdif = diff(temptims);
+for j = 1:length(temptims)-1
 
-for j = 1:length(temptims)
     
+
 
 % 
 %     figure(32); clf; hold on;
