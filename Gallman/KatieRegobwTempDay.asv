@@ -9,7 +9,7 @@ clearvars -except xxkg hkg k xxkg2 hkg2
 % % % 
 in = xxkg(k);
 ReFs = 20;
-heat = 8;
+heat = 7;
 channel = 2;
 
 % light = 4; %start with light
@@ -21,7 +21,7 @@ channel = 2;
 
 %% crop data to temptimes
 %define variables
-temptims = sort([in.info.temptims])';
+temptims = sort([in.info.temptims]);
 poweridx = [in.info.poweridx];
 %prepare data variables
 
@@ -135,13 +135,11 @@ end
         datadata = filtfilt(dd,cc, double(regobwpeaks));
 
         
-%         %high pass removes feeding trend for high frequency experiments
-%         if ld < 11
-%         [bb,aa] = butter(5, highWn, 'high');
-%         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
-% 
-%         end
-    
+        %high pass removes feeding trend for high frequency experiments
+
+        [bb,aa] = butter(5, highWn, 'high');
+        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+
     dataminusmean = datadata - mean(datadata);    
 
 
@@ -163,7 +161,13 @@ end
 
 %this is going to suck because the temp doesn't change super consistently
 
+figure(78); clf; hold on;
+    plot(xx/3600, obwyy); 
+    plot()
+
 for j = 2:2:length(temptims)-1
+
+    
     %define index overwhich to divide data
     tidx = find(xx >= temptims(j-1) & xx < temptims(j+1));   
 
@@ -238,9 +242,9 @@ end
 %fill colors for plotting
 hot = [255/255, 204/255, 204/255];
 cold = [204/255, 238/255, 255/255];
-temptims = temptims/3600;
+
 %days over experiment time
-figure(95); clf; hold on;
+figure(795); clf; hold on;
 
     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
     for j = 1:length(tday)
@@ -252,59 +256,27 @@ figure(95); clf; hold on;
         if  tiz(1) > 0 %we start with warming
             for j = 1:length(temptims)-1
                 if mod(j,2) == 1 %if j is odd
-            fill(fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 t(j+1)/3600], [a(1) a(2) a(2) a(1)], hot);
-            fill([td td (td*2) (td*2)], [a(1) a(2) a(2) a(1)], cold);
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], hot);
+                else
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], cold);
+                end
+            end
         else
-            fill([0 0 td td], [a(1) a(2) a(2) a(1)], cold);
-            fill([td td (td*2)+1.5 (td*2)+1.5], [a(1) a(2) a(2) a(1)], hot);
+            for j = 1:length(temptims)-1
+                if mod(j,2) == 1 %if j is odd
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], cold);
+                else
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], hot);
+                end
+            end
         end
 
+     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+    for j = 1:length(tday)
+        plot(tday(j).entiretimcont/3600, tday(j).obw, 'LineWidth', 2);
+    end    
      
-%     if heat == 8 %the first lighttime is dark
-%         for j = 1:length(temptims)-1
-%             if mod(j,2) == 1 %if j is odd
-%             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%             end
-%         end
-%     else %the second lighttime is dark 
-%         for j = 1:length(lighttimes)-1
-%             if mod(j,2) == 0 %if j is even
-%             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%             end
-%         end
-%     end
-%     
-%     for j = 1:length(day)
-%         plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
-%     end
-% 
-%      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
 
-% %average over single day    
-% figure(56); clf; hold on; 
-% 
-%  
-% %     %create fill box 
-% %     if light < 4 %we start with dark
-% %         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-% %     else %we start with light
-% %         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-% %     end
-%     
-%     %mean two ways to prove math
-%     mday = zeros(1, length(tday(1).tim));        
-%      for j = 1:length(tday)
-%             plot(tday(j).tim/3600, tday(j).obw);
-%             meanday(j,:) = tday(j).obw;
-%             mday = mday + tday(j).obw;
-%             
-%      end
-%         
-%             mmday= mean(meanday);
-%             othermday = mday/(length(tday));
-%             plot(tday(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
-%             plot(tday(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-%             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
             
   
 figure(778); clf; hold on; ylim([-.5,.5]);
