@@ -169,7 +169,7 @@ end
            
         end
 % 
-        tday.tmean = tmean / length(tday);
+        tmean = tmean / length(tday);
         tday.ttim = ttim(1:length(tmean));
 
 %% calculate average duration of tempdays
