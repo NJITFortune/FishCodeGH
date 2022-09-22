@@ -9,7 +9,7 @@ clearvars -except xxkg hkg k xxkg2 hkg2
 % % % 
 in = xxkg(k);
 ReFs = 20;
-heat = 8;
+heat = 7;
 channel = 1;
 
 % light = 4; %start with light
