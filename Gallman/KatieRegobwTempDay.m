@@ -189,7 +189,7 @@ figure(455); clf;
     plot([colder colder], [0 1], 'c-');
  %   plot([hotter hotter], [0 1], 'r-');
 
-if length(hotter)< length(colder)
+if length(hotter) < length(colder)
     counter = hotter;
 else
     counter = colder;
