@@ -24,6 +24,15 @@ channel = 1;
 temptims = sort([in.info.temptims]);
 poweridx = [in.info.poweridx];
 
+%prepare data variables
+
+%outlier removal
+ tto = [in.idx(channel).obwidx]; 
+      
+%raw data
+    timcont = [in.e(channel).s(tto).timcont]; %time in seconds
+    obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
+
 %separate warming from cooling lines
 %separate rise from fall    
 for j = 2:length(temptims)
@@ -73,12 +82,12 @@ end
 %% process data
 %prepare data variables
 
-%outlier removal
- tto = [in.idx(channel).obwidx]; 
-      
-%raw data
-    timcont = [in.e(channel).s(tto).timcont]; %time in seconds
-    obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
+% %outlier removal
+%  tto = [in.idx(channel).obwidx]; 
+%       
+% %raw data
+%     timcont = [in.e(channel).s(tto).timcont]; %time in seconds
+%     obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
 
 %Take top of dataset
     %find peaks
