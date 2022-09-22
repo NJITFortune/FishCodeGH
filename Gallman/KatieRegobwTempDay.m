@@ -295,9 +295,17 @@ figure(95); clf; hold on;
 %             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
             
   
-figure(778); clf; hold on;
+figure(778); clf; hold on; ylim([-.5,.5]);
 
-
+a = ylim;
+        
+if  tiz(1) > 0 %we start with warming
+    fill([0 0 td td], [a(1) a(2) a(2) a(1)], hot);
+    fill([td td (td*2) (td*2)], [a(1) a(2) a(2) a(1)], cold);
+else
+    fill([0 0 td td], [a(1) a(2) a(2) a(1)], cold);
+    fill([td td (td*2)+1 (td*2)+1], [a(1) a(2) a(2) a(1)], hot);
+end
         plot(tday(1).tim/3600, tday(1).obw - mean(tday(1).obw));
        
         for p = 2:length(tday)
