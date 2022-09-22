@@ -42,7 +42,7 @@ tidx = find(tempdif > tempday + 1);
 
 
 
-for j = 1:length(tidx)
+for j = length(tidx):-1:1
 
     lineidx = find(temptims == temptims(tidx(j)));
 
