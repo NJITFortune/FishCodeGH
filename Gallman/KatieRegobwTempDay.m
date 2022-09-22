@@ -161,7 +161,11 @@ end
 
 %this is going to suck because the temp doesn't change super consistently
 
+
+
 for j = 2:2:length(temptims)-1
+
+    
     %define index overwhich to divide data
     tidx = find(xx >= temptims(j-1) & xx < temptims(j+1));   
 
