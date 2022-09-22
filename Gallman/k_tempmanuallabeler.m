@@ -93,7 +93,7 @@ end
     plot([temptims' temptims'], ylim, 'c-');
 
 
-xxkg(k).info.temptims = temptims;
+%xxkg(k).info.temptims = temptims;
 
 % 
 %     figure(32); clf; hold on;
