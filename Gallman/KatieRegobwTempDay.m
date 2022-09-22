@@ -238,7 +238,7 @@ end
 %fill colors for plotting
 hot = [255/255, 204/255, 204/255];
 cold = [204/255, 238/255, 255/255];
-temptims = temptims/3600;
+
 %days over experiment time
 figure(95); clf; hold on;
 
