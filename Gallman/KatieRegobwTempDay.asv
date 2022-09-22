@@ -49,12 +49,7 @@ for j = 2:length(temptims)
 
 end    
 
-figure(455); clf; hold on;
 
-    plot(timcont/3600, temp);
-
-   plot([colder colder], [2 3], 'c-');
-   plot([hotter hotter], [2 3], 'r-');
 
 %%
 
@@ -71,12 +66,24 @@ else %we have poweridx values
     %take data from within power idx range
     temptimsidx = find(temptims > poweridx(1) & temptims < poweridx(2));
     temptims = temptims(temptimsidx);
- 
 
+        %recalculate tiz
+            clear tiz;clear colder;clear hotter;
+            for j = 2:length(temptims)
+            
+            tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
+        
+                if mean(temp(tempidx)) > mean(temp)
+                    tiz(j-1,:) = temptims(j-1);
+                    hotter(j-1,:) = temptims(j-1);
+                else
+                    tiz(j-1,:) = -temptims(j-1);
+                    colder(j-1,:) = temptims(j-1);
+                end
+        
+            end
 
-
-    
-    
+  
       if heat == 7 && tiz(1) > 0 %we want start with cooling and the experiment starts with warming
         temptims = temptims(2:end); %skip the first temptim so we start with cooling
       elseif heat == 8 && tiz(1) < 0 %we want start with warming and the experiment starts with cooling
@@ -204,22 +211,24 @@ for j = 2:length(counter)
 
         colddurs(j-1,:) = hotter(j-1) - colder(j-1);
         hotdurs(j-1,:) = colder(j) -  hotter(j-1);
-
-
-        
         
     end
 
 end
 
 
-colddur = mean(colddurs);
-hotdur = mean(hotdurs);
+figure(455); clf; hold on;
+
+    plot(timcont/3600, temp);
+
+   plot([colder colder], [2 3], 'c-');
+   plot([hotter hotter], [2 3], 'r-');
+
 
 if  tiz(1) > 0 %we start with hotter
-    td = hotdur;
+    td = mean(hotdurs);
 else
-    td = colddur;
+    td = mean(colddurs);
 end
 
 %  
@@ -286,20 +295,25 @@ figure(95); clf; hold on;
 %             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
             
   
-figure(778); clf; hold on;
+figure(778); clf; hold on; ylim([-.5,.5]);
 
+a = ylim;
+        
+if  tiz(1) > 0 %we start with warming
+    fill([0 0 td td], [a(1) a(2) a(2) a(1)], hot);
+    fill([td td ], [a(1) a(2) a(2) a(1)], hot);
 
-        plot(tday(1).tim, tday(1).obw - mean(tday(1).obw));
+        plot(tday(1).tim/3600, tday(1).obw - mean(tday(1).obw));
        
         for p = 2:length(tday)
 
-            plot(tday(p).tim, tday(p).obw - mean(tday(p).obw), 'LineWidth', 2);
+            plot(tday(p).tim/3600, tday(p).obw - mean(tday(p).obw), 'LineWidth', 2);
            
         end
 % 
       
 
-        plot(ttim, tmean, 'k', 'LineWidth', 5)
+        plot(ttim/3600, tmean, 'k', 'LineWidth', 5)
 %calculate temp ld equivalent
     
         plot([td, td], ylim, 'k-', 'LineWidth', 2);          
