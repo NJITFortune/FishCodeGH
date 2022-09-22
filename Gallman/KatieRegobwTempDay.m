@@ -35,7 +35,7 @@ poweridx = [in.info.poweridx];
 
 %separate warming from cooling lines
 %separate rise from fall    
-for j = 2:length(temptims)
+for j = 2%:length(temptims)
     
     tempidx = find(timcont >= temptims(j-1) & timcont < temptims(j));
 
@@ -49,7 +49,7 @@ for j = 2:length(temptims)
 
 end    
 
-
+%%
 
 if isempty(poweridx) %if there are no values in poweridx []
 
