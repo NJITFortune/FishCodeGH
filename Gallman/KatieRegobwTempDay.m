@@ -304,7 +304,7 @@ if  tiz(1) > 0 %we start with warming
     fill([td td (td*2) (td*2)], [a(1) a(2) a(2) a(1)], cold);
 else
     fill([0 0 td td], [a(1) a(2) a(2) a(1)], cold);
-    fill([td td (td*2)+1 (td*2)+1], [a(1) a(2) a(2) a(1)], hot);
+    fill([td td (td*2)+1.5 (td*2)+1.5], [a(1) a(2) a(2) a(1)], hot);
 end
         plot(tday(1).tim/3600, tday(1).obw - mean(tday(1).obw));
        
