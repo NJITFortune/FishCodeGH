@@ -24,7 +24,7 @@ channel = 2;
 temptims = sort([in.info.temptims]);
 poweridx = [in.info.poweridx];
 %prepare data variables
-
+1
 %outlier removal
  tto = [in.idx(channel).obwidx]; 
       
@@ -53,8 +53,8 @@ figure(455); clf;
 
     plot(timcont/3600, temp);
 
-%     plot([colder colder], [0 1], 'c-');
-%    plot([hotter hotter], [0 1], 'r-');
+    plot([colder colder], [0 1], 'c-');
+   plot([hotter hotter], [0 1], 'r-');
 
 %%
 
