@@ -32,7 +32,7 @@ for j = 2:length(temptims)
 
 end    
 
-colder = colder(colder>0);
+colder = [colder(colder>0)];
 hotter = hotter(hotter>0);
 
 
