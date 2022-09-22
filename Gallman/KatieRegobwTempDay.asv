@@ -164,7 +164,7 @@ end
 
         for p = 2:length(tday)
 
-            tmean(p,:) = tmean(1:min([length(tmean), length(tday(p).obw)]));
+            tmean = tmean(1:min([length(tmean), length(tday(p).obw)]));
             tmean = tmean + (tday(p).obw(1:length(tmean)) - mean(tday(p).obw(1:length(tmean))));
            
         end
@@ -172,11 +172,9 @@ end
         tmean = tmean / length(tday);
         ttim = ttim(1:length(tmean));
 
- tday.tmean = tmean;
- tday.tim = ttim;
 %% calculate average duration of tempdays
 colder = [colder(colder>0)];
-hotter = hotter(hotter>0);
+hotter = [hotter(hotter>0)];
 
 
 for j = 2:length(hotter)
@@ -199,9 +197,9 @@ colddur = mean(colddurs);
 hotdur = mean(hotdurs);
 
 if  tiz(1) > 0 %we start with hotter
-    tday.td = hotdur;
+    td = hotdur;
 else
-    tday.td = colddur;
+    td = colddur;
 end
 
 %  
@@ -241,33 +239,50 @@ figure(95); clf; hold on;
 % 
 %      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
 
-%average over single day    
-figure(56); clf; hold on; 
+% %average over single day    
+% figure(56); clf; hold on; 
+% 
+%  
+% %     %create fill box 
+% %     if light < 4 %we start with dark
+% %         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+% %     else %we start with light
+% %         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+% %     end
+%     
+%     %mean two ways to prove math
+%     mday = zeros(1, length(tday(1).tim));        
+%      for j = 1:length(tday)
+%             plot(tday(j).tim/3600, tday(j).obw);
+%             meanday(j,:) = tday(j).obw;
+%             mday = mday + tday(j).obw;
+%             
+%      end
+%         
+%             mmday= mean(meanday);
+%             othermday = mday/(length(tday));
+%             plot(tday(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
+%             plot(tday(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+%             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+            
+  
+figure(778); clf; hold on;
 
- 
-%     %create fill box 
-%     if light < 4 %we start with dark
-%         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%     else %we start with light
-%         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%     end
+
+        plot(tday(1).tim, tday(1).obw - mean(pday(1).obw));
+       
+        for p = 2:length(pday)
+
+            plot(tday(p).tim, tday(p).obw - mean(tday(p).obw), 'LineWidth', 2);
+           
+        end
+% 
+      
+
+        plot(ttim, tmean, 'k', 'LineWidth', 5)
+%calculate temp ld equivalent
     
-    %mean two ways to prove math
-    mday = zeros(1, length(tday(1).tim));        
-     for j = 1:length(tday)
-            plot(tday(j).tim/3600, tday(j).obw);
-            meanday(j,:) = tday(j).obw;
-            mday = mday + tday(j).obw;
-            
-     end
-        
-            mmday= mean(meanday);
-            othermday = mday/(length(tday));
-            plot(tday(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
-            plot(tday(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-            plot([ld ld], ylim, 'k-', 'LineWidth', 3);
-            
-            
+        plot([td, td], ylim, 'k-', 'LineWidth', 2);          
 
 
 
