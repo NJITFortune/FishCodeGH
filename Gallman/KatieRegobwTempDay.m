@@ -24,7 +24,7 @@ channel = 2;
 temptims = sort([in.info.temptims]);
 poweridx = [in.info.poweridx];
 %prepare data variables
-1
+
 %outlier removal
  tto = [in.idx(channel).obwidx]; 
       
