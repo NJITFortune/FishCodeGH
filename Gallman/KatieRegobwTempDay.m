@@ -298,17 +298,17 @@ figure(95); clf; hold on;
 figure(778); clf; hold on;
 
 
-        plot(tday(1).tim, tday(1).obw - mean(tday(1).obw));
+        plot(tday(1).tim/3600, tday(1).obw - mean(tday(1).obw));
        
         for p = 2:length(tday)
 
-            plot(tday(p).tim, tday(p).obw - mean(tday(p).obw), 'LineWidth', 2);
+            plot(tday(p).tim/3600, tday(p).obw - mean(tday(p).obw), 'LineWidth', 2);
            
         end
 % 
       
 
-        plot(ttim, tmean, 'k', 'LineWidth', 5)
+        plot(ttim/3600, tmean, 'k', 'LineWidth', 5)
 %calculate temp ld equivalent
     
         plot([td, td], ylim, 'k-', 'LineWidth', 2);          
