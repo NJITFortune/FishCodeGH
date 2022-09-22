@@ -9,11 +9,13 @@ tempday = 6;
 
 timcont = [in.e(1).s.timcont]/3600;
 temp = [in.e(1).s.temp];
-temptims = [in.info.temptims];
+temptims = sort([in.info.temptims])';
+
+
 
 figure(45); clf; hold on;
     plot(timcont, temp, 'LineWidth', 1);
-    plot([temptims temptims], ylim, 'k-');
+    plot([temptims' temptims'], ylim, 'k-');
 
 %separate rise from fall    
 for j = 2:length(temptims)
@@ -30,6 +32,28 @@ for j = 2:length(temptims)
 
 end    
 
+colder = [colder(colder>0)];
+hotter = hotter(hotter>0);
+
+
+for j = 1:length(tiz)
+    if tiz(1) > 0 %we start with hotter
+    
+        colddurs(j,:) = colder(j) -  hotter(j);
+    else    %we start with colder
+
+        
+
+    end
+
+end
+
+
+
+
+
+
+
 colddur = mean(colder);
 hotdur = mean(hotter);
 % colddur = 5.6;
@@ -38,11 +62,14 @@ hotdur = mean(hotter);
 tempdif = diff(temptims);
 tidx = find(tempdif > tempday + 1);
 
-for j = 1:length(tidx)
 
-    if tempdif(tidx) < (tempday +1)*2
 
+for j = length(tidx)%:-1:1
+temptims(tidx(j))
     lineidx = find(temptims == temptims(tidx(j)));
+
+    if tempdif(tidx(j)) < (tempday +1)*2
+
 
         if tiz(tidx(j)) < 0
             temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + colddur, temptims(lineidx:end)];
@@ -52,34 +79,29 @@ for j = 1:length(tidx)
 
     end
 
-    if tempdif(tidx) < (tempday +1)*3
+    if tempdif(tidx(j)) < (tempday +1)*3 && tempdif(tidx(j)) > (tempday +1)*2
 
-    lineidx = find(temptims == temptims(tidx(j)));
 
         if tiz(tidx(j)) < 0
-            temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + colddur, temptims(lineidx:end)];
+            temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + colddur, (temptims(tidx(j)) + colddur) + hotdur, temptims(lineidx:end)];
         else
-           temptims = [temptims(1:lineidx -1), temptims(tidx(j)) + hotdur, temptims(lineidx:end)]; 
+           temptims = [temptims(1:lineidx-1), temptims(tidx(j)) + hotdur,(temptims(tidx(j)) + hotdur) + colddur, temptims(lineidx:end)]; 
         end
 
     end
 
 end
 
-    plot([temptims(tidx(2)), temptims(tidx(2))], ylim, 'r-');
-    yline(mean(temp));
-    
+    plot([temptims' temptims'], ylim, 'c-');
 
 
-temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
-
-
-    figure(32); clf; hold on;
-         risetime(temp, timcont);
-
-    figure(33); clf; hold on;
-       falltime(temp, timcont);
-
+% 
+%     figure(32); clf; hold on;
+%          risetime(temp, timcont);
+% 
+%     figure(33); clf; hold on;
+%        falltime(temp, timcont);
+% 
 
 
 
@@ -94,7 +116,7 @@ temptims = [temptims(1:lineidx -1) temptims(tidx(2)) ]
         timz = 1:1:numbercycles;
         testtims(timz) = startim + (6*(timz-1)); %without for-loop
 
-plot([testtims', testtims'], ylim, 'r-');
+%plot([testtims', testtims'], ylim, 'r-');
 
 %         templines(1) = startim;
 %         for j = 2:length(timz)
