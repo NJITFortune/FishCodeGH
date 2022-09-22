@@ -36,22 +36,24 @@ colder = [colder(colder>0)];
 hotter = hotter(hotter>0);
 
 
-for j = 1:length(tiz)
+for j = 2:length(tiz)
     if tiz(1) > 0 %we start with hotter
-    
-        colddurs(j,:) = colder(j) -  
+
+        hotdurs(j-1,:) = colder(j-1) -  hotter(j-1);
+        colddur(j-1,:) = hotter(j) - colder(j-1);
+
+    else    %we start with colder
+
+        colddur(j-1,:) = hotter(j-1) - colder(j-1);
+        hotdurs(j-1,:) = colder(j) -  hotter(j-1);
+        
     end
 
 end
 
 
-
-
-
-
-
-colddur = mean(colder);
-hotdur = mean(hotter);
+colddur = mean(colddur);
+hotdur = mean(hotdur);
 % colddur = 5.6;
 % hotdur = 6.3;
 
