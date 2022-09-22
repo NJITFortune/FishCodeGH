@@ -36,26 +36,24 @@ colder = [colder(colder>0)];
 hotter = hotter(hotter>0);
 
 
-for j = 2:length(tiz)
+for j = 2:length(hotter)
     if tiz(1) > 0 %we start with hotter
+
         hotdurs(j-1,:) = colder(j-1) -  hotter(j-1);
-        colddur(j-1,:) = hotter
+        colddurs(j-1,:) = hotter(j) - colder(j-1);
+
     else    %we start with colder
 
-
-
+        colddurs(j-1,:) = hotter(j-1) - colder(j-1);
+        hotdurs(j-1,:) = colder(j) -  hotter(j-1);
+        
     end
 
 end
 
 
-
-
-
-
-
-colddur = mean(colder);
-hotdur = mean(hotter);
+colddur = mean(colddurs);
+hotdur = mean(hotdurs);
 % colddur = 5.6;
 % hotdur = 6.3;
 
@@ -64,8 +62,8 @@ tidx = find(tempdif > tempday + 1);
 
 
 
-for j = length(tidx)%:-1:1
-temptims(tidx(j))
+for j = length(tidx):-1:1
+
     lineidx = find(temptims == temptims(tidx(j)));
 
     if tempdif(tidx(j)) < (tempday +1)*2
@@ -95,6 +93,8 @@ end
     plot([temptims' temptims'], ylim, 'c-');
 
 
+xxkg(k).info.temptims = temptims;
+
 % 
 %     figure(32); clf; hold on;
 %          risetime(temp, timcont);
@@ -107,42 +107,3 @@ end
 
 
 
-%  %startim = input('Enter the start time for the experiment: ');
-  startim = temptims(1)-.5;
-% 
-
-    %caclulate hours when the light changed
-        numbercycles = floor(timcont(end)/6); %number of cycles in data
-        timz = 1:1:numbercycles;
-        testtims(timz) = startim + (6*(timz-1)); %without for-loop
-
-%plot([testtims', testtims'], ylim, 'r-');
-
-%         templines(1) = startim;
-%         for j = 2:length(timz)
-%             
-%             if mod(j,2) == 0
-%                 templines(j) = templines(j-1) + hotdur;
-%             else
-%                 templines(j) = templines(j-1) + colddur;
-%             end
-% 
-%         end
-% 
-%     plot([templines', templines'], ylim, 'r-');
-
-
-% 
-%         out(timz) = startim + (in.info.ld*(timz-1)); %without for-loop
-%         
-%          %find the time indicies for the first light cycle
-%         lidx = [in.e(1).s.timcont] < out(2)*(60*60);  
-%     %take the mean of the light values in the first cycle
-%         meaninitialbright = mean([in.e(1).s(lidx).light]);
-%     
-%     %Assign negative values to luz when lights were off
-%         if meaninitialbright < 2.5 % Lights in initial period were off
-%             out(1:2:end) = -out(1:2:end); % Set initial period and every other subseqent  as off
-%         else
-%             out(2:2:end) = -out(2:2:end); % Set the second period and every other subsequent as off.
-%         end

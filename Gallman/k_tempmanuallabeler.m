@@ -62,8 +62,8 @@ tidx = find(tempdif > tempday + 1);
 
 
 
-for j = length(tidx)%:-1:1
-temptims(tidx(j))
+for j = length(tidx):-1:1
+
     lineidx = find(temptims == temptims(tidx(j)));
 
     if tempdif(tidx(j)) < (tempday +1)*2
