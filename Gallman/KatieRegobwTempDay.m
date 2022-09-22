@@ -49,7 +49,7 @@ for j = 2:length(temptims)
 
 end    
 
-hotter
+
 
 if isempty(poweridx) %if there are no values in poweridx []
 
