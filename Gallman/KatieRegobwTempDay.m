@@ -49,6 +49,11 @@ for j = 2:length(temptims)
 
 end    
 
+figure(455); clf; 
+
+    plot([colder colder], [0 1], 'c-');
+   plot([hotter hotter], [0 1], 'r-');
+
 %%
 
 if isempty(poweridx) %if there are no values in poweridx []
