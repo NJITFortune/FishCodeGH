@@ -38,7 +38,7 @@ poweridx = [in.info.poweridx];
 for j = 2%:length(temptims)
     
     tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
-tempidx
+
     if mean(temp(tempidx)) > mean(temp)
         tiz(j-1,:) = temptims(j-1);
         hotter(j-1,:) = temptims(j-1);
@@ -51,8 +51,10 @@ end
 
 figure(455); clf; 
 
-    plot([colder colder], [0 1], 'c-');
-   plot([hotter hotter], [0 1], 'r-');
+    plot(timcont/3600, temp);
+
+%     plot([colder colder], [0 1], 'c-');
+%    plot([hotter hotter], [0 1], 'r-');
 
 %%
 
