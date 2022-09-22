@@ -31,6 +31,7 @@ for j = 2:length(temptims)
     end
 
 end    
+colder = colder(colder>0);
 
 colddur = mean(colder);
 hotdur = mean(hotter);
