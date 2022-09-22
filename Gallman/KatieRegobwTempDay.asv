@@ -23,7 +23,6 @@ channel = 1;
 %define variables
 temptims = sort([in.info.temptims]);
 poweridx = [in.info.poweridx];
-
 %prepare data variables
 
 %outlier removal
@@ -32,6 +31,7 @@ poweridx = [in.info.poweridx];
 %raw data
     timcont = [in.e(channel).s(tto).timcont]; %time in seconds
     obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
+    temp =  [in.e(channel).s(tto).temp];
 
 %separate warming from cooling lines
 %separate rise from fall    
@@ -82,12 +82,12 @@ end
 %% process data
 %prepare data variables
 
-%outlier removal
- tto = [in.idx(channel).obwidx]; 
-      
-%raw data
-    timcont = [in.e(channel).s(tto).timcont]; %time in seconds
-    obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
+% %outlier removal
+%  tto = [in.idx(channel).obwidx]; 
+%       
+% %raw data
+%     timcont = [in.e(channel).s(tto).timcont]; %time in seconds
+%     obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
 
 %Take top of dataset
     %find peaks
@@ -104,7 +104,7 @@ end
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, lighttimes);
+    [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, temptims);
     
      %filter data
         %cut off frequency
@@ -159,19 +159,21 @@ for j = 2:2:length(temptims)-1
 end
 
 
-        tmean = tday(1).sumfft - mean(tday(1).sumfft);
+        tmean = tday(1).obw - mean(tday(1).obw);
         ttim = tday(1).tim;
 
         for p = 2:length(tday)
 
-            tmean = tmean(1:min([length(tmean), length(tday(p).obw)]));
-            tmean = tmean + (tday(p).sumfft(1:length(tmean)) - mean(tday(p).sumfft(1:length(tmean))));
+            tmean(p,:) = tmean(1:min([length(tmean), length(tday(p).obw)]));
+            tmean = tmean + (tday(p).obw(1:length(tmean)) - mean(tday(p).obw(1:length(tmean))));
            
         end
 % 
-        tday.tmean = tmean / length(tday);
-        tday.ttim = ttim(1:length(tmean));
+        tmean = tmean / length(tday);
+        ttim = ttim(1:length(tmean));
 
+ tday.tmean = tmean;
+ tday.tim = ttim;
 %% calculate average duration of tempdays
 colder = [colder(colder>0)];
 hotter = hotter(hotter>0);
