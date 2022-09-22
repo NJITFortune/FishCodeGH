@@ -35,7 +35,7 @@ poweridx = [in.info.poweridx];
 
 %separate warming from cooling lines
 %separate rise from fall    
-for j = 2:length(temptims)+1
+for j = 2:length(temptims)
     
     tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
 
@@ -71,7 +71,7 @@ else %we have poweridx values
     %take data from within power idx range
     temptimsidx = find(temptims > poweridx(1) & temptims < poweridx(2));
     temptims = temptims(temptimsidx);
-    tiz = tiz(temptimsidx);
+    tiz = tiz(temptimsidx(1:end-1));
     
       if heat == 7 && tiz(1) > 0 %we want start with cooling and the experiment starts with warming
         temptims = temptims(2:end); %skip the first temptim so we start with cooling
