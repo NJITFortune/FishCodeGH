@@ -32,9 +32,21 @@ for j = 2:length(temptims)
 
 end    
 
-
 colder = colder(colder>0);
 hotter = hotter(hotter>0);
+
+
+for j = 1:length(tiz)
+    if tiz(1) > 0 %we start with hotter
+    
+        colddurs(j,:) = colder(j) -  
+    end
+
+end
+
+
+
+
 
 
 
