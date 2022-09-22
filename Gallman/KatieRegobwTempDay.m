@@ -49,7 +49,7 @@ for j = 2%:length(temptims)
 
 end    
 
-figure(455); clf; 
+figure(455); clf; hold on;
 
     plot(timcont/3600, temp);
 
