@@ -57,7 +57,7 @@ temptims(tidx(j))
 
     end
 
-    if tempdif(tidx(j)) < (tempday +1)*3
+    if tempdif(tidx(j)) < (tempday +1)*3 && tempdif(tidx(j)) > (tempday +1)*2
 
 
         if tiz(tidx(j)) < 0
