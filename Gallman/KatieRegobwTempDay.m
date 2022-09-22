@@ -184,11 +184,6 @@ colder = [colder(colder>0)];
 hotter = [hotter(hotter>0)];
 
 
-figure(455); clf; 
-
-    plot([colder colder], [0 1], 'c-');
- %   plot([hotter hotter], [0 1], 'r-');
-
 if length(hotter) < length(colder)
     counter = hotter;
 else
@@ -198,13 +193,13 @@ end
 for j = 2:length(counter)
     if tiz(1) > 0 %we start with hotter
 
-        hotdurs(j-1,:) = colder(j-1) -  hotter(j-1);
-        colddurs(j-1,:) = hotter(j) - colder(j-1);
+       colddurs(j-1,:) = hotter(j-1) - colder(j-1);
+        hotdurs(j-1,:) = colder(j) -  hotter(j-1);
 
     else    %we start with colder
 
-        colddurs(j-1,:) = hotter(j-1) - colder(j-1);
-        hotdurs(j-1,:) = colder(j) -  hotter(j-1);
+        hotdurs(j-1,:) = colder(j-1) -  hotter(j-1);
+        colddurs(j-1,:) = hotter(j) - colder(j-1);
         
     end
 
