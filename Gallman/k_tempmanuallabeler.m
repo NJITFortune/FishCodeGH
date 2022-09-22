@@ -4,7 +4,7 @@
 
 clearvars -except hkg k xxkg 
 in = xxkg(k);
-tempday = 6;
+%tempday = 6;
 
 
 timcont = [in.e(1).s.timcont]/3600;
