@@ -164,8 +164,8 @@ end
 
         for p = 2:length(tday)
 
-            tmean(p,:) = tmean(1:min([length(tmean), length(tday(p).obw)]));
-            tmean() = tmean + (tday(p).obw(1:length(tmean)) - mean(tday(p).obw(1:length(tmean))));
+            tmean = tmean(1:min([length(tmean), length(tday(p).obw)]));
+            tmean(p,:) = tmean + (tday(p).obw(1:length(tmean)) - mean(tday(p).obw(1:length(tmean))));
            
         end
 % 
@@ -173,7 +173,7 @@ end
         ttim = ttim(1:length(tmean));
 
  tday.tmean = tmean;
- tday.tim = ttim;
+ tday.ttim = ttim;
 %% calculate average duration of tempdays
 colder = [colder(colder>0)];
 hotter = hotter(hotter>0);
