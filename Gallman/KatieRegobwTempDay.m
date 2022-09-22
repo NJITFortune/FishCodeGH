@@ -274,7 +274,7 @@ figure(95); clf; hold on;
 figure(778); clf; hold on;
 
 
-        plot(tday(1).tim, tday(1).obw - mean(pday(1).obw));
+        plot(tday(1).tim, tday(1).obw - mean(tday(1).obw));
        
         for p = 2:length(pday)
 
