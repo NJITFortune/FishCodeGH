@@ -163,7 +163,7 @@ end
 
 
 
-for j = 2%:2:length(temptims)-1
+for j = 2:2:length(temptims)-1
 
     
     %define index overwhich to divide data
