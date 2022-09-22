@@ -21,7 +21,7 @@ channel = 2;
 
 %% crop data to temptimes
 %define variables
-temptims = sort([in.info.temptims])';
+temptims = sort([in.info.temptims]);
 poweridx = [in.info.poweridx];
 %prepare data variables
 
