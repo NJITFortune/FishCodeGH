@@ -176,6 +176,7 @@ end
 colder = [colder(colder>0)];
 hotter = [hotter(hotter>0)];
 
+if length(hotter)
 
 for j = 2:length(hotter)
     if tiz(1) > 0 %we start with hotter
