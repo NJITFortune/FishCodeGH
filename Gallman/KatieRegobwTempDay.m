@@ -161,8 +161,10 @@ end
 
 %this is going to suck because the temp doesn't change super consistently
 
-
-
+figure(78); clf; hold on;
+    plot(xx/3600, obwyy); 
+    plot([temptims/3600 temptims/3600], ylim, 'k-');
+%%
 for j = 2:2:length(temptims)-1
 
     
