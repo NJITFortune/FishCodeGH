@@ -71,7 +71,11 @@ else %we have poweridx values
     %take data from within power idx range
     temptimsidx = find(temptims > poweridx(1) & temptims < poweridx(2));
     temptims = temptims(temptimsidx);
-    tiz = tiz(temptimsidx(1:end-1));
+ 
+
+
+
+    
     
       if heat == 7 && tiz(1) > 0 %we want start with cooling and the experiment starts with warming
         temptims = temptims(2:end); %skip the first temptim so we start with cooling
@@ -200,6 +204,9 @@ for j = 2:length(counter)
 
         colddurs(j-1,:) = hotter(j-1) - colder(j-1);
         hotdurs(j-1,:) = colder(j) -  hotter(j-1);
+
+
+        
         
     end
 
