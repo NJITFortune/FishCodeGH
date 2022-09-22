@@ -34,6 +34,9 @@ end
 
 
 colder = colder(colder>0);
+hotter = hotter(hotter>0);
+
+
 
 colddur = mean(colder);
 hotdur = mean(hotter);
