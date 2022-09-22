@@ -9,7 +9,7 @@ tempday = 12;
 
 timcont = [in.e(1).s.timcont]/3600;
 temp = [in.e(1).s.temp];
-temptims = sort([in.info.temptims])';
+temptims = sort([in.info.temptims]);
 
 
 
