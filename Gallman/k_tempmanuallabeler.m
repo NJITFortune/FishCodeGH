@@ -36,7 +36,7 @@ colder = [colder(colder>0)];
 hotter = hotter(hotter>0);
 
 
-for j = 2:length(tiz)
+for j = 2:length(hotter)
     if tiz(1) > 0 %we start with hotter
 
         hotdurs(j-1,:) = colder(j-1) -  hotter(j-1);
