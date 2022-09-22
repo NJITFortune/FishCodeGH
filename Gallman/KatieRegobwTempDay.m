@@ -35,10 +35,10 @@ poweridx = [in.info.poweridx];
 
 %separate warming from cooling lines
 %separate rise from fall    
-for j = 2:length(temptims)
+for j = 2%:length(temptims)
     
     tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
-
+tempidx
     if mean(temp(tempidx)) > mean(temp)
         tiz(j-1,:) = temptims(j-1);
         hotter(j-1,:) = temptims(j-1);
