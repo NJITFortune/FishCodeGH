@@ -7,7 +7,7 @@
 %for when i'm too lazy to function
 clearvars -except kg kg2 rkg k hkg2 hkg
 % % % 
-in = hkg(j);
+in = xxkg(k);
 ReFs = 20;
 heat = 8;
 channel = 1;
