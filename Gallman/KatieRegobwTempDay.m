@@ -49,7 +49,7 @@ for j = 2:length(temptims)
 
 end    
 
-
+hotter
 
 if isempty(poweridx) %if there are no values in poweridx []
 
@@ -174,8 +174,7 @@ end
 
 %% calculate average duration of tempdays
 colder = [colder(colder>0)];
-hotter
-%hotter = [hotter(hotter>0)];
+hotter = [hotter(hotter>0)];
 
 
 for j = 2:length(hotter)
