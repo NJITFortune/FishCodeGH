@@ -53,7 +53,7 @@ figure(455); clf; hold on;
 
     plot(timcont/3600, temp);
 
-    plot([colder colder], [2 3], 'c-');
+   plot([colder colder], [2 3], 'c-');
    plot([hotter hotter], [2 3], 'r-');
 
 %%
