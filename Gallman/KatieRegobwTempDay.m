@@ -163,9 +163,9 @@ end
 
 
 
-for j = 2:2:length(temptims)-1
+for j = 2%:2:length(temptims)-1
 
-    j
+    
     %define index overwhich to divide data
     tidx = find(xx >= temptims(j-1) & xx < temptims(j+1));   
 
