@@ -170,8 +170,10 @@ end
         end
 % 
         tmean = tmean / length(tday);
-        tday.ttim = ttim(1:length(tmean));
+        ttim = ttim(1:length(tmean));
 
+ tday.tmean = tmean;
+ tday.tim = ttim;
 %% calculate average duration of tempdays
 colder = [colder(colder>0)];
 hotter = hotter(hotter>0);
