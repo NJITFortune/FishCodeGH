@@ -49,12 +49,7 @@ for j = 2:length(temptims)
 
 end    
 
-figure(455); clf; hold on;
 
-    plot(timcont/3600, temp);
-
-   plot([colder colder], [2 3], 'c-');
-   plot([hotter hotter], [2 3], 'r-');
 
 %%
 
@@ -223,6 +218,14 @@ for j = 2:length(counter)
     end
 
 end
+
+
+figure(455); clf; hold on;
+
+    plot(timcont/3600, temp);
+
+   plot([colder colder], [2 3], 'c-');
+   plot([hotter hotter], [2 3], 'r-');
 
 
 colddur = mean(colddurs);
