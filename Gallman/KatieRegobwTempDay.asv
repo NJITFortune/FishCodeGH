@@ -10,7 +10,7 @@ clearvars -except xxkg hkg k xxkg2 hkg2
 in = xxkg(k);
 ReFs = 20;
 heat = 8;
-channel = 1;
+channel = 2;
 
 % light = 4; %start with light
 % fish = 5; %lo freq
@@ -37,7 +37,7 @@ poweridx = [in.info.poweridx];
 %separate rise from fall    
 for j = 2:length(temptims)
     
-    tempidx = find(timcont >= temptims(j-1) & timcont < temptims(j));
+    tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
 
     if mean(temp(tempidx)) > mean(temp)
         tiz(j-1,:) = temptims(j-1);
@@ -49,7 +49,7 @@ for j = 2:length(temptims)
 
 end    
 
-
+%%
 
 if isempty(poweridx) %if there are no values in poweridx []
 
@@ -62,7 +62,7 @@ if isempty(poweridx) %if there are no values in poweridx []
 else %we have poweridx values
 
     %take data from within power idx range
-    temptimsidx = temptims > poweridx(1) & temptims < poweridx(2);
+    temptimsidx = find(temptims > poweridx(1) & temptims < poweridx(2));
     temptims = temptims(temptimsidx);
     tiz = tiz(temptimsidx);
     
@@ -176,6 +176,10 @@ end
 colder = [colder(colder>0)];
 hotter = [hotter(hotter>0)];
 
+if length(hotter)< length(colder)
+    counter = hotter;
+else
+    counter = colder;
 
 for j = 2:length(hotter)
     if tiz(1) > 0 %we start with hotter
