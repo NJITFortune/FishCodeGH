@@ -159,13 +159,13 @@ for j = 2:2:length(temptims)-1
 end
 
 
-        tmean = tday(1).sumfft - mean(tday(1).sumfft);
+        tmean = tday(1).obw - mean(tday(1).obw);
         ttim = tday(1).tim;
 
         for p = 2:length(tday)
 
             tmean = tmean(1:min([length(tmean), length(tday(p).obw)]));
-            tmean = tmean + (tday(p).sumfft(1:length(tmean)) - mean(tday(p).sumfft(1:length(tmean))));
+            tmean = tmean + (tday(p).obw(1:length(tmean)) - mean(tday(p).obw(1:length(tmean))));
            
         end
 % 
