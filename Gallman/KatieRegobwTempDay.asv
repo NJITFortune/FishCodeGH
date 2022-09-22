@@ -176,12 +176,19 @@ end
 colder = [colder(colder>0)];
 hotter = [hotter(hotter>0)];
 
+
+figure(455); clf; 
+
+    plot([colder colder], [0 1], 'c-');
+    plot([hotter hotter], [0 1], 'r-');
+
 if length(hotter)< length(colder)
     counter = hotter;
 else
     counter = colder;
+end
 
-for j = 2:length(hotter)
+for j = 2:length(counter)
     if tiz(1) > 0 %we start with hotter
 
         hotdurs(j-1,:) = colder(j-1) -  hotter(j-1);
@@ -273,9 +280,9 @@ figure(95); clf; hold on;
 figure(778); clf; hold on;
 
 
-        plot(tday(1).tim, tday(1).obw - mean(pday(1).obw));
+        plot(tday(1).tim, tday(1).obw - mean(tday(1).obw));
        
-        for p = 2:length(pday)
+        for p = 2:length(tday)
 
             plot(tday(p).tim, tday(p).obw - mean(tday(p).obw), 'LineWidth', 2);
            
