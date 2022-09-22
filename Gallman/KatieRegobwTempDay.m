@@ -71,8 +71,9 @@ else %we have poweridx values
     %take data from within power idx range
     temptimsidx = find(temptims > poweridx(1) & temptims < poweridx(2));
     temptims = temptims(temptimsidx);
- 
-            %recalculate tiz
+
+        %recalculate tiz
+            clear tiz;clear colder;clear hotter;
             for j = 2:length(temptims)
             
             tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
