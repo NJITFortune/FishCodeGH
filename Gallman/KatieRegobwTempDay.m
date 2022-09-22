@@ -5,7 +5,7 @@
 
 
 %for when i'm too lazy to function
-clearvars -except kg kg2 rkg k hkg2 hkg
+clearvars -except xxkg hkg k xxkg2 hkg2
 % % % 
 in = xxkg(k);
 ReFs = 20;
