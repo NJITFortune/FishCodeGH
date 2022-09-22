@@ -10,7 +10,7 @@ clearvars -except xxkg hkg k xxkg2 hkg2
 in = xxkg(k);
 ReFs = 20;
 heat = 7;
-channel = 2;
+channel = 1;
 
 % light = 4; %start with light
 % fish = 5; %lo freq
@@ -160,11 +160,11 @@ end
 %% divide into tempdays
 
 %this is going to suck because the temp doesn't change super consistently
+% 
+% figure(78); clf; hold on;
+%     plot(xx/3600, obwyy); 
+%     plot([temptims'/3600 temptims'/3600], ylim, 'k-');
 
-figure(78); clf; hold on;
-    plot(xx/3600, obwyy); 
-    plot([temptims'/3600 temptims'/3600], ylim, 'k-');
-%%
 for j = 2:2:length(temptims)-1
 
     
