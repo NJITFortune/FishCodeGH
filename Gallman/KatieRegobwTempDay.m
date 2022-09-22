@@ -23,7 +23,6 @@ channel = 1;
 %define variables
 temptims = sort([in.info.temptims]);
 poweridx = [in.info.poweridx];
-
 %prepare data variables
 
 %outlier removal
@@ -32,6 +31,7 @@ poweridx = [in.info.poweridx];
 %raw data
     timcont = [in.e(channel).s(tto).timcont]; %time in seconds
     obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
+    temp =  [in.e(channel).s(tto).temp];
 
 %separate warming from cooling lines
 %separate rise from fall    
