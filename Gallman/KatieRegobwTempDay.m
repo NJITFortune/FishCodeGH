@@ -240,7 +240,7 @@ hot = [255/255, 204/255, 204/255];
 cold = [204/255, 238/255, 255/255];
 
 %days over experiment time
-figure(95); clf; hold on;
+figure(795); clf; hold on;
 
     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
     for j = 1:length(tday)
@@ -267,52 +267,12 @@ figure(95); clf; hold on;
             end
         end
 
+     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+    for j = 1:length(tday)
+        plot(tday(j).entiretimcont/3600, tday(j).obw);
+    end    
      
-%     if heat == 8 %the first lighttime is dark
-%         for j = 1:length(temptims)-1
-%             if mod(j,2) == 1 %if j is odd
-%             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%             end
-%         end
-%     else %the second lighttime is dark 
-%         for j = 1:length(lighttimes)-1
-%             if mod(j,2) == 0 %if j is even
-%             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%             end
-%         end
-%     end
-%     
-%     for j = 1:length(day)
-%         plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
-%     end
-% 
-%      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
 
-% %average over single day    
-% figure(56); clf; hold on; 
-% 
-%  
-% %     %create fill box 
-% %     if light < 4 %we start with dark
-% %         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-% %     else %we start with light
-% %         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-% %     end
-%     
-%     %mean two ways to prove math
-%     mday = zeros(1, length(tday(1).tim));        
-%      for j = 1:length(tday)
-%             plot(tday(j).tim/3600, tday(j).obw);
-%             meanday(j,:) = tday(j).obw;
-%             mday = mday + tday(j).obw;
-%             
-%      end
-%         
-%             mmday= mean(meanday);
-%             othermday = mday/(length(tday));
-%             plot(tday(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
-%             plot(tday(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-%             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
             
   
 figure(778); clf; hold on; ylim([-.5,.5]);
