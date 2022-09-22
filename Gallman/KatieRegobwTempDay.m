@@ -176,9 +176,13 @@ end
 colder = [colder(colder>0)];
 hotter = [hotter(hotter>0)];
 
-if length(hotter)
+if length(hotter)< length(colder)
+    counter = hotter;
+else
+    counter = colder;
+end
 
-for j = 2:length(hotter)
+for j = 2:length(counter)
     if tiz(1) > 0 %we start with hotter
 
         hotdurs(j-1,:) = colder(j-1) -  hotter(j-1);
