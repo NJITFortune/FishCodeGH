@@ -211,9 +211,6 @@ for j = 2:length(counter)
 
         colddurs(j-1,:) = hotter(j-1) - colder(j-1);
         hotdurs(j-1,:) = colder(j) -  hotter(j-1);
-
-
-        
         
     end
 
@@ -228,13 +225,10 @@ figure(455); clf; hold on;
    plot([hotter hotter], [2 3], 'r-');
 
 
-colddur = mean(colddurs);
-hotdur = mean(hotdurs);
-
 if  tiz(1) > 0 %we start with hotter
-    td = hotdur;
+    td = mean(hotdurs);
 else
-    td = colddur;
+    td = mean(colddurs);
 end
 
 %  
