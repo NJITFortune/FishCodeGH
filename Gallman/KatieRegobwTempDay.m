@@ -269,7 +269,7 @@ figure(795); clf; hold on;
 
      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
     for j = 1:length(tday)
-        plot(tday(j).entiretimcont/3600, tday(j).obw, 'LineWidth', 1);
+        plot(tday(j).entiretimcont/3600, tday(j).obw, 'LineWidth', 2);
     end    
      
 
