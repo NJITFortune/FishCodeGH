@@ -164,8 +164,8 @@ end
 
         for p = 2:length(tday)
 
-            tmean = tmean(1:min([length(tmean), length(tday(p).obw)]));
-            tmean = tmean + (tday(p).obw(1:length(tmean)) - mean(tday(p).obw(1:length(tmean))));
+            tmean(p,:) = tmean(1:min([length(tmean), length(tday(p).obw)]));
+            tmean() = tmean + (tday(p).obw(1:length(tmean)) - mean(tday(p).obw(1:length(tmean))));
            
         end
 % 
