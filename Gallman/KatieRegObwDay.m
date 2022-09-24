@@ -91,6 +91,7 @@ end
 %raw data
     timcont = [in.e(channel).s(tto).timcont]; %time in seconds
     obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
+    oldfreq =  [in.e(channel).s(tto).fftFreq];
 
 %Take top of dataset
     %find peaks
@@ -107,7 +108,7 @@ end
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, lighttimes);
+    [regtim, regfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, lighttimes);
     
      %filter data
         %cut off frequency
@@ -134,11 +135,12 @@ end
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
     obwyy = dataminusmean(timidx);  
+    freq = regfreq(timidx);
 
     rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
-
+    rawfreq = oldfreq(rawidx);
 %     %plot
 %     figure(2);clf; hold on;
 %         plot(regtim, regobwminusmean, 'k-');
@@ -170,6 +172,8 @@ for j = 1:howmanydaysinsample
 
                     %amplitude data
                     day(j).Sobwyy = obwyy(ddayidx);
+                    %frequency data
+                    day(j).freq = freq(ddayidx);
                     %new time base from 0 the length of day by ReFS
                     day(j).tim = tim;
                     %old time base divided by day for plotting chronologically

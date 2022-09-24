@@ -1,16 +1,16 @@
-function [tday] = KatieRegobwTempDay(in, channel, ReFs, heat)%multisingleRegobwDay
+%function [tday] = KatieRegobwTempDaysingleplotter(in, channel, ReFs, heat)%multisingleRegobwDay
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
 
 
 %for when i'm too lazy to function
-% clearvars -except xxkg hkg k xxkg2 hkg2
-% % % % 
-% in = xxkg(k);
-% ReFs = 20;
-% heat = 7;
-% channel = 1;
+clearvars -except xxkg hkg k xxkg2 hkg2
+% % % 
+in = xxkg(k);
+ReFs = 20;
+heat = 8;
+channel = 1;
 
 % light = 4; %start with light
 % fish = 5; %lo freq
@@ -121,6 +121,16 @@ for j = 2:min(([length(hotter), length(colder)]))
 
 end
 
+
+figure(455); clf; hold on;
+
+    plot(timcont/3600, temp);
+    plot([temptims'/3600 temptims'/3600], [2,3], 'k-');
+
+   for j = 1:length(colddurs) 
+   plot([colder(j) colder(j)], [2 3], 'c-');
+   plot([hotter(j) hotter(j)], [2 3], 'r-');
+   end
 
 if  tiz(1) > 0 %we start with hotter
     td = mean(hotdurs);
@@ -234,73 +244,73 @@ end
 
 %  
   %% plot to check
-% %time vectors currently in seconds, divide by 3600 to get hours
+%time vectors currently in seconds, divide by 3600 to get hours
+
+%fill colors for plotting
+hot = [255/255, 204/255, 204/255];
+cold = [204/255, 238/255, 255/255];
+
+%days over experiment time
+figure(795); clf; hold on;
+
+    plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+    for j = 1:length(tday)
+        plot(tday(j).entiretimcont/3600, tday(j).obw);
+    end
+   
+     a = ylim; %all of above is just to get the max for the plot lines...
+
+        if  tiz(1) > 0 %we start with warming
+            for j = 1:length(temptims)-1
+                if mod(j,2) == 1 %if j is odd
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], hot);
+                else
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], cold);
+                end
+            end
+        else
+            for j = 1:length(temptims)-1
+                if mod(j,2) == 1 %if j is odd
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], cold);
+                else
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], hot);
+                end
+            end
+        end
+
+     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+    for j = 1:length(tday)
+        plot(tday(j).entiretimcont/3600, tday(j).obw, 'LineWidth', 2);
+    end    
+     
+
+            
+  
+figure(778); clf; hold on; ylim([-.5,.5]); xlim([0, ttim(end)/3600]);
+
+a = ylim;
+        
+if  tiz(1) > 0 %we start with warming
+    fill([0 0 td td], [a(1) a(2) a(2) a(1)], hot);
+    fill([td td (td*2) (td*2)], [a(1) a(2) a(2) a(1)], cold);
+else
+    fill([0 0 td td], [a(1) a(2) a(2) a(1)], cold);
+    fill([td td (td*2)+1.5 (td*2)+1.5], [a(1) a(2) a(2) a(1)], hot);
+end
+        plot(tday(1).tim/3600, tday(1).obw - mean(tday(1).obw));
+       
+        for p = 2:length(tday)
+
+            plot(tday(p).tim/3600, tday(p).obw - mean(tday(p).obw), 'LineWidth', 2);
+           
+        end
 % 
-% %fill colors for plotting
-% hot = [255/255, 204/255, 204/255];
-% cold = [204/255, 238/255, 255/255];
-% 
-% %days over experiment time
-% figure(795); clf; hold on;
-% 
-%     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
-%     for j = 1:length(tday)
-%         plot(tday(j).entiretimcont/3600, tday(j).obw);
-%     end
-%    
-%      a = ylim; %all of above is just to get the max for the plot lines...
-% 
-%         if  tiz(1) > 0 %we start with warming
-%             for j = 1:length(temptims)-1
-%                 if mod(j,2) == 1 %if j is odd
-%             fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], hot);
-%                 else
-%             fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], cold);
-%                 end
-%             end
-%         else
-%             for j = 1:length(temptims)-1
-%                 if mod(j,2) == 1 %if j is odd
-%             fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], cold);
-%                 else
-%             fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], hot);
-%                 end
-%             end
-%         end
-% 
-%      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
-%     for j = 1:length(tday)
-%         plot(tday(j).entiretimcont/3600, tday(j).obw, 'LineWidth', 2);
-%     end    
-%      
-% 
-%             
-%   
-% figure(778); clf; hold on; ylim([-.5,.5]); xlim([0, ttim(end)/3600]);
-% 
-% a = ylim;
-%         
-% if  tiz(1) > 0 %we start with warming
-%     fill([0 0 td td], [a(1) a(2) a(2) a(1)], hot);
-%     fill([td td (td*2) (td*2)], [a(1) a(2) a(2) a(1)], cold);
-% else
-%     fill([0 0 td td], [a(1) a(2) a(2) a(1)], cold);
-%     fill([td td (td*2)+1.5 (td*2)+1.5], [a(1) a(2) a(2) a(1)], hot);
-% end
-%         plot(tday(1).tim/3600, tday(1).obw - mean(tday(1).obw));
-%        
-%         for p = 2:length(tday)
-% 
-%             plot(tday(p).tim/3600, tday(p).obw - mean(tday(p).obw), 'LineWidth', 2);
-%            
-%         end
-% % 
-%       
-% 
-%         plot(ttim/3600, tmean, 'k', 'LineWidth', 5)
-% %calculate temp ld equivalent
-%     
-%         plot([td, td], ylim, 'k-', 'LineWidth', 2);          
-% 
-% 
-% 
+      
+
+        plot(ttim/3600, tmean, 'k', 'LineWidth', 5)
+%calculate temp ld equivalent
+    
+        plot([td, td], ylim, 'k-', 'LineWidth', 2);          
+
+
+
