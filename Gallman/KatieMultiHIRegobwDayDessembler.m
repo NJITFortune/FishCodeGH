@@ -72,6 +72,7 @@ if fish == 5 %low freq
 %raw data
     timcont = [in.lofish(ttolo).timcont];
     obw = [in.lofish(ttolo).obwAmp];
+    oldfreq = [in.lofish(ttolo).timcont];
  
 end
 %% crop data to lighttimes 
