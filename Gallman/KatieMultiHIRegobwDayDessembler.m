@@ -49,7 +49,7 @@ if fish == 6 %high freq
 %raw data
     timcont = [in.hifish(ttohi).timcont];
     obw = [in.hifish(ttohi).obwAmp];
-    timcont = [in.hifish(ttohi).hifreq];
+    timcont = [in.hifish(ttohi).freq];
 
 end
 
@@ -72,7 +72,7 @@ if fish == 5 %low freq
 %raw data
     timcont = [in.lofish(ttolo).timcont];
     obw = [in.lofish(ttolo).obwAmp];
-    oldfreq = [in.lofish(ttolo).lofreq];
+    oldfreq = [in.lofish(ttolo).freq];
  
 end
 %% crop data to lighttimes 
