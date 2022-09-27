@@ -177,12 +177,14 @@ for j = 2:length(iFiles) %2514:8276%
             currhifreq = f1.fftfreq(hifreqidx(hmaxidx));        
             plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
         hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
-        
-            if   hipeakamp <  0.05; currhifreq = oldcurrhifreq; end %|| currhifreq > 419 && currhifreq < 421
+      
+        if j > 3
 
-            if j > 3
-                if currhifreq < 550 ; currhifreq = out(j-2).hifreq; end
-            end
+            if   hipeakamp <  0.05; currhifreq = out(j-2).hifreq; end %|| currhifreq > 419 && currhifreq < 421
+
+            
+                
+        end
             
 %             if j > 3 && currhifreq > 535 && abs(currlofreq-currhifreq)>maxdiff
 %                 currhifreq =  out(j-2).midpoint;
