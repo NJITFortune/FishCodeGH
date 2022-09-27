@@ -32,7 +32,7 @@ in = hi;
 %             yline(thresh.upper, 'k-');
     
     ax(3) = subplot(313); title('light cycle'); hold on;
-            plot([out.timcont]/3600, [out.temp]);
+            plot([out.timcont]/3600, [out.light]);
             
 
 linkaxes(ax, 'x');
