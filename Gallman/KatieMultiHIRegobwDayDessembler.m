@@ -176,10 +176,12 @@ end
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
     obwyy = dataminusmean(timidx);  
+    freq = regfreq(timidx);
 
     rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
+    rawfreq = oldfreq(rawidx);
 
 
 %     %plot
