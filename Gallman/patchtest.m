@@ -265,8 +265,10 @@ figure(34); clf;
                 fill([lightlines(j)-lightlines(1) lightlines(j)-lightlines(1) lightlines(j+1)-lightlines(1) lightlines(j+1)-lightlines(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
-        plot(firstpeaktim/3600-lightlines(1), obwfirstpeak, 'LineWidth',1);
+
         plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 10);
+        plot(firstpeaktim/3600-lightlines(1), obwfirstpeak, 'LineWidth',1);
+        
     
     ax(2) = subplot(212); title('peaks of the peaks'); hold on
         a = [0 1];
