@@ -296,8 +296,8 @@ figure(35); clf; hold on;
                 fill([lightlines(j)-lightlines(1) lightlines(j)-lightlines(1) lightlines(j+1)-lightlines(1) lightlines(j+1)-lightlines(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
-
-    plot(peaktim/3600-lightlines(1), obwpeaks, '.');
     plot(otimcont/3600-lightlines(1), nobwdata, '.');
+    plot(peaktim/3600-lightlines(1), obwpeaks, '.');
+
 
 
