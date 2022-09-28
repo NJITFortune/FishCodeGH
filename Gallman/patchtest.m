@@ -234,7 +234,7 @@ zamp = [out(channel).s(sortidx).zAmp];
     %find peaks
     [~,LOCS] = findpeaks(obwamp);
     %find peaks of the peaks
-    [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
+    [obwpeaks,cLOCS] = findpeaks(obwamp(LOCS));
     peaktim = timcont(LOCS(cLOCS));
     
     % plot checking peaks
