@@ -114,9 +114,9 @@ figure(29);clf; hold on;
                 end
             end
             
-            plot([out(2).s.timcont]/3600, [out(channel).s.sumfftAmp], '.', 'MarkerSize', 10);
-            plot([out(2).s.timcont]/3600, [out(channel).s.peakfftAmp], '.', 'MarkerSize', 10);
-            plot([out(2).s.timcont]/3600, [out(channel).s.obwAmp], '.', 'MarkerSize', 10);
+            plot([out(channel).s.timcont]/3600, [out(channel).s.sumfftAmp], '.', 'MarkerSize', 10);
+            plot([out(channel).s.timcont]/3600, [out(channel).s.peakfftAmp], '.', 'MarkerSize', 10);
+            plot([out(channel).s.timcont]/3600, [out(channel).s.obwAmp], '.', 'MarkerSize', 10);
             %plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10);
            % legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
 
@@ -129,10 +129,10 @@ figure(29);clf; hold on;
                 end
             end
         
-            plot([out(1).s.timcont]/3600, [out(channel).s.sumfftAmp]/max([out(channel).s.sumfftAmp]), '.', 'MarkerSize', 10);
-            plot([out(1).s.timcont]/3600, [out(channel).s.peakfftAmp]/max([out(channel).s.peakfftAmp]), '.', 'MarkerSize', 10);
-            plot([out(1).s.timcont]/3600, [out(channel).s.obwAmp]/max([out(channel).s.obwAmp]), '.', 'MarkerSize', 10);
-            plot([out(1).s.timcont]/3600, [out(channel).s.zAmp]/max([out(channel).s.zAmp]), '.', 'MarkerSize', 10);
+            plot([out(channel).s.timcont]/3600, [out(channel).s.sumfftAmp]/max([out(channel).s.sumfftAmp]), '.', 'MarkerSize', 10);
+            plot([out(channel).s.timcont]/3600, [out(channel).s.peakfftAmp]/max([out(channel).s.peakfftAmp]), '.', 'MarkerSize', 10);
+            plot([out(channel).s.timcont]/3600, [out(channel).s.obwAmp]/max([out(channel).s.obwAmp]), '.', 'MarkerSize', 10);
+            plot([out(channel).s.timcont]/3600, [out(channel).s.zAmp]/max([out(channel).s.zAmp]), '.', 'MarkerSize', 10);
             %legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
     
      linkaxes(ax, 'x')
