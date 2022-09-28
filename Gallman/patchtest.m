@@ -234,7 +234,8 @@ obw = obwamp/max(obwamp);
 
  %Take top of dataset
     %find peaks
-    [~,LOCS] = findpeaks(obw);
+    [obwfirstpeak,LOCS] = findpeaks(obw);
+    firstpeaktim = timcont(LOCS);
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
@@ -248,6 +249,7 @@ figure(33); clf; hold on;
             end
 
         plot(peaktim/3600-lightlines(1), obwpeaks, 'LineWidth',2);
+        plot(firstpeaktim/3600-lightlines(1), obwfirstpeak, 'LineWidth',1);
         plot(timcont/3600-lightlines(1), obw, '.');
         %plot([lighttimes' lighttimes'], ylim, 'k-');
 
