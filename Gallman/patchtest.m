@@ -135,7 +135,7 @@ figure(29);clf; hold on;
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).peakfftAmp]/max([out(channel).s(lightidx).peakfftAmp]), '.', 'MarkerSize', 10);
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).obwAmp]/max([out(channel).s(lightidx).obwAmp]), '.', 'MarkerSize', 10);
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).zAmp]/max([out(channel).s(lightidx).zAmp]), '.', 'MarkerSize', 10);
-            legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
+            %legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
     
      linkaxes(ax, 'x')
 
