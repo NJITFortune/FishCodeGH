@@ -160,13 +160,13 @@ zamp = [out(channel).s(sortidx).zAmp];
                     plot(stimcont/3600-lightlines(1), sumfftdata, 'LineWidth', 2);
 
                 [ptimcont, peakfftdata] = k_peaksofpeaksfilt(timcont, peakamp, 20);
-                    plot(ptimcont/3600-lightlines(1), peakfftdata);
+                    plot(ptimcont/3600-lightlines(1), peakfftdata, 'LineWidth', 2);
             
                 [otimcont, obwdata] = k_peaksofpeaksfilt(timcont, obwamp, 20);
-                    plot(otimcont/3600-lightlines(1), obwdata);
+                    plot(otimcont/3600-lightlines(1), obwdata, 'LineWidth', 2);
 
                 [ztimcont, zdata] = k_peaksofpeaksfilt(timcont, zamp, 20);    
-                    plot(ztimcont/3600-lightlines(1), zdata);
+                    plot(ztimcont/3600-lightlines(1), zdata, 'LineWidth', 2);
             
 
          ax(2) = subplot(212); title('Mean square amplitude');  hold on;
@@ -177,14 +177,14 @@ zamp = [out(channel).s(sortidx).zAmp];
                 end
             end
                 [stimcont, sumfftdata] = k_peaksofpeaksfilt(timcont, sumamp/max(sumamp), 20);
-                    plot(stimcont/3600-lightlines(1), sumfftdata);
+                    plot(stimcont/3600-lightlines(1), sumfftdata, 'LineWidth', 2);
 
                 [ptimcont, peakfftdata] = k_peaksofpeaksfilt(timcont, peakamp/max(peakamp), 20);
-                    plot(ptimcont/3600-lightlines(1), peakfftdata);
+                    plot(ptimcont/3600-lightlines(1), peakfftdata, 'LineWidth', 2);
             
                 [otimcont, obwdata] = k_peaksofpeaksfilt(timcont, obwamp/max(obwamp), 20);
-                    plot(otimcont/3600-lightlines(1), obwdata);
+                    plot(otimcont/3600-lightlines(1), obwdata, 'LineWidth', 2);
 
                 [ztimcont, zdata] = k_peaksofpeaksfilt(timcont, zamp/max(zamp), 20);    
-                    plot(ztimcont/3600-lightlines(1), zdata); 
+                    plot(ztimcont/3600-lightlines(1), zdata, 'LineWidth', 2); 
      
