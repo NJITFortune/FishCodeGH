@@ -230,18 +230,17 @@ zamp = [out(channel).s(sortidx).zAmp];
 
  %% how peaks of peaks works with obw
 
-obw = obwamp/max(obwamp)
+obw = obwamp/max(obwamp);
 
  %Take top of dataset
     %find peaks
-    [~,LOCS] = findpeaks(obwamp);
+    [obwfirstpeak,LOCS] = findpeaks(obw);
+    firstpeaktim = timcont(LOCS);
     %find peaks of the peaks
-    [obwpeaks,cLOCS] = findpeaks(obwamp(LOCS));
+    [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
     
-    % plot checking peaks
-    figure(45); clf; hold on;  
-
+figure(33); clf; hold on;
     a = [0 1];
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 1 %if j is even
@@ -249,6 +248,19 @@ obw = obwamp/max(obwamp)
                 end
             end
 
-        plot(peaktim, obwpeaks);
-        plot(timcont, obwamp, '.');
+        plot(peaktim/3600-lightlines(1), obwpeaks, 'LineWidth',2);
+        plot(firstpeaktim/3600-lightlines(1), obwfirstpeak);
+        plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 8);
         %plot([lighttimes' lighttimes'], ylim, 'k-');
+
+
+
+figure(34); clf;
+
+    ax(1) = subplot(211); hold on
+
+
+
+
+
+
