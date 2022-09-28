@@ -12,19 +12,6 @@ function [newtim,  newampFilled] = k_peaksofpeaksfilt(timcont, obw, regularinter
 %% Regularize data to ReFs
     %k_regularmetamucil is real version of code below
 
-
-if oldtim(1) > rawtim(1) %if first peak starts after tim(1)
-    gapidx = find(rawtim < oldtim(1)); %get indicies for time gap
-    
-    oldtim = [rawtim(gapidx) oldtim];  %add time indicies to oldtim
-    oldamp = [rawamp(1)  NaN(1,length(gapidx)-1,'single') oldamp]; %add NaNs to old amp size of gap after first raw amp value
-    
-     
-end
-
-
-%% Regularize the data at precisely 60 second intervals
-
 b = mod(oldtim, regularinterval); % How far is each time point away from ReFs second intervals
     oldtim(b < regularinterval/2) = oldtim(b < regularinterval/2) - b(b < regularinterval/2); % for data that is less than ReFs seconds away, round down.
     oldtim(b >= regularinterval/2) = oldtim(b >= regularinterval/2) + (regularinterval - b(b >= regularinterval/2)); % for data this is ReFs-2*ReFs seconds away, round up.
