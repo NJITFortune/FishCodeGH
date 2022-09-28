@@ -250,7 +250,7 @@ figure(33); clf; hold on;
 
         plot(peaktim/3600-lightlines(1), obwpeaks, 'LineWidth',2);
         plot(firstpeaktim/3600-lightlines(1), obwfirstpeak);
-        plot(timcont/3600-lightlines(1), obw, '.');
+        plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 8);
         %plot([lighttimes' lighttimes'], ylim, 'k-');
 
 
