@@ -121,7 +121,7 @@ figure(29);clf; hold on;
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).peakfftAmp], '.', 'MarkerSize', 10, 'DisplayName','peakfftAmp');
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).obwAmp], '.', 'MarkerSize', 10, 'DisplayName','obwAmp');
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).zAmp], '.', 'MarkerSize', 10, 'DisplayName','zAmp');
-            legend('AutoUpdate','off');
+            legend('Location','northoutside');
          ax(2) = subplot(212); title('normalized'); hold on;
 
             
