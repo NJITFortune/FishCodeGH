@@ -113,13 +113,13 @@ figure(29);clf; hold on;
             a = [0 1];
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 1 %if j is even
-                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
+                fill([lightlines(j)-lightlines(1) lightlines(j)-lightlines(1) lightlines(j+1)-lightlines(1) lightlines(j+1)-lightlines(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
             
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).sumfftAmp], '.', 'MarkerSize', 10);
-            plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).peakfftAmp], '.', 'MarkerSize', 10);
-            plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).obwAmp], '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).peakfftAmp], '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).obwAmp], '.', 'MarkerSize', 10);
             %plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10);
            % legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
 
@@ -128,14 +128,14 @@ figure(29);clf; hold on;
             
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 1 %if j is even
-                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
+                fill([lightlines(j)-lightlines(1) lightlines(j)-lightlines(1) lightlines(j+1)-lightlines(1) lightlines(j+1)-lightlines(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
         
-            plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).sumfftAmp]/max([out(channel).s(lightidx).sumfftAmp]), '.', 'MarkerSize', 10);
-            plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).peakfftAmp]/max([out(channel).s(lightidx).peakfftAmp]), '.', 'MarkerSize', 10);
-            plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).obwAmp]/max([out(channel).s(lightidx).obwAmp]), '.', 'MarkerSize', 10);
-            plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).zAmp]/max([out(channel).s(lightidx).zAmp]), '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).sumfftAmp]/max([out(channel).s(lightidx).sumfftAmp]), '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).peakfftAmp]/max([out(channel).s(lightidx).peakfftAmp]), '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).obwAmp]/max([out(channel).s(lightidx).obwAmp]), '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).zAmp]/max([out(channel).s(lightidx).zAmp]), '.', 'MarkerSize', 10);
             %legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
     
      linkaxes(ax, 'x')
@@ -153,38 +153,38 @@ zamp = [out(channel).s(sortidx).zAmp];
             a = [0 1];
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 1 %if j is even
-                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
+                fill([lightlines(j)-lightlines(1) lightlines(j)-lightlines(1) lightlines(j+1)-lightlines(1) lightlines(j+1)-lightlines(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
                 [stimcont, sumfftdata] = k_peaksofpeaksfilt(timcont, sumamp, 20);
-                    plot(stimcont/3600, sumfftdata);
+                    plot(stimcont/3600-lightlines(1), sumfftdata);
 
                 [ptimcont, peakfftdata] = k_peaksofpeaksfilt(timcont, peakamp, 20);
-                    plot(ptimcont/3600, peakfftdata);
+                    plot(ptimcont/3600-lightlines(1), peakfftdata);
             
                 [otimcont, obwdata] = k_peaksofpeaksfilt(timcont, obwamp, 20);
-                    plot(otimcont/3600, obwdata);
+                    plot(otimcont/3600-lightlines(1), obwdata);
 
                 [ztimcont, zdata] = k_peaksofpeaksfilt(timcont, zamp, 20);    
-                    plot(ztimcont/3600, zdata);
+                    plot(ztimcont/3600-lightlines(1), zdata);
             
 
          ax(2) = subplot(212); title('Mean square amplitude');  hold on;
             a = [0 1];
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 1 %if j is even
-                fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
+                fill([lightlines(j)-lightlines(1) lightlines(j)-lightlines(1) lightlines(j+1)-lightlines(1) lightlines(j+1)-lightlines(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
                 [stimcont, sumfftdata] = k_peaksofpeaksfilt(timcont, sumamp/max(sumamp), 20);
-                    plot(stimcont/3600, sumfftdata);
+                    plot(stimcont/3600-lightlines(1), sumfftdata);
 
                 [ptimcont, peakfftdata] = k_peaksofpeaksfilt(timcont, peakamp/max(peakamp), 20);
-                    plot(ptimcont/3600, peakfftdata);
+                    plot(ptimcont/3600-lightlines(1), peakfftdata);
             
                 [otimcont, obwdata] = k_peaksofpeaksfilt(timcont, obwamp/max(obwamp), 20);
-                    plot(otimcont/3600, obwdata);
+                    plot(otimcont/3600-lightlines(1), obwdata);
 
                 [ztimcont, zdata] = k_peaksofpeaksfilt(timcont, zamp/max(zamp), 20);    
-                    plot(ztimcont/3600, zdata); 
+                    plot(ztimcont/3600-lightlines(1), zdata); 
      
