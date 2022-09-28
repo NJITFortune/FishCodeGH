@@ -32,7 +32,7 @@ teal = [0/255 114/255 178/255];
       
 
 lightlines = 1 + (4*(timz-1));
-
+lightlines = lightlines(1:6);
 % figure(28);clf; hold on;
 %         
 %         ax(1) = subplot(311); title('Mean square amplitude'); xlim([27 43]);hold on;
@@ -117,7 +117,7 @@ figure(29);clf; hold on;
                 end
             end
             
-            plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).sumfftAmp], '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600-lighttimes(1), [out(channel).s(lightidx).sumfftAmp], '.', 'MarkerSize', 10);
             plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).peakfftAmp], '.', 'MarkerSize', 10);
             plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).obwAmp], '.', 'MarkerSize', 10);
             %plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10);
