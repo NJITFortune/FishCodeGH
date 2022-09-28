@@ -297,7 +297,7 @@ figure(35); clf; hold on;
                 end
             end
     plot(otimcont/3600-lightlines(1), nobwdata, '.', 'MarkerSize', 15);
-    plot(peaktim/3600-lightlines(1), obwpeaks, '.');
+    plot(peaktim/3600-lightlines(1), obwpeaks, '.', 'MarkerSize', 10);
 
 
 
