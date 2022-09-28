@@ -139,6 +139,13 @@ figure(29);clf; hold on;
 
 figure(30); clf; hold on;
 
+%because tim isn't resetting for a new day or something weird
+[timcont, sortidx] = sort([out(channel).s.timcont]);
+sumamp = [out(channel).s(sortidx).psumfftAmp];
+peakamp = [out(channel).s(sortidx).ppeakfftAmp];
+obwamp = [out(channel).s(sortidx).pobwAmp];
+zamp = [out(channel).s(sortidx).zAmp];
+
          ax(1) = subplot(211); title('Mean square amplitude');  hold on;
             a = [0 1];
             for j = 1:length(lightlines)-1
@@ -146,17 +153,17 @@ figure(30); clf; hold on;
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
-                [stimcont, sumfftdata] = k_peaksofpeaksfilt([out(channel).s.timcont], [out(channel).s.psumfftAmp], 20);
+                [stimcont, sumfftdata] = k_peaksofpeaksfilt(timcont, sumamp, 20);
                     plot(stimcont/3600, sumfftdata);
 
-                [ptimcont, peakfftdata] = k_peaksofpeaksfilt([out(channel).s.timcont], [out(channel).s.ppeakfftAmp], 20);
+                [ptimcont, peakfftdata] = k_peaksofpeaksfilt(timcont, peakamp, 20);
                     plot(ptimcont/3600, peakfftdata);
             
-                [otimcont, obwdata] = k_peaksofpeaksfilt([out(channel).s.timcont], [out(channel).s.pobwAmp], 20);
+                [otimcont, obwdata] = k_peaksofpeaksfilt(timcont, obwamp, 20);
                     plot(otimcont/3600, obwdata);
 
-                [timcont, zdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.zAmp], 20);    
-                    plot(timcont/3600, zdata);
+                [ztimcont, zdata] = k_peaksofpeaksfilt(timcont, zamp, 20);    
+                    plot(ztimcont/3600, zdata);
             
 
          ax(2) = subplot(212); title('Mean square amplitude');  hold on;
@@ -166,15 +173,15 @@ figure(30); clf; hold on;
                 fill([lightlines(j) lightlines(j) lightlines(j+1) lightlines(j+1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
-                [stimcont, sumfftdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(channel).s.psumfftAmp]/max([out(channel).s.psumfftAmp]), 20);
+                [stimcont, sumfftdata] = k_peaksofpeaksfilt(timcont, sumamp/max(sumamp), 20);
                     plot(stimcont/3600, sumfftdata);
 
-                [ptimcont, peakfftdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(channel).s.ppeakfftAmp]/max([out(channel).s.ppeakfftAmp]), 20);
+                [ptimcont, peakfftdata] = k_peaksofpeaksfilt(timcont, peakamp/max(peakamp), 20);
                     plot(ptimcont/3600, peakfftdata);
             
-                [otimcont, obwdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(channel).s.pobwAmp]/max([out(channel).s.pobwAmp]), 20);
+                [otimcont, obwdata] = k_peaksofpeaksfilt(timcont, obwamp/max(obwamp), 20);
                     plot(otimcont/3600, obwdata);
 
-%                 [timcont, zdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.zAmp]/max([out(1).s.zAmp]), 20);    
-%                     plot(timcont/3600, zdata); 
-%      
+                [ztimcont, zdata] = k_peaksofpeaksfilt(timcont, zamp/max(zamp), 20);    
+                    plot(ztimcont/3600, zdata); 
+     
