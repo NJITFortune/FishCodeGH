@@ -255,9 +255,28 @@ figure(33); clf; hold on;
 
 
 
+figure(34); clf;
 
-
-
+    ax(1) = subplot(211); hold on
+        a = [0 1];
+            for j = 1:length(lightlines)-1
+                if mod(j,2) == 1 %if j is even
+                fill([lightlines(j)-lightlines(1) lightlines(j)-lightlines(1) lightlines(j+1)-lightlines(1) lightlines(j+1)-lightlines(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
+                end
+            end
+        plot(firstpeaktim/3600-lightlines(1), obwfirstpeak);
+        plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 8);
+    
+    ax(2) = subplot(212); hold on
+        a = [0 1];
+            for j = 1:length(lightlines)-1
+                if mod(j,2) == 1 %if j is even
+                fill([lightlines(j)-lightlines(1) lightlines(j)-lightlines(1) lightlines(j+1)-lightlines(1) lightlines(j+1)-lightlines(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
+                end
+            end
+        plot(peaktim/3600-lightlines(1), obwpeaks, 'LineWidth',2);
+        plot(firstpeaktim/3600-lightlines(1), obwfirstpeak);
+      %  plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 8);
 
 
 
