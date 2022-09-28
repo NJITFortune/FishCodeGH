@@ -157,7 +157,7 @@ zamp = [out(channel).s(sortidx).zAmp];
                 end
             end
                 [stimcont, sumfftdata] = k_peaksofpeaksfilt(timcont, sumamp, 20);
-                    plot(stimcont/3600-lightlines(1), sumfftdata, 'LineWidth', 1);
+                    plot(stimcont/3600-lightlines(1), sumfftdata, 'LineWidth', 2);
 
                 [ptimcont, peakfftdata] = k_peaksofpeaksfilt(timcont, peakamp, 20);
                     plot(ptimcont/3600-lightlines(1), peakfftdata);
