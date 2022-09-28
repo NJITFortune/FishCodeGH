@@ -227,3 +227,6 @@ zamp = [out(channel).s(sortidx).zAmp];
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).obwAmp]/max([out(channel).s(lightidx).obwAmp]), '.', 'MarkerSize', 10);
                  plot(otimcont/3600-lightlines(1), nobwdata, 'LineWidth', 2);
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).zAmp]/max([out(channel).s(lightidx).zAmp]), '.', 'MarkerSize', 10);
+
+ %%
+ 
