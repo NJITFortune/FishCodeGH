@@ -160,7 +160,7 @@ zamp = [out(channel).s(sortidx).zAmp];
                     plot(stimcont/3600-lightlines(1), sumfftdata, 'LineWidth', 2);
 
                 [ptimcont, peakfftdata] = k_peaksofpeaksfilt(timcont, peakamp, 20);
-                    plot(ptimcont/3600-lightlines(1), peakfftdata, 'LineWidth', 2);
+                    plot(ptimcont/3600-lightlines(1), peakfftdata,'--', 'LineWidth', 2);
             
                 [otimcont, obwdata] = k_peaksofpeaksfilt(timcont, obwamp, 20);
                     plot(otimcont/3600-lightlines(1), obwdata, 'LineWidth', 2);
@@ -180,7 +180,7 @@ zamp = [out(channel).s(sortidx).zAmp];
                     plot(stimcont/3600-lightlines(1), nsumfftdata, 'LineWidth', 2);
 
                 [ptimcont, npeakfftdata] = k_peaksofpeaksfilt(timcont, peakamp/max(peakamp), 20);
-                    plot(ptimcont/3600-lightlines(1), npeakfftdata, 'LineWidth', 2);
+                    plot(ptimcont/3600-lightlines(1), npeakfftdata,'--', 'LineWidth', 2);
             
                 [otimcont, nobwdata] = k_peaksofpeaksfilt(timcont, obwamp/max(obwamp), 20);
                     plot(otimcont/3600-lightlines(1), nobwdata, 'LineWidth', 2);
