@@ -296,8 +296,8 @@ figure(35); clf; hold on;
                 fill([lightlines(j)-lightlines(1) lightlines(j)-lightlines(1) lightlines(j+1)-lightlines(1) lightlines(j+1)-lightlines(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
                 end
             end
-    plot(otimcont/3600-lightlines(1), nobwdata, '.', 'MarkerSize', 15);
-    plot(peaktim/3600-lightlines(1), obwpeaks, '.', 'MarkerSize', 10);
+    plot(otimcont/3600-lightlines(1), nobwdata, '.', 'MarkerSize', 10);
+    plot(peaktim/3600-lightlines(1), obwpeaks, '.', 'MarkerSize', 15);
 
 
 
