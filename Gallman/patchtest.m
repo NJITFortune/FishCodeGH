@@ -228,5 +228,17 @@ zamp = [out(channel).s(sortidx).zAmp];
                  plot(otimcont/3600-lightlines(1), nobwdata, 'LineWidth', 2);
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).zAmp]/max([out(channel).s(lightidx).zAmp]), '.', 'MarkerSize', 10);
 
- %%
- 
+ %% how peaks of peaks works with obw
+
+ %Take top of dataset
+    %find peaks
+    [~,LOCS] = findpeaks(obwamp);
+    %find peaks of the peaks
+    [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
+    peaktim = timcont(LOCS(cLOCS));
+    
+    % plot checking peaks
+    figure(45); clf; hold on;   
+        plot(peaktim, obwpeaks);
+        plot(timcont, obwamp);
+        %plot([lighttimes' lighttimes'], ylim, 'k-');
