@@ -239,7 +239,7 @@ obw = obwamp/max(obwamp);
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
     
-
+figure(33); clf; hold on;
     a = [0 1];
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 1 %if j is even
