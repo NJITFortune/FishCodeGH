@@ -285,5 +285,5 @@ figure(34); clf;
       %  plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 8);
 
 
-
+%% peaks with regtim 
 
