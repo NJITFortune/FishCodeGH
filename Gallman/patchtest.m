@@ -117,7 +117,7 @@ figure(29);clf; hold on;
                 end
             end
             
-            plot([out(channel).s(lightidx).timcont]/3600-lighttimes(1), [out(channel).s(lightidx).sumfftAmp], '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).sumfftAmp], '.', 'MarkerSize', 10);
             plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).peakfftAmp], '.', 'MarkerSize', 10);
             plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).obwAmp], '.', 'MarkerSize', 10);
             %plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10);
