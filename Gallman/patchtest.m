@@ -240,5 +240,5 @@ zamp = [out(channel).s(sortidx).zAmp];
     % plot checking peaks
     figure(45); clf; hold on;   
         plot(peaktim, obwpeaks);
-        plot(timcont, obwamp);
+        plot(timcont, obwamp, '.');
         %plot([lighttimes' lighttimes'], ylim, 'k-');
