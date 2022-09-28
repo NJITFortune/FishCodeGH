@@ -104,7 +104,7 @@ lightidx = find([out(channel).s.timcont]/3600 >= lightlines(1) & [out(channel).s
 
 figure(29);clf; hold on;
         
-        ax(1) = subplot(211); title('Mean square amplitude'); hold on;
+        ax(1) = subplot(211);  hold on;
            
 %             plot([out(1).s.timcont]/3600, [out(1).s.psumfftAmp], '.', 'MarkerSize', 0.1);      
 %             plot([out(1).s.timcont]/3600, [out(1).s.ppeakfftAmp], '.', 'MarkerSize', 0.1);
@@ -121,8 +121,8 @@ figure(29);clf; hold on;
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).peakfftAmp], '.', 'MarkerSize', 10, 'DisplayName','peakfftAmp');
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).obwAmp], '.', 'MarkerSize', 10, 'DisplayName','obwAmp');
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).zAmp], '.', 'MarkerSize', 10, 'DisplayName','zAmp');
-            legend('Location','northoutside');
-         ax(2) = subplot(212); title('normalized'); hold on;
+            legend('Location','northoutside', 'Orientation','horizontal');
+         ax(2) = subplot(212); title('mean square amplitude normalized'); hold on;
 
             
             for j = 1:length(lightlines)-1
