@@ -1,4 +1,4 @@
-function [regtim,  newampFilled] = k_peaksofpeaksfilt(timcont, obw, ReFs)
+function [newtim,  newampFilled] = k_peaksofpeaksfilt(timcont, obw, ReFs)
 
 %% process data
 
@@ -6,8 +6,8 @@ function [regtim,  newampFilled] = k_peaksofpeaksfilt(timcont, obw, ReFs)
     %find peaks
     [PKS,LOCS] = findpeaks(obw);
     %find peaks of the peaks
-    [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
-    peaktim = timcont(LOCS(cLOCS));
+    [oldamp,cLOCS] = findpeaks(obw(LOCS));
+    oldtim = timcont(LOCS(cLOCS));
     
 %% Regularize data to ReFs
     %k_regularmetamucil is real version of code below
