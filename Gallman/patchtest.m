@@ -155,9 +155,9 @@ figure(30); clf; hold on;
                 [otimcont, obwdata] = k_peaksofpeaksfilt([out(channel).s.timcont], [out(channel).s.pobwAmp], 20);
                     plot(otimcont/3600, obwdata);
 
-%                 [timcont, zdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.zAmp], 20);    
-%                     plot(timcont/3600, zdata);
-%             
+                [timcont, zdata] = k_peaksofpeaksfilt([out(1).s.timcont], [out(1).s.zAmp], 20);    
+                    plot(timcont/3600, zdata);
+            
 
          ax(2) = subplot(212); title('Mean square amplitude');  hold on;
             a = [0 1];
