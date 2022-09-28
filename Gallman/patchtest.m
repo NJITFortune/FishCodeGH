@@ -247,8 +247,8 @@ figure(33); clf; hold on;
                 end
             end
 
-        plot(peaktim, obwpeaks);
-        plot(timcont, obw, '.');
+        plot(peaktim/3600-lightlines(1), obwpeaks);
+        plot(timcont/3600-lightlines(1), obw, '.');
         %plot([lighttimes' lighttimes'], ylim, 'k-');
 
 
