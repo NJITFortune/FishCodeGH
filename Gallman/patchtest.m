@@ -120,8 +120,8 @@ figure(29);clf; hold on;
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).sumfftAmp], '.', 'MarkerSize', 10);
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).peakfftAmp], '.', 'MarkerSize', 10);
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).obwAmp], '.', 'MarkerSize', 10);
-            %plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10);
-           % legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).zAmp], '.', 'MarkerSize', 10);
+            legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
 
          ax(2) = subplot(212); title('normalized'); hold on;
 
@@ -136,7 +136,7 @@ figure(29);clf; hold on;
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).peakfftAmp]/max([out(channel).s(lightidx).peakfftAmp]), '.', 'MarkerSize', 10);
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).obwAmp]/max([out(channel).s(lightidx).obwAmp]), '.', 'MarkerSize', 10);
             plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).zAmp]/max([out(channel).s(lightidx).zAmp]), '.', 'MarkerSize', 10);
-            %legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
+            legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
     
      linkaxes(ax, 'x')
 
