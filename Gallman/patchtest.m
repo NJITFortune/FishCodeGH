@@ -98,6 +98,9 @@ lightlines = 1 + (4*(timz-1));
 
 channel = 1;
 
+%trim to lightlines
+lightidx = find([out(channel).s.timcont]/3600 >= lightlines(1) & [out(channel).s.timcont]/3600 <= lightlines)
+
 
 figure(29);clf; hold on;
         
