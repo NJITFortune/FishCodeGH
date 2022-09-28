@@ -99,7 +99,7 @@ lightlines = 1 + (4*(timz-1));
 channel = 1;
 
 %trim to lightlines
-lightidx = find([out(channel).s.timcont]/3600 >= lightlines(1) & [out(channel).s.timcont]/3600 <= lightlines)
+lightidx = find([out(channel).s.timcont]/3600 >= lightlines(1) & [out(channel).s.timcont]/3600 <= lightlines(6));
 
 
 figure(29);clf; hold on;
@@ -117,9 +117,9 @@ figure(29);clf; hold on;
                 end
             end
             
-            plot([out(channel).s.timcont]/3600, [out(channel).s.sumfftAmp], '.', 'MarkerSize', 10);
-            plot([out(channel).s.timcont]/3600, [out(channel).s.peakfftAmp], '.', 'MarkerSize', 10);
-            plot([out(channel).s.timcont]/3600, [out(channel).s.obwAmp], '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).sumfftAmp], '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).peakfftAmp], '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).obwAmp], '.', 'MarkerSize', 10);
             %plot([out(1).s.timcont]/3600, [out(1).s.zAmp], '.', 'MarkerSize', 10);
            % legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
 
@@ -132,10 +132,10 @@ figure(29);clf; hold on;
                 end
             end
         
-            plot([out(channel).s.timcont]/3600, [out(channel).s.sumfftAmp]/max([out(channel).s.sumfftAmp]), '.', 'MarkerSize', 10);
-            plot([out(channel).s.timcont]/3600, [out(channel).s.peakfftAmp]/max([out(channel).s.peakfftAmp]), '.', 'MarkerSize', 10);
-            plot([out(channel).s.timcont]/3600, [out(channel).s.obwAmp]/max([out(channel).s.obwAmp]), '.', 'MarkerSize', 10);
-            plot([out(channel).s.timcont]/3600, [out(channel).s.zAmp]/max([out(channel).s.zAmp]), '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).sumfftAmp]/max([out(channel).s(lightidx).sumfftAmp]), '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).peakfftAmp]/max([out(channel).s(lightidx).peakfftAmp]), '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).obwAmp]/max([out(channel).s(lightidx).obwAmp]), '.', 'MarkerSize', 10);
+            plot([out(channel).s(lightidx).timcont]/3600, [out(channel).s(lightidx).zAmp]/max([out(channel).s(lightidx).zAmp]), '.', 'MarkerSize', 10);
             %legend('sumfftAmp', 'peakfftAmp', 'obwAmp', 'zAmp');
     
      linkaxes(ax, 'x')
@@ -143,7 +143,7 @@ figure(29);clf; hold on;
 figure(30); clf; hold on;
 
 %because tim isn't resetting for a new day or something weird
-[timcont, sortidx] = sort([out(channel).s.timcont]);
+[timcont, sortidx] = sort([out(channel).s(lightidx).timcont]);
 sumamp = [out(channel).s(sortidx).psumfftAmp];
 peakamp = [out(channel).s(sortidx).ppeakfftAmp];
 obwamp = [out(channel).s(sortidx).pobwAmp];
