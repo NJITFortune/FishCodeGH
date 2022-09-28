@@ -1,4 +1,4 @@
-function [newtim,  newampFilled] = k_peaksofpeaksfilt(timcont, obw, regularinterval)
+function [regtim,  regamp] = k_peaksofpeaksfilt(timcont, obw, regularinterval)
 
 %% process data
 
@@ -62,6 +62,12 @@ end
 
 % Make a filled version
     newampFilled = fillmissing(newampNaN, 'linear');
+
+
+    [regtim, sortidx] = sort(newtim);
+    regamp = newampFilled(sortidx);
+
+
   
 
 %mean subtractions happens after amp filtering out side of this function
