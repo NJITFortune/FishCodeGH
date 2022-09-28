@@ -257,7 +257,7 @@ figure(33); clf; hold on;
 
 figure(34); clf;
 
-    ax(1) = subplot(211); hold on
+    ax(1) = subplot(211); title('peaks of amplitude values');hold on
         a = [0 1];
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 1 %if j is even
@@ -267,7 +267,7 @@ figure(34); clf;
         plot(firstpeaktim/3600-lightlines(1), obwfirstpeak);
         plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 10);
     
-    ax(2) = subplot(212); hold on
+    ax(2) = subplot(212); title('peaks of the peaks'); hold on
         a = [0 1];
             for j = 1:length(lightlines)-1
                 if mod(j,2) == 1 %if j is even
