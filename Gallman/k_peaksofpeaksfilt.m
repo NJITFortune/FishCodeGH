@@ -17,12 +17,9 @@ function [regtim,  regobwpeaks] = k_peaksofpeaksfilt(timcont, obw, ReFs)
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs);
+    [regtim, ~, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, timcont, obw, ReFs);
     
-    %filter data
-        %cut off frequency
-        highWn = 0.005/(ReFs/2);
-        lowWn = 0.1/(ReFs/2);
+
 
 %         %high pass removes feeding trend
 %         [bb,aa] = butter(5, highWn, 'high');
