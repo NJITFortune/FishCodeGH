@@ -187,3 +187,42 @@ zamp = [out(channel).s(sortidx).zAmp];
                 [ztimcont, nzdata] = k_peaksofpeaksfilt(timcont, zamp/max(zamp), 20);    
                     plot(ztimcont/3600-lightlines(1), nzdata, 'LineWidth', 2); 
      
+
+ figure(31);clf; hold on;
+        
+        ax(1) = subplot(211); title('Mean square amplitude'); hold on;
+           
+            a = [0 1];
+            for j = 1:length(lightlines)-1
+                if mod(j,2) == 1 %if j is even
+                fill([lightlines(j)-lightlines(1) lightlines(j)-lightlines(1) lightlines(j+1)-lightlines(1) lightlines(j+1)-lightlines(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
+                end
+            end
+            
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).sumfftAmp], '.', 'MarkerSize', 10);
+                 plot(stimcont/3600-lightlines(1), sumfftdata, 'LineWidth', 2);
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).peakfftAmp], '.', 'MarkerSize', 10);
+                 plot(ptimcont/3600-lightlines(1), peakfftdata, 'LineWidth', 2);
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).obwAmp], '.', 'MarkerSize', 10);
+                 plot(otimcont/3600-lightlines(1), obwdata, 'LineWidth', 2);
+           plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).zAmp], '.', 'MarkerSize', 10);
+                plot(ztimcont/3600-lightlines(1), zdata, 'LineWidth', 2);
+                    
+
+         ax(2) = subplot(212); title('normalized'); hold on;
+
+            
+            for j = 1:length(lightlines)-1
+                if mod(j,2) == 1 %if j is even
+                fill([lightlines(j)-lightlines(1) lightlines(j)-lightlines(1) lightlines(j+1)-lightlines(1) lightlines(j+1)-lightlines(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
+                end
+            end
+        
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).sumfftAmp]/max([out(channel).s(lightidx).sumfftAmp]), '.', 'MarkerSize', 10);
+                plot(stimcont/3600-lightlines(1), nsumfftdata, 'LineWidth', 2);
+
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).peakfftAmp]/max([out(channel).s(lightidx).peakfftAmp]), '.', 'MarkerSize', 10);
+                 plot(ptimcont/3600-lightlines(1), npeakfftdata, 'LineWidth', 2);
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).obwAmp]/max([out(channel).s(lightidx).obwAmp]), '.', 'MarkerSize', 10);
+                 plot(otimcont/3600-lightlines(1), nobwdata, 'LineWidth', 2);
+            plot([out(channel).s(lightidx).timcont]/3600-lightlines(1), [out(channel).s(lightidx).zAmp]/max([out(channel).s(lightidx).zAmp]), '.', 'MarkerSize', 10);
