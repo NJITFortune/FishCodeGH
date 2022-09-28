@@ -1,4 +1,4 @@
-function [newtim,  newampFilled] = k_peaksofpeaksfilt(timcont, obw, ReFs)
+function [newtim,  newampFilled] = k_peaksofpeaksfilt(timcont, obw, regularinterval)
 
 %% process data
 
