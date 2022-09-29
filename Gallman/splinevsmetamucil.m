@@ -100,7 +100,7 @@ end
         %spline 
          splinexx = lighttimes(1):ReFs:lighttimes(end);
          
-        spliney = csaps(peaktim, obwpeaks, 0.9);
+        spliney = csaps(peaktim, obwpeaks, 0.99);
         %resample new x values based on light/dark
         obwyy = fnval(splinexx, spliney);
       
