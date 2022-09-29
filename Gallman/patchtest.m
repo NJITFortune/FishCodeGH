@@ -300,7 +300,28 @@ figure(35); clf; hold on;
     plot(peaktim/3600-lightlines(1), obwpeaks, '.', 'MarkerSize', 15);
 
 %%  spline above the spline
+ReFs = 20;
+%subspline subtraction
+splinexx = lightlines(1):ReFs:lightlines(end);
+
+        %spline of raw data
+        spliney1 = csaps(timcont, obw, p);
+        %estimate without resample
+        obwall = fnval(timcont, spliney1);
+
+        %take raw data above the spline
+        topidx = find(obw > obwall);
+        topobw = obw(topidx);
+        toptim = timcont(topidx);
+
+        %spline of above spline data
+        spliney2 = csaps(toptim, topobw, p);
+        %resample based on regularized time data
+        subobwyy = fnval(splinexx, spliney2);
 
 
+  figure(36); clf; hold on;
+    
+        
 
 
