@@ -119,7 +119,7 @@ obwyyminusmean = obwyy-mean(obwyy);
         %high pass removes feeding trend for high frequency experiments
        
         [bb,aa] = butter(5, highWn, 'high');
-        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+        datadata = filtfilt(bb,aa, regobwpeaks); %double vs single matrix?
 
 
 
