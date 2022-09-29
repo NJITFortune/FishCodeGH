@@ -322,17 +322,17 @@ splinexx = lightlines(1):ReFs:lightlines(end);
 
 
   figure(36); clf; hold on;
-    
+    a = [0 1];
          
-        plot(splinexx/3600, subobwyy);
+        
         %fill boxes
             a = ylim; %all of above is just to get the max for the plot lines...
-%             
-%                 for j = 1:length(lightlines)-1
-%                     if mod(j,2) == 1 %if j is odd
-%                      fill([lightlines(j)-lightlines(1) lightlines(j)-lightlines(1) lightlines(j+1)-lightlines(1) lightlines(j+1)-lightlines(1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%                     end
-%                 end
+            
+                for j = 1:length(lightlines)-1
+                    if mod(j,2) == 1 %if j is odd
+                     fill([lightlines(j)-lightlines(1) lightlines(j)-lightlines(1) lightlines(j+1)-lightlines(1) lightlines(j+1)-lightlines(1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
             
            
         plot(timcont/3600, obw, '.');
