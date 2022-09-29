@@ -1,4 +1,4 @@
-function [xx, subfftyy, lighttimes] =  k_obwabovespliner(in, channel, ReFs, light)
+function [xx, subfftyy] =  k_obwabovespliner(timcont, obw, ReFs, lighttimes)
 %% Usage
 %in = kg(k);
 %ReFs = 20;
@@ -17,16 +17,12 @@ p = 0.99;
       %estimate new yvalues for every x value
       
             %obw
-            spliney1 = csaps([in.e(channel).s(tto{channel}).timcont]/(60*60), [in.e(channel).s(tto{channel}).obwAmp]/max([in.e(channel).s(tto{channel}).obwAmp]), p);
+            spliney1 = csaps(timcont, obw, p);
             
             %estimate without resample
-            obwAmp = fnval([in.e(1).s(tto{1}).timcont]/(60*60), spliney1);
-%             %detrend ydata
-%             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
-            %raw data variables
-                obwtimOG = [in.e(1).s(tto{1}).timcont]/(60*60);
-                obwAmpOG = [in.e(1).s(tto{1}).obwAmp]/max([in.e(1).s(tto{1}).obwAmp]);
+            obwAmp = fnval(timcont, spliney1);
 
+            
 
 % figure(57); clf; title('testing original spline'); hold on;
 %     plot(sumffttimOG, sumfftAmpOG, '.');
@@ -35,9 +31,9 @@ p = 0.99;
         
 %take raw data above the spline
 
-   fftidx = find(obwAmpOG > obwAmp);
-   subfft = obwAmpOG(fftidx);
-   subffttim = obwtimOG(fftidx);
+   fftidx = find(obw > obwAmp);
+   subfft = obw(fftidx);
+   subffttim = timcont(fftidx);
      
 %estimate new spline 
 
