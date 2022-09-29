@@ -284,15 +284,29 @@ linkaxes(ax, 'x');
 
 
 %separately
-figure(57); clf; hold on;
+figure(57); clf;title('spline no mean subtraction'); hold on;
+    
+    for j = 1:length(sday)
+
+         % sminusmeanday(j,:) = sday(j).obwyyminusmean;
+          smeaday(j,:) = sday(j).obwyy;
+          plot(sday(j).tim/3600, sday(j).obwyy);
+    end
+
+ plot(day(1).tim/3600, mean(smeaday), 'b-', 'LineWidth', 3);
+
+
+%separately
+figure(58); clf;title('spline  mean subtraction'); hold on;
     
     for j = 1:length(sday)
 
           sminusmeanday(j,:) = sday(j).obwyyminusmean;
-          smeaday(j,:) = sday(j).obwyy;
           
+          plot(sday(j).tim/3600, sday(j).obwyyminusmean);
+    end
 
-
+ plot(day(1).tim/3600, mean(sminusmeanday), 'b-', 'LineWidth', 3);
 
 
 
