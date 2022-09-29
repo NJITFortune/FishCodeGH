@@ -109,7 +109,7 @@ end
             %regularize data to ReFs interval
             [regtim, ~, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, lighttimes);
     
-             regobwpeaksminusmean = regobwpeaks - mean(regobwpeaks);
+             %regobwpeaksminusmean = regobwpeaks - mean(regobwpeaks);
 
 % 
 %     %filter data
@@ -143,7 +143,7 @@ end
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     regxx = regtim(timidx);
     regobw = regobwpeaks(timidx);  
-    regobwminusmean = regobwpeaksminusmean(timidx);
+   % regobwminusmean = regobwpeaksminusmean(timidx);
 
 %% Define day length
 
@@ -174,7 +174,7 @@ for j = 1:howmanydaysinsample
                     %amplitude data
                     sday(j).obwyy = obwyy(sdayidx);
                     %amplitude data with mean subtraction
-                    sday(j).obwyyminusmean = obwyyminusmean(sdayidx);
+                %    sday(j).obwyyminusmean = obwyyminusmean(sdayidx);
                     %new time base from 0 the length of day by ReFS
                     sday(j).tim = tim;
                     %old time base divided by day for plotting chronologically
@@ -198,7 +198,7 @@ for j = 1:howmanydaysinsample
                     %amplitude data
                     day(j).regobw = regobw(ddayidx);
                     %amplitude data with mean subtraction
-                    day(j).regobwminusmean = regobwminusmean(ddayidx);
+                  %  day(j).regobwminusmean = regobwminusmean(ddayidx);
                     %new time base from 0 the length of day by ReFS
                     day(j).tim = tim;
                     %old time base divided by day for plotting chronologically
@@ -332,8 +332,8 @@ figure(56); clf; hold on;
         
             mmday= mean(meanday);
             smday = mean(smeanday);
-            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3, 'DisplayName', 'metamucil');
-            plot(day(1).tim/3600, smday, 'b-', 'LineWidth', 3, 'DisplayName', 'spline');
+            plot(day(1).tim/3600, mmday-mean(mmday), 'k-', 'LineWidth', 3, 'DisplayName', 'metamucil');
+            plot(day(1).tim/3600, smday-mean(smday), 'b-', 'LineWidth', 3, 'DisplayName', 'spline');
             legend('AutoUpdate','off');
 
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
