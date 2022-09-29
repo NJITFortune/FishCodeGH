@@ -7,7 +7,7 @@ in = hkg(k);
 channel = 1;
 ReFs = 10;
 light = 3;
-
+p = 0.99;
 
 %% crop data to lighttimes
 %prep variables
@@ -87,7 +87,20 @@ end
 %subspline subtraction
 splinexx = lighttimes(1):ReFs:lighttimes(end);
 
-        spliney1 = csaps(timcont, obw, 0.)
+        %spline of raw data
+        spliney1 = csaps(timcont, obw, p);
+        %estimate without resample
+        obwAmp = fnval(timcont, spliney1);
+
+        %take raw data above the spline
+        topidx = find(obw > obwAmp);
+        topobw = obw(topidx);
+        toptim = timcont(topidx);
+
+        %spline of above spline data
+        spliney2 = csaps(toptim, topobw, p);
+        %resample based on regularized time data
+        subobwyy = fnval(xx, spliney2);
 
 
 %peaks of peaks
@@ -99,9 +112,8 @@ splinexx = lighttimes(1):ReFs:lighttimes(end);
       
     %Regularize
         %spline 
-         
-         
-        spliney = csaps(peaktim, obwpeaks, 0.99);
+ 
+        spliney = csaps(peaktim, obwpeaks, p);
         %resample new x values based on light/dark
         obwyy = fnval(splinexx, spliney);
       
