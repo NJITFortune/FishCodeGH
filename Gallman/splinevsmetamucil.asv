@@ -98,13 +98,18 @@ end
         peaktim = timcont(LOCS(cLOCS));
       
     %Regularize
+        %spline 
+         splinexx = lighttimes(1):ReFs:lighttimes(end);
+         
+        spliney = csaps(peaktim, obwpeaks, 0.9);
+        %resample new x values based on light/dark
+        obwyy = fnval(splinexx, spliney);
 
-
-    %metamucil
-        %regularize data to ReFs interval
-        [regtim, ~, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, lighttimes);
-
-         regobwpeaksminusmean = regobwpeaks - mean(regobwpeaks);
+        %metamucil
+            %regularize data to ReFs interval
+            [regtim, ~, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, lighttimes);
+    
+             regobwpeaksminusmean = regobwpeaks - mean(regobwpeaks);
 
 % 
 %     %filter data
