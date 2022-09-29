@@ -1,9 +1,9 @@
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
-clearvars -except hkg 
+clearvars -except hkg k
 % 
-in = hkg(2);
+in = hkg(k);
 channel = 1;
 ReFs = 10;
 light = 3;
