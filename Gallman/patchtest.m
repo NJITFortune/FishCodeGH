@@ -321,7 +321,7 @@ splinexx = lightlines(1):ReFs:lightlines(end);
         subobwyy = fnval(splinexx, spliney2);
 
 
-  figure(36); clf; hold on; ylim([0,1]);
+  figure(36); clf; hold on; %ylim([0,1]);
     a = [0 1];
          
         
