@@ -7,7 +7,7 @@ in = hkg(k);
 channel = 1;
 ReFs = 10;
 light = 3;
-
+p = 0.99;
 
 %% crop data to lighttimes
 %prep variables
@@ -83,24 +83,65 @@ end
             timmy = timcont(rawidx);
             obwAmp = obw(rawidx);
           
-
+%% take the top of the dataset
 %subspline subtraction
-[subplinexx, subobwyy] =  k_obwabovespliner(timcont, obw, ReFs, lighttimes);
+splinexx = lighttimes(1):ReFs:lighttimes(end);
+
+        %spline of raw data
+        spliney1 = csaps(timcont, obw, p);
+        %estimate without resample
+        obwall = fnval(timcont, spliney1);
+
+        %take raw data above the spline
+        topidx = find(obw > obwall);
+        topobw = obw(topidx);
+        toptim = timcont(topidx);
+
+        %spline of above spline data
+        spliney2 = csaps(toptim, topobw, p);
+        %resample based on regularized time data
+        subobwyy = fnval(splinexx, spliney2);
 
 
-
-    %Take top of dataset
+%peaks of peaks
         %find peaks
         [~,LOCS] = findpeaks(obw);
         %find peaks of the peaks
         [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
         peaktim = timcont(LOCS(cLOCS));
       
-    %Regularize
+%% plot to see
+toptimidx = find(toptim >= lighttimes(1) & toptim <= lighttimes(end));
+toptim = toptim(toptimidx);
+topobw = topobw(toptimidx);
+
+
+peakidx = find(peaktim >= lighttimes(1) & peaktim <= lighttimes(end));
+peaktimmy = peaktim(peakidx);
+obwpeaky = obwpeaks(peakidx);
+
+figure(60); clf; title('topspline vs peaks of peaks');
+    ax(1) = subplot(211); title('spline above the spline');
+        plot(timmy/3600, obwAmp);
+        plot(toptim/3600, topobw);
+
+        plot(timmy/3600, obwall);
+        plot(splinexx/3600, subobwyy);
+       
+   ax(2) = subplot(212); title('peaks of the peaks');
+
+         plot(timmy/3600, obwAmp);
+         plot(peaktimmy/3600, obwpeaky);
+
+
+  linkaxes(ax, 'x');
+
+
+
+
+ %% Regularize
         %spline 
-         splinexx = lighttimes(1):ReFs:lighttimes(end);
-         
-        spliney = csaps(peaktim, obwpeaks, 0.99);
+        spliney = csaps(peaktim, obwpeaks, p);
         %resample new x values based on light/dark
         obwyy = fnval(splinexx, spliney);
       
@@ -280,7 +321,7 @@ figure(56); clf; hold on;
             mmday= mean(meanday);
             smday = mean(smeanday);
             submday = mean(submeanday);
-            
+
             plot(day(1).tim/3600, mmday-mean(mmday),  'LineWidth', 3, 'DisplayName', 'metamucil');
             plot(day(1).tim/3600, smday-mean(smday),  'LineWidth', 3, 'DisplayName', 'spline');
             plot(day(1).tim/3600, submday-mean(submday),  'LineWidth', 3, 'DisplayName', 'subspline');
