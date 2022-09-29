@@ -9,59 +9,10 @@ function [xx, subfftyy, lighttimes] =  k_obwabovespliner(in, channel, ReFs, ligh
 %tightness of spline fit
 p = 0.99;
 
-%outliers
-tto{channel} = in.idx(channel).obwidx;
-
-%% trim luz to data - Generate lighttimes
-
-lighttimeslong = abs(in.info.luz);
-ld = in.info.ld;
-
-    %fit light vector to power idx
-        %poweridx = good data
-    if isempty(in.info.poweridx) %if there are no values in poweridx []
-        lighttimeslesslong = lighttimeslong;
-    else %take data from within power idx range
-
-        if light < 4 %we start with dark
-            lighttimesidx = lighttimeslong > in.info.poweridx(1) & lighttimeslong < in.info.poweridx(2);
-            lighttimeslesslong = lighttimeslong(lighttimesidx);
-        else %we start with light
-            %poweridx normally starts with dark, so we need to add ld to start with light
-            poweridx1 = in.info.poweridx(1) + ld;
-            lighttimesidx = lighttimeslong > poweridx1(1) & lighttimeslong < in.info.poweridx(2);
-            lighttimeslesslong = lighttimeslong(lighttimesidx);
-        end
-    end
-
-  
-%only take times for light vectors that have data
-for j = 1:length(lighttimeslesslong)-1
-        
-        %is there data between j and j+1?    
-        %if ~isempty(find([in.e(1).s(ttsf{1} ).timcont]/(60*60) >= lighttimeslesslong(j) & [in.e(1).s(ttsf{1}).timcont]/(60*60) < (lighttimeslesslong(j+1)),1))  
-            
-               lighttrim(j) = lighttimeslesslong(j);
-             
-        %end 
-end
-
-
-% take all cells with values and make a new vector
-lighttimes = lighttrim(lighttrim > 0);
-%luztimes = luztimes(1,lighttrim > 0);
-%add back the light time we subtracted 
-%ld = lighttimes(end) - lighttimes(end-1);
-%lighttimes(end +1) = lighttimes(end) + ld;
-%lighttimes
-for k = 1:length(lighttimes)
-    lighttimes(k) = floor(lighttimes(k));
-end
-
 
 %% cspline entire data set
     
-    xx = lighttimes(1):1/ReFs:lighttimes(end);
+    xx = lighttimes(1):ReFs:lighttimes(end);
       
       %estimate new yvalues for every x value
       
