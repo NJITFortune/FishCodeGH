@@ -289,7 +289,7 @@ figure(56); clf; hold on;
     %mean two ways to prove math
     
      for j = 1:length(day)
-            plot(day(j).tim/3600, sday(j).obwyyminusmean);
+          
             smeanday(j,:) = sday(j).obwyyminusmean;
             meanday(j,:) = day(j).regobwminusmean;
             
