@@ -103,13 +103,14 @@ obwyyminusmean = obwyy-mean(obwyy);
         [regtim, ~, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, lighttimes);
 
 
-        %low pass removes spikey-ness
-        lowWn = 0.01/(ReFs/2);
-        [dd,cc] = butter(5, lowWn, 'low');
-        datadata = filtfilt(dd,cc, double(regobwpeaks));
+%         %low pass removes spikey-ness
+%         lowWn = 0.01/(ReFs/2);
+%         [dd,cc] = butter(5, lowWn, 'low');
+%         datadata = filtfilt(dd,cc, double(regobwpeaks));
+% 
+%         regobwpeaksminusmean = datadata - mean(datadata);
 
-        regobwpeaksminusmean = datadata - mean(datadata);
-        regobwpeaksminusmean = datadata - mean(datadata);
+        regobwpeaksminusmean = regobwpeaks - mean(regobwpeaks);
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
