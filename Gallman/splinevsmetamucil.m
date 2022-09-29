@@ -85,12 +85,11 @@ end
           
 
 %spline
-[splinexx, obwyy] =  k_obwabovespliner(timcont, obw, ReFs, lighttimes);
+%[splinexx, obwyy] =  k_obwabovespliner(timcont, obw, ReFs, lighttimes);
 
-obwyyminusmean = obwyy-mean(obwyy);
+%obwyyminusmean = obwyy-mean(obwyy);
 
 
-%metamucil
     %Take top of dataset
         %find peaks
         [~,LOCS] = findpeaks(obw);
@@ -99,10 +98,14 @@ obwyyminusmean = obwyy-mean(obwyy);
         peaktim = timcont(LOCS(cLOCS));
       
     %Regularize
-        %regularize data to ReFs interval
-        [regtim, ~, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, lighttimes);
+        %spline 
+        
 
-         regobwpeaksminusmean = regobwpeaks - mean(regobwpeaks);
+        %metamucil
+            %regularize data to ReFs interval
+            [regtim, ~, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, lighttimes);
+    
+             regobwpeaksminusmean = regobwpeaks - mean(regobwpeaks);
 
 % 
 %     %filter data
