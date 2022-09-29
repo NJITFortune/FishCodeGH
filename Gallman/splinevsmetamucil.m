@@ -213,7 +213,9 @@ figure(55); clf; hold on;
 
     ax(2) = subplot(212); title('metamucil estimate'); hold on;
         
-         plot(timmy/3600, obwAmp, '.'); %only to establish ylim for box plotting
+          for j = 1:length(day)
+               plot(day(j).entiretimcont/3600, day(j).regobw, 'LineWidth', 1.5);
+          end %only to establish ylim for box plotting
     
          %fill boxes
             a = ylim; %all of above is just to get the max for the plot lines...
