@@ -90,10 +90,10 @@ splinexx = lighttimes(1):ReFs:lighttimes(end);
         %spline of raw data
         spliney1 = csaps(timcont, obw, p);
         %estimate without resample
-        obwAmp = fnval(timcont, spliney1);
+        obwall = fnval(timcont, spliney1);
 
         %take raw data above the spline
-        topidx = find(obw > obwAmp);
+        topidx = find(obw > obwall);
         topobw = obw(topidx);
         toptim = timcont(topidx);
 
@@ -110,9 +110,20 @@ splinexx = lighttimes(1):ReFs:lighttimes(end);
         [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
         peaktim = timcont(LOCS(cLOCS));
       
-    %Regularize
+%% plot to see
+toptimidx = find(toptim >= lighttimes(1) & toptim <= lighttimes(end));
+toptim = toptim(toptimidx);
+topobw =
+
+figure(60); clf; title('topspline vs peaks of peaks');
+    ax(1) = subplot(211); title('spline above the spline');
+        plot(timmy/3600, obwAmp);
+        plot()
+
+
+
+ %% Regularize
         %spline 
- 
         spliney = csaps(peaktim, obwpeaks, p);
         %resample new x values based on light/dark
         obwyy = fnval(splinexx, spliney);
