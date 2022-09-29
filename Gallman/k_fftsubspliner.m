@@ -132,15 +132,15 @@ else %channel = 2
 
       %estimate new yvalues for every x value
              
-% %             %obw
-% %             spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
-% %             %resample new x values based on light/dark
-% %             obwyy = fnval(xx, spliney);
-% %             obwAmp = fnval([in.e(2).s(tto{2}).timcont]/(60*60), spliney);
-% %             %detrend ydata
-% %             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
-% %                 obwtimOG = [in.e(2).s(tto{2}).timcont]/(60*60);
-% %                 obwAmpOG = [in.e(2).s(tto{2}).obwAmp];
+            %obw
+            spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
+            %resample new x values based on light/dark
+            obwyy = fnval(xx, spliney);
+            obwAmp = fnval([in.e(2).s(tto{2}).timcont]/(60*60), spliney);
+            %detrend ydata
+            dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
+                obwtimOG = [in.e(2).s(tto{2}).timcont]/(60*60);
+                obwAmpOG = [in.e(2).s(tto{2}).obwAmp];
 %                     
 %             %zAmp
 %             spliney = csaps([in.e(2).s(ttz{2}).timcont]/(60*60), [in.e(2).s(ttz{2}).zAmp], p);
@@ -171,9 +171,9 @@ end
         
 %take raw data above the spline
 
-   fftidx = find(sumfftAmpOG > fftAmp);
-   subfft = sumfftAmpOG(fftidx);
-   subffttim = sumffttimOG(fftidx);
+   fftidx = find(obwAmpOG > fftAmp);
+   subfft = obwAmpOG(fftidx);
+   subffttim = obwtimOG(fftidx);
    
    
    
