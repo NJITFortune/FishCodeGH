@@ -32,15 +32,13 @@ end
 
 [xx, sumfftyy, lighttimes] =  k_obwabovespliner(in, channel, ReFs, light);
 
-% lighttimes = abs(luztimes);
-% %add back the light time we subtracted 
-% lighttimes(end +1) = lighttimes(end) + ld;
+%% Prepare raw data variables
 
 %Make a time base that starts and ends on lighttimes 
     %necessary to define length of data
-
     timcont = [in.e(1).s.timcont] / (60*60);
     timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
+
 
 %% Define trial period
 
