@@ -141,13 +141,13 @@ figure(60); clf; title('topspline vs peaks of peaks');
 figure(61); clf; title('topspline vs peaks of peaks'); hold on;
 
     
-    
-        plot(splinexx/3600, subobwyy);
-       
          plot(timmy/3600, obwAmp, '.');
-         plot(peaktimmy/3600, obwpeaky);
+         plot(splinexx/3600, subobwyy, 'LineWidth', 2, 'DisplayName', 'above spline');
+       
+         
+         plot(peaktimmy/3600, obwpeaky,'LineWidth', 2, 'DisplayName', 'peaks of peaks');
 
-
+        legend;
  
 
  %% Regularize
