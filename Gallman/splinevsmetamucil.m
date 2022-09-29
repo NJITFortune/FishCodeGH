@@ -99,7 +99,8 @@ end
       
     %Regularize
         %spline 
-        
+         xx = lighttimes(1):ReFs:lighttimes(end);
+         
 
         %metamucil
             %regularize data to ReFs interval
