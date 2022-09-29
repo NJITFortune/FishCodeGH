@@ -182,7 +182,9 @@ figure(55); clf; hold on;
 
     ax(1) = subplot(211); title('spline estimate'); hold on;
         
-         plot(timmy/3600, obwAmp, '.'); %only to establish ylim for box plotting
+        for j = 1:length(sday)
+            plot(sday(j).entiretimcont/3600, sday(j).obwyy, 'LineWidth', 1.5);
+        end %only to establish ylim for box plotting
     
          %fill boxes
             a = ylim; %all of above is just to get the max for the plot lines...
@@ -236,7 +238,7 @@ figure(55); clf; hold on;
         plot(day(j).entiretimcont/3600, day(j).regobw, 'LineWidth', 1.5);
     end
 
-
+linkaxes(ax, 'x');
 
 %average over single day    
 figure(56); clf; hold on; 
