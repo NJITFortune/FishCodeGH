@@ -301,6 +301,7 @@ figure(35); clf; hold on;
 
 %%  spline above the spline
 ReFs = 20;
+p = 0.9;
 %subspline subtraction
 splinexx = lightlines(1):ReFs:lightlines(end);
 
@@ -322,6 +323,27 @@ splinexx = lightlines(1):ReFs:lightlines(end);
 
   figure(36); clf; hold on;
     
-        
+         
+        plot(splinexx/3600, subobwyy);
+        %fill boxes
+            a = ylim; %all of above is just to get the max for the plot lines...
+            if light < 4 %the first lighttime is dark
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 1 %if j is odd
+                    fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            else %the second lighttime is dark 
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 0 %if j is even
+                    fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            end
+        plot(timmy/3600, obwAmp, '.');
+        plot(toptim/3600, topobw, '.');
+
+       % plot(timmy/3600, obwall);
+        plot(splinexx/3600, subobwyy);
 
 
