@@ -81,7 +81,7 @@ end
             rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
             timmy = timcont(rawidx);
             obwAmp = obw(rawidx);
-            rawfreq = oldfreq(rawidx);
+          
 
 %spline
 [splinexx, obwyy] =  k_obwabovespliner(timcont, obw, ReFs, lighttimes);
