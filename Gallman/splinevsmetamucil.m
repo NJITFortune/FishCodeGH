@@ -111,24 +111,25 @@ splinexx = lighttimes(1):ReFs:lighttimes(end);
         peaktim = timcont(LOCS(cLOCS));
       
 %% plot to see
-% toptimidx = find(toptim >= lighttimes(1) & toptim <= lighttimes(end));
-% toptim = toptim(toptimidx);
-% topobw = topobw(toptimidx);
- obwall = obwall(rawidx);
-% 
-% peakidx = find(peaktim >= lighttimes(1) & peaktim <= lighttimes(end));
-% peaktimmy = peaktim(peakidx);
-% obwpeaky = obwpeaks(peakidx);
+toptimidx = find(toptim >= lighttimes(1) & toptim <= lighttimes(end));
+toptim = toptim(toptimidx);
+topobw = topobw(toptimidx);
+obwall = obwall(rawidx);
+
+peakidx = find(peaktim >= lighttimes(1) & peaktim <= lighttimes(end));
+peaktimmy = peaktim(peakidx);
+obwpeaky = obwpeaks(peakidx);
 
 figure(60); clf; title('topspline vs peaks of peaks');
-    ax(1) = subplot(211); title('spline above the spline');
+    ax(1) = subplot(211); title('spline above the spline'); hold on;
         plot(timmy/3600, obwAmp, '.');
         plot(toptim/3600, topobw, '.');
 
         plot(timmy/3600, obwall);
         plot(splinexx/3600, subobwyy);
        
-   ax(2) = subplot(212); title('peaks of the peaks');
+   ax(2) = subplot(212); title('peaks of the peaks'); hold on;
+   
 
          plot(timmy/3600, obwAmp, '.');
          plot(peaktimmy/3600, obwpeaky);
