@@ -85,12 +85,11 @@ end
           
 
 %spline
-[splinexx, obwyy] =  k_obwabovespliner(timcont, obw, ReFs, lighttimes);
+%[splinexx, obwyy] =  k_obwabovespliner(timcont, obw, ReFs, lighttimes);
 
-obwyyminusmean = obwyy-mean(obwyy);
+%obwyyminusmean = obwyy-mean(obwyy);
 
 
-%metamucil
     %Take top of dataset
         %find peaks
         [~,LOCS] = findpeaks(obw);
@@ -99,18 +98,41 @@ obwyyminusmean = obwyy-mean(obwyy);
         peaktim = timcont(LOCS(cLOCS));
       
     %Regularize
+
+
+    %metamucil
         %regularize data to ReFs interval
         [regtim, ~, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, lighttimes);
 
+         regobwpeaksminusmean = regobwpeaks - mean(regobwpeaks);
 
+% 
+%     %filter data
+%         %cut off frequency
+%          highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+%         %highWn = 0.001/(ReFs/2);
+% 
 %         %low pass removes spikey-ness
-%         lowWn = 0.01/(ReFs/2);
+%         lowWn = 0.025/(ReFs/2);
 %         [dd,cc] = butter(5, lowWn, 'low');
 %         datadata = filtfilt(dd,cc, double(regobwpeaks));
 % 
-%         regobwpeaksminusmean = datadata - mean(datadata);
+%         
+%         %high pass removes feeding trend for high frequency experiments
+%        
+%         [bb,aa] = butter(5, highWn, 'high');
+%       %  datadata = filtfilt(bb,aa, double(regobwpeaks)); %double vs single matrix?
+%         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+% 
+% 
+% %         %low pass removes spikey-ness
+% %         lowWn = 0.01/(ReFs/2);
+% %         [dd,cc] = butter(5, lowWn, 'low');
+% %         datadata = filtfilt(dd,cc, double(regobwpeaks));
+% % 
+%          regobwpeaksminusmean = datadata - mean(datadata);
 
-        regobwpeaksminusmean = regobwpeaks - mean(regobwpeaks);
+      
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
@@ -258,18 +280,18 @@ linkaxes(ax, 'x');
 %average over single day    
 figure(56); clf; hold on; 
 
-    a = [-0.2 0.2];
+    %a = [-0.2 0.2];
     %create fill box 
     if light < 4 %we start with dark
-        fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+        fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9], 'HandleVisibility','off');
     else %we start with light
-        fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+        fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9], 'HandleVisibility','off');
     end
     
     %mean two ways to prove math
-    mday = zeros(1, length(day(1).tim));        
+    
      for j = 1:length(day)
-           % plot(day(j).tim/3600, day(j).Sobwyy);
+          
             smeanday(j,:) = sday(j).obwyyminusmean;
             meanday(j,:) = day(j).regobwminusmean;
             
@@ -277,10 +299,10 @@ figure(56); clf; hold on;
         
             mmday= mean(meanday);
             smday = mean(smeanday);
-            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
-            plot(day(1).tim/3600, smday, 'b-', 'LineWidth', 3);
-            legend('metamucil', 'spline');
-            
+            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3, 'DisplayName', 'metamucil');
+            plot(day(1).tim/3600, smday, 'b-', 'LineWidth', 3, 'DisplayName', 'spline');
+            legend('AutoUpdate','off');
+
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
             
             
