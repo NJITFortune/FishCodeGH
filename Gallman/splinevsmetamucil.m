@@ -138,7 +138,16 @@ figure(60); clf; title('topspline vs peaks of peaks');
   linkaxes(ax, 'x');
 
 
+figure(61); clf; title('topspline vs peaks of peaks');
+    
+    
+        plot(splinexx/3600, subobwyy);
+       
+         plot(timmy/3600, obwAmp, '.');
+         plot(peaktimmy/3600, obwpeaky);
 
+
+ 
 
  %% Regularize
         %spline 
