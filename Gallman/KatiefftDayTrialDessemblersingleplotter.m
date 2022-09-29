@@ -7,7 +7,7 @@
     %starts with light = 4
 clearvars -except hkg 
 % 
-in = hkg(2);
+in = hkg(1);
 channel = 1;
 ReFs = 10;
 light = 3;
