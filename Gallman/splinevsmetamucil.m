@@ -99,11 +99,11 @@ end
       
     %Regularize
         %spline 
-         xx = lighttimes(1):ReFs:lighttimes(end);
+         splinexx = lighttimes(1):ReFs:lighttimes(end);
          
-        spliney = csaps(subffttim, subfft, p);
+        spliney = csaps(peaktim, obwpeaks, 0.9);
         %resample new x values based on light/dark
-        subfftyy = fnval(xx, spliney);
+        obwyy = fnval(splinexx, spliney);
 
         %metamucil
             %regularize data to ReFs interval
