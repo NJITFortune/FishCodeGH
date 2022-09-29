@@ -7,7 +7,7 @@ function [xx, subfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light)
 %just lazy
 %ld = [in.info.ld];
 %tightness of spline fit
-pp = 0.99;
+p = 0.99;
 
 %outliers
     % Prepare the data with outliers
@@ -178,7 +178,7 @@ end
    
    
 %estimate new spline 
-p = 0.99;
+%p = 0.99;
 
   %estimate new yvalues for every x value
 
