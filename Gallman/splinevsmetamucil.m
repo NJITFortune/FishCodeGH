@@ -125,11 +125,11 @@ figure(60); clf; title('topspline vs peaks of peaks');
         plot(timmy/3600, obwAmp, '.');
         plot(toptim/3600, topobw, '.');
 
-        plot(timmy/3600, obwall);
+       % plot(timmy/3600, obwall);
         plot(splinexx/3600, subobwyy);
        
    ax(2) = subplot(212); title('peaks of the peaks'); hold on;
-   
+
 
          plot(timmy/3600, obwAmp, '.');
          plot(peaktimmy/3600, obwpeaky);
