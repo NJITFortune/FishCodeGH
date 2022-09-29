@@ -87,7 +87,6 @@ end
 %spline
 %[splinexx, obwyy] =  k_obwabovespliner(timcont, obw, ReFs, lighttimes);
 
-%obwyyminusmean = obwyy-mean(obwyy);
 
 
     %Take top of dataset
@@ -104,6 +103,7 @@ end
         spliney = csaps(peaktim, obwpeaks, 0.9);
         %resample new x values based on light/dark
         obwyy = fnval(splinexx, spliney);
+        obwyyminusmean = obwyy-mean(obwyy);
 
         %metamucil
             %regularize data to ReFs interval
