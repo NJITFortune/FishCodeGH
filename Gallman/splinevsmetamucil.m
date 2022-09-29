@@ -324,7 +324,7 @@ linkaxes(ax, 'x');
 
 
 %average over single day    
-figure(56); clf; hold on; 
+figure(65); clf; hold on; 
 
     a = [-0.2 0.2];
     %create fill box 
