@@ -297,8 +297,8 @@ figure(56); clf; hold on;
         
             mmday= mean(meanday);
             smday = mean(smeanday);
-            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
-            plot(day(1).tim/3600, smday, 'b-', 'LineWidth', 3);
+            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3, 'DisplayName', 'metamucil');
+            plot(day(1).tim/3600, smday, 'b-', 'LineWidth', 3, 'DisplayName', 'spline');
             legend('metamucil', 'spline');
 
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
