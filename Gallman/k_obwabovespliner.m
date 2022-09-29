@@ -44,11 +44,11 @@ p = 0.99;
         %resample new x values based on light/dark
         subfftyy = fnval(xx, spliney);
 
-        %fix holes
-            %below
-            lowidx = find(subfftyy > 0);
-            for j = 1:length(lowidx)
-                subfftyy(lowidx(j)) = subfftyy()
+%         %fix holes
+%             %below
+%             lowidx = find(subfftyy > 0);
+%             for j = 1:length(lowidx)
+%                 subfftyy(lowidx(j)) = subfftyy()
        
 %detrend ydata
 %    dtsubfftyy = detrend(subfftyy,0,'SamplePoints', xx); %changed from polynomial detrend to mean subtraction 
