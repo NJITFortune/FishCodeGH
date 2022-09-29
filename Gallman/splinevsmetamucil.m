@@ -109,6 +109,7 @@ obwyyminusmean = obwyy-mean(obwyy);
         datadata = filtfilt(dd,cc, double(regobwpeaks));
 
         regobwpeaksminusmean = datadata - mean(datadata);
+        regobwpeaksminusmean = datadata - mean(datadata);
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
