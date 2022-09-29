@@ -114,7 +114,7 @@ splinexx = lighttimes(1):ReFs:lighttimes(end);
 toptimidx = find(toptim >= lighttimes(1) & toptim <= lighttimes(end));
 toptim = toptim(toptimidx);
 topobw = topobw(toptimidx);
-
+obwall = obwall(rawidx);
 
 peakidx = find(peaktim >= lighttimes(1) & peaktim <= lighttimes(end));
 peaktimmy = peaktim(peakidx);
