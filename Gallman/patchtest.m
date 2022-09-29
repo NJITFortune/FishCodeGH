@@ -299,5 +299,8 @@ figure(35); clf; hold on;
     plot(otimcont/3600-lightlines(1), nobwdata, '.', 'MarkerSize', 10);
     plot(peaktim/3600-lightlines(1), obwpeaks, '.', 'MarkerSize', 15);
 
+%%  spline above the spline
+
+
 
 
