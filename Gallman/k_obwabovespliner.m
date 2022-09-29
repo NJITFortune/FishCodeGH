@@ -74,7 +74,7 @@ end
 %             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
             %raw data variables
                 obwtimOG = [in.e(1).s(tto{1}).timcont]/(60*60);
-                obwAmpOG = [in.e(1).s(tto{1}).obwAmp];
+                obwAmpOG = [in.e(1).s(tto{1}).obwAmp]/max([in.e(1).s(tto{1}).obwAmp]);
 
 
 % figure(57); clf; title('testing original spline'); hold on;
