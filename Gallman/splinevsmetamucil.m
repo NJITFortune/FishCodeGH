@@ -102,15 +102,35 @@ obwyyminusmean = obwyy-mean(obwyy);
         %regularize data to ReFs interval
         [regtim, ~, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, lighttimes);
 
+         %regobwpeaksminusmean = regobwpeaks - mean(regobwpeaks);
+
+
+    %filter data
+        %cut off frequency
+         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+        %highWn = 0.001/(ReFs/2);
+
+        %low pass removes spikey-ness
+%         lowWn = 0.025/(ReFs/2);
+%         [dd,cc] = butter(5, lowWn, 'low');
+%         datadata = filtfilt(dd,cc, double(regobwpeaks));
+
+        
+        %high pass removes feeding trend for high frequency experiments
+       
+        [bb,aa] = butter(5, highWn, 'high');
+        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+
+
 
 %         %low pass removes spikey-ness
 %         lowWn = 0.01/(ReFs/2);
 %         [dd,cc] = butter(5, lowWn, 'low');
 %         datadata = filtfilt(dd,cc, double(regobwpeaks));
 % 
-%         regobwpeaksminusmean = datadata - mean(datadata);
+         regobwpeaksminusmean = datadata - mean(datadata);
 
-        regobwpeaksminusmean = regobwpeaks - mean(regobwpeaks);
+      
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
@@ -280,7 +300,7 @@ figure(56); clf; hold on;
             plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
             plot(day(1).tim/3600, smday, 'b-', 'LineWidth', 3);
             legend('metamucil', 'spline');
-            
+
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
             
             
