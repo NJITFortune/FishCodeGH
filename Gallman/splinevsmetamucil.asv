@@ -87,7 +87,6 @@ end
 %spline
 %[splinexx, obwyy] =  k_obwabovespliner(timcont, obw, ReFs, lighttimes);
 
-%obwyyminusmean = obwyy-mean(obwyy);
 
 
     %Take top of dataset
@@ -104,6 +103,7 @@ end
         spliney = csaps(peaktim, obwpeaks, 0.9);
         %resample new x values based on light/dark
         obwyy = fnval(splinexx, spliney);
+        obwyyminusmean = obwyy-mean(obwyy);
 
         %metamucil
             %regularize data to ReFs interval
@@ -281,6 +281,34 @@ figure(55); clf; hold on;
     end
 
 linkaxes(ax, 'x');
+
+
+%separately
+figure(57); clf;title('spline no mean subtraction'); hold on;
+    
+    for j = 1:length(sday)
+
+         % sminusmeanday(j,:) = sday(j).obwyyminusmean;
+          smeaday(j,:) = sday(j).obwyy;
+          plot(sday(j).tim/3600, sday(j).obwyy);
+    end
+
+ plot(day(1).tim/3600, mean(smeaday), 'b-', 'LineWidth', 3);
+
+
+%separately
+figure(58); clf;title('spline  mean subtraction'); hold on;
+    
+    for j = 1:length(sday)
+
+         % sminusmeanday(j,:) = sday(j).obwyyminusmean;
+          smeaday(j,:) = sday(j).obwyy;
+          plot(sday(j).tim/3600, sday(j).obwyy);
+    end
+
+ plot(day(1).tim/3600, mean(smeaday), 'b-', 'LineWidth', 3);
+
+
 
 %average over single day    
 figure(56); clf; hold on; 
