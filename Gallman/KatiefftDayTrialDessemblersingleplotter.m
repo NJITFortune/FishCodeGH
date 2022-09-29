@@ -30,7 +30,7 @@ end
 %entire data set
 %[xx, obwyy, ~, ~, lighttimes] = k_detrendspliner(in,channel, ReFs);
 
-[xx, sumfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light);
+[xx, sumfftyy, lighttimes] =  k_obwabovespliner(in, channel, ReFs, light);
 
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
