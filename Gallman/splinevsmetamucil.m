@@ -278,7 +278,7 @@ linkaxes(ax, 'x');
 %average over single day    
 figure(56); clf; hold on; 
 
-    a = [-0.2 0.2];
+    %a = [-0.2 0.2];
     %create fill box 
     if light < 4 %we start with dark
         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9], 'HandleVisibility','off');
@@ -298,7 +298,7 @@ figure(56); clf; hold on;
             mmday= mean(meanday);
             smday = mean(smeanday);
             plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3, 'DisplayName', 'metamucil');
-         %   plot(day(1).tim/3600, smday, 'b-', 'LineWidth', 3, 'DisplayName', 'spline');
+            plot(day(1).tim/3600, smday, 'b-', 'LineWidth', 3, 'DisplayName', 'spline');
             legend('AutoUpdate','off');
 
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
