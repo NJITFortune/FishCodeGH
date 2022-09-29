@@ -7,7 +7,7 @@ in = hkg(k);
 channel = 1;
 ReFs = 10;
 light = 3;
-p = 0.99;
+p = 0.7;
 
 %% crop data to lighttimes
 %prep variables
