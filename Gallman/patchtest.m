@@ -303,7 +303,7 @@ figure(35); clf; hold on;
 ReFs = 20;
 p = 0.9;
 %subspline subtraction
-splinexx = lightlines(1):ReFs:lightlines(end);
+splinexx = lightlines(1)*3600:ReFs:lightlines(end)*3600;
 
         %spline of raw data
         spliney1 = csaps(timcont, obw, p);
