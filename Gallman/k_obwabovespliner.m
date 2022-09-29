@@ -43,6 +43,9 @@ p = 0.99;
         spliney = csaps(subffttim, subfft, p);
         %resample new x values based on light/dark
         subfftyy = fnval(xx, spliney);
+
+        %fix holes
+        %below
        
 %detrend ydata
 %    dtsubfftyy = detrend(subfftyy,0,'SamplePoints', xx); %changed from polynomial detrend to mean subtraction 
