@@ -1,4 +1,4 @@
-function [xx, subfftyy, lighttimes] =  k_obwsubspliner(in, channel, ReFs, light)
+function [xx, subfftyy, lighttimes] =  k_obwabovespliner(in, channel, ReFs, light)
 %% Usage
 %in = kg(k);
 %ReFs = 20;
