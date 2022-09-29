@@ -281,13 +281,13 @@ figure(56); clf; hold on;
     a = [-0.2 0.2];
     %create fill box 
     if light < 4 %we start with dark
-        fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+        fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9], 'HandleVisibility','off');
     else %we start with light
-        fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+        fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9], 'HandleVisibility','off');
     end
     
     %mean two ways to prove math
-    mday = zeros(1, length(day(1).tim));        
+    
      for j = 1:length(day)
            % plot(day(j).tim/3600, day(j).Sobwyy);
             smeanday(j,:) = sday(j).obwyyminusmean;
@@ -299,7 +299,7 @@ figure(56); clf; hold on;
             smday = mean(smeanday);
             plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3, 'DisplayName', 'metamucil');
             plot(day(1).tim/3600, smday, 'b-', 'LineWidth', 3, 'DisplayName', 'spline');
-            legend('metamucil', 'spline');
+            legend;
 
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
             
