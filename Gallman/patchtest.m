@@ -326,7 +326,7 @@ splinexx = lightlines(1):ReFs:lightlines(end);
          
         
         %fill boxes
-            a = ylim; %all of above is just to get the max for the plot lines...
+            %a = ylim; %all of above is just to get the max for the plot lines...
             
                 for j = 1:length(lightlines)-1
                     if mod(j,2) == 1 %if j is odd
