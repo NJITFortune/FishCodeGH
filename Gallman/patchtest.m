@@ -321,7 +321,7 @@ splinexx = lightlines(1):ReFs:lightlines(end);
         subobwyy = fnval(splinexx, spliney2);
 
 
-  figure(36); clf; hold on;
+  figure(36); clf; hold on; ylim([0,1]);
     a = [0 1];
          
         
@@ -339,6 +339,6 @@ splinexx = lightlines(1):ReFs:lightlines(end);
         plot(toptim/3600, topobw, '.');
 
       %  plot(timcont/3600, obwall);
-     %   plot(splinexx/3600, subobwyy);
+        plot(splinexx/3600, subobwyy);
 
 
