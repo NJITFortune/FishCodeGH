@@ -282,6 +282,20 @@ figure(55); clf; hold on;
 
 linkaxes(ax, 'x');
 
+
+%separately
+figure(57); clf; hold on;
+    
+    for j = 1:length(sday)
+
+          sminusmeanday(j,:) = sday(j).obwyyminusmean;
+          smeaday(j,:) = sday(j).obwyy;
+          
+
+
+
+
+
 %average over single day    
 figure(56); clf; hold on; 
 
