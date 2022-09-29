@@ -335,7 +335,7 @@ splinexx = lightlines(1):ReFs:lightlines(end);
                 end
             
            
-        plot(timmy/3600, obwAmp, '.');
+        plot(timcont/3600, obwAmp, '.');
         plot(toptim/3600, topobw, '.');
 
        % plot(timmy/3600, obwall);
