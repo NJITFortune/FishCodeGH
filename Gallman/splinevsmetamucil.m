@@ -111,16 +111,16 @@ obwyyminusmean = obwyy-mean(obwyy);
         %highWn = 0.001/(ReFs/2);
 
         %low pass removes spikey-ness
-%         lowWn = 0.025/(ReFs/2);
-%         [dd,cc] = butter(5, lowWn, 'low');
-%         datadata = filtfilt(dd,cc, double(regobwpeaks));
+        lowWn = 0.025/(ReFs/2);
+        [dd,cc] = butter(5, lowWn, 'low');
+        datadata = filtfilt(dd,cc, double(regobwpeaks));
 
         
         %high pass removes feeding trend for high frequency experiments
        
         [bb,aa] = butter(5, highWn, 'high');
-        datadata = filtfilt(bb,aa, double(regobwpeaks)); %double vs single matrix?
-
+      %  datadata = filtfilt(bb,aa, double(regobwpeaks)); %double vs single matrix?
+        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
 
 
 %         %low pass removes spikey-ness
