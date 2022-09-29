@@ -339,6 +339,6 @@ splinexx = lightlines(1)*3600:ReFs:lightlines(end)*3600;
         plot(toptim/3600-lightlines(1), topobw, '.', 'MarkerSize', 10);
 
       %  plot(timcont/3600, obwall);
-        plot(splinexx/3600-lightlines(1), subobwyy,  'LineWidth',2);
+        plot(splinexx/3600-lightlines(1), subobwyy,  'LineWidth',1);
 
 
