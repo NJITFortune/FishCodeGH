@@ -83,13 +83,14 @@ end
             timmy = timcont(rawidx);
             obwAmp = obw(rawidx);
           
+%% take the top of the dataset
+%subspline subtraction
+splinexx = lighttimes(1):ReFs:lighttimes(end);
 
-%subspline sub
-%[splinexx, obwyy] =  k_obwabovespliner(timcont, obw, ReFs, lighttimes);
+        spliney1 = csaps(timcont, obw, 0.)
 
 
-
-    %Take top of dataset
+%peaks of peaks
         %find peaks
         [~,LOCS] = findpeaks(obw);
         %find peaks of the peaks
@@ -98,52 +99,22 @@ end
       
     %Regularize
         %spline 
-         splinexx = lighttimes(1):ReFs:lighttimes(end);
          
-        spliney = csaps(peaktim, obwpeaks, 0.9);
+         
+        spliney = csaps(peaktim, obwpeaks, 0.99);
         %resample new x values based on light/dark
         obwyy = fnval(splinexx, spliney);
-        obwyyminusmean = obwyy-mean(obwyy);
-
+      
         %metamucil
             %regularize data to ReFs interval
             [regtim, ~, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, lighttimes);
-    
-             %regobwpeaksminusmean = regobwpeaks - mean(regobwpeaks);
-
-% 
-%     %filter data
-%         %cut off frequency
-%          highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
-%         %highWn = 0.001/(ReFs/2);
-% 
-%         %low pass removes spikey-ness
-%         lowWn = 0.025/(ReFs/2);
-%         [dd,cc] = butter(5, lowWn, 'low');
-%         datadata = filtfilt(dd,cc, double(regobwpeaks));
-% 
-%         
-%         %high pass removes feeding trend for high frequency experiments
-%        
-%         [bb,aa] = butter(5, highWn, 'high');
-%       %  datadata = filtfilt(bb,aa, double(regobwpeaks)); %double vs single matrix?
-%         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
-% 
-% 
-% %         %low pass removes spikey-ness
-% %         lowWn = 0.01/(ReFs/2);
-% %         [dd,cc] = butter(5, lowWn, 'low');
-% %         datadata = filtfilt(dd,cc, double(regobwpeaks));
-% % 
-%          regobwpeaksminusmean = datadata - mean(datadata);
-
       
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     regxx = regtim(timidx);
     regobw = regobwpeaks(timidx);  
-   % regobwminusmean = regobwpeaksminusmean(timidx);
+   
 
 %% Define day length
 
@@ -183,6 +154,8 @@ for j = 1:howmanydaysinsample
                     sday(j).ld = in.info.ld;
                     %max amp of each day
                     sday(j).amprange = max(obwyy(sdayidx));
+                    %subspline subtraction
+                    sday(j).subobwyy = subobwyy(sdayidx);
                     
                 end
 
@@ -301,13 +274,18 @@ figure(56); clf; hold on;
           
             smeanday(j,:) = sday(j).obwyy;
             meanday(j,:) = day(j).regobw;
+            submeanday(j,:) = sday(j).subobwyy;
             
      end
         
             mmday= mean(meanday);
             smday = mean(smeanday);
-            plot(day(1).tim/3600, mmday-mean(mmday), 'k-', 'LineWidth', 3, 'DisplayName', 'metamucil');
-            plot(day(1).tim/3600, smday-mean(smday), 'b-', 'LineWidth', 3, 'DisplayName', 'spline');
+            submday = mean(submeanday);
+
+            plot(day(1).tim/3600, mmday-mean(mmday),  'LineWidth', 3, 'DisplayName', 'metamucil');
+            plot(day(1).tim/3600, smday-mean(smday),  'LineWidth', 3, 'DisplayName', 'spline');
+            plot(day(1).tim/3600, submday-mean(submday),  'LineWidth', 3, 'DisplayName', 'subspline');
+
             legend('AutoUpdate','off');
 
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
