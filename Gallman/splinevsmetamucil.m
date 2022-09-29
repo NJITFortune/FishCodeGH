@@ -87,6 +87,8 @@ end
 %spline
 [splinexx, obwyy] =  k_obwabovespliner(timcont, obw, ReFs, lighttimes);
 
+sidx = find(obwyy > 0 & obwyy <=1);
+
 
 %metamucil
     %Take top of dataset
