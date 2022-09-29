@@ -7,7 +7,7 @@ function [xx, subfftyy] =  k_obwabovespliner(timcont, obw, ReFs, lighttimes)
     %starts with light = 4
 %% Prep
 %tightness of spline fit
-p = 0.9;
+p = 0.99;
 
 
 %% cspline entire data set
