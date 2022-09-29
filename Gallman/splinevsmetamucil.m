@@ -283,37 +283,11 @@ figure(55); clf; hold on;
 linkaxes(ax, 'x');
 
 
-% %separately
-% figure(57); clf;title('spline no mean subtraction'); hold on;
-%     
-%     for j = 1:length(sday)
-% 
-%          % sminusmeanday(j,:) = sday(j).obwyyminusmean;
-%           smeaday(j,:) = sday(j).obwyy;
-%           plot(sday(j).tim/3600, sday(j).obwyy);
-%     end
-% 
-%  plot(day(1).tim/3600, mean(smeaday), 'b-', 'LineWidth', 3);
-% 
-% 
-% %separately
-% figure(58); clf;title('spline  mean subtraction'); hold on;
-%     
-%     for j = 1:length(sday)
-% 
-%           sminusmeanday(j,:) = sday(j).obwyyminusmean;
-%           
-%           plot(sday(j).tim/3600, sday(j).obwyyminusmean);
-%     end
-% 
-%  plot(day(1).tim/3600, mean(sminusmeanday), 'b-', 'LineWidth', 3);
-
-
 
 %average over single day    
 figure(56); clf; hold on; 
 
-    %a = [-0.2 0.2];
+    a = [-0.2 0.2];
     %create fill box 
     if light < 4 %we start with dark
         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9], 'HandleVisibility','off');
