@@ -282,7 +282,7 @@ figure(56); clf; hold on;
             submday = mean(submeanday);
             plot(day(1).tim/3600, mmday-mean(mmday),  'LineWidth', 3, 'DisplayName', 'metamucil');
             plot(day(1).tim/3600, smday-mean(smday),  'LineWidth', 3, 'DisplayName', 'spline');
-              plot(day(1).tim/3600, smday-mean(smday),  'LineWidth', 3, 'DisplayName', 'subspline');
+              plot(day(1).tim/3600, smday-mean(submday),  'LineWidth', 3, 'DisplayName', 'subspline');
             legend('AutoUpdate','off');
 
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
