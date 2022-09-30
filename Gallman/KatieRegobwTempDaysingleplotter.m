@@ -247,6 +247,22 @@ end
         tmean = tmean / length(tday);
         ttim = ttim(1:length(tmean));
 
+
+
+
+%calculate mean for plotting
+        fmean = tday(1).freq - mean(tday(1).freq);
+     
+        for p = 2:length(tday)
+
+            fmean = fmean(1:min([length(fmean), length(tday(p).freq)]));
+            fmean = fmean + (tday(p).freq(1:length(fmean)) - mean(tday(p).freq(1:length(fmean))));
+           
+        end
+% 
+        fmean = fmean / length(tday);
+        
+
 %  
   %% plot to check
 %time vectors currently in seconds, divide by 3600 to get hours
@@ -371,7 +387,7 @@ end
 % 
       
 
-        plot(ttim/3600, tmean, 'k', 'LineWidth', 5)
+        plot(ttim/3600, fmean, 'k', 'LineWidth', 5)
 %calculate temp ld equivalent
     
         plot([td, td], ylim, 'k-', 'LineWidth', 2);          
