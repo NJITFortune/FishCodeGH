@@ -78,7 +78,7 @@ end
 
 %make lighttimes an integer
     %convert to seconds because xx is in seconds
-    lighttimes = floor(lighttimes*3600);
+    lighttimes = floor(lighttimes)*3600;
 
 
 
@@ -168,7 +168,7 @@ for j = 1:howmanydaysinsample
     %         % Get the index of the start time of the day
                 ddayidx = find(xx >= xx(1) + (j-1) * daylengthSECONDS & xx < xx(1) + j* daylengthSECONDS); % k-1 so that we start at zero
 
-                if length(ddayidx) >= howmanysamplesinaday-1 %important so that we know when to stop
+                if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
 
                     %amplitude data
                     day(j).Sobwyy = obwyy(ddayidx);
