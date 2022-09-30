@@ -21,7 +21,7 @@ channel = 1;
 
 %% crop data to temptimes
 %define variables
-temptims = sort([in.info.temptims])';
+temptims = sort([in.info.temptims]);
 poweridx = [in.info.poweridx];
 %prepare data variables
 
@@ -177,12 +177,15 @@ end
         lowWn = 0.025/(ReFs/2);
         [dd,cc] = butter(5, lowWn, 'low');
         datadata = filtfilt(dd,cc, double(regobwpeaks));
+        freqdata = filtfilt(dd,cc, double(regfreq));
+
 
         
         %high pass removes feeding trend for high frequency experiments
 
         [bb,aa] = butter(5, highWn, 'high');
         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+        freqdata = filtfilt(bb,aa, freqdata);
 
     dataminusmean = datadata - mean(datadata);    
 
@@ -191,7 +194,7 @@ end
     timidx = regtim >= temptims(1) & regtim <= temptims(end);
     xx = regtim(timidx);
     obwyy = dataminusmean(timidx);  
-    freq = regfreq(timidx);
+    freq = freqdata(timidx);
 
     rawidx = timcont >= temptims(1) & timcont <= temptims(end);
     timmy = timcont(rawidx);
@@ -246,6 +249,22 @@ end
         tmean = tmean / length(tday);
         ttim = ttim(1:length(tmean));
 
+
+
+
+%calculate mean for plotting
+        fmean = tday(1).freq - mean(tday(1).freq);
+     
+        for p = 2:length(tday)
+
+            fmean = fmean(1:min([length(fmean), length(tday(p).freq)]));
+            fmean = fmean + (tday(p).freq(1:length(fmean)) - mean(tday(p).freq(1:length(fmean))));
+           
+        end
+% 
+        fmean = fmean / length(tday);
+        
+
 %  
   %% plot to check
 %time vectors currently in seconds, divide by 3600 to get hours
@@ -256,6 +275,40 @@ cold = [204/255, 238/255, 255/255];
 
 %days over experiment time
 figure(795); clf; hold on;
+
+    plot(timmy/3600, freqRaw-mean(freqRaw), '.');
+    for j = 1:length(tday)
+        plot(tday(j).entiretimcont/3600, tday(j).freq);
+    end
+   
+     a = ylim; %all of above is just to get the max for the plot lines...
+
+        if  tiz(1) > 0 %we start with warming
+            for j = 1:length(temptims)-1
+                if mod(j,2) == 1 %if j is odd
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], hot);
+                else
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], cold);
+                end
+            end
+        else
+            for j = 1:length(temptims)-1
+                if mod(j,2) == 1 %if j is odd
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], cold);
+                else
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], hot);
+                end
+            end
+        end
+
+     plot(timmy/3600, freqRaw-mean(freqRaw), '.');
+    for j = 1:length(tday)
+        plot(tday(j).entiretimcont/3600, tday(j).freq, 'LineWidth', 2);
+    end    
+     
+
+  %days over experiment time
+figure(796); clf; hold on;
 
     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
     for j = 1:length(tday)
@@ -285,10 +338,7 @@ figure(795); clf; hold on;
      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
     for j = 1:length(tday)
         plot(tday(j).entiretimcont/3600, tday(j).obw, 'LineWidth', 2);
-    end    
-     
-
-            
+    end              
   
 figure(778); clf; hold on; ylim([-.5,.5]); xlim([0, ttim(end)/3600]);
 
@@ -312,6 +362,34 @@ end
       
 
         plot(ttim/3600, tmean, 'k', 'LineWidth', 5)
+%calculate temp ld equivalent
+    
+        plot([td, td], ylim, 'k-', 'LineWidth', 2);          
+
+
+
+ figure(779); clf; title('frequency temp days');hold on; ylim([-.5,.5]); ylim([-50 50]);xlim([0, ttim(end)/3600]);
+ plot(tday(1).tim/3600, tday(1).freq - mean(tday(1).freq));
+a = ylim;
+        
+if  tiz(1) > 0 %we start with warming
+    fill([0 0 td td], [a(1) a(2) a(2) a(1)], hot);
+    fill([td td (td+td2) (td+td2)], [a(1) a(2) a(2) a(1)], cold);
+else
+    fill([0 0 td td], [a(1) a(2) a(2) a(1)], cold);
+    fill([td td (td+td2) (td+td2)], [a(1) a(2) a(2) a(1)], hot);
+end
+        plot(tday(1).tim/3600, tday(1).freq - mean(tday(1).freq));
+       
+        for p = 2:length(tday)
+
+            plot(tday(p).tim/3600, tday(p).freq - mean(tday(p).freq), 'LineWidth', 2);
+           
+        end
+% 
+      
+
+        plot(ttim/3600, fmean, 'k', 'LineWidth', 5)
 %calculate temp ld equivalent
     
         plot([td, td], ylim, 'k-', 'LineWidth', 2);          
