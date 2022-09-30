@@ -257,7 +257,41 @@ cold = [204/255, 238/255, 255/255];
 %days over experiment time
 figure(795); clf; hold on;
 
-    plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+    plot(timmy/3600, freqRaw-mean(freqRaw), '.');
+    for j = 1:length(tday)
+        plot(tday(j).entiretimcont/3600, tday(j).freq);
+    end
+   
+     a = ylim; %all of above is just to get the max for the plot lines...
+
+        if  tiz(1) > 0 %we start with warming
+            for j = 1:length(temptims)-1
+                if mod(j,2) == 1 %if j is odd
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], hot);
+                else
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], cold);
+                end
+            end
+        else
+            for j = 1:length(temptims)-1
+                if mod(j,2) == 1 %if j is odd
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], cold);
+                else
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [a(1) a(2) a(2) a(1)], hot);
+                end
+            end
+        end
+
+     plot(timmy/3600, freqRaw-mean(freqRaw), '.');
+    for j = 1:length(tday)
+        plot(tday(j).entiretimcont/3600, tday(j).freq, 'LineWidth', 2);
+    end    
+     
+
+  %days over experiment time
+figure(796); clf; hold on;
+
+    plot(timmy/3600, f-mean(obwAmp), '.');
     for j = 1:length(tday)
         plot(tday(j).entiretimcont/3600, tday(j).obw);
     end
@@ -285,10 +319,7 @@ figure(795); clf; hold on;
      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
     for j = 1:length(tday)
         plot(tday(j).entiretimcont/3600, tday(j).obw, 'LineWidth', 2);
-    end    
-     
-
-            
+    end              
   
 figure(778); clf; hold on; ylim([-.5,.5]); xlim([0, ttim(end)/3600]);
 
