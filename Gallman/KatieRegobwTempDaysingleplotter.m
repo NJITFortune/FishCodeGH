@@ -291,7 +291,7 @@ figure(795); clf; hold on;
   %days over experiment time
 figure(796); clf; hold on;
 
-    plot(timmy/3600, f-mean(obwAmp), '.');
+    plot(timmy/3600, obwAmp-mean(obwAmp), '.');
     for j = 1:length(tday)
         plot(tday(j).entiretimcont/3600, tday(j).obw);
     end
