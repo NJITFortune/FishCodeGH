@@ -183,7 +183,7 @@ end
 
         [bb,aa] = butter(5, highWn, 'high');
         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
-        freqdata = filtfilt(bb,aa, double(freq));
+        freqdata = filtfilt(bb,aa, double(regfreq));
 
     dataminusmean = datadata - mean(datadata);    
 
