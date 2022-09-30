@@ -318,3 +318,31 @@ end
 
 
 
+ figure(779); clf; title('frequency temp days');hold on; ylim([-.5,.5]); xlim([0, ttim(end)/3600]);
+
+a = ylim;
+        
+if  tiz(1) > 0 %we start with warming
+    fill([0 0 td td], [a(1) a(2) a(2) a(1)], hot);
+    fill([td td (td+td2) (td+td2)], [a(1) a(2) a(2) a(1)], cold);
+else
+    fill([0 0 td td], [a(1) a(2) a(2) a(1)], cold);
+    fill([td td (td+td2) (td+td2)], [a(1) a(2) a(2) a(1)], hot);
+end
+        plot(tday(1).tim/3600, tday(1).freq - mean(tday(1).freq));
+       
+        for p = 2:length(tday)
+
+            plot(tday(p).tim/3600, tday(p).freq - mean(tday(p).freq), 'LineWidth', 2);
+           
+        end
+% 
+      
+
+        plot(ttim/3600, tmean, 'k', 'LineWidth', 5)
+%calculate temp ld equivalent
+    
+        plot([td, td], ylim, 'k-', 'LineWidth', 2);          
+
+
+
