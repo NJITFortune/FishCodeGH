@@ -134,8 +134,10 @@ figure(455); clf; hold on;
 
 if  tiz(1) > 0 %we start with hotter
     td = mean(hotdurs);
+    td2 = mean(colddurs);
 else
     td = mean(colddurs);
+    td2 = mean(hotdurs);
 end
 
 
@@ -226,6 +228,8 @@ for j = 2:2:length(temptims)-1
     tday(j/2).amprange = max(obwyy(tidx));
 
     tday(j/2).td = td;
+    
+    tday(j/2).td2 = td2;
 end
 
 %calculate mean for plotting
@@ -292,10 +296,10 @@ a = ylim;
         
 if  tiz(1) > 0 %we start with warming
     fill([0 0 td td], [a(1) a(2) a(2) a(1)], hot);
-    fill([td td (td*2) (td*2)], [a(1) a(2) a(2) a(1)], cold);
+    fill([td td (td2) (td2)], [a(1) a(2) a(2) a(1)], cold);
 else
     fill([0 0 td td], [a(1) a(2) a(2) a(1)], cold);
-    fill([td td (td*2)+1.5 (td*2)+1.5], [a(1) a(2) a(2) a(1)], hot);
+    fill([td td (td2) (td2)], [a(1) a(2) a(2) a(1)], hot);
 end
         plot(tday(1).tim/3600, tday(1).obw - mean(tday(1).obw));
        
