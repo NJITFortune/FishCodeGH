@@ -350,7 +350,7 @@ end
 
 
 
- figure(779); clf; title('frequency temp days');hold on; ylim([-.5,.5]); xlim([0, ttim(end)/3600]);
+ figure(779); clf; title('frequency temp days');hold on; ylim([-.5,.5]); ylim([-50 50]);xlim([0, ttim(end)/3600]);
  plot(tday(1).tim/3600, tday(1).freq - mean(tday(1).freq));
 a = ylim;
         
