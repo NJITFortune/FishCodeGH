@@ -1,4 +1,4 @@
-%function [tday] = KatieRegobwTempDay(in, channel, ReFs, heat)%multisingleRegobwDay
+function [tday] = KatieRegobwTempDay(in, channel, ReFs, heat)%multisingleRegobwDay
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
