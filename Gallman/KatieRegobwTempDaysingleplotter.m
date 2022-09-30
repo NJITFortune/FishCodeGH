@@ -183,6 +183,7 @@ end
 
         [bb,aa] = butter(5, highWn, 'high');
         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+        freqdata = filtfilt(bb,aa, double(freq));
 
     dataminusmean = datadata - mean(datadata);    
 
@@ -191,7 +192,7 @@ end
     timidx = regtim >= temptims(1) & regtim <= temptims(end);
     xx = regtim(timidx);
     obwyy = dataminusmean(timidx);  
-    freq = regfreq(timidx);
+    freq = freqdata(timidx);
 
     rawidx = timcont >= temptims(1) & timcont <= temptims(end);
     timmy = timcont(rawidx);
