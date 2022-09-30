@@ -303,7 +303,7 @@ figure(35); clf; hold on;
 ReFs = 20;
 p = 0.9;
 %subspline subtraction
-splinexx = lightlines(1)*3600:ReFs:lightlines(end)*3600;
+splinexx = lightlines(1):ReFs:lightlines(end);
 
         %spline of raw data
         spliney1 = csaps(timcont, obw, p);
@@ -321,7 +321,7 @@ splinexx = lightlines(1)*3600:ReFs:lightlines(end)*3600;
         subobwyy = fnval(splinexx, spliney2);
 
 
-  figure(36); clf; hold on; %ylim([0,1]);
+  figure(36); clf; hold on;
     a = [0 1];
          
         
@@ -335,10 +335,10 @@ splinexx = lightlines(1)*3600:ReFs:lightlines(end)*3600;
                 end
             
            
-        plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 10);
-        plot(toptim/3600-lightlines(1), topobw, '.', 'MarkerSize', 10);
+        plot(timcont/3600, obw, '.');
+        plot(toptim/3600, topobw, '.');
 
-      %  plot(timcont/3600, obwall);
-        plot(splinexx/3600-lightlines(1), subobwyy,  'LineWidth',1);
+        plot(timmy/3600, obwall);
+     %   plot(splinexx/3600, subobwyy);
 
 

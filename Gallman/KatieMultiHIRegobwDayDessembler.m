@@ -13,7 +13,7 @@
 in = kg2(k);
 ReFs = 20;
 light = 3; %start with dark
-fish = 5; %hi freq
+fish = 6; %hi freq
 
 % light = 4; %start with light
 % fish = 5; %lo freq
@@ -49,7 +49,7 @@ if fish == 6 %high freq
 %raw data
     timcont = [in.hifish(ttohi).timcont];
     obw = [in.hifish(ttohi).obwAmp];
-
+    oldfreq = [in.hifish(ttohi).freq];
 
 end
 
@@ -72,6 +72,7 @@ if fish == 5 %low freq
 %raw data
     timcont = [in.lofish(ttolo).timcont];
     obw = [in.lofish(ttolo).obwAmp];
+    oldfreq = [in.lofish(ttolo).freq];
  
 end
 %% crop data to lighttimes 
@@ -149,7 +150,7 @@ end
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, lighttimes);
+    [regtim, regfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, lighttimes);
     
    %filter data
         %cut off frequency
@@ -175,10 +176,12 @@ end
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
     obwyy = dataminusmean(timidx);  
+    freq = regfreq(timidx);
 
     rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
+    rawfreq = oldfreq(rawidx);
 
 
 %     %plot
@@ -214,6 +217,8 @@ for j = 1:howmanydaysinsample
                     day(j).Sobwyy = obwyy(ddayidx);
                     %new time base from 0 the length of day by ReFS
                     day(j).tim = tim;
+                    %frequency 
+                    day(j).freq = freq(ddayidx);
                     %old time base divided by day for plotting chronologically
                     day(j).entiretimcont = xx(ddayidx);
                     %not sure why we need how long the day is in hours...

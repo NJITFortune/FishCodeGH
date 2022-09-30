@@ -1,5 +1,5 @@
 
-function [xx, tnormsubfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light)
+function [xx, subfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, light)
 %% Usage
 %out = [new ReFs time, resampled obw, resampled zAmp, resampled sumfft, lightchange in hours] 
 %in = (kg(#), channel, 10
@@ -7,26 +7,26 @@ function [xx, tnormsubfftyy, lighttimes] =  k_fftsubspliner(in, channel, ReFs, l
 %just lazy
 %ld = [in.info.ld];
 %tightness of spline fit
-pp = 0.9;
+p = 0.99;
 
 %outliers
     % Prepare the data with outliers
 
-%             tto{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
-%             tto{2} = tto{1};
+            tto{1} = 1:length([in.e(1).s.timcont]); % tto is indices for obwAmp
+            tto{2} = tto{1};
 % 
 %             ttz{1} = tto{1}; % ttz is indices for zAmp
 %             ttz{2} = tto{1};
 
-            ttsf{1} = 1:length([in.e(1).s.timcont]); % ttsf is indices for sumfftAmp
-            ttsf{2} = 1:length([in.e(2).s.timcont]);
+%             ttsf{1} = 1:length([in.e(1).s.timcont]); % ttsf is indices for sumfftAmp
+%             ttsf{2} = 1:length([in.e(2).s.timcont]);
     % Prepare the data without outliers
 
             % If we have removed outliers via KatieRemover, get the indices...    
             if ~isempty(in.idx) 
-%                 tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
+                 tto{1} = in.idx(1).obwidx; tto{2} = in.idx(2).obwidx; % tto is indices for obwAmp
 %                 ttz{1} = in.idx(1).zidx; ttz{2} = in.idx(2).zidx; % ttz is indices for zAmp
-                ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
+%                 ttsf{1} = in.idx(1).sumfftidx; ttsf{2} = in.idx(2).sumfftidx; % ttsf is indices for sumfftAmp
             end
 
 clear lighttrim;
@@ -91,17 +91,17 @@ if channel == 1
       
       %estimate new yvalues for every x value
       
-%             %obw
-%             spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
-%             %resample new x values based on light/dark
-%             obwyy = fnval(xx, spliney);
-%             %estimate without resample
-%             obwAmp = fnval([in.e(1).s(tto{1}).timcont]/(60*60), spliney);
-%             %detrend ydata
-%             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
-%             %raw data variables
-%                 obwtimOG = [in.e(1).s(tto{1}).timcont]/(60*60);
-%                 obwAmpOG = [in.e(1).s(tto{1}).obwAmp];
+            %obw
+            spliney = csaps([in.e(1).s(tto{1}).timcont]/(60*60), [in.e(1).s(tto{1}).obwAmp], p);
+            %resample new x values based on light/dark
+            obwyy = fnval(xx, spliney);
+            %estimate without resample
+            obwAmp = fnval([in.e(1).s(tto{1}).timcont]/(60*60), spliney);
+            %detrend ydata
+            dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
+            %raw data variables
+                obwtimOG = [in.e(1).s(tto{1}).timcont]/(60*60);
+                obwAmpOG = [in.e(1).s(tto{1}).obwAmp];
 %       
 %             %zAmp
 %             spliney = csaps([in.e(1).s(ttz{1}).timcont]/(60*60), [in.e(1).s(ttz{1}).zAmp], p);
@@ -112,18 +112,18 @@ if channel == 1
 %                 ztimOG = [in.e(1).s(ttz{1}).timcont]/(60*60);
 %                 zAmpOG = [in.e(1).s(ttz{1}).zAmp]; 
             
-            %sumfft
-            spliney = csaps([in.e(1).s(ttsf{1}).timcont]/(60*60), [in.e(1).s(ttsf{1}).sumfftAmp], pp);
-            %resample new x values based on light/dark
-            sumfftyy = fnval(xx, spliney);
-            %estimate without resample
-            fftAmp = fnval([in.e(1).s(ttsf{1}).timcont]/(60*60), spliney);
-            %detrend ydata
-            %dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
-
-                sumffttimOG = [in.e(1).s(ttsf{1}).timcont]/(60*60);
-                sumfftAmpOG = [in.e(1).s(ttsf{1}).sumfftAmp]; 
-     
+%             %sumfft
+%             spliney = csaps([in.e(1).s(ttsf{1}).timcont]/(60*60), [in.e(1).s(ttsf{1}).sumfftAmp], pp);
+%             %resample new x values based on light/dark
+%             sumfftyy = fnval(xx, spliney);
+%             %estimate without resample
+%             fftAmp = fnval([in.e(1).s(ttsf{1}).timcont]/(60*60), spliney);
+%             %detrend ydata
+%             %dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
+% 
+%                 sumffttimOG = [in.e(1).s(ttsf{1}).timcont]/(60*60);
+%                 sumfftAmpOG = [in.e(1).s(ttsf{1}).sumfftAmp]; 
+%      
       
 else %channel = 2
     
@@ -132,15 +132,15 @@ else %channel = 2
 
       %estimate new yvalues for every x value
              
-%             %obw
-%             spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
-%             %resample new x values based on light/dark
-%             obwyy = fnval(xx, spliney);
-%             obwAmp = fnval([in.e(2).s(tto{2}).timcont]/(60*60), spliney);
-%             %detrend ydata
-%             dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
-%                 obwtimOG = [in.e(2).s(tto{2}).timcont]/(60*60);
-%                 obwAmpOG = [in.e(2).s(tto{2}).obwAmp];
+            %obw
+            spliney = csaps([in.e(2).s(tto{2}).timcont]/(60*60), [in.e(2).s(tto{2}).obwAmp], p);
+            %resample new x values based on light/dark
+            obwyy = fnval(xx, spliney);
+            obwAmp = fnval([in.e(2).s(tto{2}).timcont]/(60*60), spliney);
+            %detrend ydata
+            dtobwyy = detrend(obwyy,6,'SamplePoints', xx);
+                obwtimOG = [in.e(2).s(tto{2}).timcont]/(60*60);
+                obwAmpOG = [in.e(2).s(tto{2}).obwAmp];
 %                     
 %             %zAmp
 %             spliney = csaps([in.e(2).s(ttz{2}).timcont]/(60*60), [in.e(2).s(ttz{2}).zAmp], p);
@@ -151,17 +151,17 @@ else %channel = 2
 %                 ztimOG = [in.e(2).s(ttz{2}).timcont]/(60*60);
 %                 zAmpOG = [in.e(2).s(ttz{2}).zAmp]; 
             
-            %sumfft
-            spliney = csaps([in.e(2).s(ttsf{2}).timcont]/(60*60), [in.e(2).s(ttsf{2}).sumfftAmp], pp);
-            %resample new x values based on light/dark
-            sumfftyy = fnval(xx, spliney);
-            %estimate without resample
-            fftAmp = fnval([in.e(2).s(ttsf{2}).timcont]/(60*60), spliney);
-            %detrend ydata
-            %dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
-                sumffttimOG = [in.e(2).s(ttsf{2}).timcont]/(60*60);
-                sumfftAmpOG = [in.e(2).s(ttsf{2}).sumfftAmp]; 
-             
+%             %sumfft
+%             spliney = csaps([in.e(2).s(ttsf{2}).timcont]/(60*60), [in.e(2).s(ttsf{2}).sumfftAmp], pp);
+%             %resample new x values based on light/dark
+%             sumfftyy = fnval(xx, spliney);
+%             %estimate without resample
+%             fftAmp = fnval([in.e(2).s(ttsf{2}).timcont]/(60*60), spliney);
+%             %detrend ydata
+%             %dtsumfftyy = detrend(sumfftyy,6,'SamplePoints', xx);
+%                 sumffttimOG = [in.e(2).s(ttsf{2}).timcont]/(60*60);
+%                 sumfftAmpOG = [in.e(2).s(ttsf{2}).sumfftAmp]; 
+%              
 end
 
 % figure(57); clf; title('testing original spline'); hold on;
@@ -171,14 +171,14 @@ end
         
 %take raw data above the spline
 
-   fftidx = find(sumfftAmpOG > fftAmp);
-   subfft = sumfftAmpOG(fftidx);
-   subffttim = sumffttimOG(fftidx);
+   fftidx = find(obwAmpOG > fftAmp);
+   subfft = obwAmpOG(fftidx);
+   subffttim = obwtimOG(fftidx);
    
    
    
 %estimate new spline 
-p = 0.99;
+%p = 0.99;
 
   %estimate new yvalues for every x value
 
@@ -188,9 +188,9 @@ p = 0.99;
         subfftyy = fnval(xx, spliney);
        
 %detrend ydata
-   dtsubfftyy = detrend(subfftyy,0,'SamplePoints', xx); %changed from polynomial detrend to mean subtraction 
-   normsubfftyytrend = 1./(subfftyy - dtsubfftyy);
-   tnormsubfftyy = subfftyy .* normsubfftyytrend;
+%    dtsubfftyy = detrend(subfftyy,0,'SamplePoints', xx); %changed from polynomial detrend to mean subtraction 
+%    normsubfftyytrend = 1./(subfftyy - dtsubfftyy);
+%    tnormsubfftyy = subfftyy .* normsubfftyytrend;
 
 
 

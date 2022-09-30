@@ -10,6 +10,9 @@ function  k_fishcalplotter(hi, lo, out)
 figure(455); clf; hold on;
 in = hi;
 
+% length(in(2).tim)
+% length(in(2).obwamp)
+
     ax(1) = subplot(311); title('High frequency fish'); hold on; %ylim([0,1]);
             plot(in(1).tim, in(1).obwamp, 'bo');
             plot(in(2).tim, in(2).obwamp, 'mo');
@@ -20,7 +23,7 @@ in = hi;
             
     ax(2) = subplot(312); title('postcal'); hold on; %ylim([0,1]);
             plot(in(1).tim, in(1).obwamp, 'bo');
-            plot(in(2).tim, in(2).obwamp, 'mo');
+            plot(in(2).tim, in(2).obwamp/1.2, 'mo');
           
 %             plot(in(1).tim, in(1).pkamp, 'bo');
 %             plot(in(2).tim, in(2).pkamp, 'mo');
@@ -35,6 +38,7 @@ in = hi;
 linkaxes(ax, 'x');
 
 %%
+
 figure(543); clf; hold on;
 clear in
 in = lo;
@@ -49,7 +53,7 @@ in = lo;
             
     ax(2) = subplot(312); title('postcal'); hold on; %ylim([0,1]);
             plot(in(1).tim, in(1).obwamp, 'bo');%*2
-            plot(in(2).tim, in(2).obwamp, 'mo');
+            plot(in(2).tim, in(2).obwamp/1.2, 'mo');
           
 %             plot(in(1).tim, in(1).pkamp, 'bo');
 %             plot(in(2).tim, in(2).pkamp, 'mo');

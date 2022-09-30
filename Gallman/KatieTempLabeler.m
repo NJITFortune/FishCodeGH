@@ -8,7 +8,8 @@ function out = KatieTempLabeler(in)
 %% auto labels
 %datafolder name
     %saved in Gallman
-    [~,out.folder,~]=fileparts(pwd);
+   % [~,out.folder,~]=fileparts(pwd);
+     out.folder = input('Paste the folder info: ');
     
 %light changes
     %output saved in vector luz

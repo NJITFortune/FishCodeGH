@@ -1,5 +1,5 @@
 % A new attempt at frequency tracking two Eigenmannia in the tank
-clearvars -except kg kg2 rkg k
+clearvars -except kg kg2 rkg k xxkg hkg
 Fs = 40000;
 freqs = [300 650]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
@@ -177,16 +177,18 @@ for j = 2:length(iFiles) %2514:8276%
             currhifreq = f1.fftfreq(hifreqidx(hmaxidx));        
             plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);
         hipeakamp = max([f1.fftdata(hifreqidx(hmaxidx)) f2.fftdata(hifreqidx(hmaxidx))]);
-        
-            if   hipeakamp <  0.005 || currhifreq < 570; currhifreq = oldcurrhifreq; end %|| currhifreq > 419 && currhifreq < 421
+      
+        if j > 3
 
-%             if j > 3
-%                 if currhifreq < 417 ; currhifreq = oldcurrhifreq; end
-%             end
+            if   hipeakamp <  0.05; currhifreq = out(j-2).hifreq; end %|| currhifreq > 419 && currhifreq < 421
+
             
-            if j > 3 && currhifreq > 535 && abs(currlofreq-currhifreq)>maxdiff
-                currhifreq =  out(j-2).midpoint;
-            end
+                
+        end
+            
+%             if j > 3 && currhifreq > 535 && abs(currlofreq-currhifreq)>maxdiff
+%                 currhifreq =  out(j-2).midpoint;
+%             end
 %             
 %               currlofreq = oldcurrlofreq;
          % Get the lower freq peak
@@ -198,10 +200,10 @@ for j = 2:length(iFiles) %2514:8276%
         
             if   lopeakamp < 0.1; currlofreq = oldcurrlofreq; end %currlofreq > 419 && currlofreq < 421 || 
             
-%             if j > 3
-%                % if currlofreq > 299 && currlofreq < 301 ; currlofreq = out(j-2).lofreq; end
-%                 if currlofreq > 359 && currlofreq < 361 ; currlofreq = out(j-2).lofreq; end
-%             end
+            if j > 3
+               % if currlofreq > 299 && currlofreq < 301 ; currlofreq = out(j-2).lofreq; end
+                if currlofreq > oldmidpoint; currlofreq = out(j-2).lofreq; end
+            end
 
     % Get the midpoint and plot it for fun          
             midpoint = currlofreq + abs(currhifreq - currlofreq)/2;
@@ -211,12 +213,12 @@ for j = 2:length(iFiles) %2514:8276%
 
 
 
-    if j > 3 
-       if abs(currlofreq-currhifreq) < mindiff
-                currlofreq = oldcurrlofreq;
-                currhifreq = 600;
-        end
-   end  
+%     if j > 3 
+%        if abs(currlofreq-currhifreq) < mindiff
+%                 currlofreq = oldcurrlofreq;
+%                 currhifreq = 600;
+%         end
+%    end  
 % FIX ERRORS
 
 
