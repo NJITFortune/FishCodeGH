@@ -177,13 +177,15 @@ end
         lowWn = 0.025/(ReFs/2);
         [dd,cc] = butter(5, lowWn, 'low');
         datadata = filtfilt(dd,cc, double(regobwpeaks));
+        freqdata = filtfilt(dd,cc, double(regfreq));
+
 
         
         %high pass removes feeding trend for high frequency experiments
 
         [bb,aa] = butter(5, highWn, 'high');
         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
-        freqdata = filtfilt(bb,aa, double(regfreq));
+        freqdata = filtfilt(bb,aa, freqdata);
 
     dataminusmean = datadata - mean(datadata);    
 
