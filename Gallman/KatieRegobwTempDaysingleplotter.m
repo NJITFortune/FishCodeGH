@@ -187,8 +187,7 @@ end
         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
         freqdata = filtfilt(bb,aa, freqdata);
 
-    dataminusmean = datadata - mean(datadata);    
-
+  
 
     %trim everything to lighttimes
     timidx = regtim >= temptims(1) & regtim <= temptims(end);
