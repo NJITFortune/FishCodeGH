@@ -21,7 +21,7 @@ function [tday] = KatieRegobwTempDay(in, channel, ReFs, heat)%multisingleRegobwD
 
 %% crop data to temptimes
 %define variables
-temptims = sort([in.info.temptims])';
+temptims = sort([in.info.temptims]);
 poweridx = [in.info.poweridx];
 %prepare data variables
 
