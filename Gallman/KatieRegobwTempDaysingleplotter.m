@@ -193,7 +193,8 @@ end
     timidx = regtim >= temptims(1) & regtim <= temptims(end);
     xx = regtim(timidx);
     obwyy = dataminusmean(timidx);  
-    freq = freqdata(timidx);
+   % freq = freqdata(timidx);
+    freq = regfreq(timidx);
 
     rawidx = timcont >= temptims(1) & timcont <= temptims(end);
     timmy = timcont(rawidx);
