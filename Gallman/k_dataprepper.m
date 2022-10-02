@@ -14,17 +14,14 @@ lighttimes = k_lighttimes(in, light);
 
 %% regularize data across time in ReFs second intervals
 
-    tto{channel} = 
-
+    tto = [in.idx(channel).obwidx]; 
+          
     timcont = [in.e(channel).s(tto{channel}).timcont];
     obw = [in.e(channel).s(tto{channel}).obwAmp]/max([in.e(channel).s(tto{channel}).obwAmp]);
     
     timidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
     timcont = timcont(timidx);
     obw = obw(timidx);  
-
-    %data above spline
-    %[subffttim, subfft, ~, lighttimes] =  k_fftabovespline(in, timcont, obw, ReFs, light); %squiggle is the spline for plotting
 
     %regularize data to ReFs interval
     [xx, out.regobw, ~] = k_regularmetamucil(timcont, obw, ReFs);
