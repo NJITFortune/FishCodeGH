@@ -76,7 +76,7 @@ end
 %     sumfft = [in.e(channel).s(ttsf{channel}).sumfftAmp];
 
     timcont = [in.e(channel).s(tto{channel}).timcont];
-    obw = [in.e(channel).s(tto{channel}).obwAmp];
+    obw = [in.e(channel).s(tto{channel}).obwAmp]/max([in.e(channel).s(tto{channel}).obwAmp]);
     
 
     timidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
