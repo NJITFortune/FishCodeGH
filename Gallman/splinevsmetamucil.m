@@ -65,7 +65,7 @@ end
 
 %make lighttimes an integer
     %convert to seconds because xx is in seconds
-    lighttimes = floor(lighttimes*3600);
+    lighttimes = floor(lighttimes) *3600;
 
 
 %% Prepare raw data variables
