@@ -3,7 +3,7 @@
     %starts with light = 4
 clearvars -except hkg k l24kg
 % 
-in = kg(k);
+in = hkg(k);
 channel = 1;
 ReFs = 10;
 light = 3;
