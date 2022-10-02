@@ -34,7 +34,7 @@ colnum = 1;
 
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'); %ylim([0,5]);
 
-       plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.', 'MarkerSize', 5);
+       plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.', 'Color', [0.3010 0.7450 0.9330], 'MarkerSize', 5);
 
             % Add feedingtimes, if we have them... 
                if isfield(out.info, 'feedingtimes')
