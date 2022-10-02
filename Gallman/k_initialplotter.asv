@@ -29,23 +29,28 @@ figure(4); clf; hold on;
 
 totplot = 5;
 plotorder = 1;
+colnum = 1;
 
 
-ax(1) = subplot(totplot 1 plotorder); hold on; title('ch1 obwAmp'); %ylim([0,5]);
+ax(plotorder) = subplot(totplot colnum plotorder); hold on; title('ch1 obwAmp'); %ylim([0,5]);
 
        plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
 
        plotorder = plotorder + 1;
 
-ax(1) = subplot(totplot 1 plotorder); hold on; title('obwAmp'); %ylim([0,5]);
+ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title(' ch2 obwAmp'); %ylim([0,5]);
         plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
 
-ax(2) = subplot(plotnum 1 plotorder); hold on; title('fish frequency');   
-    
-    plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).fftFreq], '.k', 'Markersize', 8);
-    plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).fftFreq], '.k', 'Markersize', 8);
+        plotorder = plotorder + 1;
 
-ax(3) = subplot(totplot 1 plotorder); hold on; title('temp');
+ax(plotorder) = subplot(plotnum, colnum, plotorder); hold on; title('fish frequency');   
+    
+        plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).fftFreq], '.k', 'Markersize', 8);
+        plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).fftFreq], '.k', 'Markersize', 8);
+
+        plotorder = plotorder + 1;
+
+ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('temp');
     
     plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).temp], '-r', 'Markersize', 8);
     plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).temp], '-r', 'Markersize', 8);
@@ -55,12 +60,18 @@ ax(3) = subplot(totplot 1 plotorder); hold on; title('temp');
 %     
 %     plot([out.e(2).s.timcont]/(60*60), ch2tempC, '-r', 'Markersize', 8);
 %     plot([out.e(1).s.timcont]/(60*60), ch1tempC, '-r', 'Markersize', 8);
-%  
-ax(4) = subplot(totplot 1 plotorder); hold on; title('light transitions');  
+
+    plotorder = plotorder + 1;
+
+ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('light transitions');  
     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
-        
+
+
+linkaxes(ax, 'x'); 
+%%   
+
 % Add feedingtimes, if we have them... 
    if isfield(out.info, 'feedingtimes')
     if ~isempty([out.info.feedingtimes])
