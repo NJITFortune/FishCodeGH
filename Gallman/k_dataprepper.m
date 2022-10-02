@@ -12,22 +12,19 @@ p = 0.7;
 
 lighttimes = k_lighttimes(in, light);
 
-%% regularize data across time in ReFs second intervals
 
-    tto = [in.idx(channel).obwidx]; 
+   %% Prepare raw data variables
+
+    %outlier removal
+     tto = [in.idx(channel).obwidx]; 
           
-    timcont = [in.e(channel).s(tto{channel}).timcont];
-    obw = [in.e(channel).s(tto{channel}).obwAmp]/max([in.e(channel).s(tto{channel}).obwAmp]);
-    
-    timidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
-    timcont = timcont(timidx);
-    obw = obw(timidx);  
-
-    %regularize data to ReFs interval
-[newtim, newfreqFilled, newampFilled] = k_regularmetamucil(oldtim, oldamp, rawtim, rawamp, rawfreq, regularinterval, lighttimes);
-
-   % [xx, out.regobw, ~] = k_regularmetamucil(timcont, obw, ReFs);
-
-
-    out.xx = xx/3600;
-    out.lighttimes = lighttimes/3600;
+    %raw data
+        timcont = [in.e(channel).s(tto).timcont]; %time in seconds
+        obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
+        oldfreq = timcont;
+        
+        %Make a time base that starts and ends on lighttimes 
+            rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
+            timmy = timcont(rawidx);
+            obwAmp = obw(rawidx);
+          
