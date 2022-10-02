@@ -113,7 +113,7 @@ splinexx = lighttimes(1):ReFs:lighttimes(end);
             rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
             timmy = timcont(rawidx);
             obwAmp = obw(rawidx);
-            obwall = obwall(rawidx);
+      
 
             
 %% plot to see
