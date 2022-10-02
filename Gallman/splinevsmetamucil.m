@@ -327,6 +327,106 @@ figure(55); clf; hold on;
 
 linkaxes(ax, 'x');
 
+%%
+%days over experiment time
+figure(57); clf; hold on;
+
+
+    ax(1) = subplot(311); title('metamucil #nofilter'); hold on;
+        
+        for j = 1:length(sday)
+            plot(sday(j).entiretimcont/3600, sday(j).obwyy, 'LineWidth', 1.5);
+        end %only to establish ylim for box plotting
+    
+         %fill boxes
+            a = ylim; %all of above is just to get the max for the plot lines...
+            if light < 4 %the first lighttime is dark
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 1 %if j is odd
+                    fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            else %the second lighttime is dark 
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 0 %if j is even
+                    fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            end
+
+
+        plot(timmy/3600, obwAmp, '.'); %this time for real on top of boxes
+        %plot spline by day - coerce to single color?
+        for j = 1:length(sday)
+            plot(sday(j).entiretimcont/3600, sday(j).obwyy, 'LineWidth', 1.5);
+        end
+
+     
+
+    ax(2) = subplot(312); title('metamucil estimate lowpass'); hold on;
+
+
+    
+        
+          for j = 1:length(day)
+               plot(day(j).entiretimcont/3600, day(j).regobw, 'LineWidth', 1.5);
+          end %only to establish ylim for box plotting
+    
+         %fill boxes
+            a = ylim; %all of above is just to get the max for the plot lines...
+            if light < 4 %the first lighttime is dark
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 1 %if j is odd
+                    fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            else %the second lighttime is dark 
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 0 %if j is even
+                    fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            end
+
+
+    plot(timmy/3600, obwAmp, '.'); %this time for real on top of boxes
+    %plot spline by day - coerce to single color?
+    for j = 1:length(day)
+        plot(day(j).entiretimcont/3600, day(j).regobw, 'LineWidth', 1.5);
+    end
+
+
+ ax(3) = subplot(313); title('metamucil estimate lowpass'); hold on;
+        
+          for j = 1:length(day)
+               plot(day(j).entiretimcont/3600, day(j).regobw, 'LineWidth', 1.5);
+          end %only to establish ylim for box plotting
+    
+         %fill boxes
+            a = ylim; %all of above is just to get the max for the plot lines...
+            if light < 4 %the first lighttime is dark
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 1 %if j is odd
+                    fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            else %the second lighttime is dark 
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 0 %if j is even
+                    fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            end
+
+
+    plot(timmy/3600, obwAmp, '.'); %this time for real on top of boxes
+    %plot spline by day - coerce to single color?
+    for j = 1:length(day)
+        plot(day(j).entiretimcont/3600, day(j).regobw, 'LineWidth', 1.5);
+    end
+
+linkaxes(ax, 'x');
+%%
 
 
 %average over single day    
