@@ -57,7 +57,7 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch2 obwAmp'
 
         plotorder = plotorder + 1;
 
-ax(plotorder) = subplot(plotnum, colnum, plotorder); hold on; title('frequency');   
+ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('frequency');   
     
         plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).fftFreq], '.k', 'Markersize', 8);
         plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).fftFreq], '.k', 'Markersize', 8);
