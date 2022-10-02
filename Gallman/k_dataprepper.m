@@ -27,4 +27,10 @@ lighttimes = k_lighttimes(in, light);
             rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
             timmy = timcont(rawidx);
             obwAmp = obw(rawidx);
-          
+            
+   %peaks of peaks
+        %find peaks
+        [~,LOCS] = findpeaks(obw);
+        %find peaks of the peaks
+        [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
+        peaktim = timcont(LOCS(cLOCS));       
