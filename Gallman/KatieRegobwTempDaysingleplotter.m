@@ -100,7 +100,7 @@ end
 
 %make temptims an integer
     %convert to seconds because xx is in seconds
-    temptims = floor(temptims*3600);
+    temptims = floor(temptims)*3600;
 %% calculate average duration of tempdays
 colder = [colder(colder>0)];
 hotter = [hotter(hotter>0)];
