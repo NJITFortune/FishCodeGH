@@ -1,18 +1,24 @@
 %function out = k_dataprepper(in, channel, ReFs)
+%notfunction
+clearvars -except l24kg
+% 
+in = kg(k);
+channel = 1;
+ReFs = 20;
+light = 3;
+p = 0.7;
+
 %% prep
 
 lighttimes = k_lighttimes(in, light);
 
 %% regularize data across time in ReFs second intervals
 
-    %raw data
-%     timcont = [in.e(channel).s(ttsf{channel}).timcont];
-%     sumfft = [in.e(channel).s(ttsf{channel}).sumfftAmp];
+    tto{channel} = 
 
     timcont = [in.e(channel).s(tto{channel}).timcont];
     obw = [in.e(channel).s(tto{channel}).obwAmp]/max([in.e(channel).s(tto{channel}).obwAmp]);
     
-
     timidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
     timcont = timcont(timidx);
     obw = obw(timidx);  
