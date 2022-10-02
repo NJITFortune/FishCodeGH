@@ -27,95 +27,112 @@ function k_initialplotter(out)
 figure(4); clf; hold on;
     %set(gcf, 'Position', [200 100 2*560 2*420]);
 
-plotnum = 5;
+totplot = 5;
+plotorder = 1;
+colnum = 1;
 
-ax(1) = subplot(plotnum11); hold on; title('obwAmp'); %ylim([0,5]);
-%    plot([out.e(2).s(ttsf{2}).timcont]/(60*60), [out.e(2).s(ttsf{2}).sumfftAmp], '.');
-%    plot([out.e(1).s(ttsf{1}).timcont]/(60*60), [out.e(1).s(ttsf{1}).sumfftAmp],'.');
 
-       plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.');
-       plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.');
+ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'); %ylim([0,5]);
 
-ax(2) = subplot(plotnum12); hold on; title('fish frequency');   
+       plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], 'o');
+
+            % Add feedingtimes, if we have them... 
+               if isfield(out.info, 'feedingtimes')
+                if ~isempty([out.info.feedingtimes])
+                   ax(plotorder) = subplot(totplot, colnum, plotorder); plot([out.info.feedingtimes' out.info.feedingtimes']', ylim, 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
+                end
+               end  
+
+       plotorder = plotorder + 1;
+
+ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch2 obwAmp'); %ylim([0,5]);
+        plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], 'o');
+
+            % Add feedingtimes, if we have them... 
+               if isfield(out.info, 'feedingtimes')
+                if ~isempty([out.info.feedingtimes])
+                   ax(plotorder) = subplot(totplot, colnum, plotorder); plot([out.info.feedingtimes' out.info.feedingtimes']', ylim, 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
+                end
+               end 
+
+        plotorder = plotorder + 1;
+
+ax(plotorder) = subplot(plotnum, colnum, plotorder); hold on; title('frequency');   
     
-    plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).fftFreq], '.k', 'Markersize', 8);
-    plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).fftFreq], '.k', 'Markersize', 8);
+        plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).fftFreq], '.k', 'Markersize', 8);
+        plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).fftFreq], '.k', 'Markersize', 8);
 
-ax(3) = subplot(plotnum13); hold on; title('temp');
+        plotorder = plotorder + 1;
+
+ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('temp');
     
     plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).temp], '-r', 'Markersize', 8);
     plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).temp], '-r', 'Markersize', 8);
+
+        % Add temptimes, if we have them... 
+           if isfield(out.info, 'temptims')
+            if ~isempty([out.info.temptims])
+               ax(plotorder) = subplot(totplot, colnum, plotorder);
+               for j = 1:length([out.info.temptims])
+                    plot([out.info.temptims(j), out.info.temptims(j)], ylim, 'b-');
+               end         
+            end
+           end  
 
 %     ch2tempC = real(k_voltstodegC(out, 2));
 %     ch1tempC = real(k_voltstodegC(out, 1));
 %     
 %     plot([out.e(2).s.timcont]/(60*60), ch2tempC, '-r', 'Markersize', 8);
 %     plot([out.e(1).s.timcont]/(60*60), ch1tempC, '-r', 'Markersize', 8);
-%  
-ax(4) = subplot(plotnum14); hold on; title('light transitions');  
+
+    plotorder = plotorder + 1;
+
+ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('light');  
     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
     ylim([-1, 6]);
     xlabel('Continuous');
-        
-% Add feedingtimes, if we have them... 
-   if isfield(out.info, 'feedingtimes')
-    if ~isempty([out.info.feedingtimes])
-       ax(1) = subplot(411); plot([out.info.feedingtimes' out.info.feedingtimes']', ylim, 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
-    end
-   end  
 
-% Add input signal times, if we have them...
-    if isfield(out.e(2).s, 'inputsig')
-        if ~isempty([out.e(2).s.inputsig])
-
-            %signal off vs on
-            threshold = 2;
-            onidx = find([out.e(2).s.inputsig] > threshold);
-            onsig = (ones(1, length(onidx)))*4;
-          %  offidx = find([out.e(2).s.inputsig] < threshold);
-           % offsig = (ones(1, length(offidx)));
-            
-            ax(4) = subplot(414); 
-            plot([out.e(2).s.timcont]/3600, [out.e(2).s.inputsig], 'r.', 'Markersize', 8);
-            %plot([out.e(2).s(onidx).timcont]/3600, onsig, 'r.', 'Markersize', 8);
-           % plot([out.e(2).s(offidx).timcont]/3600, offsig, 'r.', 'Markersize', 8);
-        end
-    end
+        % Add light transitions times to check luz if we have programmed it
+            if isfield(out.info, 'luz')
+                if  ~isempty(out.info.luz)
+                    
+                    %luz by transition type
+                        %separate by transition type
+                        lighton = out.info.luz(out.info.luz > 0);
+                        darkon = out.info.luz(out.info.luz < 0);
+                        
+                        %plot
+                        ax(plotorder) = subplot(totplot, colnum, plotorder); hold on;
+                        plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2);
+                        plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2);
+                end    
+            end
 
 
-% Add temptimes, if we have them... 
-   if isfield(out.info, 'temptims')
-    if ~isempty([out.info.temptims])
-       ax(3) = subplot(413); 
-       for j = 1:length([out.info.temptims])
-            plot([out.info.temptims(j), out.info.temptims(j)], ylim, 'b-');
-       end         
-    end
-   end  
-
-% Add social times, if we have them... 
-   if isfield(out.info, 'socialtimes')
-    if ~isempty(out.info.socialtimes)   
-        ax(1) = subplot(411); plot([abs(out.info.socialtimes)' abs(out.info.socialtimes)']', ylim, 'g-', 'LineWidth', 2, 'MarkerSize', 10);
-    end  
-   end
-    
-% Add light transitions times to check luz if we have programmed it
-if isfield(out.info, 'luz')
-    if  ~isempty(out.info.luz)
-        
-        %luz by transition type
-            %separate by transition type
-            lighton = out.info.luz(out.info.luz > 0);
-            darkon = out.info.luz(out.info.luz < 0);
-            
-            %plot
-            ax(4) = subplot(414); hold on;
-            plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2, 'MarkerSize', 10);
-            plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2, 'MarkerSize', 10);
-    end    
-end
 linkaxes(ax, 'x'); 
+  
+
+% % Add input signal times, if we have them...
+%     if isfield(out.e(2).s, 'inputsig')
+%         if ~isempty([out.e(2).s.inputsig])
+% 
+%             %signal off vs on
+%             threshold = 2;
+%             onidx = find([out.e(2).s.inputsig] > threshold);
+%             onsig = (ones(1, length(onidx)))*4;
+%           %  offidx = find([out.e(2).s.inputsig] < threshold);
+%            % offsig = (ones(1, length(offidx)));
+%             
+%             ax(4) = subplot(414); 
+%             plot([out.e(2).s.timcont]/3600, [out.e(2).s.inputsig], 'r.', 'Markersize', 8);
+%             %plot([out.e(2).s(onidx).timcont]/3600, onsig, 'r.', 'Markersize', 8);
+%            % plot([out.e(2).s(offidx).timcont]/3600, offsig, 'r.', 'Markersize', 8);
+%         end
+%     end
+
+
+    
+
 
 
                     
