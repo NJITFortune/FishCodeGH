@@ -24,7 +24,9 @@ lighttimes = k_lighttimes(in, light);
     obw = obw(timidx);  
 
     %regularize data to ReFs interval
-    [xx, out.regobw, ~] = k_regularmetamucil(timcont, obw, ReFs);
+[newtim, newfreqFilled, newampFilled] = k_regularmetamucil(oldtim, oldamp, rawtim, rawamp, rawfreq, regularinterval, lighttimes);
+
+   % [xx, out.regobw, ~] = k_regularmetamucil(timcont, obw, ReFs);
 
 
     out.xx = xx/3600;
