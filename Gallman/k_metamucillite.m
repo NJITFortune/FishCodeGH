@@ -31,7 +31,7 @@ dd = find(d > 0); % We only need to fill gaps (0 is not a gap!)
 if dd(1) == 1 % There is a gap after the first data point
     newtim = oldtim(1):regularinterval: oldtim(2) - regularinterval/3; % This is weird, but don't worry
     newampNaN = [oldamp(1) NaN(1, d(1))];
-    newfreqNaN = [oldfreq(1) NaN(1, d(1))];
+
 
 else % Copy the first batch of data into the new data and add first missing values
     newtim = oldtim(1:dd(1));
@@ -41,11 +41,11 @@ else % Copy the first batch of data into the new data and add first missing valu
 
     insertims = (((1:d(dd(1))) * regularinterval) + newtim(end)); 
     insertamps = NaN(1, d(dd(1)));
-    insertfreqs = NaN(1, d(dd(1)));
+ 
 
     newtim = [newtim insertims];
     newampNaN = [newampNaN insertamps];
-    newfreqNaN = [newfreqNaN insertfreqs];
+
 end
 
 for j = 2:length(dd) % The rest of the data
@@ -53,22 +53,21 @@ for j = 2:length(dd) % The rest of the data
     % Append the good old data to the new data
     newtim = [newtim oldtim(dd(j-1) + 1:dd(j))];
     newampNaN = [newampNaN oldamp(dd(j-1) + 1:dd(j))];
-    newfreqNaN = [newfreqNaN oldfreq(dd(j-1) + 1:dd(j))];
+
     
     % Insert the missing times and NaNs at the end
     insertims = (((1:d(dd(j))) * regularinterval) + newtim(end)); 
     insertamps = NaN(1, d(dd(j)));
-    insertfreqs = NaN(1, d(dd(j)));
+
 
     newtim = [newtim insertims];
     newampNaN = [newampNaN insertamps];
-    newfreqNaN = [newfreqNaN insertfreqs];
-
+ 
 end
 
 % Make a filled version
     newampFilled = fillmissing(newampNaN, 'linear');
-    newfreqFilled = fillmissing(newfreqNaN, 'linear');
+
 
 %mean subtractions happens after amp filtering out side of this function
 
