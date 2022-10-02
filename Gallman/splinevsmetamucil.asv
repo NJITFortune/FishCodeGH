@@ -3,11 +3,11 @@
     %starts with light = 4
 clearvars -except hkg k
 % 
-in = hkg(k);
+in = kg(k);
 channel = 1;
 ReFs = 10;
 light = 3;
-p = 0.99;
+p = 0.7;
 
 %% crop data to lighttimes
 %prep variables
@@ -65,7 +65,7 @@ end
 
 %make lighttimes an integer
     %convert to seconds because xx is in seconds
-    lighttimes = floor(lighttimes*3600);
+    lighttimes = floor(lighttimes) *3600;
 
 
 %% Prepare raw data variables
@@ -122,6 +122,22 @@ obwpeaky = obwpeaks(peakidx);
 
 figure(60); clf; title('topspline vs peaks of peaks');
     ax(1) = subplot(211); title('spline above the spline'); hold on;
+        plot(splinexx/3600, subobwyy);
+        %fill boxes
+            a = ylim; %all of above is just to get the max for the plot lines...
+            if light < 4 %the first lighttime is dark
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 1 %if j is odd
+                    fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            else %the second lighttime is dark 
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 0 %if j is even
+                    fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            end
         plot(timmy/3600, obwAmp, '.');
         plot(toptim/3600, topobw, '.');
 
@@ -142,12 +158,11 @@ figure(61); clf; title('topspline vs peaks of peaks'); hold on;
 
     
          plot(timmy/3600, obwAmp, '.');
-         plot(splinexx/3600, subobwyy, 'LineWidth', 2);
-       
+         plot(splinexx/3600, subobwyy, 'LineWidth', 1, 'DisplayName', 'above spline');
          
-         plot(peaktimmy/3600, obwpeaky,'LineWidth', 2);
+         plot(peaktimmy/3600, obwpeaky,'LineWidth', 1.5, 'DisplayName', 'peaks of peaks');
 
-
+        legend;
  
 
  %% Regularize
@@ -309,7 +324,7 @@ linkaxes(ax, 'x');
 
 
 %average over single day    
-figure(56); clf; hold on; 
+figure(65); clf; hold on; 
 
     a = [-0.2 0.2];
     %create fill box 
@@ -332,10 +347,10 @@ figure(56); clf; hold on;
             mmday= mean(meanday);
             smday = mean(smeanday);
             submday = mean(submeanday);
-
+            plot(day(1).tim/3600, submday-mean(submday),  'LineWidth', 3, 'DisplayName', 'subspline');  
             plot(day(1).tim/3600, mmday-mean(mmday),  'LineWidth', 3, 'DisplayName', 'metamucil');
             plot(day(1).tim/3600, smday-mean(smday),  'LineWidth', 3, 'DisplayName', 'spline');
-            plot(day(1).tim/3600, submday-mean(submday),  'LineWidth', 3, 'DisplayName', 'subspline');
+            
 
             legend('AutoUpdate','off');
 
