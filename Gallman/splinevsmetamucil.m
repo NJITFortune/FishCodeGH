@@ -78,10 +78,6 @@ end
         obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
         oldfreq = timcont;
         
-        %Make a time base that starts and ends on lighttimes 
-            rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
-            timmy = timcont(rawidx);
-            obwAmp = obw(rawidx);
           
 %% take the top of the dataset
 %subspline subtraction
@@ -96,6 +92,7 @@ splinexx = lighttimes(1):ReFs:lighttimes(end);
         topidx = find(obw > obwall);
         topobw = obw(topidx);
         toptim = timcont(topidx);
+        
 
         %spline of above spline data
         spliney2 = csaps(toptim, topobw, p);
@@ -109,7 +106,16 @@ splinexx = lighttimes(1):ReFs:lighttimes(end);
         %find peaks of the peaks
         [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
         peaktim = timcont(LOCS(cLOCS));
-      
+
+
+ %Make a time base that starts and ends on lighttimes 
+    %raw data
+            rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
+            timmy = timcont(rawidx);
+            obwAmp = obw(rawidx);
+            obwall = obwall(rawidx);
+
+            
 %% plot to see
 toptimidx = find(toptim >= lighttimes(1) & toptim <= lighttimes(end));
 toptim = toptim(toptimidx);
