@@ -1,13 +1,13 @@
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
-clearvars -except hkg k
+clearvars -except hkg k l24kg
 % 
 in = kg(k);
 channel = 1;
 ReFs = 10;
 light = 3;
-p = 0.7;
+p = 0.9;
 
 %% crop data to lighttimes
 %prep variables
