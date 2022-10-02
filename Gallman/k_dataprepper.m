@@ -5,18 +5,8 @@ function out = k_dataprepper(in, channel, ReFs)
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 
-%outliers
-    % Prepare the data with outliers
 
-            %ttsf{channel} = 1:length([in.e(channel).s.timcont]); % ttsf is indices for sumfftAmp
-            tto{channel} = 1:length([in.e(channel).s.timcont]); % ttsf is indices for obwAmp
-    % Prepare the data without outliers
-
-            % If we have removed outliers via KatieRemover, get the indices...    
-            if ~isempty(in.idx) 
-               % ttsf{channel} = in.idx(channel).sumfftidx; % ttsf is indices for sumfftAmp
-                tto{channel} = in.idx(channel).obwidx; % ttsf is indices for sumfftAmp
-            end
+            
 %% crop data to lighttimes 
 
     ld = in.info.ld;
