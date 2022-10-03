@@ -158,17 +158,17 @@ end
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
     
-%take the peaks of the frequency data
-    %find peaks
-    [freqpeak1,LOCS] = findpeaks(oldfreq);
-    freqtim1 = timcont(LOCS);
+% %take the peaks of the frequency data
+%     %find peaks
+%     [freqpeak1,LOCS] = findpeaks(oldfreq);
+%     freqtim1 = timcont(LOCS);
     
 %Regularize
     %regularize data to ReFs interval
     [regobwtim, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, temptims);
     
      %regularize data to ReFs interval
-    [regfreqtim, regfreqpeaks] = k_regularmetamucil(freqtim1, freqpeak1, timcont, oldfreq, ReFs, temptims);
+    [regfreqtim, regfreqpeaks] = k_regularmetamucil(timcont,oldfreq, timcont, oldfreq, ReFs, temptims);
 
 %      %filter data
 %         %cut off frequency
