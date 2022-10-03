@@ -167,6 +167,9 @@ end
     %regularize data to ReFs interval
     [regobwtim, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, temptims);
     
+     %regularize data to ReFs interval
+    [regfreqtim, regfreqpeaks] = k_regularmetamucil(freqtim1, freqpeak1, timcont, oldfreq, ReFs, temptims);
+
 %      %filter data
 %         %cut off frequency
 %          highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
@@ -188,12 +191,17 @@ end
 % 
 %   
 
-    %trim everything to lighttimes
+    %trim everything to temptims
+    %amp
     timidx = regobwtim >= temptims(1) & regobwtim <= temptims(end);
-    xx = regobwtim(timidx);
+    obwxx = regobwtim(timidx);
     obwyy = regobwpeaks(timidx);  
-   % freq = freqdata(timidx);
-    freq = regfreq(timidx);
+ 
+    %freq
+    frqidx = regfreqtim >= temptims(1) & regfreqtim <= temptims(end);
+    freqxx = regobwtim(frqidx);
+    freq = regobwpeaks(frqidx);  
+
 
     rawidx = timcont >= temptims(1) & timcont <= temptims(end);
     timmy = timcont(rawidx);
@@ -217,15 +225,15 @@ for j = 2:2:length(temptims)-1
 
     
     %define index overwhich to divide data
-    tidx = find(xx >= temptims(j-1) & xx < temptims(j+1));   
+    tidx = find(obwxx >= temptims(j-1) & obwxx < temptims(j+1));   
 
     tday(j/2).obw(:) = obwyy(tidx);
 
-    tday(j/2).entiretimcont(:) = xx(tidx);
+    tday(j/2).entiretimcont(:) = obwxx(tidx);
 
     tday(j/2).freq = freq(tidx);
     
-    tday(j/2).tim(:) = xx(tidx)-xx(tidx(1));
+    tday(j/2).tim(:) = obwxx(tidx)-obwxx(tidx(1));
     
     tday(j/2).amprange = max(obwyy(tidx));
 
