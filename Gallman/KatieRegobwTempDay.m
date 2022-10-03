@@ -140,16 +140,21 @@ end
 %     obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
 
 %Take top of dataset
-    %find peaks
+    %find peaks of amplitude data
     [~,LOCS] = findpeaks(obw);
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
+
+    %take the peaks of the frequency data
+    %find peaks
+    [freqpeak1,fLOCS] = findpeaks(oldfreq);
+    freqtim1 = timcont(fLOCS);
     
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, temptims);
+    [regtim, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, temptims);
     
      %filter data
         %cut off frequency
