@@ -266,7 +266,7 @@ end
         for p = 2:length(tday)
 
             fmean = fmean(1:min([length(fmean), length(tday(p).freq)]));
-            fmean = fmean + (tday(p).freq(1:length(fmean)) ;
+            fmean = fmean + (tday(p).freq(1:length(fmean)) );
            
         end
 % 
