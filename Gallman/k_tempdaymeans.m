@@ -1,3 +1,4 @@
+
 function [exp, fish, td] = k_tempdaymeans(in)
 % 
 %  clearvars -except xxkg xxkg2 hkg hkg2 hot cold
@@ -30,6 +31,8 @@ function [exp, fish, td] = k_tempdaymeans(in)
         
               %fill temporary vector with data from each day 
                 mtday(k,:) = in(j).tday(k).obw(1:shortest);
+
+                
                 fish(j).amprange(k,:) = in(j).tday(k).amprange;
                 amprange(k,:) = in(j).tday(k).amprange;
                
