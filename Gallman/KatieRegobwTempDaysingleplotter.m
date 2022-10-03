@@ -158,11 +158,8 @@ end
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
     
-%     % plot checking peaks
-%     figure(45); clf; hold on;   
-%         plot(peaktim, obwpeaks);
-%         plot(timcont, obw);
-%         plot([lighttimes' lighttimes'], ylim, 'k-');
+%take the peaks of the frequency data
+
     
 %Regularize
     %regularize data to ReFs interval
