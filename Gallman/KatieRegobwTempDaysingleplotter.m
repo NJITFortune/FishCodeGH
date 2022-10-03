@@ -196,11 +196,12 @@ end
     timidx = regobwtim >= temptims(1) & regobwtim <= temptims(end);
     obwxx = regobwtim(timidx);
     obwyy = regobwpeaks(timidx);  
+    freq = regobwpeaks(timidx);  
  
-    %freq
-    frqidx = regfreqtim >= temptims(1) & regfreqtim <= temptims(end);
-    freqxx = regfreqtim(frqidx);
-    freq = regobwpeaks(frqidx);  
+%     %freq
+%     frqidx = regfreqtim >= temptims(1) & regfreqtim <= temptims(end);
+%     freqxx = regfreqtim(frqidx);
+%     freq = regobwpeaks(frqidx);  
 
 
     rawidx = timcont >= temptims(1) & timcont <= temptims(end);
@@ -260,12 +261,12 @@ end
 
 
 %calculate mean for plotting
-        fmean = tday(1).freq - mean(tday(1).freq);
+        fmean = tday(1).freq ;
      
         for p = 2:length(tday)
 
             fmean = fmean(1:min([length(fmean), length(tday(p).freq)]));
-            fmean = fmean + (tday(p).freq(1:length(fmean)) - mean(tday(p).freq(1:length(fmean))));
+            fmean = fmean + (tday(p).freq(1:length(fmean)) ;
            
         end
 % 
