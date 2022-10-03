@@ -276,7 +276,7 @@ cold = [204/255, 238/255, 255/255];
 %days over experiment time
 figure(795); clf; hold on;
 
-    plot(timmy/3600, freqRaw-mean(freqRaw), '.');
+    plot(timmy/3600, freqRaw, '.');
     for j = 1:length(tday)
         plot(tday(j).entiretimcont/3600, tday(j).freq);
     end
