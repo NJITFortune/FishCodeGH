@@ -155,31 +155,35 @@ end
 %Regularize
     %regularize data to ReFs interval
     [regtim, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, temptims);
+
+     %regularize data to ReFs interval
+    [regfreqtim, regfreqpeaks] = k_regularmetamucil(freqtim1, freqpeak1, timcont, oldfreq, ReFs, temptims);
+
     
-     %filter data
-        %cut off frequency
-         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
-        %highWn = 0.001/(ReFs/2);
+%      %filter data
+%         %cut off frequency
+%          highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+%         %highWn = 0.001/(ReFs/2);
+% 
+%         %low pass removes spikey-ness
+%         lowWn = 0.025/(ReFs/2);
+%         [dd,cc] = butter(5, lowWn, 'low');
+%         datadata = filtfilt(dd,cc, double(regobwpeaks));
+% 
+%         
+%         %high pass removes feeding trend for high frequency experiments
+% 
+%         [bb,aa] = butter(5, highWn, 'high');
+%         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+% 
+%     dataminusmean = datadata - mean(datadata);    
 
-        %low pass removes spikey-ness
-        lowWn = 0.025/(ReFs/2);
-        [dd,cc] = butter(5, lowWn, 'low');
-        datadata = filtfilt(dd,cc, double(regobwpeaks));
 
-        
-        %high pass removes feeding trend for high frequency experiments
-
-        [bb,aa] = butter(5, highWn, 'high');
-        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
-
-    dataminusmean = datadata - mean(datadata);    
-
-
-    %trim everything to lighttimes
+    %trim everything to temptims
     timidx = regtim >= temptims(1) & regtim <= temptims(end);
     xx = regtim(timidx);
     obwyy = dataminusmean(timidx);  
-    freq = regfreq(timidx);
+    freq = regfreqpeaks(timidx);
 
     rawidx = timcont >= temptims(1) & timcont <= temptims(end);
     timmy = timcont(rawidx);
