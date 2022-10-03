@@ -165,7 +165,7 @@ end
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, temptims);
+    [regobwtim, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, temptims);
     
 %      %filter data
 %         %cut off frequency
@@ -189,8 +189,8 @@ end
 %   
 
     %trim everything to lighttimes
-    timidx = regtim >= temptims(1) & regtim <= temptims(end);
-    xx = regtim(timidx);
+    timidx = regobwtim >= temptims(1) & regobwtim <= temptims(end);
+    xx = regobwtim(timidx);
     obwyy = regobwpeaks(timidx);  
    % freq = freqdata(timidx);
     freq = regfreq(timidx);
