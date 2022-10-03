@@ -192,7 +192,7 @@ end
     %trim everything to lighttimes
     timidx = regtim >= temptims(1) & regtim <= temptims(end);
     xx = regtim(timidx);
-    obwyy = dataminusmean(timidx);  
+    obwyy = regobwpeaks(timidx);  
    % freq = freqdata(timidx);
     freq = regfreq(timidx);
 
