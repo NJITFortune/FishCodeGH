@@ -199,7 +199,7 @@ end
  
     %freq
     frqidx = regfreqtim >= temptims(1) & regfreqtim <= temptims(end);
-    freqxx = regobwtim(frqidx);
+    freqxx = regfreqtim(frqidx);
     freq = regobwpeaks(frqidx);  
 
 
