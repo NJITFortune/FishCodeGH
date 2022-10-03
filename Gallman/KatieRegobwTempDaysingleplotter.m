@@ -159,7 +159,9 @@ end
     peaktim = timcont(LOCS(cLOCS));
     
 %take the peaks of the frequency data
-
+    %find peaks
+    [freqpeak1,LOCS] = findpeaks(oldfreq);
+    freqtim1 = timcont(LOCS);
     
 %Regularize
     %regularize data to ReFs interval
