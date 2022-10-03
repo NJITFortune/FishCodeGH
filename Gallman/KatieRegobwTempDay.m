@@ -21,7 +21,7 @@ function [tday] = KatieRegobwTempDay(in, channel, ReFs, heat)%multisingleRegobwD
 
 %% crop data to temptimes
 %define variables
-temptims = sort([in.info.temptims])';
+temptims = sort([in.info.temptims]);
 poweridx = [in.info.poweridx];
 %prepare data variables
 
@@ -140,21 +140,25 @@ end
 %     obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
 
 %Take top of dataset
-    %find peaks
+    %find peaks of amplitude data
     [~,LOCS] = findpeaks(obw);
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
+
+    %take the peaks of the frequency data
+    %find peaks
+    [freqpeak1,fLOCS] = findpeaks(oldfreq);
+    freqtim1 = timcont(fLOCS);
     
-%     % plot checking peaks
-%     figure(45); clf; hold on;   
-%         plot(peaktim, obwpeaks);
-%         plot(timcont, obw);
-%         plot([lighttimes' lighttimes'], ylim, 'k-');
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, temptims);
+    [regtim, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, temptims);
+
+     %regularize data to ReFs interval
+    [regfreqtim, regfreqpeaks] = k_regularmetamucil(freqtim1, freqpeak1, timcont, oldfreq, ReFs, temptims);
+
     
      %filter data
         %cut off frequency
@@ -175,11 +179,17 @@ end
     dataminusmean = datadata - mean(datadata);    
 
 
-    %trim everything to lighttimes
+    %trim everything to temptims
     timidx = regtim >= temptims(1) & regtim <= temptims(end);
     xx = regtim(timidx);
+    obwyy = regobwpeaks(timidx);  
     obwyy = dataminusmean(timidx);  
-    freq = regfreq(timidx);
+    
+
+    %freq
+    frqidx = regfreqtim >= temptims(1) & regfreqtim <= temptims(end);
+  %  freqxx = regfreqtim(frqidx);
+    freq = regfreqpeaks(frqidx);  
 
     rawidx = timcont >= temptims(1) & timcont <= temptims(end);
     timmy = timcont(rawidx);
@@ -218,19 +228,19 @@ for j = 2:2:length(temptims)-1
     tday(j/2).td = td;
 end
 
-%calculate mean for plotting
-        tmean = tday(1).obw - mean(tday(1).obw);
-        ttim = tday(1).tim;
-
-        for p = 2:length(tday)
-
-            tmean = tmean(1:min([length(tmean), length(tday(p).obw)]));
-            tmean = tmean + (tday(p).obw(1:length(tmean)) - mean(tday(p).obw(1:length(tmean))));
-           
-        end
+% %calculate mean for plotting
+%         tmean = tday(1).obw - mean(tday(1).obw);
+%         ttim = tday(1).tim;
 % 
-        tmean = tmean / length(tday);
-        ttim = ttim(1:length(tmean));
+%         for p = 2:length(tday)
+% 
+%             tmean = tmean(1:min([length(tmean), length(tday(p).obw)]));
+%             tmean = tmean + (tday(p).obw(1:length(tmean)) - mean(tday(p).obw(1:length(tmean))));
+%            
+%         end
+% % 
+%         tmean = tmean / length(tday);
+%         ttim = ttim(1:length(tmean));
 
 %  
   %% plot to check

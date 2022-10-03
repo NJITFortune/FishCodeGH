@@ -100,7 +100,7 @@ end
 
 %make temptims an integer
     %convert to seconds because xx is in seconds
-    temptims = floor(temptims*3600);
+    temptims = floor(temptims)*3600;
 %% calculate average duration of tempdays
 colder = [colder(colder>0)];
 hotter = [hotter(hotter>0)];
@@ -158,43 +158,51 @@ end
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
     
-%     % plot checking peaks
-%     figure(45); clf; hold on;   
-%         plot(peaktim, obwpeaks);
-%         plot(timcont, obw);
-%         plot([lighttimes' lighttimes'], ylim, 'k-');
+% %take the peaks of the frequency data
+%     %find peaks
+%     [freqpeak1,LOCS] = findpeaks(oldfreq);
+%     freqtim1 = timcont(LOCS);
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, temptims);
+    [regobwtim, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, temptims);
     
-     %filter data
-        %cut off frequency
-         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
-        %highWn = 0.001/(ReFs/2);
+     %regularize data to ReFs interval
+    [regfreqtim, regfreqpeaks] = k_regularmetamucil(timcont,oldfreq, timcont, oldfreq, ReFs, temptims);
 
-        %low pass removes spikey-ness
-        lowWn = 0.025/(ReFs/2);
-        [dd,cc] = butter(5, lowWn, 'low');
-        datadata = filtfilt(dd,cc, double(regobwpeaks));
-        freqdata = filtfilt(dd,cc, double(regfreq));
+%      %filter data
+%         %cut off frequency
+%          highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+%         %highWn = 0.001/(ReFs/2);
+% 
+%         %low pass removes spikey-ness
+%         lowWn = 0.025/(ReFs/2);
+%         [dd,cc] = butter(5, lowWn, 'low');
+%         datadata = filtfilt(dd,cc, double(regobwpeaks));
+%         freqdata = filtfilt(dd,cc, double(regfreq));
+% 
+% 
+%         
+%         %high pass removes feeding trend for high frequency experiments
+% 
+%         [bb,aa] = butter(5, highWn, 'high');
+%         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+%         freqdata = filtfilt(bb,aa, freqdata);
+% 
+%   
 
+    %trim everything to temptims
+    %amp
+    timidx = regobwtim >= temptims(1) & regobwtim <= temptims(end);
+    obwxx = regobwtim(timidx);
+    obwyy = regobwpeaks(timidx);  
+    freq = regobwpeaks(timidx);  
+ 
+%     %freq
+%     frqidx = regfreqtim >= temptims(1) & regfreqtim <= temptims(end);
+%     freqxx = regfreqtim(frqidx);
+%     freq = regobwpeaks(frqidx);  
 
-        
-        %high pass removes feeding trend for high frequency experiments
-
-        [bb,aa] = butter(5, highWn, 'high');
-        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
-        freqdata = filtfilt(bb,aa, freqdata);
-
-    dataminusmean = datadata - mean(datadata);    
-
-
-    %trim everything to lighttimes
-    timidx = regtim >= temptims(1) & regtim <= temptims(end);
-    xx = regtim(timidx);
-    obwyy = dataminusmean(timidx);  
-    freq = freqdata(timidx);
 
     rawidx = timcont >= temptims(1) & timcont <= temptims(end);
     timmy = timcont(rawidx);
@@ -218,15 +226,15 @@ for j = 2:2:length(temptims)-1
 
     
     %define index overwhich to divide data
-    tidx = find(xx >= temptims(j-1) & xx < temptims(j+1));   
+    tidx = find(obwxx >= temptims(j-1) & obwxx < temptims(j+1));   
 
     tday(j/2).obw(:) = obwyy(tidx);
 
-    tday(j/2).entiretimcont(:) = xx(tidx);
+    tday(j/2).entiretimcont(:) = obwxx(tidx);
 
     tday(j/2).freq = freq(tidx);
     
-    tday(j/2).tim(:) = xx(tidx)-xx(tidx(1));
+    tday(j/2).tim(:) = obwxx(tidx)-obwxx(tidx(1));
     
     tday(j/2).amprange = max(obwyy(tidx));
 
@@ -253,12 +261,12 @@ end
 
 
 %calculate mean for plotting
-        fmean = tday(1).freq - mean(tday(1).freq);
+        fmean = tday(1).freq ;
      
         for p = 2:length(tday)
 
             fmean = fmean(1:min([length(fmean), length(tday(p).freq)]));
-            fmean = fmean + (tday(p).freq(1:length(fmean)) - mean(tday(p).freq(1:length(fmean))));
+            fmean = fmean + (tday(p).freq(1:length(fmean)) );
            
         end
 % 
@@ -368,8 +376,8 @@ end
 
 
 
- figure(779); clf; title('frequency temp days');hold on; ylim([-.5,.5]); ylim([-50 50]);xlim([0, ttim(end)/3600]);
- plot(tday(1).tim/3600, tday(1).freq - mean(tday(1).freq));
+ figure(779); clf; title('frequency temp days');hold on; xlim([0, ttim(end)/3600]);%ylim([-50 50])
+ plot(tday(1).tim/3600, tday(1).freq);
 a = ylim;
         
 if  tiz(1) > 0 %we start with warming

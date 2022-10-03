@@ -1,3 +1,4 @@
+
 function [exp, fish, td] = k_tempdaymeans(in)
 % 
 %  clearvars -except xxkg xxkg2 hkg hkg2 hot cold
@@ -30,6 +31,8 @@ function [exp, fish, td] = k_tempdaymeans(in)
         
               %fill temporary vector with data from each day 
                 mtday(k,:) = in(j).tday(k).obw(1:shortest);
+                ftday(k,:) = in(j).tday(k).freq(1:shortest);
+                
                 fish(j).amprange(k,:) = in(j).tday(k).amprange;
                 amprange(k,:) = in(j).tday(k).amprange;
                
@@ -42,10 +45,10 @@ function [exp, fish, td] = k_tempdaymeans(in)
       if length(in(j).tday) > 1  
       %average across days   
        tdaymean(j,:) = mean(mtday);
-       
+       ftdaymean(j,:) = mean(ftday);
       else
        tdaymean(j,:) = mtday;
-     
+        ftdaymean(j,:) = ftday;
       end
 
 
@@ -55,10 +58,14 @@ function [exp, fish, td] = k_tempdaymeans(in)
    numrow = size(tdaymean);
     if numrow(1) == 1
          exp.meanoftempexperimentmeans = movmean(tdaymean, 5);
+         exp.meanoftempfreqmeans = movmean(ftdaymean, 5);
     else
     %averages for each x hour set of experiments
     expmean = mean(tdaymean);
     exp.meanoftempexperimentmeans = movmean(expmean, 5);
+
+    freqmean = mean(ftdaymean);
+    exp.meanoftempfreqmeans = movmean(freqmean, 5);
     end
     %testmean = movmean(expmean, 5);
     %average max and min
