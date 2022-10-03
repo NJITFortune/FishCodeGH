@@ -182,13 +182,13 @@ end
     %trim everything to temptims
     timidx = regtim >= temptims(1) & regtim <= temptims(end);
     xx = regtim(timidx);
-    obwyy = dataminusmean(timidx);  
+    obwyy = regobwpeaks(timidx);  
     
 
     %freq
     frqidx = regfreqtim >= temptims(1) & regfreqtim <= temptims(end);
   %  freqxx = regfreqtim(frqidx);
-    freq = regobwpeaks(frqidx);  
+    freq = regfreqpeaks(frqidx);  
 
     rawidx = timcont >= temptims(1) & timcont <= temptims(end);
     timmy = timcont(rawidx);
