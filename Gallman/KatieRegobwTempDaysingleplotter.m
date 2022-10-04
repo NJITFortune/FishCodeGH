@@ -32,7 +32,7 @@ poweridx = [in.info.poweridx];
     timcont = [in.e(channel).s(tto).timcont]; %time in seconds
     obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
     temp =  [in.e(channel).s(tto).temp];
-    oldfreq =  [in.e(channel).s(tto).fftFreq];
+    fishfreq =  [in.e(channel).s(tto).fftFreq];
 
 %separate warming from cooling lines
 %separate rise from fall    
@@ -149,13 +149,12 @@ end
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
+    peakfreq = fishfreq(LOCS(cLOCS));
     
 %Regularize
     %regularize data to ReFs interval
-    [regobwtim, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, temptims);
+    [regobwtim, regobwfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, ReFs, temptims);
     
-     %regularize data to ReFs interval
-    [regfreqtim, regfreqpeaks] = k_regularmetamucil(timcont,oldfreq, timcont, oldfreq, ReFs, temptims);
 
 %      %filter data
 %         %cut off frequency
@@ -183,12 +182,8 @@ end
     timidx = regobwtim >= temptims(1) & regobwtim <= temptims(end);
     obwxx = regobwtim(timidx);
     obwyy = regobwpeaks(timidx);  
-    freq = regobwpeaks(timidx);  
+    freq = regobwfreq(timidx);  
  
-%     %freq
-%     frqidx = regfreqtim >= temptims(1) & regfreqtim <= temptims(end);
-%     freqxx = regfreqtim(frqidx);
-%     freq = regobwpeaks(frqidx);  
 
 
     rawidx = timcont >= temptims(1) & timcont <= temptims(end);
