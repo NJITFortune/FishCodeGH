@@ -142,14 +142,6 @@ end
 
 
 %% process data
-%prepare data variables
-
-% %outlier removal
-%  tto = [in.idx(channel).obwidx]; 
-%       
-% %raw data
-%     timcont = [in.e(channel).s(tto).timcont]; %time in seconds
-%     obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
 
 %Take top of dataset
     %find peaks
@@ -157,11 +149,6 @@ end
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
-    
-% %take the peaks of the frequency data
-%     %find peaks
-%     [freqpeak1,LOCS] = findpeaks(oldfreq);
-%     freqtim1 = timcont(LOCS);
     
 %Regularize
     %regularize data to ReFs interval
