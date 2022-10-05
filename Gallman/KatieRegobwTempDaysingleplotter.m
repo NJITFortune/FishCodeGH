@@ -390,46 +390,45 @@ td = hotday(1).td;
 
 
 
+    subplot(223); title('hot to cold amplitude transitions');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- figure(779); clf; title('frequency temp days');hold on; xlim([0, ttim(end)/3600]);%ylim([-50 50])
- plot(tday(1).tim/3600, tday(1).freq);
-a = ylim;
-        
-if  tiz(1) > 0 %we start with warming
-    fill([0 0 td td], [a(1) a(2) a(2) a(1)], hot);
-    fill([td td (td+td2) (td+td2)], [a(1) a(2) a(2) a(1)], cold);
-else
-    fill([0 0 td td], [a(1) a(2) a(2) a(1)], cold);
-    fill([td td (td+td2) (td+td2)], [a(1) a(2) a(2) a(1)], hot);
-end
-        plot(tday(1).tim/3600, tday(1).freq - mean(tday(1).freq));
-       
-        for p = 2:length(tday)
-
-            plot(tday(p).tim/3600, tday(p).freq - mean(tday(p).freq), 'LineWidth', 2);
-           
+    %boxes        
+        fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
+        fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
+   
+        for j = 1:length(coldday)
+            plot(coldday(j).tim/3600, coldday(j).obw);
+            colddayamps(j,:) = coldday(j).obw;
         end
-% 
-      
-
-        plot(ttim/3600, fmean, 'k', 'LineWidth', 5)
-%calculate temp ld equivalent
     
-        plot([td, td], ylim, 'k-', 'LineWidth', 2);          
+        coldampmean = mean(colddayamps);
+        plot(coldday(1).tim/3600, coldampmean, 'k-', 'LineWidth',2)
+        plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2);          
+
+     subplot(224); title('hot to cold frequency transitions');
+
+        %boxes        
+        fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
+        fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
+   
+        for j = 1:length(coldday)
+            plot(coldday(j).tim/3600, coldday(j).freq);
+            colddayfreq(j,:) = coldday(j).freq;
+        end
+    
+        coldfreqmean = mean(colddayfreq);
+        plot(hotday(1).tim/3600, coldfreqmean, 'k-', 'LineWidth',2)
+        plot([td/2, td], ylim, 'k-', 'LineWidth', 2); 
+
+
+
+
+
+
+
+
+
+
 
 
 
