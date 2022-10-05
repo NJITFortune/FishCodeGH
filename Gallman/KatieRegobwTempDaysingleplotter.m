@@ -199,7 +199,7 @@ figure(455); clf; hold on;
     rawidx = timcont >= temptims(1)-daylengthSECONDS & timcont <= temptims(end)+daylengthSECONDS;
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
-    freqRaw = oldfreq(rawidx);
+    freqRaw = fishfreq(rawidx);
 
 %     %plot
 %     figure(2);clf; hold on;
