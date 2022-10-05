@@ -211,22 +211,58 @@ figure(455); clf; hold on;
 %% Divide sample into half day transitions
 
 % needs to be in seconds
-tim = ReFs:ReFs:(shortest)*3600;
+refstim = ReFs:ReFs:(shortest)*3600;
 
 %hotter (colder to hotter tranistions)
-for j = 1:length(hotter)
+hotter = hotter*3600;
+
+    for j = 1:length(hotter)
+        
+                  %resampled data  
+        %         % Get the index of the start time of the day
+                    hdayidx = find(xx >= hotter(j) - (daylengthSECONDS/2) & xx <= hotter(j) +  (daylengthSECONDS/2));
+                    if length(hdayidx) >= howmanysamplesinaday %important so that we know when to stop
+    
+                        hotday(j).obw = obwyy(hdayidx);
+    
+                        hotday(j).entiretimcont = xx(hdayidx);
+    
+                        hotday(j).freq = freq(hdayidx);
+                        
+                        hotday(j).tim(:) = xx(hdayidx)-xx(hdayidx(1));
+                        
+                        hotday(j).amprange = max(obwyy(hdayidx));
+                    
+                        hotday(j).td = shortest;
+                        
+    
+                    end
+    end
+
+%colder (hotter to colder tranistions)
+colder = colder*3600;
+for j = 1:length(colder)
     
               %resampled data  
     %         % Get the index of the start time of the day
-                hdayidx = find(xx >= hotter(j) -
+                cdayidx = find(xx >= hotter(j) - (daylengthSECONDS/2) & xx <= hotter(j) +  (daylengthSECONDS/2));
                 if length(hdayidx) >= howmanysamplesinaday %important so that we know when to stop
 
+                    hotday(j).obw = obwyy(hdayidx);
 
+                    hotday(j).entiretimcont = xx(hdayidx);
 
+                    hotday(j).freq = freq(hdayidx);
+                    
+                    hotday(j).tim(:) = xx(hdayidx)-xx(hdayidx(1));
+                    
+                    hotday(j).amprange = max(obwyy(hdayidx));
+                
+                    hotday(j).td = shortest;
+                    
 
-
-
-
+                end
+end
 
 
 %% delete later
