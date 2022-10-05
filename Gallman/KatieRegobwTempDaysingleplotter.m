@@ -119,7 +119,7 @@ for j = 2:min(([length(hotter), length(colder)]))
 
 end
 
-shortest = min(colddurs);
+shortest = floor(min(colddurs));
     if timcont(1)/3600 > (temptims(1)/3600 -shortest/2)
         temptims = temptims(2:end);
         if tiz(1) > 0
@@ -149,7 +149,7 @@ figure(455); clf; hold on;
 %% Define temp day length
 
  %day
-    daylengthSECONDS = floor(shortest) * 3600;  
+    daylengthSECONDS = shortest * 3600;  
     lengthofsampleHOURS = (temptims(end) - temptims(1)) / 3600; 
     % This is the number of data samples in a day
     howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
