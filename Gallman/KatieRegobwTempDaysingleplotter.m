@@ -101,7 +101,7 @@ end
 %make temptims an integer
     %convert to seconds because xx is in seconds
     temptims = floor(temptims)*3600;
-%% calculate average duration of tempdays
+%% calculate duration of tempdays
 colder = [colder(colder>0)];
 hotter = [hotter(hotter>0)];
 
@@ -121,6 +121,7 @@ for j = 2:min(([length(hotter), length(colder)]))
 
 end
 
+shortest = min(colddurs);
 
 figure(455); clf; hold on;
 
@@ -132,13 +133,13 @@ figure(455); clf; hold on;
    plot([hotter(j) hotter(j)], [2 3], 'r-');
    end
 
-if  tiz(1) > 0 %we start with hotter
-    td = mean(hotdurs);
-    td2 = mean(colddurs);
-else
-    td = mean(colddurs);
-    td2 = mean(hotdurs);
-end
+% if  tiz(1) > 0 %we start with hotter
+%     td = mean(hotdurs);
+%     td2 = mean(colddurs);
+% else
+%     td = mean(colddurs);
+%     td2 = mean(hotdurs);
+% end
 
 
 %% process data

@@ -101,7 +101,7 @@ end
 %make temptims an integer
     %convert to seconds because xx is in seconds
     temptims = floor(temptims)*3600;
-%% calculate average duration of tempdays
+%% calculate duration of tempdays
 colder = [colder(colder>0)];
 hotter = [hotter(hotter>0)];
 
@@ -121,6 +121,7 @@ for j = 2:min(([length(hotter), length(colder)]))
 
 end
 
+shortest = min(colddurs);
 
 figure(455); clf; hold on;
 
@@ -132,13 +133,13 @@ figure(455); clf; hold on;
    plot([hotter(j) hotter(j)], [2 3], 'r-');
    end
 
-if  tiz(1) > 0 %we start with hotter
-    td = mean(hotdurs);
-    td2 = mean(colddurs);
-else
-    td = mean(colddurs);
-    td2 = mean(hotdurs);
-end
+% if  tiz(1) > 0 %we start with hotter
+%     td = mean(hotdurs);
+%     td2 = mean(colddurs);
+% else
+%     td = mean(colddurs);
+%     td2 = mean(hotdurs);
+% end
 
 
 %% process data
@@ -153,7 +154,7 @@ end
     
 %Regularize
     %regularize data to ReFs interval
-    [regobwtim, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, temptims);
+    [regobwtim, regobwfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, ReFs, temptims);
     
 
 %      %filter data
@@ -182,12 +183,8 @@ end
     timidx = regobwtim >= temptims(1) & regobwtim <= temptims(end);
     obwxx = regobwtim(timidx);
     obwyy = regobwpeaks(timidx);  
-    freq = regobwpeaks(timidx);  
+    freq = regobwfreq(timidx);  
  
-%     %freq
-%     frqidx = regfreqtim >= temptims(1) & regfreqtim <= temptims(end);
-%     freqxx = regfreqtim(frqidx);
-%     freq = regobwpeaks(frqidx);  
 
 
     rawidx = timcont >= temptims(1) & timcont <= temptims(end);
