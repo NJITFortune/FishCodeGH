@@ -360,16 +360,16 @@ td = hotday(1).td;
     subplot(121); title('cold to hot transitions')
 
     %boxes        
-    if  tiz(1) > 0 %we start with warming
-        fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
-        fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
-    else
         fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
         fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
-    end
-
+   
+        for j = 1:length(hotday)
+            plot(hotday(j).tim/3600, hotday(j).obw);
+            hotdayamps(j,:) = hotday(j).obw;
+        end
     
-    
+        hotmean = mean(hotdayamps);
+        plot(hotday(1).tim/3600, hotmean, 'k-', 'LineWidth',2)
         plot([td/2, td], ylim, 'k-', 'LineWidth', 2);          
 
 
