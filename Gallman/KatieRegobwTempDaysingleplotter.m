@@ -191,8 +191,6 @@ figure(455); clf; hold on;
         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
         
 
-  
-
     %trim everything to temptims
 
 
