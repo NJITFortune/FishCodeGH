@@ -355,7 +355,7 @@ figure(796); clf; title('amplitude over time');hold on;
  %%   
 figure(778); clf; hold on; ylim([-.5,.5]); %xlim([0, ttim(end)/3600]);
 
-td = hotday(1).td;
+td = hotday(2).td;
 
     subplot(221); title('cold to hot amplitude transitions');
 
