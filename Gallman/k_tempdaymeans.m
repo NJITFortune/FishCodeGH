@@ -47,11 +47,12 @@
       %average across days   
        tdaymean(j,:) = mean(mtday);
        ftdaymean(j,:) = mean(ftday);
+       
       else
        tdaymean(j,:) = mtday;
         ftdaymean(j,:) = ftday;
       end
-
+zeroedfmean(j,:) = ftdaymean(j)-mean(ftdaymean(j));
 
 
  end
