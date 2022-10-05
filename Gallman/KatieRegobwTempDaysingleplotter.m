@@ -140,6 +140,15 @@ figure(455); clf; hold on;
 %     td = mean(colddurs);
 %     td2 = mean(hotdurs);
 % end
+%% Define temp day length
+
+ %day
+    daylengthSECONDS = (shortest) * 3600;  
+    lengthofsampleHOURS = (temptims(end) - temptims(1)) / 3600; 
+    % This is the number of data samples in a day
+    howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
+    %how many days in total experiment
+    howmanydaysinsample = (floor(lengthofsampleHOURS / shortest));
 
 
 %% process data
@@ -180,14 +189,14 @@ figure(455); clf; hold on;
 
     %trim everything to temptims
     %amp
-    timidx = regobwtim >= temptims(1) & regobwtim <= temptims(end);
+    timidx = regobwtim >= temptims(1)-daylengthSECONDS & regobwtim <= temptims(end)+daylengthSECONDS;
     obwxx = regobwtim(timidx);
     obwyy = regobwpeaks(timidx);  
     freq = regobwfreq(timidx);  
  
 
 
-    rawidx = timcont >= temptims(1) & timcont <= temptims(end);
+    rawidx = timcont >= temptims(1)-daylengthSECONDS & timcont <= temptims(end)+daylengthSECONDS;
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
     freqRaw = oldfreq(rawidx);
@@ -197,18 +206,6 @@ figure(455); clf; hold on;
 %         plot(regtim, regobwminusmean, 'k-');
 %         plot(regtim, filtdata, 'm');
 %         plot(regtim, datadata, 'b');
-%% divide into tempdays
-
-% Define day length
-
- %day
-    daylengthSECONDS = (shortest) * 3600;  
-    lengthofsampleHOURS = (temptims(end) - temptims(1)) / 3600; 
-    % This is the number of data samples in a day
-    howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
-    %how many days in total experiment
-    howmanydaysinsample = (floor(lengthofsampleHOURS / shortest));
-
 
 
 %% Divide sample into days 
