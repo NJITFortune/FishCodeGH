@@ -1,8 +1,8 @@
-function [hotday, coldday] = KatieRegobwTempDay(in, channel, ReFs, heat)%multisingleRegobwDay
+function [hotday, coldday] = KatieRegobwTempDay(in, channel, ReFs)%multisingleRegobwDay
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
-
+heat = 8;
 
 %for when i'm too lazy to function
 % clearvars -except xxkg hkg k xxkg2 hkg2
