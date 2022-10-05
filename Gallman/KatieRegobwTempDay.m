@@ -142,22 +142,22 @@ hotter = [hotter(hotter>0)];
     [regobwtim, regobwfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, ReFs, temptims);
     
 
-%      %filter data
-%         %cut off frequency
-%          highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
-%         %highWn = 0.001/(ReFs/2);
-% 
-%         %low pass removes spikey-ness
-%         lowWn = 0.025/(ReFs/2);
-%         [dd,cc] = butter(5, lowWn, 'low');
-%         datadata = filtfilt(dd,cc, double(regobwpeaks));
-%        
-% 
-%         %high pass removes feeding trend for high frequency experiments
-% 
-%         [bb,aa] = butter(5, highWn, 'high');
-%         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
-%         
+     %filter data
+        %cut off frequency
+         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+        %highWn = 0.001/(ReFs/2);
+
+        %low pass removes spikey-ness
+        lowWn = 0.025/(ReFs/2);
+        [dd,cc] = butter(5, lowWn, 'low');
+        datadata = filtfilt(dd,cc, double(regobwpeaks));
+       
+
+        %high pass removes feeding trend for high frequency experiments
+
+        [bb,aa] = butter(5, highWn, 'high');
+        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+        
 
     %trim everything to temptims
 
@@ -165,8 +165,8 @@ hotter = [hotter(hotter>0)];
     %amp
     timidx = regobwtim >= temptims(1)-daylengthSECONDS & regobwtim <= temptims(end)+daylengthSECONDS;
     xx = regobwtim(timidx);
-    obwyy = regobwpeaks(timidx);  
-    % obwyy = datadata(timidx); 
+    %obwyy = regobwpeaks(timidx);  
+     obwyy = datadata(timidx); 
     freq = regobwfreq(timidx);  
  
 
