@@ -211,7 +211,17 @@ figure(455); clf; hold on;
 
 
 
+%% Divide sample into days 
+% needs to be in seconds
+tim = ReFs:ReFs:(ld*2)*3600;
 
+for j = 1:howmanydaysinsample
+    
+              %resampled data  
+    %         % Get the index of the start time of the day
+                ddayidx = find(xx >= xx(1) + (j-1) * daylengthSECONDS & xx < xx(1) + j* daylengthSECONDS); % k-1 so that we start at zero
+
+                if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
 
 
 
