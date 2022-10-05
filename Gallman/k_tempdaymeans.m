@@ -26,7 +26,7 @@
 %figure(99);clf; hold on; 
  for j = length(in):-1:1 % experiments of x hour length
   
-       
+     j  
 
          for k = length(in(j).tday):-1:1 %days within each trial
         k
