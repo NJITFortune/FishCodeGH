@@ -372,12 +372,12 @@ td = hotday(2).td;
         fill([(td/2) (td/2) td td], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
    
         for j = 1:length(hotday)
-            plot(hotday(j).tim/3600, hotday(j).obw);
+            plot(hotday(j).tim/3600, hotday(j).obw-mean(hotday(j).obw));
             hotdayamps(j,:) = hotday(j).obw;
         end
     
         hotampmean = mean(hotdayamps);
-        plot(hotday(1).tim/3600, hotampmean, 'k-', 'LineWidth',2)
+        plot(hotday(1).tim/3600, hotampmean-mean(hotampmean), 'k-', 'LineWidth',2)
         plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2);          
 
 %      subplot(222); title('cold to hot frequency transitions');
