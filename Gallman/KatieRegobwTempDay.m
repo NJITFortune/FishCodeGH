@@ -1,4 +1,4 @@
-function [hotday, coldday] = KatieRegobwTempDay(in, channel, ReFs)%multisingleRegobwDay
+function [hotday, coldday] = KatieRegobwTempDay(in, channel, ReFs, td)%multisingleRegobwDay
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
@@ -104,23 +104,7 @@ colder = [colder(colder>0)];
 hotter = [hotter(hotter>0)];
 
 
-for j = 2:min(([length(hotter), length(colder)]))
-    if tiz(1) > 0 %we start with hotter
-
-        hotdurs(j-1,:) = colder(j-1) -  hotter(j-1);
-        colddurs(j-1,:) = hotter(j) - colder(j-1);
-
-    else    %we start with colder
-
-        colddurs(j-1,:) = hotter(j-1) - colder(j-1);
-        hotdurs(j-1,:) = colder(j) -  hotter(j-1);
-        
-    end
-
-end
-
-shortest = ceil(min(colddurs));
-    if timcont(1)/3600 > (temptims(1)/3600 -shortest/2)
+    if timcont(1)/3600 > (temptims(1)/3600 -td/2)
         temptims = temptims(2:end);
         if tiz(1) > 0
             hotter = hotter(2:end);
@@ -136,7 +120,7 @@ shortest = ceil(min(colddurs));
 %% Define temp day length
 
  %day
-    daylengthSECONDS = shortest * 3600;  
+    daylengthSECONDS = td * 3600;  
    
     % This is the number of data samples in a day
     howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
