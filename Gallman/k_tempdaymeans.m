@@ -1,8 +1,8 @@
 
-function [exp, fish, td] = k_tempdaymeans(in)
+%function [exp, fish, td] = k_tempdaymeans(in)
 % 
 %   clearvars -except xxkg xxkg2 hkg hkg2 hot cold
-%   in = hot(1).h;
+   in = hot(1).h;
 
  td = in(1).tday(1).td;
 
