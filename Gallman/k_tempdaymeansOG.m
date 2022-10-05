@@ -4,8 +4,19 @@ function [exp, fish, td] = k_tempdaymeans(in)
 %  clearvars -except xxkg xxkg2 hkg hkg2 hot cold
 %  in = hot(1).h;
 
- td = in(1).hotday(1).td;
+ td = in(1).tday(1).td;
 
+%% entire fucking for loop just to find the shortest day
+ for j = length(in):-1:1 %number of fish in experiment trial
+
+       %calculate mean for plotting
+       for l = length(in(j).tday):-1:1
+        longs(l) = length(in(j).tday(l).obw);
+        end
+      
+       shorty(j) = min(longs);
+ end
+ shortest = min(shorty);
  
 %%
 
@@ -73,4 +84,5 @@ function [exp, fish, td] = k_tempdaymeans(in)
 
     
     
+
 
