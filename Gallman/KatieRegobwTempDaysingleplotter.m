@@ -355,6 +355,7 @@ figure(796); clf; title('amplitude over time');hold on;
  %%   
 figure(778); clf; hold on; ylim([-.5,.5]); xlim([0, ttim(end)/3600]);
 
+td = hotday(1).td;
 
     %boxes        
     if  tiz(1) > 0 %we start with warming
@@ -365,21 +366,9 @@ figure(778); clf; hold on; ylim([-.5,.5]); xlim([0, ttim(end)/3600]);
         fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
     end
 
-    %plots
-        plot(tday(1).tim/3600, tday(1).obw - mean(tday(1).obw));
-       
-        for p = 2:length(tday)
-
-            plot(tday(p).tim/3600, tday(p).obw - mean(tday(p).obw), 'LineWidth', 2);
-           
-        end
- 
-      
-
-        plot(ttim/3600, tmean, 'k', 'LineWidth', 5)
-%calculate temp ld equivalent
     
-        plot([td, td], ylim, 'k-', 'LineWidth', 2);          
+    
+        plot([td/2, td], ylim, 'k-', 'LineWidth', 2);          
 
 
 
