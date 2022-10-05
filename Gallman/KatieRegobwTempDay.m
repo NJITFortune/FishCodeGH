@@ -208,7 +208,7 @@ hotter = hotter*3600;
                         
                         hotday(j).amprange = max(obwyy(hdayidx));
                     
-                        hotday(j).td = shortest;
+                        hotday(j).td = td;
                         
     
                     end
@@ -233,7 +233,7 @@ for j = 1:length(colder)
                     
                     coldday(j).amprange = max(obwyy(cdayidx));
                 
-                    coldday(j).td = shortest;
+                    coldday(j).td = td;
                     
 
                 end
