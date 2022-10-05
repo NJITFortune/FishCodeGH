@@ -213,7 +213,7 @@ figure(455); clf; hold on;
 
 %% Divide sample into days 
 % needs to be in seconds
-tim = ReFs:ReFs:(ld*2)*3600;
+tim = ReFs:ReFs:(shortest)*3600;
 
 for j = 1:howmanydaysinsample
     
