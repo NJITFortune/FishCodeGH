@@ -17,6 +17,7 @@ function [exp, fish, td] = k_tempdaymeans(in)
        shorty(j) = min(longs);
  end
  shortest = min(shorty);
+ 
 %%
 
  %all days
