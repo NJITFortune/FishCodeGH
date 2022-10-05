@@ -190,7 +190,7 @@ figure(455); clf; hold on;
     %trim everything to temptims
     %amp
     timidx = regobwtim >= temptims(1)-daylengthSECONDS & regobwtim <= temptims(end)+daylengthSECONDS;
-    obwxx = regobwtim(timidx);
+    xx = regobwtim(timidx);
     obwyy = regobwpeaks(timidx);  
     freq = regobwfreq(timidx);  
  
@@ -213,13 +213,13 @@ figure(455); clf; hold on;
 % needs to be in seconds
 tim = ReFs:ReFs:(shortest)*3600;
 
+hotter = hotter*3600;
 %hotter (colder to hotter tranistions)
 for j = 1:length(hotter)
     
               %resampled data  
     %         % Get the index of the start time of the day
-                hdayidx = find(xx >= xx(1) + (j-1) * daylengthSECONDS & xx < xx(1) + j* daylengthSECONDS); % k-1 so that we start at zero
-
+                hdayidx = find(xx >= hotter(j) - (daylengthSECONDS/2) & 
                 if length(hdayidx) >= howmanysamplesinaday %important so that we know when to stop
 
 
@@ -241,15 +241,15 @@ for j = 2:2:length(temptims)-1
 
     
     %define index overwhich to divide data
-    tidx = find(obwxx >= temptims(j-1) & obwxx < temptims(j+1));   
+    tidx = find(xx >= temptims(j-1) & xx < temptims(j+1));   
 
     tday(j/2).obw(:) = obwyy(tidx);
 
-    tday(j/2).entiretimcont(:) = obwxx(tidx);
+    tday(j/2).entiretimcont(:) = xx(tidx);
 
     tday(j/2).freq = freq(tidx);
     
-    tday(j/2).tim(:) = obwxx(tidx)-obwxx(tidx(1));
+    tday(j/2).tim(:) = xx(tidx)-xx(tidx(1));
     
     tday(j/2).amprange = max(obwyy(tidx));
 
