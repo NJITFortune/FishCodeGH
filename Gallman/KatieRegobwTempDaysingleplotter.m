@@ -357,7 +357,7 @@ figure(778); clf; hold on; ylim([-.5,.5]); xlim([0, ttim(end)/3600]);
 
 td = hotday(1).td;
 
-    subplot(121); title('cold to hot amplitude transitions');
+    subplot(221); title('cold to hot amplitude transitions');
 
     %boxes        
         fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
@@ -368,14 +368,42 @@ td = hotday(1).td;
             hotdayamps(j,:) = hotday(j).obw;
         end
     
-        hotmean = mean(hotdayamps);
-        plot(hotday(1).tim/3600, hotmean, 'k-', 'LineWidth',2)
+        hotampmean = mean(hotdayamps);
+        plot(hotday(1).tim/3600, hotampmean, 'k-', 'LineWidth',2)
         plot([td/2, td], ylim, 'k-', 'LineWidth', 2);          
 
-     subplot(122); title('cold to hot amplitude transitions');
+     subplot(222); title('cold to hot frequency transitions');
+
+        %boxes        
+        fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
+        fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
+   
+        for j = 1:length(hotday)
+            plot(hotday(j).tim/3600, hotday(j).freq);
+            hotdayfreq(j,:) = hotday(j).freq;
+        end
+    
+        hotfreqmean = mean(hotdayfreq);
+        plot(hotday(1).tim/3600, hotfreqmean, 'k-', 'LineWidth',2)
+        plot([td/2, td], ylim, 'k-', 'LineWidth', 2); 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 
  figure(779); clf; title('frequency temp days');hold on; xlim([0, ttim(end)/3600]);%ylim([-50 50])
  plot(tday(1).tim/3600, tday(1).freq);
