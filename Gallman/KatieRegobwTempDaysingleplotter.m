@@ -426,7 +426,7 @@ td = hotday(2).td/3600;
     
         coldfreqmean = mean(colddayfreq);
         plot(hotday(1).tim/3600, coldfreqmean, 'k-', 'LineWidth',2)
-        plot([td/2, td], ylim, 'k-', 'LineWidth', 2); 
+        plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2); 
 
 
 
