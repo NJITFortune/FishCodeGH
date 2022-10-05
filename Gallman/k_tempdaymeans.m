@@ -52,6 +52,7 @@ function [exp, fish, td] = k_tempdaymeans(in)
         ftdaymean(j,:) = ftday;
       end
 
+      zeroedftdaymean(j,:) = ftdaymean(j)-mean(ftdaymean(j));
 
  end
            
@@ -59,13 +60,13 @@ function [exp, fish, td] = k_tempdaymeans(in)
    numrow = size(tdaymean);
     if numrow(1) == 1
          exp.meanoftempexperimentmeans = movmean(tdaymean, 5);
-         exp.meanoftempfreqmeans = movmean(ftdaymean, 5);
+         exp.meanoftempfreqmeans = movmean(zeroedftdaymean, 5);
     else
     %averages for each x hour set of experiments
     expmean = mean(tdaymean);
     exp.meanoftempexperimentmeans = movmean(expmean, 5);
 
-    freqmean = mean(ftdaymean);
+    freqmean = mean(zeroedftdaymean);
     exp.meanoftempfreqmeans = movmean(freqmean, 5);
     end
     %testmean = movmean(expmean, 5);
