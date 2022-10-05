@@ -149,7 +149,7 @@ figure(455); clf; hold on;
 %% Define temp day length
 
  %day
-    daylengthSECONDS = (shortest) * 3600;  
+    daylengthSECONDS = floor(shortest) * 3600;  
     lengthofsampleHOURS = (temptims(end) - temptims(1)) / 3600; 
     % This is the number of data samples in a day
     howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
