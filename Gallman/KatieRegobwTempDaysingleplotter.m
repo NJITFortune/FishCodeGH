@@ -228,7 +228,7 @@ hotter = hotter*3600;
         
                   %resampled data  
         %         % Get the index of the start time of the day
-                    hdayidx = find(xx >= hotter(j) - (daylengthSECONDS/2) & xx <= hotter(j) +  (daylengthSECONDS/2));
+                    hdayidx = find(xx >= hotter(j) - (daylengthSECONDS/2) & xx < hotter(j) +  (daylengthSECONDS/2));
                     if length(hdayidx) >= howmanysamplesinaday %important so that we know when to stop
     
                         hotday(j).obw = obwyy(hdayidx);
