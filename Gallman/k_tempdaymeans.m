@@ -6,17 +6,17 @@
 
  td = in(1).tday(1).td;
 
-%% entire fucking for loop just to find the shortest day
- for j = length(in):-1:1 %number of fish in experiment trial
-
-       %calculate mean for plotting
-       for l = length(in(j).tday):-1:1
-        longs(l) = length(in(j).tday(l).obw);
-        end
-      
-       shorty(j) = min(longs);
- end
- shortest = min(shorty);
+% %% entire fucking for loop just to find the shortest day
+%  for j = length(in):-1:1 %number of fish in experiment trial
+% 
+%        %calculate mean for plotting
+%        for l = length(in(j).tday):-1:1
+%         longs(l) = length(in(j).tday(l).obw);
+%         end
+%       
+%        shorty(j) = min(longs);
+%  end
+%  shortest = min(shorty);
  
 %%
 
@@ -31,8 +31,8 @@
          for k = length(in(j).tday):-1:1 %days within each trial
         k
               %fill temporary vector with data from each day 
-                mtday(k,:) = in(j).tday(k).obw(1:shortest);
-                ftday(k,:) = in(j).tday(k).freq(1:shortest);
+                mtday(k,:) = in(j).tday(k).obw;%(1:shortest);
+                ftday(k,:) = in(j).tday(k).freq;%(1:shortest);
                 
                 fish(j).amprange(k,:) = in(j).tday(k).amprange;
                 amprange(k,:) = in(j).tday(k).amprange;
