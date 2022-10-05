@@ -29,7 +29,7 @@
        
 
          for k = length(in(j).tday):-1:1 %days within each trial
-        
+        k
               %fill temporary vector with data from each day 
                 mtday(k,:) = in(j).tday(k).obw(1:shortest);
                 ftday(k,:) = in(j).tday(k).freq(1:shortest);
