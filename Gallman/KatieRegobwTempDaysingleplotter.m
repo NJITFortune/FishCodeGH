@@ -199,6 +199,29 @@ figure(455); clf; hold on;
 %         plot(regtim, datadata, 'b');
 %% divide into tempdays
 
+% Define day length
+
+ %day
+    daylengthSECONDS = (shortest) * 3600;  
+    lengthofsampleHOURS = (temptims(end) - temptims(1)) / 3600; 
+    % This is the number of data samples in a day
+    howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
+    %how many days in total experiment
+    howmanydaysinsample = (floor(lengthofsampleHOURS / shortest));
+
+
+
+
+
+
+
+
+
+
+
+
+
+%% delete later
 %this is going to suck because the temp doesn't change super consistently
 % 
 % figure(78); clf; hold on;
