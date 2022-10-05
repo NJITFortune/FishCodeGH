@@ -397,19 +397,19 @@ figure(221); clf; title('cold to hot amplitude transitions');ylim([-.5,.5]); hol
 
 
 
-    figure(223);clf; title('hot to cold amplitude transitions'); hold on;
-   
+    figure(223);clf; title('hot to cold amplitude transitions'); ylim([-.5,.5]);hold on;
+   amplim = ylim;
     %boxes        
         fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
         fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
    
         for j = 1:length(coldday)
-            plot(coldday(j).tim/3600, coldday(j).obw);
+            plot(coldday(j).tim/3600, coldday(j).obw-mean(coldday(j).obw));
             colddayamps(j,:) = coldday(j).obw;
         end
     
         coldampmean = mean(colddayamps);
-        plot(coldday(1).tim/3600, coldampmean, 'k-', 'LineWidth',2)
+        plot(coldday(1).tim/3600, coldampmean-mean(coldampmean), 'k-', 'LineWidth',2)
         plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2);          
 
      figure(224); clf; title('hot to cold frequency transitions'); hold on;
