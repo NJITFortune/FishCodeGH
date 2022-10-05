@@ -46,13 +46,14 @@
       if length(in(j).tday) > 1  
       %average across days   
        tdaymean(j,:) = mean(mtday);
-       ftdaymean(j,:) = mean(ftday);
+       zeroedfmean = mean(ftday);
+       ftdaymean(j,:) = zeroedfmean-mean(zeroedfmean);
        
       else
        tdaymean(j,:) = mtday;
-        ftdaymean(j,:) = ftday;
+        ftdaymean(j,:) = ftday-mean(ftday);
       end
-zeroedfmean(j,:) = ftdaymean(j)-mean(ftdaymean(j));
+
 
 
  end
