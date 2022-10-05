@@ -360,8 +360,8 @@ td = hotday(1).td;
     subplot(221); title('cold to hot amplitude transitions');
 
     %boxes        
-        fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
-        fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
+        fill([0 0 (td/2) (td/2)], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
+        fill([(td/2) (td/2) td td], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
    
         for j = 1:length(hotday)
             plot(hotday(j).tim/3600, hotday(j).obw);
