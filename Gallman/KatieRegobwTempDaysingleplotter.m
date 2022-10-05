@@ -315,12 +315,11 @@ figure(795); clf; title('frequency over time');hold on;
          end
 %%
   %days over experiment time
-figure(796); clf; hold on;
+figure(796); clf; title('amplitude over time');hold on;
 
     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
-    for j = 1:length(tday)
-        plot(tday(j).entiretimcont/3600, tday(j).obw);
-    end
+    plot(xx/3600, obwyy);
+    
    
      a = ylim; %all of above is just to get the max for the plot lines...
 
@@ -341,12 +340,19 @@ figure(796); clf; hold on;
                 end
             end
         end
-
+    
+     %actual plotting of datums
      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
-    for j = 1:length(tday)
-        plot(tday(j).entiretimcont/3600, tday(j).obw, 'LineWidth', 2);
-    end              
+     plot(xx/3600, obwyy);
+    for j = 1:length(hotday)
+        plot(hotday(j).entiretimcont/3600, hotday(j).obw, 'LineWidth', 2);
+    end     
+
+    for j = 1:length(coldday)
+        plot(coldday(j).entiretimcont/3600, coldday(j).obw, 'LineWidth', 2);
+    end   
   
+ %%   
 figure(778); clf; hold on; ylim([-.5,.5]); xlim([0, ttim(end)/3600]);
 
 a = ylim;
