@@ -276,7 +276,7 @@ cold = [204/255, 238/255, 255/255];
 figure(795); clf; title('frequency over time');hold on;
 
     %get ylim
-    plot(timmy/3600, freqRaw-mean(freqRaw), '.');
+    plot(timmy/3600, freqRaw, '.');
     plot(xx/3600, freq);
     
 
@@ -303,15 +303,15 @@ figure(795); clf; title('frequency over time');hold on;
 
         %actual plotting starts here
 
-         plot(timmy/3600, freqRaw-mean(freqRaw), '.');
+         plot(timmy/3600, freqRaw, '.');
          plot(xx/3600, freq);
   
          for j = 1:length(hotday)
-          plot(hotday(j).entiretimcont, hotday(j).freq);
+          plot(hotday(j).entiretimcont/3600, hotday(j).freq, 'LineWidth',2);
          end
 
          for j = 1:length(coldday)
-          plot(coldday(j).entiretimcont, coldday(j).freq);
+          plot(coldday(j).entiretimcont/3600, coldday(j).freq,'LineWidth',2);
          end
 %%
   %days over experiment time
