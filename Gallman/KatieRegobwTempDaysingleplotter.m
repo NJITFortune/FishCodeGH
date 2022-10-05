@@ -199,7 +199,8 @@ figure(455); clf; hold on;
     %amp
     timidx = regobwtim >= temptims(1)-daylengthSECONDS & regobwtim <= temptims(end)+daylengthSECONDS;
     xx = regobwtim(timidx);
-    obwyy = regobwpeaks(timidx);  
+    %obwyy = regobwpeaks(timidx);  
+     obwyy = datadata(timidx); 
     freq = regobwfreq(timidx);  
  
 
