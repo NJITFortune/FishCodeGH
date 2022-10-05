@@ -119,7 +119,7 @@ for j = 2:min(([length(hotter), length(colder)]))
 
 end
 
-shortest = floor(min(colddurs));
+shortest = ceil(min(colddurs));
 
     if timcont(1)/3600 > (temptims(1)/3600 -shortest/2)
         temptims = temptims(2:end);
