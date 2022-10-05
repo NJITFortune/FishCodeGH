@@ -365,7 +365,7 @@ figure(778); clf; hold on; %xlim([0, ttim(end)/3600]);
 
 td = hotday(2).td;
 
-    subplot(221); title('cold to hot amplitude transitions');
+   % subplot(221); title('cold to hot amplitude transitions');
 
     %boxes        
         fill([0 0 (td/2) (td/2)], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
