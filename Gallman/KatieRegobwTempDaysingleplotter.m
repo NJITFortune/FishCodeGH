@@ -172,26 +172,26 @@ figure(455); clf; hold on;
     [regobwtim, regobwfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, ReFs, temptims);
     
 
-%      %filter data
-%         %cut off frequency
-%          highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
-%         %highWn = 0.001/(ReFs/2);
-% 
-%         %low pass removes spikey-ness
-%         lowWn = 0.025/(ReFs/2);
-%         [dd,cc] = butter(5, lowWn, 'low');
-%         datadata = filtfilt(dd,cc, double(regobwpeaks));
-%         freqdata = filtfilt(dd,cc, double(regfreq));
-% 
-% 
-%         
-%         %high pass removes feeding trend for high frequency experiments
-% 
-%         [bb,aa] = butter(5, highWn, 'high');
-%         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
-%         freqdata = filtfilt(bb,aa, freqdata);
-% 
-%   
+     %filter data
+        %cut off frequency
+         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+        %highWn = 0.001/(ReFs/2);
+
+        %low pass removes spikey-ness
+        lowWn = 0.025/(ReFs/2);
+        [dd,cc] = butter(5, lowWn, 'low');
+        datadata = filtfilt(dd,cc, double(regobwpeaks));
+       
+
+
+        
+        %high pass removes feeding trend for high frequency experiments
+
+        [bb,aa] = butter(5, highWn, 'high');
+        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+        
+
+  
 
     %trim everything to temptims
 
@@ -412,8 +412,8 @@ figure(221); clf; title('cold to hot amplitude transitions');ylim([-.5,.5]); hol
         plot(coldday(1).tim/3600, coldampmean-mean(coldampmean), 'k-', 'LineWidth',2)
         plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2);          
 
-     figure(224); clf; title('hot to cold frequency transitions'); hold on;
-
+     figure(224); clf; title('hot to cold frequency transitions'); ylim([mean(freqRaw)-60, mean(freqRaw)+60]); hold on;
+    amplim = ylim;
         %boxes        
         fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
         fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
