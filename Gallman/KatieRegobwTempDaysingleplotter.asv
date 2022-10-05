@@ -199,7 +199,7 @@ figure(455); clf; hold on;
     rawidx = timcont >= temptims(1)-daylengthSECONDS & timcont <= temptims(end)+daylengthSECONDS;
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
-    freqRaw = oldfreq(rawidx);
+    freqRaw = fishfreq(rawidx);
 
 %     %plot
 %     figure(2);clf; hold on;
@@ -275,11 +275,12 @@ cold = [204/255, 238/255, 255/255];
 %days over experiment time
 figure(795); clf; title('frequency over time');hold on;
 
+    %get ylim
     plot(timmy/3600, freqRaw-mean(freqRaw), '.');
-    for j = 1:length(tday)
-        plot(tday(j).entiretimcont/3600, tday(j).freq);
-    end
-   
+    plot(xx/3600, freq);
+    
+
+    %draw boxes
      a = ylim; %all of above is just to get the max for the plot lines...
 
         if  tiz(1) > 0 %we start with warming
@@ -300,11 +301,18 @@ figure(795); clf; title('frequency over time');hold on;
             end
         end
 
-     plot(timmy/3600, freqRaw-mean(freqRaw), '.');
-    for j = 1:length(tday)
-        plot(tday(j).entiretimcont/3600, tday(j).freq, 'LineWidth', 2);
-    end    
-     
+        %actual plotting starts here
+
+         plot(timmy/3600, freqRaw-mean(freqRaw), '.');
+         plot(xx/3600, freq);
+  
+         for j = 1:length(hotday)
+          plot(hotday(j).entiretimcont, hotday(j).freq);
+         end
+
+         for j = 1:length(coldday)
+          plot(hotday(j).entiretimcont, hcoldday(j).freq);
+         end
 
   %days over experiment time
 figure(796); clf; hold on;
