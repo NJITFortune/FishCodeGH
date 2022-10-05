@@ -357,6 +357,8 @@ figure(778); clf; hold on; ylim([-.5,.5]); xlim([0, ttim(end)/3600]);
 
 td = hotday(1).td;
 
+    subplot(121); title('cold to hot transitions')
+
     %boxes        
     if  tiz(1) > 0 %we start with warming
         fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
