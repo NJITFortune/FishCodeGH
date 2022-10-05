@@ -357,7 +357,7 @@ figure(778); clf; hold on; ylim([-.5,.5]); xlim([0, ttim(end)/3600]);
 
 td = hotday(1).td;
 
-    subplot(121); title('cold to hot transitions')
+    subplot(121); title('cold to hot amplitude transitions');
 
     %boxes        
         fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
@@ -371,6 +371,9 @@ td = hotday(1).td;
         hotmean = mean(hotdayamps);
         plot(hotday(1).tim/3600, hotmean, 'k-', 'LineWidth',2)
         plot([td/2, td], ylim, 'k-', 'LineWidth', 2);          
+
+     subplot(122); title('cold to hot amplitude transitions');
+
 
 
 
