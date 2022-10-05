@@ -186,7 +186,7 @@ hotter = [hotter(hotter>0)];
 %% Divide sample into half day transitions
 
 % needs to be in seconds
-refstim = ReFs:ReFs:(shortest)*3600;
+%refstim = ReFs:ReFs:(shortest)*3600;
 
 %hotter (colder to hotter tranistions)
 hotter = hotter*3600;
