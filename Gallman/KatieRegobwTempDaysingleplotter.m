@@ -38,8 +38,6 @@ poweridx = [in.info.poweridx];
 %separate rise from fall    
   
 
-
-
 %%
 
 if isempty(poweridx) %if there are no values in poweridx []
@@ -122,6 +120,14 @@ for j = 2:min(([length(hotter), length(colder)]))
 end
 
 shortest = min(colddurs);
+    if timcont(1)/3600 > (temptims(1)/3600 -shortest/2)
+        temptims = temptims(2:end);
+        if tiz(1) > 0
+            hotter = hotter(2:end);
+        else
+            colder = colder(2:end);
+        end
+    end
 
 figure(455); clf; hold on;
 
@@ -188,6 +194,8 @@ figure(455); clf; hold on;
 %   
 
     %trim everything to temptims
+
+
     %amp
     timidx = regobwtim >= temptims(1)-daylengthSECONDS & regobwtim <= temptims(end)+daylengthSECONDS;
     xx = regobwtim(timidx);
