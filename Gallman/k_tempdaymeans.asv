@@ -46,15 +46,13 @@ function [exp, fish, td] = k_tempdaymeans(in)
       if length(in(j).tday) > 1  
       %average across days   
        tdaymean(j,:) = mean(mtday);
-       zeroedfmean = mean(ftday);
-       ftdaymean(j,:) = zeroedfmean-mean(zeroedfmean);
-       
+       ftdaymean(j,:) = mean(ftday);
       else
        tdaymean(j,:) = mtday;
-        ftdaymean(j,:) = ftday-mean(ftday);
+        ftdaymean(j,:) = ftday;
       end
 
-
+      
 
  end
            
