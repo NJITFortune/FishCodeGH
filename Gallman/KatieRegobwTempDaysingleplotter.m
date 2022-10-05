@@ -245,86 +245,27 @@ for j = 1:length(colder)
     
               %resampled data  
     %         % Get the index of the start time of the day
-                hdayidx = find(xx >= hotter(j) - (daylengthSECONDS/2) & xx <= hotter(j) +  (daylengthSECONDS/2));
-                if length(hdayidx) >= howmanysamplesinaday %important so that we know when to stop
+                cdayidx = find(xx >= colder(j) - (daylengthSECONDS/2) & xx <= colder(j) +  (daylengthSECONDS/2));
+                if length(cdayidx) >= howmanysamplesinaday %important so that we know when to stop
 
-                    hotday(j).obw = obwyy(hdayidx);
+                    coldday(j).obw = obwyy(cdayidx);
 
-                    hotday(j).entiretimcont = xx(hdayidx);
+                    coldday(j).entiretimcont = xx(cdayidx);
 
-                    hotday(j).freq = freq(hdayidx);
+                    coldday(j).freq = freq(cdayidx);
                     
-                    hotday(j).tim(:) = xx(hdayidx)-xx(hdayidx(1));
+                    coldday(j).tim(:) = xx(cdayidx)-xx(cdayidx(1));
                     
-                    hotday(j).amprange = max(obwyy(hdayidx));
+                    coldday(j).amprange = max(obwyy(cdayidx));
                 
-                    hotday(j).td = shortest;
+                    coldday(j).td = shortest;
                     
 
                 end
 end
 
 
-%% delete later
-%this is going to suck because the temp doesn't change super consistently
-% 
-% figure(78); clf; hold on;
-%     plot(xx/3600, obwyy); 
-%     plot([temptims'/3600 temptims'/3600], ylim, 'k-');
-
-for j = 2:2:length(temptims)-1
-
-    
-    %define index overwhich to divide data
-    tidx = find(xx >= temptims(j-1) & xx < temptims(j+1));   
-
-    tday(j/2).obw(:) = obwyy(tidx);
-
-    tday(j/2).entiretimcont(:) = xx(tidx);
-
-    tday(j/2).freq = freq(tidx);
-    
-    tday(j/2).tim(:) = xx(tidx)-xx(tidx(1));
-    
-    tday(j/2).amprange = max(obwyy(tidx));
-
-    tday(j/2).td = td;
-    
-    tday(j/2).td2 = td2;
-end
-
-%calculate mean for plotting
-        tmean = tday(1).obw - mean(tday(1).obw);
-        ttim = tday(1).tim;
-
-        for p = 2:length(tday)
-
-            tmean = tmean(1:min([length(tmean), length(tday(p).obw)]));
-            tmean = tmean + (tday(p).obw(1:length(tmean)) - mean(tday(p).obw(1:length(tmean))));
-           
-        end
-% 
-        tmean = tmean / length(tday);
-        ttim = ttim(1:length(tmean));
-
-
-
-
-%calculate mean for plotting
-        fmean = tday(1).freq ;
-     
-        for p = 2:length(tday)
-
-            fmean = fmean(1:min([length(fmean), length(tday(p).freq)]));
-            fmean = fmean + (tday(p).freq(1:length(fmean)) );
-           
-        end
-% 
-        fmean = fmean / length(tday);
-        
-
-%  
-  %% plot to check
+%% plot to check
 %time vectors currently in seconds, divide by 3600 to get hours
 
 %fill colors for plotting
@@ -332,7 +273,7 @@ hot = [255/255, 204/255, 204/255];
 cold = [204/255, 238/255, 255/255];
 
 %days over experiment time
-figure(795); clf; hold on;
+figure(795); clf; title('frequency over time');hold on;
 
     plot(timmy/3600, freqRaw-mean(freqRaw), '.');
     for j = 1:length(tday)
