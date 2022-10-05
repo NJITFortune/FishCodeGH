@@ -131,11 +131,7 @@ shortest = floor(min(colddurs));
 
 
 
-   for j = 1:length(colddurs) 
-   plot([colder(j) colder(j)], [2 3], 'c-');
-   plot([hotter(j) hotter(j)], [2 3], 'r-');
-   end
-
+   
 
 %% Define temp day length
 
