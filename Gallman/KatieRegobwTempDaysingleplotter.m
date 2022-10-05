@@ -397,7 +397,7 @@ figure(221); clf; title('cold to hot amplitude transitions');ylim([-.5,.5]); hol
 
 
 
-    figure(223);clf; title('hot to cold amplitude transitions'); hold on;
+    figure(223);clf; title('hot to cold amplitude transitions'); ylim([mean(freqRaw)-60, mean(freqRaw)+60]);hold on;
 amplim = [mean(freqRaw)-60, mean(freqRaw)+60];
     %boxes        
         fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
