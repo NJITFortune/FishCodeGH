@@ -1,4 +1,4 @@
-function [hotday, coldday] = KatieRegobwTempDay(in, channel, ReFs, heat)%multisingleRegobwDay
+function [hotday, coldday] = KatieRegobwTempDay(in, channel, ReFs)%multisingleRegobwDay
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
@@ -56,13 +56,7 @@ if isempty(poweridx) %if there are no values in poweridx []
 
     end  
 
-      if heat == 7 && tiz(1) > 0 %we want start with cooling and the experiment starts with warming
-        temptims = temptims(2:end); %skip the first temptim so we start with cooling
-        tiz = tiz(2:end); hotter = hotter(2:end);
-      elseif heat == 8 && tiz(1) < 0 %we want start with warming and the experiment starts with cooling
-        temptims = temptims(2:end); %skip the first temptim so we start with cooling
-        tiz = tiz(2:end); colder = colder(2:end);
-      end
+      
 
 else %we have poweridx values
 
@@ -85,14 +79,6 @@ else %we have poweridx values
         
             end
 
-  
-      if heat == 7 && tiz(1) > 0 %we want start with cooling and the experiment starts with warming
-        temptims = temptims(2:end); %skip the first temptim so we start with cooling
-        tiz = tiz(2:end); hotter = hotter(2:end);
-      elseif heat == 8 && tiz(1) < 0 %we want start with warming and the experiment starts with cooling
-        temptims = temptims(2:end); %skip the first temptim so we start with cooling
-        tiz = tiz(2:end);colder = colder(2:end);
-      end
 
 end
 
@@ -129,33 +115,14 @@ shortest = floor(min(colddurs));
         end
     end
 
-figure(455); clf; hold on;
 
-    plot(timcont/3600, temp);
-    plot([temptims'/3600 temptims'/3600], [2,3], 'k-');
-
-   for j = 1:length(colddurs) 
-   plot([colder(j) colder(j)], [2 3], 'c-');
-   plot([hotter(j) hotter(j)], [2 3], 'r-');
-   end
-
-% if  tiz(1) > 0 %we start with hotter
-%     td = mean(hotdurs);
-%     td2 = mean(colddurs);
-% else
-%     td = mean(colddurs);
-%     td2 = mean(hotdurs);
-% end
 %% Define temp day length
 
- %day
+    %day
     daylengthSECONDS = shortest * 3600;  
-    lengthofsampleHOURS = (temptims(end) - temptims(1)) / 3600; 
     % This is the number of data samples in a day
     howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
-    %how many days in total experiment
-    howmanydaysinsample = (floor(lengthofsampleHOURS / shortest));
-
+   
 
 %% process data
 
