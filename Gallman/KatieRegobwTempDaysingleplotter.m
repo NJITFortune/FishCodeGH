@@ -212,13 +212,13 @@ figure(455); clf; hold on;
 % needs to be in seconds
 tim = ReFs:ReFs:(shortest)*3600;
 
-for j = 1:howmanydaysinsample/2
-    
-              %resampled data  
-    %         % Get the index of the start time of the day
-                ddayidx = find(xx >= xx(1) + (j-1) * daylengthSECONDS & xx < xx(1) + j* daylengthSECONDS); % k-1 so that we start at zero
-
-                if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
+% for j = 1:howmanydaysinsample/2
+%     
+%               %resampled data  
+%     %         % Get the index of the start time of the day
+%                 ddayidx = find(xx >= xx(1) + (j-1) * daylengthSECONDS & xx < xx(1) + j* daylengthSECONDS); % k-1 so that we start at zero
+% 
+%                 if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
 
 
 
