@@ -317,7 +317,7 @@ figure(795); clf; title('frequency over time');hold on;
   %days over experiment time
 figure(796); clf; title('amplitude over time');hold on;
 
-    plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+    plot(timmy/3600, obwAmp, '.');
     plot(xx/3600, obwyy);
     
    
@@ -342,7 +342,7 @@ figure(796); clf; title('amplitude over time');hold on;
         end
     
      %actual plotting of datums
-     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+     plot(timmy/3600, obwAmp, '.');
      plot(xx/3600, obwyy);
     for j = 1:length(hotday)
         plot(hotday(j).entiretimcont/3600, hotday(j).obw, 'LineWidth', 2);
