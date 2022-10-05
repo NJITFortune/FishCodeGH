@@ -370,7 +370,7 @@ td = hotday(1).td;
     
         hotampmean = mean(hotdayamps);
         plot(hotday(1).tim/3600, hotampmean, 'k-', 'LineWidth',2)
-        plot([td/2, td], ylim, 'k-', 'LineWidth', 2);          
+        plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2);          
 
      subplot(222); title('cold to hot frequency transitions');
 
@@ -385,7 +385,7 @@ td = hotday(1).td;
     
         hotfreqmean = mean(hotdayfreq);
         plot(hotday(1).tim/3600, hotfreqmean, 'k-', 'LineWidth',2)
-        plot([td/2, td], ylim, 'k-', 'LineWidth', 2); 
+        plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2); 
 
 
 
@@ -403,7 +403,7 @@ td = hotday(1).td;
 
 
 
-        
+
 
  figure(779); clf; title('frequency temp days');hold on; xlim([0, ttim(end)/3600]);%ylim([-50 50])
  plot(tday(1).tim/3600, tday(1).freq);
