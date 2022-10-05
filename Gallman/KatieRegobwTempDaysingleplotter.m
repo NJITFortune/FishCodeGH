@@ -171,7 +171,7 @@ figure(455); clf; hold on;
     
 %Regularize
     %regularize data to ReFs interval
-    [regobwtim, regobwfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, temptims);
+    [regobwtim, regobwfreq, regtemp, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, temptims);
     
 
      %filter data
@@ -183,34 +183,29 @@ figure(455); clf; hold on;
         lowWn = 0.025/(ReFs/2);
         [dd,cc] = butter(5, lowWn, 'low');
         datadata = filtfilt(dd,cc, double(regobwpeaks));
-       
-
-
-        
+               
         %high pass removes feeding trend for high frequency experiments
 
         [bb,aa] = butter(5, highWn, 'high');
         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
-        
-
-  
-
+ 
     %trim everything to temptims
 
 
     %amp
     timidx = regobwtim >= temptims(1)-daylengthSECONDS & regobwtim <= temptims(end)+daylengthSECONDS;
     xx = regobwtim(timidx);
+    tempy = regtemp(timidx);
+    freq = regobwfreq(timidx);  
     %obwyy = regobwpeaks(timidx);  
      obwyy = datadata(timidx); 
-    freq = regobwfreq(timidx);  
- 
 
 
     rawidx = timcont >= temptims(1)-daylengthSECONDS/2 & timcont <= temptims(end)+daylengthSECONDS/2;
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
     freqRaw = fishfreq(rawidx);
+    tempRaw = tempa(rawidx);
 
 %     %plot
 %     figure(2);clf; hold on;
@@ -239,6 +234,8 @@ hotter = hotter*3600;
                         hotday(j).entiretimcont = xx(hdayidx);
     
                         hotday(j).freq = freq(hdayidx);
+
+                        hotday(j).temp = tempy(hdayidx);
                         
                         hotday(j).tim(:) = xx(hdayidx)-xx(hdayidx(1));
                         
@@ -264,6 +261,8 @@ for j = 1:length(colder)
                     coldday(j).entiretimcont = xx(cdayidx);
 
                     coldday(j).freq = freq(cdayidx);
+
+                    coldday(j).temp = tempy(cdayidx);
                     
                     coldday(j).tim(:) = xx(cdayidx)-xx(cdayidx(1));
                     
