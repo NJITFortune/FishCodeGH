@@ -353,7 +353,7 @@ figure(796); clf; title('amplitude over time');hold on;
     end   
   
  %%   
-figure(778); clf; hold on; ylim([-.5,.5]); xlim([0, ttim(end)/3600]);
+figure(778); clf; hold on; ylim([-.5,.5]); %xlim([0, ttim(end)/3600]);
 
 td = hotday(1).td;
 
