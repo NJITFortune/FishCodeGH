@@ -50,6 +50,7 @@ if fish == 6 %high freq
     timcont = [in.hifish(ttohi).timcont];
     obw = [in.hifish(ttohi).obwAmp];
     oldfreq = [in.hifish(ttohi).freq];
+    oldtemp = [in.hifish(ttohi).temp];
 
 end
 
