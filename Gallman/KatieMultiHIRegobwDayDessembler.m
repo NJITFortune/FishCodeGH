@@ -21,7 +21,7 @@ fish = 6; %hi freq
 
 % redefine length of light cycle
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
-
+oldtemp = kg2(k).s.temp;
 if fish == 6 %high freq
 
 %outlier removal indicies
@@ -50,7 +50,7 @@ if fish == 6 %high freq
     timcont = [in.hifish(ttohi).timcont];
     obw = [in.hifish(ttohi).obwAmp];
     oldfreq = [in.hifish(ttohi).freq];
-    oldtemp = [in.hifish(ttohi).temp];
+   
 
 end
 
@@ -74,7 +74,7 @@ if fish == 5 %low freq
     timcont = [in.lofish(ttolo).timcont];
     obw = [in.lofish(ttolo).obwAmp];
     oldfreq = [in.lofish(ttolo).freq];
-    oldtemp = [in.lofish(ttolo).temp];
+    
  
 end
 %% crop data to lighttimes 
@@ -143,6 +143,8 @@ end
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
+    peaktemp = oldtemp(LOCS(cLOCS));
+    peakfreq = oldfreq(LOCS(cLOCS));
     
 %     % plot checking peaks
 %     figure(45); clf; hold on;   
@@ -152,7 +154,7 @@ end
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regfreq, regtemp,regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq,oldtemp, ReFs, lighttimes);
+    [regtim, regfreq, regtemp,regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, lighttimes);
     
    %filter data
         %cut off frequency
