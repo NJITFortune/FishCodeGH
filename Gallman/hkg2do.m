@@ -13,6 +13,7 @@ if fish == 6 %hi frequency fish
 
     %hifish data
     out.s.obwAmp = [in.hifish.obwAmp];
+    out.s.
     out.s = in.hifish;
     
    
