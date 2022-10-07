@@ -6,7 +6,7 @@ ax = gca;
 
 lowthresh = 0.067;
 
-    histogram([in.obwAmp], 100); hold on; xlim([-.1,.1]); ax.XTick
+    histogram([in.obwAmp], 100); hold on; xlim([-.1,.1]); ax.XTick = -.1: .05: .1;
     plot([lowthresh lowthresh], ylim, 'k-');
     
     %Lower lim
