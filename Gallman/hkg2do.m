@@ -13,7 +13,7 @@ if fish == 6 %hi frequency fish
 
     %hifish data
     for j = 1:length(hifish)
-        out.s(j).obwAmp = in.hifish(j).obwAmp;
+        out.s(j).obwAmp = kg2(k).hifish(j).obwAmp;
     end
     out.s.obwAmp = [in.hifish.obwAmp];
     out.s.
