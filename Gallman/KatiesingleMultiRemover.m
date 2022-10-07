@@ -5,7 +5,7 @@ figure(1); clf;
 
 lowthresh = 0.067;
 
-    histogram([in.obwAmp], 100); hold on; xlim([0,.1]);
+    histogram([in.obwAmp], 100); hold on; xlim([-.1,.1]);
     plot([lowthresh lowthresh], ylim, 'k-');
     
     %Lower lim
