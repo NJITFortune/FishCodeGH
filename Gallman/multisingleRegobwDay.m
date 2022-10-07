@@ -86,8 +86,8 @@ end
 %raw data
     timcont = [in.s(tto).timcont]; %time in seconds
     obw = [in.s(tto).obwAmp]/max([in.s(tto).obwAmp]); %divide by max to normalize
-    oldfreq = [in.s(tto).];
-    oldtemp 
+    oldfreq = [in.s(tto).freq];
+    oldtemp = [in.temp];
 
 %Take top of dataset
     %find peaks
