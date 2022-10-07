@@ -118,7 +118,7 @@ end
 
         %low pass removes spikey-ness
         %lowWn = 0.025/(ReFs/2);%OG
-         lowWn = 0.05/(ReFs/2);
+         lowWn = 0.08/(ReFs/2);
         [dd,cc] = butter(5, lowWn, 'low');
         datadata = filtfilt(dd,cc, double(regobwpeaks));
 
