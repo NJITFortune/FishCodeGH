@@ -20,12 +20,12 @@ if fish == 6 %hi frequency fish
     for j = 1:length(in.hifish)
 
         %from hifish data
-        out.s(j).obwAmp = kg2(k).hifish(j).obwAmp;
-        out.s(j).freq = kg2(k).hifish(j).freq;
-        out.s(j).timcont = kg2(k).hifish(j).timcont;
+        out.s(j).obwAmp = in.hifish(j).obwAmp;
+        out.s(j).freq = in.hifish(j).freq;
+        out.s(j).timcont = in.hifish(j).timcont;
         %from combined fish data 
-        out.s(j).temp = kg2(k).s(hifishidx(j)).temp;
-        out.s(j).light = kg2(k).s(hifishidx(j)).light;
+        out.s(j).temp = in.s(hifishidx(j)).temp;
+        out.s(j).light = in.s(hifishidx(j)).light;
 
 
     end
@@ -47,12 +47,12 @@ if fish == 5 %low frequency fish
     for j = 1:length(in.lofish)
 
         %from lofish data
-        out.s(j).obwAmp = kg2(k).lofish(j).obwAmp;
-        out.s(j).freq = kg2(k).lofish(j).freq;
-        out.s(j).timcont = kg2(k).lofish(j).timcont;
+        out.s(j).obwAmp = in.lofish(j).obwAmp;
+        out.s(j).freq = in.lofish(j).freq;
+        out.s(j).timcont = in.lofish(j).timcont;
         %from combined fish data 
-        out.s(j).temp = kg2(k).s(lofishidx(j)).temp;
-        out.s(j).light = kg2(k).s(lofishidx(j)).light;
+        out.s(j).temp = in.s(lofishidx(j)).temp;
+        out.s(j).light = in.s(lofishidx(j)).light;
     
     end
     
