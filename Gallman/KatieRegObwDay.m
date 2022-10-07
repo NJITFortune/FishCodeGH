@@ -10,12 +10,12 @@ function [day] = KatieRegObwDay(in, channel, ReFs, light)%multisingleRegobwDay
 
 
 % % %for when i'm too lazy to function
- clearvars -except kg kg2 rkg k hkg2 hkg xxkg
-% % % % 
-in = hkg(k);
-ReFs = 20;
-light = 3; %start with dark
-channel = 1;
+%  clearvars -except kg kg2 rkg k hkg2 hkg xxkg
+% % % % % 
+% in = hkg(k);
+% ReFs = 20;
+% light = 3; %start with dark
+% channel = 1;
 
 %light = 4; %start with light
 % fish = 5; %lo freq
