@@ -10,6 +10,9 @@ if fish == 6 %hi frequency fish
 
     out.idx = in.hiidx;
     out.info.poweridx = in.info.Hipoweridx;
+
+    %hifish data
+    out.s.obwAmp
     out.s = in.hifish;
     
    
