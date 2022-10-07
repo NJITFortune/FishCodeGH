@@ -40,21 +40,21 @@ if fish == 5 %low frequency fish
     out.idx = in.loidx;
     out.info.poweridx = in.info.Lopoweridx;
 
-    %find the times where the hifish and the general data points are the same
-    [~, hifishidx] = ismember([in.hifish.timcont], [in.s.timcont]);
+    %find the times where the lofish and the general data points are the same
+    [~, lofishidx] = ismember([in.lofish.timcont], [in.s.timcont]);
     
-    %hifish data
-    for j = 1:length(in.hifish)
+    %lofish data
+    for j = 1:length(in.lofish)
 
-        %from hifish data
-        out.s(j).obwAmp = kg2(k).hifish(j).obwAmp;
-        out.s(j).freq = kg2(k).hifish(j).freq;
-        out.s(j).timcont = kg2(k).hifish(j).timcont;
+        %from lofish data
+        out.s(j).obwAmp = kg2(k).lofish(j).obwAmp;
+        out.s(j).freq = kg2(k).lofish(j).freq;
+        out.s(j).timcont = kg2(k).lofish(j).timcont;
         %from combined fish data 
-        out.s(j).temp = kg2(k).s(hifishidx(j)).temp;
-        out.s(j).light = kg2(k).s(hifishidx(j)).light;
-
- 
+        out.s(j).temp = kg2(k).s(lofishidx(j)).temp;
+        out.s(j).light = kg2(k).s(lofishidx(j)).light;
+    
+    end
     
 
 end
