@@ -87,7 +87,7 @@ end
     timcont = [in.s(tto).timcont]; %time in seconds
     obw = [in.s(tto).obwAmp]/max([in.s(tto).obwAmp]); %divide by max to normalize
     oldfreq = [in.s(tto).freq];
-    oldtemp = [in.temp];
+    oldtemp = [in.s(tto).temp];
 
 %Take top of dataset
     %find peaks
@@ -95,6 +95,8 @@ end
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
+    peakfreq = oldfreq(LOCS(cLOCS));
+    peaktemp = oldtemp(LOCS(cLOCS));
     
 %     % plot checking peaks
 %     figure(45); clf; hold on;   
@@ -104,7 +106,7 @@ end
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regobwminusmean, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, ReFs, lighttimes);
+    [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, lighttimes);
     
      %filter data
         %cut off frequency
@@ -130,10 +132,13 @@ end
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
     obwyy = dataminusmean(timidx);  
+    freq = regfreq(timidx);
+    temp = regtemp(timidx);
 
     rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
+    rawfreq = oldfreq(rawidx);
 
 %     %plot
 %     figure(2);clf; hold on;
@@ -166,6 +171,10 @@ for j = 1:howmanydaysinsample
 
                     %amplitude data
                     day(j).Sobwyy = obwyy(ddayidx);
+                    %frequency data
+                    day(j).freq = freq(ddayidx);
+                    %temperature data
+                    day(j).temp = temp(ddayidx);
                     %new time base from 0 the length of day by ReFS
                     day(j).tim = tim;
                     %old time base divided by day for plotting chronologically
