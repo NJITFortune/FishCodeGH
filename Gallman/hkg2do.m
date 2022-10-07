@@ -20,9 +20,14 @@ if fish == 6 %hi frequency fish
     
     %hifish data
     for j = 1:length(in.hifish)
+        
+        %from hifish data
         out.s(j).obwAmp = kg2(k).hifish(j).obwAmp;
-        out.s(j).obwAmp = kg2(k).hifish(j).obwAmp;
+        out.s(j).freq = kg2(k).hifish(j).freq;
         out.s(j).timcont = kg2(k).hifish(j).timcont;
+        %from combined fish data 
+        out.s(j).temp = kg2(k).s(fishidx(j)).temp;
+        out.s(j).light = kg2(k).s(fishidx(j)).light;
 
 
     end
