@@ -1,13 +1,13 @@
 function out = KatiesingleMultiRemover(in)
 %, thresh
 % OBW        
-figure(1); clf; 
+figure(1); clf; hold on;
 %ax = gca;
 
-lowthresh = 0.067;
+%lowthresh = 0.067;
 
-    histogram([in.obwAmp], 500); hold on; %xlim([-.1,.1]); ax.XTick = -.1: .01: .1;
-    plot([lowthresh lowthresh], ylim, 'k-');
+    histogram([in.obwAmp], 100);  %xlim([-.1,.1]); ax.XTick = -.1: .01: .1;
+  %  plot([lowthresh lowthresh], ylim, 'k-');
     
     %Lower lim
     fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
