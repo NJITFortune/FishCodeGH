@@ -1,7 +1,7 @@
-%function out = hkg2do(in, fish)
-clearvars -except kg2 hkg2 hkg xxkg xxkg2
-in = kg2(32);
-fish = 6;
+function out = hkg2do(in, fish)
+% clearvars -except kg2 hkg2 hkg xxkg xxkg2
+% in = kg2(32);
+% fish = 6;
 
 %makes new data structure of individual multifish 
 %in = kg2(k)
