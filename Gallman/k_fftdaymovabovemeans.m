@@ -11,7 +11,7 @@ ld = in(1).day(1).ld;
 
 %figure(99);clf; hold on; 
  for j = length(in):-1:1 % experiments of x hour length
-  
+  j
         mday = zeros(1, length(in(j).day(1).tim));
      
 
