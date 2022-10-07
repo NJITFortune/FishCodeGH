@@ -1,4 +1,6 @@
-function out = hkg2do(in, fish)
+%function out = hkg2do(in, fish)
+in = kg2(32);
+
 %makes new data structure of individual multifish 
 %in = kg2(k)
 %fish = hifish or lofish - from within kg2 struct
