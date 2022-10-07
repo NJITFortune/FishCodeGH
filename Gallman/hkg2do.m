@@ -45,8 +45,8 @@ if fish == 5 %low frequency fish
     out.info.poweridx = in.info.Lopoweridx;
 
     %find the times where the lofish and the general data points are the same
-   % [~, lofishidx] = ismember([in.lofish.timcont], [in.s.timcont]);
-    [~, lofishidx] = ismember([in.s.timcont], [in.lofish.timcont]);
+    [~, lofishidx] = ismember([in.lofish.timcont], [in.s.timcont]);
+    %[~, lofishidx] = ismember([in.s.timcont], [in.lofish.timcont]);
   %  lofishidx = lofishidx(lofishidx>0);
     %lofish data
     for j = 1:length(in.lofish)
