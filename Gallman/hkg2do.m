@@ -18,7 +18,7 @@ if fish == 6 %hi frequency fish
     out.info.poweridx = in.info.Hipoweridx;
 
     %find the times where the hifish and the general data points are the same
-     [logical, hifishidx, ~] = intersect([in.s.timcont], int32([in.hifish.timcont]));
+     [~, hifishidx, ~] = intersect([in.s.timcont], int32([in.hifish.timcont]));
  
     %hifish data
     for j = 1:length(in.hifish)
@@ -45,7 +45,7 @@ if fish == 5 %low frequency fish
     out.info.poweridx = in.info.Lopoweridx;
 
     %find the times where the lofish and the general data points are the same
-    [logical, lofishidx, ~] = intersect([in.s.timcont], int32([in.lofish.timcont]));
+    [~, lofishidx, ~] = intersect([in.s.timcont], int32([in.lofish.timcont]));
 
     %lofish data
     for j = 1:length(in.lofish)
