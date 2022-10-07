@@ -18,8 +18,9 @@ if fish == 6 %hi frequency fish
     out.info.poweridx = in.info.Hipoweridx;
 
     %find the times where the hifish and the general data points are the same
-    [~, hifishidx] = ismember([in.hifish.timcont], [in.s.timcont]);
-    hifishidx = hifishidx(hifishidx>0);
+   % [~, hifishidx] = ismember([in.hifish.timcont], [in.s.timcont]);
+     [logical, weirdlocs] = ismember([in.s.timcont], [in.hifish.timcont]);
+ 
     %hifish data
     for j = 1:length(in.hifish)
 
