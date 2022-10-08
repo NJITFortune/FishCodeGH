@@ -1,6 +1,6 @@
-function [exp, fish, ld] = k_fftdaymovabovemeans(in)
-%   clearvars -except hkg hkg2 dark light darkmulti lightmulti kg kg2
-%   in = darkmulti(1).h;
+%function [exp, fish, ld] = k_fftdaymovabovemeans(in)
+  clearvars -except hkg hkg2 dark light darkmulti lightmulti kg kg2
+  in = darkmulti(1).h;
 
 ld = in(1).day(1).ld;
 
@@ -11,7 +11,7 @@ ld = in(1).day(1).ld;
 
 %figure(99);clf; hold on; 
  for j = length(in):-1:1 % experiments of x hour length
-  
+  j
         mday = zeros(1, length(in(j).day(1).tim));
      
 
