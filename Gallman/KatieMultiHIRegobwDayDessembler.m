@@ -12,7 +12,7 @@
 % % 
 in = kg2(k);
 ReFs = 20;
-light = 4; %start with dark
+light = 3; %start with dark
 fish = 5; %hi freq
 
 % light = 4; %start with light
