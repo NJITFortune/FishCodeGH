@@ -38,37 +38,37 @@ oldlo(2).freq = [out([out.lotube]==2).lofreq];
 % oldlo(2).obwamp = [out2.loAmpobw2];
 %% filter by fish frequency
 
-%hifreq
-for tube = 2:-1:1
-    figure(1); clf;
-
-        histogram(oldhi(tube).freq, 100); hold on;
-
-        %Lower lim
-        fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
-        [cutofffreqL, ~]  = ginput(1);
-        plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
-        drawnow; 
-
-        %Upper lim
-        fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
-        [cutofffreqH, ~]  = ginput(1);
-        plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
-        drawnow; 
-
-
-
-            hifreqidx = find(oldhi(tube).freq > cutofffreqL & oldhi(tube).freq < cutofffreqH);
-                    hi(tube).obwamp = oldhi(tube).obwamp(hifreqidx);
-                  %  hi(tube).pkamp = oldhi(tube).pkamp(hifreqidx);
-
-                    hi(tube).tim = oldhi(tube).tim(hifreqidx);
-                    hi(tube).freq = oldhi(tube).freq(hifreqidx);
-                    
-
-
-        pause(1);
-end
+% %hifreq
+% for tube = 2:-1:1
+%     figure(1); clf;
+% 
+%         histogram(oldhi(tube).freq, 100); hold on;
+% 
+%         %Lower lim
+%         fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
+%         [cutofffreqL, ~]  = ginput(1);
+%         plot([cutofffreqL, cutofffreqL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+%         drawnow; 
+% 
+%         %Upper lim
+%         fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
+%         [cutofffreqH, ~]  = ginput(1);
+%         plot([cutofffreqH, cutofffreqH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+%         drawnow; 
+% 
+% 
+% 
+%             hifreqidx = find(oldhi(tube).freq > cutofffreqL & oldhi(tube).freq < cutofffreqH);
+%                     hi(tube).obwamp = oldhi(tube).obwamp(hifreqidx);
+%                   %  hi(tube).pkamp = oldhi(tube).pkamp(hifreqidx);
+% 
+%                     hi(tube).tim = oldhi(tube).tim(hifreqidx);
+%                     hi(tube).freq = oldhi(tube).freq(hifreqidx);
+%                     
+% 
+% 
+%         pause(1);
+% end
 %low
 
 for tube = 2:-1:1
