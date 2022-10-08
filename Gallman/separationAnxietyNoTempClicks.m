@@ -323,7 +323,7 @@ fixme = 0;
     end       
    
     [~, lmaxidx] = find(f2.fftfreq(lowfreqidx) == currlofreq);
-    [~, hmaxidx] = find(f1.fftfreq(hifreqidx) == currhifreq);
+    [~, hmaxidx] = find(f2.fftfreq(hifreqidx) == currhifreq);
     
      figure(2); 
             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
