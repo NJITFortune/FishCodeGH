@@ -231,15 +231,15 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
           if  hipeakamp < 0.05 || currhifreq > 419 && currhifreq < 421 %|| currhifreq < 570% || currhifreq > 419 && currhifreq < 421  hipeakamp < 0.1 ||
               currhifreq = oldcurrhifreq;
           else
-%                  if j > 3 
-%                    if  currhifreq < oldmidpoint %|| currhifreq < 600 
-%                     currhifreq = 620;
-%                    end
-%                     
-% %                     if currhifreq < 0.005 || currhifreq > 600
-% %                         currhifreq = oldcurrhifreq;
-% %                     end
-%                  end
+                 if j > 3 
+                   if  currhifreq < oldmidpoint %|| currhifreq < 600 
+                    currhifreq = oldcurrhifreq;
+                   end
+                    
+%                     if currhifreq < 0.005 || currhifreq > 600
+%                         currhifreq = oldcurrhifreq;
+%                     end
+                 end
           end
         end 
         
@@ -432,7 +432,7 @@ oldmidpoint = midpoint;
 oldcurrlofreq = currlofreq;
 oldcurrhifreq = currhifreq;
 % pause(0.3)
-
+end
 %%
 figure(4); clf; hold on; 
 
