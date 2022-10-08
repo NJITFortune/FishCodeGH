@@ -104,67 +104,67 @@ end
     
 
 close(1);
-%% plot result of frequency filtering
-
- figure(459); clf; hold on;
-
-
-    ax(1) = subplot(411); title('high frequency fish'); hold on; %ylim([0,2]);
-            
-            plot(oldhi(1).tim, oldhi(1).obwamp, 'ko');
-            plot(hi(1).tim, hi(1).obwamp, 'bo');
-
-            plot(oldhi(2).tim, oldhi(2).obwamp, 'ko');    
-            plot(hi(2).tim, hi(2).obwamp, 'co');
-            
-%             plot(oldhi(1).tim, oldhi(1).pkamp, 'ko');
-%             plot(hi(1).tim, hi(1).pkamp, 'bo');
+% %% plot result of frequency filtering
+% 
+%  figure(459); clf; hold on;
+% 
+% 
+%     ax(1) = subplot(411); title('high frequency fish'); hold on; %ylim([0,2]);
 %             
-%             plot(oldhi(2).tim, oldhi(2).pkamp, 'ko');
-%             plot(hi(2).tim, hi(2).pkamp, 'co');
+%             plot(oldhi(1).tim, oldhi(1).obwamp, 'ko');
+%             plot(hi(1).tim, hi(1).obwamp, 'bo');
+% 
+%             plot(oldhi(2).tim, oldhi(2).obwamp, 'ko');    
+%             plot(hi(2).tim, hi(2).obwamp, 'co');
 %             
-          
-            
-    ax(2) = subplot(412); title('low frequency fish'); hold on; %ylim([0,3]);
-            
-            plot(oldlo(1).tim, oldlo(1).obwamp, 'ko');
-            plot(lo(1).tim, lo(1).obwamp, 'ro');
-
-            
-            plot(oldlo(2).tim, oldlo(2).obwamp, 'ko');
-            plot(lo(2).tim, lo(2).obwamp, 'mo');
-
-%             plot(oldlo(1).tim, oldlo(1).pkamp, 'ko');
-%             plot(lo(1).tim, lo(1).pkamp, 'ro');
+% %             plot(oldhi(1).tim, oldhi(1).pkamp, 'ko');
+% %             plot(hi(1).tim, hi(1).pkamp, 'bo');
+% %             
+% %             plot(oldhi(2).tim, oldhi(2).pkamp, 'ko');
+% %             plot(hi(2).tim, hi(2).pkamp, 'co');
+% %             
+%           
 %             
-%             plot(oldlo(2).tim, oldlo(2).pkamp, 'ko');
-%             plot(lo(2).tim, lo(2).pkamp, 'mo');
-            
-                     
-    ax(3) = subplot(413); title('fish frequencies'); hold on; %ylim([300, 700]);
-    
-            
-            plot(oldhi(1).tim, oldhi(1).freq, 'ko');
-            plot(hi(1).tim, hi(1).freq, 'bo');
-            
-            plot(oldhi(2).tim, oldhi(2).freq, 'ko');
-            plot(hi(2).tim, hi(2).freq, 'co');
-            
-            plot(oldlo(1).tim, oldlo(1).freq, 'ko');
-            plot(lo(1).tim, lo(1).freq, 'ro');
-            
-            plot(oldlo(2).tim, oldlo(2).freq, 'ko');   
-            plot(lo(2).tim, lo(2).freq, 'mo');
-               
-        
-%     ax(4) = subplot(514); title('temperature'); hold on;
-%             plot([out.timcont]/3600, [out.temp]);
+%     ax(2) = subplot(412); title('low frequency fish'); hold on; %ylim([0,3]);
 %             
-
-    ax(4) = subplot(414); title('light cycle'); hold on;
-            plot([out.timcont]/3600, [out.light]);
-            
-
-linkaxes(ax, 'x');
-
-
+%             plot(oldlo(1).tim, oldlo(1).obwamp, 'ko');
+%             plot(lo(1).tim, lo(1).obwamp, 'ro');
+% 
+%             
+%             plot(oldlo(2).tim, oldlo(2).obwamp, 'ko');
+%             plot(lo(2).tim, lo(2).obwamp, 'mo');
+% 
+% %             plot(oldlo(1).tim, oldlo(1).pkamp, 'ko');
+% %             plot(lo(1).tim, lo(1).pkamp, 'ro');
+% %             
+% %             plot(oldlo(2).tim, oldlo(2).pkamp, 'ko');
+% %             plot(lo(2).tim, lo(2).pkamp, 'mo');
+%             
+%                      
+%     ax(3) = subplot(413); title('fish frequencies'); hold on; %ylim([300, 700]);
+%     
+%             
+%             plot(oldhi(1).tim, oldhi(1).freq, 'ko');
+%             plot(hi(1).tim, hi(1).freq, 'bo');
+%             
+%             plot(oldhi(2).tim, oldhi(2).freq, 'ko');
+%             plot(hi(2).tim, hi(2).freq, 'co');
+%             
+%             plot(oldlo(1).tim, oldlo(1).freq, 'ko');
+%             plot(lo(1).tim, lo(1).freq, 'ro');
+%             
+%             plot(oldlo(2).tim, oldlo(2).freq, 'ko');   
+%             plot(lo(2).tim, lo(2).freq, 'mo');
+%                
+%         
+% %     ax(4) = subplot(514); title('temperature'); hold on;
+% %             plot([out.timcont]/3600, [out.temp]);
+% %             
+% 
+%     ax(4) = subplot(414); title('light cycle'); hold on;
+%             plot([out.timcont]/3600, [out.light]);
+%             
+% 
+% linkaxes(ax, 'x');
+% 
+% 
