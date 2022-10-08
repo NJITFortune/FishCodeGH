@@ -233,7 +233,7 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
           else
                  if j > 3 
                    if  currhifreq < oldmidpoint || currhifreq < 600 
-                    currhifreq = 623;
+                    currhifreq = 620;
                    end
                     
 %                     if currhifreq < 0.005 || currhifreq > 600
