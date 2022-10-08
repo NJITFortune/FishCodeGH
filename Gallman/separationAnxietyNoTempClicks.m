@@ -228,12 +228,12 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
 
        %if max change in higher fish frequency
         if abs(currhifreq-oldcurrhifreq) > maxchangehi %|| currhifreq < 590 
-          if  currhifreq > 419 && currhifreq < 421 %|| currhifreq < 570% || currhifreq > 419 && currhifreq < 421  hipeakamp < 0.1 ||
+          if  hipeakamp < 0.05 || currhifreq > 419 && currhifreq < 421 %|| currhifreq < 570% || currhifreq > 419 && currhifreq < 421  hipeakamp < 0.1 ||
               currhifreq = oldcurrhifreq;
           else
                  if j > 3 
-                   if  currhifreq < oldmidpoint
-                    currhifreq = out(j-2).hifreq;
+                   if  currhifreq < oldmidpoint || currhifreq < 600 
+                    currhifreq = 623;
                    end
                     
 %                     if currhifreq < 0.005 || currhifreq > 600
