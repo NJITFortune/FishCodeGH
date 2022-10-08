@@ -434,7 +434,7 @@ oldmidpoint = midpoint;
 oldcurrlofreq = currlofreq;
 oldcurrhifreq = currhifreq;
 % pause(0.3)
-end
+
 %%
 figure(4); clf; hold on; 
 
