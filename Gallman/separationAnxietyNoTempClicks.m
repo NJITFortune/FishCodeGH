@@ -332,9 +332,7 @@ fixme = 0;
             midpoint = currlofreq + ((currhifreq - currlofreq)/2);
             plot([midpoint, midpoint], [0 1], 'k');
             text(350, 0.5, num2str(j));
-            drawnow;
-           
-    
+            drawnow;    
 
 %% Put the data into the output structure   
     %eliminate supernoisy data
