@@ -326,8 +326,9 @@ fixme = 0;
     [~, hmaxidx] = find(f2.fftfreq(hifreqidx) == currhifreq);
     
      figure(2); 
-            plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
-            plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);           
+     if ~isempty(lmaxidx); plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);end
+     if ~isempty(hmaxidx);  plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16); end       
+            
             midpoint = currlofreq + ((currhifreq - currlofreq)/2);
             plot([midpoint, midpoint], [0 1], 'k');
             text(350, 0.5, num2str(j));
