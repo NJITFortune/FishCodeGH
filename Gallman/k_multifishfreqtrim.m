@@ -1,4 +1,4 @@
-function [hi, lo] = k_multifishfreqtrim(out)%, out2)
+function [ lo] = k_multifishfreqtrim(out)%, out2)
 %% usage
 % out = kg2(k).s
 %takes raw fft amp data from each tube and assigns it to high and low freq fish
