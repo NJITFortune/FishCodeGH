@@ -113,8 +113,8 @@ end
     
      %filter data
         %cut off frequency
-       %  highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
-        highWn = 0.003/(ReFs/2);
+         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+       % highWn = 0.003/(ReFs/2);
 
         %low pass removes spikey-ness
         lowWn = 0.025/(ReFs/2);%OG
@@ -122,13 +122,13 @@ end
         [dd,cc] = butter(5, lowWn, 'low');
         datadata = filtfilt(dd,cc, double(regobwpeaks));
 
-        
-        %high pass removes feeding trend for high frequency experiments
-        if ld < 11
-        [bb,aa] = butter(5, highWn, 'high');
-        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
-
-        end
+%         
+%         %high pass removes feeding trend for high frequency experiments
+%         if ld < 11
+%         [bb,aa] = butter(5, highWn, 'high');
+%         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+% 
+%         end
     
     dataminusmean = datadata - mean(datadata);    
 
