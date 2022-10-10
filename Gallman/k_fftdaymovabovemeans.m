@@ -22,7 +22,8 @@ ld = in(1).day(1).ld;
                 fish(j).amprange(k,:) = in(j).day(k).amprange;
                 amprange(k,:) = in(j).day(k).amprange;
 
-                fday(k,:) = in(j).day(k).
+                fday(k,:) = in(j).day(k).freq;
+                tday(k,:) = in(j).day(k).temp;
                
         end
     
@@ -30,10 +31,12 @@ ld = in(1).day(1).ld;
        if length(in(j).day) > 1  
       %average across days   
        daymean(j,:) = mean(mday);
-       
+       freqday(j,:) = mean(fday);
+       tempday(j,:) = mean(tday);
       else
        daymean(j,:) = mday;
-     
+       freqday(j,:) = fday;
+       tempday(j,:) = tday;
        end
 
         avgrange(j,:) = mean(amprange);
@@ -43,10 +46,14 @@ ld = in(1).day(1).ld;
     numrow = size(daymean);
     if numrow(1) == 1
          exp.meanofexperimentmeans = movmean(daymean, 5);
+         exp.meanoftempmeans = tempday;
+         exp.meanoffreqmeans = freqday;
     else
     %averages for each x hour set of experiments
     expmean = mean(daymean);
     exp.meanofexperimentmeans = movmean(expmean, 5);
+    exp.meanoffreqmeans = mean(freqday);
+    exp.meanoftempmeans = mean(tempday);
     end
     %testmean = movmean(expmean, 5);
     %average max and min
