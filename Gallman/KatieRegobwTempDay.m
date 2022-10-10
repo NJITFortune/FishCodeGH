@@ -140,7 +140,7 @@ hotter = [hotter(hotter>0)];
     
 %Regularize
     %regularize data to ReFs interval
-    [regobwtim, regobwfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp,ReFs, temptims);
+    [regobwtim, regobwfreq, regtemp, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp,ReFs, temptims);
     
 
      %filter data
@@ -169,7 +169,7 @@ hotter = [hotter(hotter>0)];
     %obwyy = regobwpeaks(timidx);  
      obwyy = datadata(timidx); 
     freq = regobwfreq(timidx);  
-    newtemp = re
+    newtemp = regtemp(timidx);
  
 
 
@@ -205,6 +205,8 @@ hotter = hotter*3600;
                         hotday(j).entiretimcont = xx(hdayidx);
     
                         hotday(j).freq = freq(hdayidx);
+
+                        hotday(j).temp = newtemp(hdayidx);
                         
                         hotday(j).tim(:) = xx(hdayidx)-xx(hdayidx(1));
                         
@@ -230,6 +232,8 @@ for j = 1:length(colder)
                     coldday(j).entiretimcont = xx(cdayidx);
 
                     coldday(j).freq = freq(cdayidx);
+
+                    coldday(j).temp = newtemp(cdayidx);
                     
                     coldday(j).tim(:) = xx(cdayidx)-xx(cdayidx(1));
                     
