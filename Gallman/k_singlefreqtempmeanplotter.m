@@ -22,7 +22,7 @@ figure(j + 700); clf; hold on;
            % othermday = mday/(length(day));
             plot(day(1).tim/3600, ttday, 'r-', 'LineWidth', 3);
           %  plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-            plot([day(1).ld day(1).ld], ylim, 'k-', 'LineWidth', 3);
+%            plot([day(1).ld day(1).ld], ylim, 'k-', 'LineWidth', 3);
 
 
    subplot(122); title('frequency'); hold on;
@@ -39,7 +39,7 @@ figure(j + 700); clf; hold on;
            % othermday = mday/(length(day));
             plot(day(1).tim/3600, ffday, 'b-', 'LineWidth', 3);
           %  plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-            plot([day(1).ld day(1).ld], ylim, 'k-', 'LineWidth', 3);
+      %      plot([day(1).ld day(1).ld], ylim, 'k-', 'LineWidth', 3);
             
             
 
