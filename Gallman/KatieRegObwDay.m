@@ -130,7 +130,7 @@ end
 
         end
     
-    dataminusmean = datadata - mean(datadata);    
+    dataminusmean = datadata;% - mean(datadata);    
    % dataminusmean = regobwpeaks - mean(regobwpeaks);    
    % dataminusmean = regobwpeaks;    
 
