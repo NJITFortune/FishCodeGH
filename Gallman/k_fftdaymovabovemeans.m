@@ -28,7 +28,7 @@ ld = in(1).day(1).ld;
         end
     
     %necessary so that the mean of a single day isn't one value  
-       if length(in(j).day) > 1  
+       if length([in(j).day]) > 1  
       %average across days   
        daymean(j,:) = mean(mday);
        freqday(j,:) = mean(fday);
