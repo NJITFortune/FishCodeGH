@@ -1,6 +1,6 @@
-function [exp, fish, ld] = k_fftdaymovabovemeans(in)
-%   clearvars -except hkg hkg2 dark light darkmulti lightmulti kg kg2
-%   in = darkmulti(3).h;
+%function [exp, fish, ld] = k_fftdaymovabovemeans(in)
+  clearvars -except hkg hkg2 dark light darkmulti lightmulti kg kg2
+  in = darkmulti(7).h;
 
 ld = in(1).day(1).ld;
 
