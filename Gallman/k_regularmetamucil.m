@@ -77,7 +77,7 @@ for j = 2:length(dd) % The rest of the data
     newtim = [newtim oldtim(dd(j-1) + 1:dd(j))];
     newampNaN = [newampNaN oldamp(dd(j-1) + 1:dd(j))];
     newfreqNaN = [newfreqNaN oldfreq(dd(j-1) + 1:dd(j))];
-    newtempNaN = [newtempNaN oldfreq(dd(j-1) + 1:dd(j))];
+    newtempNaN = [newtempNaN oldtemp(dd(j-1) + 1:dd(j))];
    
     % Insert the missing times and NaNs at the end
     insertims = (((1:d(dd(j))) * regularinterval) + newtim(end)); 
