@@ -18,7 +18,7 @@ ld = in(1).day(1).ld;
         for k = length(in(j).day):-1:1 %days within each trial
         
               %fill temporary vector with data from each day 
-                mday(k,:) = in(j).day(k).Sobwyy;
+                mday(k,:) = [in(j).day(k).Sobwyy];
                 fish(j).amprange(k,:) = in(j).day(k).amprange;
                 amprange(k,:) = in(j).day(k).amprange;
 
@@ -27,18 +27,18 @@ ld = in(1).day(1).ld;
                
         end
     
-    %necessary so that the mean of a single day isn't one value  
-       if length([in(j).day]) > 1  
-      %average across days   
-       daymean(j,:) = mean(mday);
-       freqday(j,:) = mean(fday);
-       tempday(j,:) = mean(tday);
-      else
+     numdays = size(mday);
+    if numdays(1) == 1
+     
        daymean(j,:) = mday;
        freqday(j,:) = fday;
        tempday(j,:) = tday;
-       end
-
+    else
+         %average across days   
+       daymean(j,:) = mean(mday);
+       freqday(j,:) = mean(fday);
+       tempday(j,:) = mean(tday);
+    end
         avgrange(j,:) = mean(amprange);
     
  end
