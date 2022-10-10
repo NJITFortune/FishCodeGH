@@ -130,9 +130,9 @@ end
 
         end
     
-   % dataminusmean = datadata - mean(datadata);    
+    dataminusmean = datadata - mean(datadata);    
    % dataminusmean = regobwpeaks - mean(regobwpeaks);    
-    dataminusmean = regobwpeaks;    
+   % dataminusmean = regobwpeaks;    
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
