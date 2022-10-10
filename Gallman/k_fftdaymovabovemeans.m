@@ -22,7 +22,7 @@ ld = in(1).day(1).ld;
                 fish(j).amprange(k,:) = in(j).day(k).amprange;
                 amprange(k,:) = in(j).day(k).amprange;
 
-                fday(k,:) = 
+                fday(k,:) = in(j).day(k).
                
         end
     
