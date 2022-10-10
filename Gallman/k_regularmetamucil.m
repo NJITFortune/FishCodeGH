@@ -94,7 +94,7 @@ end
 % Make a filled version
     newampFilled = fillmissing(newampNaN, 'linear');
     newfreqFilled = fillmissing(newfreqNaN, 'linear');
-    newtempFilled = fillmissing(newfreqNaN, 'linear');
+    newtempFilled = fillmissing(newtempNaN, 'linear');
   
 
 %mean subtractions happens after amp filtering out side of this function
