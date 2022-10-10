@@ -1,11 +1,11 @@
-function tempC = k_temptocelcius(in)
+function tempC = k_temptocelcius(tempV)
 %clearvars -except kg kg2
 
 % in = kg(103);
 channel = 1;
 
 %define input variables
-tempV = [in.e(channel).s.temp];
+%tempV = [in.e(channel).s.temp];
 
 %define variables for calculations
     %constants
@@ -20,7 +20,7 @@ tempV = [in.e(channel).s.temp];
     R1d = 9700; % adjust for each from 10000 //9500
     R1e = 10000; % adjust for each from 10000 //9500//11500
 
-R1 = R1e
+R1 = R1e;
 
 %analogread converts voltage to a digital value from 0-1023
 %voltage * (1023/5) adapts the arduino code for the NiDaq
