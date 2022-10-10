@@ -131,7 +131,8 @@ end
         end
     
    % dataminusmean = datadata - mean(datadata);    
-    dataminusmean = regobwpeaks - mean(regobwpeaks);    
+   % dataminusmean = regobwpeaks - mean(regobwpeaks);    
+    dataminusmean = regobwpeaks;    
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
@@ -204,8 +205,9 @@ for j = 1:howmanydaysinsample
  
 %days over experiment time
 figure(55); clf; hold on;
-
-    plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+    
+    plot(timmy/3600, obwAmp, '.');
+   % plot(timmy/3600, obwAmp-mean(obwAmp), '.');
     for j = 1:length(day)
         plot(day(j).entiretimcont/3600, day(j).Sobwyy);
     end
@@ -232,7 +234,7 @@ figure(55); clf; hold on;
         plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
     end
 
-     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+     plot(timmy/3600, obwAmp, '.');
 
 %average over single day    
 figure(56); clf; hold on; 
