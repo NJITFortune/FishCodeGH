@@ -114,7 +114,7 @@ end
      %filter data
         %cut off frequency
        %  highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
-        highWn = 0.004/(ReFs/2);
+        highWn = 0.003/(ReFs/2);
 
         %low pass removes spikey-ness
         lowWn = 0.025/(ReFs/2);%OG
