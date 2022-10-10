@@ -136,10 +136,11 @@ hotter = [hotter(hotter>0)];
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
     peakfreq = fishfreq(LOCS(cLOCS));
+    peaktemp = temp(LOCS(cLOCS));
     
 %Regularize
     %regularize data to ReFs interval
-    [regobwtim, regobwfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, ReFs, temptims);
+    [regobwtim, regobwfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp,ReFs, temptims);
     
 
      %filter data
@@ -168,6 +169,7 @@ hotter = [hotter(hotter>0)];
     %obwyy = regobwpeaks(timidx);  
      obwyy = datadata(timidx); 
     freq = regobwfreq(timidx);  
+    newtemp = re
  
 
 
