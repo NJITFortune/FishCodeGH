@@ -15,10 +15,11 @@ porange2 = [244/255, 165/255, 130/255];
 pyellow2 = [254/255, 218/255, 139/255];
 mint = [90/255, 174/255, 97/255];
 ppurple2 = [194/255, 165/255, 207/255];
+purple = [0.4940 0.1840 0.5560];
 
 %pgrey = [221/255, 2221/255, 221/255]; %maybe save for background
 
-clrs = [pblue; pcyan; mint; pink; BlueSky; darkpurple; pblack; porange2; pyellow2; pgreen;ppurple2];
+clrs = [pblue; pcyan; mint; pink; BlueSky; darkpurple; pblack; porange2; pyellow2; pgreen;ppurple2; purple];
 % 
 % %Blue sky
 % BlueSky = [106/255, 90/255, 205/255];
