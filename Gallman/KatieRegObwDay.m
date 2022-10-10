@@ -100,6 +100,8 @@ end
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
+    peakfreq = oldfreq(LOCS(cLOCS));
+    peaktemp = oldtemp(LOCS(cLOCS));
     
 %     % plot checking peaks
 %     figure(45); clf; hold on;   
@@ -109,7 +111,7 @@ end
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, oldtemp, ReFs, lighttimes);
+    [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, lighttimes);
     
      %filter data
         %cut off frequency
