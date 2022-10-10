@@ -123,12 +123,12 @@ end
         datadata = filtfilt(dd,cc, double(regobwpeaks));
 
         
-        %high pass removes feeding trend for high frequency experiments
-        if ld < 11
-        [bb,aa] = butter(5, highWn, 'high');
-        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
-
-        end
+%         %high pass removes feeding trend for high frequency experiments
+%         if ld < 11
+%         [bb,aa] = butter(5, highWn, 'high');
+%         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+% 
+%         end
     
     dataminusmean = datadata;% - mean(datadata);    
    % dataminusmean = regobwpeaks - mean(regobwpeaks);    
