@@ -44,7 +44,7 @@ function [exp, fish, td] = k_tempdaymeans(in)
       avgrange(j,:) = mean(amprange);
  
       %necessary so that the mean of a single day isn't one value 
-       numdays = size(in(j).tday);
+       numdays = size(mtday);
       if  numdays(1) == 1  
       %average across days   
        tdaymean(j,:) = mtday;
