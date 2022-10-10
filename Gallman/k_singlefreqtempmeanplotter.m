@@ -11,8 +11,9 @@ figure(j + 700); clf; hold on;
     %mean two ways to prove math
   %  mday = zeros(1, length(day(1).tim));        
      for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).temp);
-            tempday(j,:) = day(j).temp;
+         
+            plot(day(j).tim/3600, k_temptocelcius(day(j).temp));
+            tempday(j,:) = k_temptocelcius(day(j).temp);
          %   mday = mday + day(j).Sobwyy;
             
      end
