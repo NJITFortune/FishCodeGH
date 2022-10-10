@@ -21,6 +21,8 @@ ld = in(1).day(1).ld;
                 mday(k,:) = in(j).day(k).Sobwyy;
                 fish(j).amprange(k,:) = in(j).day(k).amprange;
                 amprange(k,:) = in(j).day(k).amprange;
+
+                fday(k,:) = 
                
         end
     
