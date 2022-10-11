@@ -171,7 +171,7 @@ hotter = [hotter(hotter>0)];
     plot(timcont/3600, temp);
     plot([temptims'/3600 temptims'/3600], [2,3], 'k-');
 
-   for j = 1:length(colddurs) 
+   for j = 1:min(([length(hotter), length(colder)])) 
    plot([colder(j) colder(j)], [2 3], 'c-');
    plot([hotter(j) hotter(j)], [2 3], 'r-');
    end
