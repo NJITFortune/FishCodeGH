@@ -196,7 +196,7 @@ hotter = [hotter(hotter>0)];
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regfreq, regtemp,regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, lighttimes);
+    [regtim, regfreq, regtemp,regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, temptims);
     
    %filter data
         %cut off frequency
