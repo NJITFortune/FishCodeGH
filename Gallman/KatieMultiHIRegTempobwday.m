@@ -83,10 +83,10 @@ if fish == 5 %low freq
  
 end
 
-temp = temp(timcont/3600 >= temptims(1)-td/2 & timcont/3600 <= temptims(end)+td/2);
+
 %% crop data to temptims
 if isempty(poweridx) %if there are no values in poweridx []
-%%
+
     for j = 2%:length(temptims)
     
     tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
@@ -101,13 +101,13 @@ if isempty(poweridx) %if there are no values in poweridx []
 
     end  
 
-%       if heat == 7 && tiz(1) > 0 %we want start with cooling and the experiment starts with warming
-%         temptims = temptims(2:end); %skip the first temptim so we start with cooling
-%         tiz = tiz(2:end); hotter = hotter(2:end);
-%       elseif heat == 8 && tiz(1) < 0 %we want start with warming and the experiment starts with cooling
-%         temptims = temptims(2:end); %skip the first temptim so we start with cooling
-%         tiz = tiz(2:end); colder = colder(2:end);
-%       end
+      if heat == 7 && tiz(1) > 0 %we want start with cooling and the experiment starts with warming
+        temptims = temptims(2:end); %skip the first temptim so we start with cooling
+        tiz = tiz(2:end); hotter = hotter(2:end);
+      elseif heat == 8 && tiz(1) < 0 %we want start with warming and the experiment starts with cooling
+        temptims = temptims(2:end); %skip the first temptim so we start with cooling
+        tiz = tiz(2:end); colder = colder(2:end);
+      end
 
 else %we have poweridx values
 
