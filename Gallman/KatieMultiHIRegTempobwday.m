@@ -15,7 +15,7 @@ ReFs = 20;
 light = 3; %start with dark
 fish = 6; %hi freq
 heat = 8; %starts with warming
-td = 12;
+td = 6;
 
 % light = 4; %start with light
 % fish = 5; %lo freq
