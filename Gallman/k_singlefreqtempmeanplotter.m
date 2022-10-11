@@ -12,8 +12,8 @@ figure(j + 700); clf; hold on;
   %  mday = zeros(1, length(day(1).tim));        
      for j = 1:length(day)
          
-            plot(day(j).tim/3600, k_temptocelcius(day(j).temp), 10000);
-            tempday(j,:) = k_temptocelcius(day(j).temp, 10000);
+            plot(day(j).tim/3600, day(j).temp;
+            tempday(j,:) = day(j).temp;
          %   mday = mday + day(j).Sobwyy;
             
      end
