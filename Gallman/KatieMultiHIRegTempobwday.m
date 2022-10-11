@@ -14,6 +14,7 @@ in = kg2(k);
 ReFs = 20;
 light = 3; %start with dark
 fish = 6; %hi freq
+heat = 8;
 
 % light = 4; %start with light
 % fish = 5; %lo freq
