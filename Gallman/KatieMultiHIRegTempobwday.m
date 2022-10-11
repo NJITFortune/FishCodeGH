@@ -22,7 +22,7 @@ heat = 8;
 
 % redefine length of light cycle
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
-temp = [kg2(k).s.temp];
+
 temptims = sort([in.info.temptims]);
 
 if fish == 6 %high freq
@@ -46,14 +46,14 @@ if fish == 6 %high freq
 
 %poweridx
     poweridx = [in.info.Hipoweridx];
-
-
+    
 
 %raw data
     timcont = [in.hifish(ttohi).timcont];
     obw = [in.hifish(ttohi).obwAmp];
     oldfreq = [in.hifish(ttohi).freq];
-   
+    temp = [in.s(ttohi).temp];
+
 
 end
 
@@ -77,6 +77,7 @@ if fish == 5 %low freq
     timcont = [in.lofish(ttolo).timcont];
     obw = [in.lofish(ttolo).obwAmp];
     oldfreq = [in.lofish(ttolo).freq];
+      temp = [in.s(ttolo).temp];
     
  
 end
