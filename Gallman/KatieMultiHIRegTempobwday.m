@@ -155,15 +155,25 @@ else
 end
 
 
-%start temptims with enough data for the first transitions    
- if timcont(1)/3600 > (temptims(1)/3600 -td/2)
-        temptims = temptims(2:end);
-        if tiz(1) > 0
-            hotter = hotter(2:end);
-        else
-            colder = colder(2:end);
-        end
- end
+% %start temptims with enough data for the first transitions    
+%  if timcont(1)/3600 > (temptims(1)/3600 -td/2)
+%         temptims = temptims(2:end);
+%         if tiz(1) > 0
+%             hotter = hotter(2:end);
+%         else
+%             colder = colder(2:end);
+%         end
+%  end
+
+ figure(455); clf; hold on;
+
+    plot(timcont/3600, temp);
+    plot([temptims'/3600 temptims'/3600], [2,3], 'k-');
+
+   for j = 1:length(colddurs) 
+   plot([colder(j) colder(j)], [2 3], 'c-');
+   plot([hotter(j) hotter(j)], [2 3], 'r-');
+   end
 %% process data
 
 %Take top of dataset
