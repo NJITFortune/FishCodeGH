@@ -25,7 +25,8 @@ ld = in(1).day(1).ld;
                 amprange(k,:) = in(j).day(k).amprange;
 
                 fday(k,:) = in(j).day(k).freq;
-                tday(k,:) = k_temptocelcius(in(j).day(k).temp);
+               % tday(k,:) = k_temptocelcius(in(j).day(k).temp);
+                tday(k,:) = in(j).day(k).temp;
                
         end
     
