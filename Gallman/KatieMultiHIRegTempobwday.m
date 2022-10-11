@@ -147,12 +147,12 @@ hotter = [hotter(hotter>0)];
 
 
 
-
-if  tiz(1) > 0 %we start with hotter
-    td = mean(hotdurs);
-else
-    td = mean(colddurs);
-end
+% 
+% if  tiz(1) > 0 %we start with hotter
+%     td = mean(hotdurs);
+% else
+%     td = mean(colddurs);
+% end
 
 
 % %start temptims with enough data for the first transitions    
