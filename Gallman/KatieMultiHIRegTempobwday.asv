@@ -15,7 +15,7 @@ ReFs = 20;
 light = 3; %start with dark
 fish = 6; %hi freq
 heat = 8; %starts with warming
-td = 12;
+td = 6;
 
 % light = 4; %start with light
 % fish = 5; %lo freq
@@ -83,12 +83,12 @@ if fish == 5 %low freq
  
 end
 
-tempmeanidx = find(timcont/3600 >= )
+
 
 %% crop data to temptims
 if isempty(poweridx) %if there are no values in poweridx []
-%%
-    for j = 3%:length(temptims)
+
+    for j = 2:length(temptims)
     
     tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
 
@@ -101,8 +101,7 @@ if isempty(poweridx) %if there are no values in poweridx []
         end
 
     end  
-%%
-      if heat == 7 && tiz(1) > 0 %we want start with cooling and the experiment starts with warming
+   if heat == 7 && tiz(1) > 0 %we want start with cooling and the experiment starts with warming
         temptims = temptims(2:end); %skip the first temptim so we start with cooling
         tiz = tiz(2:end); hotter = hotter(2:end);
       elseif heat == 8 && tiz(1) < 0 %we want start with warming and the experiment starts with cooling
@@ -197,7 +196,7 @@ hotter = [hotter(hotter>0)];
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regfreq, regtemp,regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, lighttimes);
+    [regtim, regfreq, regtemp,regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, temptims);
     
    %filter data
         %cut off frequency
@@ -221,17 +220,17 @@ hotter = [hotter(hotter>0)];
 
 
     %trim everything to lighttimes
-    timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
+    timidx = regtim >= temptims(1)-td/2 & regtim <= temptims(end)+td/2;
     xx = regtim(timidx);
     obwyy = dataminusmean(timidx);  
     freq = regfreq(timidx);
     newtemp = regtemp(timidx);
 
-    rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
+    rawidx = timcont >= temptims(1) & timcont <= temptims(end);
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
-    rawfreq = oldfreq(rawidx);
-    rawtemp = oldtemp(rawidx);
+    freqRaw = oldfreq(rawidx);
+    rawtemp = temp(rawidx);
 
 
 %     %plot
@@ -387,14 +386,32 @@ figure(796); clf; title('amplitude over time');hold on;
             end
         end
     
-     %actual plotting of datums
-     plot(timmy/3600, obwAmp, '.');
-     plot(xx/3600, obwyy);
-    for j = 1:length(hotday)
-        plot(hotday(j).entiretimcont/3600, hotday(j).obw, 'LineWidth', 2);
-    end     
+   figure(223);clf; title('hot to cold amplitude transitions'); ylim([-.5,.5]);hold on;
+   amplim = ylim;
+    %boxes        
+        fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
+        fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
+   
+        for j = 1:length(coldday)
+            plot(coldday(j).tim/3600, coldday(j).obw-mean(coldday(j).obw));
+            colddayamps(j,:) = coldday(j).obw;
+        end
+    
+        coldampmean = mean(colddayamps);
+        plot(coldday(1).tim/3600, coldampmean-mean(coldampmean), 'k-', 'LineWidth',2)
+        plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2);          
 
-    for j = 1:length(coldday)
-        plot(coldday(j).entiretimcont/3600, coldday(j).obw, 'LineWidth', 2);
-    end   
-  
+     figure(224); clf; title('hot to cold frequency transitions'); ylim([mean(freqRaw)-60, mean(freqRaw)+60]); hold on;
+    amplim = ylim;
+        %boxes        
+        fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
+        fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
+   
+        for j = 1:length(coldday)
+            plot(coldday(j).tim/3600, coldday(j).freq);
+            colddayfreq(j,:) = coldday(j).freq;
+        end
+    
+        coldfreqmean = mean(colddayfreq);
+        plot(hotday(1).tim/3600, coldfreqmean, 'k-', 'LineWidth',2)
+        plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2); 
