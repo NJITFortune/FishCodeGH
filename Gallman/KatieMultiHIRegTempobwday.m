@@ -141,6 +141,9 @@ end
 %make temptims an integer
     %convert to seconds because xx is in seconds
     temptims = floor(temptims)*3600;
+%% duration of temp day
+colder = [colder(colder>0)];
+hotter = [hotter(hotter>0)];
 
 %start temptims with enough data for the first transitions    
  if timcont(1)/3600 > (temptims(1)/3600 -td/2)
