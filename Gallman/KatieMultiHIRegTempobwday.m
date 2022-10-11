@@ -386,7 +386,7 @@ figure(796); clf; title('amplitude over time');hold on;
                 end
             end
         end
-    
+%%    
    figure(223);clf; title('hot to cold amplitude transitions'); ylim([-.5,.5]);hold on;
    amplim = ylim;
     %boxes        
