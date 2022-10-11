@@ -414,5 +414,5 @@ figure(796); clf; title('amplitude over time');hold on;
         end
     
         coldfreqmean = mean(colddayfreq);
-        plot(hotday(1).tim/3600, coldfreqmean, 'k-', 'LineWidth',2)
+        plot(coldday(1).tim/3600, coldfreqmean, 'k-', 'LineWidth',2)
         plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2); 
