@@ -15,6 +15,7 @@ ReFs = 20;
 light = 3; %start with dark
 fish = 6; %hi freq
 heat = 8; %starts with warming
+td = 12;
 
 % light = 4; %start with light
 % fish = 5; %lo freq
@@ -156,15 +157,15 @@ hotter = [hotter(hotter>0)];
 % end
 
 
-% %start temptims with enough data for the first transitions    
-%  if timcont(1)/3600 > (temptims(1)/3600 -td/2)
-%         temptims = temptims(2:end);
-%         if tiz(1) > 0
-%             hotter = hotter(2:end);
-%         else
-%             colder = colder(2:end);
-%         end
-%  end
+%start temptims with enough data for the first transitions    
+ if timcont(1)/3600 > (temptims(1)/3600 -td/2)
+        temptims = temptims(2:end);
+        if tiz(1) > 0
+            hotter = hotter(2:end);
+        else
+            colder = colder(2:end);
+        end
+ end
 
  figure(455); clf; hold on;
 
