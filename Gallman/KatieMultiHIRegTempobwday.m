@@ -21,7 +21,7 @@ fish = 6; %hi freq
 
 % redefine length of light cycle
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
-oldtemp = [kg2(k).s.temp];
+temp = [kg2(k).s.temp];
 temptims = sort([in.info.temptims]);
 
 if fish == 6 %high freq
@@ -159,7 +159,7 @@ end
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
-    peaktemp = oldtemp(LOCS(cLOCS));
+    peaktemp = temp(LOCS(cLOCS));
     peakfreq = oldfreq(LOCS(cLOCS));
     
 %     % plot checking peaks
@@ -198,7 +198,7 @@ end
     xx = regtim(timidx);
     obwyy = dataminusmean(timidx);  
     freq = regfreq(timidx);
-    temp = regtemp(timidx);
+    newtemp = regtemp(timidx);
 
     rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
     timmy = timcont(rawidx);
