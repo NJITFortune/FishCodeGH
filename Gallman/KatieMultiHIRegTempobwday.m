@@ -229,7 +229,7 @@ hotter = [hotter(hotter>0)];
     rawidx = timcont >= temptims(1) & timcont <= temptims(end);
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
-    rawfreq = oldfreq(rawidx);
+    freqRaw = oldfreq(rawidx);
     rawtemp = temp(rawidx);
 
 
