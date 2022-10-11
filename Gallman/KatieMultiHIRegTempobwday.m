@@ -220,13 +220,13 @@ hotter = [hotter(hotter>0)];
 
 
     %trim everything to lighttimes
-    timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
+    timidx = regtim >= temptims(1) & regtim <= temptims(end);
     xx = regtim(timidx);
     obwyy = dataminusmean(timidx);  
     freq = regfreq(timidx);
     newtemp = regtemp(timidx);
 
-    rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
+    rawidx = timcont >= temptims(1) & timcont <= temptims(end);
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
     rawfreq = oldfreq(rawidx);
