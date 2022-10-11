@@ -145,6 +145,31 @@ end
 colder = [colder(colder>0)];
 hotter = [hotter(hotter>0)];
 
+
+
+ for j = 2:min(([length(hotter), length(colder)]))
+    if tiz(1) > 0 %we start with hotter
+
+        hotdurs(j-1,:) = colder(j-1) -  hotter(j-1);
+        colddurs(j-1,:) = hotter(j) - colder(j-1);
+
+    else    %we start with colder
+
+        colddurs(j-1,:) = hotter(j-1) - colder(j-1);
+        hotdurs(j-1,:) = colder(j) -  hotter(j-1);
+        
+    end
+
+end
+
+
+if  tiz(1) > 0 %we start with hotter
+    td = mean(hotdurs);
+else
+    td = mean(colddurs);
+end
+
+
 %start temptims with enough data for the first transitions    
  if timcont(1)/3600 > (temptims(1)/3600 -td/2)
         temptims = temptims(2:end);
@@ -154,7 +179,6 @@ hotter = [hotter(hotter>0)];
             colder = colder(2:end);
         end
  end
-
 %% process data
 
 %Take top of dataset
