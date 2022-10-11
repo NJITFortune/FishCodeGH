@@ -284,8 +284,8 @@ hotter = floor(hotter)*3600;
 
 %colder (hotter to colder tranistions)
 %%
-colder = floor(colder)*3600;
-for j = 1:length(colder)
+%colder = floor(colder)*3600;
+for j = 1%:length(colder)
     
               %resampled data  
     %         % Get the index of the start time of the day
