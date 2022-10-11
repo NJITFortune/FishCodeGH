@@ -84,6 +84,7 @@ if fish == 5 %low freq
 end
 
 
+
 %% crop data to temptims
 if isempty(poweridx) %if there are no values in poweridx []
 %%
