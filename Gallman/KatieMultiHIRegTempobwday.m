@@ -83,6 +83,7 @@ if fish == 5 %low freq
  
 end
 
+temp = temp(temp >= temptims(1)-td/2 & temp <= temptims(end)+td/2);
 %% crop data to temptims
 if isempty(poweridx) %if there are no values in poweridx []
 %%
