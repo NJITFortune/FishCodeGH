@@ -386,14 +386,32 @@ figure(796); clf; title('amplitude over time');hold on;
             end
         end
     
-     %actual plotting of datums
-     plot(timmy/3600, obwAmp, '.');
-     plot(xx/3600, obwyy);
-    for j = 1:length(hotday)
-        plot(hotday(j).entiretimcont/3600, hotday(j).obw, 'LineWidth', 2);
-    end     
+   figure(223);clf; title('hot to cold amplitude transitions'); ylim([-.5,.5]);hold on;
+   amplim = ylim;
+    %boxes        
+        fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
+        fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
+   
+        for j = 1:length(coldday)
+            plot(coldday(j).tim/3600, coldday(j).obw-mean(coldday(j).obw));
+            colddayamps(j,:) = coldday(j).obw;
+        end
+    
+        coldampmean = mean(colddayamps);
+        plot(coldday(1).tim/3600, coldampmean-mean(coldampmean), 'k-', 'LineWidth',2)
+        plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2);          
 
-    for j = 1:length(coldday)
-        plot(coldday(j).entiretimcont/3600, coldday(j).obw, 'LineWidth', 2);
-    end   
-  
+     figure(224); clf; title('hot to cold frequency transitions'); ylim([mean(freqRaw)-60, mean(freqRaw)+60]); hold on;
+    amplim = ylim;
+        %boxes        
+        fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
+        fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
+   
+        for j = 1:length(coldday)
+            plot(coldday(j).tim/3600, coldday(j).freq);
+            colddayfreq(j,:) = coldday(j).freq;
+        end
+    
+        coldfreqmean = mean(colddayfreq);
+        plot(hotday(1).tim/3600, coldfreqmean, 'k-', 'LineWidth',2)
+        plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2); 
