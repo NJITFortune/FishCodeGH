@@ -255,7 +255,7 @@ hotter = [hotter(hotter>0)];
 %refstim = ReFs:ReFs:(shortest)*3600;
 
 %hotter (colder to hotter tranistions)
-hotter = hotter*3600;
+hotter = floor(hotter)*3600;
 
     for j = 1:length(hotter)
         
@@ -283,7 +283,7 @@ hotter = hotter*3600;
     end
 
 %colder (hotter to colder tranistions)
-colder = colder*3600;
+colder = floor(colder)*3600;
 for j = 1:length(colder)
     
               %resampled data  
