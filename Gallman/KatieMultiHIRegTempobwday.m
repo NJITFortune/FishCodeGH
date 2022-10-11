@@ -87,7 +87,7 @@ end
 %% crop data to temptims
 if isempty(poweridx) %if there are no values in poweridx []
 %%
-    for j = 2%:length(temptims)
+    for j = 3%:length(temptims)
     
     tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
 
