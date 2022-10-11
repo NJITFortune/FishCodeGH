@@ -14,7 +14,7 @@ in = kg2(k);
 ReFs = 20;
 light = 3; %start with dark
 fish = 6; %hi freq
-heat = 8; %starts with warming
+heat = 7; %starts with warming
 td = 6;
 
 % light = 4; %start with light
@@ -284,8 +284,8 @@ hotter = floor(hotter)*3600;
 
 %colder (hotter to colder tranistions)
 %%
-%colder = floor(colder)*3600;
-for j = 1%:length(colder)
+colder = floor(colder)*3600;
+for j = 1:length(colder)
     
               %resampled data  
     %         % Get the index of the start time of the day
