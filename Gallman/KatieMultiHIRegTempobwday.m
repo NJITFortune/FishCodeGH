@@ -230,7 +230,7 @@ hotter = [hotter(hotter>0)];
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
     rawfreq = oldfreq(rawidx);
-    rawtemp = oldtemp(rawidx);
+    rawtemp = temp(rawidx);
 
 
 %     %plot
