@@ -54,7 +54,7 @@ if fish == 6 %high freq
 
 %raw data
     timcont = [in.hifish(ttohi).timcont];
-    obw = [in.hifish(ttohi).obwAmp];
+    obw = [in.hifish(ttohi).obwAmp]/max([in.hifish(ttohi).obwAmp]);
     oldfreq = [in.hifish(ttohi).freq];
     
 
@@ -81,7 +81,7 @@ if fish == 5 %low freq
  
 %raw data
     timcont = [in.lofish(ttolo).timcont];
-    obw = [in.lofish(ttolo).obwAmp];
+    obw = [in.lofish(ttolo).obwAmp]/max([in.lofish(ttolo).obwAmp]);
     oldfreq = [in.lofish(ttolo).freq];
      
     
