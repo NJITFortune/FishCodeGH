@@ -26,7 +26,7 @@ fish = 5; %hi freq
 % redefine length of light cycle
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
-temptims = sort([in.info.temptims]);
+temptims = sort([in.info.temptims])';
 
  temp = [in.s.temp];
  temptimcont = [in.s.timcont];
