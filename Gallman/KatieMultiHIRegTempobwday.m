@@ -56,7 +56,7 @@ if fish == 6 %high freq
     temp = [in.s.temp];
 
 %find the times where the hifish and the general data points are the same
-     [~, hifishidx, ~] = intersect([in.s.timcont], timcont);
+     [~, hifishidx, ~] = intersect([in.s.timcont], int32(timcont));
  
     %hifish data
     for j = 1:length(in.hifish)
@@ -92,7 +92,7 @@ if fish == 5 %low freq
       temp = [in.s.temp];
     
       %find the times where the lofish and the general data points are the same
-    [~, lofishidx, ~] = intersect([in.s.timcont], int32([in.lofish.timcont]));
+    [~, lofishidx, ~] = intersect([in.s.timcont], int32(timcont));
 
     %lofish data
     for j = 1:length(in.lofish)
