@@ -11,6 +11,7 @@ in = xxkg(k);
 ReFs = 20;
 heat = 8;
 channel = 1;
+td = 9;
 
 % light = 4; %start with light
 % fish = 5; %lo freq
