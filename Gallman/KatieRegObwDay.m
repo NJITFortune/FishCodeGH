@@ -10,7 +10,7 @@
 
 
 % % %for when i'm too lazy to function
-%  clearvars -except kg kg2 rkg k hkg2 hkg xxkg
+  clearvars -except kg kg2 rkg k hkg2 hkg xxkg xxkg2
 % % % % % 
 in = hkg(k);
 ReFs = 20;
