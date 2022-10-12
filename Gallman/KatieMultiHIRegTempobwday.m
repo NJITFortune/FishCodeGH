@@ -144,6 +144,7 @@ end
 %make temptims an integer
     %convert to seconds because xx is in seconds
     temptims = floor(temptims)*3600;
+    td = td*3600;
 %% duration of temp day
 colder = [colder(colder>0)];
 hotter = [hotter(hotter>0)];
@@ -242,7 +243,7 @@ hotter = [hotter(hotter>0)];
 %% Define temp day length
 
  %day
-    daylengthSECONDS = td * 3600;  
+    daylengthSECONDS = td;  
    
     % This is the number of data samples in a day
     howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
@@ -398,6 +399,7 @@ figure(796); clf; title('amplitude over time');hold on;
           plot(coldday(j).entiretimcont/3600, coldday(j).obw,'LineWidth',2);
          end
 %%  plot  hot to cold
+td = td/3600;
    figure(223);clf; title('hot to cold amplitude transitions'); ylim([-.5,.5]);hold on;
    amplim = ylim;
     %boxes        
