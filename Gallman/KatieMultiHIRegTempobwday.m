@@ -8,7 +8,7 @@
 
 
 % % %for when i'm too lazy to function
- clearvars -except kg kg2 rkg k hkg2 hkg
+ clearvars -except kg kg2 k hkg2 hkg 
 % % 
 in = kg2(k);
 ReFs = 20;
