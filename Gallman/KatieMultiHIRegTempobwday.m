@@ -144,7 +144,7 @@ end
 %make temptims an integer
     %convert to seconds because xx is in seconds
     temptims = floor(temptims)*3600;
-    td = td*3600;
+    
 %% duration of temp day
 colder = [colder(colder>0)];
 hotter = [hotter(hotter>0)];
@@ -179,7 +179,7 @@ hotter = [hotter(hotter>0)];
    plot([hotter(j) hotter(j)], [2 3], 'r-');
    end
 %% process data
-
+td = td*3600;
 %Take top of dataset
     %find peaks
     [PKS,LOCS] = findpeaks(obw);
