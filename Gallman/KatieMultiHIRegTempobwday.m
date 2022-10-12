@@ -14,7 +14,7 @@ in = kg2(k);
 ReFs = 20;
 light = 3; %start with dark
 heat = 8; %starts with warming
-td = 12;
+td = 14;
 fish = 6; %hi freq
 
 
