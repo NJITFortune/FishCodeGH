@@ -28,6 +28,9 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 temptims = sort([in.info.temptims])';
 
+ temp = [in.s.temp];
+ temptimcont = [in.s.timcont];
+    
 if fish == 6 %high freq
 
 %outlier removal indicies
@@ -53,8 +56,7 @@ if fish == 6 %high freq
     timcont = [in.hifish(ttohi).timcont];
     obw = [in.hifish(ttohi).obwAmp];
     oldfreq = [in.hifish(ttohi).freq];
-    temp = [in.s.temp];
-
+    
 
    
 
@@ -81,8 +83,7 @@ if fish == 5 %low freq
     timcont = [in.lofish(ttolo).timcont];
     obw = [in.lofish(ttolo).obwAmp];
     oldfreq = [in.lofish(ttolo).freq];
-      temp = [in.s.temp];
-    
+     
     
  
 end
@@ -175,7 +176,7 @@ hotter = [hotter(hotter>0)];
 
  figure(455); clf; hold on;
 
-    plot(timcont/3600, temp);
+    plot(temptimcont/3600, temp);
     plot([temptims'/3600 temptims'/3600], [2,3], 'k-');
 
    for j = 1:length(hotter)
