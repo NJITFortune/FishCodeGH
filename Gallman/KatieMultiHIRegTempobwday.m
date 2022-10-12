@@ -26,7 +26,7 @@ fish = 5; %hi freq
 % redefine length of light cycle
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
-temptims = sort([in.info.temptims])';
+temptims = sort([in.info.temptims]);
 
  temp = [in.s.temp];
  temptimcont = [in.s.timcont];
@@ -148,7 +148,7 @@ end
 
 %make temptims an integer
     %convert to seconds because xx is in seconds
-    temptims = floor(temptims)*3600;
+    temptims = temptims*3600;
     td = td*3600;
 %% duration of temp day
 colder = [colder(colder>0)];
@@ -265,7 +265,7 @@ hotter = [hotter(hotter>0)];
 %refstim = ReFs:ReFs:(shortest)*3600;
 
 %hotter (colder to hotter tranistions)
-hotter = floor(hotter)*3600;
+hotter = hotter*3600;
 
     for j = 1:length(hotter)
         
@@ -294,7 +294,7 @@ hotter = floor(hotter)*3600;
 
 %colder (hotter to colder tranistions)
 %%
-colder = floor(colder)*3600;
+colder = colder*3600;
 for j = 1:length(colder)
     
               %resampled data  
