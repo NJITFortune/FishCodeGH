@@ -34,9 +34,7 @@ if fish == 6 %high freq
     % All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
         %obw
         ttohi = 1:length(in.hifish); % tthi is indices for HiAmp
-%         %peak amp
-%         ttkhi = 1:length(out.hifish);
-      
+
     % If we have removed outliers via KatieRemover, get the indices... 
         %high frequency fish indicies
             if isfield(in, 'hiidx')
@@ -55,7 +53,18 @@ if fish == 6 %high freq
     timcont = [in.hifish(ttohi).timcont];
     obw = [in.hifish(ttohi).obwAmp];
     oldfreq = [in.hifish(ttohi).freq];
-    temp = [in.s(ttohi).temp];
+   % temp = [in.s(ttohi).temp];
+
+%find the times where the hifish and the general data points are the same
+     [~, hifishidx, ~] = intersect([in.s.timcont], int32([in.hifish(ttohi).timcont]));
+ 
+    %hifish data
+    for j = 1:length(in.hifish)
+       
+        temp(j,:) = in.s(hifishidx(j)).temp;
+
+    end
+   
 
 
 end
