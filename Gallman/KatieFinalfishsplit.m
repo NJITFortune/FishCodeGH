@@ -8,9 +8,10 @@ Tim = [in(1).tim, in(2).tim];
 Freq = [in(1).freq, in(2).freq];
 
 %reindex so that tim happens sequentially
-[Tim, idxtmp] = sort(Tim);
+[~, idxtmp] = sort(Tim);
 Freq = Freq(idxtmp);
 ObwAmp = ObwAmp(idxtmp);
+Tim = Tim(idxtmp);
 %PkAmp = PkAmp(idxtmp);
 
 
