@@ -88,7 +88,7 @@ end
 %% crop data to temptims
 if isempty(poweridx) %if there are no values in poweridx []
 
-    for j = 2:length(temptims)+1
+    for j = 2:length(temptims)
     
     tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
 
@@ -116,7 +116,7 @@ else %we have poweridx values
     temptims = temptims(temptimsidx);
     
        
-            for j = 2:length(temptims)+1
+            for j = 2:length(temptims)
             
             tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
         
@@ -174,9 +174,13 @@ hotter = [hotter(hotter>0)];
     plot(timcont/3600, temp);
     plot([temptims'/3600 temptims'/3600], [2,3], 'k-');
 
-   for j = 1:min(([length(hotter), length(colder)])) 
-   plot([colder(j) colder(j)], [2 3], 'c-');
+   for j = 1:length(hotter)
    plot([hotter(j) hotter(j)], [2 3], 'r-');
+   end
+
+   for j = 1:length(colder)
+   plot([colder(j) colder(j)], [2 3], 'c-');
+
    end
 %% process data
 
