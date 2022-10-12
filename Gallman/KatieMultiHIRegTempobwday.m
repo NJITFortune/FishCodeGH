@@ -386,6 +386,17 @@ figure(796); clf; title('amplitude over time');hold on;
                 end
             end
         end
+
+    plot(timmy/3600, obwAmp, '.');
+    plot(xx/3600, obwyy);
+
+    for j = 1:length(hotday)
+          plot(hotday(j).entiretimcont/3600, hotday(j).obw, 'LineWidth',2);
+         end
+
+         for j = 1:length(coldday)
+          plot(coldday(j).entiretimcont/3600, coldday(j).obw,'LineWidth',2);
+         end
 %%    
    figure(223);clf; title('hot to cold amplitude transitions'); ylim([-.5,.5]);hold on;
    amplim = ylim;
