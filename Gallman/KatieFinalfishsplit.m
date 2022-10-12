@@ -1,5 +1,6 @@
-function sout = KatieFinalfishsplit(in)
+%function sout = KatieFinalfishsplit(in)
 
+in = hi;
 %concatenate both tubes
 %PkAmp = [in(1).pkamp, in(2).pkamp];
 ObwAmp = [in(1).obwamp, in(2).obwamp];
