@@ -8,16 +8,18 @@
 
 
 % % %for when i'm too lazy to function
- clearvars -except kg kg2 rkg k hkg2 hkg
+ clearvars -except kg kg2 k hkg2 hkg 
 % % 
 in = kg2(k);
 ReFs = 20;
 light = 3; %start with dark
-fish = 6; %hi freq
 heat = 8; %starts with warming
-td = 9;
+td = 8;
+fish = 5; %hi freq
+
 
 % light = 4; %start with light
+%fish = 6; %hi freq
 % fish = 5; %lo freq
 %% prep
 
@@ -26,15 +28,16 @@ ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 temptims = sort([in.info.temptims])';
 
+ temp = [in.s.temp];
+ temptimcont = [in.s.timcont];
+    
 if fish == 6 %high freq
 
 %outlier removal indicies
     % All the data (set because we may want to plot before running KatieRemover and/or KatieLabeler)
         %obw
         ttohi = 1:length(in.hifish); % tthi is indices for HiAmp
-%         %peak amp
-%         ttkhi = 1:length(out.hifish);
-      
+
     % If we have removed outliers via KatieRemover, get the indices... 
         %high frequency fish indicies
             if isfield(in, 'hiidx')
@@ -53,7 +56,9 @@ if fish == 6 %high freq
     timcont = [in.hifish(ttohi).timcont];
     obw = [in.hifish(ttohi).obwAmp];
     oldfreq = [in.hifish(ttohi).freq];
-    temp = [in.s(ttohi).temp];
+    
+
+   
 
 
 end
@@ -78,7 +83,7 @@ if fish == 5 %low freq
     timcont = [in.lofish(ttolo).timcont];
     obw = [in.lofish(ttolo).obwAmp];
     oldfreq = [in.lofish(ttolo).freq];
-      temp = [in.s(ttolo).temp];
+     
     
  
 end
@@ -90,7 +95,7 @@ if isempty(poweridx) %if there are no values in poweridx []
 
     for j = 2:length(temptims)
     
-    tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
+    tempidx = find(temptimcont/3600 >= temptims(j-1) & temptimcont/3600 < temptims(j));
 
         if mean(temp(tempidx)) > mean(temp)
             tiz(j-1,:) = temptims(j-1);
@@ -118,7 +123,7 @@ else %we have poweridx values
        
             for j = 2:length(temptims)
             
-            tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
+            tempidx = find(temptimcont/3600 >= temptims(j-1) & temptimcont/3600 < temptims(j));
         
                 if mean(temp(tempidx)) > mean(temp)
                     tiz(j-1,:) = temptims(j-1);
@@ -143,7 +148,8 @@ end
 
 %make temptims an integer
     %convert to seconds because xx is in seconds
-    temptims = floor(temptims)*3600;
+    temptims = temptims*3600;
+    td = td*3600;
 %% duration of temp day
 colder = [colder(colder>0)];
 hotter = [hotter(hotter>0)];
@@ -159,23 +165,27 @@ hotter = [hotter(hotter>0)];
 
 
 %start temptims with enough data for the first transitions    
- if timcont(1)/3600 > (temptims(1)/3600 -td/2)
-        temptims = temptims(2:end);
-        if tiz(1) > 0
-            hotter = hotter(2:end);
-        else
-            colder = colder(2:end);
-        end
- end
+%  if timcont(1) > (temptims(1) -td/2)
+%         temptims = temptims(2:end);
+%         if tiz(1) > 0
+%             hotter = hotter(2:end);
+%         else
+%             colder = colder(2:end);
+%         end
+%  end
 
  figure(455); clf; hold on;
 
-    plot(timcont/3600, temp);
+    plot(temptimcont/3600, temp);
     plot([temptims'/3600 temptims'/3600], [2,3], 'k-');
 
-   for j = 1:min(([length(hotter), length(colder)])) 
-   plot([colder(j) colder(j)], [2 3], 'c-');
+   for j = 1:length(hotter)
    plot([hotter(j) hotter(j)], [2 3], 'r-');
+   end
+
+   for j = 1:length(colder)
+   plot([colder(j) colder(j)], [2 3], 'c-');
+
    end
 %% process data
 
@@ -242,7 +252,7 @@ hotter = [hotter(hotter>0)];
 %% Define temp day length
 
  %day
-    daylengthSECONDS = td * 3600;  
+    daylengthSECONDS = td;  
    
     % This is the number of data samples in a day
     howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
@@ -255,7 +265,7 @@ hotter = [hotter(hotter>0)];
 %refstim = ReFs:ReFs:(shortest)*3600;
 
 %hotter (colder to hotter tranistions)
-hotter = floor(hotter)*3600;
+hotter = hotter*3600;
 
     for j = 1:length(hotter)
         
@@ -284,7 +294,7 @@ hotter = floor(hotter)*3600;
 
 %colder (hotter to colder tranistions)
 %%
-colder = floor(colder)*3600;
+colder = colder*3600;
 for j = 1:length(colder)
     
               %resampled data  
@@ -398,7 +408,8 @@ figure(796); clf; title('amplitude over time');hold on;
           plot(coldday(j).entiretimcont/3600, coldday(j).obw,'LineWidth',2);
          end
 %%  plot  hot to cold
-   figure(223);clf; title('hot to cold amplitude transitions'); ylim([-.5,.5]);hold on;
+td = td/3600;
+   figure(225);clf; title('hot to cold amplitude transitions'); ylim([-.5,.5]);hold on;
    amplim = ylim;
     %boxes        
         fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
@@ -413,7 +424,7 @@ figure(796); clf; title('amplitude over time');hold on;
         plot(coldday(1).tim/3600, coldampmean-mean(coldampmean), 'k-', 'LineWidth',2)
         plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2);          
 
-     figure(224); clf; title('hot to cold frequency transitions'); ylim([mean(freqRaw)-60, mean(freqRaw)+60]); hold on;
+     figure(226); clf; title('hot to cold frequency transitions'); ylim([mean(freqRaw)-60, mean(freqRaw)+60]); hold on;
     amplim = ylim;
         %boxes        
         fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
@@ -436,26 +447,26 @@ figure(796); clf; title('amplitude over time');hold on;
         fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
         fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
    
-        for j = 1:length(coldday)
-            plot(coldday(j).tim/3600, coldday(j).obw-mean(coldday(j).obw));
-            colddayamps(j,:) = coldday(j).obw;
+        for j = 1:length(hotday)
+            plot(hotday(j).tim/3600, hotday(j).obw-mean(hotday(j).obw));
+            hotdayamps(j,:) = hotday(j).obw;
         end
     
-        coldampmean = mean(colddayamps);
-        plot(coldday(1).tim/3600, coldampmean-mean(coldampmean), 'k-', 'LineWidth',2)
+        hotampmean = mean(hotdayamps);
+        plot(coldday(1).tim/3600, hotampmean-mean(hotampmean), 'k-', 'LineWidth',2)
         plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2);          
 
-     figure(224); clf; title('hot to cold frequency transitions'); ylim([mean(freqRaw)-60, mean(freqRaw)+60]); hold on;
+     figure(224); clf; title('cold to hot frequency transitions'); ylim([mean(freqRaw)-60, mean(freqRaw)+60]); hold on;
     amplim = ylim;
         %boxes        
         fill([0 0 td/2 td/2], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
         fill([td/2 td/2 td td], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
    
-        for j = 1:length(coldday)
-            plot(coldday(j).tim/3600, coldday(j).freq);
-            colddayfreq(j,:) = coldday(j).freq;
+        for j = 1:length(hotday)
+            plot(hotday(j).tim/3600, hotday(j).freq);
+            hotdayfreq(j,:) = hotday(j).freq;
         end
     
-        coldfreqmean = mean(colddayfreq);
-        plot(coldday(1).tim/3600, coldfreqmean, 'k-', 'LineWidth',2)
+        hotfreqmean = mean(hotdayfreq);
+        plot(hotday(1).tim/3600, hotfreqmean, 'k-', 'LineWidth',2)
         plot([td/2, td/2], ylim, 'k-', 'LineWidth', 2); 
