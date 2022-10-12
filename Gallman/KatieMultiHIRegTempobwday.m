@@ -89,8 +89,17 @@ if fish == 5 %low freq
     timcont = [in.lofish(ttolo).timcont];
     obw = [in.lofish(ttolo).obwAmp];
     oldfreq = [in.lofish(ttolo).freq];
-      temp = [in.s(ttolo).temp];
+      temp = [in.s.temp];
     
+      %find the times where the lofish and the general data points are the same
+    [~, lofishidx, ~] = intersect([in.s.timcont], timcont);
+
+    %lofish data
+    for j = 1:length(in.lofish)
+
+        oldtemp(j,:) = in.s(lofishidx(j)).temp;
+       
+    end
  
 end
 
