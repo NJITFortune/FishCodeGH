@@ -5,12 +5,12 @@ function [hotday, coldday] = KatieRegobwTempDay(in, channel, ReFs, td)%multising
 heat = 8;
 
 %for when i'm too lazy to function
-% clearvars -except xxkg hkg k xxkg2 hkg2
-% % % % 
-% in = xxkg(k);
-% ReFs = 20;
-% heat = 8;
-% channel = 1;
+clearvars -except xxkg hkg k xxkg2 hkg2
+% % % 
+in = xxkg(k);
+ReFs = 20;
+heat = 8;
+channel = 1;
 
 % light = 4; %start with light
 % fish = 5; %lo freq
