@@ -160,14 +160,14 @@ hotter = [hotter(hotter>0)];
 
 
 %start temptims with enough data for the first transitions    
- if timcont(1) > (temptims(1) -td/2)
-        temptims = temptims(2:end);
-        if tiz(1) > 0
-            hotter = hotter(2:end);
-        else
-            colder = colder(2:end);
-        end
- end
+%  if timcont(1) > (temptims(1) -td/2)
+%         temptims = temptims(2:end);
+%         if tiz(1) > 0
+%             hotter = hotter(2:end);
+%         else
+%             colder = colder(2:end);
+%         end
+%  end
 
  figure(455); clf; hold on;
 
