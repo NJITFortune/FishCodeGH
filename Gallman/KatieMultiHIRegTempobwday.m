@@ -53,15 +53,15 @@ if fish == 6 %high freq
     timcont = [in.hifish(ttohi).timcont];
     obw = [in.hifish(ttohi).obwAmp];
     oldfreq = [in.hifish(ttohi).freq];
-   % temp = [in.s(ttohi).temp];
+    temp = [in.s.temp];
 
 %find the times where the hifish and the general data points are the same
-     [~, hifishidx, ~] = intersect([in.s.timcont], int32([in.hifish(ttohi).timcont]));
+     [~, hifishidx, ~] = intersect([in.s.timcont], timcont);
  
     %hifish data
     for j = 1:length(in.hifish)
        
-        temp(j,:) = in.s(hifishidx(j)).temp;
+        oldtemp(j,:) = in.s(hifishidx(j)).temp;
 
     end
    
@@ -201,7 +201,7 @@ hotter = [hotter(hotter>0)];
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
-    peaktemp = temp(LOCS(cLOCS));
+    peaktemp = oldtemp(LOCS(cLOCS));
     peakfreq = oldfreq(LOCS(cLOCS));
     
 %     % plot checking peaks
