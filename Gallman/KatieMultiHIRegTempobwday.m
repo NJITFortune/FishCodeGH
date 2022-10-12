@@ -24,7 +24,7 @@ td = 9;
 % redefine length of light cycle
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
-temptims = sort([in.info.temptims]);
+temptims = sort([in.info.temptims])';
 
 if fish == 6 %high freq
 
