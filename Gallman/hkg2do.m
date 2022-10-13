@@ -11,6 +11,7 @@ function out = hkg2do(in, fish)
     out.info.folder = in.info.folder;
     out.info.fishid = in.info.fishid;
     out.info.ld = in.info.ld;
+    out.info.temptims = in.info.temptims;
 
 if fish == 6 %hi frequency fish
 
