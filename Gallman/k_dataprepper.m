@@ -15,19 +15,18 @@ lighttimes = k_lighttimes(in, light);
 
    %% Prepare raw data variables
 
-  if channel < 3 
+  if channel < 3 %single fish data has two channel
     %outlier removal
      tto = [in.idx(channel).obwidx]; 
           
     %raw data
         timcont = [in.e(channel).s(tto).timcont]; %time in seconds
         obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
-        oldfreq = in.e(channel).s(tto).fftfreq];
-        
-        %Make a time base that starts and ends on lighttimes 
-            rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
-            timmy = timcont(rawidx);
-            obwAmp = obw(rawidx);
+        oldfreq = [in.e(channel).s(tto).fftFreq];
+        oldtemp = [in.e(channel).s(tto).temp];
+
+  else %multifish data only has one channel
+    
             
    %peaks of peaks
         %find peaks
