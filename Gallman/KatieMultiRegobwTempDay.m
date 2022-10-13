@@ -1,4 +1,4 @@
-function [hotday, coldday] = KatieMultiRegobwTempDay(in, channel, ReFs, td)%multisingleRegobwDay
+function [hotday, coldday] = KatieMultiRegobwTempDay(in, ReFs, td)%multisingleRegobwDay
 %heat is a label for whether the subjective day starts with a warming transition or a cooling transition
     %starts with warming = 8
     %starts with cooling = 7
