@@ -1,20 +1,18 @@
 function [hotday, coldday] = KatieMultiRegobwTempDay(in, channel, ReFs, td)%multisingleRegobwDay
-%light is a label for whether the subjective day starts with light or with dark
-    %starts with dark = 3
-    %starts with light = 4
-heat = 8;
+%heat is a label for whether the subjective day starts with a warming transition or a cooling transition
+    %starts with warming = 8
+    %starts with cooling = 7
+%td is user input for the programmed length between temp transitons 
+    %6,,7,8,9,12,etc.
 
-%for when i'm too lazy to function
-clearvars -except xxkg hkg k xxkg2 hkg2 kg2
-% % % 
-in = xxkg2(k);
-ReFs = 20;
-heat = 8;
-channel = 1;
-td = 9;
 
-% light = 4; %start with light
-% fish = 5; %lo freq
+% %for when i'm too lazy to function
+% clearvars -except xxkg hkg k xxkg2 hkg2 kg2
+% % % % 
+% in = xxkg2(k);
+% ReFs = 20;
+% heat = 8;
+% td = 9;
 
 %heat
     %7 starts with cooling
