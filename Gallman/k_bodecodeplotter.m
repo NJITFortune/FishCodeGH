@@ -7,7 +7,7 @@ function k_bodecodeplotter(inSignal, outSignal, ReFs)
     % Estimate transfer function from data
         [txy, f] = tfestimate(inSignal, outSignal, 1024, 1000, [], ReFs);
     % Plot Bode plot
-  figure(1); clf;
+%  figure(1); clf;
         ax(1) = subplot(211); 
             loglog(f, mag2db(abs(txy))); 
             title('Gain')
