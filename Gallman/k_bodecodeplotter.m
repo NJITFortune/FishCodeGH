@@ -1,5 +1,7 @@
 function k_bodecodeplotter(inSignal, outSignal, Fs)
 
+
+
     % Estimate transfer function from data
         [txy, f] = tfestimate(inSignal, outSignal, 1024, 1000, [], Fs);
     % Plot Bode plot
