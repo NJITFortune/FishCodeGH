@@ -1,8 +1,8 @@
 %function out = k_dataprepper(in, channel, ReFs)
 %notfunction
-clearvars -except l24kg
+clearvars -except rkg kg2 hkg hkg2 xxkg xxkg2     
 % 
-in = kg(k);
+in = hkg(k);
 channel = 1;
 ReFs = 20;
 light = 3;
