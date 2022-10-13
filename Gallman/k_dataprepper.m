@@ -1,12 +1,12 @@
-%function out = k_dataprepper(in, channel, ReFs)
-%notfunction
-clearvars -except rkg kg2 hkg hkg2 xxkg xxkg2     
-% 
-in = hkg(k);
-channel = 1;
-ReFs = 20;
-light = 3;
-p = 0.7;
+function  [regtim, regfreq, regtemp, regobwpeaks] = k_dataprepper(in, channel, ReFs)
+% %notfunction
+% clearvars -except rkg kg2 hkg hkg2 xxkg xxkg2     
+% % 
+% in = hkg(k);
+% channel = 1;
+% ReFs = 20;
+% light = 3;
+% p = 0.7;
 
 %% prep
 
@@ -47,4 +47,6 @@ lighttimes = k_lighttimes(in, light);
         peakfreq = oldfreq(LOCS(cLOCS));       
         peaktemp = oldtemp(LOCS(cLOCS));  
 
-        
+
+
+ [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, lighttimes);
