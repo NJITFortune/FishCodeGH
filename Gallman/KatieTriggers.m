@@ -8,7 +8,7 @@
 % clear trial
 % clear day
 clearvars -except kg kg2 hkg hkg2 xxkg xxkg2
-in = kg(2);
+in = hkg(2);
 channel = 1;
 ReFs = 10;
 
