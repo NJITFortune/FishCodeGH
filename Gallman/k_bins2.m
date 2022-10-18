@@ -16,18 +16,13 @@ transbinnum = 8;
 binsize = 15;
 %% outliers
 
-% Prepare the data with outliers
-
-    ttsf{1} = 1:length([in.e(channel).s.timcont]); % tto is indices for obwAmp
-    ttsf{2} = ttsf{1};
-
  
 % Prepare the data without outliers
 
     % If we have removed outliers via KatieRemover, get the indices...    
-    if ~isempty(in.idx)
-        ttsf{channel} = in.idx(channel).sumfftidx;  % ttsf is indices for sumfftAmp
-    end
+   
+        ttsf{channel} = in.idx(channel).obwidx;  % ttsf is indices for sumfftAmp
+
      
 %% define data by light transitions
 
