@@ -18,7 +18,7 @@ close all;
 %define lighttimes in seconds
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 %lighttimes = k_lighttimes(in, 3); 
-luz = [in.info.luz];
+luz = floor([in.info.luz]);
 
 %outlier removal
  tto = [in.idx(channel).obwidx]; 
