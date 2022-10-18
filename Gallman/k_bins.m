@@ -273,6 +273,7 @@ end
     plot(lighttimxx, lightampyy, 'k-', 'LineWidth', 3);
       plot(lighttimxx, lightdy, 'b-', 'LineWidth', 1.5);
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+    yline(0)
 
 %Calculate chisqu of means
 
