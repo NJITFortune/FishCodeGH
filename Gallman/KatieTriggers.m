@@ -43,12 +43,12 @@ ax(1) = subplot(211); title('trigger counts'); hold on;
     
         if luz(k-1) < 0
           
-          d = histogram(timcont, 'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
+          d = histogram(timcont, 'BinWidth', .5,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
           d.Normalization = 'countdensity';
           d.FaceColor = [0.9 0.9 0.9];
         else
             
-           l = histogram(timcont, 'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
+           l = histogram(timcont,'BinWidth', .5, 'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
            l.Normalization = 'countdensity';
            l.FaceColor = 'y';
         end
