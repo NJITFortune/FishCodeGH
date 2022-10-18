@@ -43,12 +43,12 @@ ax(1) = subplot(211); title('trigger counts'); hold on;
         if luz(k-1) < 0
             edges = abs(luz(k-1)):ld/4:abs(luz(k));
           d = histogram(timcont, edges);
-         % d.Normalization = 'countdensity';
+          d.Normalization = 'countdensity';
           d.FaceColor = [0.9 0.9 0.9];
         else
              edges = abs(luz(k-1)):ld/4:abs(luz(k));
            l = histogram(timcont, edges); 
-            % l.Normalization = 'countdensity';
+             l.Normalization = 'countdensity';
            l.FaceColor = 'y';
         end
     end
