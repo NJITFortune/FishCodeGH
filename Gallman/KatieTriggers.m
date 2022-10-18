@@ -27,8 +27,9 @@ lighttimes = k_lighttimes(in, 3);
     oldfreq = [in.e(channel).s(tto).fftFreq];
     oldtemp = [in.e(channel).s(tto).temp];
 %% bins over time
-%figure(34); clf; hold on;
- h = histogram(timcont/3600);   
+figure(34); clf; hold on;
+edges = [lighttiems(1)/3600:ld:lighttimes(end)];
+ h = histogram(timcont/3600, edges);   
 
 % %% Divide sample into days to compare against trial day means
 % 
