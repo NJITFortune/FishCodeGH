@@ -124,8 +124,12 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('light');
                         darkon = out.info.luz(out.info.luz < 0);
                         
                         %plot
-                        plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2);
-                        plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2);
+                        if ~isempty(lighton)
+                        plot([lighton' lighton']', ylim, 'y-', 'LineWidth', 2);
+                        end
+                        if ~isempty(darkon)
+                        plot([abs(darkon)' abs(darkon)']', ylim, 'k-', 'LineWidth', 2);
+                        end
                 end    
             end
 
