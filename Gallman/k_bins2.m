@@ -1,6 +1,6 @@
 %function out = k_ampbinner(in, channel, binsize, transbinnum)
 %% prep 
-clearvars -except kg kg2
+clearvars -except kg kg2 hkg2 hkg xxkg xxkg2
 
 in = hkg(97);
 channel = 1;
