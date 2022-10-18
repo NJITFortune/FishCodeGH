@@ -28,7 +28,7 @@ lighttimes = k_lighttimes(in, 3);
     oldtemp = [in.e(channel).s(tto).temp];
 %% bins over time
 %figure(34); clf; hold on;
- h = histogram(timcont);   
+ h = histogram(timcont/3600);   
 
 % %% Divide sample into days to compare against trial day means
 % 
