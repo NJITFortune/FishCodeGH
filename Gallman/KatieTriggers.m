@@ -35,14 +35,16 @@ luz = [in.info.luz];
 % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'r-');
 %% Divide sample into days to compare against trial day means
 figure(28); clf; hold on; 
-binnum = ld/4;
+
     for k = 2:length(luz)
     
         if luz(k-1) < 0
-          d = histogram(timcont(timcont >= abs(luz(k-1)) & timcont < abs(luz(k))), binnum);
+            edges = abs(luz(k-1)):ld/4:abs(luz(k));
+          d = histogram(timcont, edges);
           d.FaceColor = [0.9 0.9 0.9];
         else
-           l = histogram(timcont(timcont >= abs(luz(k-1)) & timcont < abs(luz(k))), binnum); 
+             edges = abs(luz(k-1)):ld/4:abs(luz(k));
+           l = histogram(timcont, edges); 
            l.FaceColor = 'y';
         end
     end
