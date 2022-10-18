@@ -10,11 +10,8 @@
 clearvars -except kg kg2 hkg hkg2 xxkg xxkg2
 in = hkg(2);
 channel = 1;
-ReFs = 10;
+ReFs = 20;
 
-
-
-% ReFs = 10;
 %% Take spline estimate of raw data
 
 %ReFs = 10;  % Sample rate for splines
