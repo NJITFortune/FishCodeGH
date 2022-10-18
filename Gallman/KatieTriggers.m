@@ -59,8 +59,8 @@ ax(2) = subplot(212); title('amplitude'); hold on;
     darkon = luz(luz < 0);
                         
                        
-    plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2);
-    plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2);
+    plot([lighton' lighton']', ylim, 'y-', 'LineWidth', 2);
+    plot([abs(darkon)' abs(darkon)']', ylim, 'k-', 'LineWidth', 2);
 
 linkaxes(ax, 'x');
     
