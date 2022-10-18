@@ -35,7 +35,7 @@ luz = [in.info.luz];
 % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'r-');
 %% Divide sample into days to compare against trial day means
 figure(28); clf; hold on; 
-binnum = 
+binnum = ld/6;
 
 ax(1) = subplot(211); title('trigger counts'); hold on;
 
