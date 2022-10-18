@@ -56,9 +56,9 @@ figure(28); clf; hold on;
         
              for k = 1:length(day)
                  if mod(k,2) == 1 %if kk is odd
-                    plot(day(k).timcont, day(k).SobwAmp, '*');
+                    plot(day(k).timcont/3600, day(k).SobwAmp, '*');
                  else 
-                    plot(day(k).timcont + ld, day(k).SobwAmp, '*');
+                    plot(day(k).timcont/3600 + ld, day(k).SobwAmp, '*');
                  end
                     
              end
@@ -69,7 +69,7 @@ figure(28); clf; hold on;
     subplot(212); hold on; title('Chronologically')
 
         for channel = 1:length(day)
-            plot(day(channel).entiretimcont, day(channel).SobwAmp, '*');
+            plot(day(channel).entiretimcont/3600, day(channel).SobwAmp, '*');
         end
 
        
@@ -77,9 +77,9 @@ figure(28); clf; hold on;
         for kk = 1:length(lighttimes)
 
             if mod(kk,2) == 1 %if kk is odd plot with a black line
-            plot([lighttimes(kk), lighttimes(kk)], ylim, 'k-', 'LineWidth', 2);    
+            plot([lighttimes(kk)/3600, lighttimes(kk)/3600], ylim, 'k-', 'LineWidth', 2);    
             else %if kk is even plot with a yellow line
-            plot([lighttimes(kk), lighttimes(kk)], ylim, 'y-', 'LineWidth', 2);    
+            plot([lighttimes(kk)/3600, lighttimes(kk)/3600], ylim, 'y-', 'LineWidth', 2);    
             end
             
         end
@@ -92,10 +92,10 @@ figure(28); clf; hold on;
     ax(1) = subplot(211); hold on; title('triggers per lightchange');
      
      if mod(k,2) == 0
-     histogram(day(k).entiretimcont, lighttimes, 'FaceColor', 'k'); 
+     histogram(day(k).entiretimcont/3600, lighttimes, 'FaceColor', 'k'); 
         
      else
-     histogram(day(k).entiretimcont, lighttimes, 'FaceColor', 'y'); 
+     histogram(day(k).entiretimcont/3600, lighttimes, 'FaceColor', 'y'); 
        
      end
  end
@@ -106,9 +106,9 @@ figure(28); clf; hold on;
       for kk = 1:length(lighttimes)
 
             if mod(kk,2) == 1 %if kk is odd plot with a black line
-            plot([lighttimes(kk), lighttimes(kk)], ylim, 'k-', 'LineWidth', 3);    
+            plot([lighttimes(kk)/3600, lighttimes(kk)/3600], ylim, 'k-', 'LineWidth', 3);    
             else %if kk is even plot with a yellow line
-            plot([lighttimes(kk), lighttimes(kk)], ylim, 'y-', 'LineWidth', 3);    
+            plot([lighttimes(kk)/3600, lighttimes(kk)/3600], ylim, 'y-', 'LineWidth', 3);    
             end
             
       end
