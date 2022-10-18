@@ -55,6 +55,8 @@ ax(1) = subplot(211); title('trigger counts'); hold on;
    
 ax(2) = subplot(212); title('amplitude'); hold on;
     plot(timcont, obw, '.','MarkerSize', 8);
+
+linkaxes(ax, 'x');
     
  %% plot to check
 
