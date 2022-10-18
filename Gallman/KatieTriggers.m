@@ -38,9 +38,9 @@ luz = [in.info.luz];
 for k = 2:length(luz)
 
     if luz(k-1) < 0
-        darkdays(k-1,:) = timcont(timcont >= abs(luz(k-1)) && timcont < abs(luz(k))); 
+        darkdays(k-1,:) = timcont(timcont >= abs(luz(k-1)) & timcont < abs(luz(k))); 
     else
-        lightdays(k-1,:) = timcont(timcont >= abs(luz(k-1)) && timcont < abs(luz(k))); 
+        lightdays(k-1,:) = timcont(timcont >= abs(luz(k-1)) & timcont < abs(luz(k))); 
     end
 end
    
