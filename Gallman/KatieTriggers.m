@@ -17,13 +17,14 @@ close all;
 
 %define lighttimes in seconds
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
-lighttimes = k_lighttimes(in, 3); 
+%lighttimes = k_lighttimes(in, 3); 
+luz = [in.info.luz];
 
 %outlier removal
  tto = [in.idx(channel).obwidx]; 
       
 %raw data
-    timcont = [in.e(channel).s(tto).timcont]; %time in seconds
+    timcont = [in.e(channel).s(tto).timcont]/3600; %time in hours
     obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
     oldfreq = [in.e(channel).s(tto).fftFreq];
     oldtemp = [in.e(channel).s(tto).temp];
@@ -34,11 +35,13 @@ lighttimes = k_lighttimes(in, 3);
 % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'r-');
 %% Divide sample into days to compare against trial day means
 
-for k = 1:length(in.info.luz)
+for k = 2:length(luz)
 
-    if in.info.luz(k) < 0
-        
-        dark(k) = 
+    if luz(k-1) < 0
+        darkdays(k-1,:) = timcont(timcont >= abs(luz(k-1)) && timcont < abs(luz(k))); 
+    else
+        lightdays(k-1,:) = timcont(timcont >= abs(luz(k-1)) && timcont < abs(luz(k))); 
+    end
 end
    
 
@@ -48,70 +51,7 @@ end
 %plot all days of sample on top of eachother 
 figure(28); clf; hold on; 
     
-    subplot(211); hold on; title('All days');
-        
-        
-             for k = 1:length(day)
-                 if mod(k,2) == 1 %if kk is odd
-                    plot(day(k).timcont/3600, day(k).SobwAmp, '*');
-                 else 
-                    plot(day(k).timcont/3600 + ld, day(k).SobwAmp, '*');
-                 end
-                    
-             end
-            
-        
-        plot([ld ld], ylim, 'k-', 'LineWidth', 1);
-
-    subplot(212); hold on; title('Chronologically')
-
-        for channel = 1:length(day)
-            plot(day(channel).entiretimcont/3600, day(channel).SobwAmp, '*');
-        end
-
-       
-%assuming we start with dark...        
-        for kk = 1:length(lighttimes)
-
-            if mod(kk,2) == 1 %if kk is odd plot with a black line
-            plot([lighttimes(kk)/3600, lighttimes(kk)/3600], ylim, 'k-', 'LineWidth', 2);    
-            else %if kk is even plot with a yellow line
-            plot([lighttimes(kk)/3600, lighttimes(kk)/3600], ylim, 'y-', 'LineWidth', 2);    
-            end
-            
-        end
-     
- %% how many triggers per half day?
-
- figure(32);clf; hold on;
-
- for k = 1:length(day)
-    ax(1) = subplot(211); hold on; title('triggers per lightchange');
-     
-     if mod(k,2) == 0
-     histogram(day(k).entiretimcont/3600, lighttimes, 'FaceColor', 'k'); 
-        
-     else
-     histogram(day(k).entiretimcont/3600, lighttimes, 'FaceColor', 'y'); 
-       
-     end
- end
-     
-
-     ax(2) = subplot(212); hold on; title('total triggers');
-     histogram(timcont, 100); 
-      for kk = 1:length(lighttimes)
-
-            if mod(kk,2) == 1 %if kk is odd plot with a black line
-            plot([lighttimes(kk)/3600, lighttimes(kk)/3600], ylim, 'k-', 'LineWidth', 3);    
-            else %if kk is even plot with a yellow line
-            plot([lighttimes(kk)/3600, lighttimes(kk)/3600], ylim, 'y-', 'LineWidth', 3);    
-            end
-            
-      end
-
- linkaxes(ax, 'x');
-    
+    darkh = histogram(darkdays);
 
 
 
@@ -121,21 +61,4 @@ figure(28); clf; hold on;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
+   
