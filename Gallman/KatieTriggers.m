@@ -12,43 +12,27 @@ in = hkg(2);
 channel = 1;
 ReFs = 20;
 
-%% Take spline estimate of raw data
+%% Prepare data
 
-%ReFs = 10;  % Sample rate for splines
+%define lighttimes
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
-
-
 lighttimes = k_lighttimes(in, 3);
 
-% lighttimes = abs(luztimes);
-% %add back the light time we subtracted 
-% lighttimes(end +1) = lighttimes(end) + ld;
+%outlier removal
+ tto = [in.idx(channel).obwidx]; 
+      
+%raw data
+    timcont = [in.e(channel).s(tto).timcont]; %time in seconds
+    obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
+    oldfreq = [in.e(channel).s(tto).fftFreq];
+    oldtemp = [in.e(channel).s(tto).temp];
 
-%Make a time base that starts and ends on lighttimes 
-    %necessary to define length of data
-
-    timcont = [in.e(1).s.timcont] / (60*60);
-    timcont = timcont(timcont >= lighttimes(1) & timcont <= lighttimes(end));
-%     
-
-
-
-    
 %% Divide sample into days to compare against trial day means
 
-%define length of sample
-% lengthofsampleHOURS = lighttimes(end) - lighttimes(1); 
-% howmanydaysinsample = floor(lengthofsampleHOURS / (ld));
-% howmanysamplesinaday = ld * ReFs;
-
-%tim = 1/ReFs:1/ReFs:howmanysamplesinaday/ReFs;
-%spline data
-
-for k = 2:length(lighttimes)-1
+for k = 2:length(lighttimes)
     
 
     %         % Get the index of the start time of the day
-                %dayidx = find(timcont >= lighttimes(1) + ((k-1) * (ld)) & timcont < lighttimes(1) + k*ld); % k-1 so that we start at zero
                 dayidx = find(timcont > lighttimes(k-1) & timcont <= lighttimes(k));
                % if length(dayidx) >= howmanysamplesinaday %makes sure we only have full days
                 %data
