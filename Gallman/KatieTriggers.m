@@ -14,9 +14,9 @@ ReFs = 20;
 
 %% Prepare data
 
-%define lighttimes
+%define lighttimes in seconds
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
-lighttimes = k_lighttimes(in, 3);
+lighttimes = k_lighttimes(in, 3); 
 
 %outlier removal
  tto = [in.idx(channel).obwidx]; 
@@ -32,23 +32,19 @@ lighttimes = k_lighttimes(in, 3);
 for k = 2:length(lighttimes)
     
 
-    %         % Get the index of the start time of the day
+             % Get the index of the start time of the day
                 dayidx = find(timcont > lighttimes(k-1) & timcont <= lighttimes(k));
-               % if length(dayidx) >= howmanysamplesinaday %makes sure we only have full days
+             
                 %data
-                    for j = channel
-                    halfday(k).SobwAmp = [in.e(j).s(dayidx).obwAmp];
-%                     halfday(k).SzAmp = [in.e(j).s(dayidx).zAmp];
-%                     halfday(k).Ssumfftyy = [in.e(j).s(dayidx).sumfftAmp];
-%                  
-                 
-                     % Time and treatment 
-                    halfday(k).timcont = timcont(dayidx) - timcont(dayidx(1));
-                    halfday(k).entiretimcont = timcont(dayidx);
-                    end 
+                   
+                    day(k-1).SobwAmp = obw(dayidx);
+                  
+                    day(k-1).timcont = timcont(dayidx) - timcont(dayidx(1));
+                    day(k-1).entiretimcont = timcont(dayidx);
+                   
                 %end
  end
-  clear k  
+
     
  %% plot to check
 
@@ -58,11 +54,11 @@ figure(28); clf; hold on;
     subplot(211); hold on; title('All days');
         
         
-             for k = 1:length(halfday)
+             for k = 1:length(day)
                  if mod(k,2) == 1 %if kk is odd
-                    plot(halfday(k).timcont, halfday(k).SobwAmp, '*');
+                    plot(day(k).timcont, day(k).SobwAmp, '*');
                  else 
-                    plot(halfday(k).timcont + ld, halfday(k).SobwAmp, '*');
+                    plot(day(k).timcont + ld, day(k).SobwAmp, '*');
                  end
                     
              end
@@ -72,8 +68,8 @@ figure(28); clf; hold on;
 
     subplot(212); hold on; title('Chronologically')
 
-        for j = 1:length(halfday)
-            plot(halfday(j).entiretimcont, halfday(j).SobwAmp, '*');
+        for channel = 1:length(day)
+            plot(day(channel).entiretimcont, day(channel).SobwAmp, '*');
         end
 
        
@@ -92,14 +88,14 @@ figure(28); clf; hold on;
 
  figure(32);clf; hold on;
 
- for k = 1:length(halfday)
+ for k = 1:length(day)
     ax(1) = subplot(211); hold on; title('triggers per lightchange');
      
      if mod(k,2) == 0
-     histogram(halfday(k).entiretimcont, lighttimes, 'FaceColor', 'k'); 
+     histogram(day(k).entiretimcont, lighttimes, 'FaceColor', 'k'); 
         
      else
-     histogram(halfday(k).entiretimcont, lighttimes, 'FaceColor', 'y'); 
+     histogram(day(k).entiretimcont, lighttimes, 'FaceColor', 'y'); 
        
      end
  end
