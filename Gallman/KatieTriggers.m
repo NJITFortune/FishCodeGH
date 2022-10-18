@@ -55,6 +55,12 @@ ax(1) = subplot(211); title('trigger counts'); hold on;
    
 ax(2) = subplot(212); title('amplitude'); hold on;
     plot(timcont, obw, '.','MarkerSize', 8);
+     lighton = out.info.luz(out.info.luz > 0);
+    darkon = out.info.luz(out.info.luz < 0);
+                        
+                       
+    plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2);
+    plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2);
 
 linkaxes(ax, 'x');
     
