@@ -21,7 +21,7 @@ ReFs = 10;
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
 
 
-lighttimes = k_lighttimes(in);
+lighttimes = k_lighttimes(in, 3);
 
 % lighttimes = abs(luztimes);
 % %add back the light time we subtracted 
