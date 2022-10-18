@@ -11,6 +11,7 @@ clearvars -except kg kg2 hkg hkg2 xxkg xxkg2
 in = hkg(2);
 channel = 1;
 ReFs = 20;
+close all;
 
 %% Prepare data
 
@@ -27,8 +28,8 @@ lighttimes = k_lighttimes(in, 3);
     oldfreq = [in.e(channel).s(tto).fftFreq];
     oldtemp = [in.e(channel).s(tto).temp];
 %% bins over time
-figure(34); clf; hold on;
-edges = [lighttimes(1)/3600:ld:lighttimes(end)];
+%figure(34); clf; hold on;
+edges = [lighttimes(1)/3600:ld/4:lighttimes(end)];
  h = histogram(timcont/3600, edges);   
 
 % %% Divide sample into days to compare against trial day means
