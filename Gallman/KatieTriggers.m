@@ -31,7 +31,7 @@ lighttimes = k_lighttimes(in, 3);
 figure(34); clf; hold on;
 edges = lighttimes(1)/3600:ld/4:lighttimes(end)/3600;
  h = histogram(timcont/3600, edges);   
-
+plot([lighttimes/3600 lighttimes/3600], ylim, 'r-');
 % %% Divide sample into days to compare against trial day means
 % 
 % for k = 2:length(lighttimes)
