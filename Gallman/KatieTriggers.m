@@ -34,24 +34,24 @@ luz = [in.info.luz];
 %  h = histogram(timcont/3600, edges);   
 % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'r-');
 %% Divide sample into days to compare against trial day means
-
-for k = 2:length(luz)
-
-    if luz(k-1) < 0
-        darkdays(k-1,:) = timcont(timcont >= abs(luz(k-1)) & timcont < abs(luz(k))); 
-    else
-        lightdays(k-1,:) = timcont(timcont >= abs(luz(k-1)) & timcont < abs(luz(k))); 
+figure(28); clf; hold on; 
+    for k = 2:length(luz)
+    
+        if luz(k-1) < 0
+          d = histogram(timcont(timcont >= abs(luz(k-1)) & timcont < abs(luz(k))));
+          d.FaceColor = [0.9 0.9 0.9];
+        else
+           l = histogram(timcont(timcont >= abs(luz(k-1)) & timcont < abs(luz(k)))); 
+           l.FaceColor = 'y';
+        end
     end
-end
    
 
     
  %% plot to check
 
 %plot all days of sample on top of eachother 
-figure(28); clf; hold on; 
-    
-    darkh = histogram(darkdays);
+
 
 
 
