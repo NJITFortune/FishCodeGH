@@ -36,6 +36,8 @@ luz = [in.info.luz];
 %% Divide sample into days to compare against trial day means
 figure(28); clf; hold on; 
 
+ax(1) = subplot(211); title('trigger counts'); hold on;
+
     for k = 2:length(luz)
     
         if luz(k-1) < 0
@@ -51,7 +53,8 @@ figure(28); clf; hold on;
         end
     end
    
-
+ax(2) = subplot(212); title('amplitude'); hold on;
+    plot(timcont, obw, 'MarkerSize', 10);
     
  %% plot to check
 
