@@ -94,6 +94,14 @@ end
     oldfreq = [in.e(channel).s(tto).fftFreq];
     oldtemp = [in.e(channel).s(tto).temp];
 
+ %trim everything to lighttimes
+    timidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
+    newertim = timcont(timidx);
+    obw = obw(timidx); 
+  
+    oldfreq = oldfreq(timidx);
+    oldtemp = oldtemp(timidx);
+
  %trimmed mean
  window = 5;
   fcn = @(x) trimmean(x,33);
@@ -105,7 +113,7 @@ end
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
+    [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(newertim, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
     
      %filter data
         %cut off frequency
