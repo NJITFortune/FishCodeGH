@@ -39,6 +39,7 @@ figure(76); clf; hold on;
     plot(timcont, obw, '.', 'MarkerSize', 8);
     plot(timcont, movobw);
     plot(timcont, tmean);
+    plot([lighttimes lighttimes], ylim, 'k-');
 
 
 
