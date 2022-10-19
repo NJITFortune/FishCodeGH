@@ -60,11 +60,11 @@ window = 5;
 %plot to check
 figure(76); clf; hold on;
     plot(timcont, obw, '.', 'MarkerSize', 8, 'DisplayName', 'obw');
-    plot(timcont, tmean, 'LineWidth',1, 'DisplayName', 'Mean');
-    plot(timcont, gmean, 'LineWidth',1, 'DisplayName', 'Geometic mean');
-    plot(timcont, harmean, 'LineWidth',1, 'DisplayName', 'Harmonic mean');
+%     plot(timcont, tmean, 'LineWidth',1, 'DisplayName', 'Mean');
+%     plot(timcont, gmean, 'LineWidth',1, 'DisplayName', 'Geometic mean');
+%     plot(timcont, harmean, 'LineWidth',1, 'DisplayName', 'Harmonic mean');
     plot(timcont, trimmean33, 'LineWidth',1, 'DisplayName', 'Trimmed mean 33%');
-  %  plot(peaktim, obwpeaks, 'LineWidth',1, 'DisplayName', 'Peaks of peaks');
+    plot(peaktim, obwpeaks, 'LineWidth',1, 'DisplayName', 'Peaks of peaks');
     plot([lighttimes' lighttimes'], ylim, 'k-','HandleVisibility','off');
     xlim([85 135]);
     legend('AutoUpdate','off');
