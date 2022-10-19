@@ -36,9 +36,9 @@ window = 5;
 
 %plot to check
 figure(76); clf; hold on;
-    plot(timcont, obw, '.', 'MarkerSize', 8, 'HandleVisibility','off');
+    plot(timcont, obw, '.', 'MarkerSize', 8);
     plot(timcont, tmean, 'LineWidth',1, 'DisplayName', 'Mean');
-    plot([lighttimes' lighttimes'], ylim, 'k-');
+    plot([lighttimes' lighttimes'], ylim, 'k-','HandleVisibility','off');
     xlim([85 135]);
     legend('AutoUpdate','off');
 
