@@ -1,9 +1,9 @@
 
 clearvars -except xxkg hkg hkg2 xxkg2
 
-k = 43;
+k = 48;
 channel = 1;
-in = xxkg(k);
+in = hkg(k);
 
 %outlier removal
  tto = [in.idx(channel).obwidx]; 
