@@ -129,15 +129,15 @@ end
 
         else
 
-        lowWn = 0.025/(ReFs/2);
+        lowWn = 0.1/(ReFs/2);
         [dd,cc] = butter(5, lowWn, 'low');
         datadata = filtfilt(dd,cc, double(regobwpeaks));
         end
            
     
-   dataminusmean = datadata - mean(datadata);    
+  % dataminusmean = datadata - mean(datadata);    
    % dataminusmean = regobwpeaks - mean(regobwpeaks);    
-   % dataminusmean = regobwpeaks;    
+    dataminusmean = regobwpeaks;    
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
