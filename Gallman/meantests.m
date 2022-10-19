@@ -71,23 +71,23 @@ figure(76); clf; hold on;
 
 
  %% which trim percetage to use
-%   %trimmed 
-%   fcn = @(x) trimmean(x,33);
-%   trimmean33 = matlab.tall.movingWindow(fcn, window, obw');
-% 
-%   fcn = @(x) trimmean(x,10);
-%   trimmean10 = matlab.tall.movingWindow(fcn, window, obw');
-% 
-%   %plot to check
-% figure(77); clf; hold on;
-%     plot(timcont, obw, '.', 'MarkerSize', 8, 'DisplayName', 'obw');
-%     plot(timcont, tmean, 'LineWidth',1, 'DisplayName', 'Mean');
-%     plot(timcont, trimmean33, 'LineWidth',1, 'DisplayName', 'Trimmed mean 33%');
-%     plot(timcont, trimmean10, 'LineWidth',1, 'DisplayName', 'Trimmed mean 10%');
-%     %plot(peaktim, obwpeaks, 'LineWidth',1, 'DisplayName', 'Peaks of peaks');
-%     plot([lighttimes' lighttimes'], ylim, 'k-','HandleVisibility','off');
-%     xlim([85 135]);
-%     legend('AutoUpdate','off');
+  %trimmed 
+  fcn = @(x) trimmean(x,33);
+  trimmean33 = matlab.tall.movingWindow(fcn, window, obw');
+
+  fcn = @(x) trimmean(x,10);
+  trimmean10 = matlab.tall.movingWindow(fcn, window, obw');
+
+  %plot to check
+figure(77); clf; hold on;
+    plot(timcont, obw, '.', 'MarkerSize', 8, 'DisplayName', 'obw');
+    plot(timcont, tmean, 'LineWidth',1, 'DisplayName', 'Mean');
+    plot(timcont, trimmean33, 'LineWidth',1, 'DisplayName', 'Trimmed mean 33%');
+    plot(timcont, trimmean10, 'LineWidth',1, 'DisplayName', 'Trimmed mean 10%');
+    %plot(peaktim, obwpeaks, 'LineWidth',1, 'DisplayName', 'Peaks of peaks');
+    plot([lighttimes' lighttimes'], ylim, 'k-','HandleVisibility','off');
+    xlim([85 135]);
+    legend('AutoUpdate','off');
 
 %% probability plot
 
