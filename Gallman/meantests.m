@@ -25,11 +25,13 @@ in = xxkg(k);
 
 %% mean alternative tests using filters?
 
-%movmean vs moving average filter
+%movmean vs tall moving window
 window = 5;
   %movmean
     movobw = movmean(obw, window);
-  %moving average filter
+  %tall moving window
+  fcn = @(x) mean(x,1,'omitnan');
+  tmean = matlab.tall.movingWindow(fcn, window, obw');
 
 
 % %plot to check
