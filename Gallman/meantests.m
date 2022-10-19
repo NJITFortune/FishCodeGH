@@ -1,6 +1,7 @@
 
 clearvars -except xxkg hkg hkg2 xxkg2
 
+k = 43;
 in = xxkg(k);
 
 %outlier removal
