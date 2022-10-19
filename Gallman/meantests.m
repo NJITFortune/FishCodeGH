@@ -23,6 +23,9 @@ in = xxkg(k);
     timcont = timcont(lidx);
     obw = obw(lidx);
 
+%% peaks of peaks for comparison
+
+
 %% mean alternative tests using filters?
 
 %movmean vs tall moving window
