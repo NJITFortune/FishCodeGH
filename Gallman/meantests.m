@@ -10,7 +10,7 @@ in = xxkg(k);
       
 %raw data
     timconts = [in.e(channel).s(tto).timcont]; %time in seconds
-    timconth = timcont/3600;
+    timconth = timconts/3600;
     obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
     oldfreq = [in.e(channel).s(tto).fftFreq];
     oldtemp = [in.e(channel).s(tto).temp];
