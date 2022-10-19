@@ -52,9 +52,9 @@ window = 5;
   fcn = @(x) harmmean(x,1,'omitnan');
   harmean = matlab.tall.movingWindow(fcn, window, obw');
 
-  %trimmed 
-  fcn = @(x) trimmean(x,1,'omitnan');
-  trimmean = matlab.tall.movingWindow(fcn, window, obw');
+%   %trimmed 
+%   fcn = @(x) trimmean(x,1,'omitnan');
+%   trimmean = matlab.tall.movingWindow(fcn, window, obw');
 
 
 %plot to check
@@ -69,7 +69,14 @@ figure(76); clf; hold on;
     xlim([85 135]);
     legend('AutoUpdate','off');
 
+
+%% which trim percetage to use
+  %trimmed 
+  fcn = @(x) trimmean(x,30);
+  trimmean = matlab.tall.movingWindow(fcn, window, obw');
+
+
 %% probability plot
 
-probplot(obw)
+%probplot(obw)
 
