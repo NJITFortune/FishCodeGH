@@ -97,9 +97,7 @@ end
  %trimmed mean
   fcn = @(x) trimmean(x,33);
   obwtrim = matlab.tall.movingWindow(fcn, window, obw');
-  fcn = @(x) trimmean(x,33);
   freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
-  fcn = @(x) trimmean(x,33);
   temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
 
     
