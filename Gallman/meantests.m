@@ -66,7 +66,7 @@ figure(76); clf; hold on;
     plot(timcont, trimmean33, 'LineWidth',1, 'DisplayName', 'Trimmed mean 33%');
     plot(peaktim, obwpeaks, 'LineWidth',1, 'DisplayName', 'Peaks of peaks');
     plot([lighttimes' lighttimes'], ylim, 'k-','HandleVisibility','off');
-    xlim([85 135]);
+ %   xlim([85 135]);
     legend('AutoUpdate','off');
 
 %% trimmed mean vs non mean measures
@@ -92,7 +92,7 @@ figure(78); clf; hold on;
     plot(timcont, trimmean33, 'LineWidth',1, 'DisplayName', 'Trimmed mean 33%');
     %plot(peaktim, obwpeaks, 'LineWidth',1, 'DisplayName', 'Peaks of peaks');
     plot([lighttimes' lighttimes'], ylim, 'k-','HandleVisibility','off');
-    xlim([85 135]);
+  %  xlim([85 135]);
     legend('AutoUpdate','off');
  %% which trim percetage to use
   %trimmed 
