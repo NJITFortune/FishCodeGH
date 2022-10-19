@@ -115,17 +115,25 @@ end
         %low pass removes spikey-ness
        % lowWn = 0.025/(ReFs/2);%OG
         % lowWn = 0.9/(ReFs/2);
-          lowWn = 0.1/(ReFs/2);
-        [dd,cc] = butter(5, lowWn, 'low');
-        datadata = filtfilt(dd,cc, double(regobwpeaks));
+        
 
         
         %high pass removes feeding trend for high frequency experiments
         if ld < 11
+            %less strong low pass filter - otherwise fake prediction 
+               lowWn = 0.9/(ReFs/2);
+               [dd,cc] = butter(5, lowWn, 'low');
+        datadata = filtfilt(dd,cc, double(regobwpeaks));
         [bb,aa] = butter(5, highWn, 'high');
         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
 
+        else
+
+        lowWn = 0.1/(ReFs/2);
+        [dd,cc] = butter(5, lowWn, 'low');
+        datadata = filtfilt(dd,cc, double(regobwpeaks));
         end
+           
     
    dataminusmean = datadata - mean(datadata);    
    % dataminusmean = regobwpeaks - mean(regobwpeaks);    
