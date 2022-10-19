@@ -103,7 +103,10 @@ end
   freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
   temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
 
-    
+    figure(43); clf; hold on;
+
+    plot(timcont/3600, obw, '.');
+    plot(timcont/3600, obwtrim);
     
 %Regularize
     %regularize data to ReFs interval
