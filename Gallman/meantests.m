@@ -86,7 +86,7 @@ figure(76); clf; hold on;
 figure(77); clf; hold on;
     plot(timcont, obw, '.', 'MarkerSize', 8, 'DisplayName', 'obw');
    % plot(timcont, tmean, 'LineWidth',1, 'DisplayName', 'Mean');
-   plot(timcont, trimmean403, 'LineWidth',1, 'DisplayName', 'Trimmed mean 40%');
+   plot(timcont, trimmean40, 'LineWidth',1, 'DisplayName', 'Trimmed mean 40%');
     plot(timcont, trimmean33, 'LineWidth',1, 'DisplayName', 'Trimmed mean 33%');
     plot(timcont, trimmean10, 'LineWidth',1, 'DisplayName', 'Trimmed mean 10%');
     %plot(peaktim, obwpeaks, 'LineWidth',1, 'DisplayName', 'Peaks of peaks');
