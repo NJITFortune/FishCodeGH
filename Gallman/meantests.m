@@ -38,12 +38,17 @@ window = 5;
   fcn = @(x) geomean(x,1,'omitnan');
   gmean = matlab.tall.movingWindow(fcn, window, obw');
 
+  %harmonic
+  fcn = @(x) harmmean(x,1,'omitnan');
+  harmean = matlab.tall.movingWindow(fcn, window, obw');
+
 
 %plot to check
 figure(76); clf; hold on;
     plot(timcont, obw, '.', 'MarkerSize', 8, 'DisplayName', 'obw');
     plot(timcont, tmean, 'LineWidth',1, 'DisplayName', 'Mean');
-    plot(timcont, gmean, 'LineWidth',1, 'DisplayName', 'Geomean');
+    plot(timcont, gmean, 'LineWidth',1, 'DisplayName', 'Geometic mean');
+    plot(timcont, harmean, 'LineWidth',1, 'DisplayName', 'Harmonic mean');
     plot([lighttimes' lighttimes'], ylim, 'k-','HandleVisibility','off');
     xlim([85 135]);
     legend('AutoUpdate','off');
