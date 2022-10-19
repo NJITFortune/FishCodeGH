@@ -40,6 +40,7 @@ figure(76); clf; hold on;
     plot(timcont, movobw);
     plot(timcont, tmean);
     plot([lighttimes' lighttimes'], ylim, 'k-');
+    xlim([85 135]);
 
 
 
