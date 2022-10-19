@@ -29,14 +29,15 @@ in = xxkg(k);
 window = 5;
   %movmean
     movobw = movmean(obw, window);
-  %tall moving window
+%tall moving window
+  %mean
   fcn = @(x) mean(x,1,'omitnan');
   tmean = matlab.tall.movingWindow(fcn, window, obw');
 
 
 %plot to check
 figure(76); clf; hold on;
-    plot(timcont, obw, '.', 'MarkerSize', 8);
+    plot(timcont, obw, '.', 'MarkerSize', 8, 'DisplayName', 'obw');
     plot(timcont, tmean, 'LineWidth',1, 'DisplayName', 'Mean');
     plot([lighttimes' lighttimes'], ylim, 'k-','HandleVisibility','off');
     xlim([85 135]);
