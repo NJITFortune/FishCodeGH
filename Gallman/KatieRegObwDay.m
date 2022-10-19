@@ -15,7 +15,7 @@
 in = hkg(k);
 ReFs = 20;
 light = 3; %start with dark
-channel = 1;
+channel = 2;
 
 %light = 4; %start with light
 % fish = 5; %lo freq
