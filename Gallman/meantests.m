@@ -52,6 +52,8 @@ window = 5;
   fcn = @(x) harmmean(x,1,'omitnan');
   harmean = matlab.tall.movingWindow(fcn, window, obw');
 
+  
+
 
 %plot to check
 figure(76); clf; hold on;
