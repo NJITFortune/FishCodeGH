@@ -17,19 +17,25 @@ in = xxkg(k);
     
 
     lighttimes = k_lighttimes(in, 3);
+    lighttimes = lighttimes/3600;
 %trim data to lighttimes
     lidx = find(timcont >= lighttimes(1) & timcont <= lighttimes(end));
-    timconth = timconth(lidx);
+    timcont = timcont(lidx);
     obw = obw(lidx);
 
+%% mean alternative tests using filters?
 
-%mean alternative tests
-
+%movmean vs tall moving window
+window = 5;
+  %movmean
+    movobw = movmean(obw, window);
+  %tall moving window
+  
 
 
 % %plot to check
 % figure(76); clf; hold on;
-%     plot(timconth, obw, '.', 'MarkerSize', 8);
+%     plot(timcont, obw, '.', 'MarkerSize', 8);
 %     plot    
 % 
 
