@@ -94,20 +94,7 @@ end
     oldfreq = [in.e(channel).s(tto).fftFreq];
     oldtemp = [in.e(channel).s(tto).temp];
 
-%Take top of dataset
-    %find peaks
-    [~,LOCS] = findpeaks(obw);
-    %find peaks of the peaks
-    [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
-    peaktim = timcont(LOCS(cLOCS));
-    peakfreq = oldfreq(LOCS(cLOCS));
-    peaktemp = oldtemp(LOCS(cLOCS));
-    
-%     % plot checking peaks
-%     figure(45); clf; hold on;   
-%         plot(peaktim, obwpeaks);
-%         plot(timcont, obw);
-%         plot([lighttimes' lighttimes'], ylim, 'k-');
+
     
 %Regularize
     %regularize data to ReFs interval
