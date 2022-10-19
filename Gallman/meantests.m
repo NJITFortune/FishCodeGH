@@ -80,7 +80,7 @@ figure(76); clf; hold on;
   mead = matlab.tall.movingWindow(fcn, window, obw');
 
   %mode
-  fcn = @(x) mode(x,1,'omitnan');
+  fcn = @(x) mode(x);
   moded = matlab.tall.movingWindow(fcn, window, obw');
 
 
