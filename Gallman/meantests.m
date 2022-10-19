@@ -24,8 +24,12 @@ in = xxkg(k);
     obw = obw(lidx);
 
 %% mean alternative tests using filters?
-    %movmean vs moving average filter
-    movobw = 
+
+%movmean vs mooving average filter
+window = 5;
+  %movmean
+    movobw = movmean(obw, window);
+  %mooving average filter
 
 
 % %plot to check
