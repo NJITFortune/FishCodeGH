@@ -52,7 +52,9 @@ window = 5;
   fcn = @(x) harmmean(x,1,'omitnan');
   harmean = matlab.tall.movingWindow(fcn, window, obw');
 
-  
+  %trimmed 
+  fcn = @(x) trimmean(x,1,'omitnan');
+  trimmean = matlab.tall.movingWindow(fcn, window, obw');
 
 
 %plot to check
@@ -61,7 +63,8 @@ figure(76); clf; hold on;
     plot(timcont, tmean, 'LineWidth',1, 'DisplayName', 'Mean');
     plot(timcont, gmean, 'LineWidth',1, 'DisplayName', 'Geometic mean');
     plot(timcont, harmean, 'LineWidth',1, 'DisplayName', 'Harmonic mean');
-    plot(peaktim, obwpeaks, 'LineWidth',1, 'DisplayName', 'Peaks of peaks');
+    plot(timcont, trimmean, 'LineWidth',1, 'DisplayName', 'Trimmed mean');
+    %plot(peaktim, obwpeaks, 'LineWidth',1, 'DisplayName', 'Peaks of peaks');
     plot([lighttimes' lighttimes'], ylim, 'k-','HandleVisibility','off');
     xlim([85 135]);
     legend('AutoUpdate','off');
