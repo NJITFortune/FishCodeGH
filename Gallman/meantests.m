@@ -2,6 +2,7 @@
 clearvars -except xxkg hkg hkg2 xxkg2
 
 k = 43;
+channel = 1;
 in = xxkg(k);
 
 %outlier removal
