@@ -23,10 +23,9 @@ in = xxkg(k);
     timcont = timcont(lidx);
     obw = obw(lidx);
 
-
-%mean alternative tests using filters?
-    %movmean vs filter
-
+%% mean alternative tests using filters?
+    %movmean vs moving average filter
+    movobw = 
 
 
 % %plot to check
