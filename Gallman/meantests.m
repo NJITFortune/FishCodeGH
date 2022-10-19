@@ -19,7 +19,7 @@ in = xxkg(k);
     lighttimes = k_lighttimes(in, 3);
 %trim data to lighttimes
     lidx = find(timcont >= lighttimes(1) & timcont <= lighttimes(end));
-    timconth = timconth(lidx);
+    timcont = timcont(lidx);
     obw = obw(lidx);
 
 
@@ -29,7 +29,7 @@ in = xxkg(k);
 
 % %plot to check
 % figure(76); clf; hold on;
-%     plot(timconth, obw, '.', 'MarkerSize', 8);
+%     plot(timcont, obw, '.', 'MarkerSize', 8);
 %     plot    
 % 
 
