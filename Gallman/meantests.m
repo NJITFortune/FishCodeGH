@@ -25,7 +25,7 @@ in = xxkg(k);
 
 
 %mean alternative tests using filters?
-
+    %movmean vs filter
 
 
 
