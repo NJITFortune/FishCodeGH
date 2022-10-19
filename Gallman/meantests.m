@@ -24,7 +24,14 @@ in = xxkg(k);
     obw = obw(lidx);
 
 %% peaks of peaks for comparison
-
+%Take top of dataset
+    %find peaks
+    [~,LOCS] = findpeaks(obw);
+    %find peaks of the peaks
+    [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
+    peaktim = timcont(LOCS(cLOCS));
+    peakfreq = oldfreq(LOCS(cLOCS));
+    peaktemp = oldtemp(LOCS(cLOCS));
 
 %% mean alternative tests using filters?
 
@@ -52,6 +59,7 @@ figure(76); clf; hold on;
     plot(timcont, tmean, 'LineWidth',1, 'DisplayName', 'Mean');
     plot(timcont, gmean, 'LineWidth',1, 'DisplayName', 'Geometic mean');
     plot(timcont, harmean, 'LineWidth',1, 'DisplayName', 'Harmonic mean');
+    plot(peaktim, obwpeaks, 'LineWidth',1, 'DisplayName', 'Peaks of peaks');
     plot([lighttimes' lighttimes'], ylim, 'k-','HandleVisibility','off');
     xlim([85 135]);
     legend('AutoUpdate','off');
