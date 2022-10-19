@@ -78,6 +78,10 @@ figure(76); clf; hold on;
   fcn = @(x) trimmean(x,10);
   trimmean10 = matlab.tall.movingWindow(fcn, window, obw');
 
+  %trimmed 
+  fcn = @(x) trimmean(x,33);
+  trimmean33 = matlab.tall.movingWindow(fcn, window, obw');
+
   %plot to check
 figure(77); clf; hold on;
     plot(timcont, obw, '.', 'MarkerSize', 8, 'DisplayName', 'obw');
