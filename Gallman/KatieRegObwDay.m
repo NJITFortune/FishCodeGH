@@ -97,7 +97,7 @@ end
  %trim everything to lighttimes
     timidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
     newertim = timcont(timidx);
-    obw = obw(timidx); 
+    newobw = obw(timidx); 
   
     oldfreq = oldfreq(timidx);
     oldtemp = oldtemp(timidx);
@@ -105,7 +105,7 @@ end
  %trimmed mean
  window = 5;
   fcn = @(x) trimmean(x,33);
-  obwtrim = matlab.tall.movingWindow(fcn, window, obw');
+  obwtrim = matlab.tall.movingWindow(fcn, window, newobw');
   freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
   temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
 
