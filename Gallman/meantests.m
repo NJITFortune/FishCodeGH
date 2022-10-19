@@ -17,6 +17,7 @@ in = xxkg(k);
     
 
     lighttimes = k_lighttimes(in, 3);
+    lighttimes = lighttimes/3600;
 %trim data to lighttimes
     lidx = find(timcont >= lighttimes(1) & timcont <= lighttimes(end));
     timcont = timcont(lidx);
