@@ -240,6 +240,7 @@ figure(55); clf; hold on;
     end
 
      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+     plot(timmy/3600, regobwpeaks);
 
 %average over single day    
 figure(57); clf; hold on; 
@@ -262,9 +263,10 @@ figure(57); clf; hold on;
      end
         
             mmday= mean(meanday);
-            othermday = mday/(length(day));
+            %othermday = mday/(length(day));
             plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
-            plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+           
+            %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
             
             
