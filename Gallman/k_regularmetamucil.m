@@ -24,13 +24,13 @@ if oldtim(1) > rawtim(1) %if first peak starts after tim(1)
 end
 
 %% Oldtim ends before last light change
-if oldtim(end) < lighttimes(end)
-
-    oldtim = [oldtim lighttimes(end)];
-    oldamp = [oldamp oldamp(end)];
-    oldfreq = [oldfreq oldfreq(end)];
-    oldtemp = [oldtemp oldtemp(end)];
-end
+% if oldtim(end) < lighttimes(end)
+% 
+%     oldtim = [oldtim lighttimes(end)];
+%     oldamp = [oldamp oldamp(end)];
+%     oldfreq = [oldfreq oldfreq(end)];
+%     oldtemp = [oldtemp oldtemp(end)];
+% end
 %% Regularize the data at precisely 60 second intervals
 
 b = mod(oldtim, regularinterval); % How far is each time point away from ReFs second intervals
