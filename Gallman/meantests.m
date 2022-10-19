@@ -34,11 +34,12 @@ window = 5;
   tmean = matlab.tall.movingWindow(fcn, window, obw');
 
 
-% %plot to check
-% figure(76); clf; hold on;
-%     plot(timcont, obw, '.', 'MarkerSize', 8);
-%     plot    
-% 
+%plot to check
+figure(76); clf; hold on;
+    plot(timcont, obw, '.', 'MarkerSize', 8);
+    plot(timcont, movobw);
+    plot(timcont, tmean);
+
 
 
 
