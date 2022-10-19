@@ -133,16 +133,13 @@ end
         [dd,cc] = butter(5, lowWn, 'low');
         datadata = filtfilt(dd,cc, double(regobwpeaks));
         end
-           
-    
-  % dataminusmean = datadata - mean(datadata);    
-   % dataminusmean = regobwpeaks - mean(regobwpeaks);    
-    dataminusmean = regobwpeaks;    
+            
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
-    obwyy = dataminusmean(timidx);  
+    obwyy = datadata(timidx); 
+    obwyy = obwyy-mean(obwyy);
     freq = regfreq(timidx);
     temp = regtemp(timidx);
     
@@ -240,7 +237,7 @@ figure(55); clf; hold on;
     end
 
      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
-     plot(xx/3600, obwyy);
+    % plot(xx/3600, obwyy);
 
 %average over single day    
 figure(57); clf; hold on; 
