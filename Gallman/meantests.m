@@ -40,7 +40,7 @@ figure(76); clf; hold on;
     plot(timcont, tmean, 'LineWidth',1, 'DisplayName', 'Mean');
     plot([lighttimes' lighttimes'], ylim, 'k-');
     xlim([85 135]);
-    legend;
+    legend('AutoUpdate','off');
 
 
 
