@@ -71,6 +71,29 @@ figure(76); clf; hold on;
 
 %% trimmed mean vs non mean measures
 
+  %trimmed mean
+  fcn = @(x) trimmean(x,33);
+  trimmean33 = matlab.tall.movingWindow(fcn, window, obw');
+
+  %median
+  fcn = @(x) median(x,1,'omitnan');
+  mead = matlab.tall.movingWindow(fcn, window, obw');
+
+  %mode
+  fcn = @(x) mode(x,1,'omitnan');
+  moded = matlab.tall.movingWindow(fcn, window, obw');
+
+
+  %plot to check
+figure(78); clf; hold on;
+    plot(timcont, obw, '.', 'MarkerSize', 8, 'DisplayName', 'obw');
+     plot(timcont, moded, 'LineWidth',1, 'DisplayName', 'Mode');
+     plot(timcont, mead, 'LineWidth',1, 'DisplayName', 'Median');
+    plot(timcont, trimmean33, 'LineWidth',1, 'DisplayName', 'Trimmed mean 33%');
+    %plot(peaktim, obwpeaks, 'LineWidth',1, 'DisplayName', 'Peaks of peaks');
+    plot([lighttimes' lighttimes'], ylim, 'k-','HandleVisibility','off');
+    xlim([85 135]);
+    legend('AutoUpdate','off');
  %% which trim percetage to use
   %trimmed 
 %   fcn = @(x) trimmean(x,33);
