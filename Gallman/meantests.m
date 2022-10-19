@@ -71,5 +71,5 @@ figure(76); clf; hold on;
 
 %% probability plot
 
-
+probplot(obw)
 
