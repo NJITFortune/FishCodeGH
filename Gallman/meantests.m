@@ -79,13 +79,14 @@ figure(76); clf; hold on;
   trimmean10 = matlab.tall.movingWindow(fcn, window, obw');
 
   %trimmed 
-  fcn = @(x) trimmean(x,33);
-  trimmean33 = matlab.tall.movingWindow(fcn, window, obw');
+  fcn = @(x) trimmean(x,40);
+  trimmean40 = matlab.tall.movingWindow(fcn, window, obw');
 
   %plot to check
 figure(77); clf; hold on;
     plot(timcont, obw, '.', 'MarkerSize', 8, 'DisplayName', 'obw');
    % plot(timcont, tmean, 'LineWidth',1, 'DisplayName', 'Mean');
+   plot(timcont, trimmean403, 'LineWidth',1, 'DisplayName', 'Trimmed mean 40%');
     plot(timcont, trimmean33, 'LineWidth',1, 'DisplayName', 'Trimmed mean 33%');
     plot(timcont, trimmean10, 'LineWidth',1, 'DisplayName', 'Trimmed mean 10%');
     %plot(peaktim, obwpeaks, 'LineWidth',1, 'DisplayName', 'Peaks of peaks');
