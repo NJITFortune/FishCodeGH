@@ -34,11 +34,16 @@ window = 5;
   fcn = @(x) mean(x,1,'omitnan');
   tmean = matlab.tall.movingWindow(fcn, window, obw');
 
+  %geomean
+  fcn = @(x) geomean(x,1,'omitnan');
+  gmean = matlab.tall.movingWindow(fcn, window, obw');
+
 
 %plot to check
 figure(76); clf; hold on;
     plot(timcont, obw, '.', 'MarkerSize', 8, 'DisplayName', 'obw');
     plot(timcont, tmean, 'LineWidth',1, 'DisplayName', 'Mean');
+    plot(timcont, gmean, 'LineWidth',1, 'DisplayName', 'Geomean');
     plot([lighttimes' lighttimes'], ylim, 'k-','HandleVisibility','off');
     xlim([85 135]);
     legend('AutoUpdate','off');
