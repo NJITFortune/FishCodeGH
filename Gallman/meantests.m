@@ -24,7 +24,8 @@ in = xxkg(k);
     obw = obw(lidx);
 
 
-%mean alternative tests
+%mean alternative tests using filters?
+
 
 
 
