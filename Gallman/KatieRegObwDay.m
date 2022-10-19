@@ -99,15 +99,15 @@ end
     newertim = timcont(timidx);
     newobw = obw(timidx); 
   
-    oldfreq = oldfreq(timidx);
-    oldtemp = oldtemp(timidx);
+    newerfreq = oldfreq(timidx);
+    newertemp = oldtemp(timidx);
 
  %trimmed mean
  window = 5;
   fcn = @(x) trimmean(x,33);
   obwtrim = matlab.tall.movingWindow(fcn, window, newobw');
-  freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
-  temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
+  freqtrim = matlab.tall.movingWindow(fcn, window, newerfreq');
+  temptrim = matlab.tall.movingWindow(fcn, window, newertemp');
 
     
     
