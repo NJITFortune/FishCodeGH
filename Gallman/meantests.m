@@ -87,7 +87,7 @@ figure(76); clf; hold on;
   %plot to check
 figure(78); clf; hold on;
     plot(timcont, obw, '.', 'MarkerSize', 8, 'DisplayName', 'obw');
-  %   plot(timcont, moded, 'LineWidth',1, 'DisplayName', 'Mode');
+     plot(timcont, moded, 'LineWidth',1, 'DisplayName', 'Mode');
      plot(timcont, mead, 'LineWidth',1, 'DisplayName', 'Median');
     plot(timcont, trimmean33, 'LineWidth',1, 'DisplayName', 'Trimmed mean 33%');
     %plot(peaktim, obwpeaks, 'LineWidth',1, 'DisplayName', 'Peaks of peaks');
