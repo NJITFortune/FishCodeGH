@@ -1,5 +1,5 @@
 
-clearvars -except xxkg hkg hkg2 xxkg2
+clearvars -except xxkg hkg hkg2 xxkg2 k
 
 %k = 43;
 channel = 1;
