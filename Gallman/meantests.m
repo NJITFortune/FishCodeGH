@@ -37,8 +37,7 @@ window = 5;
 %plot to check
 figure(76); clf; hold on;
     plot(timcont, obw, '.', 'MarkerSize', 8);
-    plot(timcont, movobw);
-    plot(timcont, tmean);
+    plot(timcont, tmean, 'LineWidth',1);
     plot([lighttimes' lighttimes'], ylim, 'k-');
     xlim([85 135]);
 
