@@ -240,7 +240,7 @@ figure(55); clf; hold on;
     end
 
      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
-     plot(regtim/3600, regobwpeaks);
+     plot(xx/3600, obwyy);
 
 %average over single day    
 figure(57); clf; hold on; 
