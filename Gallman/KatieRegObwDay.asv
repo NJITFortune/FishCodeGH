@@ -94,8 +94,14 @@ end
     oldfreq = [in.e(channel).s(tto).fftFreq];
     oldtemp = [in.e(channel).s(tto).temp];
 
+ %trim everything to lighttimes
+    timidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
+    newertim = timcont(timidx);
+    obw = obw(timidx); 
+  
+    oldfreq = oldfreq(timidx);
+    oldtemp = oldtemp(timidx);
 
-    
  %trimmed mean
  window = 5;
   fcn = @(x) trimmean(x,33);
@@ -103,10 +109,7 @@ end
   freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
   temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
 
-    figure(43); clf; hold on;
-
-    plot(timcont/3600, obw, '.');
-    plot(timcont/3600, obwtrim);
+    
     
 %Regularize
     %regularize data to ReFs interval
