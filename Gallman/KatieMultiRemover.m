@@ -1,9 +1,9 @@
-function out = KatieMultiRemover(in)
+function out = Katiehkg2Remover(in)
 
 % OBW        
 figure(1); clf;
 
-    histogram([in.his.HiAmp], 100); hold on;
+    histogram([in.obwAmp], 100); hold on;
     
     %Lower lim
     fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');

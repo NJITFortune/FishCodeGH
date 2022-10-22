@@ -17,7 +17,7 @@ figure(4); clf; hold on;
 totplot = 5;
 plotorder = 1;
 colnum = 1;
-
+binwidth = 1;
 
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('obwAmp'); %ylim([0,5]);
 
@@ -32,7 +32,30 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('obwAmp'); %
 
        plotorder = plotorder + 1;
 
+luz = [out.info.luz];
+if length(luz) > 1
+ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('tube triggers'); ylim([0,50]);
+       % plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.', 'Color', [0.4660 0.6740 0.1880], 'MarkerSize', 5);
 
+        %luz = floor([out.info.luz]);
+        luz = [out.info.luz];
+            for k = 2:length(luz)
+            
+                if luz(k-1) < 0
+                  
+                  d = histogram([out.s(tto).timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
+                  d.Normalization = 'countdensity';
+                  d.FaceColor = [0.9 0.9 0.9];
+                else
+                    
+                   l = histogram([out.s(tto).timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
+                   l.Normalization = 'countdensity';
+                   l.FaceColor = 'y';
+                end
+            end
+
+        plotorder = plotorder + 1;
+end
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('frequency');   
     
      

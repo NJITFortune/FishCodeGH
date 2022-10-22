@@ -1,10 +1,10 @@
-%function [multiday] = multisingleRegobwDay(in, ReFs, light)%multisingleRegobwDay
+%function [multiday] = KatieMultiReglong(in, ReFs, light)%multisingleRegobwDay
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
 
 
-% %for when i'm too lazy to function
+% % %for when i'm too lazy to function
  clearvars -except kg kg2 rkg k hkg2 hkg
 % % 
 in = hkg2(k);
@@ -135,32 +135,36 @@ end
     temp = regtemp(timidx);
     
 
-%     rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
-%     timmy = timcont(rawidx);
-%     obwAmp = obw(rawidx);
-%     rawfreq = oldfreq(rawidx);
-%     rawtemp = oldtemp(rawidx);
+    rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
+    timmy = timcont(rawidx);
+    obwAmp = obw(rawidx);
+    rawfreq = oldfreq(rawidx);
+    rawtemp = oldtemp(rawidx);
 
 %% Define day length
 
+fishld = 8;
  %day
-    daylengthSECONDS = (ld*2) * 3600;  
+    daylengthSECONDS = (fishld*2) * 3600;  
     lengthofsampleHOURS = (lighttimes(end) - lighttimes(1)) / 3600; 
     % This is the number of data samples in a day
     howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
     %how many days in total experiment
-    howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
+    howmanydaysinsample = (floor(lengthofsampleHOURS / (fishld*2)));
 
 
 %% Divide sample into days 
 % needs to be in seconds
-tim = ReFs:ReFs:(ld*2)*3600;
+tim = ReFs:ReFs:(fishld*2)*3600;
+shiftme = 2*3600;
+%shiftme = 0;
+
 
 for j = 1:howmanydaysinsample
     
               %resampled data  
     %         % Get the index of the start time of the day
-                ddayidx = find(xx >= xx(1) + (j-1) * daylengthSECONDS & xx < xx(1) + j* daylengthSECONDS); % k-1 so that we start at zero
+                ddayidx = find(xx >= xx(1)+shiftme + (j-1) * daylengthSECONDS & xx < xx(1)+shiftme + j* daylengthSECONDS); % k-1 so that we start at zero
 
                 if length(ddayidx) >= howmanysamplesinaday-1 %important so that we know when to stop
 
@@ -188,17 +192,63 @@ for j = 1:howmanydaysinsample
 %                 %end
  end
  
- multiday = day;
+
  %% plot to check
 %time vectors currently in seconds, divide by 3600 to get hours
  
-% %days over experiment time
-% figure(55); clf; hold on;
-% 
-%     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+%days over experiment time
+figure(55); clf; hold on;
+ax(1) = subplot(211); hold on; title('amplitude obw');
+    plot(timmy/3600, obwAmp-mean(obwAmp), '.');
 %     for j = 1:length(day)
 %         plot(day(j).entiretimcont/3600, day(j).Sobwyy);
 %     end
+
+    
+
+   % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+   
+    a = ylim; %all of above is just to get the max for the plot lines...
+    if light < 4 %the first lighttime is dark
+        for j = 1:length(lighttimes)-1
+            if mod(j,2) == 1 %if j is odd
+            fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            end
+        end
+    else %the second lighttime is dark 
+        for j = 1:length(lighttimes)-1
+            if mod(j,2) == 0 %if j is even
+            fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            end
+        end
+    end
+    
+%     for j = 1:length(day)
+%         plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
+%     end
+
+     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+     plot(xx/3600, obwyy, 'LineWidth', 1.5);
+
+
+startim = 91;
+period = 16;
+
+startim = lighttimes(1)/3600;
+period = 16;
+ % LIGHT CYCLE ON/OFF STARTS 
+    %caclulate hours when the light changed
+        numbercycles = floor((timcont(end)/3600-timcont(1)/3600)/period); %number of cycles in data
+        timz = 1:1:numbercycles;
+        lines(timz) = startim + (period*(timz-1)); %without for-loop
+        
+   plot([lines', lines'], [a(1),a(2)], 'b-', 'LineWidth',2);
+
+% ax(2) = subplot(212); hold on; title('temperature');
+%     plot(timmy/3600, rawtemp, '.');
+% %     for j = 1:length(day)
+% %         plot(day(j).entiretimcont/3600, day(j).Sobwyy);
+% %     end
 % 
 %     
 % 
@@ -219,42 +269,86 @@ for j = 1:howmanydaysinsample
 %         end
 %     end
 %     
-%     for j = 1:length(day)
-%         plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
-%     end
+% %     for j = 1:length(day)
+% %         plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
+% %     end
 % 
-%      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+%      plot(timmy/3600, rawtemp, '.');
+%      plot(xx/3600, temp, 'LineWidth', 1.5);
+% 
+%  temptims = in.info.temptims;
+%      plot([lines', lines'], [a(1),a(2)], 'b-', 'LineWidth',2);
+%     plot([temptims temptims], [a(1) a(2)], 'r-', 'LineWidth',.5);
+% 
+% linkaxes(ax,'x');
+% 
 
-%average over single day    
+
+
+
+%% Autocorrelation test
+%calculate fs -ReFS = 20 means 1 sample per 20 seconds
+    %1/20sec * 3200 sec/hour = 3200/ReFs samples per hour
+%      samplesperhour = 3200/20;
+% % 
+% % %compute autocorrelation
+% %     [autocor, lags] = xcorr(obwyy, samplesperhour);
+% % 
+% % %plot
+% % figure(463); clf; hold on;
+% %     plot(lags/samplesperhour, autocor);
+% %     %xlim([-50 50]);
+% 
+% 
+% 
+% %compute autocorrelation
+% y = circshift(obwyy, samplesperhour *24);
+%     [autocor, lags] = xcorr(obwyy, y, 'normalized');
+% 
+% %plot
+% figure(463); clf; hold on;
+%     plot(lags, autocor);
+%     %xlim([-50 50]);
+% 
+% 
+% figure(78); clf; hold on;
+% %stem(lags, autocor);
+% crosscorr(obwyy, y);
+
+%pulseperiod(obwyy, xx)
+
+
+% figure(455); clf; hold on;
+%     
+%     [greyboxes, initcross, finalcross] = pulseperiod(obwyy, xx/3600);
+% 
+% plot(xx/3600, obwyy);
+% plot([initcross' initcross'], ylim, 'r-');
+% plot([finalcross' finalcross'], ylim, 'b-');
+
+
+%% average over single day    
 figure(56); clf; hold on; 
-    for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).Sobwyy);
-           
-     end
- a = ylim;
-    %create fill box 
-    if light < 4 %we start with dark
-        fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-    else %we start with light
-        fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-    end
-    
-    %mean two ways to prove math
-    mday = zeros(1, length(day(1).tim));        
+
+ 
+
+      
      for j = 1:length(day)
             plot(day(j).tim/3600, day(j).Sobwyy);
             meanday(j,:) = day(j).Sobwyy;
-            mday = mday + day(j).Sobwyy;
+            tempday(j,:) = day(j).temp;
+          
             
      end
         
             mmday= mean(meanday);
+            mtday = mean(tempday);
             othermday = mday/(length(day));
             plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
-            plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-            plot([ld ld], ylim, 'k-', 'LineWidth', 3);
-            
-            
-
-
-
+            plot(day(1).tim/3600, mtday-mean(mtday), 'r-', 'LineWidth', 3);
+            plot([fishld fishld], ylim, 'k-', 'LineWidth', 3);
+%             
+%             
+% 
+% 
+% 

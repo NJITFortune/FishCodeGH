@@ -9,13 +9,16 @@
     %starts with light = 4
 
 
+
+
+
 % % % % %for when i'm too lazy to function
   clearvars -except kg kg2 rkg k hkg2 hkg xxkg xxkg2 dark darkmulti light lightmulti
 % % % % % 
 in = hkg(k);
 ReFs = 20;
 light = 3; %start with dark
-channel = 2;
+channel = 1;
 
 %light = 4; %start with light
 % fish = 5; %lo freq
@@ -90,12 +93,89 @@ end
       
 %raw data
     timcont = [in.e(channel).s(tto).timcont]; %time in seconds
-    obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
+    obw = [in.e(channel).s(tto).obwAmp]; %divide by max to normalize
+    %obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
     oldfreq = [in.e(channel).s(tto).fftFreq];
     oldtemp = [in.e(channel).s(tto).temp];
 
+  
+luz = [in.info.luz]*3600;
+luz = luz(abs(luz)>= lighttimes(1) & abs(luz)<= lighttimes(end));
 
-    
+            for j = 2:length(luz)
+            
+                if luz(j-1) < 0
+                  timidx = find(timcont>= abs(luz(j-1)) & timcont<= abs(luz(j)));
+                    darks{j-1,:} = obw(timidx);
+                    darkstim{j-1,:}= timcont(timidx);
+                
+                else
+                    
+                    timidx = find(timcont>= abs(luz(j-1)) & timcont<= abs(luz(j)));
+                    lights{j-1,:} = obw(timidx);
+                    lighttim{j-1,:} = timcont(timidx);
+                end
+            end
+%%
+figure(33);clf; hold on;
+    for j = 1:length(darkstim)
+        plot(darkstim{j}, darks{j}, '.', 'MarkerSize', 8);
+    end
+  
+
+for j = 1:2:length(darks)
+    % OBW        
+    figure(11); clf;
+   
+        histogram(darks{j}, 100); hold on; %xlim([0,4]);
+        
+        %Lower lim
+        fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
+        [cutoffampL, ~]  = ginput(1);
+        plot([cutoffampL, cutoffampL], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+        drawnow; 
+        
+       % Upper lim
+        fprintf('Click cutoff for eliminating erroneously high amplitude measurements.\n');
+        [cutoffampH, ~]  = ginput(1);
+        plot([cutoffampH, cutoffampH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
+        drawnow; 
+
+
+        obwidx =  find(darks{j} > cutoffampL & darks{j} < cutoffampH);
+        newdarks{j,:} = obwidx;
+        pause(1);
+end
+close(11);
+%%
+% this is dumb
+for j = 1:2:length(darks)
+    a = darks{j};
+    b = newdarks{j};
+    trimmeddarks{j,:} = a(b);
+end
+% obw 
+for j = 1:length(darks)
+    if mod(j,2) == 1
+    newobw{j} = trimmeddarks{j};
+    else
+    newobw{j} = lights{j};
+    end
+end
+
+%% 
+newerobw = cell2mat(newobw);
+ [~, newidx, ~] = intersect(newerobw, obw);
+
+ timcont = timcont(newidx);
+ obw = newerobw/max(newerobw);
+  
+    oldfreq = oldfreq(newidx);
+    oldtemp = oldtemp(newidx);
+
+%%
+  
+
  %trimmed mean
  window = 5;
   fcn = @(x) trimmean(x,33);
@@ -137,7 +217,7 @@ end
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
     obwyy = datadata(timidx); 
-    obwyy = obwyy-mean(obwyy);
+  %  obwyy = obwyy-mean(obwyy);
     freq = regfreq(timidx);
     temp = regtemp(timidx);
     
@@ -203,7 +283,7 @@ for j = 1:howmanydaysinsample
 figure(55); clf; hold on;
     
   %  plot(timmy/3600, obwAmp, '.');
-    plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+    plot(timmy/3600, obwAmp, '.');
     for j = 1:length(day)
         plot(day(j).entiretimcont/3600, day(j).Sobwyy);
     end
@@ -230,7 +310,7 @@ figure(55); clf; hold on;
         plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
     end
 
-     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+     plot(timmy/3600, obwAmp, '.');
     plot(xx/3600, obwyy);
 
 %average over single day    
@@ -260,7 +340,108 @@ figure(57); clf; hold on;
             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
             
+%% temp and freq            
+
+ %temp days over experiment time
+figure(65); clf; hold on;
+    
+  %  plot(timmy/3600, obwAmp, '.');
+    plot(timmy/3600, rawtemp, '.');
+    for j = 1:length(day)
+        plot(day(j).entiretimcont/3600, day(j).temp);
+    end
+
+    
+   % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+   
+    a = ylim; %all of above is just to get the max for the plot lines...
+    if light < 4 %the first lighttime is dark
+        for j = 1:length(lighttimes)-1
+            if mod(j,2) == 1 %if j is odd
+            fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            end
+        end
+    else %the second lighttime is dark 
+        for j = 1:length(lighttimes)-1
+            if mod(j,2) == 0 %if j is even
+            fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            end
+        end
+    end
+    
+    for j = 1:length(day)
+        plot(day(j).entiretimcont/3600, day(j).temp, 'LineWidth', 1.5);
+    end
+
+     plot(timmy/3600, rawtemp, '.');
+     %%  freq days over experiment time
+figure(59); clf; hold on;
+    
+  %  plot(timmy/3600, obwAmp, '.');
+    plot(timmy/3600, rawfreq, '.');
+    for j = 1:length(day)
+        plot(day(j).entiretimcont/3600, day(j).freq);
+    end
+
+    
+   % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+   
+    a = ylim; %all of above is just to get the max for the plot lines...
+    if light < 4 %the first lighttime is dark
+        for j = 1:length(lighttimes)-1
+            if mod(j,2) == 1 %if j is odd
+            fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            end
+        end
+    else %the second lighttime is dark 
+        for j = 1:length(lighttimes)-1
+            if mod(j,2) == 0 %if j is even
+            fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            end
+        end
+    end
+    
+    for j = 1:length(day)
+        plot(day(j).entiretimcont/3600, day(j).freq, 'LineWidth', 1.5);
+    end
+
+     plot(timmy/3600, rawfreq, '.');
+%%   
+%average over single day temperature   
+figure(69); clf; hold on; 
+
+ 
+    subplot(121); title('temperature'); hold on;
+     
+     for j = 1:length(day)
+         
+            plot(day(j).tim/3600, day(j).temp);
+            tempday(j,:) = day(j).temp;
+        
             
+     end
+        
+            ttday= mean(tempday);
+         
+            plot(day(1).tim/3600, ttday, 'r-', 'LineWidth', 3);
+          %  plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+%            plot([day(1).ld day(1).ld], ylim, 'k-', 'LineWidth', 3);
 
 
-
+   subplot(122); title('frequency'); hold on;
+    %mean two ways to prove math
+  %  mday = zeros(1, length(day(1).tim));        
+     for j = 1:length(day)
+            plot(day(j).tim/3600, day(j).freq);
+            freqday(j,:) = day(j).freq;
+         %   mday = mday + day(j).Sobwyy;
+            
+     end
+        
+            ffday= mean(freqday);
+           % othermday = mday/(length(day));
+            plot(day(1).tim/3600, ffday, 'b-', 'LineWidth', 3);
+          %  plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+      %      plot([day(1).ld day(1).ld], ylim, 'k-', 'LineWidth', 3);
+            
+            

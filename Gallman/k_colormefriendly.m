@@ -19,7 +19,7 @@ purple = [0.4940 0.1840 0.5560];
 
 %pgrey = [221/255, 2221/255, 221/255]; %maybe save for background
 
-clrs = [pblue; pcyan; mint; pink; BlueSky; darkpurple; pblack; porange2; pyellow2; pgreen;ppurple2; purple];
+clrs = [pblue; pcyan; mint; pink; BlueSky; darkpurple;  porange2; pblack; pyellow2; pgreen;ppurple2; purple];
 % 
 % %Blue sky
 % BlueSky = [106/255, 90/255, 205/255];
