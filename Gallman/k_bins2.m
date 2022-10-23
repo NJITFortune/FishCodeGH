@@ -216,7 +216,8 @@ for jj = 1:length(dday)
          dlighthalftim(j,:) = dday(jj).tim(j);
      end
     end
-    plot(dlighthalftim, dlighthalfamp, 'm.');    
+    plot(dlighthalftim, dlighthalfamp, 'm.');  
+    plot(dlighthalftim, dlighthalfamp,'.');
 
 end
    
