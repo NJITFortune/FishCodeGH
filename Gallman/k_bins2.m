@@ -42,11 +42,11 @@ ld = in.info.ld;
 %trim time and amplitude vectors to light transitions
     
         timcont = [in.e(channel).s(tto{channel}).timcont]/3600;
-        fftAmp = [in.e(channel).s(tto{channel}).sumfftAmp];
+        obwAmp = [in.e(channel).s(tto{channel}).obwAmp];
         lidx = find(timcont >=lighttimes(1) & timcont <= lighttimes(end));
 
         timcont = timcont(lidx);
-        fftAmp = fftAmp(lidx);
+        obwAmp = obwAmp(lidx);
 
 
 %plot to check
@@ -77,13 +77,13 @@ bintimhour = bintimmin/60;
 %% Average amp by bin
 
 %divide amplitude data into bins
-    for j = 1:length(bintimhour)-1
+    for j = 2:length(bintimhour)
     
     
-        timidx = find(timcont > bintimhour(j) & timcont <= bintimhour(j+1));
+        timidx = find(timcont > bintimhour(j-1) & timcont <= bintimhour(j));
      
-        bin(j).Amp(:) = fftAmp(timidx);
-        bin(j).tim(:) = timcont(timidx);
+        bin(j-1).Amp(:) = obwAmp(timidx);
+        bin(j-1).tim(:) = timcont(timidx);
        
     end
 
@@ -187,7 +187,7 @@ for jj = 2:length(darkdays)
 
     darkidx = find(timcont >= darkdays(jj-1) & timcont < darkdays(jj));
     dday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
-    dday(jj-1).amp(:) = fftAmp(darkidx);
+    dday(jj-1).amp(:) = obwAmp(darkidx);
 
 end
 
@@ -243,7 +243,7 @@ for kk = 2:length(lightdays)
 
     lightidx = find(timcont >= lightdays(kk-1) & timcont < lightdays(kk));
     lday(kk-1).tim(:) = timcont(lightidx) - timcont(lightidx(1));
-    lday(kk-1).amp(:) = fftAmp(lightidx);
+    lday(kk-1).amp(:) = obwAmp(lightidx);
 
 end
 
