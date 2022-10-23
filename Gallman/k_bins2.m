@@ -1,6 +1,6 @@
-function out = k_bins2(in, channel, binsize, transbinnum)
+%function out = k_bins2(in, channel, binsize, transbinnum)
 %% prep 
-clearvars -except kg kg2 hkg hkg2 xxkg xxkg2
+clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
 
 in = hkg(2);
 channel = 1;
