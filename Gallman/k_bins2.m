@@ -188,6 +188,7 @@ for jj = 2:length(darkdays)
     darkidx = find(timcont >= darkdays(jj-1) & timcont < darkdays(jj));
     dday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
     dday(jj-1).amp(:) = obwAmp(darkidx);
+    dday(jj-1).entiretimcont = timcont(darkidx);
 
 end
 
@@ -244,6 +245,7 @@ for kk = 2:length(lightdays)
     lightidx = find(timcont >= lightdays(kk-1) & timcont < lightdays(kk));
     lday(kk-1).tim(:) = timcont(lightidx) - timcont(lightidx(1));
     lday(kk-1).amp(:) = obwAmp(lightidx);
+    lday(kk-1).entieretimcont(:) = timcont(lightidx);
 
 end
 
@@ -285,7 +287,9 @@ text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
 % out.ldlighthalfamp = lighthalfamp;
 % out.ldlighthalftim = lighthalftim;
 % out.ldpvaluettest = lpvalue;
-
+%% plot entire data set 
+figure(78);clf;title('entire exp'); hold on;
+    plot([lday.entieretimcont], [lday.amp]);
 %% Bin summary for dark tranistions
    
 for jj = 1:length(darkd)
