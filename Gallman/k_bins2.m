@@ -289,7 +289,8 @@ text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
 % out.ldpvaluettest = lpvalue;
 %% plot entire data set 
 figure(78);clf;title('entire exp'); hold on;
-    plot([lday.entieretimcont], [lday.amp]);
+    plot([lday.entieretimcont], [lday.amp], '.');
+    plot([dday.entieretimcont], [dday.amp], '.');
 %% Bin summary for dark tranistions
    
 for jj = 1:length(darkd)
