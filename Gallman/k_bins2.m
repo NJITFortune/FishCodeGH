@@ -268,7 +268,7 @@ for kk = 1:length(lday)
      end
     end
     plot(lighthalftim, lighthalfamp, 'm.');       
-     plot(darkhalftim, lighthalfamp, 'm.');       
+     plot(darkhalftim, darkhalfamp, '.');       
 
 end
 
