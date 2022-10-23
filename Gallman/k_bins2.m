@@ -217,7 +217,7 @@ for jj = 1:length(dday)
      end
     end
     plot(dlighthalftim, dlighthalfamp, 'm.');  
-    plot(dlighthalftim, dlighthalfamp,'.');
+    plot(ddarkhalftim, ddarkhalfamp,'.');
 
 end
    
@@ -268,6 +268,7 @@ for kk = 1:length(lday)
      end
     end
     plot(lighthalftim, lighthalfamp, 'm.');       
+     plot(darkhalftim, lighthalfamp, 'm.');       
 
 end
 
