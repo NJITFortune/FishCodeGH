@@ -11,9 +11,7 @@ binsize = 20;
 transbinnum = 8;
 %% outliers
 
-
-    
-        ttsf{channel} = in.idx(channel).obwidx;  % ttsf is indices for sumfftAmp
+tto{channel} = in.idx(channel).obwidx;  % ttsf is indices for sumfftAmp
 
      
 %% define data by light transitions
@@ -43,8 +41,8 @@ ld = in.info.ld;
 
 %trim time and amplitude vectors to light transitions
     
-        timcont = [in.e(channel).s(ttsf{channel}).timcont]/3600;
-        fftAmp = [in.e(channel).s(ttsf{channel}).sumfftAmp];
+        timcont = [in.e(channel).s(tto{channel}).timcont]/3600;
+        fftAmp = [in.e(channel).s(tto{channel}).sumfftAmp];
         lidx = find(timcont >=lighttimes(1) & timcont <= lighttimes(end));
 
         timcont = timcont(lidx);
