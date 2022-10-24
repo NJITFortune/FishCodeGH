@@ -99,30 +99,43 @@ darkdy = gradient(avgdark)./gradient(dday(1).tim);
 
 %plot
 figure(542); clf; hold on;
+ax(1) = subplot(211); clf; title('raw data'); hold on;
 
- for jj = 1:length(rawdday)
-    for j = 1:length(rawdday(jj).tim)
-     if rawdday(jj).tim(j) < ld
-         ddarkhalfamp(j,:) = rawdday(jj).amp(j);
-         ddarkhalftim(j,:) = rawdday(jj).tim(j);
-     else
-         dlighthalfamp(j,:) = rawdday(jj).amp(j);
-         dlighthalftim(j,:) = rawdday(jj).tim(j);
-     end
+     for jj = 1:length(rawdday)
+        for j = 1:length(rawdday(jj).tim)
+         if rawdday(jj).tim(j) < ld
+             ddarkhalfamp(j,:) = rawdday(jj).amp(j);
+             ddarkhalftim(j,:) = rawdday(jj).tim(j);
+         else
+             dlighthalfamp(j,:) = rawdday(jj).amp(j);
+             dlighthalftim(j,:) = rawdday(jj).tim(j);
+         end
+        end
+        plot(dlighthalftim, dlighthalfamp, 'm.');  
+        plot(ddarkhalftim, ddarkhalfamp,'b.');
+    
     end
-    plot(dlighthalftim, dlighthalfamp, 'm.');  
-    plot(ddarkhalftim, ddarkhalfamp,'b.');
+       
+        % plot(dday(1).tim, darkampyy, 'k-', 'LineWidth', 3);
+    % %     plot(darktimxx, darkdy, 'c-', 'LineWidth', 1.5);
+         plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+    
+    %Calculate chisqu of means
+    
+    [~,dpvalue] = ttest2(ddarkhalfamp,dlighthalfamp,'Vartype','unequal');
+    
+    %txt = 'pvalue =' + num2str(pvalue)
+    text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
 
-end
-   
-    % plot(dday(1).tim, darkampyy, 'k-', 'LineWidth', 3);
-     plot(dday(1).tim, darkdy, 'k-', 'LineWidth', 1.5);
-% %     plot(darktimxx, darkdy, 'c-', 'LineWidth', 1.5);
-     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+ax(2) = subplot(212); clf; title('trimmean regularized with derivative');
 
-%Calculate chisqu of means
+    for jj = 1:length(dday)
+        plot(dday(j).tim, dday(j).amp);
+    end
 
-[~,dpvalue] = ttest2(ddarkhalfamp,dlighthalfamp,'Vartype','unequal');
+    plot(dday(1).tim, avgdark, 'k-', 'LineWidth', 2, 'DisplayName','mean');
+    plot(day(1).tim, darkdy, 'b-', 'LineWidth', 2, 'DisplayName','first derivative');
 
-%txt = 'pvalue =' + num2str(pvalue)
-text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
+    legend;
+
+linkaxes(ax, 'x');
