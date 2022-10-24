@@ -28,7 +28,7 @@ lighttimes = lighttimes/3600;
      tto = [in.idx(channel).obwidx]; 
           
     %raw data
-        timcont = [in.e(channel).s(tto).timcont]; %time in seconds
+        timcont = [in.e(channel).s(tto).timcont]/3600; %time in hours
         obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
         oldfreq = [in.e(channel).s(tto).fftFreq];
         oldtemp = [in.e(channel).s(tto).temp];
