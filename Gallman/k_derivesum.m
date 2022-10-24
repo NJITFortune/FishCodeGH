@@ -58,4 +58,8 @@ for j = 1:length(dday)
     darkdayamp(j,:) = dday(j).amp;
 end
 
+avgdark = trimmean(darkdayamp, 33);
+[darkxx, darkampyy] = metamucil([dday.tim]*3600, avgdark);
 
+ darktimxx = darkxx/3600;
+ darkdy= gradient(darkampyy)./gradient(darktimxx);
