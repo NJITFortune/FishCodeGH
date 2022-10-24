@@ -11,6 +11,8 @@ ReFs = 20;
 binsize = 20;
 transbinnum = 8;
 
+ld = in.info.ld;
+
 lighttimes = k_lighttimes(in, 3);
 lighttimes = lighttimes/3600;
 %% dark to light transitions
