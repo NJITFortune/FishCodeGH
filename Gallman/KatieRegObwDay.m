@@ -121,9 +121,8 @@ end
 % 
 % 
 %  [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, lighttimes);
-    
-     filter data
-        
+
+        %filter data
         if ld < 11
 
         %high pass removes feeding trend for high frequency experiments
