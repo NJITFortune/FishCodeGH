@@ -4,15 +4,19 @@ clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
 
 in = hkg(2);
 channel = 1;
+ReFs = 20;
 %kg(12) starts with light
 
 %binsize in minutes
 binsize = 20;
 transbinnum = 8;
 
-
+lighttimes = k_lighttimes(in, 3);
+lighttimes = lighttimes/3600;
 %% dark to light transitions
 
+%length of experiment
+totaltimhours = lighttimes(end)-lighttimes(1);
 %divide into days
 %index      
 daysz = 1:1:floor(totaltimhours/(ld*2));
@@ -30,7 +34,7 @@ transtim = transbinnum*binsize/60;
 
 %% dark summary by day for stats
 
-%dark
+%divide raw data into days that start with dark
 for jj = 2:length(darkdays)
 
     darkidx = find(timcont >= darkdays(jj-1) & timcont < darkdays(jj));
@@ -40,9 +44,50 @@ for jj = 2:length(darkdays)
 
 end
 
-[regtim, regfreq, regtemp, regobwpeaks] = k_datatrimmean(in, channel, ReFs);
+%re
+[regtim, regfreq, regtemp, regobw] = k_datatrimmean(in, channel, ReFs);
+regtim = regtim/3600;
 
 for jj = 2:length(darkdays)
 
+    darkidx = find(regtim >= darkdays(jj-1) & regtim < darkdays(jj));
+        dday(jj-1).tim(:) = regtim(darkidx)-regtim(darkidx(1));
+        dday(jj-1).amp(:) = regobw(darkidx);
+        dday(jj-1).entiretimcont = regtim(darkidx);
 
 end
+
+%average amplitude 
+for j = 1:length(dday)
+    darkdayamp(j,:) = dday(j).amp;
+end
+
+avgdark = mean(darkdayamp);
+darkdy= gradient(avgdark)./gradient(dday(1).tim);
+
+ for jj = 1:length(dday)
+    for j = 1:length(dday(jj).tim)
+     if dday(jj).tim(j) < ld
+         ddarkhalfamp(j,:) = dday(jj).amp(j);
+         ddarkhalftim(j,:) = dday(jj).tim(j);
+     else
+         dlighthalfamp(j,:) = dday(jj).amp(j);
+         dlighthalftim(j,:) = dday(jj).tim(j);
+     end
+    end
+    plot(dlighthalftim, dlighthalfamp, 'm.');  
+  %  plot(ddarkhalftim, ddarkhalfamp,'.');
+
+end
+   
+     plot(darktimxx, darkampyy, 'k-', 'LineWidth', 3);
+     plot(darktimxx, darkdy, 'b-', 'LineWidth', 1.5);
+% %     plot(darktimxx, darkdy, 'c-', 'LineWidth', 1.5);
+     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+
+%Calculate chisqu of means
+
+[~,dpvalue] = ttest2(ddarkhalfamp,dlighthalfamp,'Vartype','unequal');
+
+%txt = 'pvalue =' + num2str(pvalue)
+text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
