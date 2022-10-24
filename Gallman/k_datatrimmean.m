@@ -1,4 +1,7 @@
 function  [regtim, regfreq, regtemp, regobwpeaks] = k_datatrimmean(in, channel, ReFs)
+%takes raw data from structure and regularizes using trim mean with 33% outlier exclusion
+%regtim output in seconds
+
 % %notfunction
 % clearvars -except rkg kg2 hkg hkg2 xxkg xxkg2     
 % % 
@@ -38,15 +41,15 @@ lighttimes = k_lighttimes(in, light);
 
   end
             
-   %peaks of peaks
-        %find peaks
-        [~,LOCS] = findpeaks(obw);
-        %find peaks of the peaks
-        [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
-        peaktim = timcont(LOCS(cLOCS));       
-        peakfreq = oldfreq(LOCS(cLOCS));       
-        peaktemp = oldtemp(LOCS(cLOCS));  
+   %trimmed mean
+ window = 5;
+  fcn = @(x) trimmean(x,33);
+  obwtrim = matlab.tall.movingWindow(fcn, window, obw');
+  freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
+  temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
 
-
-
- [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, lighttimes);
+    
+    
+%Regularize
+    %regularize data to ReFs interval
+    [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
