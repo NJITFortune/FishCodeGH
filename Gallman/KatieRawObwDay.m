@@ -56,10 +56,6 @@ darkdays = lighttimes(1) + ((2*ld) * (daysz-1));
 %light transitions
 lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 
-%how many bins around the transistion 
-%transbinnum = 8;
-transtim = transbinnum*binsize/60;
-
 
 %% dark summary by day for stats
 
