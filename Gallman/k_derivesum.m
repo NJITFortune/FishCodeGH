@@ -34,7 +34,7 @@ transtim = transbinnum*binsize/60;
 
 %% dark summary by day for stats
 
-%dark
+%divide raw data into days that start with dark
 for jj = 2:length(darkdays)
 
     darkidx = find(timcont >= darkdays(jj-1) & timcont < darkdays(jj));
@@ -44,9 +44,11 @@ for jj = 2:length(darkdays)
 
 end
 
+%regularize data using trim mean and metamucil
 [regtim, regfreq, regtemp, regobw] = k_datatrimmean(in, channel, ReFs);
-regtim = regtim/3600;
+regtim = regtim/3600; %convert back from seconds to hours
 
+%divide regularized data into days that start with dark
 for jj = 2:length(darkdays)
 
     darkidx = find(regtim >= darkdays(jj-1) & regtim < darkdays(jj));
@@ -56,14 +58,15 @@ for jj = 2:length(darkdays)
 
 end
 
-%trim mean
+%take the derivative to test prediction
+    %average amplitude 
 for j = 1:length(dday)
     darkdayamp(j,:) = dday(j).amp;
 end
 
 avgdark = mean(darkdayamp);
-
- darkdy= gradient(avgdark)./gradient(dday(1).tim);
+%derivative - used instead of diff because its not 1 shorter
+darkdy= gradient(avgdark)./gradient(dday(1).tim);
 
  for jj = 1:length(dday)
     for j = 1:length(dday(jj).tim)
