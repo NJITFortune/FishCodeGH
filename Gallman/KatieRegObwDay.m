@@ -139,7 +139,7 @@ end
 
         else
         %stronger low pass filter for lower frequency experiments 
-        lowWn = 0.9/(ReFs/2);
+        lowWn = 0.5/(ReFs/2);
         [dd,cc] = butter(5, lowWn, 'low');
         datadata = filtfilt(dd,cc, double(regobwpeaks));
         end
