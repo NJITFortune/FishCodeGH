@@ -71,7 +71,7 @@ for jj = 2:length(darkdays)
 
     darkidx = find(timcont >= darkdays(jj-1) & timcont < darkdays(jj));
         rawdday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
-        rawdday(jj-1).amp(:) = obwAmp(darkidx);
+        rawdday(jj-1).amp(:) = obw(darkidx);
         rawdday(jj-1).entiretimcont = timcont(darkidx);
 
 end
