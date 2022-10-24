@@ -68,14 +68,14 @@ avgdark = mean(darkdayamp);
 %derivative - used instead of diff because its not 1 shorter
 darkdy= gradient(avgdark)./gradient(dday(1).tim);
 
- for jj = 1:length(dday)
-    for j = 1:length(dday(jj).tim)
-     if dday(jj).tim(j) < ld
-         ddarkhalfamp(j,:) = dday(jj).amp(j);
-         ddarkhalftim(j,:) = dday(jj).tim(j);
+ for jj = 1:length(rawdday)
+    for j = 1:length(rawdday(jj).tim)
+     if rawdday(jj).tim(j) < ld
+         ddarkhalfamp(j,:) = rawdday(jj).amp(j);
+         ddarkhalftim(j,:) = rawdday(jj).tim(j);
      else
-         dlighthalfamp(j,:) = dday(jj).amp(j);
-         dlighthalftim(j,:) = dday(jj).tim(j);
+         dlighthalfamp(j,:) = rawdday(jj).amp(j);
+         dlighthalftim(j,:) = rawdday(jj).tim(j);
      end
     end
     plot(dlighthalftim, dlighthalfamp, 'm.');  
