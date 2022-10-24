@@ -201,6 +201,15 @@ end
 % darktimxx = darkxx/3600;
 % darkdy= gradient(darkampyy)./gradient(darktimxx);
 
+
+%trim mean
+for j = 1:length(dday)
+    darkdayamp(j,:) = dday(j).amp;
+end
+
+avgdark = trimmean(darkdayamp, 33);
+
+
 %plot darkday amp
 figure(8); clf; title('Dark to light transition average'); hold on; 
     plot([dday.tim], [dday.amp], '.');
