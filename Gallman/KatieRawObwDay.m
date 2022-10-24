@@ -1,15 +1,15 @@
-%function out = k_derivesum(in, channel, ReFs)
+function [ddarkhalf, dlighthalf, ldarkhalf, llighthalf] = KatieRawObwDay(in, channel)
 %% prep 
-clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
-
-in = hkg(2);
-channel = 1;
-ReFs = 20;
-%kg(12) starts with light
-
-%binsize in minutes
-binsize = 20;
-transbinnum = 8;
+% clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
+% 
+% in = hkg(2);
+% channel = 1;
+% ReFs = 20;
+% %kg(12) starts with light
+% 
+% %binsize in minutes
+% binsize = 20;
+% transbinnum = 8;
 
 %% data
 
@@ -89,12 +89,11 @@ end
         
         end
       
-        
-        [~,dpvalue] = ttest2(ddarkhalfamp,dlighthalfamp,'Vartype','unequal');
-        
-        %txt = 'pvalue =' + num2str(pvalue)
-        text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
-    
+ddarkhalf.amp = ddarkhalfamp;       
+ddarkhalf.tim = ddarkhalftim;
+
+dlighthalf.amp = dlighthalfamp;
+dlighthalf.tim = dlighthalftim;
   
 
 %light
@@ -107,23 +106,26 @@ for kk = 2:length(lightdays)
 
 end
 
-[lighttimxx, lightampyy] = k_spliney([lday.tim], [lday.amp], 0.9);
-lightdy= gradient(lightampyy)./gradient(lighttimxx);
-
 
 for kk = 1:length(lday)
     for k = 1:length(lday(kk).tim)
      if lday(kk).tim(k) < ld
-         lighthalfamp(k,:) = lday(kk).amp(k);
-         lighthalftim(k,:) = lday(kk).tim(k);
+         llighthalfamp(k,:) = lday(kk).amp(k);
+         llighthalftim(k,:) = lday(kk).tim(k);
      else
-         darkhalfamp(k,:) = lday(kk).amp(k);
-         darkhalftim(k,:) = lday(kk).tim(k);
+         ldarkhalfamp(k,:) = lday(kk).amp(k);
+         ldarkhalftim(k,:) = lday(kk).tim(k);
      end
     end
    
 
 end
+
+llighthalf.amp = llighthalfamp;
+llighthalf.tim =  llighthalftim;
+
+ldarkhalf.amp = ldarkhalfamp;
+ldarkhalf.tim = ldarkhalftim;
 
 
 
