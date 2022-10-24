@@ -11,5 +11,6 @@ binsize = 20;
 transbinnum = 8;
 
 
+[regtim, regfreq, regtemp, regobwpeaks] = k_datatrimmean(in, channel, ReFs);
 
-[regtim, regfreq, regtemp, regobwpeaks] = k_datatrimmean(in, channel, ReFs)
+
