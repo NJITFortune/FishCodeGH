@@ -11,9 +11,6 @@ binsize = 20;
 transbinnum = 8;
 
 
-[regtim, regfreq, regtemp, regobwpeaks] = k_datatrimmean(in, channel, ReFs);
-
-
 %% dark to light transitions
 
 %divide into days
@@ -43,5 +40,9 @@ for jj = 2:length(darkdays)
 
 end
 
+[regtim, regfreq, regtemp, regobwpeaks] = k_datatrimmean(in, channel, ReFs);
+
+for jj = 2:length(darkdays)
 
 
+end
