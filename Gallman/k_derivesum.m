@@ -98,7 +98,7 @@ end
 
 avgdark = mean(darkdayamp);
 %derivative - used instead of diff because its not 1 shorter
-darkdy= gradient(avgdark)./gradient(dday(1).tim);
+darkdy = gradient(avgdark)./gradient(dday(1).tim);
 
  for jj = 1:length(rawdday)
     for j = 1:length(rawdday(jj).tim)
