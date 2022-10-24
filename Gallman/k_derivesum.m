@@ -1,4 +1,4 @@
-function out = k_derivesum(in, channel, ReFs)
+%function out = k_derivesum(in, channel, ReFs)
 %% prep 
 clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
 
