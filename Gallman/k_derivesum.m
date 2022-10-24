@@ -4,6 +4,7 @@ clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
 
 in = hkg(2);
 channel = 1;
+ReFs = 20;
 %kg(12) starts with light
 
 %binsize in minutes
