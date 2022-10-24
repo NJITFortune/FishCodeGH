@@ -134,7 +134,7 @@ ax(2) = subplot(212); clf; title('trimmean regularized with derivative');
     end
 
     plot(dday(1).tim, avgdark, 'k-', 'LineWidth', 2, 'DisplayName','mean');
-    plot(day(1).tim, darkdy, 'b-', 'LineWidth', 2, 'DisplayName','first derivative');
+    plot(dday(1).tim, darkdy, 'b-', 'LineWidth', 2, 'DisplayName','first derivative');
 
     legend;
 
