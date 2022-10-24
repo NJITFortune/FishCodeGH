@@ -89,11 +89,11 @@ end
         
         end
       
-ddarkhalf.amp = ddarkhalfamp;       
-ddarkhalf.tim = ddarkhalftim;
+ddarkhalf.amp = ddarkhalfamp';       
+ddarkhalf.tim = ddarkhalftim';
 
-dlighthalf.amp = dlighthalfamp;
-dlighthalf.tim = dlighthalftim;
+dlighthalf.amp = dlighthalfamp';
+dlighthalf.tim = dlighthalftim';
   
 
 %light
@@ -121,11 +121,11 @@ for kk = 1:length(lday)
 
 end
 
-llighthalf.amp = llighthalfamp;
-llighthalf.tim =  llighthalftim;
+llighthalf.amp = llighthalfamp';
+llighthalf.tim =  llighthalftim';
 
-ldarkhalf.amp = ldarkhalfamp;
-ldarkhalf.tim = ldarkhalftim;
+ldarkhalf.amp = ldarkhalfamp';
+ldarkhalf.tim = ldarkhalftim';
 
 
 
