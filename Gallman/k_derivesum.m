@@ -100,7 +100,7 @@ darkdy = gradient(avgdark)./gradient(dday(1).tim);
 %plot
 figure(542); clf; hold on;
 
-    ax(1) = subplot(211);  title('raw data'); hold on;
+    ax(1) = subplot(311);  title('raw data'); hold on;
     
          for jj = 1:length(rawdday)
             for j = 1:length(rawdday(jj).tim)
@@ -128,17 +128,19 @@ figure(542); clf; hold on;
         %txt = 'pvalue =' + num2str(pvalue)
         text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
     
-    ax(2) = subplot(212);  title('trimmean regularized with derivative'); hold on;
+    ax(2) = subplot(312);  title('trimmean regularized'); hold on;
     
         for jj = 1:length(dday)
-            plot(dday(jj).tim, dday(jj).amp, 'HandleVisibility','off');
+            plot(dday(jj).tim, dday(jj).amp);
         end
     
-        plot(dday(1).tim, avgdark, 'k-', 'LineWidth', 2, 'DisplayName','mean');
-        plot(dday(1).tim, darkdy, 'b-', 'LineWidth', 2, 'DisplayName','first derivative');
-    
-        legend;
+        plot(dday(1).tim, avgdark, 'k-', 'LineWidth', 2);
+      
+        plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
+    ax(3) = subplot(313);  title('first derivativen of day average'); hold on;
+         plot(dday(1).tim, darkdy, 'b-', 'LineWidth', 2);
          plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+
 
 linkaxes(ax, 'x');
