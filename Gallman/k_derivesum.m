@@ -61,8 +61,33 @@ for j = 1:length(dday)
     darkdayamp(j,:) = dday(j).amp;
 end
 
-avgdark = trimmean(darkdayamp, 33);
-[darkxx, darkampyy] = metamucil([dday.tim]*3600, avgdark);
+avgdark = mean(darkdayamp);
 
- darktimxx = darkxx/3600;
- darkdy= gradient(darkampyy)./gradient(darktimxx);
+ darkdy= gradient(avgdark)./gradient(dday(1).tim);
+
+ for jj = 1:length(dday)
+    for j = 1:length(dday(jj).tim)
+     if dday(jj).tim(j) < ld
+         ddarkhalfamp(j,:) = dday(jj).amp(j);
+         ddarkhalftim(j,:) = dday(jj).tim(j);
+     else
+         dlighthalfamp(j,:) = dday(jj).amp(j);
+         dlighthalftim(j,:) = dday(jj).tim(j);
+     end
+    end
+    plot(dlighthalftim, dlighthalfamp, 'm.');  
+  %  plot(ddarkhalftim, ddarkhalfamp,'.');
+
+end
+   
+     plot(darktimxx, darkampyy, 'k-', 'LineWidth', 3);
+     plot(darktimxx, darkdy, 'b-', 'LineWidth', 1.5);
+% %     plot(darktimxx, darkdy, 'c-', 'LineWidth', 1.5);
+     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+
+%Calculate chisqu of means
+
+[~,dpvalue] = ttest2(ddarkhalfamp,dlighthalfamp,'Vartype','unequal');
+
+%txt = 'pvalue =' + num2str(pvalue)
+text(ld,min(ylim)+0.1,num2str(dpvalue),'FontSize',14);
