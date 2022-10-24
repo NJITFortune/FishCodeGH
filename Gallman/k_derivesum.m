@@ -111,12 +111,12 @@ figure(542); clf; hold on;
      end
     end
     plot(dlighthalftim, dlighthalfamp, 'm.');  
-  %  plot(ddarkhalftim, ddarkhalfamp,'.');
+    plot(ddarkhalftim, ddarkhalfamp,'b.');
 
 end
    
     % plot(dday(1).tim, darkampyy, 'k-', 'LineWidth', 3);
-     plot(dday(1).tim, darkdy, 'b-', 'LineWidth', 1.5);
+     plot(dday(1).tim, darkdy, 'k-', 'LineWidth', 1.5);
 % %     plot(darktimxx, darkdy, 'c-', 'LineWidth', 1.5);
      plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
