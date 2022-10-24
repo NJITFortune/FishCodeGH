@@ -72,7 +72,7 @@ for jj = 2:length(darkdays)
         rawdday(jj-1).entiretimcont = timcont(darkidx);
 
 end
-
+%%
 %regularize data using trim mean and metamucil
 [regtim, regfreq, regtemp, regobw] = k_datatrimmean(in, channel, ReFs);
 regtim = regtim/3600; %convert back from seconds to hours
