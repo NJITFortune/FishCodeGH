@@ -97,6 +97,9 @@ avgdark = mean(darkdayamp);
 %derivative - used instead of diff because its not 1 shorter
 darkdy = gradient(avgdark)./gradient(dday(1).tim);
 
+%plot
+figure(542); clf; hold on;
+
  for jj = 1:length(rawdday)
     for j = 1:length(rawdday(jj).tim)
      if rawdday(jj).tim(j) < ld
