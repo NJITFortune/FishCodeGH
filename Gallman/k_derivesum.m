@@ -14,6 +14,8 @@ transbinnum = 8;
 
 %% dark to light transitions
 
+%length of experiment
+totaltimhours = lighttimes(end)-lighttimes(1);
 %divide into days
 %index      
 daysz = 1:1:floor(totaltimhours/(ld*2));
