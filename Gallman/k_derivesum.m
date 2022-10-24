@@ -41,6 +41,7 @@ for jj = 2:length(darkdays)
 end
 
 [regtim, regfreq, regtemp, regobw] = k_datatrimmean(in, channel, ReFs);
+regtim = regtim/3600;
 
 for jj = 2:length(darkdays)
 
