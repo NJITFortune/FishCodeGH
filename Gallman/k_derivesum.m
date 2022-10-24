@@ -51,4 +51,9 @@ for jj = 2:length(darkdays)
 
 end
 
+%trim mean
+for j = 1:length(dday)
+    darkdayamp(j,:) = dday(j).amp;
+end
+
 
