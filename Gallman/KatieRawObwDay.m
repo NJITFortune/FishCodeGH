@@ -102,7 +102,7 @@ for kk = 2:length(lightdays)
 
     lightidx = find(timcont >= lightdays(kk-1) & timcont < lightdays(kk));
     lday(kk-1).tim(:) = timcont(lightidx) - timcont(lightidx(1));
-    lday(kk-1).amp(:) = obwAmp(lightidx);
+    lday(kk-1).amp(:) = obw(lightidx);
     lday(kk-1).entiretimcont(:) = timcont(lightidx);
 
 end
