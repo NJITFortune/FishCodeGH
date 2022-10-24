@@ -130,7 +130,7 @@ ax(1) = subplot(211); clf; title('raw data'); hold on;
 ax(2) = subplot(212); clf; title('trimmean regularized with derivative');
 
     for jj = 1:length(dday)
-        plot(dday(j).tim, dday(j).amp);
+        plot(dday(jj).tim, dday(jj).amp);
     end
 
     plot(dday(1).tim, avgdark, 'k-', 'LineWidth', 2, 'DisplayName','mean');
