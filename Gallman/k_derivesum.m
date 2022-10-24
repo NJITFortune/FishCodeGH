@@ -11,13 +11,10 @@ ReFs = 20;
 binsize = 20;
 transbinnum = 8;
 
-
-lighttimes = k_lighttimes(in, 3);
-lighttimes = lighttimes/3600;
-
 %% data
 
 ld = in.info.ld;
+
 lighttimes = k_lighttimes(in, 3);
 lighttimes = lighttimes/3600;
 
