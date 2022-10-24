@@ -11,9 +11,6 @@ binsize = 20;
 transbinnum = 8;
 
 
-[regtim, regfreq, regtemp, regobwpeaks] = k_datatrimmean(in, channel, ReFs);
-
-
 %% dark to light transitions
 
 %divide into days
@@ -29,3 +26,29 @@ lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 %how many bins around the transistion 
 %transbinnum = 8;
 transtim = transbinnum*binsize/60;
+
+
+%% dark summary by day for stats
+
+%dark
+for jj = 2:length(darkdays)
+
+    darkidx = find(timcont >= darkdays(jj-1) & timcont < darkdays(jj));
+        rawdday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
+        rawdday(jj-1).amp(:) = obwAmp(darkidx);
+        rawdday(jj-1).entiretimcont = timcont(darkidx);
+
+end
+
+[regtim, regfreq, regtemp, regobw] = k_datatrimmean(in, channel, ReFs);
+
+for jj = 2:length(darkdays)
+
+    darkidx = find(regtim >= darkdays(jj-1) & regtim < darkdays(jj));
+        dday(jj-1).tim(:) = regtim(darkidx)-regtim(darkidx(1));
+        dday(jj-1).amp(:) = regobw(darkidx);
+        dday(jj-1).entiretimcont = regtim(darkidx);
+
+end
+
+
