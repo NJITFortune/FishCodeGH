@@ -1,15 +1,15 @@
-%function [multiday] = multisingleRegobwDay(in, ReFs, light)%multisingleRegobwDay
+function [multiday] = multisingleRegobwDay(in, ReFs, light)%multisingleRegobwDay
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
 
 
-% %for when i'm too lazy to function
- clearvars -except kg kg2 rkg k hkg2 hkg
-% % 
-in = hkg2(k);
-ReFs = 20;
-light = 3; %start with dark
+% % %for when i'm too lazy to function
+%  clearvars -except kg kg2 rkg k hkg2 hkg
+% % % 
+% in = hkg2(k);
+% ReFs = 20;
+% light = 3; %start with dark
 
 
 % light = 4; %start with light
@@ -225,34 +225,34 @@ for j = 1:howmanydaysinsample
 % 
 %      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
 
-%average over single day    
-figure(56); clf; hold on; 
-    for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).Sobwyy);
-           
-     end
- a = ylim;
-    %create fill box 
-    if light < 4 %we start with dark
-        fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-    else %we start with light
-        fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-    end
-    
-    %mean two ways to prove math
-    mday = zeros(1, length(day(1).tim));        
-     for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).Sobwyy);
-            meanday(j,:) = day(j).Sobwyy;
-            mday = mday + day(j).Sobwyy;
-            
-     end
-        
-            mmday= mean(meanday);
-            othermday = mday/(length(day));
-            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
-            plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-            plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+% %average over single day    
+% figure(56); clf; hold on; 
+%     for j = 1:length(day)
+%             plot(day(j).tim/3600, day(j).Sobwyy);
+%            
+%      end
+%  a = ylim;
+%     %create fill box 
+%     if light < 4 %we start with dark
+%         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%     else %we start with light
+%         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%     end
+%     
+%     %mean two ways to prove math
+%     mday = zeros(1, length(day(1).tim));        
+%      for j = 1:length(day)
+%             plot(day(j).tim/3600, day(j).Sobwyy);
+%             meanday(j,:) = day(j).Sobwyy;
+%             mday = mday + day(j).Sobwyy;
+%             
+%      end
+%         
+%             mmday= mean(meanday);
+%             othermday = mday/(length(day));
+%             plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
+%             plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+%             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
             
             
 
