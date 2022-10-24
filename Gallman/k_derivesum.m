@@ -11,10 +11,40 @@ ReFs = 20;
 binsize = 20;
 transbinnum = 8;
 
-ld = in.info.ld;
 
 lighttimes = k_lighttimes(in, 3);
 lighttimes = lighttimes/3600;
+
+%% data
+
+ld = in.info.ld;
+lighttimes = k_lighttimes(in, 3);
+lighttimes = lighttimes/3600;
+
+
+ if channel < 3 %single fish data has two channel
+
+    %outlier removal
+     tto = [in.idx(channel).obwidx]; 
+          
+    %raw data
+        timcont = [in.e(channel).s(tto).timcont]; %time in seconds
+        obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
+        oldfreq = [in.e(channel).s(tto).fftFreq];
+        oldtemp = [in.e(channel).s(tto).temp];
+
+  else %multifish data only has one channel
+    %outlier removal
+     tto = [in.idx.obwidx]; 
+          
+    %raw data
+        timcont = [in.s(tto).timcont]; %time in seconds
+        obw = [in.s(tto).obwAmp]/max([in.s(tto).obwAmp]); %divide by max to normalize
+        oldfreq = [in.s(tto).freq];
+        oldtemp = [in.s(tto).temp];
+
+  end
+            
 %% dark to light transitions
 
 %length of experiment
