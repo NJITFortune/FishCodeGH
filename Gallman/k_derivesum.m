@@ -38,7 +38,7 @@ lighttimes = lighttimes/3600;
      tto = [in.idx.obwidx]; 
           
     %raw data
-        timcont = [in.s(tto).timcont]; %time in seconds
+        timcont = [in.s(tto).timcont]/3600; %time in seconds
         obw = [in.s(tto).obwAmp]/max([in.s(tto).obwAmp]); %divide by max to normalize
         oldfreq = [in.s(tto).freq];
         oldtemp = [in.s(tto).temp];
@@ -115,7 +115,7 @@ darkdy = gradient(avgdark)./gradient(dday(1).tim);
 
 end
    
-     plot(dday(1).tim, darkampyy, 'k-', 'LineWidth', 3);
+    % plot(dday(1).tim, darkampyy, 'k-', 'LineWidth', 3);
      plot(dday(1).tim, darkdy, 'b-', 'LineWidth', 1.5);
 % %     plot(darktimxx, darkdy, 'c-', 'LineWidth', 1.5);
      plot([ld ld], ylim, 'k-', 'LineWidth', 2);
