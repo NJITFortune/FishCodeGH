@@ -135,11 +135,11 @@ end
     temp = regtemp(timidx);
     
 
-%     rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
-%     timmy = timcont(rawidx);
-%     obwAmp = obw(rawidx);
-%     rawfreq = oldfreq(rawidx);
-%     rawtemp = oldtemp(rawidx);
+    rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
+    timmy = timcont(rawidx);
+    obwAmp = obw(rawidx);
+    rawfreq = oldfreq(rawidx);
+    rawtemp = oldtemp(rawidx);
 
 %% Define day length
 
