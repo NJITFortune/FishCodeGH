@@ -190,7 +190,7 @@ for j = 1:howmanydaysinsample
  
  multiday = day;
  %% plot to check
-time vectors currently in seconds, divide by 3600 to get hours
+%time vectors currently in seconds, divide by 3600 to get hours
  
 %days over experiment time
 figure(55); clf; hold on;
