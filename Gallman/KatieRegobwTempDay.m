@@ -130,19 +130,31 @@ hotter = [hotter(hotter>0)];
 
 %% process data
 
-%Take top of dataset
-    %find peaks
-    [~,LOCS] = findpeaks(obw);
-    %find peaks of the peaks
-    [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
-    peaktim = timcont(LOCS(cLOCS));
-    peakfreq = fishfreq(LOCS(cLOCS));
-    peaktemp = temp(LOCS(cLOCS));
+% %Take top of dataset
+%     %find peaks
+%     [~,LOCS] = findpeaks(obw);
+%     %find peaks of the peaks
+%     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
+%     peaktim = timcont(LOCS(cLOCS));
+%     peakfreq = fishfreq(LOCS(cLOCS));
+%     peaktemp = temp(LOCS(cLOCS));
+%     
+% %Regularize
+%     %regularize data to ReFs interval
+%     [regobwtim, regobwfreq, regtemp, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp,ReFs, temptims);
+    
+%trimmed mean
+ window = 5;
+  fcn = @(x) trimmean(x,33);
+  obwtrim = matlab.tall.movingWindow(fcn, window, obw');
+  freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
+  temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
+
+    
     
 %Regularize
     %regularize data to ReFs interval
-    [regobwtim, regobwfreq, regtemp, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp,ReFs, temptims);
-    
+    [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
 
      %filter data
         %cut off frequency
