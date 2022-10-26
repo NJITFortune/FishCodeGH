@@ -148,7 +148,7 @@ hotter = [hotter(hotter>0)];
   fcn = @(x) trimmean(x,33);
   obwtrim = matlab.tall.movingWindow(fcn, window, obw');
   freqtrim = matlab.tall.movingWindow(fcn, window, fishfreq');
-  temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
+  temptrim = matlab.tall.movingWindow(fcn, window, temp');
 
     
     
