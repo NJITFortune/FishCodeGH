@@ -1,10 +1,13 @@
-function [ddarkhalf, dlighthalf, ldarkhalf, llighthalf] = KatieRawObwDay(in, channel)
-%% prep 
+function [darkhalfamp, darkhalftim, lighthalfamp, lighthalftim] = KatieRawObwDay(in, channel, light)
+% %% prep 
+
+
 % clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
-% 
-% in = hkg(2);
+% % 
+% in = hkg(162);
 % channel = 1;
-% ReFs = 20;
+% light = 3;
+
 % %kg(12) starts with light
 % 
 % %binsize in minutes
@@ -35,7 +38,7 @@ lighttimes = lighttimes/3600;
      tto = [in.idx.obwidx]; 
           
     %raw data
-        timcont = [in.s(tto).timcont]/3600; %time in seconds
+        timcont = [in.s(tto).timcont]/3600; %time in hours
         obw = [in.s(tto).obwAmp]/max([in.s(tto).obwAmp]); %divide by max to normalize
         oldfreq = [in.s(tto).freq];
         oldtemp = [in.s(tto).temp];
@@ -59,71 +62,71 @@ lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 
 %% dark summary by day for stats
 
-%divide raw data into days that start with dark
-for jj = 2:length(darkdays)
+if light == 3
 
-    darkidx = find(timcont >= darkdays(jj-1) & timcont < darkdays(jj));
-        dday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
-        dday(jj-1).amp(:) = obw(darkidx);
-        dday(jj-1).entiretimcont = timcont(darkidx);
-
-end
-
-    
-         for jj = 1:length(dday)
-            for j = 1:length(dday(jj).tim)
-             if dday(jj).tim(j) < ld
-                 ddarkhalfamp(j,:) = dday(jj).amp(j);
-                 ddarkhalftim(j,:) = dday(jj).tim(j);
-             else
-                 dlighthalfamp(j,:) = dday(jj).amp(j);
-                 dlighthalftim(j,:) = dday(jj).tim(j);
-             end
-            end
-%             plot(dlighthalftim, dlighthalfamp, 'm.');  
-%             plot(ddarkhalftim, ddarkhalfamp,'b.');
-        
-        end
-      
-ddarkhalf.amp = ddarkhalfamp';       
-ddarkhalf.tim = ddarkhalftim';
-
-dlighthalf.amp = dlighthalfamp';
-dlighthalf.tim = dlighthalftim';
-  
-
-%light
-for kk = 2:length(lightdays)
-
-    lightidx = find(timcont >= lightdays(kk-1) & timcont < lightdays(kk));
-    lday(kk-1).tim(:) = timcont(lightidx) - timcont(lightidx(1));
-    lday(kk-1).amp(:) = obw(lightidx);
-    lday(kk-1).entiretimcont(:) = timcont(lightidx);
-
-end
-
-
-for kk = 1:length(lday)
-    for k = 1:length(lday(kk).tim)
-     if lday(kk).tim(k) < ld
-         llighthalfamp(k,:) = lday(kk).amp(k);
-         llighthalftim(k,:) = lday(kk).tim(k);
-     else
-         ldarkhalfamp(k,:) = lday(kk).amp(k);
-         ldarkhalftim(k,:) = lday(kk).tim(k);
-     end
-    end
+    %divide raw data into days that start with dark
+    for jj = 2:length(darkdays)
    
+        darkidx = find(timcont >= darkdays(jj-1) & timcont < darkdays(jj));
+            dday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
+            dday(jj-1).amp(:) = obw(darkidx);
+            dday(jj-1).entiretimcont = timcont(darkidx);
+    
+    end
+    
+    
+    ddayamp = dday(1).amp;
+    ddaytim = dday(1).tim;
+    
+    for j = 2:length(dday)
+        ddayamp = [ddayamp, dday(j).amp];
+        ddaytim = [ddaytim, dday(j).tim];
+    end
+    
+    [ddaytim, sortidx] = sort(ddaytim);
+    ddayamp = ddayamp(sortidx);
+    
+    darkhalfidx = find(ddaytim<ld);
+    darkhalfamp = ddayamp(darkhalfidx);
+    darkhalftim = ddaytim(darkhalfidx);
+    
+    lighthalfidx = find(ddaytim >= ld);
+    lighthalfamp = ddayamp(lighthalfidx);
+    lighthalftim = ddaytim(lighthalfidx);
 
 end
+%% light summary by day for stats
 
-llighthalf.amp = llighthalfamp';
-llighthalf.tim =  llighthalftim';
+if light == 4
 
-ldarkhalf.amp = ldarkhalfamp';
-ldarkhalf.tim = ldarkhalftim';
+    %divide raw data into days that start with dark
+    for jj = 2:length(lightdays)
+    
+        lightidx = find(timcont >= lightdays(jj-1) & timcont < lightdays(jj));
+            lday(jj-1).tim(:) = timcont(lightidx)-timcont(lightidx(1));
+            lday(jj-1).amp(:) = obw(lightidx);
+            lday(jj-1).entiretimcont = timcont(lightidx);
+    
+    end
+    
+    
+    ldayamp = lday(1).amp;
+    ldaytim = lday(1).tim;
+    
+    for j = 2:length(lday)
+        ldayamp = [ldayamp, lday(j).amp];
+        ldaytim = [ldaytim, lday(j).tim];
+    end
+    
+    [ldaytim, sortidx] = sort(ldaytim);
+    ldayamp = ldayamp(sortidx);
+    
+    darkhalfidx = find(ldaytim >= ld);
+    darkhalfamp = ldayamp(darkhalfidx);
+    darkhalftim = ldaytim(darkhalfidx);
+    
+    lighthalfidx = find(ldaytim<ld);
+    lighthalfamp = ldayamp(lighthalfidx);
+    lighthalftim = ldaytim(lighthalfidx);
 
-
-
-
-
+end

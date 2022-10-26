@@ -2,7 +2,7 @@
 %% prep 
 clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
 
-in = hkg(2);
+in = hkg(64);
 channel = 1;
 %kg(12) starts with light
 

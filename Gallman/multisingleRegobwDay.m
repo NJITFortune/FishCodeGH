@@ -1,15 +1,15 @@
-%function [multiday] = multisingleRegobwDay(in, ReFs, light)%multisingleRegobwDay
+function [multiday] = multisingleRegobwDay(in, ReFs, light)%multisingleRegobwDay
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
 
 
-% %for when i'm too lazy to function
- clearvars -except kg kg2 rkg k hkg2 hkg
-% % 
-in = hkg2(k);
-ReFs = 20;
-light = 3; %start with dark
+% % %for when i'm too lazy to function
+%  clearvars -except kg kg2 rkg k hkg2 hkg
+% % % 
+% in = hkg2(k);
+% ReFs = 20;
+% light = 3; %start with dark
 
 
 % light = 4; %start with light
@@ -101,7 +101,20 @@ end
 %Regularize
     %regularize data to ReFs interval
     [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
-    
+  
+% %peaks of peaks
+%         %find peaks
+%         [~,LOCS] = findpeaks(obw);
+%         %find peaks of the peaks
+%         [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
+%         peaktim = timcont(LOCS(cLOCS));       
+%         peakfreq = oldfreq(LOCS(cLOCS));       
+%         peaktemp = oldtemp(LOCS(cLOCS));  
+% 
+% 
+% 
+%  [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, lighttimes);
+
      %filter data
         
         if ld < 11
@@ -153,7 +166,7 @@ end
 
 
 %% Divide sample into days 
-% needs to be in seconds
+% needs to be in secohnds
 tim = ReFs:ReFs:(ld*2)*3600;
 
 for j = 1:howmanydaysinsample
@@ -189,72 +202,72 @@ for j = 1:howmanydaysinsample
  end
  
  multiday = day;
- %% plot to check
-%time vectors currently in seconds, divide by 3600 to get hours
- 
-%days over experiment time
-figure(55); clf; hold on;
-
-    plot(timmy/3600, obwAmp-mean(obwAmp), '.');
-    for j = 1:length(day)
-        plot(day(j).entiretimcont/3600, day(j).Sobwyy);
-    end
-
-    
-
-   % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
-   
-    a = ylim; %all of above is just to get the max for the plot lines...
-    if light < 4 %the first lighttime is dark
-        for j = 1:length(lighttimes)-1
-            if mod(j,2) == 1 %if j is odd
-            fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-            end
-        end
-    else %the second lighttime is dark 
-        for j = 1:length(lighttimes)-1
-            if mod(j,2) == 0 %if j is even
-            fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-            end
-        end
-    end
-    
-    for j = 1:length(day)
-        plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
-    end
-
-     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
-
-%average over single day    
-figure(56); clf; hold on; 
-    for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).Sobwyy);
-           
-     end
- a = ylim;
-    %create fill box 
-    if light < 4 %we start with dark
-        fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-    else %we start with light
-        fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-    end
-    
-    %mean two ways to prove math
-    mday = zeros(1, length(day(1).tim));        
-     for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).Sobwyy);
-            meanday(j,:) = day(j).Sobwyy;
-            mday = mday + day(j).Sobwyy;
-            
-     end
-        
-            mmday= mean(meanday);
-            othermday = mday/(length(day));
-            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
-            plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-            plot([ld ld], ylim, 'k-', 'LineWidth', 3);
-            
-            
-
-
-
+%  %% plot to check
+% %time vectors currently in seconds, divide by 3600 to get hours
+%  
+% %days over experiment time
+% figure(55); clf; hold on;
+% 
+%     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+%     for j = 1:length(day)
+%         plot(day(j).entiretimcont/3600, day(j).Sobwyy);
+%     end
+% 
+%     
+% 
+%    % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+%    
+%     a = ylim; %all of above is just to get the max for the plot lines...
+%     if light < 4 %the first lighttime is dark
+%         for j = 1:length(lighttimes)-1
+%             if mod(j,2) == 1 %if j is odd
+%             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%             end
+%         end
+%     else %the second lighttime is dark 
+%         for j = 1:length(lighttimes)-1
+%             if mod(j,2) == 0 %if j is even
+%             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%             end
+%         end
+%     end
+%     
+%     for j = 1:length(day)
+%         plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
+%     end
+% 
+%      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+% 
+% %average over single day    
+% figure(58); clf; hold on; 
+%     for j = 1:length(day)
+%             plot(day(j).tim/3600, day(j).Sobwyy);
+%            
+%      end
+%  a = ylim;
+%     %create fill box 
+%     if light < 4 %we start with dark
+%         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%     else %we start with light
+%         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%     end
+%     
+%     %mean two ways to prove math
+%     mday = zeros(1, length(day(1).tim));        
+%      for j = 1:length(day)
+%             plot(day(j).tim/3600, day(j).Sobwyy);
+%             meanday(j,:) = day(j).Sobwyy;
+%             mday = mday + day(j).Sobwyy;
+%             
+%      end
+%         
+%             mmday= mean(meanday);
+%             othermday = mday/(length(day));
+%             plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
+%             plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+%             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+%             
+%             
+% 
+% 
+% 

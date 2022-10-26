@@ -162,15 +162,15 @@ fishld = 12;
 %% Divide sample into days 
 % needs to be in seconds
 tim = ReFs:ReFs:(fishld*2)*3600;
-shiftme = 2*3600;
-shiftme = 0;
+shiftme = (39+6)*3600;
+
 
 
 for j = 1:howmanydaysinsample
     
               %resampled data  
     %         % Get the index of the start time of the day
-                ddayidx = find(xx >= xx(1)+shiftme + (j-1) * daylengthSECONDS & xx < xx(1)+shiftme + j* daylengthSECONDS); % k-1 so that we start at zero
+                ddayidx = find(xx >= shiftme + (j-1) * daylengthSECONDS & xx < shiftme + j* daylengthSECONDS); % k-1 so that we start at zero
 
                 if length(ddayidx) >= howmanysamplesinaday-1 %important so that we know when to stop
 
@@ -238,7 +238,7 @@ figure(55); clf; hold on;
 
 
 startim = lighttimes(1)/3600;
-%startim = 21;
+startim = 39;
 period = fishld;
  % LIGHT CYCLE ON/OFF STARTS 
     %caclulate hours when the light changed

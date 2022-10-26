@@ -2,7 +2,7 @@
 %% prep 
 clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
 
-in = hkg(2);
+in = hkg(162);
 channel = 1;
 ReFs = 20;
 %kg(12) starts with light
@@ -16,7 +16,7 @@ transbinnum = 8;
 ld = in.info.ld;
 
 lighttimes = k_lighttimes(in, 3);
-lighttimes = lighttimes/3600;
+lighttimes = lighttimes/3600; %lighttimes in hours
 
 
  if channel < 3 %single fish data has two channel
@@ -72,19 +72,39 @@ for jj = 2:length(darkdays)
         rawdday(jj-1).entiretimcont = timcont(darkidx);
 
 end
+
+
+rawdayamp = rawdday(1).amp;
+rawdaytim = rawdday(1).tim;
+
+for j = 2:length(rawdday)
+    rawdayamp = [rawdayamp, rawdday(j).amp];
+    rawdaytim = [rawdaytim, rawdday(j).tim];
+end
+
+figure(24); clf; hold on;
+    plot(rawdaytim, rawdayamp, '.');
+    plot(rawdday(2).tim, rawdday(2).amp, '.');
 %%
 %regularize data using trim mean and metamucil
 [regtim, regfreq, regtemp, regobw] = k_datatrimmean(in, channel, ReFs);
 regtim = regtim/3600; %convert back from seconds to hours
 
+
+    daylengthSECONDS = (ld*2) * 3600;  
+    % This is the number of data samples in a day
+    howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
+   
+
 %divide regularized data into days that start with dark
 for jj = 2:length(darkdays)
 
     darkidx = find(regtim >= darkdays(jj-1) & regtim < darkdays(jj));
+    if length(darkidx) >= howmanysamplesinaday-1
         dday(jj-1).tim(:) = regtim(darkidx)-regtim(darkidx(1));
         dday(jj-1).amp(:) = regobw(darkidx);
         dday(jj-1).entiretimcont = regtim(darkidx);
-
+    end
 end
 
 %take the derivative to test prediction
