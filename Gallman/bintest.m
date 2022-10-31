@@ -5,7 +5,7 @@ luz = [out.info.luz];
 binwidth = 1;
 
        
-       figure(2); clf; hold on;
+       figure(2); clf; hold on; title('low pass filter');
         xlim([13 152]);
         ylim([0 60]);
         xlabel('Hours');
