@@ -73,7 +73,7 @@ binwidth = 1;
                 [regtim, ~, ~, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes);
 
 
-      plot(regtim/3600, regobwpeaks, 'LineWidth',1);
+    %  plot(regtim/3600, regobwpeaks, 'LineWidth',1);
 
 newtim = regtim/3600;
 
