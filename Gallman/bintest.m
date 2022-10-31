@@ -81,4 +81,4 @@ newtim = regtim/3600;
 
 
 
-      plot(newtim(newtimidx), regobwpeaks(newtimidx));
+      plot(newtim(newtimidx), regobwpeaks(newtimidx), '.', 'MarkerSize', 20);
