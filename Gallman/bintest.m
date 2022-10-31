@@ -34,4 +34,4 @@ binwidth = 1;
 
         plot(edges, N);
 
-        
+        findpeaks(N, edges);
