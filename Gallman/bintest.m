@@ -46,8 +46,8 @@ binwidth = 1;
         filtN = filtfilt(dd,cc, double(N));
 %        % filtN = filtfilt(bb,aa, filtN); %high pass
 %       
-        plot(edges, filtN-mean(filtN), 'LineWidth',2)  
-%          findpeaks(filtN, edges); xlim([13 116]); ylim([0 60]);
+  %      plot(edges, filtN-mean(filtN), 'LineWidth',2)  
+          findpeaks(filtN, edges); xlim([13 116]); ylim([0 60]);
 
 
 
