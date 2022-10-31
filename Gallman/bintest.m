@@ -77,8 +77,8 @@ binwidth = 1;
 
 newtim = regtim/3600;
 
-[~, newtimidx, ~] = intersect(int32(newtim),int32(edges(locs)));
+[~, newtimidx, ~] = intersect(int32(newtim),locs);
 
 
 
-      plot(regtim(newtimidx)/3600, regobwpeaks(newtimidx));
+      plot(newtim(newtimidx), regobwpeaks(newtimidx));
