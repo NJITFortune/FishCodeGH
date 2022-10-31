@@ -3,8 +3,7 @@ out = xxkg(24);
 
 luz = [out.info.luz];
 
-ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('tube triggers'); ylim([0,50]);
-       
+
        
        figure(2); clf; hold on;
             for k = 2:length(luz)
