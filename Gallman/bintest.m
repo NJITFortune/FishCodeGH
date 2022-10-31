@@ -5,7 +5,7 @@ luz = [out.info.luz];
 binwidth = 1;
 
        
-       figure(2); clf; hold on;
+       figure(2); clf; hold on; xlim([13 200]);
             for k = 2:length(luz)
             
                 if luz(k-1) < 0
