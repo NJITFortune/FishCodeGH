@@ -34,4 +34,9 @@ binwidth = 1;
 
         plot(edges, N);
 
+
+        lowWn = 0.1/(binwidth/2);
+        [dd,cc] = butter(5, lowWn, 'low');
+        filtN = filtfilt(dd,cc, double(N));
         %findpeaks(N, edges);
+        plot(edges, filtN)
