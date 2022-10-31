@@ -6,7 +6,7 @@ binwidth = 1;
 
        
        figure(2); clf; hold on;
-        xlim([13 153]);
+        xlim([13 152]);
         xlabel('Hours');
         ylabel('Triggers per hour');
 
