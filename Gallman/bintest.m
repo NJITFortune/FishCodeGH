@@ -6,7 +6,7 @@ binwidth = 1;
 
        
        figure(2); clf; hold on; %title('band pass filter');
-        xlim([13 120]);
+        xlim([13 116]);
        % ylim([0 60]);
         xlabel('Hours');
         ylabel('Triggers per hour');
@@ -46,4 +46,4 @@ binwidth = 1;
 %        % filtN = filtfilt(bb,aa, filtN); %high pass
 %       
 %         plot(edges, filtN, 'LineWidth',2)  
-%          findpeaks(filtN, edges); xlim([13 120]);
+%          findpeaks(filtN, edges); xlim([13 116]);
