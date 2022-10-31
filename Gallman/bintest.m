@@ -87,7 +87,7 @@ binwidth = 1;
         
               plot(newtim(newtimidx), regobwpeaks(newtimidx), '.', 'MarkerSize', 20);
 
-  ax(2) = subplot(212); clf; hold on;
+  ax(2) = subplot(212);  hold on;
             xlabel('Hours');
         ylabel('Triggers per hour');
 
@@ -109,4 +109,5 @@ binwidth = 1;
                   l.FaceColor = 'y';
                 end
             end
+
 linkaxes(ax, 'x');
