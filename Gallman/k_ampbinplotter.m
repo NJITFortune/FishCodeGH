@@ -90,6 +90,14 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('tube trigge
                 end
             end
 
+        
+         [N, edges] = histcounts([out.e(1).s(tto{1}).timcont]/(60*60)/(60*60), 'BinWidth', binwidth);
+        edges = edges(2:end) - (edges(2)-edges(1))/2;
+
+        plot(edges, N, 'LineWidth',1);
+
+
+
         plotorder = plotorder + 1;
 end
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('frequency');   
