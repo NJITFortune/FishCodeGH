@@ -50,7 +50,7 @@ binwidth = 1;
          [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
 
     
-findpeaks(filtN, edges);
+%findpeaks(filtN, edges);
 
 
  %raw data 
@@ -74,4 +74,4 @@ findpeaks(filtN, edges);
 
 
       plot(regtim/3600, regobwpeaks-mean(regobwpeaks), 'LineWidth',1);
-      plot(edges(locs, peaks));
+      plot(edges(locs), peaks);
