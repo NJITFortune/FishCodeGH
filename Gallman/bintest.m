@@ -56,7 +56,7 @@ binwidth = 1;
  %raw data 
   tto{1} = out.idx(1).obwidx; 
                 timcont = [out.e(1).s(tto{1}).timcont]; %time in seconds
-                obw =  [out.e(1).s(tto{1}).obwAmp]/max([out.e(1).s(tto{1}).obwAmp]); %divide by max to normalize
+                obw =  [out.e(1).s(tto{1}).obwAmp]; %divide by max to normalize
                 oldfreq = [out.e(1).s(tto{1}).fftFreq];
                 oldtemp = [out.e(1).s(tto{1}).temp];
             
