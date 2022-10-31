@@ -5,7 +5,11 @@ luz = [out.info.luz];
 binwidth = 1;
 
        
-       figure(2); clf; hold on; xlim([13 153]);
+       figure(2); clf; hold on;
+        xlim([13 153]);
+        xlabel('Hours');
+        ylabel('Triggers per hour');
+
             for k = 2:length(luz)
             
                 if luz(k-1) < 0
