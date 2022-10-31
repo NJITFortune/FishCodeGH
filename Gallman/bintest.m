@@ -5,7 +5,7 @@ luz = [out.info.luz];
 binwidth = 1;
 
        
-       figure(2); clf; hold on; title('low pass filter');
+       figure(2); clf; hold on; title('band pass filter');
         xlim([13 152]);
         ylim([0 60]);
         xlabel('Hours');
@@ -43,7 +43,7 @@ binwidth = 1;
         lowWn = 0.05/(binwidth/2);
         [dd,cc] = butter(5, lowWn, 'low');
         filtN = filtfilt(dd,cc, double(N));
-    %    filtN = filtfilt(bb,aa, filtN); %high pass
+        filtN = filtfilt(bb,aa, filtN); %high pass
       
         plot(edges, filtN, 'LineWidth',2)  
 %         findpeaks(filtN, edges);
