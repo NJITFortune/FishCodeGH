@@ -110,6 +110,6 @@ binwidth = 1;
                 end
             end
 
-            plot(locs, peaks,'.', 'MarkerSize', 20)
+            plot(locs, peaks,'r.', 'MarkerSize', 20)
 
 linkaxes(ax, 'x');
