@@ -77,7 +77,7 @@ binwidth = 1;
 
 newtim = regtim/3600;
 
-[~, newtimidx, ~] = intersect(int32(newtim),locs);
+[~, newtimidx, ~] = intersect(newtim,locs);
 
 
 
