@@ -30,6 +30,7 @@ figure(4); clf; hold on;
 totplot = 5;
 plotorder = 1;
 colnum = 1;
+binwidth = 1;
 
 
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'); %ylim([0,5]);
