@@ -45,11 +45,31 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'
                 end
                end  
 
+            %raw data
+                timcont = [out.e(1).s(tto{1}).timcont]/(60*60); %time in seconds
+                obw =  [out.e(1).s(tto{1}).obwAmp]; %divide by max to normalize
+                oldfreq = [out.e(1).s(tto{1}).fftFreq];
+                oldtemp = [out.e(1).s(tto{1}).temp];
+            
+             %trimmed mean
+             window = 5;
+              fcn = @(x) trimmean(x,33);
+              obwtrim = matlab.tall.movingWindow(fcn, window, obw');
+              freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
+              temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
+
+    
+            %Regularize
+                %regularize data to ReFs interval
+                [regtim, ~, ~, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
+
+
+      plot(regtim)
 
 
 
 
-               
+
                plotorder = plotorder + 1;
 
 luz = [out.info.luz];
