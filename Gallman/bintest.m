@@ -2,7 +2,7 @@ clearvars -except xxkg
 out = xxkg(24);
 
 luz = [out.info.luz];
-
+binwidth = 1;
 
        
        figure(2); clf; hold on;
