@@ -47,7 +47,7 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'
 
             %raw data
                 timcont = [out.e(1).s(tto{1}).timcont]; %time in seconds
-                obw =  [out.e(1).s(tto{1}).obwAmp]; %divide by max to normalize
+                obw =  [out.e(1).s(tto{1}).obwAmp]/max([out.e(1).s(tto{1}).obwAmp]); %divide by max to normalize
                 oldfreq = [out.e(1).s(tto{1}).fftFreq];
                 oldtemp = [out.e(1).s(tto{1}).temp];
             
@@ -64,11 +64,11 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'
                 [regtim, ~, ~, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes);
 
 
-      plot(regtim/3600, regobwpeaks, 'LineWidth',1);
+      plot(regtim/3600, regobwpeaks-mean(regobwpeaks), 'LineWidth',1);
          [N, edges] = histcounts([out.e(1).s(tto{1}).timcont]/(60*60)/(60*60), 'BinWidth', binwidth);
         edges = edges(2:end) - (edges(2)-edges(1))/2;
 
-        plot(edges, N, 'LineWidth',1);
+        plot(edges, N-mean(N), 'LineWidth',1);
 
                plotorder = plotorder + 1;
 
