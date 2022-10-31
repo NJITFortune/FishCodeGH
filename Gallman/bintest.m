@@ -38,7 +38,7 @@ binwidth = 1;
         highWn = 0.005/(binwidth/2); % Original but perhaps too strong for 4 and 5 hour days
          [bb,aa] = butter(5, highWn, 'high');
 
-        lowWn = 0.1/(binwidth/2);
+        lowWn = 0.2/(binwidth/2);
         [dd,cc] = butter(5, lowWn, 'low');
         filtN = filtfilt(dd,cc, double(N));
         filtN = filtfilt(bb,aa, filtN); %high pass
