@@ -27,7 +27,7 @@ binwidth = 1;
 %                 end
 %             end
 
-      figure(3);
+      figure(3);clf;hold on;
 
     [N, edges] = histcounts([out.e(1).s.timcont]/(60*60), 'BinWidth', binwidth);
         edges = edges(2:end) - (edges(2)-edges(1))/2;
