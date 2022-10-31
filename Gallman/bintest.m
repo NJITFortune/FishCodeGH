@@ -10,23 +10,23 @@ binwidth = 1;
         xlabel('Hours');
         ylabel('Triggers per hour');
 
-%             for k = 2:length(luz)
-%             
-%                 if luz(k-1) < 0
-%                   
-%                   d = histogram([out.e(1).s.timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
-%                  
-%                   d.Normalization = 'countdensity';
-%                   d.FaceColor = [0.9 0.9 0.9];
-%                 else
-%                     
-%                    l = histogram([out.e(1).s.timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
-%                   
-%                    l.Normalization = 'countdensity';
-%                     l.FaceColor = [0.9290 0.6940 0.1250];
-%                 %   l.FaceColor = 'y';
-%                 end
-%             end
+            for k = 2:length(luz)
+            
+                if luz(k-1) < 0
+                  
+                  d = histogram([out.e(1).s.timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
+                 
+                  d.Normalization = 'countdensity';
+                  d.FaceColor = [0.9 0.9 0.9];
+                else
+                    
+                   l = histogram([out.e(1).s.timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
+                  
+                   l.Normalization = 'countdensity';
+                    l.FaceColor = [0.9290 0.6940 0.1250];
+                %   l.FaceColor = 'y';
+                end
+            end
 
      % figure(3);clf;hold on;
 
