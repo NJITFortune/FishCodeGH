@@ -19,7 +19,7 @@ binwidth = 1;
                 else
                     
                    l = histogram([out.e(1).s.timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
-                  for j = abs(luz(k-1)):binwidth:abs(luz(k))-1
+                  for j = abs(luz(k-1)):binwidth:abs(luz(k))
                   [N(j,:), edges(j,:), bin(j,:)] = histcounts([out.e(1).s.timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
                   end
                    l.Normalization = 'countdensity';
@@ -29,4 +29,4 @@ binwidth = 1;
 
       figure(3);
 
-        plot(edges, N);
+        plot(edges(1:end-1), N);
