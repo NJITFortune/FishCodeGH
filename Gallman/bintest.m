@@ -28,7 +28,7 @@ binwidth = 1;
     [N, edges] = histcounts([out.e(1).s.timcont]/(60*60), 'BinWidth', binwidth);
         edges = edges(2:end) - (edges(2)-edges(1))/2;
 
-        plot(edges, N,'k-', 'LineWidth',2);
+     %   plot(edges, N,'k-', 'LineWidth',2);
 
 
 %         highWn = 0.005/(binwidth/2); % Original but perhaps too strong for 4 and 5 hour days
