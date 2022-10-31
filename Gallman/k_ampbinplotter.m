@@ -64,16 +64,16 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'
                 [regtim, ~, ~, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes);
 
 
-      plot(regtim/3600, regobwpeaks-mean(regobwpeaks), 'LineWidth',1);
+      plot(regtim/3600, regobwpeaks, 'LineWidth',1);
          plotorder = plotorder + 1;
 
 
  ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('testing123');
- 
+
          [N, edges] = histcounts([out.e(1).s(tto{1}).timcont]/(60*60)/(60*60), 'BinWidth', binwidth);
         edges = edges(2:end) - (edges(2)-edges(1))/2;
 
-        plot(edges, N-mean(N), 'LineWidth',5 );
+        plot(edges, N, 'LineWidth',5 );
 
                plotorder = plotorder + 1;
 
