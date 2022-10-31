@@ -6,8 +6,8 @@ binwidth = 1;
 
        
        figure(2); clf; hold on; %title('band pass filter');
-        xlim([13 116]);
-        ylim([0 60]);
+        %xlim([13 116]);
+       % ylim([0 60]);
         xlabel('Hours');
         ylabel('Triggers per hour');
 
@@ -35,7 +35,7 @@ binwidth = 1;
     [N, edges] = histcounts([out.e(1).s.timcont]/(60*60), 'BinWidth', binwidth);
         edges = edges(2:end) - (edges(2)-edges(1))/2;
 
-        plot(edges, N,'k-', 'LineWidth',2);
+       % plot(edges, N,'k-', 'LineWidth',2);
 % 
 % 
 %         highWn = 0.005/(binwidth/2); % Original but perhaps too strong for 4 and 5 hour days
