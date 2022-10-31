@@ -73,5 +73,11 @@ binwidth = 1;
                 [regtim, ~, ~, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes);
 
 
-      plot(regtim/3600, regobwpeaks-mean(regobwpeaks), 'LineWidth',1);
-      plot(edges(locs), peaks);
+      plot(regtim/3600, regobwpeaks, 'LineWidth',1);
+
+
+[~, newtimidx, ~] = intersect(int32(edges(locs)), int32(regtim/3600));
+
+
+
+      plot(regtim(newtimidx)/3600, regobwpeaks(newtimidx));
