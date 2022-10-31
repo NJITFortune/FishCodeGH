@@ -46,7 +46,7 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'
                end  
 
             %raw data
-                timcont = [out.e(1).s(tto{1}).timcont]/(60*60); %time in seconds
+                timcont = [out.e(1).s(tto{1}).timcont]; %time in seconds
                 obw =  [out.e(1).s(tto{1}).obwAmp]; %divide by max to normalize
                 oldfreq = [out.e(1).s(tto{1}).fftFreq];
                 oldtemp = [out.e(1).s(tto{1}).temp];
@@ -64,10 +64,7 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'
                 [regtim, ~, ~, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
 
 
-      plot(regtim)
-
-
-
+      plot(regtim/3600, regobwpeaks, 'LineWidth',1);
 
 
                plotorder = plotorder + 1;
@@ -102,28 +99,23 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('frequency')
 
         plotorder = plotorder + 1;
 
-ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('temp');
-    
-    plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).temp], '-r', 'Markersize', 8);
-    plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).temp], '-r', 'Markersize', 8);
-
-        % Add temptimes, if we have them... 
-           if isfield(out.info, 'temptims')
-            if ~isempty([out.info.temptims])
-               ax(plotorder) = subplot(totplot, colnum, plotorder);
-               for j = 1:length([out.info.temptims])
-                    plot([out.info.temptims(j), out.info.temptims(j)], ylim, 'b-');
-               end         
-            end
-           end  
-
-%     ch2tempC = real(k_voltstodegC(out, 2));
-%     ch1tempC = real(k_voltstodegC(out, 1));
+% ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('temp');
 %     
-%     plot([out.e(2).s.timcont]/(60*60), ch2tempC, '-r', 'Markersize', 8);
-%     plot([out.e(1).s.timcont]/(60*60), ch1tempC, '-r', 'Markersize', 8);
-
-    plotorder = plotorder + 1;
+%     plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).temp], '-r', 'Markersize', 8);
+%     plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).temp], '-r', 'Markersize', 8);
+% 
+%         % Add temptimes, if we have them... 
+%            if isfield(out.info, 'temptims')
+%             if ~isempty([out.info.temptims])
+%                ax(plotorder) = subplot(totplot, colnum, plotorder);
+%                for j = 1:length([out.info.temptims])
+%                     plot([out.info.temptims(j), out.info.temptims(j)], ylim, 'b-');
+%                end         
+%             end
+%            end  
+% 
+% 
+%     plotorder = plotorder + 1;
 
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('light');  
     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
