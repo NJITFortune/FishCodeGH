@@ -35,9 +35,17 @@ binwidth = 1;
         plot(edges, N);
 
 
+        highWn = 0.005/(binwidth/2); % Original but perhaps too strong for 4 and 5 hour days
+         [bb,aa] = butter(5, highWn, 'high');
+
+        
+        datadata = filtfilt(bb,aa, datadata); %high pass
+
+
         lowWn = 0.1/(binwidth/2);
         [dd,cc] = butter(5, lowWn, 'low');
         filtN = filtfilt(dd,cc, double(N));
+        filtN = filtfilt(bb,aa, filtN); %high pass
       
         plot(edges, filtN)  
         findpeaks(filtN, edges);
