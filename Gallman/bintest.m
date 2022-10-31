@@ -72,6 +72,9 @@ binwidth = 1;
                 %regularize data to ReFs interval
                 [regtim, ~, ~, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes);
 
+lowWn = 0.1/(20/2);
+        [dd,cc] = butter(5, lowWn, 'low');
+        regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
 
       plot(regtim/3600, regobwpeaks, 'LineWidth',1);
 
