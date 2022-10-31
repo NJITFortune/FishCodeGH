@@ -46,7 +46,7 @@ binwidth = 1;
         filtN = filtfilt(dd,cc, double(N));
 %        % filtN = filtfilt(bb,aa, filtN); %high pass
 %       
-        plot(edges, filtN, 'LineWidth',2)  
+        plot(edges, filtN-mean(filtN), 'LineWidth',2)  
 %          findpeaks(filtN, edges); xlim([13 116]); ylim([0 60]);
 
 
@@ -73,4 +73,4 @@ binwidth = 1;
                 [regtim, ~, ~, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes);
 
 
-      plot(regtim/3600, regobwpeaks, 'LineWidth',1);
+      plot(regtim/3600, regobwpeaks-mean(regobwpeaks), 'LineWidth',1);
