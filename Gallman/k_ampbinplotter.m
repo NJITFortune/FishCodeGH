@@ -45,6 +45,9 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'
                 end
                end  
 
+
+               plotorder = plotorder + 1;
+               
 luz = [out.info.luz];
 if length(luz) > 1
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('tube triggers'); ylim([0,50]);
