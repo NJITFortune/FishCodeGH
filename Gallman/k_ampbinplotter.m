@@ -80,7 +80,6 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('tube trigge
                 if luz(k-1) < 0
                   
                   d = histogram([out.e(1).s(tto{1}).timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
-                  [N]
                   d.Normalization = 'countdensity';
                   d.FaceColor = [0.9 0.9 0.9];
                 else
