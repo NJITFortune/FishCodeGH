@@ -11,7 +11,7 @@ binwidth = 1;
                 if luz(k-1) < 0
                   
                   d = histogram([out.e(1).s.timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
-                  for j = abs(luz(k-1)):binwidth:abs(luz(k))
+                  for j = abs(luz(k-1)):binwidth:abs(luz(k))-1
                   [N(j,:), edges(j,:), bin(j,:)] = histcounts([out.e(1).s.timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
                   end
                   d.Normalization = 'countdensity';
@@ -19,7 +19,7 @@ binwidth = 1;
                 else
                     
                    l = histogram([out.e(1).s.timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
-                  for j = abs(luz(k-1)):binwidth:abs(luz(k))
+                  for j = abs(luz(k-1)):binwidth:abs(luz(k))-1
                   [N(j,:), edges(j,:), bin(j,:)] = histcounts([out.e(1).s.timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
                   end
                    l.Normalization = 'countdensity';
