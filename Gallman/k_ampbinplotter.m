@@ -73,7 +73,7 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'
          [N, edges] = histcounts([out.e(1).s.timcont]/3600, 'BinWidth', binwidth);
           edges = edges(2:end) - (edges(2)-edges(1))/2;
 
-        plot(edges, N, 'LineWidth',5 );
+        plot(edges, N, 'LineWidth',1);
 
                plotorder = plotorder + 1;
 
