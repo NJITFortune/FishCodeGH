@@ -35,6 +35,7 @@ colnum = 1;
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'); %ylim([0,5]);
 
        plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).obwAmp], '.', 'Color', [0.3010 0.7450 0.9330], 'MarkerSize', 5);
+% plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.', 'Color', [0.4660 0.6740 0.1880], 'MarkerSize', 5);
 
             % Add feedingtimes, if we have them... 
                if isfield(out.info, 'feedingtimes')
@@ -46,20 +47,19 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'
 luz = [out.info.luz];
 if length(luz) > 1
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('tube triggers'); ylim([0,50]);
-       % plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.', 'Color', [0.4660 0.6740 0.1880], 'MarkerSize', 5);
-
-        %luz = floor([out.info.luz]);
-        luz = [out.info.luz];
+       
+       
+       
             for k = 2:length(luz)
             
                 if luz(k-1) < 0
                   
-                  d = histogram([out.e(1).s(tto).timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
+                  d = histogram([out.e(1).s(tto{1}).timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
                   d.Normalization = 'countdensity';
                   d.FaceColor = [0.9 0.9 0.9];
                 else
                     
-                   l = histogram([out.e(1).s(tto).timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
+                   l = histogram([out.e(1).s(tto{1}).timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
                    l.Normalization = 'countdensity';
                    l.FaceColor = 'y';
                 end
