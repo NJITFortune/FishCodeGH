@@ -29,6 +29,7 @@ binwidth = 1;
 
       figure(3);
 
-      
+
+edges = edges(2:end) - (edges(2)-edges(1))/2;
 
         plot(edges, N);
