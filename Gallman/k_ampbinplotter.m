@@ -27,7 +27,7 @@ function k_ampbinplotter(out)
 figure(4); clf; hold on;
     %set(gcf, 'Position', [200 100 2*560 2*420]);
 
-totplot = 5;
+totplot = 4;
 plotorder = 1;
 colnum = 1;
 binwidth = 1;
