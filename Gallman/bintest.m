@@ -72,16 +72,41 @@ binwidth = 1;
                 %regularize data to ReFs interval
                 [regtim, ~, ~, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes);
 
-lowWn = 0.1/(20/2);
-        [dd,cc] = butter(5, lowWn, 'low');
-        regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
+        lowWn = 0.1/(20/2);
+                [dd,cc] = butter(5, lowWn, 'low');
+                regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
+        
+  ax(1) = subplot(211); hold on;               
+              plot(regtim/3600, regobwpeaks, 'LineWidth',1);
+        
+        newtim = regtim/3600;
+        
+        [~, newtimidx, ~] = intersect(newtim,locs);
+        
+        
+        
+              plot(newtim(newtimidx), regobwpeaks(newtimidx), '.', 'MarkerSize', 20);
 
-      plot(regtim/3600, regobwpeaks, 'LineWidth',1);
+  ax(2) = subplot(212); clf; hold on;
+            xlabel('Hours');
+        ylabel('Triggers per hour');
 
-newtim = regtim/3600;
-
-[~, newtimidx, ~] = intersect(newtim,locs);
-
-
-
-      plot(newtim(newtimidx), regobwpeaks(newtimidx), '.', 'MarkerSize', 20);
+            for k = 2:length(luz)
+            
+                if luz(k-1) < 0
+                  
+                  d = histogram([out.e(1).s.timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
+                 
+                  d.Normalization = 'countdensity';
+                  d.FaceColor = [0.9 0.9 0.9];
+                else
+                    
+                   l = histogram([out.e(1).s.timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
+                  
+                   l.Normalization = 'countdensity';
+                   l.FaceColor = [255/255 232/255 124/255];
+                    l.FaceColor = [0.9290 0.6940 0.1250];
+                  l.FaceColor = 'y';
+                end
+            end
+linkaxes(ax, 'x');
