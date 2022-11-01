@@ -12,8 +12,9 @@ ld = in1(1).day(1).ld;
         
          for j = 1:length(in1) % experiments of x hour length
           
+             singlealldays(1) = in1(1).day(1).Sobwyy;
              for k = 2:length(in1(j).day)
-              singlealldays(1) = in1(1).day(1).Sobwyy;
+              
               singlealldays(j,:) = [singlealldays; in1(j).day];
              end
         
