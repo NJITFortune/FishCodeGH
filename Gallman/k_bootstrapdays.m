@@ -34,7 +34,7 @@ all.day1.two = 3;
 all.day2.two = 4; 
 
 
-fld1 = fieldnames(all);
+fld1 = fieldnames(in1.day);
 fld2 = fieldnames(all.day1);
 
 
@@ -42,3 +42,6 @@ for ii = 1:length(fld2)
     tmp = cellfun(@(x) all.(x).(fld2{ii}), fld1, 'uni', 0);
     A.(fld2{ii}) = cat(1, tmp{:});
 end
+
+c = cellfun(@(fn) all.(fn).field1, fieldnames(all), 'UniformOutput', false);
+vertfield1 = vertcat(c{:});
