@@ -1,5 +1,5 @@
 clearvars -except xxkg k
-out = xxkg(26);
+out = xxkg(k);
 
 luz = [out.info.luz];
 binwidth = 1;
