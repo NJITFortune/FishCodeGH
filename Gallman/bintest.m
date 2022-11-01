@@ -1,5 +1,6 @@
 clearvars -except xxkg k
 out = xxkg(k);
+channel = 2;
 
 luz = [out.info.luz];
 binwidth = 1;
@@ -32,7 +33,7 @@ binwidth = 1;
 
      % figure(3);clf;hold on;
 
-    [N, edges] = histcounts([out.e(1).s.timcont]/(60*60), 'BinWidth', binwidth);
+    [N, edges] = histcounts([out.e(channel).s.timcont]/(60*60), 'BinWidth', binwidth);
         edges = edges(2:end) - (edges(2)-edges(1))/2;
 
        % plot(edges, N,'k-', 'LineWidth',2);
@@ -54,11 +55,11 @@ binwidth = 1;
 
 
  %raw data 
-  tto{1} = out.idx(1).obwidx; 
-                timcont = [out.e(1).s(tto{1}).timcont]; %time in seconds
-                obw =  [out.e(1).s(tto{1}).obwAmp]; %divide by max to normalize
-                oldfreq = [out.e(1).s(tto{1}).fftFreq];
-                oldtemp = [out.e(1).s(tto{1}).temp];
+  tto{channel} = out.idx(channel).obwidx; 
+                timcont = [out.e(channel).s(tto{channel}).timcont]; %time in seconds
+                obw =  [out.e(channel).s(tto{channel}).obwAmp]; %divide by max to normalize
+                oldfreq = [out.e(channel).s(tto{channel}).fftFreq];
+                oldtemp = [out.e(channel).s(tto{channel}).temp];
             
              %trimmed mean
              window = 5;
@@ -96,13 +97,13 @@ binwidth = 1;
             
                 if luz(j-1) < 0
                   
-                  d = histogram([out.e(1).s.timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(j-1)),abs(luz(j))]);
+                  d = histogram([out.e(channel).s.timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(j-1)),abs(luz(j))]);
                  
                   d.Normalization = 'countdensity';
                   d.FaceColor = [0.9 0.9 0.9];
                 else
                     
-                   l = histogram([out.e(1).s.timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(j-1)),abs(luz(j))]);
+                   l = histogram([out.e(channel).s.timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(j-1)),abs(luz(j))]);
                   
                    l.Normalization = 'countdensity';
                    l.FaceColor = [255/255 232/255 124/255];
