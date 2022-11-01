@@ -44,7 +44,7 @@ binwidth = 1;
         lowWn = 0.075/(binwidth/2);
         [dd,cc] = butter(5, lowWn, 'low');
         filtN = filtfilt(dd,cc, double(N));
-%        % filtN = filtfilt(bb,aa, filtN); %high pass
+         filtN = filtfilt(bb,aa, filtN); %high pass
 %       
   %      plot(edges, filtN-mean(filtN), 'LineWidth',2)  
          [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
