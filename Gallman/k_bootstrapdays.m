@@ -15,12 +15,11 @@ ld = in1(1).day(1).ld;
              
              for k = 1:length(in1(j).day)
               
-              singlealldays(k,:) = in1(j).day(k).Sobwyy;
+             alldays(j).single(k,:) = in1(j).day(k).Sobwyy;
 
              end
         
-        singledays(j,:) = singlealldays;
-        
+       
 
          end
         
