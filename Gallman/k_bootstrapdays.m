@@ -52,5 +52,20 @@ ld = in1(1).day(1).ld;
   else
       singlesomedays = singlealldays;
   end
+    
 
-  
+  %average and save output
+    expmean = mean(daymean);
+    singexp.meanofexperimentmeans = movmean(expmean, 5);
+    singexp.meanoffreqmeans = mean(freqday);
+    singexp.meanoftempmeans = mean(tempday);
+
+    %testmean = movmean(expmean, 5);
+    %average max and min
+    singexp.expavgrange = mean(avgrange);
+    
+        %expmean = smoothdata(meanofexperimentmeans, 'SamplePoints',in(1).trial(1).tim);
+    
+    
+    
+    singexp.hourtim = in(j).day(1).tim/3600;
