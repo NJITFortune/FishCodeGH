@@ -68,46 +68,46 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'
          plotorder = plotorder + 1;
 
 
- ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('testing123');
-
-         [N, edges] = histcounts([out.e(1).s.timcont]/3600, 'BinWidth', binwidth);
-          edges = edges(2:end) - (edges(2)-edges(1))/2;
-
-        plot(edges, N, 'LineWidth',1);
-
-               plotorder = plotorder + 1;
-
-% luz = [out.info.luz];
-% if length(luz) > 1
-% ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('tube triggers'); ylim([0,50]);
-%        
-%        
-%        
-%             for k = 2:length(luz)
-%             
-%                 if luz(k-1) < 0
-%                   
-%                   d = histogram([out.e(1).s(tto{1}).timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
-%                   d.Normalization = 'countdensity';
-%                   d.FaceColor = [0.9 0.9 0.9];
-%                 else
-%                     
-%                    l = histogram([out.e(1).s(tto{1}).timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
-%                    l.Normalization = 'countdensity';
-%                    l.FaceColor = 'y';
-%                 end
-%             end
+%  ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('testing123');
 % 
-%         
-%          [N, edges] = histcounts([out.e(1).s(tto{1}).timcont]/(60*60)/(60*60), 'BinWidth', binwidth);
-%         edges = edges(2:end) - (edges(2)-edges(1))/2;
+%          [N, edges] = histcounts([out.e(1).s.timcont]/3600, 'BinWidth', binwidth);
+%           edges = edges(2:end) - (edges(2)-edges(1))/2;
 % 
 %         plot(edges, N, 'LineWidth',1);
 % 
-% 
-% 
-%         plotorder = plotorder + 1;
-% end
+%                plotorder = plotorder + 1;
+
+luz = [out.info.luz];
+if length(luz) > 1
+ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('tube triggers'); ylim([0,50]);
+       
+       
+       
+            for k = 2:length(luz)
+            
+                if luz(k-1) < 0
+                  
+                  d = histogram([out.e(1).s(tto{1}).timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
+                  d.Normalization = 'countdensity';
+                  d.FaceColor = [0.9 0.9 0.9];
+                else
+                    
+                   l = histogram([out.e(1).s(tto{1}).timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
+                   l.Normalization = 'countdensity';
+                   l.FaceColor = 'y';
+                end
+            end
+
+        
+         [N, edges] = histcounts([out.e(1).s(tto{1}).timcont]/(60*60)/(60*60), 'BinWidth', binwidth);
+        edges = edges(2:end) - (edges(2)-edges(1))/2;
+
+        plot(edges, N, 'LineWidth',1);
+
+
+
+        plotorder = plotorder + 1;
+end
 
 % ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('frequency');   
 %     
