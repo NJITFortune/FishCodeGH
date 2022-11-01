@@ -1,12 +1,12 @@
-%function [darkhalfamp, darkhalftim, lighthalfamp, lighthalftim] = KatieRawObwDay(in, channel, light)
+function [darkhalfamp, darkhalftim, lighthalfamp, lighthalftim] = KatieRawObwDay(in, channel, light)
 % %% prep 
 
 
- clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
-% 
-in = hkg2(7);
-channel = 3;
-light = 3;
+%  clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
+% % 
+% in = hkg2(7);
+% channel = 3;
+% light = 3;
 
 % %kg(12) starts with light
 % 
@@ -65,7 +65,7 @@ lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 if light == 3
 
     %divide raw data into days that start with dark
-    for jj = 7:8%2:length(darkdays)
+    for jj = 2:length(darkdays)
   
         darkidx = find(timcont >= darkdays(jj-1) & timcont < darkdays(jj));
             dday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
