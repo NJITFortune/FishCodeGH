@@ -18,9 +18,9 @@ ld = in1(1).day(1).ld;
               
                 singlealldays(kk+k,:) = in1(j).day(k).Sobwyy;
 
-                singleamprange(kk+k,:) = in(j).day(k).amprange;
-                singlefday(kk+k,:) = in(j).day(k).freq;
-                singletday(kk+k,:) = in(j).day(k).temp;
+                singleallamprange(kk+k,:) = in1(j).day(k).amprange;
+                singleallfday(kk+k,:) = in1(j).day(k).freq;
+                singlealltday(kk+k,:) = in1(j).day(k).temp;
 
              end
         
@@ -37,6 +37,10 @@ ld = in1(1).day(1).ld;
                  for i = 1:length(in2(j).day)
                   
                  multialldays(ii+i,:) = in2(j).day(i).Sobwyy;
+
+                 multiamprange(ii+i,:) = in2(j).day(i).amprange;
+                 multifday(ii+i,:) = in2(j).day(i).freq;
+                 multitday(ii+i,:) = in2(j).day(i).temp;
     
     
                  end
@@ -51,6 +55,8 @@ ld = in1(1).day(1).ld;
   if multisize(1) < singlesize(1)
       randsampidx = randi(multisize(1), multisize(1),1);
       singlesomedays = singlealldays(randsampidx,:);
+      singlesomeamprange = singleallamprange(randsampidx,:);
+      singlesomefday = singleallfday(randsampidx,:);
 
   else
       singlesomedays = singlealldays;
