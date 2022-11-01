@@ -1,4 +1,4 @@
-clearvars -except xxkg
+clearvars -except xxkg k
 out = xxkg(26);
 
 luz = [out.info.luz];
@@ -92,17 +92,17 @@ binwidth = 1;
             xlabel('Hours');
         ylabel('Triggers per hour');
 
-            for k = 2:length(luz)
+            for j = 2:length(luz)
             
-                if luz(k-1) < 0
+                if luz(j-1) < 0
                   
-                  d = histogram([out.e(1).s.timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
+                  d = histogram([out.e(1).s.timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(j-1)),abs(luz(j))]);
                  
                   d.Normalization = 'countdensity';
                   d.FaceColor = [0.9 0.9 0.9];
                 else
                     
-                   l = histogram([out.e(1).s.timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1)),abs(luz(k))]);
+                   l = histogram([out.e(1).s.timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(j-1)),abs(luz(j))]);
                   
                    l.Normalization = 'countdensity';
                    l.FaceColor = [255/255 232/255 124/255];
