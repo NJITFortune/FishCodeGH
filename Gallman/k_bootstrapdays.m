@@ -15,18 +15,16 @@ ld = in1(1).day(1).ld;
              
              for k = 1:length(in1(j).day)
               
-             alldays(j).single(k,:) = in1(j).day(k).Sobwyy;
+             singlealldays(k,:) = in1(j).day(k).Sobwyy;
 
              end
         
 
          end
 
-        singledays(1,:) = alldays(1).single;
-         for j = 2:length(alldays)
-            singledays(j,:) = [singledays; alldays(j).single];
-         end
-        
+       
+
+         
 %     %multifish
 %         multialldays(1) = in2(1).day;
 %         
