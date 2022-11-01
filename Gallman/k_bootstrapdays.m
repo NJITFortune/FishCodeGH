@@ -28,12 +28,12 @@ ld = in1(1).day(1).ld;
     %muilti fish
     ii = 0;
             
-             for j = 1:length(in1) % experiments of x hour length
+             for j = 1:length(in2) % experiments of x hour length
               
                  
-                 for i = 1:length(in1(j).day)
+                 for i = 1:length(in2(j).day)
                   
-                 multialldays(ii+i,:) = in1(j).day(i).Sobwyy;
+                 multialldays(ii+i,:) = in2(j).day(i).Sobwyy;
     
     
                  end
