@@ -28,20 +28,20 @@ ld = in1(1).day(1).ld;
 %          end
 
       
-in1.day.cols = 1;
-all.day2.one = 2;
-all.day1.two = 3;
-all.day2.two = 4; 
+% in1.day.cols = 1;
+% all.day2.one = 2;
+% all.day1.two = 3;
+% all.day2.two = 4; 
 
 
-fld1 = fieldnames(in1.day);
-fld2 = fieldnames(all.day1);
+fld1 = fieldnames(in1);
+fld2 = fieldnames(in1(1).day);
 
 
 for ii = 1:length(fld2)
-    tmp = cellfun(@(x) all.(x).(fld2{ii}), fld1, 'uni', 0);
+    tmp = cellfun(@(x) in1(x).(fld2{ii}), fld1, 'uni', 0);
     A.(fld2{ii}) = cat(1, tmp{:});
 end
 
-c = cellfun(@(fn) all.(fn).field1, fieldnames(all), 'UniformOutput', false);
-vertfield1 = vertcat(c{:});
+% c = cellfun(@(fn) all.(fn).field1, fieldnames(all), 'UniformOutput', false);
+% vertfield1 = vertcat(c{:});
