@@ -18,6 +18,13 @@ ld = in1(1).day(1).ld;
               
              singlealldays(kk+k,:) = in1(j).day(k).Sobwyy;
              
+                fish(j).amprange(k,:) = in(j).day(k).amprange;
+                amprange(k,:) = in(j).day(k).amprange;
+    
+                fday(k,:) = in(j).day(k).freq;
+               % tday(k,:) = k_temptocelcius(in(j).day(k).temp);
+                tday(k,:) = in(j).day(k).temp;
+               
 
 
              end
@@ -52,7 +59,7 @@ ld = in1(1).day(1).ld;
 
   else
       singlesomedays = singlealldays;
-      
+
   end
     
 
