@@ -1,7 +1,7 @@
-%function [exp, fish, ld] = k_bootstrapdays(in1, in2)
-clearvars -except hkg hkg2 dark light darkmulti lightmulti kg kg2 xxkg
-  in1 = dark(2).h;
-  in2 = darkmulti(2).h;
+function [singexp, singlefish, multiexp, multifish, ld] = k_bootstrapdays(in1, in2)
+% clearvars -except hkg hkg2 dark light darkmulti lightmulti kg kg2 xxkg
+%   in1 = dark(2).h;
+%   in2 = darkmulti(2).h;
 
 ld = in1(1).day(1).ld;
 
@@ -17,7 +17,7 @@ ld = in1(1).day(1).ld;
              for k = 1:length(in1(j).day)
               
                 singlealldays(kk+k,:) = in1(j).day(k).Sobwyy;
-
+                singlefishy(kk+k,:) = j;
                 singleallamprange(kk+k,:) = in1(j).day(k).amprange;
                 singleallfday(kk+k,:) = in1(j).day(k).freq;
                 singlealltday(kk+k,:) = in1(j).day(k).temp;
@@ -37,7 +37,7 @@ ld = in1(1).day(1).ld;
                  for i = 1:length(in2(j).day)
                   
                  multialldays(ii+i,:) = in2(j).day(i).Sobwyy;
-
+                 multifishy(ii+i,:) = j;
                  multiamprange(ii+i,:) = in2(j).day(i).amprange;
                  multifday(ii+i,:) = in2(j).day(i).freq;
                  multitday(ii+i,:) = in2(j).day(i).temp;
@@ -55,6 +55,7 @@ ld = in1(1).day(1).ld;
   if multisize(1) < singlesize(1)
       randsampidx = randi(multisize(1), multisize(1),1);
       singlesomedays = singlealldays(randsampidx,:);
+      singlesomefish = singlefishy(randsampidx,:);
 
       singlesomeamprange = singleallamprange(randsampidx,:);
       singlesomefday = singleallfday(randsampidx,:);
@@ -66,6 +67,7 @@ ld = in1(1).day(1).ld;
       singlesomeamprange = singleallamprange;
       singlesomefday = singleallfday;
       singlesometday = singlealltday;
+      singlesomefish = singlefishy;
 
   end
     
@@ -75,21 +77,27 @@ ld = in1(1).day(1).ld;
         singexp.meanofexperimentmeans = movmean(expmean, 5);
         singexp.meanoffreqmeans = mean(singlesomefday);
         singexp.meanoftempmeans = mean(singlesometday);
+        singlefish.fish = singlesomefish;
+        singlefish.singlesomeamprange = singlesomeamprange;
     
         %testmean = movmean(expmean, 5);
         %average max and min
         singexp.expavgrange = mean(singlesomeamprange);
             
-        singexp.hourtim = in1(j).day(1).tim/3600;
+        singexp.hourtim = in1(1).day(1).tim/3600;
 
     %multi fish
          expmean = mean(multialldays);
         multiexp.meanofexperimentmeans = movmean(expmean, 5);
         multiexp.meanoffreqmeans = mean(singlesomefday);
         multiexp.meanoftempmeans = mean(singlesometday);
+        multifish.fish =multifishy;
+        multifish.multiamprange = multiamprange;
     
         %testmean = movmean(expmean, 5);
         %average max and min
         multiexp.expavgrange = mean(multiamprange);
             
-        multiexp.hourtim = in1(j).day(1).tim/3600;
+        multiexp.hourtim = in2(1).day(1).tim/3600;
+
+
