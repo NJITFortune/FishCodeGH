@@ -4,7 +4,7 @@
 
  clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
 % 
-in = hkg2(121);
+in = hkg2(7);
 channel = 3;
 light = 3;
 
