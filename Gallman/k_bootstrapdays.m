@@ -8,7 +8,7 @@ ld = in1(1).day(1).ld;
  
 %vertically concatenate all days
     %single fish
-        singlealldays(1) = [in1(1).day];
+        singlealldays(1) = in1(1).day;
         
         
          for j = 2:length(in1) % experiments of x hour length
