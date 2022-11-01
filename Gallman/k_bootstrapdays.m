@@ -28,7 +28,7 @@ ld = in1(1).day(1).ld;
 %          end
 
       
-in1.day.one = 1;
+in1.day.cols = 1;
 all.day2.one = 2;
 all.day1.two = 3;
 all.day2.two = 4; 
