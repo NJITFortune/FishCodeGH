@@ -41,6 +41,7 @@ ld = in1(1).day(1).ld;
                  ii = i;
              end
 
-
-  if length(multialldays) < length(singlealldays)
+singlesize = size(singlealldays);
+multisize = size(multialldays);
+  if multisize(1) < singlesize(1)
 
