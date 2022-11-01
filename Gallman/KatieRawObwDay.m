@@ -65,7 +65,7 @@ lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 if light == 3
 
     %divide raw data into days that start with dark
-    for jj = 6:7%2:length(darkdays)
+    for jj = 7:8%2:length(darkdays)
   
         darkidx = find(timcont >= darkdays(jj-1) & timcont < darkdays(jj));
             dday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
