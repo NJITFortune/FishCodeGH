@@ -34,7 +34,7 @@ ld = in1(1).day(1).ld;
 % all.day2.two = 4; 
 
 
-fld1 = fieldnames(in1(1));
+fld1 = fieldnames(in1(1).day);
 fld2 = fieldnames(in1(1).day);
 
 
