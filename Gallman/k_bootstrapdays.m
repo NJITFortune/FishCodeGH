@@ -17,6 +17,7 @@ ld = in1(1).day(1).ld;
              for k = 1:length(in1(j).day)
               
              singlealldays(kk+k,:) = in1(j).day(k).Sobwyy;
+             
 
 
              end
@@ -41,7 +42,11 @@ ld = in1(1).day(1).ld;
                  ii = i;
              end
 
-singlesize = size(singlealldays);
-multisize = size(multialldays);
+%check number of days per hour experiment             
+    singlesize = size(singlealldays);
+    multisize = size(multialldays);
+
   if multisize(1) < singlesize(1)
+      randsampidx = randi(multisize(1), multisize(1),1);
+      singlesomedays = 
 
