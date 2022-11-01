@@ -25,8 +25,21 @@ ld = in1(1).day(1).ld;
          end
 
        
-
-
+    %muilti fish
+    ii = 0;
+            
+             for j = 1:length(in1) % experiments of x hour length
+              
+                 
+                 for i = 1:length(in1(j).day)
+                  
+                 singlealldays(ii+i,:) = in1(j).day(i).Sobwyy;
+    
+    
+                 end
+            
+                 ii = i;
+             end
 %     %multifish
 %         multialldays(1) = in2(1).day;
 %         
