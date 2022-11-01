@@ -1,4 +1,4 @@
-function [exp, fish, ld] = k_bootstrapdays(in1, in2)
+%function [exp, fish, ld] = k_bootstrapdays(in1, in2)
 %   clearvars -except hkg hkg2 dark light darkmulti lightmulti kg kg2
   in1 = dark(1).h;
   in2 = darkmulti(1).h;
