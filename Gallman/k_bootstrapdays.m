@@ -39,7 +39,7 @@ fld2 = fieldnames(in1(1).day);
 
 
 for ii = 1:length(fld2)
-    tmp = cellfun(@(x) in1(x).(fld2{ii}), fld1, 'uni', 0);
+    tmp = cellfun(@(x) in1(1).day(x).(fld2{ii}), fld1, 'uni', 0);
     A.(fld2{ii}) = cat(1, tmp{:});
 end
 
