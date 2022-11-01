@@ -83,13 +83,13 @@ ld = in1(1).day(1).ld;
         singexp.hourtim = in1(j).day(1).tim/3600;
 
     %multi fish
-        expmean = mean(multialldays);
-        singexp.meanofexperimentmeans = movmean(expmean, 5);
-        singexp.meanoffreqmeans = mean(singlesomefday);
-        singexp.meanoftempmeans = mean(singlesometday);
+         expmean = mean(multialldays);
+        multiexp.meanofexperimentmeans = movmean(expmean, 5);
+        multiexp.meanoffreqmeans = mean(singlesomefday);
+        multiexp.meanoftempmeans = mean(singlesometday);
     
         %testmean = movmean(expmean, 5);
         %average max and min
-        singexp.expavgrange = mean(singlesomeamprange);
+        multiexp.expavgrange = mean(multiamprange);
             
-        singexp.hourtim = in1(j).day(1).tim/3600;
+        multiexp.hourtim = in1(j).day(1).tim/3600;
