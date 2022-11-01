@@ -48,6 +48,4 @@ ld = in1(1).day(1).ld;
 
   if multisize(1) < singlesize(1)
       randsampidx = randi(multisize(1), multisize(1),1);
-      for j = 1:length(randsampidx)
-      singlesomedays(j) = singlealldays(randsampidx);
-      end
+      
