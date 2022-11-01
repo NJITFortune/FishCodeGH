@@ -77,8 +77,12 @@ ld = in1(1).day(1).ld;
         singexp.meanofexperimentmeans = movmean(expmean, 5);
         singexp.meanoffreqmeans = mean(singlesomefday);
         singexp.meanoftempmeans = mean(singlesometday);
-        singlefish.fish = singlesomefish;
-        singlefish.singlesomeamprange = singlesomeamprange;
+
+        [newfish, newfishidx] = sort(singlesomefish);
+        newamprange = singlesomeamprange(newfishidx);
+
+        singlefish.fish = newfish;
+        singlefish.singlesomeamprange = newamprange;
     
         %testmean = movmean(expmean, 5);
         %average max and min
