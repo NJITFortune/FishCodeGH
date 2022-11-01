@@ -18,9 +18,9 @@ ld = in1(1).day(1).ld;
               
                 singlealldays(kk+k,:) = in1(j).day(k).Sobwyy;
 
-                singleamprange(kk+k,:) = in1(j).day(k).amprange;
-                singlefday(kk+k,:) = in1(j).day(k).freq;
-                singletday(kk+k,:) = in1(j).day(k).temp;
+                singleallamprange(kk+k,:) = in1(j).day(k).amprange;
+                singleallfday(kk+k,:) = in1(j).day(k).freq;
+                singlealltday(kk+k,:) = in1(j).day(k).temp;
 
              end
         
@@ -55,10 +55,17 @@ ld = in1(1).day(1).ld;
   if multisize(1) < singlesize(1)
       randsampidx = randi(multisize(1), multisize(1),1);
       singlesomedays = singlealldays(randsampidx,:);
-      
+
+      singlesomeamprange = singleallamprange(randsampidx,:);
+      singlesomefday = singleallfday(randsampidx,:);
+      singlesometday = singlealltday(randsampidx,:);
 
   else
       singlesomedays = singlealldays;
+
+      singlesomeamprange = singleallamprange;
+      singlesomefday = singleallfday;
+      singlesometday = singlealltday;
 
   end
     
@@ -66,8 +73,8 @@ ld = in1(1).day(1).ld;
   %average and save output
     expmean = mean(singlesomedays);
     singexp.meanofexperimentmeans = movmean(expmean, 5);
-    singexp.meanoffreqmeans = mean(freqday);
-    singexp.meanoftempmeans = mean(tempday);
+    singexp.meanoffreqmeans = mean(singlesomefday);
+    singexp.meanoftempmeans = mean(singlesometday);
 
     %testmean = movmean(expmean, 5);
     %average max and min
