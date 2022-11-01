@@ -38,8 +38,8 @@ binwidth = 1;
        % plot(edges, N,'k-', 'LineWidth',2);
 % 
 % 
-        highWn = 0.005/(binwidth/2); % Original but perhaps too strong for 4 and 5 hour days
-         [bb,aa] = butter(5, highWn, 'high');
+%         highWn = 0.005/(binwidth/2); % Original but perhaps too strong for 4 and 5 hour days
+%          [bb,aa] = butter(5, highWn, 'high');
 % 
         lowWn = 0.075/(binwidth/2);
         [dd,cc] = butter(5, lowWn, 'low');
@@ -75,7 +75,7 @@ binwidth = 1;
         lowWn = 0.05/(20/2);
                 [dd,cc] = butter(5, lowWn, 'low');
                 regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
-              regobwpeaks = filtfilt(bb,aa, regobwpeaks); %high pass
+            %  regobwpeaks = filtfilt(bb,aa, regobwpeaks); %high pass
         
   ax(1) = subplot(211); hold on;               
               plot(regtim/3600, regobwpeaks, 'LineWidth',1);
