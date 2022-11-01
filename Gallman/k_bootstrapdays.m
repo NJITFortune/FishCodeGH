@@ -19,8 +19,12 @@ ld = in1(1).day(1).ld;
 
              end
         
-       
 
+         end
+
+        singledays(1,:) = alldays(1).single;
+         for j = 2:length(alldays)
+            singledays(j,:) = [singledays; alldays(j).single];
          end
         
 %     %multifish
