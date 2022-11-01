@@ -42,5 +42,5 @@ ld = in1(1).day(1).ld;
              end
 
 
-  if length(multialldays) < length(singlealldays)
-      
+  %if length(multialldays) < length(singlealldays)
+
