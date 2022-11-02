@@ -51,10 +51,10 @@ ld = in1(1).day(1).ld;
 %check number of days per hour experiment             
     singlesize = size(singlealldays);
     multisize = size(multialldays);
-multisize(1)
+
   if multisize(1) < singlesize(1)
       randsampidx = randi(multisize(1), multisize(1),1);
-      length(randsampidx)
+     
       singlesomedays = singlealldays(randsampidx,:);
       singlesomefish = singlefishy(randsampidx,:);
 
