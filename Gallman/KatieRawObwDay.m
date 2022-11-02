@@ -86,6 +86,7 @@ if light == 3
     
     [ddaytim, sortidx] = sort(ddaytim);
     ddayamp = ddayamp(sortidx);
+    ddayamp = ddayamp-mean(ddayamp);
     
     darkhalfidx = find(ddaytim < ld);
     darkhalfamp = ddayamp(darkhalfidx);
