@@ -1,5 +1,5 @@
 
-clearvars -except xxkg hkg hkg2 xxkg2 k
+clearvars -except xxkg hkg hkg2 xxkg2 k dark darkmulti 
 
 %k = 43;
 channel = 1;
