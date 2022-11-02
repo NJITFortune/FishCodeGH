@@ -130,30 +130,31 @@ if light == 4
     lighthalftim = ldaytim(lighthalfidx);
 
 end
-% %% plot to check
-%  darkhalfidx = find(ddaytim<ld);
-%     darkhalfamp = ddayamp(darkhalfidx);
-%     darkhalftim = ddaytim(darkhalfidx);
-%     
-%     lighthalfidx = find(ddaytim >= ld);
-%     lighthalfamp = ddayamp(lighthalfidx);
-%     lighthalftim = ddaytim(lighthalfidx);
-% 
-% 
-% figure(45); clf; hold on;
-% 
-%     plot(darkhalftim, darkhalfamp, '.', 'Color', [0.7, 0.7, 0.7]);
-%     plot(lighthalftim, lighthalfamp, 'm.');
-%     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
-% 
-% 
-% figure(68);clf; hold on;
-% 
-%     for j = 1:length(dday)
-%         plot(dday(j).entiretimcont, dday(j).amp, '.');
-%     end
-%     
-%     plot([darkdays' darkdays'], ylim, 'k-');
+
+%% plot to check
+ darkhalfidx = find(ddaytim<ld);
+    darkhalfamp = ddayamp(darkhalfidx);
+    darkhalftim = ddaytim(darkhalfidx);
+    
+    lighthalfidx = find(ddaytim >= ld);
+    lighthalfamp = ddayamp(lighthalfidx);
+    lighthalftim = ddaytim(lighthalfidx);
+
+
+figure(45); clf; hold on;
+
+    plot(darkhalftim, darkhalfamp, '.', 'Color', [0.7, 0.7, 0.7]);
+    plot(lighthalftim, lighthalfamp, 'm.');
+    plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+
+
+figure(68);clf; hold on;
+
+    for j = 1:length(dday)
+        plot(dday(j).entiretimcont, dday(j).amp, '.');
+    end
+    
+    plot([darkdays' darkdays'], ylim, 'k-');
 
 
 
