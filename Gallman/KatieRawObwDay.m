@@ -7,6 +7,7 @@
 in = hkg(k);
 channel = 1;
 light = 3;
+ReFs = 20;
 
 % %kg(12) starts with light
 % 
