@@ -1,7 +1,7 @@
 %function [darkhalfamp, darkhalftim, lighthalfamp, lighthalftim] = KatieRawObwDay(in, channel, light)
 % %% prep 
 
-
+% 
  clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
 % 
 in = hkg(k);
@@ -132,13 +132,7 @@ if light == 4
 end
 
 %% plot to check
- darkhalfidx = find(ddaytim<ld);
-    darkhalfamp = ddayamp(darkhalfidx);
-    darkhalftim = ddaytim(darkhalfidx);
-    
-    lighthalfidx = find(ddaytim >= ld);
-    lighthalfamp = ddayamp(lighthalfidx);
-    lighthalftim = ddaytim(lighthalfidx);
+
 
 
 figure(45); clf; hold on;
