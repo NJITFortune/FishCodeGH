@@ -1,7 +1,7 @@
-function [singexp, singlefish, multiexp, multifish, ld] = k_bootstrapdays(in1, in2)
-% clearvars -except hkg hkg2 dark light darkmulti lightmulti kg kg2 xxkg
-%   in1 = dark(2).h;
-%   in2 = darkmulti(2).h;
+%function [singexp, singlefish, multiexp, multifish, ld] = k_bootstrapdays(in1, in2)
+clearvars -except hkg hkg2 dark light darkmulti lightmulti kg kg2 xxkg
+  in1 = dark(2).h;
+  in2 = darkmulti(2).h;
 
 ld = in1(1).day(1).ld;
 
@@ -51,9 +51,10 @@ ld = in1(1).day(1).ld;
 %check number of days per hour experiment             
     singlesize = size(singlealldays);
     multisize = size(multialldays);
-
+multisize(1)
   if multisize(1) < singlesize(1)
       randsampidx = randi(multisize(1), multisize(1),1);
+      length(randsampidx)
       singlesomedays = singlealldays(randsampidx,:);
       singlesomefish = singlefishy(randsampidx,:);
 
