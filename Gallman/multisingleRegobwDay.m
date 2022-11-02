@@ -143,7 +143,7 @@ end
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
     obwyy = datadata(timidx); 
-    obwyy = obwyy-mean(obwyy);
+    %obwyy = obwyy-mean(obwyy);
     freq = regfreq(timidx);
     temp = regtemp(timidx);
     
@@ -178,7 +178,7 @@ for j = 1:howmanydaysinsample
                 if length(ddayidx) >= howmanysamplesinaday-1 %important so that we know when to stop
 
                     %amplitude data
-                    day(j).Sobwyy = obwyy(ddayidx);
+                    day(j).Sobwyy = obwyy(ddayidx)-mean(obwyy(ddayidx));
                     %frequency data
                     day(j).freq = freq(ddayidx);
                     %temperature data
