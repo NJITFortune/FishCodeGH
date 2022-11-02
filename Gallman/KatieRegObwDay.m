@@ -150,7 +150,7 @@ end
     xx = regtim(timidx);
     obwyy = regobwpeaks(timidx);
     obwyy = datadata(timidx); 
-    obwyy = obwyy-mean(obwyy);
+   % obwyy = obwyy-mean(obwyy);
     freq = regfreq(timidx);
     temp = regtemp(timidx);
     
