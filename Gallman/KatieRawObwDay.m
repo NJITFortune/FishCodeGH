@@ -143,42 +143,36 @@ if light == 3
         howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
 
 
-%% Divide sample into days 
-% needs to be in seconds
-tim = ReFs:ReFs:(ld*2)*3600;
-
-for j = 1:howmanydaysinsample
+    % Divide sample into days 
+        % needs to be in seconds
+        tim = ReFs:ReFs:(ld*2)*3600;
     
-              %resampled data  
-    %         % Get the index of the start time of the day
-                ddayidx = find(xx >= xx(1) + (j-1) * daylengthSECONDS & xx < xx(1) + j* daylengthSECONDS); % k-1 so that we start at zero
-
-                if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
-
-                    %amplitude data
-                    day(j).Sobwyy = obwyy(ddayidx);
-                    %frequency data
-                    day(j).freq = freq(ddayidx);
-                    %temperature data
-                    day(j).temp = temp(ddayidx);
-                    %new time base from 0 the length of day by ReFS
-                    day(j).tim = tim;
-                    %old time base divided by day for plotting chronologically
-                    day(j).entiretimcont = xx(ddayidx);
-                    %not sure why we need how long the day is in hours...
-                    day(j).ld = in.info.ld;
-                    %max amp of each day
-                    day(j).amprange = max(obwyy(ddayidx));
-                    
-                end
-
-%                 rawddayidx = find(timcont >= xx(1) + (k-1) * daylengthSECONDS & timcont < xx(1) + k* daylengthSECONDS); % k-1 so that we start at zero
-%                 %if length(rawddayidx) >= howmanysamplesinaday %important so that we know when to stop
-%                     day(k).timcont = timcont(rawddayidx)-timcont(rawddayidx(1));
-%                     day(k).rawamp = sumfft(rawddayidx);
-%                 %end
- end
-
+    for j = 1:howmanydaysinsample
+        
+                  %resampled data  
+        %         % Get the index of the start time of the day
+                    ddayidx = find(xx >= xx(1) + (j-1) * daylengthSECONDS & xx < xx(1) + j* daylengthSECONDS); % k-1 so that we start at zero
+    
+                    if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
+    
+                        %amplitude data
+                        day(j).Sobwyy = obwyy(ddayidx);
+                        %frequency data
+                        day(j).freq = freq(ddayidx);
+                        %temperature data
+                        day(j).temp = temp(ddayidx);
+                        %new time base from 0 the length of day by ReFS
+                        day(j).tim = tim;
+                        %old time base divided by day for plotting chronologically
+                        day(j).entiretimcont = xx(ddayidx);
+                        %not sure why we need how long the day is in hours...
+                        day(j).ld = in.info.ld;
+                        %max amp of each day
+                        day(j).amprange = max(obwyy(ddayidx));
+                        
+                    end
+    
+     end
 
 
 end
@@ -222,11 +216,13 @@ end
 
 
 
-% figure(45); clf; hold on;
-% 
-%     plot(darkhalftim, darkhalfamp, '.', 'Color', [0.7, 0.7, 0.7]);
-%     plot(lighthalftim, lighthalfamp, 'm.');
-%     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+figure(45); clf; hold on;
+
+    plot(darkhalftim, darkhalfamp, '.', 'Color', [0.7, 0.7, 0.7]);
+    plot(lighthalftim, lighthalfamp, 'm.');
+    plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+
+    for j = 1:length(day)
 
 
 % figure(68);clf; hold on;
