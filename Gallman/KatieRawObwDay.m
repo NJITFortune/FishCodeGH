@@ -5,7 +5,7 @@
  clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
 % 
 in = hkg(k);
-channel = 1;
+channel = 3;
 light = 3;
 ReFs = 20;
 
