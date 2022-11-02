@@ -5,7 +5,7 @@
  clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
 % 
 in = hkg(k);
-channel = 2;
+channel = 1;
 light = 3;
 
 % %kg(12) starts with light
@@ -148,13 +148,13 @@ figure(45); clf; hold on;
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 
-figure(68);clf; hold on;
-
-    for j = 1:length(dday)
-        plot(dday(j).entiretimcont, dday(j).amp, '.');
-    end
-    
-    plot([darkdays' darkdays'], ylim, 'k-');
+% figure(68);clf; hold on;
+% 
+%     for j = 1:length(dday)
+%         plot(dday(j).entiretimcont, dday(j).amp, '.');
+%     end
+%     
+%     plot([darkdays' darkdays'], ylim, 'k-');
 
 
 
