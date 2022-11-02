@@ -3,7 +3,7 @@ function [singexp, singlefish, multiexp, multifish, ld] = k_bootstrapdays(in1, i
 %   in1 = dark(2).h;
 %   in2 = darkmulti(2).h;
 % 
-% ld = in1(1).day(1).ld;
+ ld = in1(1).day(1).ld;
 
  
 %vertically concatenate all days
