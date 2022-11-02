@@ -142,7 +142,7 @@ end
 
 figure(45); clf; hold on;
 
-    plot(darkhalftim, darkhalfamp, )
+    plot(darkhalftim, darkhalfamp, '.',  )
 
 
 
