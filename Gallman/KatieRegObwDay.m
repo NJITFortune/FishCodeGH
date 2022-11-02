@@ -148,9 +148,9 @@ end
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
-    obwyy = regobwpeaks(timidx);
+   % obwyy = regobwpeaks(timidx);
     obwyy = datadata(timidx); 
-    obwyy = obwyy-mean(obwyy);
+   % obwyy = obwyy-mean(obwyy);
     freq = regfreq(timidx);
     temp = regtemp(timidx);
     
