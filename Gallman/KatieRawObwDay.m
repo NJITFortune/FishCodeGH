@@ -1,12 +1,12 @@
-function [darkhalfamp, darkhalftim, lighthalfamp, lighthalftim] = KatieRawObwDay(in, channel, light)
+%function [darkhalfamp, darkhalftim, lighthalfamp, lighthalftim] = KatieRawObwDay(in, channel, light)
 % %% prep 
 
 
-%  clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
-% % 
-% in = hkg2(k);
-% channel = 3;
-% light = 3;
+ clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
+% 
+in = hkg(k);
+channel = 1;
+light = 3;
 
 % %kg(12) starts with light
 % 
@@ -130,3 +130,23 @@ if light == 4
     lighthalftim = ldaytim(lighthalfidx);
 
 end
+%% plot to check
+ darkhalfidx = find(ddaytim<ld);
+    darkhalfamp = ddayamp(darkhalfidx);
+    darkhalftim = ddaytim(darkhalfidx);
+    
+    lighthalfidx = find(ddaytim >= ld);
+    lighthalfamp = ddayamp(lighthalfidx);
+    lighthalftim = ddaytim(lighthalfidx);
+
+
+figure(45); clf; hold on;
+
+    plot(darkhalftim, darkhalfamp, )
+
+
+
+
+
+
+
