@@ -1,4 +1,4 @@
-%function [day] = KatieRegObwDay(in, channel, ReFs, light)%multisingleRegobwDay
+function [day] = KatieRegObwDay(in, channel, ReFs, light)%multisingleRegobwDay
 
 %function [day] = KatieRegobwDayDessembler(in, channel,  ReFs, light)
 %% usage
@@ -10,12 +10,12 @@
 
 
 % % % % % %for when i'm too lazy to function
-  clearvars -except kg kg2 rkg k hkg2 hkg xxkg xxkg2 dark darkmulti light lightmulti
-% % % % % 
-in = hkg(k);
-ReFs = 20;
-light = 3; %start with dark
-channel = 1;
+%   clearvars -except kg kg2 rkg k hkg2 hkg xxkg xxkg2 dark darkmulti light lightmulti
+% % % % % % 
+% in = hkg(k);
+% ReFs = 20;
+% light = 3; %start with dark
+% channel = 1;
 
 %light = 4; %start with light
 % fish = 5; %lo freq
@@ -150,7 +150,7 @@ end
     xx = regtim(timidx);
     obwyy = regobwpeaks(timidx);
     obwyy = datadata(timidx); 
-   % obwyy = obwyy-mean(obwyy);
+    obwyy = obwyy-mean(obwyy);
     freq = regfreq(timidx);
     temp = regtemp(timidx);
     
