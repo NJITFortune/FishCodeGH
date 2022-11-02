@@ -1,4 +1,4 @@
-function [day, darkhalfamp, darkhalftim, lighthalfamp, lighthalftim] = KatieRawObwDay(in, channel, light)
+function [darkhalfamp, darkhalftim, lighthalfamp, lighthalftim] = KatieRawObwDay(in, channel, light)
 % %% prep 
 
 % % 
@@ -96,92 +96,92 @@ if light == 3
     lighthalftim = ddaytim(lighthalfidx);
 
 
- %KatieRegObwDay
-    %trimmed mean
-     window = 5;
-      fcn = @(x) trimmean(x,33);
-      obwtrim = matlab.tall.movingWindow(fcn, window, obw');
-      freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
-      temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
-
-    %convert time vectors back to seconds for resample
-    timcont = timcont*3600;
-    lighttimes = lighttimes*3600;
-    
-    %Regularize
-        %regularize data to ReFs interval
-        [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
-
-         %filter data
-        if ld < 11
-
-        %high pass removes feeding trend for high frequency experiments
-        %cut off frequency
-         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
-         [bb,aa] = butter(5, highWn, 'high');
-
-         %less strong low pass filter - otherwise fake prediction 
-               lowWn = 0.9/(ReFs/2);
-               [dd,cc] = butter(5, lowWn, 'low');
-
-        datadata = filtfilt(dd,cc, double(regobwpeaks)); %low pass
-        datadata = filtfilt(bb,aa, datadata); %high pass
-
-        else
-        %stronger low pass filter for lower frequency experiments 
-        lowWn = 0.1/(ReFs/2);
-        [dd,cc] = butter(5, lowWn, 'low');
-        datadata = filtfilt(dd,cc, double(regobwpeaks));
-        end
-   
-        %trim everything to lighttimes
-        timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
-        xx = regtim(timidx);
-      %  obwyy = regobwpeaks(timidx);
-        obwyy = datadata(timidx); 
-        obwyy = obwyy-mean(obwyy);
-        freq = regfreq(timidx);
-        temp = regtemp(timidx);
-
-    %define day length
-        daylengthSECONDS = (ld*2) * 3600;  
-        lengthofsampleHOURS = (lighttimes(end) - lighttimes(1)) / 3600; 
-        % This is the number of data samples in a day
-        howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
-        %how many days in total experiment
-        howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
-
-
-    % Divide sample into days 
-        % needs to be in seconds
-        tim = ReFs:ReFs:(ld*2)*3600;
-    
-    for j = 1:howmanydaysinsample
-        
-                  %resampled data  
-        %         % Get the index of the start time of the day
-                    ddayidx = find(xx >= xx(1) + (j-1) * daylengthSECONDS & xx < xx(1) + j* daylengthSECONDS); % k-1 so that we start at zero
-    
-                    if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
-    
-                        %amplitude data
-                        day(j).Sobwyy = obwyy(ddayidx);
-                        %frequency data
-                        day(j).freq = freq(ddayidx);
-                        %temperature data
-                        day(j).temp = temp(ddayidx);
-                        %new time base from 0 the length of day by ReFS
-                        day(j).tim = tim;
-                        %old time base divided by day for plotting chronologically
-                        day(j).entiretimcont = xx(ddayidx);
-                        %not sure why we need how long the day is in hours...
-                        day(j).ld = in.info.ld;
-                        %max amp of each day
-                        day(j).amprange = max(obwyy(ddayidx));
-                        
-                    end
-    
-     end
+%  %KatieRegObwDay
+%     %trimmed mean
+%      window = 5;
+%       fcn = @(x) trimmean(x,33);
+%       obwtrim = matlab.tall.movingWindow(fcn, window, obw');
+%       freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
+%       temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
+% 
+%     %convert time vectors back to seconds for resample
+%     timcont = timcont*3600;
+%     lighttimes = lighttimes*3600;
+%     
+%     %Regularize
+%         %regularize data to ReFs interval
+%         [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
+% 
+%          %filter data
+%         if ld < 11
+% 
+%         %high pass removes feeding trend for high frequency experiments
+%         %cut off frequency
+%          highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+%          [bb,aa] = butter(5, highWn, 'high');
+% 
+%          %less strong low pass filter - otherwise fake prediction 
+%                lowWn = 0.9/(ReFs/2);
+%                [dd,cc] = butter(5, lowWn, 'low');
+% 
+%         datadata = filtfilt(dd,cc, double(regobwpeaks)); %low pass
+%         datadata = filtfilt(bb,aa, datadata); %high pass
+% 
+%         else
+%         %stronger low pass filter for lower frequency experiments 
+%         lowWn = 0.1/(ReFs/2);
+%         [dd,cc] = butter(5, lowWn, 'low');
+%         datadata = filtfilt(dd,cc, double(regobwpeaks));
+%         end
+%    
+%         %trim everything to lighttimes
+%         timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
+%         xx = regtim(timidx);
+%       %  obwyy = regobwpeaks(timidx);
+%         obwyy = datadata(timidx); 
+%         obwyy = obwyy-mean(obwyy);
+%         freq = regfreq(timidx);
+%         temp = regtemp(timidx);
+% 
+%     %define day length
+%         daylengthSECONDS = (ld*2) * 3600;  
+%         lengthofsampleHOURS = (lighttimes(end) - lighttimes(1)) / 3600; 
+%         % This is the number of data samples in a day
+%         howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
+%         %how many days in total experiment
+%         howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
+% 
+% 
+%     % Divide sample into days 
+%         % needs to be in seconds
+%         tim = ReFs:ReFs:(ld*2)*3600;
+%     
+%     for j = 1:howmanydaysinsample
+%         
+%                   %resampled data  
+%         %         % Get the index of the start time of the day
+%                     ddayidx = find(xx >= xx(1) + (j-1) * daylengthSECONDS & xx < xx(1) + j* daylengthSECONDS); % k-1 so that we start at zero
+%     
+%                     if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
+%     
+%                         %amplitude data
+%                         day(j).Sobwyy = obwyy(ddayidx);
+%                         %frequency data
+%                         day(j).freq = freq(ddayidx);
+%                         %temperature data
+%                         day(j).temp = temp(ddayidx);
+%                         %new time base from 0 the length of day by ReFS
+%                         day(j).tim = tim;
+%                         %old time base divided by day for plotting chronologically
+%                         day(j).entiretimcont = xx(ddayidx);
+%                         %not sure why we need how long the day is in hours...
+%                         day(j).ld = in.info.ld;
+%                         %max amp of each day
+%                         day(j).amprange = max(obwyy(ddayidx));
+%                         
+%                     end
+%     
+%      end
 
 
 end
@@ -233,11 +233,11 @@ figure(45); clf; hold on;
 
     
 
-    for j = 1:length(day)
-        meanday(j,:) = day(j).Sobwyy;      
-    end
-        mmday= mean(meanday);
-        plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
+%     for j = 1:length(day)
+%         meanday(j,:) = day(j).Sobwyy;      
+%     end
+%         mmday= mean(meanday);
+%         plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
             
 
 
