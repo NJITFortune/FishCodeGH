@@ -144,7 +144,7 @@ figure(45); clf; hold on;
 
     plot(darkhalftim, darkhalfamp, '.', 'Color', [0.7, 0.7, 0.7]);
     plot(lighthalftim, lighthalfamp, 'm.');
-    plot([ld ld], ylim, 'k-');
+    plot([ld ld], ylim, 'k-')
 
 
 
