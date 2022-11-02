@@ -222,7 +222,17 @@ figure(45); clf; hold on;
     plot(lighthalftim, lighthalfamp, 'm.');
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
+    
+
     for j = 1:length(day)
+        plot(day(j).tim/3600, day(j).Sobwyy);
+        meanday(j,:) = day(j).Sobwyy;
+       
+    end
+        mmday= mean(meanday);
+        plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
+            
+
 
 
 % figure(68);clf; hold on;
