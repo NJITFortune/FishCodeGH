@@ -1,12 +1,12 @@
-%function [darkhalfamp, darkhalftim, lighthalfamp, lighthalftim] = KatieRawObwDay(in, channel, light)
+function [darkhalfamp, darkhalftim, lighthalfamp, lighthalftim] = KatieRawObwDay(in, channel, light)
 % %% prep 
 
 % 
- clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
-% 
-in = hkg(k);
-channel = 1;
-light = 3;
+%  clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
+% % 
+% in = hkg(k);
+% channel = 1;
+% light = 3;
 
 % %kg(12) starts with light
 % 
@@ -135,11 +135,11 @@ end
 
 
 
-figure(45); clf; hold on;
-
-    plot(darkhalftim, darkhalfamp, '.', 'Color', [0.7, 0.7, 0.7]);
-    plot(lighthalftim, lighthalfamp, 'm.');
-    plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+% figure(45); clf; hold on;
+% 
+%     plot(darkhalftim, darkhalfamp, '.', 'Color', [0.7, 0.7, 0.7]);
+%     plot(lighthalftim, lighthalfamp, 'm.');
+%     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 
 % figure(68);clf; hold on;
