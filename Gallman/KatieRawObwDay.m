@@ -1,13 +1,13 @@
-%function [darkhalfamp, darkhalftim, lighthalfamp, lighthalftim] = KatieRawObwDay(in, channel, light)
+function [darkhalfamp, darkhalftim, lighthalfamp, lighthalftim] = KatieRawObwDay(in, channel, light)
 % %% prep 
 
 % % 
- clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
-% 
-in = hkg(k);
-channel = 3;
-light = 3;
-ReFs = 20;
+%  clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
+% % 
+% in = hkg(k);
+% channel = 1;
+% light = 3;
+% ReFs = 20;
 
 % %kg(12) starts with light
 % 
