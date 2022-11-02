@@ -5,7 +5,7 @@
  clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
 % 
 in = hkg(k);
-channel = 1;
+channel = 2;
 light = 3;
 
 % %kg(12) starts with light
