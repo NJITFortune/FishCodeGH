@@ -223,13 +223,13 @@ end
 
 %% plot to check
 
-
-
-figure(45); clf; hold on;
-
-    plot(darkhalftim, darkhalfamp-mean(darkhalfamp), '.', 'Color', [0.7, 0.7, 0.7]);
-    plot(lighthalftim, lighthalfamp-mean(lighthalfamp), 'm.');
-    plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+% 
+% 
+% figure(45); clf; hold on;
+% 
+%     plot(darkhalftim, darkhalfamp-mean(darkhalfamp), '.', 'Color', [0.7, 0.7, 0.7]);
+%     plot(lighthalftim, lighthalfamp-mean(lighthalfamp), 'm.');
+%     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
     
 
