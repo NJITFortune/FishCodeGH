@@ -94,6 +94,15 @@ if light == 3
     lighthalfamp = ddayamp(lighthalfidx);
     lighthalftim = ddaytim(lighthalfidx);
 
+
+
+
+
+
+
+
+    
+
 end
 %% light summary by day for stats
 
