@@ -64,7 +64,7 @@ lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 
 if light == 3
 
-    %divide raw data into days that start with dark
+  %divide raw data into days that start with dark
     for jj = 2:length(darkdays)
   
         darkidx = find(timcont >= darkdays(jj-1) & timcont < darkdays(jj));
@@ -95,13 +95,25 @@ if light == 3
     lighthalftim = ddaytim(lighthalfidx);
 
 
-
-
-
-
-
+ %KatieRegObwDay
+    %trimmed mean
+     window = 5;
+      fcn = @(x) trimmean(x,33);
+      obwtrim = matlab.tall.movingWindow(fcn, window, obw');
+      freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
+      temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
 
     
+    
+    %Regularize
+        %regularize data to ReFs interval
+        [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
+
+    
+
+
+
+
 
 end
 %% light summary by day for stats
