@@ -153,7 +153,7 @@ figure(68);clf; hold on;
         plot(dday(j).entiretimcont, dday(j).amp, '.');
     end
     
-    plot([darkdays darkdays], ylim, 'k-');
+    plot([darkdays' darkdays'], ylim, 'k-');
 
 
 
