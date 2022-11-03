@@ -3,7 +3,7 @@ out = xxkg(k);
 channel = 2;
 
 luz = [out.info.luz];
-binwidth = 0.5;
+binwidth = 1;
 
        
        figure(2); clf; hold on; %title('band pass filter');
@@ -33,7 +33,7 @@ binwidth = 0.5;
 
      % figure(3);clf;hold on;
 
-    [N, edges] = histcounts([out.e(channel).s.timcont]/(60*60)-[out.e(channel).s(1).timcont]/(60*60), 'BinWidth', binwidth);
+    [N, edges] = histcounts([out.e(channel).s.timcont]/(60*60), 'BinWidth', binwidth);
         edges = edges(2:end) - (edges(2)-edges(1))/2;
 
        % plot(edges, N,'k-', 'LineWidth',2);
@@ -79,9 +79,9 @@ binwidth = 0.5;
             %  regobwpeaks = filtfilt(bb,aa, regobwpeaks); %high pass
         
   ax(1) = subplot(211); hold on;               
-              plot(regtim/3600-regtim(1)/3600, regobwpeaks, 'LineWidth',1);
+              plot(regtim/3600, regobwpeaks, 'LineWidth',1);
         
-        newtim = regtim/3600-regtim(1)/3600;
+        newtim = regtim/3600;
         
         [~, newtimidx, ~] = intersect(newtim,locs);
         
@@ -97,13 +97,13 @@ binwidth = 0.5;
             
                 if luz(j-1) < 0
                   
-                  d = histogram([out.e(channel).s.timcont]/(60*60)-[out.e(channel).s(1).timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(j-1)),abs(luz(j))]);
+                  d = histogram([out.e(channel).s.timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[abs(luz(j-1)),abs(luz(j))]);
                  
                   d.Normalization = 'countdensity';
                   d.FaceColor = [0.9 0.9 0.9];
                 else
                     
-                   l = histogram([out.e(channel).s.timcont]/(60*60)-[out.e(channel).s(1).timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(j-1)),abs(luz(j))]);
+                   l = histogram([out.e(channel).s.timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(j-1)),abs(luz(j))]);
                   
                    l.Normalization = 'countdensity';
                    l.FaceColor = [255/255 232/255 124/255];
