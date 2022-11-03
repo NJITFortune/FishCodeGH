@@ -28,6 +28,7 @@ channel = 1;
 figure(31); clf; hold on;
     set(gcf, 'renderer', 'painters');
     
+ ax(1) = subplot(211); clf; hold on;   
     %get y axis bounds for boxes
     plot(timcont, obw, '.');
     a = ylim;
@@ -41,6 +42,10 @@ figure(31); clf; hold on;
 
     plot(timcont, obw, '.', 'MarkerSize', 10);
 
+
+ax(2) = subplot(212); clf; hold on;   
+
+    
 
 
     
