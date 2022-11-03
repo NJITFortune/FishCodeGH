@@ -38,7 +38,7 @@ timcont = [out.e(1).s(tto{1}).timcont]/(60*60);
 
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'); %xlim([160 275]);%ylim([0,5]);
 
-       plot([out.e(1).s(tto{1}).timcont]/(60*60)-timcont(1), [out.e(1).s(tto{1}).obwAmp], '.', 'Color', [0.3010 0.7450 0.9330], 'MarkerSize', 5);
+       plot([out.e(1).s(tto{1}).timcont]/(60*60)-timcont(1), [out.e(1).s(tto{1}).obwAmp], '.', 'Color', [0.3010 0.7450 0.9330], 'MarkerSize', 10);
 
        plotorder = plotorder + 1;
  
