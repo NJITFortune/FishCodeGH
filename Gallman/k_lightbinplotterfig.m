@@ -35,15 +35,21 @@ plotorder = 1;
 colnum = 1;
 binwidth = 1;
 timcont = [out.e(1).s(tto{1}).timcont]/(60*60);
+luz = [out.info.luz];
+lidx = find(timcont >= abs(luz(1)) & timcont <= abs(luz(end)));
+obw = [out.e(1).s(tto{1}).obwAmp];
+obw = obw(lidx);
+timcont = timcont(lidx);
+
 
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'); %xlim([160 275]);%ylim([0,5]);
 
-       plot([out.e(1).s(tto{1}).timcont]/(60*60)-timcont(1), [out.e(1).s(tto{1}).obwAmp], '.', 'Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
+       plot(timcont-timcont(1), obw, '.', 'Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
 
        xlim([0 timcont(end)-timcont(1)]);
        plotorder = plotorder + 1;
  
-luz = [out.info.luz];
+
 if length(luz) > 1
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('tube triggers'); %xlim([160 275]);%ylim([0,5]);
        % plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.', 'Color', [0.4660 0.6740 0.1880], 'MarkerSize', 5);
@@ -54,12 +60,12 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('tube trigge
             
                 if luz(k-1) < 0
                   
-                  d = histogram([out.e(1).s(tto{1}).timcont]/(60*60)-timcont(1), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1))-timcont(1),abs(luz(k))-timcont(1)]);
+                  d = histogram(timcont-timcont(1), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1))-timcont(1),abs(luz(k))-timcont(1)]);
                   d.Normalization = 'countdensity';
                   d.FaceColor = [0.9 0.9 0.9];
                 else
                     
-                   l = histogram([out.e(1).s(tto{1}).timcont]/(60*60)-timcont(1),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1))-timcont(1),abs(luz(k))-timcont(1)]);
+                   l = histogram(timcont-timcont(1),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1))-timcont(1),abs(luz(k))-timcont(1)]);
                    l.Normalization = 'countdensity';
                    l.FaceColor = 'y';
                 end
