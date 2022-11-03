@@ -33,8 +33,10 @@ figure(31); clf; hold on;
     a = ylim;
     %plot boxes
 
-    for j = 2:length(lighttimes)
-    fill([0 0 lighttimes(j) lighttimes(j)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+    for j = 1:length(lighttimes)-1
+        if mod(j,2) == 1 %if j is odd
+        fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+        end
     end
 
     plot(timcont, obw, '.', 'MarkerSize', 10);
