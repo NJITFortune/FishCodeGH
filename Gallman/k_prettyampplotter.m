@@ -33,7 +33,7 @@ figure(31); clf; hold on;
     a = ylim;
     %plot boxes
 
-    for j = 1:length(lighttimes)
+    for j = 2:length(lighttimes)
     fill([0 0 lighttimes(j) lighttimes(j)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
     end
 
