@@ -29,7 +29,7 @@ function k_prettyampplotter(in, channel)
 figure(31); clf; hold on;
     set(gcf, 'renderer', 'painters');
     
-     ax(1) = subplot(211); hold on;   xlim([0, timcont(end)]);
+     ax(1) = subplot(211); hold on;   xlim([0, timcont(end)-timcont(1)]);
         %get y axis bounds for boxes
         plot(timcont-timcont(1), obw, '.');
         a = ylim;
@@ -44,7 +44,7 @@ figure(31); clf; hold on;
         plot(timcont-timcont(1), obw, '.','Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
     
     
-    ax(2) = subplot(212); hold on;    xlim([0, timcont(end)]);
+    ax(2) = subplot(212); hold on;    xlim([0, timcont(end)-timcont(1)]);
         binwidth = 0.5;
         ylim([0 100]);
     
