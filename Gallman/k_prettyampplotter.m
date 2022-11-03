@@ -58,13 +58,13 @@ figure(31); clf; hold on;
                       d = histogram(timcont-timcont(1), 'BinWidth', binwidth,'BinLimits',[lighttimes(j-1)-timcont(1),lighttimes(j)-timcont(1)]);
                       d.Normalization = 'countdensity';
                       d.FaceColor = [0.9 0.9 0.9];
-                     % d.EdgeColor = [0.9 0.9 0.9];
+                      d.EdgeColor = [0.9 0.9 0.9];
                     else
                         
                        l = histogram(timcont-timcont(1),'BinWidth', binwidth, 'BinLimits',[lighttimes(j-1)-timcont(1),lighttimes(j)-timcont(1)]);
                        l.Normalization = 'countdensity';
                        l.FaceColor = 'y';
-                       %l.EdgeColor = 'y';
+                       l.EdgeColor = 'y';
                     end
                 end
 
