@@ -1,9 +1,10 @@
-%function k_prettyampplotter(in, channel)
+function k_prettyampplotter(in, channel)
 
-%not functioning
-clearvars -except hkg k
-in = hkg(k);
-channel = 1;
+% %not functioning
+% clearvars -except hkg k
+% k = 12; %gold!
+% in = hkg(k);
+% channel = 1;
 
 
 %data
