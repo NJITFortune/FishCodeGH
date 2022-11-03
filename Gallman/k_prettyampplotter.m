@@ -28,42 +28,42 @@ channel = 1;
 figure(31); clf; hold on;
     set(gcf, 'renderer', 'painters');
     
- ax(1) = subplot(211); clf; hold on;   
-    %get y axis bounds for boxes
-    plot(timcont, obw, '.');
-    a = ylim;
-    %plot boxes
-
-    for j = 1:length(lighttimes)-1
-        if mod(j,2) == 1 %if j is odd
-        fill([lighttimes(j) lighttimes(j) lighttimes(j+1) lighttimes(j+1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-        end
-    end
-
-    plot(timcont, obw, '.', 'MarkerSize', 10);
-
-
-ax(2) = subplot(212); clf; hold on;   
-    binwidth = 0.5;
-
-
-            for j = 2:length(lighttimes)
-            
-                if mod(j,2) == 1 %if j is odd
-                  
-                  d = histogram(timcont, 'BinWidth', binwidth,'BinLimits',[lighttimes(j-1),lighttimes(j)]);
-                  d.Normalization = 'countdensity';
-                  d.FaceColor = [0.9 0.9 0.9];
-                else
-                    
-                   l = histogram(timcont,'BinWidth', binwidth, 'BinLimits',[lighttimes(j-1),lighttimes(j)]);
-                   l.Normalization = 'countdensity';
-                   l.FaceColor = 'y';
-                end
-            end
-
-        
-
-
-
+     ax(1) = subplot(211); clf; hold on;   
+        %get y axis bounds for boxes
+        plot(timcont, obw, '.');
+        a = ylim;
+        %plot boxes
     
+        for j = 1:length(lighttimes)-1
+            if mod(j,2) == 1 %if j is odd
+            fill([lighttimes(j) lighttimes(j) lighttimes(j+1) lighttimes(j+1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            end
+        end
+    
+        plot(timcont, obw, '.', 'MarkerSize', 10);
+    
+    
+    ax(2) = subplot(212); clf; hold on;   
+        binwidth = 0.5;
+    
+    
+                for j = 2:length(lighttimes)
+                
+                    if mod(j,2) == 1 %if j is odd
+                      
+                      d = histogram(timcont, 'BinWidth', binwidth,'BinLimits',[lighttimes(j-1),lighttimes(j)]);
+                      d.Normalization = 'countdensity';
+                      d.FaceColor = [0.9 0.9 0.9];
+                    else
+                        
+                       l = histogram(timcont,'BinWidth', binwidth, 'BinLimits',[lighttimes(j-1),lighttimes(j)]);
+                       l.Normalization = 'countdensity';
+                       l.FaceColor = 'y';
+                    end
+                end
+    linkaxes(ax, 'x');
+            
+    
+    
+    
+        
