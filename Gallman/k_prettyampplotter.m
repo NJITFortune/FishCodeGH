@@ -44,7 +44,7 @@ figure(31); clf; hold on;
 
 
 ax(2) = subplot(212); clf; hold on;   
-
+    binwidth = 0.5;
 
 
             for j = 2:length(lighttimes)
