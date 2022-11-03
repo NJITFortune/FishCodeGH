@@ -51,12 +51,12 @@ ax(2) = subplot(212); clf; hold on;
             
                 if mod(j,2) == 1 %if j is odd
                   
-                  d = histogram([out.e(1).s(tto{1}).timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[lighttimes(j-1),lighttimes(j)]);
+                  d = histogram(timcont, 'BinWidth', binwidth,'BinLimits',[lighttimes(j-1),lighttimes(j)]);
                   d.Normalization = 'countdensity';
                   d.FaceColor = [0.9 0.9 0.9];
                 else
                     
-                   l = histogram([out.e(1).s(tto{1}).timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[lighttimes(j-1),lighttimes(j)]);
+                   l = histogram(timcont,'BinWidth', binwidth, 'BinLimits',[lighttimes(j-1),lighttimes(j)]);
                    l.Normalization = 'countdensity';
                    l.FaceColor = 'y';
                 end
