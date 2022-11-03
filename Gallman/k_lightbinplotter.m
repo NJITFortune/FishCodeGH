@@ -26,6 +26,7 @@ function k_lightbinplotter(out)
 
 figure(4); clf; hold on;
 set(gcf, 'renderer', 'painters');
+xlim([160 275]);
 
     %set(gcf, 'Position', [200 100 2*560 2*420]);
 
