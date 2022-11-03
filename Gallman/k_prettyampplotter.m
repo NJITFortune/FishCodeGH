@@ -2,7 +2,7 @@
 
 %not functioning
 clearvars -except hkg k
-in = hkg(k);
+in = hkg(j);
 channel = 1;
 
 
@@ -45,7 +45,25 @@ figure(31); clf; hold on;
 
 ax(2) = subplot(212); clf; hold on;   
 
-    
+
+
+            for j = 2:length(lighttimes)
+            
+                if mod(j,2) == 1 %if j is odd
+                  
+                  d = histogram([out.e(1).s(tto{1}).timcont]/(60*60), 'BinWidth', binwidth,'BinLimits',[lighttimes(j-1),lighttimes(j)]);
+                  d.Normalization = 'countdensity';
+                  d.FaceColor = [0.9 0.9 0.9];
+                else
+                    
+                   l = histogram([out.e(1).s(tto{1}).timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[lighttimes(j-1),lighttimes(j)]);
+                   l.Normalization = 'countdensity';
+                   l.FaceColor = 'y';
+                end
+            end
+
+        
+
 
 
     
