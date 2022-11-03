@@ -41,19 +41,19 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'
                         lighton = out.info.luz(out.info.luz > 0);
                         darkon = out.info.luz(out.info.luz < 0);
                         
-                        %plot
-                        if ~isempty(lighton)
-                        plot([lighton' lighton']', ylim, 'y-', 'LineWidth', 2);
-                        end
-                        if ~isempty(darkon)
-                        plot([abs(darkon)' abs(darkon)']', ylim, 'k-', 'LineWidth', 2);
-                        end
-            % Add feedingtimes, if we have them... 
-               if isfield(out.info, 'feedingtimes')
-                if ~isempty([out.info.feedingtimes])
-                   ax(plotorder) = subplot(totplot, colnum, plotorder); plot([out.info.feedingtimes' out.info.feedingtimes']', ylim, 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
-                end
-               end  
+%                         %plot
+%                         if ~isempty(lighton)
+%                         plot([lighton' lighton']', ylim, 'y-', 'LineWidth', 2);
+%                         end
+%                         if ~isempty(darkon)
+%                         plot([abs(darkon)' abs(darkon)']', ylim, 'k-', 'LineWidth', 2);
+%                         end
+%             % Add feedingtimes, if we have them... 
+%                if isfield(out.info, 'feedingtimes')
+%                 if ~isempty([out.info.feedingtimes])
+%                    ax(plotorder) = subplot(totplot, colnum, plotorder); plot([out.info.feedingtimes' out.info.feedingtimes']', ylim, 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
+%                 end
+%                end  
 
        plotorder = plotorder + 1;
  
