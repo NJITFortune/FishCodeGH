@@ -40,6 +40,7 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'
 
        plot([out.e(1).s(tto{1}).timcont]/(60*60)-timcont(1), [out.e(1).s(tto{1}).obwAmp], '.', 'Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
 
+       xlim([0 timcont(end)-timcont(1)]);
        plotorder = plotorder + 1;
  
 luz = [out.info.luz];
@@ -63,6 +64,7 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('tube trigge
                    l.FaceColor = 'y';
                 end
             end
+             xlim([0 timcont(end)-timcont(1)]);
 
         plotorder = plotorder + 1;
 end
