@@ -50,7 +50,7 @@ figure(31); clf; hold on;
     
                 for j = 2:length(lighttimes)
                 
-                    if mod(j,2) == 1 %if j is odd
+                    if mod(j,2) == 0 %if j is odd
                       
                       d = histogram(timcont, 'BinWidth', binwidth,'BinLimits',[lighttimes(j-1),lighttimes(j)]);
                       d.Normalization = 'countdensity';
