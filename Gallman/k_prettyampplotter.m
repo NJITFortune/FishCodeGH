@@ -2,7 +2,7 @@
 
 %not functioning
 clearvars -except hkg k
-in = hkg(j);
+in = hkg(k);
 channel = 1;
 
 
