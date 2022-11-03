@@ -31,17 +31,17 @@ figure(31); clf; hold on;
     
      ax(1) = subplot(211); hold on;   
         %get y axis bounds for boxes
-        plot(timcont, obw, '.');
+        plot(timcont-timcont(1), obw, '.');
         a = ylim;
         %plot boxes
     
         for j = 1:length(lighttimes)-1
             if mod(j,2) == 1 %if j is odd
-            fill([lighttimes(j) lighttimes(j) lighttimes(j+1) lighttimes(j+1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
             end
         end
     
-        plot(timcont, obw, '.', 'MarkerSize', 10);
+        plot(timcont-timcont(1), obw, '.','Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
     
     
     ax(2) = subplot(212); hold on;   
@@ -53,12 +53,12 @@ figure(31); clf; hold on;
                 
                     if mod(j,2) == 0 %if j is odd
                       
-                      d = histogram(timcont, 'BinWidth', binwidth,'BinLimits',[lighttimes(j-1),lighttimes(j)]);
+                      d = histogram(timcont-timcont(1), 'BinWidth', binwidth,'BinLimits',[lighttimes(j-1)-timcont(1),lighttimes(j)-timcont(1)]);
                       d.Normalization = 'countdensity';
                       d.FaceColor = [0.9 0.9 0.9];
                     else
                         
-                       l = histogram(timcont,'BinWidth', binwidth, 'BinLimits',[lighttimes(j-1),lighttimes(j)]);
+                       l = histogram(timcont-timcont(1),'BinWidth', binwidth, 'BinLimits',[lighttimes(j-1)-timcont(1),lighttimes(j)-timcont(1)]);
                        l.Normalization = 'countdensity';
                        l.FaceColor = 'y';
                     end
