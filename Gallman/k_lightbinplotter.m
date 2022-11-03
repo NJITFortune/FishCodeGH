@@ -27,7 +27,7 @@ function k_lightbinplotter(out)
 figure(4); clf; hold on;
     %set(gcf, 'Position', [200 100 2*560 2*420]);
 
-totplot = 5;
+totplot = 2;
 plotorder = 1;
 colnum = 1;
 binwidth = 1;
@@ -81,56 +81,56 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('tube trigge
 
         plotorder = plotorder + 1;
 end
-ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('frequency');   
-    
-        plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).fftFreq], '.k', 'Markersize', 8);
-        plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).fftFreq], '.k', 'Markersize', 8);
-
-        plotorder = plotorder + 1;
-
-ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('temp');
-    
-    plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).temp], '-r', 'Markersize', 8);
-    plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).temp], '-r', 'Markersize', 8);
-
-        % Add temptimes, if we have them... 
-           if isfield(out.info, 'temptims')
-            if ~isempty([out.info.temptims])
-               ax(plotorder) = subplot(totplot, colnum, plotorder);
-               for j = 1:length([out.info.temptims])
-                    plot([out.info.temptims(j), out.info.temptims(j)], ylim, 'b-');
-               end         
-            end
-           end  
-
-%     ch2tempC = real(k_voltstodegC(out, 2));
-%     ch1tempC = real(k_voltstodegC(out, 1));
+% ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('frequency');   
 %     
-%     plot([out.e(2).s.timcont]/(60*60), ch2tempC, '-r', 'Markersize', 8);
-%     plot([out.e(1).s.timcont]/(60*60), ch1tempC, '-r', 'Markersize', 8);
-
-    plotorder = plotorder + 1;
-
-ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('light');  
-    plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
-    ylim([-1, 6]);
-    xlabel('Continuous');
-
-        % Add light transitions times to check luz if we have programmed it
-            if isfield(out.info, 'luz')
-                if  ~isempty(out.info.luz)
-                    
-                    %luz by transition type
-                        %separate by transition type
-                        lighton = out.info.luz(out.info.luz > 0);
-                        darkon = out.info.luz(out.info.luz < 0);
-                        
-                        %plot
-                        plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2);
-                        plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2);
-                end    
-            end
-
+%         plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).fftFreq], '.k', 'Markersize', 8);
+%         plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).fftFreq], '.k', 'Markersize', 8);
+% 
+%         plotorder = plotorder + 1;
+% 
+% ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('temp');
+%     
+%     plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).temp], '-r', 'Markersize', 8);
+%     plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).temp], '-r', 'Markersize', 8);
+% 
+%         % Add temptimes, if we have them... 
+%            if isfield(out.info, 'temptims')
+%             if ~isempty([out.info.temptims])
+%                ax(plotorder) = subplot(totplot, colnum, plotorder);
+%                for j = 1:length([out.info.temptims])
+%                     plot([out.info.temptims(j), out.info.temptims(j)], ylim, 'b-');
+%                end         
+%             end
+%            end  
+% 
+% %     ch2tempC = real(k_voltstodegC(out, 2));
+% %     ch1tempC = real(k_voltstodegC(out, 1));
+% %     
+% %     plot([out.e(2).s.timcont]/(60*60), ch2tempC, '-r', 'Markersize', 8);
+% %     plot([out.e(1).s.timcont]/(60*60), ch1tempC, '-r', 'Markersize', 8);
+% 
+%     plotorder = plotorder + 1;
+% 
+% ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('light');  
+%     plot([out.e(1).s.timcont]/(60*60), [out.e(1).s.light], '.', 'Markersize', 8);
+%     ylim([-1, 6]);
+%     xlabel('Continuous');
+% 
+%         % Add light transitions times to check luz if we have programmed it
+%             if isfield(out.info, 'luz')
+%                 if  ~isempty(out.info.luz)
+%                     
+%                     %luz by transition type
+%                         %separate by transition type
+%                         lighton = out.info.luz(out.info.luz > 0);
+%                         darkon = out.info.luz(out.info.luz < 0);
+%                         
+%                         %plot
+%                         plot([lighton' lighton']', [0 6], 'y-', 'LineWidth', 2);
+%                         plot([abs(darkon)' abs(darkon)']', [0 6], 'k-', 'LineWidth', 2);
+%                 end    
+%             end
+% 
 
 linkaxes(ax, 'x'); 
   
