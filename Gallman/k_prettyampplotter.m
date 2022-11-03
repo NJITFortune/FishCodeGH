@@ -42,12 +42,14 @@ figure(31); clf; hold on;
         end
     
         plot(timcont-timcont(1), obw, '.','Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
+        ylabel('Mean square amplitude');
+        xlabel('Time (hours)');
     
-    
-    ax(2) = subplot(212); hold on;    xlim([0, timcont(end)-timcont(1)]);
+    ax(2) = subplot(212); hold on; xlim([0, timcont(end)-timcont(1)]);
         binwidth = 0.5;
         ylim([0 100]);
-    
+        ylabel('Tube triggers per half hour');
+        xlabel('Time (hours)')
     
                 for j = 2:length(lighttimes)
                 
@@ -63,6 +65,8 @@ figure(31); clf; hold on;
                        l.FaceColor = 'y';
                     end
                 end
+
+
     linkaxes(ax, 'x');
             
     
