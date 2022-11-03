@@ -25,6 +25,8 @@ function k_lightbinplotter(out)
 %% Continuous data plot
 
 figure(4); clf; hold on;
+set(gcf, 'renderer', 'painters');
+
     %set(gcf, 'Position', [200 100 2*560 2*420]);
 
 totplot = 2;
