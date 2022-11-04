@@ -49,7 +49,7 @@ binwidth = 1;
         filtN = filtfilt(dd,cc, double(N));
     %     filtN = filtfilt(bb,aa, filtN); %high pass
 %       
-       plot(edges, filtN-mean(filtN), 'LineWidth',2)  
+  %     plot(edges, filtN-mean(filtN), 'LineWidth',2)  
          [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
     
     
@@ -117,7 +117,7 @@ findpeaks(filtN, edges);
 %                   %l.FaceColor = 'y';
 %                 end
 %             end
-      %   plot(edges, N,'k-', 'LineWidth',2);
+         plot(edges, N,'k-', 'LineWidth',2);
           %  plot(locs, peaks,'r.', 'MarkerSize', 20)
 
 %linkaxes(ax, 'x');
