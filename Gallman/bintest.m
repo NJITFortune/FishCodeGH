@@ -53,7 +53,7 @@ binwidth = 1;
          [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
     
     
-findpeaks(filtN, edges);
+findpeaks(filtN, edges-timcont(1)/3600);
 
 
  %raw data 
