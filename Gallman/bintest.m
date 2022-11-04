@@ -124,7 +124,7 @@ xlim([0, 500]);
          plot(edges-timcont(1)/3600, N,'k-', 'LineWidth',2);
        %  findpeaks(filtN, edges-timcont(1)/3600);
    % plot(edges-timcont(1)/3600, filtN, 'LineWidth',2)  
-         xlim([0, 500]);
+       %  xlim([0, 500]);
        %     plot(locs-timcont(1)/3600, peaks,'r.', 'MarkerSize', 20)
 
 %linkaxes(ax, 'x');
