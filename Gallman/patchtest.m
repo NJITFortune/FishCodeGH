@@ -356,3 +356,5 @@ obw = obwamp/max(obwamp);
     %regularize data to ReFs interval
     [regtim, ~, ~, regobwtrim] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
 
+       plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 10);
+       plot(regtim/3600--lightlines(1), regobwtrim,'LineWidth',1 );
