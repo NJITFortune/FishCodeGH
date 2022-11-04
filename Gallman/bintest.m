@@ -62,6 +62,10 @@ binwidth = 1;
                 obw =  [out.e(channel).s(tto{channel}).obwAmp]; %divide by max to normalize
                 oldfreq = [out.e(channel).s(tto{channel}).fftFreq];
                 oldtemp = [out.e(channel).s(tto{channel}).temp];
+
+                lidx = find(timcont/3600 >= abs(luz(1)));
+                timcont = timcont(lidx);
+                obw = obw(lidx);
             
              %trimmed mean
              window = 5;
@@ -100,7 +104,7 @@ xlim([0, 500]);
             
                 if luz(j-1) < 0
                   
-                  d = histogram([out.e(channel).s.timcont]/(60*60)-timcont(1)/3600, 'BinWidth', binwidth,'BinLimits',[abs(luz(j-1))-timcont(1)/3600,abs(luz(j))-timcont(1)/3600]);
+                  d = histogram(timcont/3600-timcont(1)/3600, 'BinWidth', binwidth,'BinLimits',[abs(luz(j-1))-timcont(1)/3600,abs(luz(j))-timcont(1)/3600]);
                  
                   d.Normalization = 'countdensity';
                   d.FaceColor = [0.9 0.9 0.9];
@@ -108,7 +112,7 @@ xlim([0, 500]);
                
                 else
                     
-                   l = histogram([out.e(channel).s.timcont]/(60*60)-timcont(1)/3600,'BinWidth', binwidth, 'BinLimits',[abs(luz(j-1))-timcont(1)/3600,abs(luz(j))-timcont(1)/3600]);
+                   l = histogram(timcont/3600-timcont(1)/3600,'BinWidth', binwidth, 'BinLimits',[abs(luz(j-1))-timcont(1)/3600,abs(luz(j))-timcont(1)/3600]);
                   
                    l.Normalization = 'countdensity';
                    l.FaceColor = [255/255 239/255 0/255];
