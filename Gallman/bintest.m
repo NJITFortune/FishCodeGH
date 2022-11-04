@@ -91,7 +91,7 @@ binwidth = 1;
         
         
              plot(newtim(newtimidx)-timcont(1)/3600, regobwpeaks(newtimidx), '.', 'MarkerSize', 20);
-
+xlim([0, 500]);
    ax(2) = subplot(212);  hold on;
             xlabel('Hours');
         ylabel('Triggers per hour');
@@ -120,7 +120,7 @@ binwidth = 1;
          plot(edges-timcont(1)/3600, N,'k-', 'LineWidth',2);
        %  findpeaks(filtN, edges-timcont(1)/3600);
 
-         xlim([0, 73]);
+         xlim([0, 500]);
             plot(locs-timcont(1)/3600, peaks,'r.', 'MarkerSize', 20)
 
 %linkaxes(ax, 'x');
