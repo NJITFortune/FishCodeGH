@@ -117,7 +117,7 @@ findpeaks(filtN, edges);
 %                   %l.FaceColor = 'y';
 %                 end
 %             end
-         plot(edges, N,'k-', 'LineWidth',2);
+      %   plot(edges, N,'k-', 'LineWidth',2);
           %  plot(locs, peaks,'r.', 'MarkerSize', 20)
 
-linkaxes(ax, 'x');
+%linkaxes(ax, 'x');
