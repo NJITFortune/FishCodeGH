@@ -35,7 +35,7 @@ function k_prettyampplotter(in, channel)
               temptrim = matlab.tall.movingWindow(fcn, window, temp');
         %Regularize
                 %regularize data to ReFs interval
-                [regtim, ~, ~, regobwpeaks] = k_regularmetamucil(timcont *3600, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes*3600);
+                [regtim, regfreq, ~, regobwpeaks] = k_regularmetamucil(timcont *3600, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes*3600);
 
         lowWn = 0.025/(20/2);
                 [dd,cc] = butter(5, lowWn, 'low');
@@ -66,7 +66,7 @@ figure(31); clf; hold on;
 
     ax(2) = subplot(312); hold on; xlim([0, timcont(end)-timcont(1)]); ylim([400 600]);
               plot(timcont-timcont(1), freq, '.', 'Color', [252/255, 108/255, 133/255]);
-               plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
+               plot(regtim/3600 - timcont(1), regfreq, 'k-', 'LineWidth', 2);
               ylabel('Frequency (Hz)');
     
     ax(3) = subplot(313); hold on; xlim([0, timcont(end)-timcont(1)]);
