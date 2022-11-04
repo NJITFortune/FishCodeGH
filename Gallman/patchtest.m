@@ -310,6 +310,9 @@ splinexx = lightlines(1)*3600:ReFs:lightlines(end)*3600;
         %estimate without resample
         obwall = fnval(timcont, spliney1);
 
+        %first spline with resample
+        obwyy = fnval(splinexx, spliney1);
+
         %take raw data above the spline
         topidx = find(obw > obwall);
         topobw = obw(topidx);
@@ -358,4 +361,4 @@ obw = obwamp/max(obwamp);
 
        plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 10);
        plot(regtim/3600-lightlines(1), regobwtrim,'LineWidth',1 );
-        plot(splinexx/3600-lightlines(1), subobwyy,  'LineWidth',1);
+        plot(splinexx/3600-lightlines(1), obwyy,  'LineWidth',1);
