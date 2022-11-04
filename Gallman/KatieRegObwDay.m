@@ -186,7 +186,7 @@ for j = 1:howmanydaysinsample
                 if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
 
                     %amplitude data
-                    day(j).Sobwyy = obwyy(ddayidx)-mean(obwyy(ddayidx));
+                    day(j).Sobwyy = obwyy(ddayidx);
                     %frequency data
                     day(j).freq = freq(ddayidx);
                     %temperature data
