@@ -42,6 +42,16 @@ function k_prettyampplotter(in, channel)
                 regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
 
 
+binwidth = 0.5;
+
+ [N, edges] = histcounts(timcont, 'BinWidth', binwidth);
+        edges = edges(2:end) - (edges(2)-edges(1))/2;
+
+        lowWn = 0.075/(binwidth/2);
+        [dd,cc] = butter(5, lowWn, 'low');
+        filtN = filtfilt(dd,cc, double(N));
+ 
+         [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
 %figure
 figure(31); clf; hold on;
     set(gcf, 'renderer', 'painters');
@@ -63,6 +73,12 @@ figure(31); clf; hold on;
         plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
         ylabel('Mean square amplitude');
        % xlabel('Time (hours)');
+
+        [~, newtimidx, ~] = intersect(newtim,locs);
+        
+        
+        
+             plot(newtim(newtimidx)-timcont(1)/3600, regobwpeaks(newtimidx), 'r.', 'MarkerSize', 20);
 
     ax(2) = subplot(312); hold on; xlim([0, timcont(end)-timcont(1)]); ylim([400 600]);
              % plot(timcont-timcont(1), freq, '.', 'Color', [252/255, 108/255, 133/255]);
