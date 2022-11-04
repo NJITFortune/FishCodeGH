@@ -78,7 +78,8 @@ binwidth = 1;
                 regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
             %  regobwpeaks = filtfilt(bb,aa, regobwpeaks); %high pass
         
-  ax(1) = subplot(211); hold on;               
+  ax(1) = subplot(211); hold on; 
+              plot(timcont/3600, obw, '.');
               plot(regtim/3600, regobwpeaks, 'LineWidth',1);
         
         newtim = regtim/3600;
