@@ -46,7 +46,7 @@ figure(31); clf; hold on;
         ylabel('Mean square amplitude');
         xlabel('Time (hours)');
 
-    ax(2) = subplot(312); hold on; xlim([0, timcont(end)-timcont(1)]); ylim([450 550]);
+    ax(2) = subplot(312); hold on; xlim([0, timcont(end)-timcont(1)]); ylim([400 600]);
               plot(timcont-timcont(1), freq, 'k.');
     
     ax(3) = subplot(313); hold on; xlim([0, timcont(end)-timcont(1)]);
