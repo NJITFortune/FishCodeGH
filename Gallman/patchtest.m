@@ -347,14 +347,14 @@ obw = obwamp/max(obwamp);
  window = 5;
   fcn = @(x) trimmean(x,33);
   obwtrim = matlab.tall.movingWindow(fcn, window, obw');
-  freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
-  temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
-
+ 
     
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, ~, ~, regobwtrim] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
+    [regtim,  regobwtrim] = k_amponlymetamucil(timcont, obwtrim', ReFs);
+
+ figure(98);clf;hold on; title('trim mean reg');
 
        plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 10);
        plot(regtim/3600--lightlines(1), regobwtrim,'LineWidth',1 );
