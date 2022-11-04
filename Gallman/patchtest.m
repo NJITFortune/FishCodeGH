@@ -342,5 +342,17 @@ splinexx = lightlines(1)*3600:ReFs:lightlines(end)*3600;
         plot(splinexx/3600-lightlines(1), subobwyy,  'LineWidth',1);
 
 %% trim mean
+obw = obwamp/max(obwamp);
+%trimmed mean
+ window = 5;
+  fcn = @(x) trimmean(x,33);
+  obwtrim = matlab.tall.movingWindow(fcn, window, obw');
+  freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
+  temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
 
+    
+    
+%Regularize
+    %regularize data to ReFs interval
+    [regtim, ~, ~, regobwtrim] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
 
