@@ -83,7 +83,7 @@ figure(31); clf; hold on;
         [dd,cc] = butter(5, lowWn, 'low');
         filtN = filtfilt(dd,cc, double(N));
  
-        % [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
+         [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
     
                 for j = 2:length(lighttimes)
                 
