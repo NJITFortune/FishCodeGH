@@ -45,10 +45,11 @@ figure(31); clf; hold on;
     
         plot(timcont-timcont(1), obw, '.','Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
         ylabel('Mean square amplitude');
-        xlabel('Time (hours)');
+       % xlabel('Time (hours)');
 
     ax(2) = subplot(312); hold on; xlim([0, timcont(end)-timcont(1)]); ylim([400 600]);
               plot(timcont-timcont(1), freq, 'k.');
+              ylabel('Frequency (Hz)');
     
     ax(3) = subplot(313); hold on; xlim([0, timcont(end)-timcont(1)]);
         binwidth = 0.5;
