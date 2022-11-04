@@ -357,4 +357,4 @@ obw = obwamp/max(obwamp);
  figure(98);clf;hold on; title('trim mean reg');
 
        plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 10);
-       plot(regtim/3600--lightlines(1), regobwtrim,'LineWidth',1 );
+       plot(regtim/3600-lightlines(1), regobwtrim,'LineWidth',1 );
