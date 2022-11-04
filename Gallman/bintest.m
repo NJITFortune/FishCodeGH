@@ -53,7 +53,7 @@ binwidth = 1;
          [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
     
     
-findpeaks(filtN, edges-timcont(1)/3600);
+%findpeaks(filtN, edges);
 
 
  %raw data 
@@ -118,6 +118,8 @@ findpeaks(filtN, edges-timcont(1)/3600);
 %                 end
 %             end
          plot(edges-timcont(1)/3600, N,'k-', 'LineWidth',2);
+         findpeaks(filtN, edges-timcont(1)/3600);
+
          xlim([0, 73]);
           %  plot(locs, peaks,'r.', 'MarkerSize', 20)
 
