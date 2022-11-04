@@ -76,7 +76,7 @@ figure(31); clf; hold on;
         xlabel('Time (hours)')
     
 
-        [N, edges] = histcounts(timcont, 'BinWidth', binwidth);
+        [N, edges] = histcounts(timcont-timcont(1), 'BinWidth', binwidth);
         edges = edges(2:end) - (edges(2)-edges(1))/2;
 
         lowWn = 0.075/(binwidth/2);
@@ -102,7 +102,7 @@ figure(31); clf; hold on;
                     end
                 end
 
-              plot(edges-timcont(1), N,'k-', 'LineWidth',2);
+              plot(edges, N,'k-', 'LineWidth',2);
     linkaxes(ax, 'x');
             
     
