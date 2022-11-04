@@ -34,11 +34,12 @@ figure(31); clf; hold on;
         %get y axis bounds for boxes
         plot(timcont-timcont(1), obw, '.');
         a = ylim;
+
         %plot boxes
     
         for j = 1:length(lighttimes)-1
             if mod(j,2) == 1 %if j is odd
-            fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
             end
         end
     
