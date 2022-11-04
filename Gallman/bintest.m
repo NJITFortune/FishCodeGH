@@ -106,7 +106,7 @@ binwidth = 1;
                    l = histogram([out.e(channel).s.timcont]/(60*60),'BinWidth', binwidth, 'BinLimits',[abs(luz(j-1)),abs(luz(j))]);
                   
                    l.Normalization = 'countdensity';
-                   l.FaceColor = [255/255 243/255 128/255];
+                   l.FaceColor = [255/255 239/255 0/255];
                   %  l.FaceColor = [0.9290 0.6940 0.1250];
                   %l.FaceColor = 'y';
                 end
