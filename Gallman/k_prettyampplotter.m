@@ -74,6 +74,7 @@ figure(31); clf; hold on;
         ylabel('Mean square amplitude');
        % xlabel('Time (hours)');
 
+       newtim = regtim/3600;
         [~, newtimidx, ~] = intersect(newtim,locs);
         
         
