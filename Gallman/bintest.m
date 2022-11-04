@@ -7,6 +7,8 @@ binwidth = 1;
 
        
        figure(2); clf; hold on; %title('band pass filter');
+       set(gcf, 'renderer', 'painters');
+
         %xlim([13 116]);
        % ylim([0 60]);
         xlabel('Hours');
