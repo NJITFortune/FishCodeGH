@@ -84,7 +84,7 @@ binwidth = 1;
                 regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
             %  regobwpeaks = filtfilt(bb,aa, regobwpeaks); %high pass
         
-  ax(1) = subplot(311); hold on; 
+  ax(1) = subplot(311); hold on; ylim([0 1]);
             %  plot(timcont/3600-timcont(1)/3600, obw, '.', 'Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
               plot(regtim/3600-timcont(1)/3600, regobwpeaks, 'k-', 'LineWidth',2);
         
