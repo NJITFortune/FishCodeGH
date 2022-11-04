@@ -4,7 +4,7 @@ function [regtim,  newampFilled] = k_peaksofpeaksfilt(oldtim, obw, regularinterv
 
  window = 5;
   fcn = @(x) trimmean(x,33);
-  oldamp = matlab.tall.movingWindow(fcn, window, obw');
+  oldamp' = matlab.tall.movingWindow(fcn, window, obw');
 
 % %Take top of dataset
 %     %find peaks
