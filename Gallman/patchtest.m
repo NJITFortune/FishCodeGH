@@ -150,7 +150,7 @@ obwamp = [out(channel).s(sortidx).pobwAmp];
 zamp = [out(channel).s(sortidx).zAmp];
 
 lowWn = 0.1/(ReFs/2);
-        
+[dd,cc] = butter(5, lowWn, 'low');
 
          ax(1) = subplot(211); title('Mean square amplitude');  hold on;
             a = [0 1];
@@ -167,7 +167,7 @@ lowWn = 0.1/(ReFs/2);
             
                 [otimcont, obwdata] = k_peaksofpeaksfilt(timcont, obwamp, 20);
                     plot(otimcont/3600-lightlines(1), obwdata, 'LineWidth', 2);
-                    [dd,cc] = butter(5, lowWn, 'low');
+                    
                      datadata = filtfilt(dd,cc, double(obwdata));
                      plot(otimcont/3600-lightlines(1), datadata, 'LineWidth', 2);
 
