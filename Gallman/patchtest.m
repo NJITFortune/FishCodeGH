@@ -390,6 +390,10 @@ obw = obwamp/max(obwamp);
  figure(98);clf;hold on; title('trim mean reg'); xlim([11 12.5]);ylim([-1 3]);
  set(gcf, 'renderer', 'painters');
 
-       plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 15);
-       plot(regtim/3600-lightlines(1), regobwtrim,'LineWidth',2 );
-        plot(splinexx/3600-lightlines(1), obwyy,  'LineWidth',2);
+       plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 15, 'Display Name', 'Obw');
+       plot(regtim/3600-lightlines(1), regobwtrim,'LineWidth',2 , 'Display Name', 'Trim mean');
+        plot(splinexx/3600-lightlines(1), obwyy,  'LineWidth',2, 'Display Name', 'Cubic spline');
+
+        legend;
+        xlabel('Time (hours)');
+        ylabel('Mean square amplitude');
