@@ -394,6 +394,6 @@ obw = obwamp/max(obwamp);
        plot(regtim/3600-lightlines(1), regobwtrim,'LineWidth',2);
         plot(splinexx/3600-lightlines(1), obwyy,  'LineWidth',2);
 
-        legend('Obw', 'Trim mean', 'Cubic spline', 'Location','northeast');
+        legend('Obw', 'Trim mean', 'Cubic spline', 'Location','northwest');
         xlabel('Time (hours)');
         ylabel('Mean square amplitude');
