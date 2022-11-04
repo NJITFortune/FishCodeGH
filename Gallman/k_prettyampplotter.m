@@ -24,10 +24,18 @@ function k_prettyampplotter(in, channel)
         timcont = timcont(lidx);
         obw = obw(lidx);
         freq = freq(lidx);
+        temp = temp(lidx);
 
+
+             %trimmed mean
+             window = 5;
+              fcn = @(x) trimmean(x,33);
+              obwtrim = matlab.tall.movingWindow(fcn, window, obw');
+              freqtrim = matlab.tall.movingWindow(fcn, window, freq');
+              temptrim = matlab.tall.movingWindow(fcn, window, temp');
         %Regularize
                 %regularize data to ReFs interval
-                [regtim, ~, ~, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes);
+                [regtim, ~, ~, regobwpeaks] = k_regularmetamucil(timcont *3600, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes*3600);
 
         lowWn = 0.025/(20/2);
                 [dd,cc] = butter(5, lowWn, 'low');
@@ -52,6 +60,7 @@ figure(31); clf; hold on;
         end
     
         plot(timcont-timcont(1), obw, '.','Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
+        plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
         ylabel('Mean square amplitude');
        % xlabel('Time (hours)');
 
