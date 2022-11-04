@@ -168,9 +168,7 @@ lowWn = 0.1/(ReFs/2);
                 [otimcont, obwdata] = k_peaksofpeaksfilt(timcont, obwamp, 20);
                     plot(otimcont/3600-lightlines(1), obwdata, 'LineWidth', 2);
                     
-                     datadata = filtfilt(dd,cc, double(obwdata));
-                     plot(otimcont/3600-lightlines(1), datadata, 'LineWidth', 2);
-
+                    
 
                 [ztimcont, zdata] = k_peaksofpeaksfilt(timcont, zamp, 20);    
                     plot(ztimcont/3600-lightlines(1), zdata, 'LineWidth', 2);
@@ -191,6 +189,9 @@ lowWn = 0.1/(ReFs/2);
             
                 [otimcont, nobwdata] = k_peaksofpeaksfilt(timcont, obwamp/max(obwamp), 20);
                     plot(otimcont/3600-lightlines(1), nobwdata, 'LineWidth', 2);
+                     datadata = filtfilt(dd,cc, double(obwamp/max(obwamp)));
+                     plot(otimcont/3600-lightlines(1), datadata, 'LineWidth', 2);
+
 
                 [ztimcont, nzdata] = k_peaksofpeaksfilt(timcont, zamp/max(zamp), 20);    
                     plot(ztimcont/3600-lightlines(1), nzdata, 'LineWidth', 2); 
