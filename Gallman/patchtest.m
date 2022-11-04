@@ -358,3 +358,4 @@ obw = obwamp/max(obwamp);
 
        plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 10);
        plot(regtim/3600-lightlines(1), regobwtrim,'LineWidth',1 );
+        plot(splinexx/3600-lightlines(1), subobwyy,  'LineWidth',1);
