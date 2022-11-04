@@ -108,7 +108,7 @@ binwidth = 1;
                    l.Normalization = 'countdensity';
                    l.FaceColor = [255/255 232/255 124/255];
                     l.FaceColor = [0.9290 0.6940 0.1250];
-                  l.FaceColor = 'y';
+                  %l.FaceColor = 'y';
                 end
             end
 
