@@ -82,7 +82,7 @@ binwidth = 1;
         
   ax(1) = subplot(211); hold on; 
               plot(timcont/3600, obw, '.', 'Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
-           %   plot(regtim/3600, regobwpeaks, 'k-', 'LineWidth',2);
+              plot(regtim/3600, regobwpeaks, 'k-', 'LineWidth',2);
         
         newtim = regtim/3600;
         
