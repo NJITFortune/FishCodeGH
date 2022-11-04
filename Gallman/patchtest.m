@@ -160,18 +160,31 @@ lowWn = 0.1/(ReFs/2);
                 end
             end
                 [stimcont, sumfftdata] = k_peaksofpeaksfilt(timcont, sumamp, 20);
-                    plot(stimcont/3600-lightlines(1), sumfftdata, 'LineWidth', 2.5);
+                   % plot(stimcont/3600-lightlines(1), sumfftdata, 'LineWidth', 2.5);
+                    
+                    sdatadata = filtfilt(dd,cc, double(sumfftdata));
+                     plot(stimcont/3600-lightlines(1), sdatadata, 'LineWidth', 2);
 
                 [ptimcont, peakfftdata] = k_peaksofpeaksfilt(timcont, peakamp, 20);
-                    plot(ptimcont/3600-lightlines(1), peakfftdata, 'LineWidth', 2);
+                    %plot(ptimcont/3600-lightlines(1), peakfftdata, 'LineWidth', 2);
+                
+                    pdatadata = filtfilt(dd,cc, double(peakfftdata));
+                     plot(ptimcont/3600-lightlines(1), pdatadata, 'LineWidth', 2);
+                    
             
                 [otimcont, obwdata] = k_peaksofpeaksfilt(timcont, obwamp, 20);
-                    plot(otimcont/3600-lightlines(1), obwdata, 'LineWidth', 2);
+                   % plot(otimcont/3600-lightlines(1), obwdata, 'LineWidth', 2);
+
+                    odatadata = filtfilt(dd,cc, double(obwdata));
+                     plot(otimcont/3600-lightlines(1), odatadata, 'LineWidth', 2);
                     
                     
 
                 [ztimcont, zdata] = k_peaksofpeaksfilt(timcont, zamp, 20);    
-                    plot(ztimcont/3600-lightlines(1), zdata, 'LineWidth', 2);
+                    %plot(ztimcont/3600-lightlines(1), zdata, 'LineWidth', 2);
+
+                    zdatadata = filtfilt(dd,cc, double(zdata));
+                     plot(ztimcont/3600-lightlines(1), zdatadata, 'LineWidth', 2);
             
 
          ax(2) = subplot(212); title('Mean square amplitude');  hold on;
@@ -182,21 +195,29 @@ lowWn = 0.1/(ReFs/2);
                 end
             end
                 [stimcont, nsumfftdata] = k_peaksofpeaksfilt(timcont, sumamp/max(sumamp), 20);
-                    plot(stimcont/3600-lightlines(1), nsumfftdata, 'LineWidth', 2.5);
+                   % plot(stimcont/3600-lightlines(1), nsumfftdata, 'LineWidth', 2.5);
+
+                    nsdatadata = filtfilt(dd,cc, double(nsumfftdata));
+                     plot(stimcont/3600-lightlines(1), nsdatadata, 'LineWidth', 2);
 
                 [ptimcont, npeakfftdata] = k_peaksofpeaksfilt(timcont, peakamp/max(peakamp), 20);
-                    plot(ptimcont/3600-lightlines(1), npeakfftdata, 'LineWidth', 1.5);
+                  %  plot(ptimcont/3600-lightlines(1), npeakfftdata, 'LineWidth', 1.5);
+
+                    npdatadata = filtfilt(dd,cc, double(npeakfftdata));
+                     plot(ptimcont/3600-lightlines(1), npdatadata, 'LineWidth', 2);
             
                 [otimcont, nobwdata] = k_peaksofpeaksfilt(timcont, obwamp/max(obwamp), 20);
-                    plot(otimcont/3600-lightlines(1), nobwdata, 'LineWidth', 2);
+                  %  plot(otimcont/3600-lightlines(1), nobwdata, 'LineWidth', 2);
 
                      datadata = filtfilt(dd,cc, double(nobwdata));
                      plot(otimcont/3600-lightlines(1), datadata, 'LineWidth', 2);
 
 
                 [ztimcont, nzdata] = k_peaksofpeaksfilt(timcont, zamp/max(zamp), 20);    
-                    plot(ztimcont/3600-lightlines(1), nzdata, 'LineWidth', 2); 
+                   % plot(ztimcont/3600-lightlines(1), nzdata, 'LineWidth', 2); 
      
+                     nzdatadata = filtfilt(dd,cc, double(nzdata));
+                     plot(ztimcont/3600-lightlines(1), nzdatadata, 'LineWidth', 2);
 
  figure(31);clf; hold on;
         
