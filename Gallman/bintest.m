@@ -90,7 +90,7 @@ binwidth = 1;
         
         
         
-             plot(newtim(newtimidx)-timcont(1)/3600, regobwpeaks(newtimidx), '.', 'MarkerSize', 20);
+             plot(newtim(newtimidx)-timcont(1)/3600, regobwpeaks(newtimidx), 'r.', 'MarkerSize', 20);
 xlim([0, 500]);
    ax(2) = subplot(212);  hold on;
             xlabel('Hours');
