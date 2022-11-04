@@ -53,7 +53,7 @@ binwidth = 1;
          [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
     
     
-%findpeaks(filtN, edges);
+findpeaks(filtN, edges);
 
 
  %raw data 
@@ -96,27 +96,27 @@ binwidth = 1;
             xlabel('Hours');
         ylabel('Triggers per hour');
 
-            for j = 2:length(luz)
-            
-                if luz(j-1) < 0
-                  
-                  d = histogram([out.e(channel).s.timcont]/(60*60)-timcont(1)/3600, 'BinWidth', binwidth,'BinLimits',[abs(luz(j-1))-timcont(1)/3600,abs(luz(j))-timcont(1)/3600]);
-                 
-                  d.Normalization = 'countdensity';
-                  d.FaceColor = [0.9 0.9 0.9];
-                  d.EdgeColor = [0.9 0.9 0.9];
-               
-                else
-                    
-                   l = histogram([out.e(channel).s.timcont]/(60*60)-timcont(1)/3600,'BinWidth', binwidth, 'BinLimits',[abs(luz(j-1))-timcont(1)/3600,abs(luz(j))-timcont(1)/3600]);
-                  
-                   l.Normalization = 'countdensity';
-                   l.FaceColor = [255/255 239/255 0/255];
-                   l.EdgeColor = [255/255 239/255 0/255];
-                  %  l.FaceColor = [0.9290 0.6940 0.1250];
-                  %l.FaceColor = 'y';
-                end
-            end
+%             for j = 2:length(luz)
+%             
+%                 if luz(j-1) < 0
+%                   
+%                   d = histogram([out.e(channel).s.timcont]/(60*60)-timcont(1)/3600, 'BinWidth', binwidth,'BinLimits',[abs(luz(j-1))-timcont(1)/3600,abs(luz(j))-timcont(1)/3600]);
+%                  
+%                   d.Normalization = 'countdensity';
+%                   d.FaceColor = [0.9 0.9 0.9];
+%                   d.EdgeColor = [0.9 0.9 0.9];
+%                
+%                 else
+%                     
+%                    l = histogram([out.e(channel).s.timcont]/(60*60)-timcont(1)/3600,'BinWidth', binwidth, 'BinLimits',[abs(luz(j-1))-timcont(1)/3600,abs(luz(j))-timcont(1)/3600]);
+%                   
+%                    l.Normalization = 'countdensity';
+%                    l.FaceColor = [255/255 239/255 0/255];
+%                    l.EdgeColor = [255/255 239/255 0/255];
+%                   %  l.FaceColor = [0.9290 0.6940 0.1250];
+%                   %l.FaceColor = 'y';
+%                 end
+%             end
          plot(edges-timcont(1)/3600, N,'k-', 'LineWidth',2);
          xlim([0, 73]);
           %  plot(locs, peaks,'r.', 'MarkerSize', 20)
