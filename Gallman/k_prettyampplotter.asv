@@ -23,29 +23,52 @@ function k_prettyampplotter(in, channel)
         lidx = find(timcont >= lighttimes(1) & timcont <= lighttimes(end));
         timcont = timcont(lidx);
         obw = obw(lidx);
+        freq = freq(lidx);
+        temp = temp(lidx);
+
+
+             %trimmed mean
+             window = 5;
+              fcn = @(x) trimmean(x,33);
+              obwtrim = matlab.tall.movingWindow(fcn, window, obw');
+              freqtrim = matlab.tall.movingWindow(fcn, window, freq');
+              temptrim = matlab.tall.movingWindow(fcn, window, temp');
+        %Regularize
+                %regularize data to ReFs interval
+                [regtim, ~, ~, regobwpeaks] = k_regularmetamucil(timcont *3600, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes*3600);
+
+        lowWn = 0.025/(20/2);
+                [dd,cc] = butter(5, lowWn, 'low');
+                regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
 
 
 %figure
 figure(31); clf; hold on;
     set(gcf, 'renderer', 'painters');
     
-     ax(1) = subplot(211); hold on;   xlim([0, timcont(end)-timcont(1)]);
+     ax(1) = subplot(311); hold on;   xlim([0, timcont(end)-timcont(1)]);
         %get y axis bounds for boxes
         plot(timcont-timcont(1), obw, '.');
         a = ylim;
+
         %plot boxes
     
         for j = 1:length(lighttimes)-1
             if mod(j,2) == 1 %if j is odd
-            fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
             end
         end
     
         plot(timcont-timcont(1), obw, '.','Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
+        plot
         ylabel('Mean square amplitude');
-        xlabel('Time (hours)');
+       % xlabel('Time (hours)');
+
+    ax(2) = subplot(312); hold on; xlim([0, timcont(end)-timcont(1)]); ylim([400 600]);
+              plot(timcont-timcont(1), freq, 'k.');
+              ylabel('Frequency (Hz)');
     
-    ax(2) = subplot(212); hold on; xlim([0, timcont(end)-timcont(1)]);
+    ax(3) = subplot(313); hold on; xlim([0, timcont(end)-timcont(1)]);
         binwidth = 0.5;
         %ylim([0 100]);
         ylabel('Tube triggers per half hour');
@@ -58,13 +81,13 @@ figure(31); clf; hold on;
                       d = histogram(timcont-timcont(1), 'BinWidth', binwidth,'BinLimits',[lighttimes(j-1)-timcont(1),lighttimes(j)-timcont(1)]);
                       d.Normalization = 'countdensity';
                       d.FaceColor = [0.9 0.9 0.9];
-                      %d.EdgeColor = [0.9 0.9 0.9];
+                      d.EdgeColor = [0.9 0.9 0.9];
                     else
                         
                        l = histogram(timcont-timcont(1),'BinWidth', binwidth, 'BinLimits',[lighttimes(j-1)-timcont(1),lighttimes(j)-timcont(1)]);
                        l.Normalization = 'countdensity';
-                       l.FaceColor = 'y';
-                      % l.EdgeColor = 'y';
+                         l.FaceColor = [255/255 239/255 0/255];
+                         l.EdgeColor = [255/255 239/255 0/255];
                     end
                 end
 
