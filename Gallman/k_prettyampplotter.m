@@ -25,6 +25,14 @@ function k_prettyampplotter(in, channel)
         obw = obw(lidx);
         freq = freq(lidx);
 
+        %Regularize
+                %regularize data to ReFs interval
+                [regtim, ~, ~, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes);
+
+        lowWn = 0.025/(20/2);
+                [dd,cc] = butter(5, lowWn, 'low');
+                regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
+
 
 %figure
 figure(31); clf; hold on;
