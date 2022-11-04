@@ -85,7 +85,7 @@ binwidth = 1;
             %  regobwpeaks = filtfilt(bb,aa, regobwpeaks); %high pass
         
   ax(1) = subplot(311); hold on; 
-              plot(timcont/3600-timcont(1)/3600, obw, '.', 'Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
+            %  plot(timcont/3600-timcont(1)/3600, obw, '.', 'Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
               plot(regtim/3600-timcont(1)/3600, regobwpeaks, 'k-', 'LineWidth',2);
         
         newtim = regtim/3600;
@@ -94,8 +94,8 @@ binwidth = 1;
         
         
         
-           %  plot(newtim(newtimidx)-timcont(1)/3600, regobwpeaks(newtimidx), 'r.', 'MarkerSize', 20);
-xlim([0, 500]);
+             plot(newtim(newtimidx)-timcont(1)/3600, regobwpeaks(newtimidx), 'r.', 'MarkerSize', 20);
+ xlim([0, 575]);
 
    ax(2) = subplot(312); hold on;
         plot(regtim/3600-timcont(1)/3600, regobwpeaks, 'k-', 'LineWidth',2);
@@ -104,31 +104,31 @@ xlim([0, 500]);
             xlabel('Hours');
         ylabel('Triggers per hour');
 
-            for j = 2:length(luz)
-            
-                if luz(j-1) < 0
-                  
-                  d = histogram(timcont/3600-timcont(1)/3600, 'BinWidth', binwidth,'BinLimits',[abs(luz(j-1))-timcont(1)/3600,abs(luz(j))-timcont(1)/3600]);
-                 
-                  d.Normalization = 'countdensity';
-                  d.FaceColor = [0.9 0.9 0.9];
-                  d.EdgeColor = [0.9 0.9 0.9];
-               
-                else
-                    
-                   l = histogram(timcont/3600-timcont(1)/3600,'BinWidth', binwidth, 'BinLimits',[abs(luz(j-1))-timcont(1)/3600,abs(luz(j))-timcont(1)/3600]);
-                  
-                   l.Normalization = 'countdensity';
-                   l.FaceColor = [255/255 239/255 0/255];
-                   l.EdgeColor = [255/255 239/255 0/255];
-                  %  l.FaceColor = [0.9290 0.6940 0.1250];
-                  %l.FaceColor = 'y';
-                end
-            end
+%             for j = 2:length(luz)
+%             
+%                 if luz(j-1) < 0
+%                   
+%                   d = histogram(timcont/3600-timcont(1)/3600, 'BinWidth', binwidth,'BinLimits',[abs(luz(j-1))-timcont(1)/3600,abs(luz(j))-timcont(1)/3600]);
+%                  
+%                   d.Normalization = 'countdensity';
+%                   d.FaceColor = [0.9 0.9 0.9];
+%                   d.EdgeColor = [0.9 0.9 0.9];
+%                
+%                 else
+%                     
+%                    l = histogram(timcont/3600-timcont(1)/3600,'BinWidth', binwidth, 'BinLimits',[abs(luz(j-1))-timcont(1)/3600,abs(luz(j))-timcont(1)/3600]);
+%                   
+%                    l.Normalization = 'countdensity';
+%                    l.FaceColor = [255/255 239/255 0/255];
+%                    l.EdgeColor = [255/255 239/255 0/255];
+%                   %  l.FaceColor = [0.9290 0.6940 0.1250];
+%                   %l.FaceColor = 'y';
+%                 end
+%             end
          plot(edges-timcont(1)/3600, N,'k-', 'LineWidth',2);
        %  findpeaks(filtN, edges-timcont(1)/3600);
-   % plot(edges-timcont(1)/3600, filtN, 'LineWidth',2)  
+    plot(edges-timcont(1)/3600, filtN, 'LineWidth',2)  
          xlim([0, 575]);
-       %     plot(locs-timcont(1)/3600, peaks,'r.', 'MarkerSize', 20)
+            plot(locs-timcont(1)/3600, peaks,'r.', 'MarkerSize', 20)
 
 %linkaxes(ax, 'x');
