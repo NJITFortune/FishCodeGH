@@ -189,7 +189,8 @@ lowWn = 0.1/(ReFs/2);
             
                 [otimcont, nobwdata] = k_peaksofpeaksfilt(timcont, obwamp/max(obwamp), 20);
                     plot(otimcont/3600-lightlines(1), nobwdata, 'LineWidth', 2);
-                     datadata = filtfilt(dd,cc, double(obwamp/max(obwamp)));
+
+                     datadata = filtfilt(dd,cc, double(nobwdata));
                      plot(otimcont/3600-lightlines(1), datadata, 'LineWidth', 2);
 
 
