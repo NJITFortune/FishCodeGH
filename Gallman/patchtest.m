@@ -149,6 +149,9 @@ peakamp = [out(channel).s(sortidx).ppeakfftAmp];
 obwamp = [out(channel).s(sortidx).pobwAmp];
 zamp = [out(channel).s(sortidx).zAmp];
 
+length(timcont)
+length(sumamp)
+
          ax(1) = subplot(211); title('Mean square amplitude');  hold on;
             a = [0 1];
             for j = 1:length(lightlines)-1
