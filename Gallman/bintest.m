@@ -79,8 +79,8 @@ binwidth = 1;
             %  regobwpeaks = filtfilt(bb,aa, regobwpeaks); %high pass
         
   ax(1) = subplot(211); hold on; 
-              plot(timcont/3600, obw, '.');
-              plot(regtim/3600, regobwpeaks, 'LineWidth',1);
+              plot(timcont/3600, obw, '.', 'Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
+           %   plot(regtim/3600, regobwpeaks, 'k-', 'LineWidth',2);
         
         newtim = regtim/3600;
         
@@ -88,7 +88,7 @@ binwidth = 1;
         
         
         
-              plot(newtim(newtimidx), regobwpeaks(newtimidx), '.', 'MarkerSize', 20);
+           %   plot(newtim(newtimidx), regobwpeaks(newtimidx), '.', 'MarkerSize', 20);
 
   ax(2) = subplot(212);  hold on;
             xlabel('Hours');
@@ -116,6 +116,6 @@ binwidth = 1;
                 end
             end
 
-            plot(locs, peaks,'r.', 'MarkerSize', 20)
+         %   plot(locs, peaks,'r.', 'MarkerSize', 20)
 
 linkaxes(ax, 'x');
