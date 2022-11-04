@@ -357,8 +357,9 @@ obw = obwamp/max(obwamp);
     %regularize data to ReFs interval
     [regtim,  regobwtrim] = k_amponlymetamucil(timcont, obwtrim', ReFs);
 
- figure(98);clf;hold on; title('trim mean reg');
+ figure(98);clf;hold on; title('trim mean reg'); xlim([11 12.5]);
+ set(gcf, 'renderer', 'painters');
 
        plot(timcont/3600-lightlines(1), obw, '.', 'MarkerSize', 10);
-       plot(regtim/3600-lightlines(1), regobwtrim,'LineWidth',1 );
-        plot(splinexx/3600-lightlines(1), obwyy,  'LineWidth',1);
+       plot(regtim/3600-lightlines(1), regobwtrim,'LineWidth',2 );
+        plot(splinexx/3600-lightlines(1), obwyy,  'LineWidth',2);
