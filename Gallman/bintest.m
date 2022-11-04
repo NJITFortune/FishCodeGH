@@ -1,4 +1,4 @@
-clearvars -except xxkg k
+clearvars -except xxkg k hkg
 out = hkg(k);
 channel = 1;
 
