@@ -1,13 +1,17 @@
-function [regtim,  newampFilled] = k_peaksofpeaksfilt(timcont, obw, regularinterval)
+function [regtim,  newampFilled] = k_peaksofpeaksfilt(oldtim, obw, regularinterval)
 
 %% process data
 
-%Take top of dataset
-    %find peaks
-    [PKS,LOCS] = findpeaks(obw);
-    %find peaks of the peaks
-    [oldamp,cLOCS] = findpeaks(obw(LOCS));
-    oldtim = timcont(LOCS(cLOCS));
+ window = 5;
+  fcn = @(x) trimmean(x,33);
+  oldamp = matlab.tall.movingWindow(fcn, window, obw');
+
+% %Take top of dataset
+%     %find peaks
+%     [PKS,LOCS] = findpeaks(obw);
+%     %find peaks of the peaks
+%     [oldamp,cLOCS] = findpeaks(obw(LOCS));
+%     oldtim = timcont(LOCS(cLOCS));
     
 %% Regularize data to ReFs
     %k_regularmetamucil is real version of code below
