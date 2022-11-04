@@ -1,5 +1,5 @@
 clearvars -except xxkg k hkg
-out = hkg(k);
+out = xxkg(k);
 channel = 1;
 
 luz = [out.info.luz];
