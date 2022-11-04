@@ -118,7 +118,7 @@ binwidth = 1;
                 end
             end
          plot(edges-timcont(1)/3600, N,'k-', 'LineWidth',2);
-         xlim([0, timcont(end)/3600]);
+         xlim([0, abs(luz(end))]);
           %  plot(locs, peaks,'r.', 'MarkerSize', 20)
 
 %linkaxes(ax, 'x');
