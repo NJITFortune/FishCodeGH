@@ -74,6 +74,16 @@ figure(31); clf; hold on;
         ylabel('Tube triggers per half hour');
         xlabel('Time (hours)')
     
+
+        [N, edges] = histcounts(timcont, 'BinWidth', binwidth);
+        edges = edges(2:end) - (edges(2)-edges(1))/2;
+
+        lowWn = 0.075/(binwidth/2);
+        [dd,cc] = butter(5, lowWn, 'low');
+        filtN = filtfilt(dd,cc, double(N));
+ 
+        % [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
+    
                 for j = 2:length(lighttimes)
                 
                     if mod(j,2) == 0 %if j is odd
