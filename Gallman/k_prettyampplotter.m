@@ -23,13 +23,14 @@ function k_prettyampplotter(in, channel)
         lidx = find(timcont >= lighttimes(1) & timcont <= lighttimes(end));
         timcont = timcont(lidx);
         obw = obw(lidx);
+        freq = freq(lidx);
 
 
 %figure
 figure(31); clf; hold on;
     set(gcf, 'renderer', 'painters');
     
-     ax(1) = subplot(211); hold on;   xlim([0, timcont(end)-timcont(1)]);
+     ax(1) = subplot(311); hold on;   xlim([0, timcont(end)-timcont(1)]);
         %get y axis bounds for boxes
         plot(timcont-timcont(1), obw, '.');
         a = ylim;
@@ -41,11 +42,14 @@ figure(31); clf; hold on;
             end
         end
     
-        plot(timcont-timcont(1), obw, '.','Color', [90/255, 174/255, 97/255], 'MarkerSize', 8);
+        plot(timcont-timcont(1), obw, '.','Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
         ylabel('Mean square amplitude');
         xlabel('Time (hours)');
+
+    ax(2) = subplot(312); hold on; xlim([0, timcont(end)-timcont(1)]);
+              plot(timcont-timcont(1), freq, 'k.');
     
-    ax(2) = subplot(212); hold on; xlim([0, timcont(end)-timcont(1)]);
+    ax(3) = subplot(313); hold on; xlim([0, timcont(end)-timcont(1)]);
         binwidth = 0.5;
         %ylim([0 100]);
         ylabel('Tube triggers per half hour');
