@@ -51,10 +51,10 @@ f2 = fftmachine(e2, Fs);
 %     subplot(121);  plot(f1.fftfreq, f1.fftdata); xlim([freqs(1) freqs(2)]);
 %     subplot(122);  plot(f2.fftfreq, f2.fftdata); xlim([freqs(1) freqs(2)]);
 
-% figure(1); clf;
-%     subplot(211); specgram(e1,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
-%     subplot(212); specgram(e2,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
-%     colormap('HOT');     
+figure(1); clf;
+    subplot(211); specgram(e1,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
+    subplot(212); specgram(e2,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
+    colormap('HOT');     
 
 
 % Plot the summed FFT for the user to click
