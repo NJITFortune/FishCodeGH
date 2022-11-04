@@ -127,15 +127,15 @@ end
 
         %high pass removes feeding trend for high frequency experiments
         %cut off frequency
-         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
-%          [bb,aa] = butter(5, highWn, 'high');
+      %   highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+     %     [bb,aa] = butter(5, highWn, 'high');
 
          %less strong low pass filter - otherwise fake prediction 
                lowWn = 0.9/(ReFs/2);
                [dd,cc] = butter(5, lowWn, 'low');
 
         datadata = filtfilt(dd,cc, double(regobwpeaks)); %low pass
-        datadata = filtfilt(bb,aa, datadata); %high pass
+      %  datadata = filtfilt(bb,aa, datadata); %high pass
 
         else
         %stronger low pass filter for lower frequency experiments 
