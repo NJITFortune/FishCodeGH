@@ -101,7 +101,7 @@ figure(31); clf; hold on;
                     end
                 end
 
-
+              plot(edges-timcont(1)/3600, N,'k-', 'LineWidth',2);
     linkaxes(ax, 'x');
             
     
