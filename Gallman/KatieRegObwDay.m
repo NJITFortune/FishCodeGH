@@ -90,7 +90,7 @@ end
       
 %raw data
     timcont = [in.e(channel).s(tto).timcont]; %time in seconds
-    obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
+    obw = [in.e(channel).s(tto).obwAmp];%/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
     oldfreq = [in.e(channel).s(tto).fftFreq];
     oldtemp = [in.e(channel).s(tto).temp];
 
