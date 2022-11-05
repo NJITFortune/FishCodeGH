@@ -47,13 +47,7 @@ figure(31); clf; hold on;
         plot(timcont-timcont(1), obw, '.','Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
 
         ylabel('Mean square amplitude');
-       % xlabel('Time (hours)');
-
-%       
-        
-        
-        
-             plot(newtim(newtimidx)-timcont(1), regobwpeaks(newtimidx), 'r.', 'MarkerSize', 20);
+       % xlabel('Time (hours)')
 
 
     
