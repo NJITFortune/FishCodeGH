@@ -45,21 +45,21 @@ orange = [0.8500 0.3250 0.0980];
 figure(67); clf; title('By fish'); hold on;
 set(gcf, 'renderer', 'painters');
 
-    axs(1) = subplot(511); hold on; title('High frequency fish');
+    axs(1) = subplot(411); hold on; title('High frequency fish');
 
      %   plot([out.hifish(ttkhi).timcont]/3600, [out.hifish(ttkhi).pkAmp], 'Color', teal);
         plot([out.hifish(ttohi).timcont]/3600-timcont(1), [out.hifish(ttohi).obwAmp],'.', 'Color', teal); 
 
-    axs(2) = subplot(512); hold on; title('Low frequency fish');
+    axs(2) = subplot(412); hold on; title('Low frequency fish');
     %    plot([out.lofish(ttklo).timcont]/3600, [out.lofish(ttklo).pkAmp], 'Color', orange);
         plot([out.lofish(ttolo).timcont]/3600-timcont(1), [out.lofish(ttolo).obwAmp],'.', 'Color', orange); 
 
 
-    axs(3) = subplot(513); hold on; title('Frequency ');
+    axs(3) = subplot(413); hold on; title('Frequency ');
         plot([out.hifish(ttohi).timcont]/3600-timcont(1), [out.hifish(ttohi).freq],'.', 'Color', teal); 
         plot([out.lofish(ttolo).timcont]/3600-timcont(1), [out.lofish(ttolo).freq],'.', 'Color', orange); 
 
-    axs(4) = subplot(514); hold on; title('lightbins');
+    axs(4) = subplot(414); hold on; title('lightbins');
 
    
     binwidth = 0.5;
