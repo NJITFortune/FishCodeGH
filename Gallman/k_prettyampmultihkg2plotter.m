@@ -38,9 +38,9 @@ figure(31); clf; hold on;
 
         %plot boxes
     
-        for j = 1:length(lighttimes)-1
-            if mod(j,2) == 1 %if j is odd
-            fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
+        for j = 2:length(lighttimes)
+            if mod(j-1,2) == 1 %if j is odd
+            fill([lighttimes(j-1)-timcont(1) lighttimes(j-1)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j)-timcont(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
             end
         end
     
