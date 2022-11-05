@@ -14,7 +14,7 @@ function k_prettyampmultihkg2plotter(in)
     %raw data
         timcont = [in.s(tto).timcont]/3600; %time in hours
         obw = [in.s(tto).obwAmp]/max([in.s(tto).obwAmp]); %divide by max to normalize
-        freq = [in.s(tto).fftFreq];
+        freq = [in.s(tto).freq];
         temp = [in.s(tto).temp];
 
         lighttimes = k_lighttimes(in, 3);
