@@ -33,7 +33,7 @@ function k_prettyampmultihkg2plotter(in)
 figure(31); clf; hold on;
     set(gcf, 'renderer', 'painters');
     
-     ax(1) = subplot(211); hold on;   xlim([0, 70]);
+     ax(1) = subplot(211); hold on;   %xlim([0, 70]);
         %get y axis bounds for boxes
         plot(timcont-timcont(1), obw, '.');
         a = ylim;
@@ -53,7 +53,7 @@ figure(31); clf; hold on;
 
 
     
-    ax(2) = subplot(212); hold on; xlim([0, 70]);
+    ax(2) = subplot(212); hold on; %xlim([0, 70]);
         binwidth = 0.5;
         %ylim([0 100]);
         ylabel('Tube triggers per half hour');
@@ -64,8 +64,8 @@ figure(31); clf; hold on;
     
                 for j = 2:length(lighttimes)
                 
-                    %if mod(j,2) == 0 %if j is odd
-                    if mod(j,2) == 1 %if j is even
+                    if mod(j,2) == 0 %if j is odd
+                    %if mod(j,2) == 1 %if j is even
                       
                       d = histogram(timcont-timcont(1), 'BinWidth', binwidth,'BinLimits',[lighttimes(j-1)-timcont(1),lighttimes(j)-timcont(1)]);
                       d.Normalization = 'countdensity';
