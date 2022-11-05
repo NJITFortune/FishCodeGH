@@ -27,36 +27,36 @@ function k_prettyampplotter(in, channel)
         temp = temp(lidx);
 
 
-             %trimmed mean
-             window = 5;
-              fcn = @(x) trimmean(x,33);
-              obwtrim = matlab.tall.movingWindow(fcn, window, obw');
-              freqtrim = matlab.tall.movingWindow(fcn, window, freq');
-              temptrim = matlab.tall.movingWindow(fcn, window, temp');
-        %Regularize
-                %regularize data to ReFs interval
-                [regtim, regfreq, ~, regobwpeaks] = k_regularmetamucil(timcont *3600, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes*3600);
-
-        lowWn = 0.025/(20/2);
-                [dd,cc] = butter(5, lowWn, 'low');
-                regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
-
-
-binwidth = 0.5;
-
- [N, edges] = histcounts(timcont, 'BinWidth', binwidth);
-        edges = edges(2:end) - (edges(2)-edges(1))/2;
-
-        lowWn = 0.075/(binwidth/2);
-        [dd,cc] = butter(5, lowWn, 'low');
-        filtN = filtfilt(dd,cc, double(N));
- 
-         [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
+%              %trimmed mean
+%              window = 5;
+%               fcn = @(x) trimmean(x,33);
+%               obwtrim = matlab.tall.movingWindow(fcn, window, obw');
+%               freqtrim = matlab.tall.movingWindow(fcn, window, freq');
+%               temptrim = matlab.tall.movingWindow(fcn, window, temp');
+%         %Regularize
+%                 %regularize data to ReFs interval
+%                 [regtim, regfreq, ~, regobwpeaks] = k_regularmetamucil(timcont *3600, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes*3600);
+% 
+%         lowWn = 0.025/(20/2);
+%                 [dd,cc] = butter(5, lowWn, 'low');
+%                 regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
+% 
+% 
+% binwidth = 0.5;
+% 
+%  [N, edges] = histcounts(timcont, 'BinWidth', binwidth);
+%         edges = edges(2:end) - (edges(2)-edges(1))/2;
+% 
+%         lowWn = 0.075/(binwidth/2);
+%         [dd,cc] = butter(5, lowWn, 'low');
+%         filtN = filtfilt(dd,cc, double(N));
+%  
+%          [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
 %figure
 figure(31); clf; hold on;
     set(gcf, 'renderer', 'painters');
     
-     ax(1) = subplot(311); hold on;   xlim([0, timcont(end)-timcont(1)]);
+     ax(1) = subplot(211); hold on;   xlim([0, timcont(end)-timcont(1)]);
         %get y axis bounds for boxes
         plot(timcont-timcont(1), obw, '.');
         a = ylim;
@@ -81,26 +81,26 @@ figure(31); clf; hold on;
         
              plot(newtim(newtimidx)-timcont(1), regobwpeaks(newtimidx), 'r.', 'MarkerSize', 20);
 
-    ax(2) = subplot(312); hold on; xlim([0, timcont(end)-timcont(1)]); ylim([400 600]);
-             % plot(timcont-timcont(1), freq, '.', 'Color', [252/255, 108/255, 133/255]);
-               plot(regtim/3600 - timcont(1), regfreq, 'LineWidth', 2, 'Color', [252/255, 108/255, 133/255]);
-              ylabel('Frequency (Hz)');
+%     ax(2) = subplot(312); hold on; xlim([0, timcont(end)-timcont(1)]); ylim([400 600]);
+%              % plot(timcont-timcont(1), freq, '.', 'Color', [252/255, 108/255, 133/255]);
+%                plot(regtim/3600 - timcont(1), regfreq, 'LineWidth', 2, 'Color', [252/255, 108/255, 133/255]);
+%               ylabel('Frequency (Hz)');
     
-    ax(3) = subplot(313); hold on; xlim([0, timcont(end)-timcont(1)]);
+    ax(2) = subplot(212); hold on; xlim([0, timcont(end)-timcont(1)]);
         binwidth = 0.5;
         %ylim([0 100]);
         ylabel('Tube triggers per half hour');
         xlabel('Time (hours)')
     
 
-        [N, edges] = histcounts(timcont, 'BinWidth', binwidth);
-        edges = edges(2:end) - (edges(2)-edges(1))/2;
-
-        lowWn = 0.075/(binwidth/2);
-        [dd,cc] = butter(5, lowWn, 'low');
-        filtN = filtfilt(dd,cc, double(N));
- 
-         [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
+%         [N, edges] = histcounts(timcont, 'BinWidth', binwidth);
+%         edges = edges(2:end) - (edges(2)-edges(1))/2;
+% 
+%         lowWn = 0.075/(binwidth/2);
+%         [dd,cc] = butter(5, lowWn, 'low');
+%         filtN = filtfilt(dd,cc, double(N));
+%  
+%          [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
     
                 for j = 2:length(lighttimes)
                 
