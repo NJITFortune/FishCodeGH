@@ -33,7 +33,7 @@ channel = 1;
 figure(31); clf; hold on;
     set(gcf, 'renderer', 'painters');
     
-     ax(1) = subplot(211); hold on;   xlim([0, timcont(end)-timcont(1)]);
+     ax(1) = subplot(211); hold on;   xlim([0, 70]);
         %get y axis bounds for boxes
         plot(timcont-timcont(1), obw, '.');
         a = ylim;
@@ -53,7 +53,7 @@ figure(31); clf; hold on;
 
 
     
-    ax(2) = subplot(212); hold on; xlim([0, timcont(end)-timcont(1)]);
+    ax(2) = subplot(212); hold on; xlim([0, 70]);
         binwidth = 0.5;
         %ylim([0 100]);
         ylabel('Tube triggers per half hour');
