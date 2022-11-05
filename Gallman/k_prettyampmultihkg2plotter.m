@@ -20,9 +20,9 @@ function k_prettyampmultihkg2plotter(in)
         lighttimes = k_lighttimes(in, 3);
         lighttimes = lighttimes/3600; %hours
 
-        lidx = find(timcont >= lighttimes(1) & timcont <= lighttimes(end));
-        timcont = timcont(lidx);
-        obw = obw(lidx);
+%         lidx = find(timcont >= lighttimes(1) & timcont <= lighttimes(end));
+%         timcont = timcont(lidx);
+%         obw = obw(lidx);
 %         freq = freq(lidx);
 %         temp = temp(lidx);
 
