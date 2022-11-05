@@ -192,6 +192,7 @@ for j = 1:howmanydaysinsample
                     day(j).ld = in.info.ld;
                     %max amp of each day
                     day(j).amprange = max(obwyy(ddayidx));
+                    day(j).ampmin = min(obwyy(ddayidx));
                     
                 end
 
