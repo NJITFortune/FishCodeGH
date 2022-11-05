@@ -1,10 +1,10 @@
-function k_prettyampmultihkg2plotter(in)
+%function k_prettyampmultihkg2plotter(in)
 
-% %not functioning
-% clearvars -except hkg k
-% k = 12; %gold!
-% in = hkg(k);
-% channel = 1;
+%not functioning
+clearvars -except hkg k xxkg hkg2 xxkg2 dark dark multi
+k = 12; %gold!
+in = hkg(k);
+channel = 1;
 
 
 %data
