@@ -43,6 +43,7 @@ orange = [0.8500 0.3250 0.0980];
  timcont = [out.s.timcont]/3600;
 
 figure(67); clf; title('By fish'); hold on;
+set(gcf, 'renderer', 'painters');
 
     axs(1) = subplot(511); hold on; title('High frequency fish');
 
