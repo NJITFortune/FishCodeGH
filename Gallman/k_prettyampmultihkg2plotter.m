@@ -17,8 +17,10 @@ channel = 1;
 %         freq = [in.s(tto).freq];
 %         temp = [in.s(tto).temp];
 
-        lighttimes = k_lighttimes(in, 3);
-        lighttimes = lighttimes/3600; %hours
+        %lighttimes = k_lighttimes(in, 3);
+       % lighttimes = lighttimes/3600; %hours
+
+       lighttimes = abs([in.info.luz]);
 
 %         lidx = find(timcont >= lighttimes(1) & timcont <= lighttimes(end));
 %         timcont = timcont(lidx);
