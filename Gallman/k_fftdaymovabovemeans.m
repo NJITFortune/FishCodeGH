@@ -21,8 +21,12 @@ ld = in(1).day(1).ld;
         
               %fill temporary vector with data from each day 
                 mday(k,:) = [in(j).day(k).Sobwyy];
-                fish(j).amprange(k,:) = in(j).day(k).amprange;
-                amprange(k,:) = in(j).day(k).amprange;
+%                 fish(j).amprange(k,:) = in(j).day(k).amprange;
+%                 amprange(k,:) = in(j).day(k).amprange;
+                
+                fish(j).amprange(k,:) = in(j).day(k).amprange - in(j).day(k).ampmin;
+                amprange(k,:) = in(j).day(k).amprange-in(j).day(k).ampmin;
+
 
                 fday(k,:) = in(j).day(k).freq;
                % tday(k,:) = k_temptocelcius(in(j).day(k).temp);
