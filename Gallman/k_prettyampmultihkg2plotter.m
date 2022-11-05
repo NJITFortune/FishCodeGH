@@ -3,7 +3,7 @@
 %not functioning
 clearvars -except hkg k xxkg hkg2 xxkg2 dark dark multi
 k = 48; %gold!
-in = hkg(k);
+in = hkg2(k);
 channel = 1;
 
 
