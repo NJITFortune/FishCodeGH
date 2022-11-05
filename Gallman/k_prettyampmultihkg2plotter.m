@@ -40,11 +40,11 @@ figure(31); clf; hold on;
 
         %plot boxes
     
-        for j = 2:length(lighttimes)
-            if mod(j-1,2) == 1 %if j is odd
-            fill([lighttimes(j-1)-timcont(1) lighttimes(j-1)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j)-timcont(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
-            end
-        end
+%         for j = 2:length(lighttimes)
+%             if mod(j-1,2) == 1 %if j is odd
+%             fill([lighttimes(j-1)-timcont(1) lighttimes(j-1)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j)-timcont(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
+%             end
+%         end
     
         plot(timcont-timcont(1), obw, '.','Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
 
@@ -64,7 +64,8 @@ figure(31); clf; hold on;
     
                 for j = 2:length(lighttimes)
                 
-                    if mod(j,2) == 0 %if j is odd
+                    %if mod(j,2) == 0 %if j is odd
+                    if mod(j,2) == 1 %if j is even
                       
                       d = histogram(timcont-timcont(1), 'BinWidth', binwidth,'BinLimits',[lighttimes(j-1)-timcont(1),lighttimes(j)-timcont(1)]);
                       d.Normalization = 'countdensity';
