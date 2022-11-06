@@ -280,7 +280,7 @@ figure(589); clf; hold on; title('amp');
  %%           
 %average over single day    
 figure(533); clf; hold on; title('freq');
-
+set(gcf, 'Renderer', 'painters');
     for j = 1:length(day)
             plot(day(j).tim/3600, day(j).freq);
            
