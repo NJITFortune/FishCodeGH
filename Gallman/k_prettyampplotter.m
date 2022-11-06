@@ -87,39 +87,41 @@ figure(31); clf; hold on;
 %               ylabel('Frequency (Hz)');
     
     ax(2) = subplot(212); hold on; xlim([0, timcont(end)-timcont(1)]);
-        binwidth = 0.5;
-        %ylim([0 100]);
-        ylabel('Tube triggers per half hour');
-        xlabel('Time (hours)')
-    
 
-%         [N, edges] = histcounts(timcont, 'BinWidth', binwidth);
-%         edges = edges(2:end) - (edges(2)-edges(1))/2;
+    
+%         binwidth = 0.5;
+%         %ylim([0 100]);
+%         ylabel('Tube triggers per half hour');
+%         xlabel('Time (hours)')
+%     
 % 
-%         lowWn = 0.075/(binwidth/2);
-%         [dd,cc] = butter(5, lowWn, 'low');
-%         filtN = filtfilt(dd,cc, double(N));
-%  
-%          [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
-    
-                for j = 2:length(lighttimes)
-                
-                    if mod(j,2) == 0 %if j is odd
-                      
-                      d = histogram(timcont-timcont(1), 'BinWidth', binwidth,'BinLimits',[lighttimes(j-1)-timcont(1),lighttimes(j)-timcont(1)]);
-                      d.Normalization = 'countdensity';
-                      d.FaceColor = [0.9 0.9 0.9];
-                      d.EdgeColor = [0.9 0.9 0.9];
-                    else
-                        
-                       l = histogram(timcont-timcont(1),'BinWidth', binwidth, 'BinLimits',[lighttimes(j-1)-timcont(1),lighttimes(j)-timcont(1)]);
-                       l.Normalization = 'countdensity';
-                         l.FaceColor = [255/255 239/255 0/255];
-                         l.EdgeColor = [255/255 239/255 0/255];
-                    end
-                end
-
-             % plot(edges-timcont(1), N,'k-', 'LineWidth',2);
+% %         [N, edges] = histcounts(timcont, 'BinWidth', binwidth);
+% %         edges = edges(2:end) - (edges(2)-edges(1))/2;
+% % 
+% %         lowWn = 0.075/(binwidth/2);
+% %         [dd,cc] = butter(5, lowWn, 'low');
+% %         filtN = filtfilt(dd,cc, double(N));
+% %  
+% %          [peaks, locs] = findpeaks(filtN, edges); %xlim([13 116]); ylim([0 60]);
+%     
+%                 for j = 2:length(lighttimes)
+%                 
+%                     if mod(j,2) == 0 %if j is odd
+%                       
+%                       d = histogram(timcont-timcont(1), 'BinWidth', binwidth,'BinLimits',[lighttimes(j-1)-timcont(1),lighttimes(j)-timcont(1)]);
+%                       d.Normalization = 'countdensity';
+%                       d.FaceColor = [0.9 0.9 0.9];
+%                       d.EdgeColor = [0.9 0.9 0.9];
+%                     else
+%                         
+%                        l = histogram(timcont-timcont(1),'BinWidth', binwidth, 'BinLimits',[lighttimes(j-1)-timcont(1),lighttimes(j)-timcont(1)]);
+%                        l.Normalization = 'countdensity';
+%                          l.FaceColor = [255/255 239/255 0/255];
+%                          l.EdgeColor = [255/255 239/255 0/255];
+%                     end
+%                 end
+% 
+%              % plot(edges-timcont(1), N,'k-', 'LineWidth',2);
     linkaxes(ax, 'x');
             
     
