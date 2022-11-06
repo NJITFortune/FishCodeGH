@@ -394,7 +394,7 @@ set(gcf, 'Renderer', 'painters');
     xlabel('Time (hours)');
 %% 
 
-figure(4567); clf ; hold on; title('hot to cold temp');%ylim([370 580]);
+figure(4567); clf ; hold on; title('hot to cold temp');ylim([25 31]);
 set(gcf, 'Renderer', 'painters');
     for j = 1:length(hotday)
       %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
