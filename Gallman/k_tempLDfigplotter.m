@@ -7,6 +7,7 @@ clearvars -except k hkg hkg2 xxkg xxkg2 cold hot coldmulti hot multi dark dark m
 in = xxkg(k);
 channel = 2;
 lightstart = 3;
+td = 7;
 
 %% data prep
 ReFs = 20;
@@ -344,10 +345,90 @@ figure(57); clf; hold on;
             
             
 
+  
 
 
+%%
+figure(555); clf; hold on;
+
+    xa(1) = subplot(211); hold on;
+    
+            %  plot(timmy/3600, obwAmp, '.');
+            plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+            for j = 1:length(day)
+                plot(day(j).entiretimcont/3600, day(j).Sobwyy);
+            end
+            
+            
+            % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+            
+            a = ylim; %all of above is just to get the max for the plot lines...
+            if lightstart < 4 %the first lighttime is dark
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 1 %if j is odd
+                        fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            else %the second lighttime is dark
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 0 %if j is even
+                        fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            end
+
+             plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+            for j = 1:length(day)
+                plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
+            end
+            
+           
+            %plot(xx/3600, obwyy);
 
 
+    xa(2) = subplot(212); hold on;
+
+hot = [255/255, 204/255, 204/255];
+cold = [204/255, 238/255, 255/255];
+
+
+            %  plot(timmy/3600, obwAmp, '.');
+            plot(timmy/3600, rawfreq, '.');
+            for j = 1:length(day)
+                plot(day(j).entiretimcont/3600, day(j).freq);
+            end
+            
+            
+            % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+            
+            freqlim = ylim; %all of above is just to get the max for the plot lines...
+            if  tiz(1) > 0 %we start with warming
+                for j = 1:length(temptims)-1
+                    if mod(j,2) == 1 %if j is odd
+                fill([temptims(j) temptims(j) temptims(j+1) temptims(j+1)], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
+                    else
+                fill([temptims(j) temptims(j) temptims(j+1) temptims(j+1)], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
+                    end
+                end
+            else
+                for j = 1:length(temptims)-1
+                    if mod(j,2) == 1 %if j is odd
+                fill([temptims(j) temptims(j) temptims(j+1) temptims(j+1)], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
+                    else
+                fill([temptims(j) temptims(j) temptims(j+1) temptims(j+1)], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
+                    end
+                end
+            end
+
+
+             plot(timmy/3600, rawfreq, '.');
+
+            for j = 1:length(day)
+                plot(day(j).entiretimcont/3600, day(j).freq, 'LineWidth', 1.5);
+            end
+            
+          
+linkaxes(xa, 'x');         
 
 
 
