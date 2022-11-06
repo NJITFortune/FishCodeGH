@@ -3,7 +3,7 @@
 %channel = 3 multifish
 
 %no function
-clearvars -except hkg hkg2 xxkg xxkg2 cold hot coldmulti hot multi dark dark multi light lightmulti
+clearvars -except k hkg hkg2 xxkg xxkg2 cold hot coldmulti hot multi dark dark multi light lightmulti
 in = xxkg(k);
 channel = 1;
 
@@ -89,7 +89,7 @@ lighttimes = k_lighttimes(in, light);
                 tiz = -temptims(1);
             end
 
-
+ld = floor(lighttimes(2)/3600 -lighttimes(1)/3600);
 
 %% divide into days
  %define day length
