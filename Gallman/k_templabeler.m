@@ -1,4 +1,4 @@
-function out = k_templabeler(in)
+function temptims = k_templabeler(in)
 %in = kg2(k).s
 %out = kg2(k).info
 
