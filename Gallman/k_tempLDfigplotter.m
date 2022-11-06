@@ -419,7 +419,7 @@ figure(796); clf; title('amplitude over time');hold on;
 %%    
 figure(55); clf; hold on;
 
-    xa(1) = subplot(211); hold on;
+    xa(1) = subplot(311); hold on;
     
             %  plot(timmy/3600, obwAmp, '.');
             plot(lighttimmy/3600, lightobwAmp, '.');
@@ -451,7 +451,7 @@ figure(55); clf; hold on;
             end
             
            
-    xa(2) = subplot(212); hold on;
+    xa(2) = subplot(312); hold on;
     
             plot(tempxx/3600, tempobwyy);
             
