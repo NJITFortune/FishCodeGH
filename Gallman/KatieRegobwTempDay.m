@@ -1,17 +1,17 @@
-%function [hotday, coldday] = KatieRegobwTempDay(in, channel, ReFs, td)%multisingleRegobwDay
+function [hotday, coldday] = KatieRegobwTempDay(in, channel, ReFs, td)%multisingleRegobwDay
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
  heat = 8;
 % 
-% %for when i'm too lazy to function
-clearvars -except xxkg hkg k xxkg2 hkg2 kg2
-% % % 
-in = xxkg(k);
-ReFs = 20;
-heat = 8;
-channel = 1;
-td = 7;
+% % %for when i'm too lazy to function
+% clearvars -except xxkg hkg k xxkg2 hkg2 kg2
+% % % % 
+% in = xxkg(k);
+% ReFs = 20;
+% heat = 8;
+% channel = 1;
+% td = 7;
 
 % light = 4; %start with light
 % fish = 5; %lo freq
@@ -259,239 +259,239 @@ for j = 1:length(colder)
 end
 
 
-%% plot to check
-%time vectors currently in seconds, divide by 3600 to get hours
-
-%fill colors for plotting
-hot = [255/255, 204/255, 204/255];
-cold = [204/255, 238/255, 255/255];
-
-%days over experiment time
-figure(795); clf; title('frequency over time');hold on;
-
-    %get ylim
-    plot(timmy/3600, freqRaw, '.');
-    plot(xx/3600, freq);
-    
-
-    %draw boxes
-     freqlim = ylim; %all of above is just to get the max for the plot lines...
-
-        if  tiz(1) > 0 %we start with warming
-            for j = 1:length(temptims)-1
-                if mod(j,2) == 1 %if j is odd
-            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
-                else
-            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
-                end
-            end
-        else
-            for j = 1:length(temptims)-1
-                if mod(j,2) == 1 %if j is odd
-            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
-                else
-            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
-                end
-            end
-        end
-
-        %actual plotting starts here
-
-         plot(timmy/3600, freqRaw, '.');
-         plot(xx/3600, freq);
-  
-         for j = 1:length(hotday)
-          plot(hotday(j).entiretimcont/3600, hotday(j).freq, 'LineWidth',2);
-         end
-
-         for j = 1:length(coldday)
-          plot(coldday(j).entiretimcont/3600, coldday(j).freq,'LineWidth',2);
-         end
-%%
-  %days over experiment time
-figure(796); clf; title('amplitude over time');hold on;
-
-    plot(timmy/3600, obwAmp, '.');
-    plot(xx/3600, obwyy);
-    
-   
-     amplim = ylim; %all of above is just to get the max for the plot lines...
-
-        if  tiz(1) > 0 %we start with warming
-            for j = 1:length(temptims)-1
-                if mod(j,2) == 1 %if j is odd
-            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
-                else
-            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
-                end
-            end
-        else
-            for j = 1:length(temptims)-1
-                if mod(j,2) == 1 %if j is odd
-            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
-                else
-            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
-                end
-            end
-        end
-    
-     %actual plotting of datums
-     plot(timmy/3600, obwAmp, '.');
-     plot(xx/3600, obwyy);
-    for j = 1:length(hotday)
-        plot(hotday(j).entiretimcont/3600, hotday(j).obw, 'LineWidth', 2);
-    end     
-
-    for j = 1:length(coldday)
-        plot(coldday(j).entiretimcont/3600, coldday(j).obw, 'LineWidth', 2);
-    end   
-  
-
-    %% temp day sum
-
-figure(4566); clf ; hold on; title('hot to cold');ylim([-.4 .4]);
-set(gcf, 'Renderer', 'painters');
-    for j = 1:length(hotday)
-      %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
-        hots(j,:) = hotday(j).obw;
-    end  
-    
-%     a = ylim;
-%     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], hot);
-%     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], cold );
-
-    hotmean = mean(hots);
-
-    for j = 1:length(hotday)
-      %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
-    end  
-
-    plot(hotday(1).tim/3600, hotmean, 'Color', hot,'LineWidth', 3 );
-    xline(td/2, 'k', 'LineWidth', 3);
-    ylabel('Mean square amplitude');
-    xlabel('Time (hours)');
-%% 
-figure(4566); clf ; hold on; title('hot to cold freq');ylim([420 520]);
-set(gcf, 'Renderer', 'painters');
-    for j = 1:length(hotday)
-      %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
-        hots(j,:) = hotday(j).freq;
-    end  
-    
-%     a = ylim;
-%     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], hot);
-%     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], cold );
-
-    hotmean = mean(hots);
-
-    for j = 1:length(hotday)
-      %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
-    end  
-
-    plot(hotday(1).tim/3600, hotmean, 'k-','LineWidth', 3 );
-    xline(td/2, 'k', 'LineWidth', 3);
-    ylabel('Frequency (Hz)');
-    xlabel('Time (hours)');
-%% 
-
-figure(4567); clf ; hold on; title('hot to cold temp');ylim([25 31]);
-set(gcf, 'Renderer', 'painters');
-    for j = 1:length(hotday)
-      %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
-        hots(j,:) = hotday(j).temp;
-    end  
-    
-%     a = ylim;
-%     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], hot);
-%     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], cold );
-
-    hotmean = mean(hots);
-
-    for j = 1:length(hotday)
-      %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
-    end  
- tempC = k_temptocelcius(hotmean, 11000);
-
-    plot(hotday(1).tim/3600, tempC, 'r-','LineWidth', 3 );
-    xline(td/2, 'k', 'LineWidth', 3);
-    ylabel('degrees Celcius');
-    xlabel('Time (hours)');
-
-
-%%
-
- figure(4567); clf ; hold on; title('cold to hot transitions'); ylim([-.4 .4]);%ylim([-0.08 .06]);
-set(gcf, 'Renderer', 'painters');
-    for j = 1:length(coldday)
-       % plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
-        colds(j,:) = coldday(j).obw;
-    end  
+% %% plot to check
+% %time vectors currently in seconds, divide by 3600 to get hours
+% 
+% %fill colors for plotting
+% hot = [255/255, 204/255, 204/255];
+% cold = [204/255, 238/255, 255/255];
+% 
+% %days over experiment time
+% figure(795); clf; title('frequency over time');hold on;
+% 
+%     %get ylim
+%     plot(timmy/3600, freqRaw, '.');
+%     plot(xx/3600, freq);
 %     
-%     a = ylim;
-%     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], cold);
-%     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], hot );
-
-    coldmean = mean(colds);
-
-%     for j = 1:length(hotday)
-%         plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
-%     end  
-
-    plot(coldday(1).tim/3600, coldmean, 'Color', hot,'LineWidth', 3 );
-
- xline(td/2, 'k', 'LineWidth', 3);
-
- ylabel('Mean square amplitude');
-    xlabel('Time (hours)');
-
-%%
-
- figure(4567); clf ; hold on; title('cold to hot freq'); ylim([415 515]) %ylim([-.4 .4]);%ylim([-0.08 .06]);
-set(gcf, 'Renderer', 'painters');
-    for j = 1:length(coldday)
-       % plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
-        colds(j,:) = coldday(j).freq;
-    end  
+% 
+%     %draw boxes
+%      freqlim = ylim; %all of above is just to get the max for the plot lines...
+% 
+%         if  tiz(1) > 0 %we start with warming
+%             for j = 1:length(temptims)-1
+%                 if mod(j,2) == 1 %if j is odd
+%             fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
+%                 else
+%             fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
+%                 end
+%             end
+%         else
+%             for j = 1:length(temptims)-1
+%                 if mod(j,2) == 1 %if j is odd
+%             fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
+%                 else
+%             fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
+%                 end
+%             end
+%         end
+% 
+%         %actual plotting starts here
+% 
+%          plot(timmy/3600, freqRaw, '.');
+%          plot(xx/3600, freq);
+%   
+%          for j = 1:length(hotday)
+%           plot(hotday(j).entiretimcont/3600, hotday(j).freq, 'LineWidth',2);
+%          end
+% 
+%          for j = 1:length(coldday)
+%           plot(coldday(j).entiretimcont/3600, coldday(j).freq,'LineWidth',2);
+%          end
+% %%
+%   %days over experiment time
+% figure(796); clf; title('amplitude over time');hold on;
+% 
+%     plot(timmy/3600, obwAmp, '.');
+%     plot(xx/3600, obwyy);
 %     
-%     a = ylim;
-%     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], cold);
-%     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], hot );
-
-    coldmean = mean(colds);
-
-%     for j = 1:length(hotday)
-%         plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
-%     end  
-
-    plot(coldday(1).tim/3600, coldmean, 'k-','LineWidth', 3 );
-
- xline(td/2, 'k', 'LineWidth', 3);
-
- ylabel('Frequency (Hz)');
-    xlabel('Time (hours)');
-%% 
-figure(4567); clf ; hold on; title('cold to hot temp');ylim([25 31]); %ylim([415 515]) %ylim([-.4 .4]);%ylim([-0.08 .06]);
-set(gcf, 'Renderer', 'painters');
-    for j = 1:length(coldday)
-       % plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
-        colds(j,:) = coldday(j).temp;
-    end  
+%    
+%      amplim = ylim; %all of above is just to get the max for the plot lines...
+% 
+%         if  tiz(1) > 0 %we start with warming
+%             for j = 1:length(temptims)-1
+%                 if mod(j,2) == 1 %if j is odd
+%             fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
+%                 else
+%             fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
+%                 end
+%             end
+%         else
+%             for j = 1:length(temptims)-1
+%                 if mod(j,2) == 1 %if j is odd
+%             fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
+%                 else
+%             fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
+%                 end
+%             end
+%         end
 %     
-%     a = ylim;
-%     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], cold);
-%     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], hot );
-
-    coldmean = mean(colds);
-
+%      %actual plotting of datums
+%      plot(timmy/3600, obwAmp, '.');
+%      plot(xx/3600, obwyy);
 %     for j = 1:length(hotday)
-%         plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+%         plot(hotday(j).entiretimcont/3600, hotday(j).obw, 'LineWidth', 2);
+%     end     
+% 
+%     for j = 1:length(coldday)
+%         plot(coldday(j).entiretimcont/3600, coldday(j).obw, 'LineWidth', 2);
+%     end   
+%   
+% 
+%     %% temp day sum
+% 
+% figure(4566); clf ; hold on; title('hot to cold');ylim([-.4 .4]);
+% set(gcf, 'Renderer', 'painters');
+%     for j = 1:length(hotday)
+%       %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
+%         hots(j,:) = hotday(j).obw;
 %     end  
-
- tempC = k_temptocelcius(coldmean, 11000);
-    plot(coldday(1).tim/3600, tempC, 'r-','LineWidth', 3 );
-
- xline(td/2, 'k', 'LineWidth', 3);
-
- ylabel('degrees Celcius');
-    xlabel('Time (hours)');
-
+%     
+% %     a = ylim;
+% %     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], hot);
+% %     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], cold );
+% 
+%     hotmean = mean(hots);
+% 
+%     for j = 1:length(hotday)
+%       %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
+%     end  
+% 
+%     plot(hotday(1).tim/3600, hotmean, 'Color', hot,'LineWidth', 3 );
+%     xline(td/2, 'k', 'LineWidth', 3);
+%     ylabel('Mean square amplitude');
+%     xlabel('Time (hours)');
+% %% 
+% figure(4566); clf ; hold on; title('hot to cold freq');ylim([420 520]);
+% set(gcf, 'Renderer', 'painters');
+%     for j = 1:length(hotday)
+%       %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
+%         hots(j,:) = hotday(j).freq;
+%     end  
+%     
+% %     a = ylim;
+% %     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], hot);
+% %     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], cold );
+% 
+%     hotmean = mean(hots);
+% 
+%     for j = 1:length(hotday)
+%       %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
+%     end  
+% 
+%     plot(hotday(1).tim/3600, hotmean, 'k-','LineWidth', 3 );
+%     xline(td/2, 'k', 'LineWidth', 3);
+%     ylabel('Frequency (Hz)');
+%     xlabel('Time (hours)');
+% %% 
+% 
+% figure(4567); clf ; hold on; title('hot to cold temp');ylim([25 31]);
+% set(gcf, 'Renderer', 'painters');
+%     for j = 1:length(hotday)
+%       %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
+%         hots(j,:) = hotday(j).temp;
+%     end  
+%     
+% %     a = ylim;
+% %     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], hot);
+% %     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], cold );
+% 
+%     hotmean = mean(hots);
+% 
+%     for j = 1:length(hotday)
+%       %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
+%     end  
+%  tempC = k_temptocelcius(hotmean, 11000);
+% 
+%     plot(hotday(1).tim/3600, tempC, 'r-','LineWidth', 3 );
+%     xline(td/2, 'k', 'LineWidth', 3);
+%     ylabel('degrees Celcius');
+%     xlabel('Time (hours)');
+% 
+% 
+% %%
+% 
+%  figure(4567); clf ; hold on; title('cold to hot transitions'); ylim([-.4 .4]);%ylim([-0.08 .06]);
+% set(gcf, 'Renderer', 'painters');
+%     for j = 1:length(coldday)
+%        % plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+%         colds(j,:) = coldday(j).obw;
+%     end  
+% %     
+% %     a = ylim;
+% %     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], cold);
+% %     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], hot );
+% 
+%     coldmean = mean(colds);
+% 
+% %     for j = 1:length(hotday)
+% %         plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+% %     end  
+% 
+%     plot(coldday(1).tim/3600, coldmean, 'Color', hot,'LineWidth', 3 );
+% 
+%  xline(td/2, 'k', 'LineWidth', 3);
+% 
+%  ylabel('Mean square amplitude');
+%     xlabel('Time (hours)');
+% 
+% %%
+% 
+%  figure(4567); clf ; hold on; title('cold to hot freq'); ylim([415 515]) %ylim([-.4 .4]);%ylim([-0.08 .06]);
+% set(gcf, 'Renderer', 'painters');
+%     for j = 1:length(coldday)
+%        % plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+%         colds(j,:) = coldday(j).freq;
+%     end  
+% %     
+% %     a = ylim;
+% %     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], cold);
+% %     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], hot );
+% 
+%     coldmean = mean(colds);
+% 
+% %     for j = 1:length(hotday)
+% %         plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+% %     end  
+% 
+%     plot(coldday(1).tim/3600, coldmean, 'k-','LineWidth', 3 );
+% 
+%  xline(td/2, 'k', 'LineWidth', 3);
+% 
+%  ylabel('Frequency (Hz)');
+%     xlabel('Time (hours)');
+% %% 
+% figure(4567); clf ; hold on; title('cold to hot temp');ylim([25 31]); %ylim([415 515]) %ylim([-.4 .4]);%ylim([-0.08 .06]);
+% set(gcf, 'Renderer', 'painters');
+%     for j = 1:length(coldday)
+%        % plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+%         colds(j,:) = coldday(j).temp;
+%     end  
+% %     
+% %     a = ylim;
+% %     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], cold);
+% %     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], hot );
+% 
+%     coldmean = mean(colds);
+% 
+% %     for j = 1:length(hotday)
+% %         plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+% %     end  
+% 
+%  tempC = k_temptocelcius(coldmean, 11000);
+%     plot(coldday(1).tim/3600, tempC, 'r-','LineWidth', 3 );
+% 
+%  xline(td/2, 'k', 'LineWidth', 3);
+% 
+%  ylabel('degrees Celcius');
+%     xlabel('Time (hours)');
+% 
