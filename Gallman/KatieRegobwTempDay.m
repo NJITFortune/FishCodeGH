@@ -350,7 +350,7 @@ figure(796); clf; title('amplitude over time');hold on;
     %% temp day sum
 
 figure(4566); clf ; hold on; title('hot to cold');ylim([-.04 .04]);
-
+set(gcf, 'Renderer', 'painters');
     for j = 1:length(hotday)
       %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
         hots(j,:) = hotday(j).obw;
@@ -390,7 +390,7 @@ figure(4566); clf ; hold on; title('hot to cold freq');ylim([370 580]);
 
     plot(hotday(1).tim/3600, hotmean, 'k-','LineWidth', 3 );
     xline(td/2, 'k', 'LineWidth', 3);
-    ylabel('Mean square amplitude');
+    ylabel('Frequency (Hz)');
     xlabel('Time (hours)');
 
 %%
