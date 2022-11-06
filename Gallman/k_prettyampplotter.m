@@ -74,12 +74,12 @@ figure(31); clf; hold on;
         ylabel('Mean square amplitude');
        % xlabel('Time (hours)');
 
-       newtim = regtim/3600;
-        [~, newtimidx, ~] = intersect(newtim,locs);
+       %newtim = regtim/3600;
+%        [~, newtimidx, ~] = intersect(newtim,locs);
         
         
         
-             plot(newtim(newtimidx)-timcont(1), regobwpeaks(newtimidx), 'r.', 'MarkerSize', 20);
+            % plot(newtim(newtimidx)-timcont(1), regobwpeaks(newtimidx), 'r.', 'MarkerSize', 20);
 
 %     ax(2) = subplot(312); hold on; xlim([0, timcont(end)-timcont(1)]); ylim([400 600]);
 %              % plot(timcont-timcont(1), freq, '.', 'Color', [252/255, 108/255, 133/255]);
