@@ -490,12 +490,7 @@ figure(55); clf; hold on;
         cold = [204/255, 238/255, 255/255];
 
 
-            %  plot(timmy/3600, obwAmp, '.');
-            plot(lighttimmy/3600, lightrawfreq, '.');
-            for j = 1:length(day)
-                plot(day(j).entiretimcont/3600, day(j).freq);
-            end
-            
+            plot(tempxx/3600, tempobwyy);
             
             % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
             
@@ -518,12 +513,16 @@ figure(55); clf; hold on;
                 end
             end
 
-
-             plot(lighttimmy/3600, lightrawfreq, '.');
-
-            for j = 1:length(day)
-                plot(day(j).entiretimcont/3600, day(j).freq, 'LineWidth', 1.5);
-            end
+        plot(tempxx/3600, tempobwyy);
+                for j = 1:length(hotday)
+                    plot(hotday(j).entiretimcont/3600, hotday(j).obw, 'LineWidth', 2);
+                end     
+            
+                for j = 1:length(coldday)
+                    plot(coldday(j).entiretimcont/3600, coldday(j).obw, 'LineWidth', 2);
+                end   
+            
+           
             
           
 linkaxes(xa, 'x');           
