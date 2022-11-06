@@ -41,7 +41,7 @@ lighttimes = abs(luz)*3600;
   obwtrim = matlab.tall.movingWindow(fcn, window, obw');
   freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
   temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
-  
+
  [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
 
   %low pass removes spikey-ness
@@ -82,8 +82,7 @@ if length(luz) > 1
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('tube triggers'); %xlim([160 275]);%ylim([0,5]);
        % plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.', 'Color', [0.4660 0.6740 0.1880], 'MarkerSize', 5);
 
-        %luz = floor([out.info.luz]);
-        luz = [out.info.luz];
+       
             for k = 2:length(luz)
             
                 if luz(k-1) < 0
