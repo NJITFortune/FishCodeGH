@@ -179,7 +179,7 @@ hotter = hotter*3600;
     
                         hotday(j).freq = freq(hdayidx);
 
-                        hotday(j).temp = newtemp(hdayidx);
+                        hotday(j).temp = temp(hdayidx);
                         
                         hotday(j).tim(:) = xx(hdayidx)-xx(hdayidx(1));
                         
@@ -206,7 +206,7 @@ for j = 1:length(colder)
 
                     coldday(j).freq = freq(cdayidx);
 
-                    coldday(j).temp = newtemp(cdayidx);
+                    coldday(j).temp = temp(cdayidx);
                     
                     coldday(j).tim(:) = xx(cdayidx)-xx(cdayidx(1));
                     
