@@ -488,16 +488,16 @@ figure(55); clf; hold on;
 
             for k = 2:length(tiz)
             
-                if luz(k-1) < 0
+                if tiz(k-1) < 0
                   
-                  d = histogram(timcont-timcont(1), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1))-timcont(1),abs(luz(k))-timcont(1)]);
+                  d = histogram(temptimmy/3600, 'BinWidth', binwidth,'BinLimits',[abs(tiz(k-1)),abs(tiz(k))]);
                   d.Normalization = 'countdensity';
-                  d.FaceColor = [0.9 0.9 0.9];
+                  d.FaceColor = cold;
                 else
                     
-                   l = histogram(timcont-timcont(1),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1))-timcont(1),abs(luz(k))-timcont(1)]);
+                   l = histogram(temptimmy/3600, 'BinWidth', binwidth,'BinLimits',[abs(tiz(k-1)),abs(tiz(k))]);
                    l.Normalization = 'countdensity';
-                   l.FaceColor = 'y';
+                   l.FaceColor = hot;
                 end
             end
             
