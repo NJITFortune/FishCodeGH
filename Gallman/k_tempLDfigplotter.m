@@ -485,6 +485,7 @@ figure(55); clf; hold on;
 
 
     xa(3) = subplot(413); hold on; ylim([0 100]);
+    a = ylim;
 
             if lightstart < 4 %the first lighttime is dark
                 for j = 1:length(lighttimes)-1
