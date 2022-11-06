@@ -27,20 +27,20 @@ function k_prettyampplotter(in, channel)
         temp = temp(lidx);
 
 
-%              %trimmed mean
-%              window = 5;
-%               fcn = @(x) trimmean(x,33);
-%               obwtrim = matlab.tall.movingWindow(fcn, window, obw');
-%               freqtrim = matlab.tall.movingWindow(fcn, window, freq');
-%               temptrim = matlab.tall.movingWindow(fcn, window, temp');
-%         %Regularize
-%                 %regularize data to ReFs interval
-%                 [regtim, regfreq, ~, regobwpeaks] = k_regularmetamucil(timcont *3600, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes*3600);
-% 
-%         lowWn = 0.025/(20/2);
-%                 [dd,cc] = butter(5, lowWn, 'low');
-%                 regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
-% 
+             %trimmed mean
+             window = 5;
+              fcn = @(x) trimmean(x,33);
+              obwtrim = matlab.tall.movingWindow(fcn, window, obw');
+              freqtrim = matlab.tall.movingWindow(fcn, window, freq');
+              temptrim = matlab.tall.movingWindow(fcn, window, temp');
+        %Regularize
+                %regularize data to ReFs interval
+                [regtim, regfreq, ~, regobwpeaks] = k_regularmetamucil(timcont *3600, obwtrim', timcont, obw, freqtrim', temptrim', 20, lighttimes*3600);
+
+        lowWn = 0.025/(20/2);
+                [dd,cc] = butter(5, lowWn, 'low');
+                regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
+
 % 
 % binwidth = 0.5;
 % 
