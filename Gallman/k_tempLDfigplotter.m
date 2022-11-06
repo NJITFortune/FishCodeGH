@@ -486,7 +486,20 @@ figure(55); clf; hold on;
 
     xa(3) = subplot(413); hold on;
 
-        histogram(tempxx/3600, 'BinWidth', 0.5, 'BinLimits', );
+            for k = 2:length(tiz)
+            
+                if luz(k-1) < 0
+                  
+                  d = histogram(timcont-timcont(1), 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1))-timcont(1),abs(luz(k))-timcont(1)]);
+                  d.Normalization = 'countdensity';
+                  d.FaceColor = [0.9 0.9 0.9];
+                else
+                    
+                   l = histogram(timcont-timcont(1),'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1))-timcont(1),abs(luz(k))-timcont(1)]);
+                   l.Normalization = 'countdensity';
+                   l.FaceColor = 'y';
+                end
+            end
             
      xa(4) = subplot(414); hold on;
 
