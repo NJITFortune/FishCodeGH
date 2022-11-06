@@ -313,10 +313,10 @@ figure(533); clf; hold on; title('freq');
 %average over single day    
 figure(57); clf; hold on; title('temp');
 
-    for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).temp);
-           
-     end
+%     for j = 1:length(day)
+%             plot(day(j).tim/3600, day(j).temp);
+%            
+%      end
  a = ylim;
     %create fill box 
     if lightstart < 4 %we start with dark
@@ -328,14 +328,14 @@ figure(57); clf; hold on; title('temp');
     %mean two ways to prove math
     mday = zeros(1, length(day(1).tim));        
      for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).temp, 'LineWidth', 1);
+          %  plot(day(j).tim/3600, day(j).temp, 'LineWidth', 1);
             tmeanday(j,:) = day(j).temp;
           
      end
         
             tmmday= mean(tmeanday);
-            
-            plot(day(1).tim/3600, tmmday, 'k-', 'LineWidth', 3);
+            tempC = k_temptocelcius(tmmday, 1000);
+            plot(day(1).tim/3600, tempC, 'k-', 'LineWidth', 3);
            
             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
