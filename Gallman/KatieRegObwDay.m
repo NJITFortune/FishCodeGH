@@ -164,7 +164,7 @@ end
 
 %% Define day length
 
- %day
+ %define day length
     daylengthSECONDS = (ld*2) * 3600;  
     lengthofsampleHOURS = (lighttimes(end) - lighttimes(1)) / 3600; 
     % This is the number of data samples in a day
