@@ -486,7 +486,7 @@ figure(55); clf; hold on;
 
     xa(3) = subplot(413); hold on;
 
-        
+        histogram(timcont-timcont(1), 'BinWidth', binwidth
             
      xa(4) = subplot(414); hold on;
 
