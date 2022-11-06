@@ -265,7 +265,7 @@ figure(589); clf; hold on; title('amp');
     %mean two ways to prove math
     mday = zeros(1, length(day(1).tim));        
      for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).Sobwyy, 'LineWidth', 1);
+            plot(day(j).tim/3600, day(j).Sobwyy, 'LineWidth');
             meanday(j,:) = day(j).Sobwyy;
           
      end
@@ -277,7 +277,7 @@ figure(589); clf; hold on; title('amp');
             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
             
-            
+ %%           
 %average over single day    
 figure(533); clf; hold on; title('freq');
 
