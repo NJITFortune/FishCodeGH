@@ -307,6 +307,8 @@ set(gcf, 'Renderer', 'painters');
            
             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+            ylabel('Frequency (Hz)');
+            xlabel('Time (hours)');
 
 %%
 
