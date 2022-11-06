@@ -414,7 +414,9 @@ figure(796); clf; title('amplitude over time');hold on;
     for j = 1:length(coldday)
         plot(coldday(j).entiretimcont/3600, coldday(j).obw, 'LineWidth', 2);
     end   
-  %%figure(55); clf; hold on;
+
+%%    
+figure(55); clf; hold on;
 
     xa(1) = subplot(211); hold on;
     
