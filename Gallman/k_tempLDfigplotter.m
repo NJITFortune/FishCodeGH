@@ -485,6 +485,21 @@ figure(55); clf; hold on;
 
 
     xa(3) = subplot(413); hold on; ylim([0 100]);
+
+            if lightstart < 4 %the first lighttime is dark
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 1 %if j is odd
+                        fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            else %the second lighttime is dark
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 0 %if j is even
+                        fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            end
+
     binwidth = 0.5;
             for k = 2:length(tiz)
             
