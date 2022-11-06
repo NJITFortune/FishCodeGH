@@ -546,4 +546,4 @@ figure(4566); clf ; hold on;
         plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
     end  
 
-    plot(hotday(1).tim, hotmean, 'k-','LineWidth', 2 );
+    plot(hotday(1).tim/3600, hotmean, 'k-','LineWidth', 2 );
