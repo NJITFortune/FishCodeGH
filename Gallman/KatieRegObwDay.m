@@ -311,7 +311,7 @@ figure(533); clf; hold on; title('freq');
 %%
 
 %average over single day    
-figure(57); clf; hold on; title('temp'); ylim([23 34]);
+figure(57); clf; hold on; title('temp'); ylim([23 30]);
 
 %     for j = 1:length(day)
 %             plot(day(j).tim/3600, day(j).temp);
@@ -335,7 +335,7 @@ figure(57); clf; hold on; title('temp'); ylim([23 34]);
         
             tmmday= mean(tmeanday);
             tempC = k_temptocelcius(tmmday, 11000);
-            plot(day(1).tim/3600, tempC, 'k-', 'LineWidth', 3);
+            plot(day(1).tim/3600, tempC, 'r-', 'LineWidth', 3);
            
             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
