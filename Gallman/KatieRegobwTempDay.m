@@ -162,7 +162,7 @@ hotter = [hotter(hotter>0)];
         %highWn = 0.001/(ReFs/2);
 
         %low pass removes spikey-ness
-        lowWn = 0.1/(ReFs/2);
+        lowWn = 0.09/(ReFs/2);
         [dd,cc] = butter(5, lowWn, 'low');
         datadata = filtfilt(dd,cc, double(regobwpeaks));
        
