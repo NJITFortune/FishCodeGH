@@ -346,3 +346,46 @@ figure(796); clf; title('amplitude over time');hold on;
         plot(coldday(j).entiretimcont/3600, coldday(j).obw, 'LineWidth', 2);
     end   
   
+
+    %% temp day sum
+
+figure(4566); clf ; hold on;
+
+    for j = 1:length(hotday)
+        plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
+        hots(j,:) = hotday(j).obw;
+    end  
+    
+    a = ylim;
+    fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], hot);
+    fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], cold );
+
+    hotmean = mean(hots);
+
+    for j = 1:length(hotday)
+        plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
+    end  
+
+    plot(hotday(1).tim/3600, hotmean, 'k-','LineWidth', 3 );
+
+
+%%
+
+ figure(4567); clf ; hold on;
+
+    for j = 1:length(coldday)
+        plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+        colds(j,:) = coldday(j).obw;
+    end  
+    
+    a = ylim;
+    fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], cold);
+    fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], hot );
+
+    coldmean = mean(colds);
+
+    for j = 1:length(hotday)
+        plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+    end  
+
+    plot(coldday(1).tim/3600, coldmean, 'k-','LineWidth', 3 );
