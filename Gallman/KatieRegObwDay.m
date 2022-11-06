@@ -345,7 +345,7 @@ figure(57); clf; hold on; title('temp');
 figure(55); clf; hold on;
     
   %  plot(timmy/3600, obwAmp, '.');
-    plot(timmy/3600, freq, '.');
+    plot(timmy/3600, rawfreq, '.');
     for j = 1:length(day)
         plot(day(j).entiretimcont/3600, day(j).freq);
     end
