@@ -186,6 +186,7 @@ hotter = [hotter(hotter>0)];
 
         [bb,aa] = butter(5, highWn, 'high');
         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+        lightdata = filtfilt(dd,cc, double(regobwpeaks));%lowpassonly
         
  %trim everything to temptims
 
@@ -209,7 +210,7 @@ hotter = [hotter(hotter>0)];
     timidx = regobwtim >= lighttimes(1) & regobwtim <= lighttimes(end);
     lightxx = regobwtim(timidx);
    % obwyy = regobwpeaks(timidx);
-    lightobwyy = datadata(timidx); 
+    lightobwyy = lightdata(timidx); 
   
     lightfreq = regobwfreq(timidx);
     lighttemp = regtemp(timidx);
