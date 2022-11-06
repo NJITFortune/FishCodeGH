@@ -62,7 +62,7 @@ if isempty(poweridx) %if there are no values in poweridx []
     
     tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
 
-        if mean(temp(tempidx)) > mean(temp)
+        if mean(oldtemp(tempidx)) > mean(oldtemp)
             tiz(j-1,:) = temptims(j-1);
             hotter(j-1,:) = temptims(j-1);
         else
@@ -91,7 +91,7 @@ else %we have poweridx values
             
             tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
         
-                if mean(temp(tempidx)) > mean(temp)
+                if mean(oldtemp(tempidx)) > mean(oldtemp)
                     tiz(j-1,:) = temptims(j-1);
                     hotter(j-1,:) = temptims(j-1);
                 else
