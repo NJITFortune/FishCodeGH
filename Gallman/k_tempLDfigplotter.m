@@ -12,6 +12,7 @@ ReFs = 20;
 heat = 8;
 channel = 1;
 td = 7;
+lightstart = 3;
 
 % light = 4; %start with light
 % fish = 5; %lo freq
