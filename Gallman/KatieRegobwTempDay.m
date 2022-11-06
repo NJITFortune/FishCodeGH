@@ -372,7 +372,7 @@ set(gcf, 'Renderer', 'painters');
     xlabel('Time (hours)');
 %% 
 figure(4566); clf ; hold on; title('hot to cold freq');ylim([370 580]);
-
+set(gcf, 'Renderer', 'painters');
     for j = 1:length(hotday)
       %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
         hots(j,:) = hotday(j).freq;
