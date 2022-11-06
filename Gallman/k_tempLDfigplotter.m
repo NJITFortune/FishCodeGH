@@ -547,7 +547,7 @@ figure(4566); clf ; hold on;
         plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
     end  
 
-    plot(hotday(1).tim/3600, hotmean, 'k-','LineWidth', 2 );
+    plot(hotday(1).tim/3600, hotmean, 'k-','LineWidth', 3 );
 
 
 %%
@@ -569,7 +569,7 @@ figure(4566); clf ; hold on;
         plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
     end  
 
-    plot(coldday(1).tim/3600, coldmean, 'k-','LineWidth', 2 );
+    plot(coldday(1).tim/3600, coldmean, 'k-','LineWidth', 3 );
    
 
 %%
