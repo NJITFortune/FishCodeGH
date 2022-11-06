@@ -246,7 +246,7 @@ figure(55); clf; hold on;
 
      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
     plot(xx/3600, obwyy);
-
+%%
 %average over single day    
 figure(589); clf; hold on; title('amp');
 
@@ -342,7 +342,7 @@ figure(57); clf; hold on; title('temp');
 
 %%
 %days over experiment time
-figure(55); clf; hold on;
+figure(58967); clf; hold on;
     
   %  plot(timmy/3600, obwAmp, '.');
     plot(timmy/3600, rawfreq, '.');
