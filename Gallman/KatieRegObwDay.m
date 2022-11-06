@@ -131,7 +131,7 @@ end
          [bb,aa] = butter(5, highWn, 'high');
 
          %less strong low pass filter - otherwise fake prediction 
-               lowWn = 0.025/(ReFs/2); %OG 0.9
+               lowWn = 0.9/(ReFs/2); %OG 0.9
                [dd,cc] = butter(5, lowWn, 'low');
 
         datadata = filtfilt(dd,cc, double(regobwpeaks)); %low pass
