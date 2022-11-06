@@ -446,7 +446,7 @@ set(gcf, 'Renderer', 'painters');
 
 %%
 
- figure(4567); clf ; hold on; title('cold to hot freq'); %ylim([-.4 .4]);%ylim([-0.08 .06]);
+ figure(4567); clf ; hold on; title('cold to hot freq'); ylim([420 520]) %ylim([-.4 .4]);%ylim([-0.08 .06]);
 set(gcf, 'Renderer', 'painters');
     for j = 1:length(coldday)
        % plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
@@ -467,6 +467,5 @@ set(gcf, 'Renderer', 'painters');
 
  xline(td/2, 'k', 'LineWidth', 3);
 
- ylabel('Mean square amplitude');
+ ylabel('Frequency (Hz)');
     xlabel('Time (hours)');
-
