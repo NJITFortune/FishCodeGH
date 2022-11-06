@@ -131,7 +131,7 @@ end
          [bb,aa] = butter(5, highWn, 'high');
 
          %less strong low pass filter - otherwise fake prediction 
-               lowWn = 0.025/(ReFs/2); %OG 0.9
+               lowWn = 0.9/(ReFs/2); %OG 0.9
                [dd,cc] = butter(5, lowWn, 'low');
 
         datadata = filtfilt(dd,cc, double(regobwpeaks)); %low pass
@@ -148,8 +148,8 @@ end
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
-    obwyy = regobwpeaks(timidx);
-  %  obwyy = datadata(timidx); 
+  %  obwyy = regobwpeaks(timidx);
+    obwyy = datadata(timidx); 
    % obwyy = obwyy-mean(obwyy);
     freq = regfreq(timidx);
     temp = regtemp(timidx);
@@ -280,9 +280,9 @@ figure(589); clf; hold on; title('amp');
  %%           
 %average over single day    
 figure(533); clf; hold on; title('freq');
-
+set(gcf, 'Renderer', 'painters');
     for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).freq);
+           % plot(day(j).tim/3600, day(j).freq);
            
      end
  a = ylim;
@@ -308,15 +308,15 @@ figure(533); clf; hold on; title('freq');
             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
 
-
+%%
 
 %average over single day    
-figure(57); clf; hold on; title('temp');
-
-    for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).temp);
-           
-     end
+figure(57); clf; hold on; title('temp'); ylim([24 30]);
+set(gcf, 'Renderer', 'painters');
+%     for j = 1:length(day)
+%             plot(day(j).tim/3600, day(j).temp);
+%            
+%      end
  a = ylim;
     %create fill box 
     if lightstart < 4 %we start with dark
@@ -328,18 +328,20 @@ figure(57); clf; hold on; title('temp');
     %mean two ways to prove math
     mday = zeros(1, length(day(1).tim));        
      for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).temp, 'LineWidth', 1);
+          %  plot(day(j).tim/3600, day(j).temp, 'LineWidth', 1);
             tmeanday(j,:) = day(j).temp;
           
      end
         
             tmmday= mean(tmeanday);
-            
-            plot(day(1).tim/3600, tmmday, 'k-', 'LineWidth', 3);
+            tempC = k_temptocelcius(tmmday, 11000);
+            plot(day(1).tim/3600, tempC, 'r-', 'LineWidth', 3);
            
             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
 
+            ylabel('degrees Celcius');
+            xlabel('Time (hours)');
 %%
 %days over experiment time
 figure(58967); clf; hold on;

@@ -282,7 +282,7 @@ figure(589); clf; hold on; title('amp');
 figure(533); clf; hold on; title('freq');
 set(gcf, 'Renderer', 'painters');
     for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).freq);
+           % plot(day(j).tim/3600, day(j).freq);
            
      end
  a = ylim;
@@ -296,7 +296,7 @@ set(gcf, 'Renderer', 'painters');
     %mean two ways to prove math
     mday = zeros(1, length(day(1).tim));        
      for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).freq, 'LineWidth', 1);
+         %   plot(day(j).tim/3600, day(j).freq, 'LineWidth', 1);
             fmeanday(j,:) = day(j).freq;
           
      end
