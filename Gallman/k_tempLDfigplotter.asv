@@ -186,6 +186,7 @@ hotter = [hotter(hotter>0)];
 
         [bb,aa] = butter(5, highWn, 'high');
         datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+        lightdata = filtfilt(dd,cc, double(regobwpeaks));%lowpassonly
         
  %trim everything to temptims
 
@@ -209,7 +210,7 @@ hotter = [hotter(hotter>0)];
     timidx = regobwtim >= lighttimes(1) & regobwtim <= lighttimes(end);
     lightxx = regobwtim(timidx);
    % obwyy = regobwpeaks(timidx);
-    lightobwyy = datadata(timidx); 
+    lightobwyy = lightdata(timidx); 
   
     lightfreq = regobwfreq(timidx);
     lighttemp = regtemp(timidx);
@@ -418,10 +419,10 @@ figure(796); clf; title('amplitude over time');hold on;
 %%    
 figure(55); clf; hold on;
 
-    xa(1) = subplot(211); hold on;
+    xa(1) = subplot(411); hold on;
     
             %  plot(timmy/3600, obwAmp, '.');
-            plot(lighttimmy/3600, lightobwAmp-mean(lightobwAmp), '.');
+            plot(lighttimmy/3600, lightobwAmp, '.');
             for j = 1:length(day)
                 plot(day(j).entiretimcont/3600, day(j).Sobwyy);
             end
@@ -444,27 +445,56 @@ figure(55); clf; hold on;
                 end
             end
 
-             plot(lighttimmy/3600, lightobwAmp-mean(lightobwAmp), '.');
+             plot(lighttimmy/3600, lightobwAmp, '.');
             for j = 1:length(day)
                 plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
             end
             
            
-            %plot(xx/3600, obwyy);
+    xa(2) = subplot(412); hold on;
+    
+            plot(tempxx/3600, tempobwyy);
+            
+            
+            % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+            
+            a = ylim; %all of above is just to get the max for the plot lines...
+            if lightstart < 4 %the first lighttime is dark
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 1 %if j is odd
+                        fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            else %the second lighttime is dark
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 0 %if j is even
+                        fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            end
+
+             plot(tempxx/3600, tempobwyy);
+                for j = 1:length(hotday)
+                    plot(hotday(j).entiretimcont/3600, hotday(j).obw, 'LineWidth', 2);
+                end     
+            
+                for j = 1:length(coldday)
+                    plot(coldday(j).entiretimcont/3600, coldday(j).obw, 'LineWidth', 2);
+                end   
+            
 
 
-    xa(2) = subplot(212); hold on;
+    xa(3) = subplot(413); hold on;
+
+        histogram(tempxx/3600, 'BinWidth', 0.5, 'BinLimit');
+            
+     xa(4) = subplot(414); hold on;
 
         hot = [255/255, 204/255, 204/255];
         cold = [204/255, 238/255, 255/255];
 
 
-            %  plot(timmy/3600, obwAmp, '.');
-            plot(lighttimmy/3600, lightrawfreq, '.');
-            for j = 1:length(day)
-                plot(day(j).entiretimcont/3600, day(j).freq);
-            end
-            
+            plot(tempxx/3600, tempobwyy);
             
             % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
             
@@ -472,27 +502,104 @@ figure(55); clf; hold on;
             if  tiz(1) > 0 %we start with warming
                 for j = 1:length(temptims)-1
                     if mod(j,2) == 1 %if j is odd
-                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
+                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
                     else
-                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
+                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
                     end
                 end
             else
                 for j = 1:length(temptims)-1
                     if mod(j,2) == 1 %if j is odd
-                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
+                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
                     else
-                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
+                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
                     end
                 end
             end
 
-
-             plot(lighttimmy/3600, lightrawfreq, '.');
-
-            for j = 1:length(day)
-                plot(day(j).entiretimcont/3600, day(j).freq, 'LineWidth', 1.5);
-            end
+        plot(tempxx/3600, tempobwyy);
+                for j = 1:length(hotday)
+                    plot(hotday(j).entiretimcont/3600, hotday(j).obw, 'LineWidth', 2);
+                end     
+            
+                for j = 1:length(coldday)
+                    plot(coldday(j).entiretimcont/3600, coldday(j).obw, 'LineWidth', 2);
+                end    
             
           
 linkaxes(xa, 'x');           
+
+
+%% temp day sum
+
+figure(4566); clf ; hold on;
+
+    for j = 1:length(hotday)
+        plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
+        hots(j,:) = hotday(j).obw;
+    end  
+    
+    a = ylim;
+    fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], hot);
+    fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], cold );
+
+    hotmean = mean(hots);
+
+    for j = 1:length(hotday)
+        plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
+    end  
+
+    plot(hotday(1).tim/3600, hotmean, 'k-','LineWidth', 3 );
+
+
+%%
+
+ figure(4567); clf ; hold on;
+
+    for j = 1:length(coldday)
+        plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+        colds(j,:) = coldday(j).obw;
+    end  
+    
+    a = ylim;
+    fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], cold);
+    fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], hot );
+
+    coldmean = mean(colds);
+
+    for j = 1:length(hotday)
+        plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+    end  
+
+    plot(coldday(1).tim/3600, coldmean, 'k-','LineWidth', 3 );
+   
+
+%%
+
+figure(57); clf; hold on; 
+
+ 
+        for j = 1:length(day)
+                    plot(day(j).tim/3600, day(j).Sobwyy);
+                    meanday(j,:) = day(j).Sobwyy;
+        end
+        a = ylim;
+    %create fill box 
+    if lightstart < 4 %we start with dark
+        fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+    else %we start with light
+        fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+    end
+    
+        
+     for j = 1:length(day)
+            plot(day(j).tim/3600, day(j).Sobwyy);
+            meanday(j,:) = day(j).Sobwyy;
+     end
+        
+            mmday= mean(meanday);
+            %othermday = mday/(length(day));
+            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
+           
+            %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+            plot([ld ld], ylim, 'k-', 'LineWidth', 3);
