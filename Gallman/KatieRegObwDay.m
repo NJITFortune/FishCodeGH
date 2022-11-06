@@ -273,7 +273,7 @@ set(gcf, 'Renderer', 'painters');
         
             mmday= mean(meanday);
             
-            plot(day(1).tim/3600, mmday, 'Color', colrs(7,:), 'LineWidth', 3);
+            plot(day(1).tim/3600, mmday, 'Color', clrs(7,:), 'LineWidth', 3);
            
             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
