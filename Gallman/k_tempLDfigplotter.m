@@ -10,6 +10,7 @@ lightstart = 3;
 
 %% data prep
 ReFs = 20;
+heat = 8;
 temptims = sort([in.info.temptims]);
 
 if channel < 3 %single fish
@@ -80,15 +81,27 @@ lighttimes = k_lighttimes(in, lightstart);
 
      temptims = temptims(temptims >= lighttimes(1)/3600 & temptims <= lighttimes(end)/3600);
       
-        %do we start with warming or cooling?
-        tempidx = find(timcont/3600 >= temptims(1) & timcont/3600 < temptims(2));
+        for j = 2:length(temptims)
+    
+        tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
     
             if mean(temp(tempidx)) > mean(temp)
-                tiz = temptims(1);
-                
+                tiz(j-1,:) = temptims(j-1);
+                hotter(j-1,:) = temptims(j-1);
             else
-                tiz = -temptims(1);
+                tiz(j-1,:) = -temptims(j-1);
+                colder(j-1,:) = temptims(j-1);
             end
+    
+        end  
+    
+          if heat == 7 && tiz(1) > 0 %we want start with cooling and the experiment starts with warming
+            temptims = temptims(2:end); %skip the first temptim so we start with cooling
+            tiz = tiz(2:end); hotter = hotter(2:end);
+          elseif heat == 8 && tiz(1) < 0 %we want start with warming and the experiment starts with cooling
+            temptims = temptims(2:end); %skip the first temptim so we start with cooling
+            tiz = tiz(2:end); colder = colder(2:end);
+          end
 
 ld = floor(lighttimes(2)/3600 -lighttimes(1)/3600);
 
@@ -194,7 +207,7 @@ cold = [204/255, 238/255, 255/255];
             % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
             
             freqlim = ylim; %all of above is just to get the max for the plot lines...
-            if  tiz > 0 %we start with warming
+            if  tiz(1) > 0 %we start with warming
                 for j = 1:length(temptims)-1
                     if mod(j,2) == 1 %if j is odd
                 fill([temptims(j) temptims(j) temptims(j+1) temptims(j+1)], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
