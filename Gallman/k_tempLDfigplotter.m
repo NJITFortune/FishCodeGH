@@ -485,7 +485,7 @@ figure(55); clf; hold on;
 
 
     xa(3) = subplot(413); hold on;
-
+    binwidth = 0.5;
             for k = 2:length(tiz)
             
                 if tiz(k-1) < 0
