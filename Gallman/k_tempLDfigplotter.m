@@ -422,7 +422,7 @@ figure(55); clf; hold on;
     xa(1) = subplot(211); hold on;
     
             %  plot(timmy/3600, obwAmp, '.');
-            plot(lighttimmy/3600, lightobwAmp-mean(lightobwAmp), '.');
+            plot(lighttimmy/3600, lightobwAmp, '.');
             for j = 1:length(day)
                 plot(day(j).entiretimcont/3600, day(j).Sobwyy);
             end
@@ -445,7 +445,7 @@ figure(55); clf; hold on;
                 end
             end
 
-             plot(lighttimmy/3600, lightobwAmp-mean(lightobwAmp), '.');
+             plot(lighttimmy/3600, lightobwAmp, '.');
             for j = 1:length(day)
                 plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
             end
