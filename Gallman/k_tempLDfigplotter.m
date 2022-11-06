@@ -378,12 +378,14 @@ figure(555); clf; hold on;
             end
 
              plot(timmy/3600, obwAmp-mean(obwAmp), '.');
-            for j = 1:length(day)
-                plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
-            end
+                for j = 1:length(hotday)
+                    plot(hotday(j).entiretimcont/3600, hotday(j).obw,'r-', 'LineWidth', 2);
+                end     
             
-           
-            %plot(xx/3600, obwyy);
+                for j = 1:length(coldday)
+                    plot(coldday(j).entiretimcont/3600, coldday(j).obw, 'b-','LineWidth', 2);
+                end   
+  
 
 
     xa(2) = subplot(212); hold on;
