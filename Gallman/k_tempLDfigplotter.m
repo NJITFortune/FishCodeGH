@@ -1,6 +1,11 @@
-function k_tempLDfigplotter(in, channel)
+%function k_tempLDfigplotter(in, channel)
 %channel = 1,2 singlefish
 %channel = 3 multifish
+
+%no function
+clearvars -except hkg hkg2 xxkg xxkg2 cold hot coldmulti hot multi dark dark multi light lightmulti
+in = xxkg(k);
+channel = 1;
 
 %% data prep
 ReFs = 20;
