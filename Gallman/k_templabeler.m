@@ -1,9 +1,10 @@
-%function out = KatieTempLabeler(in)
+function out = KatieTempLabeler(in)
 %in = kg2(k).s
 %out = kg2(k).info
 
 %in = kg2(1).s;
-in = kg(52);
+
+%in = kg(52);
 
 
 
@@ -46,8 +47,8 @@ alltemp = vertcat(rise, fall);
        
         
         for j = 1:length(tempsort)
-            info.temptims(j,:) = tempsort(j);
-            plot([info.temptims(j), info.temptims(j)], ylim, 'b-');
+            temptims(j,:) = tempsort(j);
+            plot([temptims(j), temptims(j)], ylim, 'b-');
         end
 
 % figure(59); clf; hold on;
