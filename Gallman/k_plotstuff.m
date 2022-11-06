@@ -34,6 +34,14 @@ end
 luz = [in.info.luz];
 lighttimes = abs(luz)*3600;
 
+
+%trimmed mean
+ window = 5;
+  fcn = @(x) trimmean(x,33);
+  obwtrim = matlab.tall.movingWindow(fcn, window, obw');
+  freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
+  temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
+  
  [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
 
   %low pass removes spikey-ness
