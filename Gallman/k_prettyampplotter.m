@@ -101,6 +101,8 @@ figure(31); clf; hold on;
         end
          plot(regtim/3600 - timcont(1), darkdy,'k-', 'LineWidth', 2);
 
+         ylabel('Rate of change');
+
 %         binwidth = 0.5;
 %         %ylim([0 100]);
 %         ylabel('Tube triggers per half hour');
