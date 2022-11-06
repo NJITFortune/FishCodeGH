@@ -65,18 +65,18 @@ lighttimes = k_lighttimes(in, lightstart);
 
   %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
-    xx = regtim(timidx);
+    lightxx = regtim(timidx);
    % obwyy = regobwpeaks(timidx);
-    obwyy = datadata(timidx); 
+    lightobwyy = datadata(timidx); 
   
-    freq = regfreq(timidx);
-    temp = regtemp(timidx);
+    lightfreq = regfreq(timidx);
+    lighttemp = regtemp(timidx);
 
 
     rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
-    timmy = timcont(rawidx);
-    obwAmp = obw(rawidx);
-    rawfreq = oldfreq(rawidx);
+    lighttimmy = timcont(rawidx);
+    lightobwAmp = obw(rawidx);
+    lightrawfreq = oldfreq(rawidx);
     rawtemp = oldtemp(rawidx);
 
 
@@ -86,7 +86,7 @@ lighttimes = k_lighttimes(in, lightstart);
     
         tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
     
-            if mean(temp(tempidx)) > mean(temp)
+            if mean(lighttemp(tempidx)) > mean(lighttemp)
                 tiz(j-1,:) = temptims(j-1);
                 hotter(j-1,:) = temptims(j-1);
             else
@@ -124,25 +124,25 @@ for j = 1:howmanydaysinsample
     
               %resampled data  
     %         % Get the index of the start time of the day
-                ddayidx = find(xx >= xx(1) + (j-1) * daylengthSECONDS & xx < xx(1) + j* daylengthSECONDS); % k-1 so that we start at zero
+                ddayidx = find(lightxx >= lightxx(1) + (j-1) * daylengthSECONDS & lightxx < lightxx(1) + j* daylengthSECONDS); % k-1 so that we start at zero
 
                 if length(ddayidx) >= howmanysamplesinaday %important so that we know when to stop
 
                     %amplitude data
-                    day(j).Sobwyy = obwyy(ddayidx);
+                    day(j).Sobwyy = lightobwyy(ddayidx);
                     %frequency data
-                    day(j).freq = freq(ddayidx);
+                    day(j).freq = lightfreq(ddayidx);
                     %temperature data
-                    day(j).temp = temp(ddayidx);
+                    day(j).temp = lighttemp(ddayidx);
                     %new time base from 0 the length of day by ReFS
                     day(j).tim = tim;
                     %old time base divided by day for plotting chronologically
-                    day(j).entiretimcont = xx(ddayidx);
+                    day(j).entiretimcont = lightxx(ddayidx);
                     %not sure why we need how long the day is in hours...
                     day(j).ld = in.info.ld;
                     %max amp of each day
-                    day(j).amprange = max(obwyy(ddayidx));
-                    day(j).ampmin = min(obwyy(ddayidx));
+                    day(j).amprange = max(lightobwyy(ddayidx));
+                    day(j).ampmin = min(lightobwyy(ddayidx));
                     
                 end
 
@@ -170,20 +170,20 @@ hotter = hotter*3600;
         
                   %resampled data  
         %         % Get the index of the start time of the day
-                    hdayidx = find(xx >= hotter(j) - (daylengthSECONDS/2) & xx <= hotter(j) +  (daylengthSECONDS/2));
+                    hdayidx = find(lightxx >= hotter(j) - (daylengthSECONDS/2) & lightxx <= hotter(j) +  (daylengthSECONDS/2));
                     if length(hdayidx) >= howmanysamplesinaday %important so that we know when to stop
     
-                        hotday(j).obw = obwyy(hdayidx);
+                        hotday(j).obw = lightobwyy(hdayidx);
     
-                        hotday(j).entiretimcont = xx(hdayidx);
+                        hotday(j).entiretimcont = lightxx(hdayidx);
     
-                        hotday(j).freq = freq(hdayidx);
+                        hotday(j).freq = lightfreq(hdayidx);
 
-                        hotday(j).temp = temp(hdayidx);
+                        hotday(j).temp = lighttemp(hdayidx);
                         
-                        hotday(j).tim(:) = xx(hdayidx)-xx(hdayidx(1));
+                        hotday(j).tim(:) = lightxx(hdayidx)-lightxx(hdayidx(1));
                         
-                        hotday(j).amprange = max(obwyy(hdayidx));
+                        hotday(j).amprange = max(lightobwyy(hdayidx));
                     
                         hotday(j).td = td;
                         
@@ -197,20 +197,20 @@ for j = 1:length(colder)
     
               %resampled data  
     %         % Get the index of the start time of the day
-                cdayidx = find(xx >= colder(j) - (daylengthSECONDS/2) & xx <= colder(j) +  (daylengthSECONDS/2));
+                cdayidx = find(lightxx >= colder(j) - (daylengthSECONDS/2) & lightxx <= colder(j) +  (daylengthSECONDS/2));
                 if length(cdayidx) >= howmanysamplesinaday %important so that we know when to stop
 
-                    coldday(j).obw = obwyy(cdayidx);
+                    coldday(j).obw = lightobwyy(cdayidx);
 
-                    coldday(j).entiretimcont = xx(cdayidx);
+                    coldday(j).entiretimcont = lightxx(cdayidx);
 
-                    coldday(j).freq = freq(cdayidx);
+                    coldday(j).freq = lightfreq(cdayidx);
 
-                    coldday(j).temp = temp(cdayidx);
+                    coldday(j).temp = lighttemp(cdayidx);
                     
-                    coldday(j).tim(:) = xx(cdayidx)-xx(cdayidx(1));
+                    coldday(j).tim(:) = lightxx(cdayidx)-lightxx(cdayidx(1));
                     
-                    coldday(j).amprange = max(obwyy(cdayidx));
+                    coldday(j).amprange = max(lightobwyy(cdayidx));
                 
                     coldday(j).td = td;
                     
@@ -236,7 +236,7 @@ figure(55); clf; hold on;
     xa(1) = subplot(211); hold on;
     
             %  plot(timmy/3600, obwAmp, '.');
-            plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+            plot(lighttimmy/3600, lightobwAmp-mean(lightobwAmp), '.');
             for j = 1:length(day)
                 plot(day(j).entiretimcont/3600, day(j).Sobwyy);
             end
@@ -259,7 +259,7 @@ figure(55); clf; hold on;
                 end
             end
 
-             plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+             plot(lighttimmy/3600, lightobwAmp-mean(lightobwAmp), '.');
             for j = 1:length(day)
                 plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
             end
@@ -275,7 +275,7 @@ cold = [204/255, 238/255, 255/255];
 
 
             %  plot(timmy/3600, obwAmp, '.');
-            plot(timmy/3600, rawfreq, '.');
+            plot(lighttimmy/3600, lightrawfreq, '.');
             for j = 1:length(day)
                 plot(day(j).entiretimcont/3600, day(j).freq);
             end
@@ -303,7 +303,7 @@ cold = [204/255, 238/255, 255/255];
             end
 
 
-             plot(timmy/3600, rawfreq, '.');
+             plot(lighttimmy/3600, lightrawfreq, '.');
 
             for j = 1:length(day)
                 plot(day(j).entiretimcont/3600, day(j).freq, 'LineWidth', 1.5);
@@ -354,7 +354,7 @@ figure(555); clf; hold on;
     xa(1) = subplot(211); hold on;
     
             %  plot(timmy/3600, obwAmp, '.');
-            plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+            plot(lighttimmy/3600, lightobwAmp-mean(lightobwAmp), '.');
             for j = 1:length(day)
                 plot(day(j).entiretimcont/3600, day(j).Sobwyy);
             end
@@ -377,7 +377,7 @@ figure(555); clf; hold on;
                 end
             end
 
-             plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+             plot(lighttimmy/3600, lightobwAmp-mean(lightobwAmp), '.');
                 for j = 1:length(hotday)
                     plot(hotday(j).entiretimcont/3600, hotday(j).obw, 'LineWidth', 2);
                 end     
@@ -395,7 +395,7 @@ cold = [204/255, 238/255, 255/255];
 
 
             %  plot(timmy/3600, obwAmp, '.');
-            plot(timmy/3600, rawfreq, '.');
+            plot(lighttimmy/3600, lightrawfreq, '.');
             for j = 1:length(day)
                 plot(day(j).entiretimcont/3600, day(j).freq);
             end
@@ -423,7 +423,7 @@ cold = [204/255, 238/255, 255/255];
             end
 
 
-             plot(timmy/3600, rawfreq, '.');
+             plot(lighttimmy/3600, lightrawfreq, '.');
 
             for j = 1:length(day)
                 plot(day(j).entiretimcont/3600, day(j).freq, 'LineWidth', 1.5);
