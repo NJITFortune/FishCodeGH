@@ -371,7 +371,7 @@ set(gcf, 'Renderer', 'painters');
     ylabel('Mean square amplitude');
     xlabel('Time (hours)');
 %% 
-figure(4566); clf ; hold on; title('hot to cold freq');ylim([370 580]);
+figure(4566); clf ; hold on; title('hot to cold freq');ylim([420 520]);
 set(gcf, 'Renderer', 'painters');
     for j = 1:length(hotday)
       %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
