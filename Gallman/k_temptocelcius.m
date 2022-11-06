@@ -2,7 +2,7 @@ function tempC = k_temptocelcius(tempV, R1)
 %clearvars -except kg kg2
 
 % in = kg(103);
-channel = 1;
+%channel = 1;
 
 %define input variables
 %tempV = [in.e(channel).s.temp];
