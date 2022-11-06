@@ -284,7 +284,7 @@ set(gcf, 'Renderer', 'painters');
 
 
 %average over single day    
-figure(533); clf; hold on; title('freq'); ylim([440 620]);
+figure(533); clf; hold on; title('freq'); ylim([480 580]);
 set(gcf, 'Renderer', 'painters');
     for j = 1:length(day)
            % plot(day(j).tim/3600, day(j).freq);
