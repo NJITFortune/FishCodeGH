@@ -206,8 +206,8 @@ hotter = [hotter(hotter>0)];
     tempfreqRaw = oldfreq(rawidx);
 
 %trim everything to lighttimes
-    timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
-    lightxx = regtim(timidx);
+    timidx = regobwtim >= lighttimes(1) & regobwtim <= lighttimes(end);
+    lightxx = regobwtim(timidx);
    % obwyy = regobwpeaks(timidx);
     lightobwyy = datadata(timidx); 
   
