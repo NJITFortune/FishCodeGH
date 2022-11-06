@@ -312,7 +312,7 @@ figure(533); clf; hold on; title('freq');
 
 %average over single day    
 figure(57); clf; hold on; title('temp'); ylim([24 30]);
-
+set(gcf, 'Renderer', 'painters');
 %     for j = 1:length(day)
 %             plot(day(j).tim/3600, day(j).temp);
 %            
