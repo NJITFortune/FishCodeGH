@@ -248,7 +248,7 @@ figure(55); clf; hold on;
     plot(xx/3600, obwyy);
 
 %average over single day    
-figure(57); clf; hold on; title('amp');
+figure(589); clf; hold on; title('amp');
 
     for j = 1:length(day)
             plot(day(j).tim/3600, day(j).Sobwyy);
@@ -279,7 +279,7 @@ figure(57); clf; hold on; title('amp');
             
             
 %average over single day    
-figure(57); clf; hold on; title('freq');
+figure(533); clf; hold on; title('freq');
 
     for j = 1:length(day)
             plot(day(j).tim/3600, day(j).freq);
@@ -329,7 +329,7 @@ figure(57); clf; hold on; title('temp');
     mday = zeros(1, length(day(1).tim));        
      for j = 1:length(day)
             plot(day(j).tim/3600, day(j).temp, 'LineWidth', 1);
-            tmeanday(j,:) = day(j).freq;
+            tmeanday(j,:) = day(j).temp;
           
      end
         
