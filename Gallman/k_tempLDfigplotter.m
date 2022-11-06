@@ -472,17 +472,17 @@ cold = [204/255, 238/255, 255/255];
             if  tiz(1) > 0 %we start with warming
                 for j = 1:length(temptims)-1
                     if mod(j,2) == 1 %if j is odd
-                fill([temptims(j) temptims(j) temptims(j+1) temptims(j+1)], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
+                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
                     else
-                fill([temptims(j) temptims(j) temptims(j+1) temptims(j+1)], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
+                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
                     end
                 end
             else
                 for j = 1:length(temptims)-1
                     if mod(j,2) == 1 %if j is odd
-                fill([temptims(j) temptims(j) temptims(j+1) temptims(j+1)], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
+                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
                     else
-                fill([temptims(j) temptims(j) temptims(j+1) temptims(j+1)], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
+                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
                     end
                 end
             end
