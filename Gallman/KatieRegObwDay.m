@@ -308,7 +308,7 @@ figure(533); clf; hold on; title('freq');
             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
 
-
+%%
 
 %average over single day    
 figure(57); clf; hold on; title('temp');
