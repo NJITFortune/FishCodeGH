@@ -349,7 +349,7 @@ figure(796); clf; title('amplitude over time');hold on;
 
     %% temp day sum
 
-figure(4566); clf ; hold on; title('hot to cold');ylim([-.04 .04]);
+figure(4566); clf ; hold on; title('hot to cold');ylim([-.4 .4]);
 set(gcf, 'Renderer', 'painters');
     for j = 1:length(hotday)
       %  plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
