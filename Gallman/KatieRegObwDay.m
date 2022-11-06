@@ -334,7 +334,7 @@ figure(57); clf; hold on; title('temp'); ylim([23 34]);
      end
         
             tmmday= mean(tmeanday);
-            tempC = k_temptocelcius(tmmday, 10000);
+            tempC = k_temptocelcius(tmmday, 11000);
             plot(day(1).tim/3600, tempC, 'k-', 'LineWidth', 3);
            
             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
