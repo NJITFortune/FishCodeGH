@@ -423,18 +423,25 @@ set(gcf, 'Renderer', 'painters');
  figure(4567); clf ; hold on;
 
     for j = 1:length(coldday)
-        plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+       % plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
         colds(j,:) = coldday(j).obw;
     end  
-    
-    a = ylim;
-    fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], cold);
-    fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], hot );
+%     
+%     a = ylim;
+%     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], cold);
+%     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], hot );
 
     coldmean = mean(colds);
 
-    for j = 1:length(hotday)
-        plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
-    end  
+%     for j = 1:length(hotday)
+%         plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+%     end  
 
-    plot(coldday(1).tim/3600, coldmean, 'k-','LineWidth', 3 );
+    plot(coldday(1).tim/3600, coldmean, 'Color', cold,'LineWidth', 3 );
+
+
+
+
+
+
+
