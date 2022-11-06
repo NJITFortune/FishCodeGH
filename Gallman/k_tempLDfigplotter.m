@@ -134,6 +134,8 @@ for j = 1:howmanydaysinsample
 
  end
 
+%% Divide sample into temperature days
+
 
 %% plot based on daylight - for cycles
 
