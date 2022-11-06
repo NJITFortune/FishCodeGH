@@ -528,4 +528,22 @@ figure(55); clf; hold on;
 linkaxes(xa, 'x');           
 
 
+%% temp day sum
 
+figure(4566); clf ; hold on;
+
+    for j = 1:length(hotday)
+        plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
+        hots(j,:) = hotday(j).obw;
+    end  
+
+    fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], hot);
+    fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], cold );
+
+    hotmean = mean(hots);
+
+    for j = 1:length(hotday)
+        plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
+    end  
+
+    plot(hotday(1).tim, hotmean, 'k-','LineWidth', 2 );
