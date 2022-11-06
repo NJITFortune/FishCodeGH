@@ -53,3 +53,4 @@ lighttimes = k_lighttimes(in, light);
 %Regularize
     %regularize data to ReFs interval
     [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
+ 
