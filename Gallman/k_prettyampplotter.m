@@ -88,7 +88,14 @@ figure(31); clf; hold on;
     
     ax(2) = subplot(212); hold on; xlim([0, timcont(end)-timcont(1)]);
 
-    
+
+
+        darkdy = gradient(regobwpeaks)./gradient(regtim);
+
+        plot(regtim/3600 - timcont(1), darkdy,'k-', 'LineWidth', 2)
+
+        
+
 %         binwidth = 0.5;
 %         %ylim([0 100]);
 %         ylabel('Tube triggers per half hour');
