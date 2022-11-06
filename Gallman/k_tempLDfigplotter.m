@@ -419,7 +419,7 @@ figure(796); clf; title('amplitude over time');hold on;
 %%    
 figure(55); clf; hold on;
 
-    xa(1) = subplot(311); hold on;
+    xa(1) = subplot(411); hold on;
     
             %  plot(timmy/3600, obwAmp, '.');
             plot(lighttimmy/3600, lightobwAmp, '.');
@@ -451,7 +451,7 @@ figure(55); clf; hold on;
             end
             
            
-    xa(2) = subplot(312); hold on;
+    xa(2) = subplot(412); hold on;
     
             plot(tempxx/3600, tempobwyy);
             
@@ -484,7 +484,11 @@ figure(55); clf; hold on;
             
 
 
-    xa(3) = subplot(313); hold on;
+    xa(3) = subplot(413); hold on;
+
+        
+            
+     xa(4) = subplot(414); hold on;
 
         hot = [255/255, 204/255, 204/255];
         cold = [204/255, 238/255, 255/255];
@@ -520,9 +524,7 @@ figure(55); clf; hold on;
             
                 for j = 1:length(coldday)
                     plot(coldday(j).entiretimcont/3600, coldday(j).obw, 'LineWidth', 2);
-                end   
-            
-           
+                end    
             
           
 linkaxes(xa, 'x');           
