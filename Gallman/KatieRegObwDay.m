@@ -249,9 +249,10 @@ figure(55); clf; hold on;
 %%
 %average over single day    
 figure(589); clf; hold on; title('amp');
-
+set(gcf, 'Renderer', 'painters');
+ clrs = k_colormefriendly;
     for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).Sobwyy);
+            %plot(day(j).tim/3600, day(j).Sobwyy);
            
      end
  a = ylim;
@@ -263,21 +264,23 @@ figure(589); clf; hold on; title('amp');
     end
     
     %mean two ways to prove math
-    mday = zeros(1, length(day(1).tim));        
+   
      for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).Sobwyy);
+            %plot(day(j).tim/3600, day(j).Sobwyy);
             meanday(j,:) = day(j).Sobwyy;
           
      end
         
             mmday= mean(meanday);
             
-            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
+            plot(day(1).tim/3600, mmday, 'Color', colrs(7,:), 'LineWidth', 3);
            
             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
             
  %%           
+
+
 %average over single day    
 figure(533); clf; hold on; title('freq'); ylim([440 620]);
 set(gcf, 'Renderer', 'painters');
