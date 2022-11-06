@@ -211,7 +211,7 @@ hotter = [hotter(hotter>0)];
    % obwyy = regobwpeaks(timidx);
     lightobwyy = datadata(timidx); 
   
-    lightfreq = regfreq(timidx);
+    lightfreq = regobwfreq(timidx);
     lighttemp = regtemp(timidx);
 
 
