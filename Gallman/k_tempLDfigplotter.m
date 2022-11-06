@@ -136,8 +136,6 @@ for j = 1:howmanydaysinsample
 %% plot based on daylight - for cycles
 
 % %fill colors for plotting
-hot = [255/255, 204/255, 204/255];
-cold = [204/255, 238/255, 255/255];
 
 figure(55); clf; hold on;
 
@@ -177,6 +175,8 @@ figure(55); clf; hold on;
 
     xa(2) = subplot(212); hold on;
 
+hot = [255/255, 204/255, 204/255];
+cold = [204/255, 238/255, 255/255];
 
 
             %  plot(timmy/3600, obwAmp, '.');
