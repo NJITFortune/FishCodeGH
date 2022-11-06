@@ -89,11 +89,15 @@ figure(31); clf; hold on;
     ax(2) = subplot(212); hold on; xlim([0, timcont(end)-timcont(1)]);
 
 
-
+        
         darkdy = gradient(regobwpeaks)./gradient(regtim);
-
+        a = ylim;
         plot(regtim/3600 - timcont(1), darkdy,'k-', 'LineWidth', 2)
-
+         for j = 1:length(lighttimes)-1
+            if mod(j,2) == 1 %if j is odd
+            fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
+            end
+        end
         
 
 %         binwidth = 0.5;
