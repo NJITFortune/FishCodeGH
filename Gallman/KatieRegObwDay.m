@@ -135,7 +135,7 @@ end
                [dd,cc] = butter(5, lowWn, 'low');
 
         datadata = filtfilt(dd,cc, double(regobwpeaks)); %low pass
-       % datadata = filtfilt(bb,aa, datadata); %high pass
+        datadata = filtfilt(bb,aa, datadata); %high pass
 
         else
         %stronger low pass filter for lower frequency experiments 
@@ -148,8 +148,8 @@ end
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
-    obwyy = regobwpeaks(timidx);
-  %  obwyy = datadata(timidx); 
+  %  obwyy = regobwpeaks(timidx);
+    obwyy = datadata(timidx); 
    % obwyy = obwyy-mean(obwyy);
     freq = regfreq(timidx);
     temp = regtemp(timidx);
