@@ -437,7 +437,7 @@ set(gcf, 'Renderer', 'painters');
 %         plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
 %     end  
 
-    plot(coldday(1).tim/3600, coldmean, 'Color', cold,'LineWidth', 3 );
+    plot(coldday(1).tim/3600, coldmean, 'Color', hot,'LineWidth', 3 );
 
  xline(td/2, 'k', 'LineWidth', 3);
 
