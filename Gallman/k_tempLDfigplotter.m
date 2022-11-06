@@ -536,7 +536,7 @@ figure(4566); clf ; hold on;
         plot(hotday(j).tim/3600, hotday(j).obw, 'LineWidth', 1);
         hots(j,:) = hotday(j).obw;
     end  
-
+    
     a = ylim;
     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], hot);
     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], cold );
