@@ -248,7 +248,7 @@ figure(55); clf; hold on;
     plot(xx/3600, obwyy);
 %%
 %average over single day    
-figure(589); clf; hold on; title('amp');
+figure(589); clf; hold on; title('amp'); ylim([-.4 .4]);
 set(gcf, 'Renderer', 'painters');
  clrs = k_colormefriendly;
     for j = 1:length(day)
