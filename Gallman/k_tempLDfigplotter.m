@@ -583,7 +583,7 @@ figure(57); clf; hold on;
         end
         a = ylim;
     %create fill box 
-    if light < 4 %we start with dark
+    if lightstart < 4 %we start with dark
         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
     else %we start with light
         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
