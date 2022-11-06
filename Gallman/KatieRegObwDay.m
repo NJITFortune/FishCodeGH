@@ -340,6 +340,8 @@ figure(57); clf; hold on; title('temp'); ylim([23 30]);
             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
 
+            ylabel('degrees Celcius');
+            xlabel('Time (hours)');
 %%
 %days over experiment time
 figure(58967); clf; hold on;
