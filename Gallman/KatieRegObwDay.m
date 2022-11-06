@@ -14,7 +14,7 @@
 % % % % % 
 in = hkg(k);
 ReFs = 20;
-light = 3; %start with dark
+lightstart = 3; %start with dark
 channel = 1;
 
 %light = 4; %start with light
@@ -36,14 +36,14 @@ if in.info.luz(1) < 0
     %fit light vector to power idx
         %poweridx = good data
     if isempty(poweridx) %if there are no values in poweridx []
-        if light < 4
+        if lightstart < 4
         lighttimes = lighttimeslong;
         else
         lighttimes = lighttimeslong(2:end);
         end
     else %take data from within power idx range
 
-        if light < 4 %we start with dark
+        if lightstart < 4 %we start with dark
             lighttimesidx = lighttimeslong > poweridx(1) & lighttimeslong < poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         else %we start with light
@@ -57,14 +57,14 @@ if in.info.luz(1) < 0
 else %we start with light
     lighttimeslong = lighttimeslong(2:end);
     if isempty(poweridx) %if there are no values in poweridx []
-        if light < 4
+        if lightstart < 4
         lighttimes = lighttimeslong;
         else
         lighttimes = lighttimeslong(2:end);
         end
     else %take data from within power idx range
 
-        if light < 4 %we start with dark
+        if lightstart < 4 %we start with dark
             lighttimesidx = lighttimeslong > poweridx(1) & lighttimeslong < poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         else %we start with light
@@ -226,7 +226,7 @@ figure(55); clf; hold on;
    % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
    
     a = ylim; %all of above is just to get the max for the plot lines...
-    if light < 4 %the first lighttime is dark
+    if lightstart < 4 %the first lighttime is dark
         for j = 1:length(lighttimes)-1
             if mod(j,2) == 1 %if j is odd
             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
@@ -256,7 +256,7 @@ figure(589); clf; hold on; title('amp');
      end
  a = ylim;
     %create fill box 
-    if light < 4 %we start with dark
+    if lightstart < 4 %we start with dark
         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
     else %we start with light
         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
@@ -287,7 +287,7 @@ figure(533); clf; hold on; title('freq');
      end
  a = ylim;
     %create fill box 
-    if light < 4 %we start with dark
+    if lightstart < 4 %we start with dark
         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
     else %we start with light
         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
@@ -319,7 +319,7 @@ figure(57); clf; hold on; title('temp');
      end
  a = ylim;
     %create fill box 
-    if light < 4 %we start with dark
+    if lightstart < 4 %we start with dark
         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
     else %we start with light
         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
@@ -354,7 +354,7 @@ figure(58967); clf; hold on;
    % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
    
     a = ylim; %all of above is just to get the max for the plot lines...
-    if light < 4 %the first lighttime is dark
+    if lightstart < 4 %the first lighttime is dark
         for j = 1:length(lighttimes)-1
             if mod(j,2) == 1 %if j is odd
             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
