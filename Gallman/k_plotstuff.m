@@ -2,7 +2,7 @@
 % plot the data for fun
 % Usage: k_initialplotter(kg(#));
 %close all;
-
+%[pks, locs] = findpeaks(datadata, regtim, 'MinPeakProminence',.05);
 
 in = xxkg(k);
 %% Preparations
