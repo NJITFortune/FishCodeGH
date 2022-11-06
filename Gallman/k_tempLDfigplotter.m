@@ -1,18 +1,30 @@
-%function k_tempLDfigplotter(in, channel)
-%channel = 1,2 singlefish
-%channel = 3 multifish
-
-%no function
-clearvars -except k hkg hkg2 xxkg xxkg2 cold hot coldmulti hot multi dark dark multi light lightmulti
+%function [hotday, coldday] = KatieRegobwTempDay(in, channel, ReFs, td)%multisingleRegobwDay
+%light is a label for whether the subjective day starts with light or with dark
+    %starts with dark = 3
+    %starts with light = 4
+ heat = 8;
+% 
+% %for when i'm too lazy to function
+clearvars -except xxkg hkg k xxkg2 hkg2 kg2
+% % % 
 in = xxkg(k);
-channel = 1;
-lightstart = 3;
-td = 7;
-
-%% data prep
 ReFs = 20;
 heat = 8;
+channel = 1;
+td = 7;
+
+% light = 4; %start with light
+% fish = 5; %lo freq
+
+%heat
+    %7 starts with cooling
+    %8 starts with warming
+
+%% crop data to temptimes
+%define variables
 temptims = sort([in.info.temptims]);
+poweridx = [in.info.poweridx];
+%prepare data variables
 
 if channel < 3 %single fish
     %outlier removal
@@ -39,31 +51,160 @@ else %multifish
 end
 
 lighttimes = k_lighttimes(in, lightstart);
+  
 
-  %trimmed mean
+%%
+
+if isempty(poweridx) %if there are no values in poweridx []
+
+    for j = 2:length(temptims)
+    
+    tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
+
+        if mean(temp(tempidx)) > mean(temp)
+            tiz(j-1,:) = temptims(j-1);
+            hotter(j-1,:) = temptims(j-1);
+        else
+            tiz(j-1,:) = -temptims(j-1);
+            colder(j-1,:) = temptims(j-1);
+        end
+
+    end  
+
+      if heat == 7 && tiz(1) > 0 %we want start with cooling and the experiment starts with warming
+        temptims = temptims(2:end); %skip the first temptim so we start with cooling
+        tiz = tiz(2:end); hotter = hotter(2:end);
+      elseif heat == 8 && tiz(1) < 0 %we want start with warming and the experiment starts with cooling
+        temptims = temptims(2:end); %skip the first temptim so we start with cooling
+        tiz = tiz(2:end); colder = colder(2:end);
+      end
+
+else %we have poweridx values
+
+    %take data from within power idx range
+    temptimsidx = find(temptims > poweridx(1) & temptims < poweridx(2));
+    temptims = temptims(temptimsidx);
+    
+       
+            for j = 2:length(temptims)
+            
+            tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
+        
+                if mean(temp(tempidx)) > mean(temp)
+                    tiz(j-1,:) = temptims(j-1);
+                    hotter(j-1,:) = temptims(j-1);
+                else
+                    tiz(j-1,:) = -temptims(j-1);
+                    colder(j-1,:) = temptims(j-1);
+                end
+        
+            end
+
+  
+      if heat == 7 && tiz(1) > 0 %we want start with cooling and the experiment starts with warming
+        temptims = temptims(2:end); %skip the first temptim so we start with cooling
+        tiz = tiz(2:end); hotter = hotter(2:end);
+      elseif heat == 8 && tiz(1) < 0 %we want start with warming and the experiment starts with cooling
+        temptims = temptims(2:end); %skip the first temptim so we start with cooling
+        tiz = tiz(2:end);colder = colder(2:end);
+      end
+
+end
+
+%make temptims an integer
+    %convert to seconds because xx is in seconds
+    temptims = floor(temptims)*3600;
+%% calculate duration of tempdays
+colder = [colder(colder>0)];
+hotter = [hotter(hotter>0)];
+
+
+    if timcont(1)/3600 > (temptims(1)/3600 -td/2)
+        temptims = temptims(2:end);
+        if tiz(1) > 0
+            hotter = hotter(2:end);
+        else
+            colder = colder(2:end);
+        end
+    end
+
+
+
+   
+
+%% Define temp day length
+
+ %day
+    daylengthSECONDS = td * 3600;  
+   
+    % This is the number of data samples in a day
+    howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
+    %how many days in total experiment
+   
+
+%% process data
+
+% %Take top of dataset
+%     %find peaks
+%     [~,LOCS] = findpeaks(obw);
+%     %find peaks of the peaks
+%     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
+%     peaktim = timcont(LOCS(cLOCS));
+%     peakfreq = fishfreq(LOCS(cLOCS));
+%     peaktemp = temp(LOCS(cLOCS));
+%     
+% %Regularize
+%     %regularize data to ReFs interval
+%     [regobwtim, regobwfreq, regtemp, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp,ReFs, temptims);
+    
+%trimmed mean
  window = 5;
   fcn = @(x) trimmean(x,33);
   obwtrim = matlab.tall.movingWindow(fcn, window, obw');
-  freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
-  temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
+  freqtrim = matlab.tall.movingWindow(fcn, window, fishfreq');
+  temptrim = matlab.tall.movingWindow(fcn, window, temp');
 
-  %regularize data to ReFs interval
-    [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
- 
-    %filter
     
-     highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
-         [bb,aa] = butter(5, highWn, 'high');
+    
+%Regularize
+    %regularize data to ReFs interval
+    [regobwtim, regobwfreq, regtemp, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, temptims);
 
-    lowWn = 0.1/(ReFs/2);
+     %filter data
+        %cut off frequency
+         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+        %highWn = 0.001/(ReFs/2);
+
+        %low pass removes spikey-ness
+        lowWn = 0.025/(ReFs/2);
         [dd,cc] = butter(5, lowWn, 'low');
+        datadata = filtfilt(dd,cc, double(regobwpeaks));
        
 
-        datadata = filtfilt(dd,cc, double(regobwpeaks)); %low pass
-        datadata = filtfilt(bb,aa, datadata); %high pass
+        %high pass removes feeding trend for high frequency experiments
+
+        [bb,aa] = butter(5, highWn, 'high');
+        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
+        
+ %trim everything to temptims
 
 
-  %trim everything to lighttimes
+    %amp
+    timidx = regobwtim >= temptims(1)-daylengthSECONDS & regobwtim <= temptims(end)+daylengthSECONDS;
+    tempxx = regobwtim(timidx);
+    %obwyy = regobwpeaks(timidx);  
+    tempobwyy = datadata(timidx); 
+    tempfreq = regobwfreq(timidx);  
+    temptemp = regtemp(timidx);
+ 
+
+
+    rawidx = timcont >= temptims(1)-daylengthSECONDS/2 & timcont <= temptims(end)+daylengthSECONDS/2;
+    temptimmy = timcont(rawidx);
+    tempobwAmp = obw(rawidx);
+    tempfreqRaw = fishfreq(rawidx);
+
+%trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     lightxx = regtim(timidx);
    % obwyy = regobwpeaks(timidx);
@@ -80,29 +221,65 @@ lighttimes = k_lighttimes(in, lightstart);
     rawtemp = oldtemp(rawidx);
 
 
-     temptims = temptims(temptims >= lighttimes(1)/3600 & temptims <= lighttimes(end)/3600);
-      
-        for j = 2:length(temptims)
+%% Divide sample into half day temp transitions
+
+% needs to be in seconds
+%refstim = ReFs:ReFs:(shortest)*3600;
+
+%hotter (colder to hotter tranistions)
+hotter = hotter*3600;
+
+    for j = 1:length(hotter)
+        
+                  %resampled data  
+        %         % Get the index of the start time of the day
+                    hdayidx = find(tempxx >= hotter(j) - (daylengthSECONDS/2) & tempxx <= hotter(j) +  (daylengthSECONDS/2));
+                    if length(hdayidx) >= howmanysamplesinaday %important so that we know when to stop
     
-        tempidx = find(timcont/3600 >= temptims(j-1) & timcont/3600 < temptims(j));
+                        hotday(j).obw = tempobwyy(hdayidx);
     
-            if mean(lighttemp(tempidx)) > mean(lighttemp)
-                tiz(j-1,:) = temptims(j-1);
-                hotter(j-1,:) = temptims(j-1);
-            else
-                tiz(j-1,:) = -temptims(j-1);
-                colder(j-1,:) = temptims(j-1);
-            end
+                        hotday(j).entiretimcont = tempxx(hdayidx);
     
-        end  
+                        hotday(j).freq = tempfreq(hdayidx);
+
+                        hotday(j).temp = temptemp(hdayidx);
+                        
+                        hotday(j).tim(:) = tempxx(hdayidx)-tempxx(hdayidx(1));
+                        
+                        hotday(j).amprange = max(tempobwyy(hdayidx));
+                    
+                        hotday(j).td = td;
+                        
     
-          if heat == 7 && tiz(1) > 0 %we want start with cooling and the experiment starts with warming
-            temptims = temptims(2:end); %skip the first temptim so we start with cooling
-            tiz = tiz(2:end); hotter = hotter(2:end);
-          elseif heat == 8 && tiz(1) < 0 %we want start with warming and the experiment starts with cooling
-            temptims = temptims(2:end); %skip the first temptim so we start with cooling
-            tiz = tiz(2:end); colder = colder(2:end);
-          end
+                    end
+    end
+
+%colder (hotter to colder tranistions)
+colder = colder*3600;
+for j = 1:length(colder)
+    
+              %resampled data  
+    %         % Get the index of the start time of the day
+                cdayidx = find(tempxx >= colder(j) - (daylengthSECONDS/2) & tempxx <= colder(j) +  (daylengthSECONDS/2));
+                if length(cdayidx) >= howmanysamplesinaday %important so that we know when to stop
+
+                    coldday(j).obw = tempobwyy(cdayidx);
+
+                    coldday(j).entiretimcont = tempxx(cdayidx);
+
+                    coldday(j).freq = tempfreq(cdayidx);
+
+                    coldday(j).temp = temptemp(cdayidx);
+                    
+                    coldday(j).tim(:) = tempxx(cdayidx)-tempxx(cdayidx(1));
+                    
+                    coldday(j).amprange = max(tempobwyy(cdayidx));
+                
+                    coldday(j).td = td;
+                    
+
+                end
+end
 
 ld = floor(lighttimes(2)/3600 -lighttimes(1)/3600);
 
@@ -116,7 +293,7 @@ ld = floor(lighttimes(2)/3600 -lighttimes(1)/3600);
     howmanydaysinsample = (floor(lengthofsampleHOURS / (ld*2)));
 
 
-%% Divide sample into days based on light
+%Divide sample into days based on light
 % needs to be in seconds
 tim = ReFs:ReFs:(ld*2)*3600;
 
@@ -148,90 +325,95 @@ for j = 1:howmanydaysinsample
 
  end
 
-%% Divide sample into temperature days
-% calculate duration of tempdays
-colder = [colder(colder>0)];
-hotter = [hotter(hotter>0)];
 
 
-    if timcont(1)/3600 > (temptims(1)/3600 -td/2)
-        temptims = temptims(2:end);
-        if tiz(1) > 0
-            hotter = hotter(2:end);
-        else
-            colder = colder(2:end);
-        end
-    end
+%% plot to check
+%time vectors currently in seconds, divide by 3600 to get hours
 
+%fill colors for plotting
+hot = [255/255, 204/255, 204/255];
+cold = [204/255, 238/255, 255/255];
 
-hotter = hotter*3600;
+%days over experiment time
+figure(795); clf; title('frequency over time');hold on;
 
-    for j = 1:length(hotter)
-        
-                  %resampled data  
-        %         % Get the index of the start time of the day
-                    hdayidx = find(lightxx >= hotter(j) - (daylengthSECONDS/2) & lightxx <= hotter(j) +  (daylengthSECONDS/2));
-                    if length(hdayidx) >= howmanysamplesinaday %important so that we know when to stop
+    %get ylim
+    plot(temptimmy/3600, tempfreqRaw, '.');
+    plot(tempxx/3600, tempfreq);
     
-                        hotday(j).obw = lightobwyy(hdayidx);
-    
-                        hotday(j).entiretimcont = lightxx(hdayidx);
-    
-                        hotday(j).freq = lightfreq(hdayidx);
 
-                        hotday(j).temp = lighttemp(hdayidx);
-                        
-                        hotday(j).tim(:) = lightxx(hdayidx)-lightxx(hdayidx(1));
-                        
-                        hotday(j).amprange = max(lightobwyy(hdayidx));
-                    
-                        hotday(j).td = td;
-                        
-    
-                    end
-    end
+    %draw boxes
+     freqlim = ylim; %all of above is just to get the max for the plot lines...
 
-%colder (hotter to colder tranistions)
-colder = colder*3600;
-for j = 1:length(colder)
-    
-              %resampled data  
-    %         % Get the index of the start time of the day
-                cdayidx = find(lightxx >= colder(j) - (daylengthSECONDS/2) & lightxx <= colder(j) +  (daylengthSECONDS/2));
-                if length(cdayidx) >= howmanysamplesinaday %important so that we know when to stop
-
-                    coldday(j).obw = lightobwyy(cdayidx);
-
-                    coldday(j).entiretimcont = lightxx(cdayidx);
-
-                    coldday(j).freq = lightfreq(cdayidx);
-
-                    coldday(j).temp = lighttemp(cdayidx);
-                    
-                    coldday(j).tim(:) = lightxx(cdayidx)-lightxx(cdayidx(1));
-                    
-                    coldday(j).amprange = max(lightobwyy(cdayidx));
-                
-                    coldday(j).td = td;
-                    
-
+        if  tiz(1) > 0 %we start with warming
+            for j = 1:length(temptims)-1
+                if mod(j,2) == 1 %if j is odd
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
+                else
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
                 end
-end
+            end
+        else
+            for j = 1:length(temptims)-1
+                if mod(j,2) == 1 %if j is odd
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
+                else
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
+                end
+            end
+        end
+
+        %actual plotting starts here
+
+         plot(temptimmy/3600, tempfreqRaw, '.');
+         plot(tempxx/3600, tempfreq);
+  
+         for j = 1:length(hotday)
+          plot(hotday(j).entiretimcont/3600, hotday(j).freq, 'LineWidth',2);
+         end
+
+         for j = 1:length(coldday)
+          plot(coldday(j).entiretimcont/3600, coldday(j).freq,'LineWidth',2);
+         end
+%%
+  %days over experiment time
+figure(796); clf; title('amplitude over time');hold on;
+
+    plot(temptimmy/3600, tempobwAmp, '.');
+    plot(tempxx/3600, tempobwyy);
+    
    
+     amplim = ylim; %all of above is just to get the max for the plot lines...
 
-%% Define temp day length
+        if  tiz(1) > 0 %we start with warming
+            for j = 1:length(temptims)-1
+                if mod(j,2) == 1 %if j is odd
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
+                else
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
+                end
+            end
+        else
+            for j = 1:length(temptims)-1
+                if mod(j,2) == 1 %if j is odd
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], cold);
+                else
+            fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [amplim(1) amplim(2) amplim(2) amplim(1)], hot);
+                end
+            end
+        end
+    
+     %actual plotting of datums
+     plot(temptimmy/3600, tempobwAmp, '.');
+     plot(tempxx/3600, tempobwyy);
+    for j = 1:length(hotday)
+        plot(hotday(j).entiretimcont/3600, hotday(j).obw, 'LineWidth', 2);
+    end     
 
- %day
-    daylengthSECONDS = td * 3600;  
-   
-    % This is the number of data samples in a day
-    howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
-
-%% plot based on daylight - for cycles
-
-% %fill colors for plotting
-
-figure(55); clf; hold on;
+    for j = 1:length(coldday)
+        plot(coldday(j).entiretimcont/3600, coldday(j).obw, 'LineWidth', 2);
+    end   
+  %%figure(55); clf; hold on;
 
     xa(1) = subplot(211); hold on;
     
@@ -311,126 +493,3 @@ cold = [204/255, 238/255, 255/255];
             
           
 linkaxes(xa, 'x');           
-
-
-
-%%
-
-
-figure(57); clf; hold on; 
-
- 
-    %create fill box 
-    if lightstart < 4 %we start with dark
-        fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-    else %we start with light
-        fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-    end
-    
-    %mean two ways to prove math
-    mday = zeros(1, length(day(1).tim));        
-     for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).Sobwyy);
-            meanday(j,:) = day(j).Sobwyy;
-            mday = mday + day(j).Sobwyy;
-            
-     end
-        
-            mmday= mean(meanday);
-            %othermday = mday/(length(day));
-            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
-           
-            %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-            plot([ld ld], ylim, 'k-', 'LineWidth', 3);
-            
-            
-
-  
-
-
-%%
-figure(555); clf; hold on;
-
-    xa(1) = subplot(211); hold on;
-    
-            %  plot(timmy/3600, obwAmp, '.');
-            plot(lighttimmy/3600, lightobwAmp-mean(lightobwAmp), '.');
-            for j = 1:length(day)
-                plot(day(j).entiretimcont/3600, day(j).Sobwyy);
-            end
-            
-            
-            % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
-            
-            a = ylim; %all of above is just to get the max for the plot lines...
-            if lightstart < 4 %the first lighttime is dark
-                for j = 1:length(lighttimes)-1
-                    if mod(j,2) == 1 %if j is odd
-                        fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-                    end
-                end
-            else %the second lighttime is dark
-                for j = 1:length(lighttimes)-1
-                    if mod(j,2) == 0 %if j is even
-                        fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-                    end
-                end
-            end
-
-             plot(lighttimmy/3600, lightobwAmp-mean(lightobwAmp), '.');
-                for j = 1:length(hotday)
-                    plot(hotday(j).entiretimcont/3600, hotday(j).obw, 'LineWidth', 2);
-                end     
-            
-                for j = 1:length(coldday)
-                    plot(coldday(j).entiretimcont/3600, coldday(j).obw, 'LineWidth', 2);
-                end   
-  
-
-
-    xa(2) = subplot(212); hold on;
-
-hot = [255/255, 204/255, 204/255];
-cold = [204/255, 238/255, 255/255];
-
-
-            %  plot(timmy/3600, obwAmp, '.');
-            plot(lighttimmy/3600, lightrawfreq, '.');
-            for j = 1:length(day)
-                plot(day(j).entiretimcont/3600, day(j).freq);
-            end
-            
-            
-            % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
-            
-            freqlim = ylim; %all of above is just to get the max for the plot lines...
-            if  tiz(1) > 0 %we start with warming
-                for j = 1:length(temptims)-1
-                    if mod(j,2) == 1 %if j is odd
-                fill([temptims(j) temptims(j) temptims(j+1) temptims(j+1)], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
-                    else
-                fill([temptims(j) temptims(j) temptims(j+1) temptims(j+1)], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
-                    end
-                end
-            else
-                for j = 1:length(temptims)-1
-                    if mod(j,2) == 1 %if j is odd
-                fill([temptims(j) temptims(j) temptims(j+1) temptims(j+1)], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
-                    else
-                fill([temptims(j) temptims(j) temptims(j+1) temptims(j+1)], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
-                    end
-                end
-            end
-
-
-             plot(lighttimmy/3600, lightrawfreq, '.');
-
-            for j = 1:length(day)
-                plot(day(j).entiretimcont/3600, day(j).freq, 'LineWidth', 1.5);
-            end
-            
-          
-linkaxes(xa, 'x');         
-
-
-
