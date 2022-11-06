@@ -36,7 +36,7 @@ else %multifish
 
 end
 
-lighttimes = k_lighttimes(in, light);
+lighttimes = k_lighttimes(in, lightstart);
 
   %trimmed mean
  window = 5;
