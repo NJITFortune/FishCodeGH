@@ -367,7 +367,7 @@ figure(4566); clf ; hold on; title('hot to cold');ylim([-.4 .4]);
     end  
 
     plot(hotday(1).tim/3600, hotmean, 'Color', hot,'LineWidth', 3 );
-    
+    xline(td/2, 'k')
 
 %%
 
