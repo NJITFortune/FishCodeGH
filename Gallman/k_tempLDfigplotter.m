@@ -139,7 +139,7 @@ for j = 1:howmanydaysinsample
 
 figure(55); clf; hold on;
 
-    xa(1) = subplot(211); hold on;
+  %  xa(1) = subplot(211); hold on;
     
             %  plot(timmy/3600, obwAmp, '.');
             plot(timmy/3600, obwAmp-mean(obwAmp), '.');
@@ -172,50 +172,50 @@ figure(55); clf; hold on;
             plot(timmy/3600, obwAmp-mean(obwAmp), '.');
             plot(xx/3600, obwyy);
 
-
-    xa(2) = subplot(212); hold on;
-
-hot = [255/255, 204/255, 204/255];
-cold = [204/255, 238/255, 255/255];
-
-
-            %  plot(timmy/3600, obwAmp, '.');
-            plot(timmy/3600, rawfreq, '.');
-            for j = 1:length(day)
-                plot(day(j).entiretimcont/3600, day(j).freq);
-            end
-            
-            
-            % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
-            
-            freqlim = ylim; %all of above is just to get the max for the plot lines...
-            if  tiz > 0 %we start with warming
-                for j = 1:length(temptims)-1
-                    if mod(j,2) == 1 %if j is odd
-                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
-                    else
-                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
-                    end
-                end
-            else
-                for j = 1:length(temptims)-1
-                    if mod(j,2) == 1 %if j is odd
-                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
-                    else
-                fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
-                    end
-                end
-            end
-
-
-             plot(timmy/3600, rawfreq, '.');
-
-            for j = 1:length(day)
-                plot(day(j).entiretimcont/3600, day(j).freq, 'LineWidth', 1.5);
-            end
-            
-          
-linkaxes(xa, 'x');           
+% 
+%     xa(2) = subplot(212); hold on;
+% 
+% hot = [255/255, 204/255, 204/255];
+% cold = [204/255, 238/255, 255/255];
+% 
+% 
+%             %  plot(timmy/3600, obwAmp, '.');
+%             plot(timmy/3600, rawfreq, '.');
+%             for j = 1:length(day)
+%                 plot(day(j).entiretimcont/3600, day(j).freq);
+%             end
+%             
+%             
+%             % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+%             
+%             freqlim = ylim; %all of above is just to get the max for the plot lines...
+%             if  tiz > 0 %we start with warming
+%                 for j = 1:length(temptims)-1
+%                     if mod(j,2) == 1 %if j is odd
+%                 fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
+%                     else
+%                 fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
+%                     end
+%                 end
+%             else
+%                 for j = 1:length(temptims)-1
+%                     if mod(j,2) == 1 %if j is odd
+%                 fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], cold);
+%                     else
+%                 fill([temptims(j)/3600 temptims(j)/3600 temptims(j+1)/3600 temptims(j+1)/3600], [freqlim(1) freqlim(2) freqlim(2) freqlim(1)], hot);
+%                     end
+%                 end
+%             end
+% 
+% 
+%              plot(timmy/3600, rawfreq, '.');
+% 
+%             for j = 1:length(day)
+%                 plot(day(j).entiretimcont/3600, day(j).freq, 'LineWidth', 1.5);
+%             end
+%             
+%           
+% linkaxes(xa, 'x');           
 
 
 
