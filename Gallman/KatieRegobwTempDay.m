@@ -470,7 +470,7 @@ set(gcf, 'Renderer', 'painters');
  ylabel('Frequency (Hz)');
     xlabel('Time (hours)');
 %% 
-figure(4567); clf ; hold on; title('cold to hot temp'); %ylim([415 515]) %ylim([-.4 .4]);%ylim([-0.08 .06]);
+figure(4567); clf ; hold on; title('cold to hot temp');ylim([25 31]); %ylim([415 515]) %ylim([-.4 .4]);%ylim([-0.08 .06]);
 set(gcf, 'Renderer', 'painters');
     for j = 1:length(coldday)
        % plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
