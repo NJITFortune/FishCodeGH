@@ -5,7 +5,7 @@
 %no function
 clearvars -except k hkg hkg2 xxkg xxkg2 cold hot coldmulti hot multi dark dark multi light lightmulti
 in = xxkg(k);
-channel = 1;
+channel = 2;
 lightstart = 3;
 
 %% data prep
