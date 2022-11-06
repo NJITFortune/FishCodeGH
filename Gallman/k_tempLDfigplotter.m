@@ -165,13 +165,14 @@ figure(55); clf; hold on;
                     end
                 end
             end
-            
+
+             plot(timmy/3600, obwAmp-mean(obwAmp), '.');
             for j = 1:length(day)
                 plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
             end
             
-            plot(timmy/3600, obwAmp-mean(obwAmp), '.');
-            plot(xx/3600, obwyy);
+           
+            %plot(xx/3600, obwyy);
 
 
     xa(2) = subplot(212); hold on;
