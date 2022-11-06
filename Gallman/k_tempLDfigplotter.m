@@ -203,7 +203,7 @@ hotter = [hotter(hotter>0)];
     rawidx = timcont >= temptims(1)-daylengthSECONDS/2 & timcont <= temptims(end)+daylengthSECONDS/2;
     temptimmy = timcont(rawidx);
     tempobwAmp = obw(rawidx);
-    tempfreqRaw = fishfreq(rawidx);
+    tempfreqRaw = oldfreq(rawidx);
 
 %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
