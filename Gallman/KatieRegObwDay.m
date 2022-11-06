@@ -135,7 +135,7 @@ end
                [dd,cc] = butter(5, lowWn, 'low');
 
         datadata = filtfilt(dd,cc, double(regobwpeaks)); %low pass
-        datadata = filtfilt(bb,aa, datadata); %high pass
+       % datadata = filtfilt(bb,aa, datadata); %high pass
 
         else
         %stronger low pass filter for lower frequency experiments 
