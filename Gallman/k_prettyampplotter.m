@@ -98,7 +98,7 @@ figure(31); clf; hold on;
             fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
             end
         end
-        
+         plot(regtim/3600 - timcont(1), darkdy,'k-', 'LineWidth', 2)
 
 %         binwidth = 0.5;
 %         %ylim([0 100]);
