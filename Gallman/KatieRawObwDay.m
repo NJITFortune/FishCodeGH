@@ -1,4 +1,4 @@
-function [darkhalfamp, darkhalftim, lighthalfamp, lighthalftim] = KatieRawObwDay(in, channel, light)
+function [darkhalfamp, darkhalftim, lighthalfamp, lighthalftim] = KatieRawObwDay(in, channel, lightstart)
 % %% prep 
 
 % % 
@@ -63,7 +63,7 @@ lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 
 %% dark summary by day for stats
 
-if light == 3
+if lightstart == 3
 
   %divide raw data into days that start with dark
     for jj = 2:length(darkdays)
@@ -86,7 +86,7 @@ if light == 3
     
     [ddaytim, sortidx] = sort(ddaytim);
     ddayamp = ddayamp(sortidx);
-    ddayamp = ddayamp-mean(ddayamp);
+    ddayamp = ddayamp;
     
     darkhalfidx = find(ddaytim < ld);
     darkhalfamp = ddayamp(darkhalfidx);
@@ -188,7 +188,7 @@ if light == 3
 end
 %% light summary by day for stats
 
-if light == 4
+if lightstart == 4
 
     %divide raw data into days that start with dark
     for jj = 2:length(lightdays)

@@ -52,7 +52,7 @@ figure(31); clf; hold on;
        % xlabel('Time (hours)')
 
 
-    
+     xlim([0 timcont(end)]);
     ax(2) = subplot(212); hold on; %xlim([0, 70]);
         binwidth = 0.5;
         %ylim([0 100]);
@@ -76,11 +76,11 @@ figure(31); clf; hold on;
                        l = histogram(timcont-timcont(1),'BinWidth', binwidth, 'BinLimits',[lighttimes(j-1)-timcont(1),lighttimes(j)-timcont(1)]);
                        l.Normalization = 'countdensity';
                          l.FaceColor = [255/255 239/255 0/255];
-                       %  l.EdgeColor = [255/255 239/255 0/255];
+                         l.EdgeColor = [255/255 239/255 0/255];
                     end
                 end
 
-          
+          xlim([0 timcont(end)]);
     linkaxes(ax, 'x');
             
     

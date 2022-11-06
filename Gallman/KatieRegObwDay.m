@@ -1,4 +1,4 @@
-function [day] = KatieRegObwDay(in, channel, ReFs, light)%multisingleRegobwDay
+%function [day] = KatieRegObwDay(in, channel, ReFs, lightstart)%multisingleRegobwDay
 
 %function [day] = KatieRegobwDayDessembler(in, channel,  ReFs, light)
 %% usage
@@ -9,16 +9,16 @@ function [day] = KatieRegObwDay(in, channel, ReFs, light)%multisingleRegobwDay
     %starts with light = 4
 
 
-% % % % % %for when i'm too lazy to function
-%   clearvars -except kg kg2 rkg k hkg2 hkg xxkg xxkg2 dark darkmulti light lightmulti
-% % % % % % 
-% in = hkg(k);
-% ReFs = 20;
-% light = 3; %start with dark
-% channel = 1;
+% % % % %for when i'm too lazy to function
+  clearvars -except kg kg2 rkg k hkg2 hkg xxkg xxkg2 dark darkmulti light lightmulti
+% % % % % 
+in = hkg(k);
+ReFs = 20;
+lightstart = 3; %start with dark
+channel = 1;
 
 %light = 4; %start with light
-% fish = 5; %lo freq
+%fish = 5; %lo freq
 
 
 
@@ -36,14 +36,14 @@ if in.info.luz(1) < 0
     %fit light vector to power idx
         %poweridx = good data
     if isempty(poweridx) %if there are no values in poweridx []
-        if light < 4
+        if lightstart < 4
         lighttimes = lighttimeslong;
         else
         lighttimes = lighttimeslong(2:end);
         end
     else %take data from within power idx range
 
-        if light < 4 %we start with dark
+        if lightstart < 4 %we start with dark
             lighttimesidx = lighttimeslong > poweridx(1) & lighttimeslong < poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         else %we start with light
@@ -57,14 +57,14 @@ if in.info.luz(1) < 0
 else %we start with light
     lighttimeslong = lighttimeslong(2:end);
     if isempty(poweridx) %if there are no values in poweridx []
-        if light < 4
+        if lightstart < 4
         lighttimes = lighttimeslong;
         else
         lighttimes = lighttimeslong(2:end);
         end
     else %take data from within power idx range
 
-        if light < 4 %we start with dark
+        if lightstart < 4 %we start with dark
             lighttimesidx = lighttimeslong > poweridx(1) & lighttimeslong < poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         else %we start with light
@@ -90,7 +90,7 @@ end
       
 %raw data
     timcont = [in.e(channel).s(tto).timcont]; %time in seconds
-    obw = [in.e(channel).s(tto).obwAmp];%/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
+    obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
     oldfreq = [in.e(channel).s(tto).fftFreq];
     oldtemp = [in.e(channel).s(tto).temp];
 
@@ -122,34 +122,35 @@ end
 % 
 %  [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, lighttimes);
 
-%         %filter data
-%         if ld < 11
-% 
-%         %high pass removes feeding trend for high frequency experiments
-%         %cut off frequency
-%         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
-%          [bb,aa] = butter(5, highWn, 'high');
-% 
-%          %less strong low pass filter - otherwise fake prediction 
-%                lowWn = 0.9/(ReFs/2);
-%                [dd,cc] = butter(5, lowWn, 'low');
-% 
-%         datadata = filtfilt(dd,cc, double(regobwpeaks)); %low pass
-%         datadata = filtfilt(bb,aa, datadata); %high pass
-% 
-%         else
-%         %stronger low pass filter for lower frequency experiments 
-%         lowWn = 0.1/(ReFs/2);
-%         [dd,cc] = butter(5, lowWn, 'low');
-%         datadata = filtfilt(dd,cc, double(regobwpeaks));
-%         end
+        %filter data
+        if ld < 11
+
+        %high pass removes feeding trend for high frequency experiments
+        %cut off frequency
+        highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+         [bb,aa] = butter(5, highWn, 'high');
+
+         %less strong low pass filter - otherwise fake prediction 
+               lowWn = 0.9/(ReFs/2);
+               [dd,cc] = butter(5, lowWn, 'low');
+
+        datadata = filtfilt(dd,cc, double(regobwpeaks)); %low pass
+        datadata = filtfilt(bb,aa, datadata); %high pass
+
+        else
+        %stronger low pass filter for lower frequency experiments 
+        lowWn = 0.1/(ReFs/2);
+      %  lowWn = 0.1/(ReFs/2);
+        [dd,cc] = butter(5, lowWn, 'low');
+        datadata = filtfilt(dd,cc, double(regobwpeaks));
+        end
             
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
-    obwyy = regobwpeaks(timidx);
-  %  obwyy = datadata(timidx); 
+  %  obwyy = regobwpeaks(timidx);
+    obwyy = datadata(timidx); 
    % obwyy = obwyy-mean(obwyy);
     freq = regfreq(timidx);
     temp = regtemp(timidx);
@@ -201,6 +202,7 @@ for j = 1:howmanydaysinsample
                     day(j).amprange = max(obwyy(ddayidx));
                     day(j).ampmin = min(obwyy(ddayidx));
                     
+                    day(j).rate = gradient(obwyy(ddayidx)./gradient(tim));
                 end
 
 %                 rawddayidx = find(timcont >= xx(1) + (k-1) * daylengthSECONDS & timcont < xx(1) + k* daylengthSECONDS); % k-1 so that we start at zero
@@ -209,50 +211,96 @@ for j = 1:howmanydaysinsample
 %                     day(k).rawamp = sumfft(rawddayidx);
 %                 %end
  end
-%  
-%  %% plot to check
-% %time vectors currently in seconds, divide by 3600 to get hours
-%  
-% %days over experiment time
-% figure(55); clf; hold on;
-%     
-%   %  plot(timmy/3600, obwAmp, '.');
-%     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
-%     for j = 1:length(day)
-%         plot(day(j).entiretimcont/3600, day(j).Sobwyy);
-%     end
-% 
-%     
-%    % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
-%    
-%     a = ylim; %all of above is just to get the max for the plot lines...
-%     if light < 4 %the first lighttime is dark
-%         for j = 1:length(lighttimes)-1
-%             if mod(j,2) == 1 %if j is odd
-%             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%             end
-%         end
-%     else %the second lighttime is dark 
-%         for j = 1:length(lighttimes)-1
-%             if mod(j,2) == 0 %if j is even
-%             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%             end
-%         end
-%     end
-%     
-%     for j = 1:length(day)
-%         plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
-%     end
-% 
-%      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
-%     plot(xx/3600, obwyy);
-% 
+ 
+ %% plot to check
+%time vectors currently in seconds, divide by 3600 to get hours
+ 
+%days over experiment time
+figure(55); clf; hold on;
+set(gcf, 'renderer', 'painters');
+   xa(1) = subplot(211); hold on;
+    
+        plot(timmy/3600, obwAmp, '.');
+      %  plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+        for j = 1:length(day)
+            plot(day(j).entiretimcont/3600, day(j).Sobwyy);
+        end
+    
+        
+       % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+       
+        a = ylim; %all of above is just to get the max for the plot lines...
+        if lightstart < 4 %the first lighttime is dark
+            for j = 1:length(lighttimes)-1
+                if mod(j,2) == 1 %if j is odd
+                fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                end
+            end
+        else %the second lighttime is dark 
+            for j = 1:length(lighttimes)-1
+                if mod(j,2) == 0 %if j is even
+                fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+                end
+            end
+        end
+         plot(timmy/3600, obwAmp, '.');
+        for j = 1:length(day)
+            plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
+        end
+    
+        ylabel('Mean square amplitude');
+      %  plot(xx/3600, obwyy);
+
+
+
+
+    xa(2) = subplot(212); hold on; 
+        
+          
+            for j = 1:length(day)
+                plot(day(j).entiretimcont/3600, day(j).rate);
+            end
+
+           
+            b = ylim; %all of above is just to get the max for the plot lines...
+
+            if lightstart < 4 %the first lighttime is dark
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 1 %if j is odd
+                    fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [b(1) b(2) b(2) b(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            else %the second lighttime is dark 
+                for j = 1:length(lighttimes)-1
+                    if mod(j,2) == 0 %if j is even
+                    fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [b(1) b(2) b(2) b(1)], [0.9, 0.9, 0.9]);
+                    end
+                end
+            end
+            
+            for j = 1:length(day)
+                plot(day(j).entiretimcont/3600, day(j).rate, 'LineWidth', 1.5);
+            end
+        
+          %  plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+           % plot(xx/3600, obwyy);
+            xlabel('Time (hours)');
+            ylabel('Rate of change');
+        
+linkaxes(xa, 'x');
+
+
+
+
+
+
+
 % %average over single day    
 % figure(57); clf; hold on; 
 % 
 %  
 %     %create fill box 
-%     if light < 4 %we start with dark
+%     if lightstart < 4 %we start with dark
 %         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
 %     else %we start with light
 %         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);

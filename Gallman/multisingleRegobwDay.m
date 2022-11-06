@@ -1,4 +1,4 @@
-function [multiday] = multisingleRegobwDay(in, ReFs, light)%multisingleRegobwDay
+function [multiday] = multisingleRegobwDay(in, ReFs, lightstart)%multisingleRegobwDay
 %light is a label for whether the subjective day starts with light or with dark
     %starts with dark = 3
     %starts with light = 4
@@ -31,14 +31,14 @@ if in.info.luz(1) < 0
     %fit light vector to power idx
         %poweridx = good data
     if isempty(poweridx) %if there are no values in poweridx []
-        if light < 4
+        if lightstart < 4
         lighttimes = lighttimeslong;
         else
         lighttimes = lighttimeslong(2:end);
         end
     else %take data from within power idx range
 
-        if light < 4 %we start with dark
+        if lightstart < 4 %we start with dark
             lighttimesidx = lighttimeslong > poweridx(1) & lighttimeslong < poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         else %we start with light
@@ -52,14 +52,14 @@ if in.info.luz(1) < 0
 else %we start with light
     lighttimeslong = lighttimeslong(2:end);
     if isempty(poweridx) %if there are no values in poweridx []
-        if light < 4
+        if lightstart < 4
         lighttimes = lighttimeslong;
         else
         lighttimes = lighttimeslong(2:end);
         end
     else %take data from within power idx range
 
-        if light < 4 %we start with dark
+        if lightstart < 4 %we start with dark
             lighttimesidx = lighttimeslong > poweridx(1) & lighttimeslong < poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         else %we start with light
@@ -85,7 +85,7 @@ end
       
 %raw data
     timcont = [in.s(tto).timcont]; %time in seconds
-    obw = [in.s(tto).obwAmp];%/max([in.s(tto).obwAmp]); %divide by max to normalize
+    obw = [in.s(tto).obwAmp]/max([in.s(tto).obwAmp]); %divide by max to normalize
     oldfreq = [in.s(tto).freq];
     oldtemp = [in.s(tto).temp];
 
@@ -117,33 +117,33 @@ end
 
      %filter data
         
-%         if ld < 11
-% 
-%         %high pass removes feeding trend for high frequency experiments
-%         %cut off frequency
-%          highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
-%          [bb,aa] = butter(5, highWn, 'high');
-% 
-%          %less strong low pass filter - otherwise fake prediction 
-%                lowWn = 0.9/(ReFs/2);
-%                [dd,cc] = butter(5, lowWn, 'low');
-% 
-%         datadata = filtfilt(dd,cc, double(regobwpeaks)); %low pass
-%         datadata = filtfilt(bb,aa, datadata); %high pass
-% 
-%         else
-%         %stronger low pass filter for lower frequency experiments 
-%         lowWn = 0.1/(ReFs/2);
-%         [dd,cc] = butter(5, lowWn, 'low');
-%         datadata = filtfilt(dd,cc, double(regobwpeaks));
-%         end
+        if ld < 11
+
+        %high pass removes feeding trend for high frequency experiments
+        %cut off frequency
+         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+         [bb,aa] = butter(5, highWn, 'high');
+
+         %less strong low pass filter - otherwise fake prediction 
+               lowWn = 0.9/(ReFs/2);
+               [dd,cc] = butter(5, lowWn, 'low');
+
+        datadata = filtfilt(dd,cc, double(regobwpeaks)); %low pass
+        datadata = filtfilt(bb,aa, datadata); %high pass
+
+        else
+        %stronger low pass filter for lower frequency experiments 
+        lowWn = 0.9/(ReFs/2); %0.1 OG
+        [dd,cc] = butter(5, lowWn, 'low');
+        datadata = filtfilt(dd,cc, double(regobwpeaks));
+        end
             
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
-    obwyy = regobwpeaks(timidx);
-   % obwyy = datadata(timidx); 
+   % obwyy = regobwpeaks(timidx);
+    obwyy = datadata(timidx); 
     %obwyy = obwyy-mean(obwyy);
     freq = regfreq(timidx);
     temp = regtemp(timidx);

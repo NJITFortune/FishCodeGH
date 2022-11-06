@@ -10,14 +10,14 @@ ld = in(1).day(1).ld;
 
 
 %figure(99);clf; hold on; 
- for j = length(in):-1:1 % experiments of x hour length
+ for j = 1:length(in) % experiments of x hour length
   
 %         mday = zeros(1, length(in(j).day(1).tim));
 %         fday = zeros(1, length(in(j).day(1).tim));
 %         tday = zeros(1, length(in(j).day(1).tim));
 %      
 
-        for k = length(in(j).day):-1:1 %days within each trial
+        for k = 1:length(in(j).day) %days within each trial
         
               %fill temporary vector with data from each day 
                 mday(k,:) = [in(j).day(k).Sobwyy];
@@ -53,12 +53,14 @@ ld = in(1).day(1).ld;
     numrow = size(daymean);
     if numrow(1) == 1
          exp.meanofexperimentmeans = movmean(daymean, 5);
+     %   exp.meanofexperimentmeans = mean(daymean);
          exp.meanoftempmeans = tempday;
          exp.meanoffreqmeans = freqday;
     else
     %averages for each x hour set of experiments
-    expmean = mean(daymean);
-    exp.meanofexperimentmeans = movmean(expmean, 5);
+   % expmean = mean(daymean);
+    %exp.meanofexperimentmeans = movmean(expmean, 5);
+    exp.meanofexperimentmeans = mean(daymean);
     exp.meanoffreqmeans = mean(freqday);
     exp.meanoftempmeans = mean(tempday);
     end

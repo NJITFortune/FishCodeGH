@@ -1,4 +1,4 @@
-function lighttimes = k_lighttimes(in, light)
+function lighttimes = k_lighttimes(in, lightstart)
 %light is user input to determine if what day condiation to start with
 %light = 3 start with dark
 %light = 4 start with light
@@ -16,14 +16,14 @@ if in.info.luz(1) < 0
     %fit light vector to power idx
         %poweridx = good data
     if isempty(poweridx) %if there are no values in poweridx []
-        if light < 4
+        if lightstart < 4
         lighttimes = lighttimeslong;
         else
         lighttimes = lighttimeslong(2:end);
         end
     else %take data from within power idx range
 
-        if light < 4 %we start with dark
+        if lightstart < 4 %we start with dark
             lighttimesidx = lighttimeslong > poweridx(1) & lighttimeslong < poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         else %we start with light
@@ -37,14 +37,14 @@ if in.info.luz(1) < 0
 else %we start with light
     lighttimeslong = lighttimeslong(2:end);
     if isempty(poweridx) %if there are no values in poweridx []
-        if light < 4
+        if lightstart < 4
         lighttimes = lighttimeslong;
         else
         lighttimes = lighttimeslong(2:end);
         end
     else %take data from within power idx range
 
-        if light < 4 %we start with dark
+        if lightstart < 4 %we start with dark
             lighttimesidx = lighttimeslong > poweridx(1) & lighttimeslong < poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         else %we start with light

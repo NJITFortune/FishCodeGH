@@ -24,6 +24,7 @@ clickcnt = 0;
     %Initialize nonelectrode data channels
     tempchan = 3; 
     lightchan = 4; 
+    tempstate = 5;
 
 % Get the list of files to be analyzed  
     iFiles = dir(userfilespec);
@@ -51,10 +52,10 @@ f2 = fftmachine(e2, Fs);
 %     subplot(121);  plot(f1.fftfreq, f1.fftdata); xlim([freqs(1) freqs(2)]);
 %     subplot(122);  plot(f2.fftfreq, f2.fftdata); xlim([freqs(1) freqs(2)]);
 
-figure(1); clf;
-    subplot(211); specgram(e1,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
-    subplot(212); specgram(e2,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
-    colormap('HOT');     
+% figure(1); clf;
+%     subplot(211); specgram(e1,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
+%     subplot(212); specgram(e2,1024*16, Fs, [], ceil(1024*16*0.95)); ylim([freqs(1) freqs(2)]); caxis([15 50])
+%     colormap('HOT');     
 
 
 % Plot the summed FFT for the user to click
@@ -134,6 +135,7 @@ oldcurrlofreq = currlofreq;
 %light and temp for j = 1
     out(1).temp = mean(data(1,tempchan));
     out(1).light = mean(data(1,lightchan));
+    out(1).tempstate = mean(data(1,tempstate));
 %% 2:end            
 for j = 2:length(iFiles) %2514:8276%
 
@@ -161,6 +163,7 @@ for j = 2:length(iFiles) %2514:8276%
     %light and temp 
     out(j).temp = mean(data(1,tempchan));
     out(j).light = mean(data(1,lightchan));
+    out(j).tempstate = mean(data(1,tempstate));
 
     summedFFT =  f1.fftdata + f2.fftdata;
     figure(2); clf; hold on;

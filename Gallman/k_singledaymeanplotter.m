@@ -1,5 +1,5 @@
 
-function k_singledaymeanplotter(day, light)
+function  k_singledaymeanplotter(day, light)
 
 %% plot to check
 
@@ -29,6 +29,8 @@ a = [min([day.Sobwyy])-min([day.Sobwyy])/2, max([day.Sobwyy])+max([day.Sobwyy])/
             plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
           %  plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([day(1).ld day(1).ld], ylim, 'k-', 'LineWidth', 3);
+
+            
             
             
 

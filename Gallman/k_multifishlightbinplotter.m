@@ -41,6 +41,13 @@ orange = [0.8500 0.3250 0.0980];
 
 %% plots
  timcont = [out.s.timcont]/3600;
+ oldtim = [out.hifish(ttohi).timcont];
+oldamp = [out.hifish(ttohi).obwAmp];
+[regtim,  regobw] = k_amponlymetamucil(oldtim, oldamp, 20);
+
+ lowWn = 0.025/(20/2);
+[dd,cc] = butter(5, lowWn, 'low');
+regobwpeaks= filtfilt(dd,cc, double(regobw));
 
 figure(67); clf; title('By fish'); hold on;
 set(gcf, 'renderer', 'painters');
@@ -49,6 +56,7 @@ set(gcf, 'renderer', 'painters');
 
      %   plot([out.hifish(ttkhi).timcont]/3600, [out.hifish(ttkhi).pkAmp], 'Color', teal);
         plot([out.hifish(ttohi).timcont]/3600-timcont(1), [out.hifish(ttohi).obwAmp],'.', 'Color', teal); 
+        plot(regtim/3600-timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
 
     axs(2) = subplot(412); hold on; title('Low frequency fish');
     %    plot([out.lofish(ttklo).timcont]/3600, [out.lofish(ttklo).pkAmp], 'Color', orange);
