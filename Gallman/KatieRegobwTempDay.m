@@ -469,3 +469,29 @@ set(gcf, 'Renderer', 'painters');
 
  ylabel('Frequency (Hz)');
     xlabel('Time (hours)');
+%% 
+figure(4567); clf ; hold on; title('cold to hot temp'); %ylim([415 515]) %ylim([-.4 .4]);%ylim([-0.08 .06]);
+set(gcf, 'Renderer', 'painters');
+    for j = 1:length(coldday)
+       % plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+        colds(j,:) = coldday(j).temp;
+    end  
+%     
+%     a = ylim;
+%     fill([0 0 td/2 td/2], [a(1) a(2) a(2) a(1)], cold);
+%     fill([td/2 td/2 td td],[a(1) a(2) a(2) a(1)], hot );
+
+    coldmean = mean(colds);
+
+%     for j = 1:length(hotday)
+%         plot(coldday(j).tim/3600, coldday(j).obw, 'LineWidth', 1);
+%     end  
+
+ tempC = k_temptocelcius(coldmean, 11000);
+    plot(coldday(1).tim/3600, tempC, 'r-','LineWidth', 3 );
+
+ xline(td/2, 'k', 'LineWidth', 3);
+
+ ylabel('degrees Celcius');
+    xlabel('Time (hours)');
+
