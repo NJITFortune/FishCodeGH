@@ -414,7 +414,7 @@ set(gcf, 'Renderer', 'painters');
 
     plot(hotday(1).tim/3600, tempC, 'r-','LineWidth', 3 );
     xline(td/2, 'k', 'LineWidth', 3);
-    ylabel('Frequency (Hz)');
+    ylabel('degrees Celcius');
     xlabel('Time (hours)');
 
 
