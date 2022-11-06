@@ -148,7 +148,31 @@ for j = 1:howmanydaysinsample
  end
 
 %% Divide sample into temperature days
+% calculate duration of tempdays
+colder = [colder(colder>0)];
+hotter = [hotter(hotter>0)];
 
+
+    if timcont(1)/3600 > (temptims(1)/3600 -td/2)
+        temptims = temptims(2:end);
+        if tiz(1) > 0
+            hotter = hotter(2:end);
+        else
+            colder = colder(2:end);
+        end
+    end
+
+
+
+   
+
+%% Define temp day length
+
+ %day
+    daylengthSECONDS = td * 3600;  
+   
+    % This is the number of data samples in a day
+    howmanysamplesinaday = floor(daylengthSECONDS / ReFs);
 
 %% plot based on daylight - for cycles
 
