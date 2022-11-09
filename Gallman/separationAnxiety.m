@@ -204,7 +204,7 @@ for j = 2:length(iFiles) %2514:8276%
 %             if  lopeakamp < 0.05; currlofreq = oldcurrlofreq; end %currlofreq > 419 && currlofreq < 421 || 
             
             if j > 3
-                if currlofreq > 299 && currlofreq < 301 ; currlofreq = out(j-2).lofreq; end
+                if currlofreq < 422 ; currlofreq = out(j-2).lofreq; end
                 if currlofreq > oldmidpoint; currlofreq = out(j-2).lofreq; end
                 if  lopeakamp < 0.05; currlofreq = out(j-2).lofreq; end
             end
