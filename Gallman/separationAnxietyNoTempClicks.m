@@ -200,9 +200,9 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
               currlofreq = oldcurrlofreq;
           else
                 if j > 3 
-%                    if  currlofreq > mean([out(j-2).midpoint, out(j-1).midpoint]) 
-%                     currlofreq = oldcurrlofreq;
-%                    end
+                   if  currlofreq > out(j-1).midpoint%mean([out(j-2).midpoint, out(j-1).midpoint]) 
+                    currlofreq = oldcurrlofreq;
+                   end
 
                    if currlofreq < 423
                         currlofreq = out(j-2).lofreq;
