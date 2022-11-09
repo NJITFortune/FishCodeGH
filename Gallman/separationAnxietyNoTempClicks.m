@@ -204,7 +204,9 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
                     currlofreq = oldcurrlofreq;
                    end
 
-%                    if currlofreq < 410
+                   if currlofreq < 423
+                        currlofreq = out(j-2).lofreq;
+                   end
 %                         lowfreqidx = find(f2.fftfreq > 425 & f2.fftfreq < currhifreq-oldmidpoint);
 %                         [~, lmaxidx] = max(summedFFT(lowfreqidx));
 %                          currlofreq = f2.fftfreq(lowfreqidx(lmaxidx));
