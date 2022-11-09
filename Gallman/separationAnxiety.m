@@ -1,7 +1,7 @@
 % A new attempt at frequency tracking two Eigenmannia in the tank
 clearvars -except kg kg2 rkg k xxkg hkg
 Fs = 40000;
-freqs = [425 900]; %freq range of typical eigen EOD
+freqs = [200 700]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
