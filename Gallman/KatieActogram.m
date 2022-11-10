@@ -222,7 +222,8 @@ figure(789); clf; hold on;
     for j = 1:length(day)
         ax(j) = subplot(length(day), 1, j); hold on;
             [newtim, tidx, ~] = intersect(timmy, day(j).entiretimcont);
-            plot(newtim/3600, obwAmp(tidx), '.');           
+            newtim = newtim/3600;
+            plot(newtim-newtim(1), obwAmp(tidx), '.');           
             
 %            lidx = find(day(j).light > 2.5);
 %            plot(day(j).tim(lidx)/3600, day(j).Sobwyy(lidx),'-', 'Color', [0.9290 0.6940 0.1250]);
