@@ -36,15 +36,15 @@ figure(1); clf;
             
         close(1);
 
+             newobw(1,:) = in.s(obwidx(1)).obwAmp;
+            for j = 2:length(obwidx)
 
-            for j = 1:length(obwidx)
-
-                out.s.newobw = in.s(obwidx(k)).obwAmp;
-
+                newobw = [newobw, in.s(obwidx(j)).obwAmp];
+                
             end
 
 
-
+            newerobw
 
 
 
