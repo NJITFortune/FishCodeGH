@@ -2,8 +2,8 @@
 
 % OBW        
 %testing123
-% clearvars -except hkg2 hkg xxkg xxkg2 rkg2 k
-% in = hkg2(k);
+clearvars -except hkg2 hkg xxkg xxkg2 rkg2 k
+in = hkg2(k);
 
 
 
