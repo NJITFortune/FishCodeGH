@@ -17,7 +17,7 @@ function k_replacercheckplot(in)
 figure(457); clf;  hold on;
 
 
-    ax(1) = subplot(311); title(str); hold on; %ylim([0,2]);
+    ax(1) = subplot(311); title('amp'); hold on; %ylim([0,2]);
            
 %             plot([in.timcont]/3600, [in.pkAmp], 'ko');
 %             plot([in(ttpk).timcont]/3600, [in(ttpk).pkAmp], 'ro');
