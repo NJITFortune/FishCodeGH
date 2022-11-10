@@ -12,7 +12,7 @@ figure(1); clf;
 
                   kidx =  find([in.s.timcont]/3600 >= abs(luz(k-1))& [in.s.timcont]/3600 <abs(luz(k+1)));
                   
-                  histogram([in.s(kidx).obwAmp],100);
+                  histogram([in.s(kidx).obwAmp],100);hold on;
 
                   %Lower lim
                     fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
@@ -29,7 +29,7 @@ figure(1); clf;
                     obwidx(k-1) = find([in.obwAmp] > cutoffampL & [in.obwAmp] < cutoffampH);
 
                     
-                 
+                 pause(1);
                 
             end
 
