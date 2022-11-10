@@ -1,9 +1,9 @@
-%function out = Katiehkg2Replacer(in)
+function out = Katiehkg2Replacer(in)
 
 % OBW        
 %testing123
-clearvars -except hkg2 hkg xxkg xxkg2 rkg2 k
-in = hkg2(k);
+% clearvars -except hkg2 hkg xxkg xxkg2 rkg2 k
+% in = hkg2(k);
 
 
 
@@ -31,7 +31,7 @@ in = hkg2(k);
                     plot([cutoffampH, cutoffampH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
                     drawnow; 
                     
-                    obwidx{k-1, :} = find([in.s.obwAmp] > cutoffampL & [in.s.obwAmp] < cutoffampH);
+                    obwAmpidx{k-1, :} = find([in.s.obwAmp] > cutoffampL & [in.s.obwAmp] < cutoffampH);
 
                     
                  pause(1);
@@ -41,18 +41,20 @@ in = hkg2(k);
             
         close(1);
 
-             newobw(1,:) = in.s(obwidx{1}).obwAmp;
+             newobw(1,:) = in.s(obwAmpidx{1}).obwAmp;
 
             for j = 2:3%length(luz)-1
 
-                newobw = [newobw, in.s(obwidx{j}).obwAmp];
+                newobw = [newobw, in.s(obwAmpidx{j}).obwAmp];
                 
             end
 
 
-              [~, out.obwidx, ~] = intersect([in.s.obwAmp], newobw);
+              [~, obwidx, ~] = intersect([in.s.obwAmp], newobw);
 
+obwidx = obwidx';
 
+out.obwidx = obwidx;
 
 
 
