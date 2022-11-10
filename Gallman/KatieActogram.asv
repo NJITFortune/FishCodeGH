@@ -214,20 +214,19 @@ for j = 1:howmanydaysinsample
 %                 %end
  end
 %  
-%% testing123
- timmy = timcont(rawidx);
-    obwAmp = obw(rawidx);
-for j = 1:length(day)
-    [tidx = 
-end
+
  %% plot to check
 %time vectors currently in seconds, divide by 3600 to get hours
 
 figure(789); clf; hold on;
     for j = 1:length(day)
         ax(j) = subplot(length(day), 1, j); hold on;
-        plot(day(j).tim/3600, day(j).Sobwyy, 'k');
+            [newtim, tidx, ~] = intersect(timmy, day(j).entiretimcont);
+            tidx = find(timmy >= day(j).entiretimcont(1) & timmy <= day())
 
+            newtim = newtim/3600;
+            plot(newtim-newtim(1), obwAmp(tidx), '.');           
+            
 %            lidx = find(day(j).light > 2.5);
 %            plot(day(j).tim(lidx)/3600, day(j).Sobwyy(lidx),'-', 'Color', [0.9290 0.6940 0.1250]);
 % 
