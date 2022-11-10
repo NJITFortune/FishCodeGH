@@ -23,15 +23,15 @@ figure(457); clf;  hold on;
 %             plot([in(ttpk).timcont]/3600, [in(ttpk).pkAmp], 'ro');
             
    % ax(2) = subplot(412); title('obw'); hold on; %ylim([0,3]);        
-            plot([in.timcont]/3600, [in.obwAmp], 'ko');
-            plot([in(tto).timcont]/3600, [in(tto).obwAmp], 'co');
+            plot([in.s.timcont]/3600, [in.s.obwAmp], 'ko');
+            plot([in.s(tto).timcont]/3600, [in.s(tto).obwAmp], 'co');
          
             
     ax(2) = subplot(312); title('frequency'); hold on; %ylim([0,3]);
 %
           
-            plot([in.timcont]/3600, [in.freq], 'ko');
-            plot([in(tto).timcont]/3600, [in(tto).freq], 'o');
+            plot([in.s.timcont]/3600, [in.s.freq], 'ko');
+            plot([in.s(tto).timcont]/3600, [in.s(tto).freq], 'o');
     
     ax(3) = subplot(313); title('light cycle'); hold on;
             plot([in.s.timcont]/3600, [in.s.light]);
