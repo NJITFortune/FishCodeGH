@@ -44,7 +44,7 @@ figure(1); clf;
             end
 
 
-            newerobw
+              [~, out.obwidx, ~] = intersect([in.s.obwAmp], int32(newobw));
 
 
 
