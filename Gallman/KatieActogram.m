@@ -214,6 +214,7 @@ for j = 1:howmanydaysinsample
 %                 %end
  end
 %  
+%% testing
  %% plot to check
 %time vectors currently in seconds, divide by 3600 to get hours
 
