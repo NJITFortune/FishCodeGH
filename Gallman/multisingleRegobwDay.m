@@ -220,7 +220,7 @@ figure(55); clf; hold on;
    % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
    
     a = ylim; %all of above is just to get the max for the plot lines...
-    if light < 4 %the first lighttime is dark
+    if lightstart < 4 %the first lighttime is dark
         for j = 1:length(lighttimes)-1
             if mod(j,2) == 1 %if j is odd
             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
