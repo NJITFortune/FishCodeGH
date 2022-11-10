@@ -26,7 +26,7 @@ function out = Katiehkg2Replacer(in)
                     plot([cutoffampH, cutoffampH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
                     drawnow; 
                     
-                    obwidx(k-1, :) = find([in.s.obwAmp] > cutoffampL & [in.s.obwAmp] < cutoffampH);
+                    obwidx{k-1, :} = find([in.s.obwAmp] > cutoffampL & [in.s.obwAmp] < cutoffampH);
 
                     
                  pause(1);
@@ -36,10 +36,10 @@ function out = Katiehkg2Replacer(in)
             
         close(1);
 
-             newobw(1,:) = in.s(obwidx(1)).obwAmp;
-            for j = 2:length(obwidx)
+             newobw(1,:) = in.s{obwidx(1)}.obwAmp;
+            for j = 2:length{obwidx}
 
-                newobw = [newobw, in.s(obwidx(j)).obwAmp];
+                newobw = [newobw, in.s{obwidx(j)}.obwAmp];
                 
             end
 
