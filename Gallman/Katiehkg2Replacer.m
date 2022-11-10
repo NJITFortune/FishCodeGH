@@ -11,7 +11,7 @@ function out = Katiehkg2Replacer(in)
     luz = [in.info.luz];
       
        
-            for k = 2:4%length(luz)
+            for k = 2:length(luz)
             
             figure(1); clf;
 
@@ -43,7 +43,7 @@ function out = Katiehkg2Replacer(in)
 
              newobw(1,:) = in.s(obwAmpidx{1}).obwAmp;
 
-            for j = 2:3%length(luz)-1
+            for j = 2:length(luz)-1
 
                 newobw = [newobw, in.s(obwAmpidx{j}).obwAmp];
                 
