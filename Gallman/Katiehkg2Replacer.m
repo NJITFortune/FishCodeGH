@@ -28,7 +28,7 @@ figure(1); clf;
                     
                     obwidx(k-1) = find([in.obwAmp] > cutoffampL & [in.obwAmp] < cutoffampH);
 
-                     pause(1);
+                    
                  
                 
             end
