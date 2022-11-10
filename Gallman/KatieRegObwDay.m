@@ -282,104 +282,104 @@ set(gcf, 'Renderer', 'painters');
             
  %%           
 
-
-%average over single day    
-figure(533); clf; hold on; title('freq'); ylim([480 580]);
-set(gcf, 'Renderer', 'painters');
-    for j = 1:length(day)
-           % plot(day(j).tim/3600, day(j).freq);
-           
-     end
- a = ylim;
-    %create fill box 
-    if lightstart < 4 %we start with dark
-        fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-    else %we start with light
-        fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-    end
-    
-    %mean two ways to prove math
-    mday = zeros(1, length(day(1).tim));        
-     for j = 1:length(day)
-         %   plot(day(j).tim/3600, day(j).freq, 'LineWidth', 1);
-            fmeanday(j,:) = day(j).freq;
-          
-     end
-        
-            fmmday= mean(fmeanday);
-            
-            plot(day(1).tim/3600, fmmday, 'k-', 'LineWidth', 3);
-           
-            %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-            plot([ld ld], ylim, 'k-', 'LineWidth', 3);
-            ylabel('Frequency (Hz)');
-            xlabel('Time (hours)');
-
-%%
-
-%average over single day    
-figure(57); clf; hold on; title('temp'); ylim([24 30]);
-set(gcf, 'Renderer', 'painters');
+% 
+% %average over single day    
+% figure(533); clf; hold on; title('freq'); ylim([480 580]);
+% set(gcf, 'Renderer', 'painters');
 %     for j = 1:length(day)
-%             plot(day(j).tim/3600, day(j).temp);
+%            % plot(day(j).tim/3600, day(j).freq);
 %            
 %      end
- a = ylim;
-    %create fill box 
-    if lightstart < 4 %we start with dark
-        fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-    else %we start with light
-        fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-    end
-    
-    %mean two ways to prove math
-    mday = zeros(1, length(day(1).tim));        
-     for j = 1:length(day)
-          %  plot(day(j).tim/3600, day(j).temp, 'LineWidth', 1);
-            tmeanday(j,:) = day(j).temp;
-          
-     end
-        
-            tmmday= mean(tmeanday);
-            tempC = k_temptocelcius(tmmday, 11000);
-            plot(day(1).tim/3600, tempC, 'r-', 'LineWidth', 3);
-           
-            %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
-            plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+%  a = ylim;
+%     %create fill box 
+%     if lightstart < 4 %we start with dark
+%         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%     else %we start with light
+%         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%     end
+%     
+%     %mean two ways to prove math
+%     mday = zeros(1, length(day(1).tim));        
+%      for j = 1:length(day)
+%          %   plot(day(j).tim/3600, day(j).freq, 'LineWidth', 1);
+%             fmeanday(j,:) = day(j).freq;
+%           
+%      end
+%         
+%             fmmday= mean(fmeanday);
+%             
+%             plot(day(1).tim/3600, fmmday, 'k-', 'LineWidth', 3);
+%            
+%             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+%             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+%             ylabel('Frequency (Hz)');
+%             xlabel('Time (hours)');
 
-            ylabel('degrees Celcius');
-            xlabel('Time (hours)');
 %%
-%days over experiment time
-figure(58967); clf; hold on;
-    
-  %  plot(timmy/3600, obwAmp, '.');
-    plot(timmy/3600, rawfreq, '.');
-    for j = 1:length(day)
-        plot(day(j).entiretimcont/3600, day(j).freq);
-    end
 
-    
-   % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
-   
-    a = ylim; %all of above is just to get the max for the plot lines...
-    if lightstart < 4 %the first lighttime is dark
-        for j = 1:length(lighttimes)-1
-            if mod(j,2) == 1 %if j is odd
-            fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-            end
-        end
-    else %the second lighttime is dark 
-        for j = 1:length(lighttimes)-1
-            if mod(j,2) == 0 %if j is even
-            fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-            end
-        end
-    end
-    
-    for j = 1:length(day)
-        plot(day(j).entiretimcont/3600, day(j).freq, 'LineWidth', 1.5);
-    end
+% %average over single day    
+% figure(57); clf; hold on; title('temp'); ylim([24 30]);
+% set(gcf, 'Renderer', 'painters');
+% %     for j = 1:length(day)
+% %             plot(day(j).tim/3600, day(j).temp);
+% %            
+% %      end
+%  a = ylim;
+%     %create fill box 
+%     if lightstart < 4 %we start with dark
+%         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%     else %we start with light
+%         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%     end
+%     
+%     %mean two ways to prove math
+%     mday = zeros(1, length(day(1).tim));        
+%      for j = 1:length(day)
+%           %  plot(day(j).tim/3600, day(j).temp, 'LineWidth', 1);
+%             tmeanday(j,:) = day(j).temp;
+%           
+%      end
+%         
+%             tmmday= mean(tmeanday);
+%             tempC = k_temptocelcius(tmmday, 11000);
+%             plot(day(1).tim/3600, tempC, 'r-', 'LineWidth', 3);
+%            
+%             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+%             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+% 
+%             ylabel('degrees Celcius');
+%             xlabel('Time (hours)');
+%%
+% %days over experiment time
+% figure(58967); clf; hold on;
+%     
+%   %  plot(timmy/3600, obwAmp, '.');
+%     plot(timmy/3600, rawfreq, '.');
+%     for j = 1:length(day)
+%         plot(day(j).entiretimcont/3600, day(j).freq);
+%     end
+% 
+%     
+%    % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+%    
+%     a = ylim; %all of above is just to get the max for the plot lines...
+%     if lightstart < 4 %the first lighttime is dark
+%         for j = 1:length(lighttimes)-1
+%             if mod(j,2) == 1 %if j is odd
+%             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%             end
+%         end
+%     else %the second lighttime is dark 
+%         for j = 1:length(lighttimes)-1
+%             if mod(j,2) == 0 %if j is even
+%             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%             end
+%         end
+%     end
+%     
+%     for j = 1:length(day)
+%         plot(day(j).entiretimcont/3600, day(j).freq, 'LineWidth', 1.5);
+%     end
 
    %  plot(timmy/3600, obwAmp-mean(obwAmp), '.');
   %  plot(xx/3600, obwyy);
