@@ -50,7 +50,7 @@ function out = Katiehkg2Replacer(in)
             end
 
 
-              [~, obwidx, ~] = intersect([in.s.timcont], newtim);
+              [~, out.obwidx, ~] = intersect([in.s.timcont], newtim);
 
 
 
