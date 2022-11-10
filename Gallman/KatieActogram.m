@@ -10,7 +10,7 @@
 
 
 % % % % % %for when i'm too lazy to function
-  clearvars -except kg kg2 rkg k hkg2 hkg xxkg xxkg2 dark darkmulti light lightmulti
+  clearvars -except kg kg2 rkg k hkg2 hkg xxkg xxkg2 dark darkmulti light lightmulti l24kg
 % % % % % 
 in = l24kg(k);
 ReFs = 20;
