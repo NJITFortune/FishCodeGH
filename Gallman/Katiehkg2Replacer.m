@@ -6,7 +6,7 @@ function out = Katiehkg2Replacer(in)
     luz = [in.info.luz];
       
        
-            for k = 2:2:length(luz)-1
+            for k = 2:length(luz)
             
             figure(1); clf;
 
