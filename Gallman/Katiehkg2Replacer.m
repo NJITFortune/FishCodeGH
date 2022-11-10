@@ -31,7 +31,10 @@ function out = Katiehkg2Replacer(in)
                     plot([cutoffampH, cutoffampH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
                     drawnow; 
                     
-                    obwAmpidx{k-1, :} = find([in.s.obwAmp] > cutoffampL & [in.s.obwAmp] < cutoffampH);
+                    obwAmpidx = find([in.s(kidx).obwAmp] > cutoffampL & [in.s(kidx).obwAmp] < cutoffampH);
+                    tim = [in.s(kidx).timcont];
+                    
+                    timsofampidx{k-1,:} = tim(obwAmpidx);
 
                     
                  pause(1);
@@ -41,11 +44,11 @@ function out = Katiehkg2Replacer(in)
             
         close(1);
 
-             newtim(1,:) = [in.s(obwAmpidx{1}).timcont];
+             newtim(1,:) = timsofampidx{1};
 
             for j = 2:length(luz)-1
 
-                newtim = [newtim, [in.s(obwAmpidx{j}).timcont]];
+                newtim = [newtim, timsofampidx{j}];
                 
             end
 
