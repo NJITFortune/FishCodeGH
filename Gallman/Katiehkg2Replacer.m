@@ -11,7 +11,7 @@ in = hkg2(k);
     luz = [in.info.luz];
       
        
-            for k = 2:4%length(luz)
+            for k = 2:length(luz)
             
             figure(1); clf;
 
