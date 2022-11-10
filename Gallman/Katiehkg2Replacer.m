@@ -50,7 +50,7 @@ in = hkg2(k);
             end
 
 
-           %   [~, out.obwidx, ~] = intersect([in.s.obwAmp], int32(newobw));
+              [~, out.obwidx, ~] = intersect([in.s.obwAmp], int32(newobw));
 
 
 
