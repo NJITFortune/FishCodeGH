@@ -225,7 +225,9 @@ figure(789); clf; hold on;
             tidx = find(timmy >= day(j).entiretimcont(1) & timmy <= day(j).entiretimcont(end));
 
             newtim = timmy(tidx)/3600;
-            plot(newtim-newtim(1), obwAmp(tidx), '.');           
+            plot(newtim-newtim(1), obwAmp(tidx), '.');  
+
+            plot(day(j).tim, day(j).Sobwyy, 'k-');
             
 %            lidx = find(day(j).light > 2.5);
 %            plot(day(j).tim(lidx)/3600, day(j).Sobwyy(lidx),'-', 'Color', [0.9290 0.6940 0.1250]);
