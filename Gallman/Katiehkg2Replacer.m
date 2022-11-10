@@ -37,7 +37,7 @@ function out = Katiehkg2Replacer(in)
         close(1);
 
              newobw(1,:) = in.s{obwidx(1)}.obwAmp;
-            for j = 2:length{obwidx}
+            for j = 2:length(luz)
 
                 newobw = [newobw, in.s{obwidx(j)}.obwAmp];
                 
