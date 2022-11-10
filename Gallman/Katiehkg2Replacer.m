@@ -41,16 +41,16 @@ in = hkg2(k);
             
         close(1);
 
-             newobw(1,:) = in.s(obwAmpidx{1}).obwAmp;
+             newtim(1,:) = in.s(obwAmpidx{1}).timcont;
 
             for j = 2:length(luz)-1
 
-                newobw = [newobw, in.s(obwAmpidx{j}).obwAmp];
+                newtim = [newtim, in.s(obwAmpidx{j}).timcont];
                 
             end
 
 
-              [~, obwidx, ~] = intersect([in.s.obwAmp], newobw);
+              [~, obwidx, ~] = intersect([in.s.timcont], newtim);
 
 obwidx = obwidx';
 
