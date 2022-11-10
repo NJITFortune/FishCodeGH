@@ -1,18 +1,18 @@
 function out = Katiehkg2Replacer(in)
 
 % OBW        
-figure(1); clf;
+
 
     luz = [in.info.luz];
       
        
-            for k = 2:length(luz)-1
+            for k = 2:length(luz)
             
-     
+            figure(1); clf;
 
-                  kidx =  find([in.s.timcont]/3600 >= abs(luz(k-1))& [in.s.timcont]/3600 <abs(luz(k+1)));
+                  kidx =  find([in.s.timcont]/3600 >= abs(luz(k-1))& [in.s.timcont]/3600 <abs(luz(k)));
                   
-                  histogram([in.s(kidx).obwAmp],100);
+                  histogram([in.s(kidx).obwAmp],100);hold on;
 
                   %Lower lim
                     fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
@@ -26,10 +26,10 @@ figure(1); clf;
                     plot([cutoffampH, cutoffampH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
                     drawnow; 
                     
-                    obwidx(k-1) = find([in.obwAmp] > cutoffampL & [in.obwAmp] < cutoffampH);
+                    obwidx{k-1, :} = find([in.s.obwAmp] > cutoffampL & [in.s.obwAmp] < cutoffampH);
 
-                     pause(1);
-                 
+                    
+                 pause(1);
                 
             end
 
@@ -39,12 +39,12 @@ figure(1); clf;
              newobw(1,:) = in.s(obwidx(1)).obwAmp;
             for j = 2:length(obwidx)
 
-                newerobw(j,:) = [newobw(1,:), in.s(obwidx(j)).obwAmp];
+                newobw = [newobw, in.s(obwidx(j)).obwAmp];
                 
             end
 
 
-            newerobw
+              [~, out.obwidx, ~] = intersect([in.s.obwAmp], int32(newobw));
 
 
 
