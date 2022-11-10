@@ -9,7 +9,7 @@
 % % 
 in = hkg2(k);
 ReFs = 20;
-lightstart = 3; %start with dark
+lightstart = 4; %start with dark
 
 
 % light = 4; %start with light
