@@ -1,14 +1,14 @@
 function out = Katiehkg2Replacer(in)
 
 % OBW        
-figure(1); clf;
+
 
     luz = [in.info.luz];
       
        
             for k = 2:2:length(luz)-1
             
-     
+            figure(1); clf;
 
                   kidx =  find([in.s.timcont]/3600 >= abs(luz(k-1))& [in.s.timcont]/3600 <abs(luz(k)));
                   
