@@ -6,11 +6,11 @@ figure(1); clf;
     luz = [in.info.luz];
       
        
-            for k = 2:length(luz)-1
+            for k = 2:2:length(luz)-1
             
      
 
-                  kidx =  find([in.s.timcont]/3600 >= abs(luz(k-1))& [in.s.timcont]/3600 <abs(luz(k+1)));
+                  kidx =  find([in.s.timcont]/3600 >= abs(luz(k-1))& [in.s.timcont]/3600 <abs(luz(k)));
                   
                   histogram([in.s(kidx).obwAmp],100);hold on;
 
