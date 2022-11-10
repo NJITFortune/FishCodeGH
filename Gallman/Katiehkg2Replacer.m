@@ -1,12 +1,17 @@
-function out = Katiehkg2Replacer(in)
+%function out = Katiehkg2Replacer(in)
 
 % OBW        
+%testing123
+clearvars -except hkg2 hkg xxkg xxkg2 rkg2 k
+in = hkg2(k);
+
+
 
 
     luz = [in.info.luz];
       
        
-            for k = 2:length(luz)
+            for k = 2:4%length(luz)
             
             figure(1); clf;
 
@@ -36,10 +41,11 @@ function out = Katiehkg2Replacer(in)
             
         close(1);
 
-             newobw(1,:) = in.s{obwidx(1)}.obwAmp;
+             newobw(1,:) = in.s(obwidx{1}).obwAmp;
+
             for j = 2:length(luz)
 
-                newobw = [newobw, in.s{obwidx(j)}.obwAmp];
+                newobw = [newobw, in.s(obwidx{j}).obwAmp];
                 
             end
 
