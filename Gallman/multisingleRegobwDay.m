@@ -210,7 +210,7 @@ for j = 1:howmanydaysinsample
 %days over experiment time
 figure(55); clf; hold on;
 
-    plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+    plot(timmy/3600, obwAmp, '.');
     for j = 1:length(day)
         plot(day(j).entiretimcont/3600, day(j).Sobwyy);
     end
@@ -238,7 +238,7 @@ figure(55); clf; hold on;
         plot(day(j).entiretimcont/3600, day(j).Sobwyy, 'LineWidth', 1.5);
     end
 
-     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+     plot(timmy/3600, obwAmp, '.');
 
 %average over single day    
 figure(58); clf; hold on; 
