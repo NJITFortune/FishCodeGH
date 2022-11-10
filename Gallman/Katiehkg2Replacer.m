@@ -26,7 +26,7 @@ figure(1); clf;
                     plot([cutoffampH, cutoffampH], [0 10], 'r-', 'LineWidth', 2, 'MarkerSize', 12);
                     drawnow; 
                     
-                    obwidx(k-1) = find([in.s.obwAmp] > cutoffampL & [in.s.obwAmp] < cutoffampH);
+                    obwidx(k-1, :) = find([in.s.obwAmp] > cutoffampL & [in.s.obwAmp] < cutoffampH);
 
                     
                  pause(1);
