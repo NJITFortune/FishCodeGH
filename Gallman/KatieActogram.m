@@ -224,7 +224,7 @@ figure(789); clf; hold on;
             
             tidx = find(timmy >= day(j).entiretimcont(1) & timmy <= day(j).entiretimcont(end));
 
-            newtim = newtim(tidx)/3600;
+            newtim = timmy(tidx)/3600;
             plot(newtim-newtim(1), obwAmp(tidx), '.');           
             
 %            lidx = find(day(j).light > 2.5);
