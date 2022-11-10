@@ -214,7 +214,12 @@ for j = 1:howmanydaysinsample
 %                 %end
  end
 %  
-%% testing
+%% testing123
+ timmy = timcont(rawidx);
+    obwAmp = obw(rawidx);
+for j = 1:length(day)
+    tidx = 
+end
  %% plot to check
 %time vectors currently in seconds, divide by 3600 to get hours
 

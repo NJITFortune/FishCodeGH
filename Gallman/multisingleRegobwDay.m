@@ -81,7 +81,7 @@ end
 %prepare data variables
 
 %outlier removal
- tto = [in.idx2.obwidx]; 
+ tto = [in.idx.obwidx]; 
       
 %raw data
     timcont = [in.s(tto).timcont]; %time in seconds
