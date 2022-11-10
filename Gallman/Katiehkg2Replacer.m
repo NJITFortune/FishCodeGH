@@ -1,4 +1,4 @@
-function out = Katiehkg2Replacer(in)
+%function out = Katiehkg2Replacer(in)
 
 % OBW        
 %testing123
@@ -11,7 +11,7 @@ function out = Katiehkg2Replacer(in)
     luz = [in.info.luz];
       
        
-            for k = 2:length(luz)
+            for k = 2:4%length(luz)
             
             figure(1); clf;
 
@@ -43,14 +43,14 @@ function out = Katiehkg2Replacer(in)
 
              newobw(1,:) = in.s(obwidx{1}).obwAmp;
 
-            for j = 2:length(luz)-1
+            for j = 2:3%length(luz)-1
 
                 newobw = [newobw, in.s(obwidx{j}).obwAmp];
                 
             end
 
 
-              [~, out.obwidx, ~] = intersect([in.s.obwAmp], int32(newobw));
+           %   [~, out.obwidx, ~] = intersect([in.s.obwAmp], int32(newobw));
 
 
 
