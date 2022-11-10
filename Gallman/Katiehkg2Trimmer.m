@@ -1,4 +1,4 @@
-function out  = k_kg2Trimmer(in)
+function out  = Katiehkg2Trimmer(in)
 % Usage:kg(#).e = KatieTrimmer(kg(#).e);
 % Optional data trimming
         
@@ -7,9 +7,8 @@ function out  = k_kg2Trimmer(in)
 figure (1); hold on; title('sumfftAmp');
 
   ax(1) = subplot(311); hold on; title('obwAmp');   
-    yyaxis right; plot([in.timcont]/(60*60), [in.hiAmpobw], '.');
-    yyaxis right; plot([in.timcont]/(60*60), [in.loAmpobw], '.');
-   % plot([out.timcont]/(60*60), [out.Ch3sumAmp], '.');
+   plot([in.timcont]/(60*60), [in.], '.');
+  
  
   ax(2) = subplot(312); hold on; title('frequency (black) and temperature (red)');   
    %     yyaxis right; plot([in.timcont]/(60*60), [in.lofreq], '.k', 'Markersize', 8);
