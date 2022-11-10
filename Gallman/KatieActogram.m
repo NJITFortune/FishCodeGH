@@ -239,11 +239,21 @@ figure(789); clf; hold on;
 
 linkaxes(ax, 'x');
 
-            
+%%            
             
                 
+figure(789); clf; hold on;
+    for j = 1:length(day)
+        ax(j) = subplot(length(day), 1, j); hold on;
+            
 
-    
+            findpeaks(day(j).Sobwyy, day(j).tim)
+
+    end
+
+linkaxes(ax, 'x');
+
+   
 
 
 
