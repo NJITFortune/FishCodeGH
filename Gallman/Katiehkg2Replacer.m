@@ -1,9 +1,9 @@
-%function out = Katiehkg2Replacer(in)
+function out = Katiehkg2Replacer(in)
 
 % OBW        
 %testing123
-clearvars -except hkg2 hkg xxkg xxkg2 rkg2 k
-in = hkg2(k);
+% clearvars -except hkg2 hkg xxkg xxkg2 rkg2 k
+% in = hkg2(k);
 
 
 
@@ -41,20 +41,17 @@ in = hkg2(k);
             
         close(1);
 
-             newtim(1,:) = in.s(obwAmpidx{1}).timcont;
+             newtim(1,:) = [in.s(obwAmpidx{1}).timcont];
 
             for j = 2:length(luz)-1
 
-                newtim = [newtim, in.s(obwAmpidx{j}).timcont];
+                newtim = [newtim, [in.s(obwAmpidx{j}).timcont]];
                 
             end
 
 
               [~, obwidx, ~] = intersect([in.s.timcont], newtim);
 
-obwidx = obwidx';
-
-out.obwidx = obwidx;
 
 
 
