@@ -221,11 +221,13 @@ for j = 1:howmanydaysinsample
 figure(789); clf; hold on;
     for j = 1:length(day)
         ax(j) = subplot(length(day), 1, j); hold on;
-            [newtim, tidx, ~] = intersect(timmy, day(j).entiretimcont);
-            tidx = find(timmy >= day(j).entiretimcont(1) & timmy <= day())
+            
+            tidx = find(timmy >= day(j).entiretimcont(1) & timmy <= day(j).entiretimcont(end));
 
-            newtim = newtim/3600;
-            plot(newtim-newtim(1), obwAmp(tidx), '.');           
+            newtim = timmy(tidx)/3600;
+            plot(newtim-newtim(1), obwAmp(tidx), '.');  
+
+            plot(day(j).tim/3600, day(j).Sobwyy, 'k-');
             
 %            lidx = find(day(j).light > 2.5);
 %            plot(day(j).tim(lidx)/3600, day(j).Sobwyy(lidx),'-', 'Color', [0.9290 0.6940 0.1250]);
@@ -240,9 +242,6 @@ linkaxes(ax, 'x');
             
             
                 
-
-
-    
 
     
 
