@@ -220,12 +220,13 @@ for j = 1:howmanydaysinsample
 figure(789); clf; hold on;
     for j = 1:length(day)
         ax(j) = subplot(length(day), 1, j); hold on;
+        plot(day(j).tim/3600, day(j).Sobwyy, 'k');
 
-           lidx = find(day(j).light > 2.5);
-           plot(day(j).tim(lidx)/3600, day(j).Sobwyy(lidx),'-', 'Color', [0.9290 0.6940 0.1250]);
-
-           didx = find(day(j).light < 2.5);
-           plot(day(j).tim(didx)/3600, day(j).Sobwyy(didx), 'k');
+%            lidx = find(day(j).light > 2.5);
+%            plot(day(j).tim(lidx)/3600, day(j).Sobwyy(lidx),'-', 'Color', [0.9290 0.6940 0.1250]);
+% 
+%            didx = find(day(j).light < 2.5);
+%            plot(day(j).tim(didx)/3600, day(j).Sobwyy(didx), 'k');
 
     end
 
