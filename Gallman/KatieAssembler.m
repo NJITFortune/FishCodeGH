@@ -54,8 +54,9 @@ out(1).s(length(iFiles)).name = [];
 
     ff = waitbar(0, 'Cycling through files.');
 
-for k = :length(iFiles)
-   k    
+for k = 3090:length(iFiles)
+   k   
+   iFiles(k).name
      waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
 
     
