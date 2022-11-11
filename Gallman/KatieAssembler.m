@@ -54,8 +54,8 @@ out(1).s(length(iFiles)).name = [];
 
     ff = waitbar(0, 'Cycling through files.');
 
-for k = 3090:length(iFiles)
-   k   
+for k = 1:length(iFiles)
+   
    iFiles(k).name
      waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
 
