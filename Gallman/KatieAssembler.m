@@ -56,7 +56,6 @@ out(1).s(length(iFiles)).name = [];
 
 for k = 1:length(iFiles)
    
-   iFiles(k).name
      waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
 
     
