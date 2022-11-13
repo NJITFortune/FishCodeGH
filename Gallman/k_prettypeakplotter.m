@@ -90,14 +90,26 @@ figure(31); clf; hold on;
     ax(2) = subplot(212); hold on; xlim([0, timcont(end)-timcont(1)]);
 
 
-         lowWn = 0.03/(20/2);%.025
-                [dd,cc] = butter(5, lowWn, 'low');
-                regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
 
-                [amppeaks, amplocs] = findpeaks(regobwpeaks, regtim);
+         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+         [bb,aa] = butter(5, highWn, 'high');
+
+         %less strong low pass filter - otherwise fake prediction 
+               lowWn = 0.9/(ReFs/2); %OG 0.9
+               [dd,cc] = butter(5, lowWn, 'low');
+
+        
+        datadata = filtfilt(bb,aa, regobwpeaks); %high pass
+
+         [hiamppeaks, hiamplocs] = findpeaks(regobwpeaks, regtim);
 
 
- %plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
+
+
+
+
+
+ plot(regtim/3600 - timcont(1), datadata, 'k-', 'LineWidth', 2);
 
 %         
 %         darkdy = gradient(regobwpeaks)./gradient(regtim);
@@ -116,6 +128,11 @@ figure(31); clf; hold on;
 %         plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
 %         plot(regtim(histpeakidx)/3600 - timcont(1), regobwpeaks(histpeakidx), 'm.', 'MarkerSize', 20);
         %ylim([0 100]);
+
+
+
+         plot(regtim/3600 - timcont(1), datadata, 'k-', 'LineWidth', 2);
+         plot(hiamplocs/3600 -timcont(1), hiamppeaks, 'c.', 'MarkerSize', 20);
         ylabel('Tube triggers per half hour');
         xlabel('Time (hours)')
     
