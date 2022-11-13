@@ -82,7 +82,7 @@ figure(31); clf; hold on;
     
        plot(timcont-timcont(1), obw, '.','Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
         plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
-        plot(amplocs/3600-timcont(1), amppeaks, 'c.', 'MarkerSize', 20);
+        plot(amplocs/3600-timcont(1), amppeaks, 'r.', 'MarkerSize', 20);
         ylabel('Mean square amplitude');
 
 %               ylabel('Frequency (Hz)');
