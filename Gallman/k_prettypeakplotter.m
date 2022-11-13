@@ -4,7 +4,7 @@
 clearvars -except l24kg k
 
 in = l24kg(k);
-channel = 1;
+channel = 2;
 
 
 %data
