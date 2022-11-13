@@ -66,7 +66,7 @@ channel = 1;
 figure(31); clf; hold on;
     set(gcf, 'renderer', 'painters');
     
-     ax(1) = subplot(211); hold on;   xlim([0, timcont(end)-timcont(1)]);
+     ax(1) = subplot(211); hold on;   xlim([0, timcont(end)-timcont(1)]);ylim([.35 .85]);
       plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
         %get y axis bounds for boxes
      %   plot(timcont-timcont(1), obw, '.');
