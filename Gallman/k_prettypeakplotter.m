@@ -104,8 +104,8 @@ figure(31); clf; hold on;
 % 
 %          ylabel('Rate of change');
 
-        plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
-        plot(regtim(histpeakidx)/3600 - timcont(1), regobwpeaks(histpeakidx), 'm.', 'MarkerSize', 20);
+%         plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
+%         plot(regtim(histpeakidx)/3600 - timcont(1), regobwpeaks(histpeakidx), 'm.', 'MarkerSize', 20);
         %ylim([0 100]);
         ylabel('Tube triggers per half hour');
         xlabel('Time (hours)')
