@@ -58,6 +58,7 @@ channel = 1;
          [peaks, locs] = findpeaks(filtN, edges);
 
 
+         
 
 
 %figure
@@ -91,12 +92,12 @@ figure(31); clf; hold on;
 %         darkdy = gradient(regobwpeaks)./gradient(regtim);
 %        
 %         plot(regtim/3600 - timcont(1), darkdy,'k-', 'LineWidth', 2);
-%          a = ylim;
-%          for j = 1:length(lighttimes)-1
-%             if mod(j,2) == 1 %if j is odd
-%             fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%             end
-%         end
+         a = ylim;
+         for j = 1:length(lighttimes)-1
+            if mod(j,2) == 1 %if j is odd
+            fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            end
+         end
 %          plot(regtim/3600 - timcont(1), darkdy,'k-', 'LineWidth', 2);
 % 
 %          ylabel('Rate of change');
