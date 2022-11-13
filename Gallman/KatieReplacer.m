@@ -19,8 +19,11 @@ function out = KatieReplacer(in, channel)
 
                   if luz(k-1) < 0; str = 'dark';end
                   if luz(k-1) > 0; str = 'light';end
+
+                  subplot(121);title(str); hold on;
+                  plot([in.e(channel).s(kidx).timcont]/3600, [in.e(channel).s(kidx).obwAmp], '.');
                   
-                  histogram([in.e(channel).s(kidx).obwAmp],100); title(str); hold on;
+                  subplot(122); title(str); hold on; histogram([in.e(channel).s(kidx).obwAmp],200);
 
                   %Lower lim
                     fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
