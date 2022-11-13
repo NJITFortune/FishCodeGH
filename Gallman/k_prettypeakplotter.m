@@ -94,9 +94,7 @@ figure(31); clf; hold on;
          highWn = 0.005/(20/2); % Original but perhaps too strong for 4 and 5 hour days
          [bb,aa] = butter(5, highWn, 'high');
 
-         %less strong low pass filter - otherwise fake prediction 
-               lowWn = 0.9/(ReFs/2); %OG 0.9
-               [dd,cc] = butter(5, lowWn, 'low');
+         
 
         
         datadata = filtfilt(bb,aa, regobwpeaks); %high pass
