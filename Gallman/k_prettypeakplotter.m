@@ -58,7 +58,8 @@ channel = 1;
          [peaks, locs] = findpeaks(filtN, edges);
 
 
-         
+         [~, histpeakidx, ~] = intersect(regtim/3600, locs);
+
 
 
 %figure
@@ -86,7 +87,7 @@ figure(31); clf; hold on;
 %               ylabel('Frequency (Hz)');
     
     ax(2) = subplot(212); hold on; xlim([0, timcont(end)-timcont(1)]);
-
+ plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
 
 %         
 %         darkdy = gradient(regobwpeaks)./gradient(regtim);
@@ -102,7 +103,7 @@ figure(31); clf; hold on;
 % 
 %          ylabel('Rate of change');
 
-       
+        plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);plot(regtim(histpeakidx)/3600 - timcont(1), regobwpeaks(histpeakidx), 'm.', 'MarkerSize', 10);
         %ylim([0 100]);
         ylabel('Tube triggers per half hour');
         xlabel('Time (hours)')
