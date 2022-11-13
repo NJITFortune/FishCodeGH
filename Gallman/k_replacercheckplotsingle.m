@@ -8,7 +8,7 @@ function k_replacercheckplotsingle(in, channel)
 % out = kg2(k);
 %% prep
  
-     tto = in.idx2.obwidx;
+     tto = in.idx.obwidx;
 
 
     
