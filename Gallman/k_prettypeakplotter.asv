@@ -37,7 +37,7 @@ channel = 1;
                 %regularize data to ReFs interval
                 [regtim, regfreq, ~, regobwpeaks] = k_regularmetamucil(timcont *3600, obwtrim', timcont*3600, obw, freqtrim', temptrim', 20, lighttimes*3600);
 
-        lowWn = 0.03/(20/2);%.025
+        lowWn = 0.02/(20/2);%.025
                 [dd,cc] = butter(5, lowWn, 'low');
                 regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
 
@@ -58,7 +58,8 @@ channel = 1;
          [peaks, locs] = findpeaks(filtN, edges);
 
 
-         [~, histpeakidx, ~] = intersect()
+         [~, histpeakidx, ~] = intersect(regtim/3600, locs);
+
 
 
 %figure
@@ -66,6 +67,7 @@ figure(31); clf; hold on;
     set(gcf, 'renderer', 'painters');
     
      ax(1) = subplot(211); hold on;   xlim([0, timcont(end)-timcont(1)]);
+      plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
         %get y axis bounds for boxes
         plot(timcont-timcont(1), obw, '.');
         a = ylim;
@@ -78,15 +80,36 @@ figure(31); clf; hold on;
             end
         end
     
-        plot(timcont-timcont(1), obw, '.','Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
+       plot(timcont-timcont(1), obw, '.','Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
         plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
-        plot(amplocs/3600-timcont(1), amppeaks, 'c.', 'MarkerSize', 10);
+        plot(amplocs/3600-timcont(1), amppeaks, 'r.', 'MarkerSize', 20);
         ylabel('Mean square amplitude');
 
 %               ylabel('Frequency (Hz)');
     
     ax(2) = subplot(212); hold on; xlim([0, timcont(end)-timcont(1)]);
 
+
+
+         highWn = 0.005/(20/2); % Original but perhaps too strong for 4 and 5 hour days
+         [bb,aa] = butter(5, highWn, 'high');
+
+         
+
+        
+        datadata = filtfilt(bb,aa, regobwpeaks); %high pass
+
+         [hiamppeaks, hiamplocs] = findpeaks(datadata, regtim);
+
+
+        
+    ax(3) = subplot(313); title('peak diff'); hold on;
+
+        
+
+
+
+ plot(regtim/3600 - timcont(1), datadata, 'k-', 'LineWidth', 2);
 
 %         
 %         darkdy = gradient(regobwpeaks)./gradient(regtim);
@@ -102,8 +125,14 @@ figure(31); clf; hold on;
 % 
 %          ylabel('Rate of change');
 
-       
+%         plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
+%         plot(regtim(histpeakidx)/3600 - timcont(1), regobwpeaks(histpeakidx), 'm.', 'MarkerSize', 20);
         %ylim([0 100]);
+
+
+
+         plot(regtim/3600 - timcont(1), datadata, 'k-', 'LineWidth', 2);
+         plot(hiamplocs/3600 -timcont(1), hiamppeaks, 'c.', 'MarkerSize', 20);
         ylabel('Tube triggers per half hour');
         xlabel('Time (hours)')
     

@@ -103,7 +103,9 @@ figure(31); clf; hold on;
 
 
         
+    ax(3) = subplot(313); title('peak diff'); hold on;
 
+        
 
 
 
