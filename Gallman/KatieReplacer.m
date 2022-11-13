@@ -16,8 +16,11 @@ function out = KatieReplacer(in, channel)
             figure(1); clf;
 
                   kidx =  find([in.e(channel).s.timcont]/3600 >= abs(luz(k-1))& [in.e(channel).s.timcont]/3600 <abs(luz(k)));
+
+                  if luz < 0; str = 'dark';end
+                  if luz>0; str = 'light';end
                   
-                  histogram([in.e(channel).s(kidx).obwAmp],100);hold on;
+                  histogram([in.e(channel).s(kidx).obwAmp],100); title(str); hold on;
 
                   %Lower lim
                     fprintf('Click cutoff for eliminating erroneously low amplitude measurements.\n');
