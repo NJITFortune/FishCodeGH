@@ -99,7 +99,7 @@ figure(31); clf; hold on;
         
         datadata = filtfilt(bb,aa, regobwpeaks); %high pass
 
-         [hiamppeaks, hiamplocs] = findpeaks(regobwpeaks, regtim);
+         [hiamppeaks, hiamplocs] = findpeaks(datadata, regtim);
 
 
 
