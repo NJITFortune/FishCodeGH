@@ -13,7 +13,7 @@ function  [regtim, regfreq, regtemp, regobwpeaks] = k_datatrimmean(in, channel, 
 
 %% prep
 
-lighttimes = k_lighttimes(in, light);
+lighttimes = k_lighttimes(in, 3);
 
 
    %% Prepare raw data variables
