@@ -80,9 +80,9 @@ figure(31); clf; hold on;
             end
         end
     
-    %    plot(timcont-timcont(1), obw, '.','Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
+       plot(timcont-timcont(1), obw, '.','Color', [0.3010 0.7450 0.9330], 'MarkerSize', 8);
         plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
-        plot(amplocs/3600-timcont(1), amppeaks, 'c.', 'MarkerSize', 15);
+        plot(amplocs/3600-timcont(1), amppeaks, 'c.', 'MarkerSize', 20);
         ylabel('Mean square amplitude');
 
 %               ylabel('Frequency (Hz)');
@@ -105,7 +105,7 @@ figure(31); clf; hold on;
 %          ylabel('Rate of change');
 
         plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
-        plot(regtim(histpeakidx)/3600 - timcont(1), regobwpeaks(histpeakidx), 'm.', 'MarkerSize', 15);
+        plot(regtim(histpeakidx)/3600 - timcont(1), regobwpeaks(histpeakidx), 'm.', 'MarkerSize', 20);
         %ylim([0 100]);
         ylabel('Tube triggers per half hour');
         xlabel('Time (hours)')
