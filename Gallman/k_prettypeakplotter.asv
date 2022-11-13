@@ -87,7 +87,7 @@ figure(31); clf; hold on;
 
 %               ylabel('Frequency (Hz)');
     
-    ax(2) = subplot(212); hold on; xlim([0, timcont(end)-timcont(1)]);
+    ax(2) = subplot(12); hold on; xlim([0, timcont(end)-timcont(1)]);
 
 
 
@@ -105,11 +105,19 @@ figure(31); clf; hold on;
         
     ax(3) = subplot(313); title('peak diff'); hold on;
 
-        
+     %   plot(hiamplocs(2:end)/3600, diff(hiamplocs)/3600, '*-');
+
+        diffs = diff(hiamplocs/3600);
+
+        difftim = hiamplocs(1)/3600;
+        for j = 1:length(diffs)
+
+            difftim(j,:) = hiamplocs(j)/3600 + diffs(j)/2;
+
+        end
 
 
-
- plot(regtim/3600 - timcont(1), datadata, 'k-', 'LineWidth', 2);
+    plot(difftim - timcont(1), diffs, '*-', 'LineWidth', 2);
 
 %         
 %         darkdy = gradient(regobwpeaks)./gradient(regtim);
