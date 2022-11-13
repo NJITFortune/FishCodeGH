@@ -91,7 +91,7 @@ figure(31); clf; hold on;
 
 
 
-         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+         highWn = 0.005/(20/2); % Original but perhaps too strong for 4 and 5 hour days
          [bb,aa] = butter(5, highWn, 'high');
 
          %less strong low pass filter - otherwise fake prediction 
