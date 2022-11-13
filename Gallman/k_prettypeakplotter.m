@@ -102,8 +102,34 @@ figure(31); clf; hold on;
          [hiamppeaks, hiamplocs] = findpeaks(datadata, regtim);
 
 
-        
-    ax(3) = subplot(313); title('peak diff'); hold on;
+       
+%         darkdy = gradient(regobwpeaks)./gradient(regtim);
+%        
+%         plot(regtim/3600 - timcont(1), darkdy,'k-', 'LineWidth', 2);
+         a = ylim;
+         for j = 1:length(lighttimes)-1
+            if mod(j,2) == 1 %if j is odd
+            fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            end
+         end
+%          plot(regtim/3600 - timcont(1), darkdy,'k-', 'LineWidth', 2);
+% 
+%          ylabel('Rate of change');
+
+%         plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
+%         plot(regtim(histpeakidx)/3600 - timcont(1), regobwpeaks(histpeakidx), 'm.', 'MarkerSize', 20);
+        %ylim([0 100]);
+
+
+
+         plot(regtim/3600 - timcont(1), datadata, 'k-', 'LineWidth', 2);
+         plot(hiamplocs/3600 -timcont(1), hiamppeaks, 'c.', 'MarkerSize', 20);
+       % ylabel('Tube triggers per half hour');
+        xlabel('Time (hours)')
+
+
+
+        ax(3) = subplot(313); title('peak diff'); hold on;
 
      %   plot(hiamplocs(2:end)/3600, diff(hiamplocs)/3600, '*-');
 
@@ -127,29 +153,6 @@ figure(31); clf; hold on;
         end
 %         
  plot(difftim - timcont(1), diffs, '*-', 'LineWidth', 2);
-%         darkdy = gradient(regobwpeaks)./gradient(regtim);
-%        
-%         plot(regtim/3600 - timcont(1), darkdy,'k-', 'LineWidth', 2);
-         a = ylim;
-         for j = 1:length(lighttimes)-1
-            if mod(j,2) == 1 %if j is odd
-            fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-            end
-         end
-%          plot(regtim/3600 - timcont(1), darkdy,'k-', 'LineWidth', 2);
-% 
-%          ylabel('Rate of change');
-
-%         plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
-%         plot(regtim(histpeakidx)/3600 - timcont(1), regobwpeaks(histpeakidx), 'm.', 'MarkerSize', 20);
-        %ylim([0 100]);
-
-
-
-         plot(regtim/3600 - timcont(1), datadata, 'k-', 'LineWidth', 2);
-         plot(hiamplocs/3600 -timcont(1), hiamppeaks, 'c.', 'MarkerSize', 20);
-        ylabel('Tube triggers per half hour');
-        xlabel('Time (hours)')
     
        %xlim([13 116]); ylim([0 60]);
 %     
