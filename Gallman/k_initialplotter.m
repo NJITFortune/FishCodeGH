@@ -45,21 +45,21 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch1 obwAmp'
 
        plotorder = plotorder + 1;
 
-% ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch2 obwAmp'); %ylim([0,5]);
-%         plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.', 'Color', [0.4660 0.6740 0.1880], 'MarkerSize', 5);
-% 
-%             % Add feedingtimes, if we have them... 
-%                if isfield(out.info, 'feedingtimes')
-%                 if ~isempty([out.info.feedingtimes])
-%                    ax(plotorder) = subplot(totplot, colnum, plotorder); plot([out.info.feedingtimes' out.info.feedingtimes']', ylim, 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
-%                 end
-%                end 
-% 
-%         plotorder = plotorder + 1;
+ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('ch2 obwAmp'); %ylim([0,5]);
+        plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).obwAmp], '.', 'Color', [0.4660 0.6740 0.1880], 'MarkerSize', 5);
+
+            % Add feedingtimes, if we have them... 
+               if isfield(out.info, 'feedingtimes')
+                if ~isempty([out.info.feedingtimes])
+                   ax(plotorder) = subplot(totplot, colnum, plotorder); plot([out.info.feedingtimes' out.info.feedingtimes']', ylim, 'm-', 'LineWidth', 2, 'MarkerSize', 10);                
+                end
+               end 
+
+        plotorder = plotorder + 1;
 
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('frequency');   
     
-%        plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).fftFreq], '.k', 'Markersize', 8);
+        plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).fftFreq], '.k', 'Markersize', 8);
         plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).fftFreq], '.k', 'Markersize', 8);
 
         plotorder = plotorder + 1;
@@ -84,7 +84,7 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('temp');
 %                 end
 %             end
     
- %   plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).temp], '-r', 'Markersize', 8);
+    plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).temp], '-r', 'Markersize', 8);
     plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).temp], '-r', 'Markersize', 8);
 
         % Add temptimes, if we have them... 
