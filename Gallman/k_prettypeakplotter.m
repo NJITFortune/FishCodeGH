@@ -154,7 +154,7 @@ figure(31); clf; hold on;
 %         
  plot(difftim - timcont(1), diffs, '*-', 'LineWidth', 2);
 
- yline(4, 'k-', 'LineWidth', 2);
+ yline(8, 'k-', 'LineWidth', 2);
     
        %xlim([13 116]); ylim([0 60]);
 %     
