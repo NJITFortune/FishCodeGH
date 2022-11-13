@@ -66,7 +66,7 @@ channel = 1;
 figure(31); clf; hold on;
     set(gcf, 'renderer', 'painters');
     
-  %   ax(1) = subplot(211); hold on;   xlim([0, timcont(end)-timcont(1)]);
+     ax(1) = subplot(211); hold on;   xlim([0, timcont(end)-timcont(1)]);
       plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
         %get y axis bounds for boxes
         plot(timcont-timcont(1), obw, '.');
@@ -87,19 +87,28 @@ figure(31); clf; hold on;
 
 %               ylabel('Frequency (Hz)');
     
-%    ax(2) = subplot(212); hold on; xlim([0, timcont(end)-timcont(1)]);
+    ax(2) = subplot(212); hold on; xlim([0, timcont(end)-timcont(1)]);
+
+
+         lowWn = 0.03/(20/2);%.025
+                [dd,cc] = butter(5, lowWn, 'low');
+                regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
+
+                [amppeaks, amplocs] = findpeaks(regobwpeaks, regtim);
+
+
  %plot(regtim/3600 - timcont(1), regobwpeaks, 'k-', 'LineWidth', 2);
 
 %         
 %         darkdy = gradient(regobwpeaks)./gradient(regtim);
 %        
 %         plot(regtim/3600 - timcont(1), darkdy,'k-', 'LineWidth', 2);
-%          a = ylim;
-%          for j = 1:length(lighttimes)-1
-%             if mod(j,2) == 1 %if j is odd
-%             fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
-%             end
-%          end
+         a = ylim;
+         for j = 1:length(lighttimes)-1
+            if mod(j,2) == 1 %if j is odd
+            fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+            end
+         end
 %          plot(regtim/3600 - timcont(1), darkdy,'k-', 'LineWidth', 2);
 % 
 %          ylabel('Rate of change');
