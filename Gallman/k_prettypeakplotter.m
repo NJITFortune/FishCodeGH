@@ -125,8 +125,8 @@ figure(31); clf; hold on;
 %                     end
 %                 end
 % 
-              plot(edges-timcont(1), filtN,'k-', 'LineWidth',2);
-              plot(locs-timcont(1), peaks, 'm.', 'MarkerSize', 10);
+%               plot(edges-timcont(1), filtN,'k-', 'LineWidth',2);
+%               plot(locs-timcont(1), peaks, 'm.', 'MarkerSize', 10);
 
     linkaxes(ax, 'x');
             
