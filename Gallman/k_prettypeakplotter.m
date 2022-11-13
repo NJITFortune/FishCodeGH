@@ -101,7 +101,7 @@ figure(31); clf; hold on;
 
          [hiamppeaks, hiamplocs] = findpeaks(datadata, regtim);
 
-
+          plot(regtim/3600 - timcont(1), datadata, 'k-', 'LineWidth', 2);
        
 %         darkdy = gradient(regobwpeaks)./gradient(regtim);
 %        
