@@ -30,8 +30,8 @@ figure(457); clf;  hold on;
     ax(2) = subplot(312); title('frequency'); hold on; %ylim([0,3]);
 %
           
-            plot([in.e(channel).s.timcont]/3600, [in.e(channel).s.freq], 'ko');
-            plot([in.e(channel).s(tto).timcont]/3600, [in.e(channel).s(tto).freq], 'o');
+            plot([in.e(channel).s.timcont]/3600, [in.e(channel).s.fftFreq], 'ko');
+            plot([in.e(channel).s(tto).timcont]/3600, [in.e(channel).s(tto).fftFreq], 'o');
     
     ax(3) = subplot(313); title('light cycle'); hold on;
             plot([in.e(channel).s.timcont]/3600, [in.e(channel).s.light]);
