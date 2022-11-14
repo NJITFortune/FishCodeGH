@@ -28,7 +28,7 @@ lighttimes = k_lighttimes(in, 3);
    %convert fft to hours - 0 is infinite so we skip 1
    newFreqs = (1./a.fftfreq(2:end))/3600; newAmps = a.fftdata(2:end);
 
-   Figure(7); clf; hold on;
+   figure(7); clf; hold on;
    semilogx([8, 8], [0 0.05], 'r');
    semilogx([24, 24], [0 0.05], 'b'); 
 
