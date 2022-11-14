@@ -15,7 +15,7 @@ luz = [in.info.luz];
 
 plotlengthHOURS = 4; %hours
 howmanyplots = floor((timcont(end) - lighttimes(1))/4);
-
+binwidth = 0.5;
 
     for j = 1:howmanyplots
     
@@ -39,11 +39,17 @@ howmanyplots = floor((timcont(end) - lighttimes(1))/4);
 
         for j = 1:length(act)
 
-            subplot(length(act), 1, j); hold on;
+         ax(j) = subplot(length(act), 1, j); hold on;
 
+                  d = histogram(act(j).timcont, 'BinWidth', binwidth);
+                  d.Normalization = 'countdensity';
+                 % d.FaceColor = [0.9 0.9 0.9];
                 
-                
-                
+        end
+
+        xlabel('time (hours)');
+        linkaxes(ax, 'x');
+        
                 
         
         
