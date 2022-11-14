@@ -32,10 +32,10 @@ binwidth = 0.5;
 
     end
 
-    figure(78); clf; hold on;
-        d = histogram(timcont, 'BinWidth', binwidth);
-        d.Normalization = 'countdensity';
-
+%     figure(78); clf; hold on;
+%         d = histogram(timcont, 'BinWidth', binwidth);
+%         d.Normalization = 'countdensity';
+% 
 
 
     figure(4897); clf; title('four hour bins'); hold on;
@@ -43,7 +43,7 @@ binwidth = 0.5;
 
         for j = 1:length(act)
 
-         ax(j) = subplot(length(act), 1, j); hold on;
+         ax(j) = subplot(length(act), 1, j); hold on; ylim([0,100]);
           set(gca,'Xticklabel',[], 'Yticklabel', []);
 
                   d = histogram(act(j).timcont, 'BinWidth', binwidth);
