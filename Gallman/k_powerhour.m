@@ -23,6 +23,5 @@ lighttimes = k_lighttimes(in, 3);
     freq = regfreq(timidx);
     temp = regtemp(timidx);
 
-  
 
-   
+   a = fftmachine(obw - mean(obw),Fs);
