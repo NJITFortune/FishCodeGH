@@ -21,7 +21,7 @@ howmanyplots = floor((timcont(end) - lighttimes(1))/4);
     
               %resampled data  
     %         % Get the index of the start time of the day
-                ddayidx = find(timcont >= lighttimes(1) + (j-1) * plotlengthHOURS & xtimcont < lighttimes(1) + j* plotlengthHOURS); % k-1 so that we start at zero
+                ddayidx = find(timcont >= lighttimes(1) + (j-1) * plotlengthHOURS & timcont < lighttimes(1) + j* plotlengthHOURS); % k-1 so that we start at zero
 
                 if timcont(ddayidx)-timcont(ddayidx(1)) >= 4 %important so that we know when to stop
 
