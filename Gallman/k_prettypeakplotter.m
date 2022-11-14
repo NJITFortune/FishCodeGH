@@ -144,6 +144,7 @@ figure(31); clf; hold on;
         diffs = diff(hiamplocs/3600);
 
         difftim = hiamplocs(1)/3600;
+        
         for j = 1:length(diffs)
 
             difftim(j,:) = hiamplocs(j)/3600 + diffs(j)/2;
