@@ -34,4 +34,4 @@ lighttimes = k_lighttimes(in, 3);
 % 
 %     plot(f,pxx);
 
-    pwelch(obw)
+   
