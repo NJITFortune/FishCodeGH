@@ -103,7 +103,11 @@ figure(31); clf; hold on;
         
         datadata = filtfilt(bb,aa, regobwpeaks); %high pass
 
-         [hiamppeaks, hiamplocs] = findpeaks(datadata, regtim);
+
+        [C2, idx, ~] = unique(regtim);
+        newamp2 = datadata(idx);
+
+         [hiamppeaks, hiamplocs] = findpeaks(newamp2, C2);
 
           plot(regtim/3600 - timcont(1), datadata, 'k-', 'LineWidth', 2);
        
