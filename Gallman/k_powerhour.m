@@ -5,10 +5,10 @@
    semilogx([12, 12], [0 0.05], 'm');
    semilogx([24, 24], [0 0.05], 'b'); 
 
-for k = 69%64:75
+for k = 12%64:75
 % not functioning today
 clearvars -except l24kg k hkg
-    in = l24kg(k);
+    in = hkg(k);
 
 
 
