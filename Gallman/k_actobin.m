@@ -36,6 +36,7 @@ binwidth = 0.5;
 
 
     figure(4897); clf; title('four hour bins'); hold on;
+    set(gca,'Xticklabel',[])
 
         for j = 1:length(act)
 
