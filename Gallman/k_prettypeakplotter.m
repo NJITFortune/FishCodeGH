@@ -1,4 +1,4 @@
-%function k_prettypeakplotter(in, channel)
+function k_prettypeakplotter(in, channel)
 
 %not functioning
 clearvars -except l24kg k
