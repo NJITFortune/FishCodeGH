@@ -41,7 +41,7 @@ function k_prettypeakplotter(in, channel)
                 [dd,cc] = butter(5, lowWn, 'low');
                 regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
 
-                [amppeaks, amplocs] = findpeaks(regobwpeaks, regtim);
+                [amppeaks, amplocs] = findpeaks(regobwpeaks', regtim);
 
 
 
