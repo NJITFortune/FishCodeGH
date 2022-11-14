@@ -28,3 +28,8 @@ lighttimes = k_lighttimes(in, 3);
     %periodogram(obw, rectwin(N),N, Fs)
 
     [pxx,f] = pwelch(obw,hamming(N),[],N,Fs);
+
+   
+ figure(6);clf; hold on;
+
+    plot(f,pxx);
