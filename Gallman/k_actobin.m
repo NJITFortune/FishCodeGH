@@ -1,10 +1,10 @@
-function k_actobin(in, channel)
+%function k_actobin(in, channel)
 
-% %not functioning
-% clearvars -except l24kg k
-% 
-% in = l24kg(k);
-% channel = 1;
+%not functioning
+clearvars -except l24kg k hkg
+
+in = l24kg(k);
+channel = 1;
 
 lighttimes = k_lighttimes(in, 3);
 lighttimes = lighttimes/3600;
