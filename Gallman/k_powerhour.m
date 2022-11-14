@@ -1,13 +1,17 @@
-function k_powerhour(in)
+%function k_powerhour(in)
 
+
+% not functioning today
+clearvars -except l24kg k hkg
+in = l24kg(66);
+
+%% prep - define variables
 ReFs = 20;
 channel = 1;
 
 
-in = l24kg(66);
-
-
-
-
 [regtim, regfreq, regtemp, regobwpeaks] = k_datatrimmean(in, channel, ReFs);
 lighttimes = k_lighttimes(in, 3);
+
+
+% trim data to lighttimes
