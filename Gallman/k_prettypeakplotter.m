@@ -139,25 +139,25 @@ figure(31); clf; hold on;
 
         ax(3) = subplot(313); title('peak diff'); hold on;
 
-     %   plot(hiamplocs(2:end)/3600, diff(hiamplocs)/3600, '*-');
+       plot(hiamplocs(2:end)/3600, diff(hiamplocs)/3600, '*-');
 
-%         diffs = diff(hiamplocs/3600);
-% 
-%         difftim = hiamplocs(1)/3600;
-%         for j = 1:length(diffs)
-% 
-%             difftim(j,:) = hiamplocs(j)/3600 + diffs(j)/2;
-% 
-%         end
+        diffs = diff(hiamplocs/3600);
 
-        diffs = diff(amplocs/3600);
-
-        difftim = amplocs(1)/3600;
+        difftim = hiamplocs(1)/3600;
         for j = 1:length(diffs)
 
-            difftim(j,:) = amplocs(j)/3600 + diffs(j)/2;
+            difftim(j,:) = hiamplocs(j)/3600 + diffs(j)/2;
 
         end
+
+%         diffs = diff(amplocs/3600);
+% 
+%         difftim = amplocs(1)/3600;
+%         for j = 1:length(diffs)
+% 
+%             difftim(j,:) = amplocs(j)/3600 + diffs(j)/2;
+% 
+%         end
 
 
     plot(difftim - timcont(1), diffs, '*-', 'LineWidth', 2);
