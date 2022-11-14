@@ -22,27 +22,29 @@ howmanyplots = floor((timcont(end) - lighttimes(1))/4);
               %resampled data  
     %         % Get the index of the start time of the day
                 ddayidx = find(timcont >= lighttimes(1) + (j-1) * plotlengthHOURS & timcont < lighttimes(1) + j* plotlengthHOURS); % k-1 so that we start at zero
-                lightidx = find(lighttimes >= lighttimes(1) + (j-1) * plotlengthHOURS & lighttimes < lighttimes(1) + j* plotlengthHOURS);
+               
               %  if timcont(ddayidx)-timcont(ddayidx(1)) >= 4 %important so that we know when to stop
 
                     act(j).timcont = timcont(ddayidx);
                     %act(j).obw = obw(ddayidx);
-                    act(j).lighttimes = lighttimes(lightidx);
-                    act(j).luz = luz(lightidx);
-
+                    
               %  end
 
     end
 
 
 
-% 
-%     figure(4897); clf; title('four hour bins'); hold on;
-% 
-%         for j = 1:length(act)
-% 
-%             subplot(length(act), 1, j); hold on;
-%                 
+
+   % figure(4897); clf; title('four hour bins'); hold on;
+
+        for j = 1%:length(act)
+
+            lidx = find(lighttimes >= act(j).timcont(1) & lighttimes <= act(j).timcont(end));
+            actlight = lighttimes(lidx);
+            actluz = luz(lidx);
+        end
+           % subplot(length(act), 1, j); hold on;
+                
                 
                 
         
