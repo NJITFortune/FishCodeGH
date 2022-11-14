@@ -23,4 +23,4 @@ lighttimes = k_lighttimes(in, 3);
     temp = regtemp(timidx);
 
 
-    
+    pwelch(obw)
