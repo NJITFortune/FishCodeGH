@@ -25,4 +25,4 @@ lighttimes = k_lighttimes(in, 3);
 
 
     N = length(obw);
-    periodgram(obw, rectwin(N),N, Fs)
+    periodogram(obw, rectwin(N),N, Fs)
