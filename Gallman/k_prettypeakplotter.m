@@ -41,7 +41,7 @@ channel = 1;
                 [dd,cc] = butter(5, lowWn, 'low');
                 regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
 
-                B = sort(regtim);
+                B = unique(regtim);
 
                 [amppeaks, amplocs] = findpeaks(regobwpeaks, B);
 
