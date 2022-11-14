@@ -1,5 +1,9 @@
 %function k_powerhour(in)
 
+ figure(7); hold on;
+   semilogx([8, 8], [0 0.05], 'r');
+   semilogx([24, 24], [0 0.05], 'b'); 
+
 for k = 64:75
 % not functioning today
 clearvars -except l24kg k hkg
@@ -30,9 +34,11 @@ lighttimes = k_lighttimes(in, 3);
    %convert fft to hours - 0 is infinite so we skip 1
    newFreqs = (1./a.fftfreq(2:end))/3600; newAmps = a.fftdata(2:end);
 
-   figure(7); clf; hold on;
-   semilogx([8, 8], [0 0.05], 'r');
-   semilogx([24, 24], [0 0.05], 'b'); 
+ 
 
    semilogx(newFreqs, newAmps, 'k', 'LineWidth', 2); 
-   xlim([2 48]); xlabel('Hours in Day'); ylabel('Power'); %title('Wahoo • Day Power');
+  
+
+end
+
+ xlim([2 48]); xlabel('Hours in Day'); ylabel('Power'); title('Wahoo • Day Power');
