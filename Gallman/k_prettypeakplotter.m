@@ -139,12 +139,12 @@ figure(31); clf; hold on;
 
         ax(3) = subplot(313); title('peak diff'); hold on;
 
-       plot(hiamplocs(2:end)/3600, diff(hiamplocs)/3600, '*-');
+     
 
         diffs = diff(hiamplocs/3600);
 
         difftim = hiamplocs(1)/3600;
-        
+
         for j = 1:length(diffs)
 
             difftim(j,:) = hiamplocs(j)/3600 + diffs(j)/2;
