@@ -159,10 +159,12 @@ figure(31); clf; hold on;
             fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
             end
         end
-%         
+
+ yline(12, 'k-', 'LineWidth', 1);
+ yline(8, 'k-', 'LineWidth', 1);
  plot(difftim - timcont(1), diffs, '*-', 'LineWidth', 2);
 
- yline(8, 'k-', 'LineWidth', 2);
+ 
     
        %xlim([13 116]); ylim([0 60]);
 %     
