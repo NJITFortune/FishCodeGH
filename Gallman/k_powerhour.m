@@ -1,14 +1,14 @@
 %function k_powerhour(in)
 
- figure(7);clf; hold on;
+ figure(77);clf; hold on;
    semilogx([8, 8], [0 0.05], 'r');
    semilogx([12, 12], [0 0.05], 'm');
    semilogx([24, 24], [0 0.05], 'b'); 
 
-for k = 12%64:75
+for k = 66%64:75
 % not functioning today
 clearvars -except l24kg k hkg
-    in = hkg(k);
+    in = l24kg(k);
 
 
 
