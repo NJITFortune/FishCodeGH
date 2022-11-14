@@ -23,8 +23,8 @@ lighttimes = k_lighttimes(in, 3);
     freq = regfreq(timidx);
     temp = regtemp(timidx);
 
-
-
-
     N = length(obw);
-    periodogram(obw, rectwin(N),N, Fs)
+
+    %periodogram(obw, rectwin(N),N, Fs)
+
+    [pxx,f] = pwelch(obw,hamming(N),[],N,Fs);
