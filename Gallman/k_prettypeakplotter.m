@@ -1,10 +1,10 @@
-function k_prettypeakplotter(in, channel)
+%function k_prettypeakplotter(in, channel)
 
-% %not functioning
-% clearvars -except l24kg k
-% 
-% in = l24kg(k);
-% channel = 2;
+%not functioning
+clearvars -except l24kg k
+
+in = l24kg(k);
+channel = 1;
 
 
 %data
@@ -41,7 +41,7 @@ function k_prettypeakplotter(in, channel)
                 [dd,cc] = butter(5, lowWn, 'low');
                 regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
 
-                [amppeaks, amplocs] = findpeaks(regobwpeaks', regtim);
+                [amppeaks, amplocs] = findpeaks(regobwpeaks, regtim);
 
 
 
