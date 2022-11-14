@@ -1,0 +1,49 @@
+function k_actobin(in, channel)
+
+% %not functioning
+% clearvars -except l24kg k
+% 
+% in = l24kg(k);
+% channel = 1;
+
+lighttimes = k_lighttimes(in, 3);
+lighttimes = lighttimes/3600;
+
+timcont = [in.e(channel).s.timcont]/3600;
+luz = [in.info.luz];
+%obw = [in.e(channel).s.obw];
+
+plotlengthHOURS = 4; %hours
+howmanyplots = floor((timcont(end) - lighttimes(1))/4);
+
+
+    for j = 1:howmanyplots
+    
+              %resampled data  
+    %         % Get the index of the start time of the day
+                ddayidx = find(timcont >= lighttimes(1) + (j-1) * plotlengthHOURS & xtimcont < lighttimes(1) + j* plotlengthHOURS); % k-1 so that we start at zero
+
+                if timcont(ddayidx)-timcont(ddayidx(1)) >= 4 %important so that we know when to stop
+
+                    act(j).timcont = timcont(ddayidx);
+                    %act(j).obw = obw(ddayidx);
+                    act(j).lighttimes = lighttimes(lighttimes >= timcont(ddayidx(1)) & lighttimes <= timcont(ddayidx(end)));
+                    act(j).luz = luz(lighttimes >= timcont(ddayidx(1)) & lighttimes <= timcont(ddayidx(end)));
+
+                end
+
+    end
+
+
+
+% 
+%     figure(4897); clf; title('four hour bins'); hold on;
+% 
+%         for j = 1:length(act)
+% 
+%             subplot(length(act), 1, j); hold on;
+%                 
+                
+                
+        
+        
