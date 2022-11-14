@@ -15,7 +15,7 @@ luz = [in.info.luz];
 
 plotlengthHOURS = 4; %hours
 howmanyplots = floor((timcont(end) - lighttimes(1))/4);
-binwidth = 0.25;
+binwidth = 0.05;
 
     for j = 1:howmanyplots
     
