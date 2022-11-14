@@ -1,10 +1,10 @@
 function k_prettypeakplotter(in, channel)
 
-%not functioning
-clearvars -except l24kg k
-
-in = l24kg(k);
-channel = 2;
+% %not functioning
+% clearvars -except l24kg k
+% 
+% in = l24kg(k);
+% channel = 2;
 
 
 %data
