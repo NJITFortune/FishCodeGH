@@ -1,9 +1,11 @@
 %function k_powerhour(in)
 
-
+for k = 64:75
 % not functioning today
 clearvars -except l24kg k hkg
-in = l24kg(75);
+    in = l24kg(k);
+
+
 
 %% prep - define variables
 ReFs = 20;
