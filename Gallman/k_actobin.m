@@ -13,8 +13,8 @@ timcont = [in.e(channel).s.timcont]/3600;
 luz = [in.info.luz];
 %obw = [in.e(channel).s.obw];
 
-plotlengthHOURS = 8; %hours
-howmanyplots = floor((timcont(end) - lighttimes(1))/8);
+plotlengthHOURS = 24; %hours
+howmanyplots = floor((timcont(end) - lighttimes(1))/plotlengthHOURS);
 binwidth = 0.05;
 
     for j = 1:howmanyplots
