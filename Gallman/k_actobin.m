@@ -14,7 +14,7 @@ luz = [in.info.luz];
 %obw = [in.e(channel).s.obw];
 
 plotlengthHOURS = 8; %hours
-howmanyplots = floor((timcont(end) - lighttimes(1))/4);
+howmanyplots = floor((timcont(end) - lighttimes(1))/8);
 binwidth = 0.05;
 
     for j = 1:howmanyplots
