@@ -24,5 +24,11 @@ lighttimes = k_lighttimes(in, 3);
     temp = regtemp(timidx);
 
 
+%less strong low pass filter?
+           lowWn = 0.9/(ReFs/2); %OG 0.9
+           [dd,cc] = butter(5, lowWn, 'low');
+
+           datadata = filtfilt(dd,cc, double(obw)); %low pass
+
     N = length(obw);
-    periodogram(obw, rectwin(N),N, Fs)
+    periodogram(datadata, rectwin(N),N, Fs)
