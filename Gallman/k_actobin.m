@@ -37,13 +37,11 @@ howmanyplots = floor((timcont(end) - lighttimes(1))/4);
 
    % figure(4897); clf; title('four hour bins'); hold on;
 
-        for j = 1%:length(act)
+        for j = 1:length(act)
 
-            lidx = find(lighttimes >= act(j).timcont(1) & lighttimes <= act(j).timcont(end));
-            actlight = lighttimes(lidx);
-            actluz = luz(lidx);
-        end
-           % subplot(length(act), 1, j); hold on;
+            subplot(length(act), 1, j); hold on;
+
+                
                 
                 
                 
