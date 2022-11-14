@@ -8,6 +8,7 @@ in = l24kg(66);
 %% prep - define variables
 ReFs = 20;
 channel = 1;
+Fs = 1/ReFs;
 
 
 [regtim, regfreq, regtemp, regobwpeaks] = k_datatrimmean(in, channel, ReFs);
@@ -23,4 +24,5 @@ lighttimes = k_lighttimes(in, 3);
     temp = regtemp(timidx);
 
 
-    pwelch(obw)
+    N = length(obw);
+    periodgram(obw, rectwin(N),N, Fs)
