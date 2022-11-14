@@ -15,3 +15,12 @@ lighttimes = k_lighttimes(in, 3);
 
 
 % trim data to lighttimes
+    timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
+    regtim = regtim(timidx);
+     obw = regobwpeaks(timidx);
+   
+    freq = regfreq(timidx);
+    temp = regtemp(timidx);
+
+
+    
