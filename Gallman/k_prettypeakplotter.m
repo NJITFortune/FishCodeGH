@@ -42,7 +42,8 @@ channel = 1;
                 regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
 
                 [C, idx, ic] = unique(regtim);
-                
+                a_counts = accumarray(ic,1);
+                value_counts = [C, a_counts];
 
                 [amppeaks, amplocs] = findpeaks(regobwpeaks, C);
 
