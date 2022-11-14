@@ -35,7 +35,7 @@ binwidth = 0.5;
 
 
 
-   % figure(4897); clf; title('four hour bins'); hold on;
+    figure(4897); clf; title('four hour bins'); hold on;
 
         for j = 1:length(act)
 
@@ -47,7 +47,7 @@ binwidth = 0.5;
                 
         end
 
-        xlabel('time (hours)');
+      %  xlabel('time (hours)');
         linkaxes(ax, 'x');
         
                 
