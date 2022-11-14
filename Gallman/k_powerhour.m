@@ -3,7 +3,7 @@
 
 % not functioning today
 clearvars -except l24kg k hkg
-in = l24kg(67);
+in = l24kg(68);
 
 %% prep - define variables
 ReFs = 20;
