@@ -25,7 +25,7 @@ binwidth = 0.5;
                
               %  if timcont(ddayidx)-timcont(ddayidx(1)) >= 4 %important so that we know when to stop
 
-                    act(j).timcont = timcont(ddayidx);
+                    act(j).timcont = timcont(ddayidx)-timcont(dayidx(1));
                     %act(j).obw = obw(ddayidx);
                     
               %  end
