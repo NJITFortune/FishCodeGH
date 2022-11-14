@@ -1,6 +1,6 @@
 %function k_powerhour(in)
 
- figure(7); hold on;
+ figure(7);clf; hold on;
    semilogx([8, 8], [0 0.05], 'r');
    semilogx([24, 24], [0 0.05], 'b'); 
 
