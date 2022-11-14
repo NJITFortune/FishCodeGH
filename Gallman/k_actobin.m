@@ -3,7 +3,7 @@
 %not functioning
 clearvars -except l24kg k hkg
 
-in = l24kg(k);
+in = hkg(k);
 channel = 1;
 
 lighttimes = k_lighttimes(in, 3);
