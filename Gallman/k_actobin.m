@@ -32,6 +32,9 @@ binwidth = 0.5;
 
     end
 
+    figure(78); clf; hold on;
+        d = histogram(timcont, 'BinWidth', binwidth);
+        d.Normalization = 'countdensity';
 
 
 
