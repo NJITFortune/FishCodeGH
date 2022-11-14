@@ -25,3 +25,5 @@ lighttimes = k_lighttimes(in, 3);
 
 
    a = fftmachine(obw - mean(obw),Fs);
+   %convert fft to hours - 0 is infinite so we skip 1
+   newFreqs = (1./a.fftfreq(2:end))/3600; newAmps = a.fftdata(2:end);
