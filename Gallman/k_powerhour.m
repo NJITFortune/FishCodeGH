@@ -3,7 +3,7 @@
 
 % not functioning today
 clearvars -except l24kg k hkg
-in = l24kg(66);
+in = l24kg(64);
 
 %% prep - define variables
 ReFs = 20;
@@ -31,5 +31,6 @@ lighttimes = k_lighttimes(in, 3);
    Figure(7); clf; hold on;
    semilogx([8, 8], [0 0.05], 'r');
    semilogx([24, 24], [0 0.05], 'b'); 
+
    semilogx(newFreqs, newAmps, 'k', 'LineWidth', 2); 
    xlim([2 48]); xlabel('Hours in Day'); ylabel('Power'); %title('Wahoo • Day Power');
