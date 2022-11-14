@@ -25,7 +25,7 @@ lighttimes = k_lighttimes(in, 3);
 
 
 %less strong low pass filter?
-           lowWn = 0.1/(ReFs/2); %OG 0.9
+           lowWn = 0.01/(ReFs/2); %OG 0.9
            [dd,cc] = butter(5, lowWn, 'low');
 
            datadata = filtfilt(dd,cc, double(obw)); %low pass
