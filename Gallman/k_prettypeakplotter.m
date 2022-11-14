@@ -160,7 +160,7 @@ figure(31); clf; hold on;
             end
         end
 
- yline(12, 'k-', 'LineWidth', 1);
+ yline(24, 'k-', 'LineWidth', 1);
  yline(8, 'k-', 'LineWidth', 1);
  plot(difftim - timcont(1), diffs, '*-', 'LineWidth', 2);
 
