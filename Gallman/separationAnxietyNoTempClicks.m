@@ -1,7 +1,7 @@
 % A new attempt at frequency tracking two Eigenmannia in the tank
-clearvars -except kg kg2 rkg k
+clearvars -except kg kg2 rkg2 k
 Fs = 40000;
-freqs = [200 650]; %freq range of typical eigen EOD
+freqs = [200 700]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 % Max frequency change
 maxchange = 30; % Maximum change in Hz between samples
@@ -24,6 +24,7 @@ clickcnt = 0;
     %Initialize nonelectrode data channels
     tempchan = 3; 
     lightchan = 4; 
+    tempstate = 5;
 
 % Get the list of files to be analyzed  
     iFiles = dir(userfilespec);
@@ -131,6 +132,7 @@ oldcurrlofreq = currlofreq;
 %light and temp for j = 1
     out(1).temp = mean(data(1,tempchan));
     out(1).light = mean(data(1,lightchan));
+     out(1).tempstate = mean(data(1,tempstate));
 %% 2:end            
 for j = 2:length(iFiles)
 
@@ -158,6 +160,7 @@ for j = 2:length(iFiles)
     %light and temp 
     out(j).temp = mean(data(1,tempchan));
     out(j).light = mean(data(1,lightchan));
+    out(j).tempstate = mean(data(1,tempstate));
 
     summedFFT =  f2.fftdata;%f1.fftdata + 
     figure(2); clf; hold on;
@@ -193,15 +196,17 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
         
   
         if abs(currlofreq-oldcurrlofreq) > maxchangelo1
-          if currlofreq > 419 && currlofreq < 421 || lopeakamp < 0.005 %|| currlofreq < 220
+          if currlofreq > 419 && currlofreq < 421 || lopeakamp < 0.01 %|| currlofreq < 220
               currlofreq = oldcurrlofreq;
           else
                 if j > 3 
-                   if  currlofreq > mean([out(j-2).midpoint, out(j-1).midpoint]) 
+                   if  currlofreq > out(j-1).midpoint%mean([out(j-2).midpoint, out(j-1).midpoint]) 
                     currlofreq = oldcurrlofreq;
                    end
 
-%                    if currlofreq < 410
+                   if currlofreq < 423
+                        currlofreq = out(j-2).lofreq;
+                   end
 %                         lowfreqidx = find(f2.fftfreq > 425 & f2.fftfreq < currhifreq-oldmidpoint);
 %                         [~, lmaxidx] = max(summedFFT(lowfreqidx));
 %                          currlofreq = f2.fftfreq(lowfreqidx(lmaxidx));
@@ -228,17 +233,17 @@ mindiff = 3; % Minimum frequency difference (Hz) between the two fish
 
        %if max change in higher fish frequency
         if abs(currhifreq-oldcurrhifreq) > maxchangehi %|| currhifreq < 590 
-          if  currhifreq > 419 && currhifreq < 421 %|| currhifreq < 570% || currhifreq > 419 && currhifreq < 421  hipeakamp < 0.1 ||
+          if  hipeakamp < 0.05 || currhifreq > 419 && currhifreq < 421 %|| currhifreq < 570% || currhifreq > 419 && currhifreq < 421  hipeakamp < 0.1 ||
               currhifreq = oldcurrhifreq;
           else
                  if j > 3 
-                   if  currhifreq < mean([out(j-2).midpoint, out(j-1).midpoint])
+                   if  currhifreq < oldmidpoint %|| currhifreq < 600 
                     currhifreq = oldcurrhifreq;
                    end
                     
-                    if currhifreq < 0.005 || currhifreq > 600
-                        currhifreq = oldcurrhifreq;
-                    end
+%                     if currhifreq < 0.005 || currhifreq > 600
+%                         currhifreq = oldcurrhifreq;
+%                     end
                  end
           end
         end 
@@ -326,14 +331,13 @@ fixme = 0;
     [~, hmaxidx] = find(f2.fftfreq(hifreqidx) == currhifreq);
     
      figure(2); 
-            plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
-            plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);           
+    plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
+    plot(currhifreq, summedFFT(hifreqidx(hmaxidx)), 'm.', 'MarkerSize', 16);      
+            
             midpoint = currlofreq + ((currhifreq - currlofreq)/2);
             plot([midpoint, midpoint], [0 1], 'k');
             text(350, 0.5, num2str(j));
-            drawnow;
-           
-    
+            drawnow;    
 
 %% Put the data into the output structure   
     %eliminate supernoisy data

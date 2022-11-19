@@ -1,8 +1,8 @@
 %function out = k_ampbinner(in, channel, binsize, transbinnum)
 %% prep 
-clearvars -except kg kg2
+clearvars -except kg kg2 hkg hkg2 xxkg xxkg2
 
-in = kg(2);
+in = hkg(2);
 channel = 1;
 %kg(12) starts with light
 
@@ -11,18 +11,10 @@ binsize = 20;
 transbinnum = 8;
 %% outliers
 
-% Prepare the data with outliers
 
-    ttsf{1} = 1:length([in.e(channel).s.timcont]); % tto is indices for obwAmp
-    ttsf{2} = ttsf{1};
+    
+        ttsf{channel} = in.idx(channel).obwidx;  % ttsf is indices for sumfftAmp
 
- 
-% Prepare the data without outliers
-
-    % If we have removed outliers via KatieRemover, get the indices...    
-    if ~isempty(in.idx)
-        ttsf{channel} = in.idx(channel).sumfftidx;  % ttsf is indices for sumfftAmp
-    end
      
 %% define data by light transitions
 
@@ -281,6 +273,7 @@ end
     plot(lighttimxx, lightampyy, 'k-', 'LineWidth', 3);
       plot(lighttimxx, lightdy, 'b-', 'LineWidth', 1.5);
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+    yline(0)
 
 %Calculate chisqu of means
 

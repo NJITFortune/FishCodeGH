@@ -1,4 +1,4 @@
-function [newtim, newampFilled] = k_regularmetamucil(oldtim, oldamp, rawtim, rawamp, regularinterval, lighttimes)
+function [newtim, newfreqFilled,  newtempFilled ,newampFilled] = k_regularmetamucil(oldtim, oldamp, rawtim, rawamp,oldfreq,oldtemp, regularinterval, lighttimes)
 % Usage: [newtim, newampmeansubtracted, newampFilled] = metamucil(oldtim, oldamp)
 %
 % oldtim and oldamp are the recording times in seconds and data from kg
@@ -19,17 +19,18 @@ if oldtim(1) > rawtim(1) %if first peak starts after tim(1)
     
     oldtim = [rawtim(gapidx) oldtim];  %add time indicies to oldtim
     oldamp = [rawamp(1)  NaN(1,length(gapidx)-1,'single') oldamp]; %add NaNs to old amp size of gap after first raw amp value
-   
-     
+    oldfreq = [oldfreq(1)  NaN(1,length(gapidx)-1,'single') oldfreq]; 
+    oldtemp = [oldtemp(1)  NaN(1,length(gapidx)-1,'single') oldtemp];  
 end
 
 %% Oldtim ends before last light change
-if oldtim(end) < lighttimes(end)
-
-    oldtim = [oldtim lighttimes(end)];
-    oldamp = [oldamp oldamp(end)];
-    
-end
+% if oldtim(end) < lighttimes(end)
+% 
+%     oldtim = [oldtim lighttimes(end)];
+%     oldamp = [oldamp oldamp(end)];
+%     oldfreq = [oldfreq oldfreq(end)];
+%     oldtemp = [oldtemp oldtemp(end)];
+% end
 %% Regularize the data at precisely 60 second intervals
 
 b = mod(oldtim, regularinterval); % How far is each time point away from ReFs second intervals
@@ -49,18 +50,25 @@ dd = find(d > 0); % We only need to fill gaps (0 is not a gap!)
 if dd(1) == 1 % There is a gap after the first data point
     newtim = oldtim(1):regularinterval: oldtim(2) - regularinterval/3; % This is weird, but don't worry
     newampNaN = [oldamp(1) NaN(1, d(1))];
-   
+    newfreqNaN = [oldfreq(1) NaN(1, d(1))];
+    newtempNaN = [oldtemp(1) NaN(1, d(1))];
 
 else % Copy the first batch of data into the new data and add first missing values
     newtim = oldtim(1:dd(1));
     newampNaN = oldamp(1:dd(1));
-  
+    newfreqNaN = oldfreq(1:dd(1));
+    newtempNaN = oldtemp(1:dd(1));
+
     insertims = (((1:d(dd(1))) * regularinterval) + newtim(end)); 
     insertamps = NaN(1, d(dd(1)));
+    insertfreqs = NaN(1, d(dd(1)));
+    inserttemps = NaN(1, d(dd(1)));
    
     newtim = [newtim insertims];
     newampNaN = [newampNaN insertamps];
-   
+    newfreqNaN = [newfreqNaN insertfreqs];
+    newtempNaN = [newtempNaN inserttemps];
+
 end
 
 for j = 2:length(dd) % The rest of the data
@@ -68,18 +76,25 @@ for j = 2:length(dd) % The rest of the data
     % Append the good old data to the new data
     newtim = [newtim oldtim(dd(j-1) + 1:dd(j))];
     newampNaN = [newampNaN oldamp(dd(j-1) + 1:dd(j))];
+    newfreqNaN = [newfreqNaN oldfreq(dd(j-1) + 1:dd(j))];
+    newtempNaN = [newtempNaN oldtemp(dd(j-1) + 1:dd(j))];
    
     % Insert the missing times and NaNs at the end
     insertims = (((1:d(dd(j))) * regularinterval) + newtim(end)); 
     insertamps = NaN(1, d(dd(j)));
+    insertfreqs = NaN(1, d(dd(j)));
+    inserttemps = NaN(1, d(dd(j)));
    
     newtim = [newtim insertims];
     newampNaN = [newampNaN insertamps];
-  
+    newfreqNaN = [newfreqNaN insertfreqs];
+    newtempNaN = [newtempNaN inserttemps];
 end
 
 % Make a filled version
     newampFilled = fillmissing(newampNaN, 'linear');
+    newfreqFilled = fillmissing(newfreqNaN, 'linear');
+    newtempFilled = fillmissing(newtempNaN, 'linear');
   
 
 %mean subtractions happens after amp filtering out side of this function

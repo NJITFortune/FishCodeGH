@@ -1,7 +1,7 @@
 % A new attempt at frequency tracking two Eigenmannia in the tank
-clearvars -except kg kg2 rkg k xxkg hkg
+clearvars -except kg kg2 rkg2 k xxkg hkg
 Fs = 40000;
-freqs = [300 650]; %freq range of typical eigen EOD
+freqs = [200 700]; %freq range of typical eigen EOD
 userfilespec = 'Eigen*';
 
 % Max frequency change
@@ -24,6 +24,7 @@ clickcnt = 0;
     %Initialize nonelectrode data channels
     tempchan = 3; 
     lightchan = 4; 
+    tempstate = 5;
 
 % Get the list of files to be analyzed  
     iFiles = dir(userfilespec);
@@ -134,6 +135,7 @@ oldcurrlofreq = currlofreq;
 %light and temp for j = 1
     out(1).temp = mean(data(1,tempchan));
     out(1).light = mean(data(1,lightchan));
+    out(1).tempstate = mean(data(1,tempstate));
 %% 2:end            
 for j = 2:length(iFiles) %2514:8276%
 
@@ -161,6 +163,7 @@ for j = 2:length(iFiles) %2514:8276%
     %light and temp 
     out(j).temp = mean(data(1,tempchan));
     out(j).light = mean(data(1,lightchan));
+    out(j).tempstate = mean(data(1,tempstate));
 
     summedFFT =  f1.fftdata + f2.fftdata;
     figure(2); clf; hold on;
@@ -198,11 +201,12 @@ for j = 2:length(iFiles) %2514:8276%
             plot(currlofreq, summedFFT(lowfreqidx(lmaxidx)), 'c.', 'MarkerSize', 16);
         lopeakamp = max([f1.fftdata(lowfreqidx(lmaxidx)) f2.fftdata(lowfreqidx(lmaxidx))]);
         
-            if   lopeakamp < 0.1; currlofreq = oldcurrlofreq; end %currlofreq > 419 && currlofreq < 421 || 
+%             if  lopeakamp < 0.05; currlofreq = oldcurrlofreq; end %currlofreq > 419 && currlofreq < 421 || 
             
             if j > 3
-               % if currlofreq > 299 && currlofreq < 301 ; currlofreq = out(j-2).lofreq; end
+                if currlofreq < 422 ; currlofreq = out(j-2).lofreq; end
                 if currlofreq > oldmidpoint; currlofreq = out(j-2).lofreq; end
+                if  lopeakamp < 0.05; currlofreq = out(j-2).lofreq; end
             end
 
     % Get the midpoint and plot it for fun          

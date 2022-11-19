@@ -8,12 +8,12 @@
 
 
 % % %for when i'm too lazy to function
- clearvars -except kg kg2 rkg k hkg2 hkg
+ clearvars -except kg kg2 rkg k hkg2 hkg xxkg xxkg2
 % % 
 in = kg2(k);
 ReFs = 20;
 light = 3; %start with dark
-fish = 6; %hi freq
+fish = 5; %hi freq
 
 % light = 4; %start with light
 % fish = 5; %lo freq
@@ -21,7 +21,7 @@ fish = 6; %hi freq
 
 % redefine length of light cycle
 ld = in.info.ld; % Whatever - ld is shorter than in.info.ld
-
+oldtemp = [kg2(k).s.temp];
 if fish == 6 %high freq
 
 %outlier removal indicies
@@ -50,6 +50,7 @@ if fish == 6 %high freq
     timcont = [in.hifish(ttohi).timcont];
     obw = [in.hifish(ttohi).obwAmp];
     oldfreq = [in.hifish(ttohi).freq];
+   
 
 end
 
@@ -73,6 +74,7 @@ if fish == 5 %low freq
     timcont = [in.lofish(ttolo).timcont];
     obw = [in.lofish(ttolo).obwAmp];
     oldfreq = [in.lofish(ttolo).freq];
+    
  
 end
 %% crop data to lighttimes 
@@ -141,6 +143,8 @@ end
     %find peaks of the peaks
     [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
     peaktim = timcont(LOCS(cLOCS));
+    peaktemp = oldtemp(LOCS(cLOCS));
+    peakfreq = oldfreq(LOCS(cLOCS));
     
 %     % plot checking peaks
 %     figure(45); clf; hold on;   
@@ -150,7 +154,7 @@ end
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, lighttimes);
+    [regtim, regfreq, regtemp,regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, lighttimes);
     
    %filter data
         %cut off frequency
@@ -158,6 +162,7 @@ end
 
         %low pass removes spikey-ness
         lowWn = 0.025/(ReFs/2);
+       % lowWn = 0.05/(ReFs/2);
         [dd,cc] = butter(5, lowWn, 'low');
         datadata = filtfilt(dd,cc, double(regobwpeaks));
 
@@ -177,11 +182,13 @@ end
     xx = regtim(timidx);
     obwyy = dataminusmean(timidx);  
     freq = regfreq(timidx);
+    temp = regtemp(timidx);
 
     rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
     rawfreq = oldfreq(rawidx);
+    rawtemp = oldtemp(rawidx);
 
 
 %     %plot

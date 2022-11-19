@@ -1,6 +1,6 @@
 function [exp, fish, ld] = k_fftdaymovabovemeans(in)
-%  clearvars -except hkg hkg2 dark light darkmulti lightmulti kg 
-%  in = darkmulti(9).h;
+%   clearvars -except hkg hkg2 dark light darkmulti lightmulti kg kg2
+%   in = darkmulti(7).h;
 
 ld = in(1).day(1).ld;
 
@@ -10,30 +10,42 @@ ld = in(1).day(1).ld;
 
 
 %figure(99);clf; hold on; 
- for j = length(in):-1:1 % experiments of x hour length
+ for j = 1:length(in) % experiments of x hour length
   
-        mday = zeros(1, length(in(j).day(1).tim));
-     
+%         mday = zeros(1, length(in(j).day(1).tim));
+%         fday = zeros(1, length(in(j).day(1).tim));
+%         tday = zeros(1, length(in(j).day(1).tim));
+%      
 
-        for k = length(in(j).day):-1:1 %days within each trial
+        for k = 1:length(in(j).day) %days within each trial
         
               %fill temporary vector with data from each day 
-                mday(k,:) = in(j).day(k).Sobwyy;
-                fish(j).amprange(k,:) = in(j).day(k).amprange;
-                amprange(k,:) = in(j).day(k).amprange;
+                mday(k,:) = [in(j).day(k).Sobwyy];
+%                 fish(j).amprange(k,:) = in(j).day(k).amprange;
+%                 amprange(k,:) = in(j).day(k).amprange;
+                
+                fish(j).amprange(k,:) = in(j).day(k).amprange - in(j).day(k).ampmin;
+                amprange(k,:) = in(j).day(k).amprange-in(j).day(k).ampmin;
+
+
+                fday(k,:) = in(j).day(k).freq;
+               % tday(k,:) = k_temptocelcius(in(j).day(k).temp);
+                tday(k,:) = in(j).day(k).temp;
                
         end
     
-    %necessary so that the mean of a single day isn't one value  
-       if length(in(j).day) > 1  
-      %average across days   
-       daymean(j,:) = mean(mday);
-       
-      else
-       daymean(j,:) = mday;
+     numdays = size(mday);
+    if numdays(1) == 1
      
-       end
-
+       daymean(j,:) = mday;
+       freqday(j,:) = fday;
+       tempday(j,:) = tday;
+    else
+         %average across days   
+       daymean(j,:) = mean(mday);
+       freqday(j,:) = mean(fday);
+       tempday(j,:) = mean(tday);
+    end
         avgrange(j,:) = mean(amprange);
     
  end
@@ -41,10 +53,16 @@ ld = in(1).day(1).ld;
     numrow = size(daymean);
     if numrow(1) == 1
          exp.meanofexperimentmeans = movmean(daymean, 5);
+     %   exp.meanofexperimentmeans = mean(daymean);
+         exp.meanoftempmeans = tempday;
+         exp.meanoffreqmeans = freqday;
     else
     %averages for each x hour set of experiments
-    expmean = mean(daymean);
-    exp.meanofexperimentmeans = movmean(expmean, 5);
+   % expmean = mean(daymean);
+    %exp.meanofexperimentmeans = movmean(expmean, 5);
+    exp.meanofexperimentmeans = mean(daymean);
+    exp.meanoffreqmeans = mean(freqday);
+    exp.meanoftempmeans = mean(tempday);
     end
     %testmean = movmean(expmean, 5);
     %average max and min

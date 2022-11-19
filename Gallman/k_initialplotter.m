@@ -65,6 +65,24 @@ ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('frequency')
         plotorder = plotorder + 1;
 
 ax(plotorder) = subplot(totplot, colnum, plotorder); hold on; title('temp');
+
+%  binwidth = .5;
+%  timcont = [out.e(1).s(tto{1}).timcont]/(60*60);
+%         luz = [out.info.luz];
+%             for k = 2:length(luz)
+%             
+%                 if luz(k-1) < 0
+%                   
+%                   d = histogram(timcont, 'BinWidth', binwidth,'BinLimits',[abs(luz(k-1))-timcont(1),abs(luz(k))-timcont(1)]);
+%                   d.Normalization = 'countdensity';
+%                   d.FaceColor = [0.9 0.9 0.9];
+%                 else
+%                     
+%                    l = histogram(timcont,'BinWidth', binwidth, 'BinLimits',[abs(luz(k-1))-timcont(1),abs(luz(k))-timcont(1)]);
+%                    l.Normalization = 'countdensity';
+%                    l.FaceColor = 'y';
+%                 end
+%             end
     
     plot([out.e(2).s(tto{2}).timcont]/(60*60), [out.e(2).s(tto{2}).temp], '-r', 'Markersize', 8);
     plot([out.e(1).s(tto{1}).timcont]/(60*60), [out.e(1).s(tto{1}).temp], '-r', 'Markersize', 8);

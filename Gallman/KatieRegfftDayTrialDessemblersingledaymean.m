@@ -36,13 +36,13 @@ end
 
             % If we have removed outliers via KatieRemover, get the indices...    
             if ~isempty(in.idx) 
-                ttsf{channel} = in.idx(channel).sumfftidx; % ttsf is indices for sumfftAmp
+                ttsf{channel} = in.idx(channel).obwidx; % ttsf is indices for sumfftAmp
             end
 
 %regularize data across time in ReFs second intervals
 
     timcont = [in.e(channel).s(ttsf{channel}).timcont];
-    sumfft = [in.e(channel).s(ttsf{channel}).sumfftAmp];
+    sumfft = [in.e(channel).s(ttsf{channel}).obwAmp];
 
     [xx, sumfftyy] = metamucil(timcont, sumfft);
 

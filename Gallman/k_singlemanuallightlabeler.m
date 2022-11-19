@@ -3,13 +3,20 @@ function out = k_singlemanuallightlabeler(in)
 %out = kg(k).info.luz
 
  startim = input('Enter the start time for the experiment: ');
+ ld = input('Enter the ld: ');
  % LIGHT CYCLE ON/OFF STARTS 
  tto{1} = [in.idx(1).obwidx];
  timcont = [in.e(1).s(tto{1}).timcont];
     %caclulate hours when the light changed
-        numbercycles = floor(timcont(end)/(in.info.ld*60*60)); %number of cycles in data
+
+        numbercycles = floor(timcont(end)/(ld*60*60)); %number of cycles in data
         timz = 1:1:numbercycles;
-        out(timz) = startim + (in.info.ld*(timz-1)); %without for-loop
+        out(timz) = startim + (ld*(timz-1)); %without for-loop
+
+
+%         numbercycles = floor(timcont(end)/(in.info.ld*60*60)); %number of cycles in data
+%         timz = 1:1:numbercycles;
+%         out(timz) = startim + (in.info.ld*(timz-1)); %without for-loop
         
          %find the time indicies for the first light cycle
         lidx = [in.e(1).s.timcont] < out(2)*(60*60);  
@@ -21,4 +28,4 @@ function out = k_singlemanuallightlabeler(in)
             out(1:2:end) = -out(1:2:end); % Set initial period and every other subseqent  as off
         else
             out(2:2:end) = -out(2:2:end); % Set the second period and every other subsequent as off.
-        end
+        end    

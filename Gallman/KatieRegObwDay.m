@@ -9,15 +9,15 @@
     %starts with light = 4
 
 
-% %for when i'm too lazy to function
- clearvars -except kg kg2 rkg k hkg2 hkg
-% % % % 
+% % % % % %for when i'm too lazy to function
+  clearvars -except kg kg2 rkg k hkg2 hkg xxkg xxkg2 dark darkmulti light lightmulti
+% % % % % 
 in = hkg(k);
 ReFs = 20;
-light = 3; %start with dark
+lightstart = 3; %start with dark
 channel = 1;
 
-% light = 4; %start with light
+%light = 4; %start with light
 % fish = 5; %lo freq
 
 
@@ -36,14 +36,14 @@ if in.info.luz(1) < 0
     %fit light vector to power idx
         %poweridx = good data
     if isempty(poweridx) %if there are no values in poweridx []
-        if light < 4
+        if lightstart < 4
         lighttimes = lighttimeslong;
         else
         lighttimes = lighttimeslong(2:end);
         end
     else %take data from within power idx range
 
-        if light < 4 %we start with dark
+        if lightstart < 4 %we start with dark
             lighttimesidx = lighttimeslong > poweridx(1) & lighttimeslong < poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         else %we start with light
@@ -57,14 +57,14 @@ if in.info.luz(1) < 0
 else %we start with light
     lighttimeslong = lighttimeslong(2:end);
     if isempty(poweridx) %if there are no values in poweridx []
-        if light < 4
+        if lightstart < 4
         lighttimes = lighttimeslong;
         else
         lighttimes = lighttimeslong(2:end);
         end
     else %take data from within power idx range
 
-        if light < 4 %we start with dark
+        if lightstart < 4 %we start with dark
             lighttimesidx = lighttimeslong > poweridx(1) & lighttimeslong < poweridx(2);
             lighttimes = lighttimeslong(lighttimesidx);
         else %we start with light
@@ -78,7 +78,7 @@ end
 
 %make lighttimes an integer
     %convert to seconds because xx is in seconds
-    lighttimes = floor(lighttimes)*3600;
+    lighttimes = lighttimes*3600;
 
 
 
@@ -90,62 +90,77 @@ end
       
 %raw data
     timcont = [in.e(channel).s(tto).timcont]; %time in seconds
-    obw = [in.e(channel).s(tto).obwAmp]/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
-    oldfreq =  [in.e(channel).s(tto).fftFreq];
+    obw = [in.e(channel).s(tto).obwAmp];%/max([in.e(channel).s(tto).obwAmp]); %divide by max to normalize
+    oldfreq = [in.e(channel).s(tto).fftFreq];
+    oldtemp = [in.e(channel).s(tto).temp];
 
-%Take top of dataset
-    %find peaks
-    [~,LOCS] = findpeaks(obw);
-    %find peaks of the peaks
-    [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
-    peaktim = timcont(LOCS(cLOCS));
+
     
-%     % plot checking peaks
-%     figure(45); clf; hold on;   
-%         plot(peaktim, obwpeaks);
-%         plot(timcont, obw);
-%         plot([lighttimes' lighttimes'], ylim, 'k-');
+ %trimmed mean
+ window = 5;
+  fcn = @(x) trimmean(x,33);
+  obwtrim = matlab.tall.movingWindow(fcn, window, obw');
+  freqtrim = matlab.tall.movingWindow(fcn, window, oldfreq');
+  temptrim = matlab.tall.movingWindow(fcn, window, oldtemp');
+
+    
     
 %Regularize
     %regularize data to ReFs interval
-    [regtim, regfreq, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, oldfreq, ReFs, lighttimes);
-    
-     %filter data
-        %cut off frequency
-         highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
-        %highWn = 0.001/(ReFs/2);
+    [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(timcont, obwtrim', timcont, obw, freqtrim', temptrim', ReFs, lighttimes);
 
-        %low pass removes spikey-ness
-        lowWn = 0.025/(ReFs/2);
+%  %peaks of peaks
+%         %find peaks
+%         [~,LOCS] = findpeaks(obw);
+%         %find peaks of the peaks
+%         [obwpeaks,cLOCS] = findpeaks(obw(LOCS));
+%         peaktim = timcont(LOCS(cLOCS));       
+%         peakfreq = oldfreq(LOCS(cLOCS));       
+%         peaktemp = oldtemp(LOCS(cLOCS));  
+% 
+% 
+% 
+%  [regtim, regfreq, regtemp, regobwpeaks] = k_regularmetamucil(peaktim, obwpeaks, timcont, obw, peakfreq, peaktemp, ReFs, lighttimes);
+
+        %filter data
+        if ld < 11
+
+        %high pass removes feeding trend for high frequency experiments
+        %cut off frequency
+        highWn = 0.005/(ReFs/2); % Original but perhaps too strong for 4 and 5 hour days
+         [bb,aa] = butter(5, highWn, 'high');
+
+         %less strong low pass filter - otherwise fake prediction 
+               lowWn = 0.9/(ReFs/2); %OG 0.9
+               [dd,cc] = butter(5, lowWn, 'low');
+
+        datadata = filtfilt(dd,cc, double(regobwpeaks)); %low pass
+        datadata = filtfilt(bb,aa, datadata); %high pass
+
+        else
+        %stronger low pass filter for lower frequency experiments 
+        lowWn = 0.1/(ReFs/2);
         [dd,cc] = butter(5, lowWn, 'low');
         datadata = filtfilt(dd,cc, double(regobwpeaks));
-
-        
-        %high pass removes feeding trend for high frequency experiments
-        if ld < 11
-        [bb,aa] = butter(5, highWn, 'high');
-        datadata = filtfilt(bb,aa, datadata); %double vs single matrix?
-
         end
-    
-    dataminusmean = datadata - mean(datadata);    
-
+            
 
     %trim everything to lighttimes
     timidx = regtim >= lighttimes(1) & regtim <= lighttimes(end);
     xx = regtim(timidx);
-    obwyy = dataminusmean(timidx);  
+  %  obwyy = regobwpeaks(timidx);
+    obwyy = datadata(timidx); 
+   % obwyy = obwyy-mean(obwyy);
     freq = regfreq(timidx);
+    temp = regtemp(timidx);
+    
 
     rawidx = timcont >= lighttimes(1) & timcont <= lighttimes(end);
     timmy = timcont(rawidx);
     obwAmp = obw(rawidx);
     rawfreq = oldfreq(rawidx);
-%     %plot
-%     figure(2);clf; hold on;
-%         plot(regtim, regobwminusmean, 'k-');
-%         plot(regtim, filtdata, 'm');
-%         plot(regtim, datadata, 'b');
+    rawtemp = oldtemp(rawidx);
+
 
 %% Define day length
 
@@ -174,6 +189,8 @@ for j = 1:howmanydaysinsample
                     day(j).Sobwyy = obwyy(ddayidx);
                     %frequency data
                     day(j).freq = freq(ddayidx);
+                    %temperature data
+                    day(j).temp = temp(ddayidx);
                     %new time base from 0 the length of day by ReFS
                     day(j).tim = tim;
                     %old time base divided by day for plotting chronologically
@@ -182,6 +199,7 @@ for j = 1:howmanydaysinsample
                     day(j).ld = in.info.ld;
                     %max amp of each day
                     day(j).amprange = max(obwyy(ddayidx));
+                    day(j).ampmin = min(obwyy(ddayidx));
                     
                 end
 
@@ -197,18 +215,18 @@ for j = 1:howmanydaysinsample
  
 %days over experiment time
 figure(55); clf; hold on;
-
+    
+  %  plot(timmy/3600, obwAmp, '.');
     plot(timmy/3600, obwAmp-mean(obwAmp), '.');
     for j = 1:length(day)
         plot(day(j).entiretimcont/3600, day(j).Sobwyy);
     end
 
     
-
    % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
    
     a = ylim; %all of above is just to get the max for the plot lines...
-    if light < 4 %the first lighttime is dark
+    if lightstart < 4 %the first lighttime is dark
         for j = 1:length(lighttimes)-1
             if mod(j,2) == 1 %if j is odd
             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
@@ -227,34 +245,142 @@ figure(55); clf; hold on;
     end
 
      plot(timmy/3600, obwAmp-mean(obwAmp), '.');
-
+    plot(xx/3600, obwyy);
+%%
 %average over single day    
-figure(56); clf; hold on; 
-
- 
+figure(589); clf; hold on; title('amp'); ylim([-.4 .4]);
+set(gcf, 'Renderer', 'painters');
+ clrs = k_colormefriendly;
+    for j = 1:length(day)
+            %plot(day(j).tim/3600, day(j).Sobwyy);
+           
+     end
+ a = ylim;
     %create fill box 
-    if light < 4 %we start with dark
+    if lightstart < 4 %we start with dark
         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
     else %we start with light
         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
     end
     
     %mean two ways to prove math
-    mday = zeros(1, length(day(1).tim));        
+   
      for j = 1:length(day)
-            plot(day(j).tim/3600, day(j).Sobwyy);
+            %plot(day(j).tim/3600, day(j).Sobwyy);
             meanday(j,:) = day(j).Sobwyy;
-            mday = mday + day(j).Sobwyy;
-            
+          
      end
         
             mmday= mean(meanday);
-            othermday = mday/(length(day));
-            plot(day(1).tim/3600, mmday, 'k-', 'LineWidth', 3);
-            plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+            
+            plot(day(1).tim/3600, mmday, 'Color', clrs(7,:), 'LineWidth', 3);
+           
+            %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+            xlabel('Time (hours)');
+            ylabel('Mean square amplitude');
             
-            
+ %%           
 
+% 
+% %average over single day    
+% figure(533); clf; hold on; title('freq'); ylim([480 580]);
+% set(gcf, 'Renderer', 'painters');
+%     for j = 1:length(day)
+%            % plot(day(j).tim/3600, day(j).freq);
+%            
+%      end
+%  a = ylim;
+%     %create fill box 
+%     if lightstart < 4 %we start with dark
+%         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%     else %we start with light
+%         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%     end
+%     
+%     %mean two ways to prove math
+%     mday = zeros(1, length(day(1).tim));        
+%      for j = 1:length(day)
+%          %   plot(day(j).tim/3600, day(j).freq, 'LineWidth', 1);
+%             fmeanday(j,:) = day(j).freq;
+%           
+%      end
+%         
+%             fmmday= mean(fmeanday);
+%             
+%             plot(day(1).tim/3600, fmmday, 'k-', 'LineWidth', 3);
+%            
+%             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+%             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+%             ylabel('Frequency (Hz)');
+%             xlabel('Time (hours)');
 
+%%
+
+% %average over single day    
+% figure(57); clf; hold on; title('temp'); ylim([24 30]);
+% set(gcf, 'Renderer', 'painters');
+% %     for j = 1:length(day)
+% %             plot(day(j).tim/3600, day(j).temp);
+% %            
+% %      end
+%  a = ylim;
+%     %create fill box 
+%     if lightstart < 4 %we start with dark
+%         fill([0 0 ld ld], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%     else %we start with light
+%         fill([ld ld ld*2 ld*2], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%     end
+%     
+%     %mean two ways to prove math
+%     mday = zeros(1, length(day(1).tim));        
+%      for j = 1:length(day)
+%           %  plot(day(j).tim/3600, day(j).temp, 'LineWidth', 1);
+%             tmeanday(j,:) = day(j).temp;
+%           
+%      end
+%         
+%             tmmday= mean(tmeanday);
+%             tempC = k_temptocelcius(tmmday, 11000);
+%             plot(day(1).tim/3600, tempC, 'r-', 'LineWidth', 3);
+%            
+%             %plot(day(1).tim/3600, othermday, 'b-', 'LineWidth', 3);
+%             plot([ld ld], ylim, 'k-', 'LineWidth', 3);
+% 
+%             ylabel('degrees Celcius');
+%             xlabel('Time (hours)');
+%%
+% %days over experiment time
+% figure(58967); clf; hold on;
+%     
+%   %  plot(timmy/3600, obwAmp, '.');
+%     plot(timmy/3600, rawfreq, '.');
+%     for j = 1:length(day)
+%         plot(day(j).entiretimcont/3600, day(j).freq);
+%     end
+% 
+%     
+%    % plot([lighttimes'/3600 lighttimes'/3600], ylim, 'k-');
+%    
+%     a = ylim; %all of above is just to get the max for the plot lines...
+%     if lightstart < 4 %the first lighttime is dark
+%         for j = 1:length(lighttimes)-1
+%             if mod(j,2) == 1 %if j is odd
+%             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%             end
+%         end
+%     else %the second lighttime is dark 
+%         for j = 1:length(lighttimes)-1
+%             if mod(j,2) == 0 %if j is even
+%             fill([lighttimes(j)/3600 lighttimes(j)/3600 lighttimes(j+1)/3600 lighttimes(j+1)/3600], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
+%             end
+%         end
+%     end
+%     
+%     for j = 1:length(day)
+%         plot(day(j).entiretimcont/3600, day(j).freq, 'LineWidth', 1.5);
+%     end
+
+   %  plot(timmy/3600, obwAmp-mean(obwAmp), '.');
+  %  plot(xx/3600, obwyy);
 

@@ -10,6 +10,7 @@ function out  = KatieAssembler(userfilespec, numstart)
 % This should not change, but if for some reason...
 tempchan = 3; % Either 4 or 3
 lightchan = 4; % Either 5 or 4
+%tempstate = 5; %when did we send the command to change the temperature
 
 daycount = 0;
 
@@ -54,7 +55,7 @@ out(1).s(length(iFiles)).name = [];
     ff = waitbar(0, 'Cycling through files.');
 
 for k = 1:length(iFiles)
-       
+   %iFiles(k).name
      waitbar(k/length(iFiles), ff, 'Assembling', 'modal');
 
     
@@ -130,6 +131,7 @@ for k = 1:length(iFiles)
       
             out(j).s(k).light = mean(data(:,lightchan));
             out(j).s(k).temp = mean(data(:,tempchan));
+%            out(j).s(k).tempstate = mean(data(:,tempstate));
     
             
         % There are 86400 seconds in a day.

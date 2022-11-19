@@ -1,37 +1,24 @@
-%function out = k_ampbinner(in, channel, binsize, transbinnum)
+%function out = k_bins2(in, channel, binsize, transbinnum)
 %% prep 
-clearvars -except kg kg2
+clearvars -except kg kg2 hkg hkg2 xxkg xxkg2 k
 
-in = kg(97);
+in = hkg(64);
 channel = 1;
 %kg(12) starts with light
 
-ld = in.info.ld;
-binportion = 0.02*ld;
-
 %binsize in minutes
-binsize = floor(binportion*60);
+binsize = 20;
 transbinnum = 8;
-binsize = 15;
 %% outliers
 
-% Prepare the data with outliers
+tto{channel} = in.idx(channel).obwidx;  % ttsf is indices for sumfftAmp
 
-    ttsf{1} = 1:length([in.e(channel).s.timcont]); % tto is indices for obwAmp
-    ttsf{2} = ttsf{1};
-
- 
-% Prepare the data without outliers
-
-    % If we have removed outliers via KatieRemover, get the indices...    
-    if ~isempty(in.idx)
-        ttsf{channel} = in.idx(channel).sumfftidx;  % ttsf is indices for sumfftAmp
-    end
      
 %% define data by light transitions
 
 %create light transistion vector lighttimes
 lighttimeslong = abs(in.info.luz);
+ld = in.info.ld;
 
 %trim lighttimes to poweridx
     if isempty(in.info.poweridx) %if there are no values in poweridx []
@@ -43,6 +30,7 @@ lighttimeslong = abs(in.info.luz);
         
     end
 
+ 
     
     lighttimes = lighttimeslesslong;
     %for when we use the computer to find light transistions
@@ -53,12 +41,12 @@ lighttimeslong = abs(in.info.luz);
 
 %trim time and amplitude vectors to light transitions
     
-        timcont = [in.e(channel).s(ttsf{channel}).timcont]/3600;
-        fftAmp = [in.e(channel).s(ttsf{channel}).sumfftAmp];
+        timcont = [in.e(channel).s(tto{channel}).timcont]/3600;
+        obwAmp = [in.e(channel).s(tto{channel}).obwAmp];
         lidx = find(timcont >=lighttimes(1) & timcont <= lighttimes(end));
 
         timcont = timcont(lidx);
-        fftAmp = fftAmp(lidx);
+        obwAmp = obwAmp(lidx);
 
 
 %plot to check
@@ -89,13 +77,13 @@ bintimhour = bintimmin/60;
 %% Average amp by bin
 
 %divide amplitude data into bins
-    for j = 1:length(bintimhour)-1
+    for j = 2:length(bintimhour)
     
     
-        timidx = find(timcont > bintimhour(j) & timcont <= bintimhour(j+1));
+        timidx = find(timcont > bintimhour(j-1) & timcont <= bintimhour(j));
      
-        bin(j).Amp(:) = fftAmp(timidx);
-        bin(j).tim(:) = timcont(timidx);
+        bin(j-1).Amp(:) = obwAmp(timidx);
+        bin(j-1).tim(:) = timcont(timidx);
        
     end
 
@@ -139,7 +127,7 @@ daysz = 1:1:floor(totaltimhours/(ld*2));
 
 %dark transistions
 darkdays = lighttimes(1) + ((2*ld) * (daysz-1));
-length(darkdays)
+
 %light transitions
 lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 
@@ -148,7 +136,7 @@ lightdays = lighttimes(2) + ((2*ld) * (daysz-1));
 transtim = transbinnum*binsize/60;
 
 %dark transistions
-for jj = 2:length(darkdays)
+for jj = 2:length(darkdays)-1
 
 
     predidx = find(bintimhour <= darkdays(jj)+((transbinnum*binsize)/60) & bintimhour >= darkdays(jj)-((transbinnum*binsize)/60));
@@ -164,7 +152,7 @@ for jj = 2:length(darkdays)
 end
       
 %light transitions
-for kk = 1:length(lightdays)
+for kk = 1:length(lightdays)-1
 
     transidx = find(bintimhour <= lightdays(kk)+((transbinnum*binsize)/60) & bintimhour >= lightdays(kk)-((transbinnum*binsize)/60));
 
@@ -199,12 +187,21 @@ for jj = 2:length(darkdays)
 
     darkidx = find(timcont >= darkdays(jj-1) & timcont < darkdays(jj));
     dday(jj-1).tim(:) = timcont(darkidx)-timcont(darkidx(1));
-    dday(jj-1).amp(:) = fftAmp(darkidx);
+    dday(jj-1).amp(:) = obwAmp(darkidx);
+    dday(jj-1).entiretimcont = timcont(darkidx);
 
 end
 
-[Tim, Mean] = KatieRegfftDayTrialDessemblersingledaymean(in, channel,  60, 3);
-darkdy= gradient(Mean)./gradient(Tim);
+%trim mean
+for j = 1:length(dday)
+    darkdayamp(j,:) = dday(j).amp;
+end
+
+avgdark = trimmean(darkdayamp, 33);
+[darkxx, darkampyy] = metamucil([dday.tim]*3600, avgdark);
+
+ darktimxx = darkxx/3600;
+ darkdy= gradient(darkampyy)./gradient(darktimxx);
 
 %plot darkday amp
 figure(8); clf; title('Dark to light transition average'); hold on; 
@@ -221,12 +218,14 @@ for jj = 1:length(dday)
          dlighthalftim(j,:) = dday(jj).tim(j);
      end
     end
-    plot(dlighthalftim, dlighthalfamp, 'm.');    
+    plot(dlighthalftim, dlighthalfamp, 'm.');  
+  %  plot(ddarkhalftim, ddarkhalfamp,'.');
 
 end
    
-    plot(Tim, Mean, 'k-', 'LineWidth', 3);
-   % plot(Tim, darkdy, 'b-', 'LineWidth', 2)
+     plot(darktimxx, darkampyy, 'k-', 'LineWidth', 3);
+     plot(darktimxx, darkdy, 'b-', 'LineWidth', 1.5);
+% %     plot(darktimxx, darkdy, 'c-', 'LineWidth', 1.5);
      plot([ld ld], ylim, 'k-', 'LineWidth', 2);
 
 %Calculate chisqu of means
@@ -248,11 +247,13 @@ for kk = 2:length(lightdays)
 
     lightidx = find(timcont >= lightdays(kk-1) & timcont < lightdays(kk));
     lday(kk-1).tim(:) = timcont(lightidx) - timcont(lightidx(1));
-    lday(kk-1).amp(:) = fftAmp(lightidx);
+    lday(kk-1).amp(:) = obwAmp(lightidx);
+    lday(kk-1).entiretimcont(:) = timcont(lightidx);
 
 end
 
-[LTim, LMean] = KatieRegfftDayTrialDessemblersingledaymean(in, channel,  60, 4);
+[lighttimxx, lightampyy] = k_spliney([lday.tim], [lday.amp], 0.9);
+lightdy= gradient(lightampyy)./gradient(lighttimxx);
 
 %plot lightday amp
 figure(9); clf; title('Light to dark transition average'); hold on; 
@@ -269,26 +270,31 @@ for kk = 1:length(lday)
      end
     end
     plot(lighthalftim, lighthalfamp, 'm.');       
+   %  plot(darkhalftim, darkhalfamp, '.');       
 
 end
 
-    plot(LTim, LMean, 'k-', 'LineWidth', 3);
-     
+    plot(lighttimxx, lightampyy, 'k-', 'LineWidth', 3);
+      plot(lighttimxx, lightdy, 'b-', 'LineWidth', 1.5);
     plot([ld ld], ylim, 'k-', 'LineWidth', 2);
+    yline(0)
 
 %Calculate chisqu of means
 
 [~, lpvalue] = ttest2(darkhalfamp,lighthalfamp,'Vartype','unequal');
 
 %txt = 'pvalue =' + num2str(pvalue)
-text(ld, min(ylim)+0.1, num2str(lpvalue),'FontSize',14);
+text(ld,min(ylim)+0.1,num2str(lpvalue),'FontSize',14);
 
 % out.lddarkhalfamp = darkhalfamp;
 % out.lddarkhalftim = darkhalftim;
 % out.ldlighthalfamp = lighthalfamp;
 % out.ldlighthalftim = lighthalftim;
 % out.ldpvaluettest = lpvalue;
-
+%% plot entire data set 
+% figure(78);clf;title('entire exp'); hold on;
+%     plot([lday.entieretimcont], [lday.amp], '.');
+%     plot([dday.entiretimcont], [dday.amp], '.');
 %% Bin summary for dark tranistions
    
 for jj = 1:length(darkd)
@@ -313,7 +319,7 @@ upamp(upamp==0) = nan;
 downamp(downamp==0) = nan;
 
 
-for k = 1:(transbinnum * 2)
+for k = 1:transbinnum * 2
     %calculate proportion of ones (increases in amp from previous bin)
     pctdark(k) =  length(find(darkprob(k,:)>0)) / length(darkprob(k,:));
     %number of ones
@@ -333,7 +339,7 @@ figure(27); clf; title('Light to Dark transition summary');hold on;
     plot(pcttim-((binsize/2)/60), pctdark, '.-');
 
     %generate random jiggle for amp plotting  through scatter
-    for k = 1:(transbinnum * 2)-1
+    for k = 1:transbinnum * 2
 
         scatter(pcttim(k)-((binsize/2)/60), upamp(k, :), 'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'm');%,'m.','MarkerSize', 10);
         scatter(pcttim(k)-((binsize/2)/60), downamp(k,:),'jitter', 'on', 'jitterAmount', 0.01, 'MarkerEdgeColor', 'k');
