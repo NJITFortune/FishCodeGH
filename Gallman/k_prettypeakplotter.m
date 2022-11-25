@@ -1,10 +1,10 @@
-%function k_prettypeakplotter(in, channel)
+function k_prettypeakplotter(in, channel)
 
-%not functioning
-clearvars -except l24kg k
-
-in = l24kg(k);
-channel = 2;
+% %not functioning
+% clearvars -except l24kg k
+% 
+% in = l24kg(k);
+% channel = 1;
 
 
 %data
@@ -37,11 +37,14 @@ channel = 2;
                 %regularize data to ReFs interval
                 [regtim, regfreq, ~, regobwpeaks] = k_regularmetamucil(timcont *3600, obwtrim', timcont*3600, obw, freqtrim', temptrim', 20, lighttimes*3600);
 
-        lowWn = 0.02/(20/2);%.025
+        lowWn = 0.01/(20/2);%.025 %.2
                 [dd,cc] = butter(5, lowWn, 'low');
                 regobwpeaks= filtfilt(dd,cc, double(regobwpeaks));
 
-                [amppeaks, amplocs] = findpeaks(regobwpeaks, regtim);
+                [C, idx, ~] = unique(regtim);
+                newamp = regobwpeaks(idx);
+
+                [amppeaks, amplocs] = findpeaks(newamp, C);
 
 
 
@@ -74,8 +77,9 @@ figure(31); clf; hold on;
 
         %plot boxes
     
+        luz = [in.info.luz];
         for j = 1:length(lighttimes)-1
-            if mod(j,2) == 1 %if j is odd
+            if luz(j) < 0 %if j is odd
             fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
             end
         end
@@ -99,7 +103,11 @@ figure(31); clf; hold on;
         
         datadata = filtfilt(bb,aa, regobwpeaks); %high pass
 
-         [hiamppeaks, hiamplocs] = findpeaks(datadata, regtim);
+
+        [C2, idx, ~] = unique(regtim);
+        newamp2 = datadata(idx);
+
+         [hiamppeaks, hiamplocs] = findpeaks(newamp2, C2);
 
           plot(regtim/3600 - timcont(1), datadata, 'k-', 'LineWidth', 2);
        
@@ -108,7 +116,7 @@ figure(31); clf; hold on;
 %         plot(regtim/3600 - timcont(1), darkdy,'k-', 'LineWidth', 2);
          a = ylim;
          for j = 1:length(lighttimes)-1
-            if mod(j,2) == 1 %if j is odd
+            if luz(j) < 0  %if j is odd
             fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [a(1) a(2) a(2) a(1)], [0.9, 0.9, 0.9]);
             end
          end
@@ -131,14 +139,24 @@ figure(31); clf; hold on;
 
         ax(3) = subplot(313); title('peak diff'); hold on;
 
-     %   plot(hiamplocs(2:end)/3600, diff(hiamplocs)/3600, '*-');
+     
 
-        diffs = diff(hiamplocs/3600);
+%         diffs = diff(hiamplocs/3600);
+% 
+%         difftim = hiamplocs(1)/3600;
+% 
+%         for j = 1:length(diffs)
+% 
+%             difftim(j,:) = hiamplocs(j)/3600 + diffs(j)/2;
+% 
+%         end
 
-        difftim = hiamplocs(1)/3600;
+        diffs = diff(amplocs/3600);
+
+        difftim = amplocs(1)/3600;
         for j = 1:length(diffs)
 
-            difftim(j,:) = hiamplocs(j)/3600 + diffs(j)/2;
+            difftim(j,:) = amplocs(j)/3600 + diffs(j)/2;
 
         end
 
@@ -147,14 +165,16 @@ figure(31); clf; hold on;
 
          a = ylim;
         for j = 1:length(lighttimes)-1
-            if mod(j,2) == 1 %if j is odd
+            if luz(j) < 0  %if j is odd
             fill([lighttimes(j)-timcont(1) lighttimes(j)-timcont(1) lighttimes(j+1)-timcont(1) lighttimes(j+1)-timcont(1)], [0 a(2) a(2) 0], [0.9, 0.9, 0.9]);
             end
         end
-%         
+
+ yline(24, 'k-', 'LineWidth', 1);
+ yline(8, 'k-', 'LineWidth', 1);
  plot(difftim - timcont(1), diffs, '*-', 'LineWidth', 2);
 
- yline(8, 'k-', 'LineWidth', 2);
+ 
     
        %xlim([13 116]); ylim([0 60]);
 %     
