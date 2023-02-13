@@ -10,7 +10,7 @@ BadIDXs = [12,32,64,86,90,109];
 
 CaveAmps = []; SurfaceAmps = []; 
 
-for j=length(sfish):-1:1 
+for j=1:length(sfish) % Do it in this order or ruin the bad IDXs
     for k=1:length(sfish(j).fish) 
         SurfaceAmps(end+1) = sfish(j).fish(k).dipStrength; 
     end
