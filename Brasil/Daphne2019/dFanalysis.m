@@ -23,8 +23,9 @@ for kk = goodidxs(end:-1:1)
         
     if numfish > 1 % If we have more than one fish
     
-        combos = combnk(1:numfish, 2); % All pairwise combinations of fish
-        
+        %combos = combnk(1:numfish, 2); % All pairwise combinations of fish
+        combos = nchoosek(1:numfish,2);
+
         for p = length(combos):-1:1 % For each pair of fish
             
             pair(p).fishnums = combos(p,:); % Save the output combo
