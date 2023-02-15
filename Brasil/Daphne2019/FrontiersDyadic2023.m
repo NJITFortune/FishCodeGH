@@ -9,7 +9,7 @@ load CaveDataRev2018a.mat
 
 %% Analyze and/or plot
 
-CurrRec = 5; 
+CurrRec = 6; 
 CurrOut = length(CurrRec);
 
 numPairs = length(caveDD(CurrOut).pair);  
