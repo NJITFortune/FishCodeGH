@@ -9,22 +9,23 @@ load CaveDataRev2018a.mat
 
 %% Analyze and/or plot
 
-CurrRec = 3; 
+CurrRec = 5; 
 CurrOut = length(CurrRec);
 
-numPairs = length(out(CurrOut).pair);  
+numPairs = length(caveDD(CurrOut).pair);  
 
 for j=1:numPairs
 
     figure(j); clf;
-    out(CurrOut).pair(j).fishnums
-    subplot(211); 
-    plot(cave(CurrRec).fish(out(CurrOut).pair(j).fishnums(1)).freq(:,1), cave(CurrRec).fish(out(CurrOut).pair(j).fishnums(1)).freq(:,2));
-           hold on; 
-    plot(cave(CurrRec).fish(out(CurrOut).pair(j).fishnums(2)).freq(:,1), cave(CurrRec).fish(out(CurrOut).pair(j).fishnums(2)).freq(:,2));
 
-    subplot(212); yyaxis("left"); plot(out(CurrOut).pair(j).sharedtims, out(CurrOut).pair(j).dF, 'Color', 'Blue');
-    hold on; yyaxis("right"); plot(out(CurrOut).pair(j).sharedtims, out(CurrOut).pair(j).descartes, 'Color', 'Magenta');
-    text(10,10, num2str(out(CurrOut).pair(j).fishnums));
+    ax(1,j) = subplot(211); 
+    plot(cave(CurrRec).fish(caveDD(CurrOut).pair(j).fishnums(1)).freq(:,1), cave(CurrRec).fish(caveDD(CurrOut).pair(j).fishnums(1)).freq(:,2));
+           hold on; 
+    plot(cave(CurrRec).fish(caveDD(CurrOut).pair(j).fishnums(2)).freq(:,1), cave(CurrRec).fish(caveDD(CurrOut).pair(j).fishnums(2)).freq(:,2));
+
+    ax(2,j) = subplot(212); yyaxis("left"); plot(caveDD(CurrOut).pair(j).sharedtims, caveDD(CurrOut).pair(j).dF, 'Color', 'Blue');
+    hold on; yyaxis("right"); plot(caveDD(CurrOut).pair(j).sharedtims, caveDD(CurrOut).pair(j).descartes, 'Color', 'Magenta');
+    text(10,10, num2str(caveDD(CurrOut).pair(j).fishnums));
+    linkaxes(ax(:,j),'x');
 
 end

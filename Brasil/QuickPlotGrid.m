@@ -1,5 +1,5 @@
 function QuickPlotGrid(in, idx, freqs, tims)
-% Usage: QuickPlotGrid(in, freqs, tims)
+% Usage: QuickPlotGrid(in, idx, freqs, tims)
 % Generates F1 with frequency traces and F2 with grid positions
 % freqs and tims are optional. 
 % Freqs in Hz, tims in seconds.
@@ -16,6 +16,7 @@ end
 
     figure(1); clf; hold on; % Frequency plot
     figure(2); clf; hold on; % Grid position plot
+
     % Make the Grid position plot square
         wp=get(gcf,'Position');
         set(gcf, 'Position', [wp(1),wp(2),560,560])
@@ -33,7 +34,9 @@ for j = 1:length(idx)
         end
    
    figure(1); plot(in.fish(idx(j)).freq(tt,1), in.fish(idx(j)).freq(tt,2), '.', 'MarkerSize', 8); ylim(freqs);
+
    figure(2); plot(in.fish(idx(j)).x(tt), in.fish(idx(j)).y(tt), '.', 'MarkerSize', 8); 
+   
         axis([-200, 150, -100, 250]); % May need adjustment
     
 end
