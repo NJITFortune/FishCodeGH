@@ -1,7 +1,7 @@
 % load ~/NotCloudy/FrontiersCaveFish2023/CaveDataRev2018a.mat
 % load ~/NotCloudy/FrontiersCaveFish2023/SurfaceDataRev2018a.mat
 
-distanceThreshold = 15`;
+distanceThreshold = 10;
 padding = 150;
 
 clear avgDF avgDistance
@@ -12,7 +12,7 @@ avgDistance(:,1) = zeros(1,1+(padding*2));
 numCloseEncounters = 0;
 
 
-for z = [3,4,5,6,7,8,10,11,12,13,14]
+for z = [3,4,5,6]
 
     [caveDD, ~] = dFanalysis(cave(z));
 
@@ -66,11 +66,11 @@ end
 end
 
 figure(1); clf; 
-    ax(1) = subplot(311); hold on; for j=1:length(avgDF(1,:)); plot(avgDF(:,j)-mean(avgDF(:,j))); end
+    ax(1) = subplot(311); for j=1:length(avgDF); plot(avgDF(:,j)-mean(avgDF(:,j))); end
     ax(2) = subplot(312); plot(avgDF); 
     ax(3) = subplot(313); plot(avgDistance);
     subplot(312); hold on; plot(mean(avgDF'), 'k', 'LineWidth', 2);
     subplot(313); hold on; plot(mean(avgDistance'), 'k', 'LineWidth', 2);
 
-    linkaxes(ax, 'x')
+    linkaxes(ax,)
 numCloseEncounters
