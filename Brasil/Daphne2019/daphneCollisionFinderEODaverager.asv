@@ -6,7 +6,7 @@
 clear avgDF avgDistance a ax b bigidxs caveDD didx distanceThreshold idx j k newidx numCloseEncounters padding z
 
 
-distanceThreshold = 5;
+distanceThreshold = 10;
 padding = 200;
 
 
@@ -40,6 +40,20 @@ for j = 1: length(caveDD.pair)
                 newidx(rr-1) = idx(bigidxs(rr)) - round((idx(bigidxs(rr))-idx(1+bigidxs(rr-1)))/2); 
             end
 
+             % The first epoch.
+             bigidxs = find(didx > 2);
+             newidx(1) = round(mean(idx(idx(1):bigidxs(1))));
+
+            % The second epoch
+
+%             if length(bigidxs) > 2
+%                 newidx(2) = round(mean(idx(bigidxs(2):bigidxs(3))));
+%             end
+
+%             if length(bigidxs) == 2                
+%                 newidx(2) = round(mean(idx(bigidxs(2)+2:end)));
+%             end
+
         else % we have one epoch
 
             newidx = round(mean(idx));
@@ -71,9 +85,7 @@ figure(1); clf;
     ax(2) = subplot(312); plot(avgDF); 
     ax(3) = subplot(313); plot(avgDistance);
     subplot(312); hold on; plot(mean(avgDF'), 'k', 'LineWidth', 2);
-    subplot(312); hold on; plot(median(avgDF'), 'g', 'LineWidth', 2);
     subplot(313); hold on; plot(mean(avgDistance'), 'k', 'LineWidth', 2);
-    subplot(313); hold on; plot(median(avgDistance'), 'g', 'LineWidth', 2);
 
     linkaxes(ax, 'x')
 numCloseEncounters
