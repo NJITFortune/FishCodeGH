@@ -53,10 +53,6 @@ for j = 1:length(caveDD.pair) % For each pair in a recording
 
 for k=1:length(newidx) % For each epoch that we found
 
-        % MicroAdjustment of dF window (may run into indexing problems...)
-        [maxdF, maxIDX] = max(abs(deltaF));
-        newidx(k) = newidx(k) + (maxIDX - padding);
-        
        % Take only those epochs in the middle of a recording
        if newidx(k) - padding > 0 && newidx(k) + padding < length(caveDD.pair(j).descartes)
 
