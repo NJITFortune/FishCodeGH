@@ -63,9 +63,15 @@ for k=1:length(newidx) % For each epoch that we found
 
         deltaF = diff(caveDD.pair(j).dF(newidx(k)-padding:newidx(k)+padding));
 
-%         % MicroAdjustment of dF window (may run into indexing problems...)
-%         [maxdF, maxIDX] = max(abs(deltaF));
-%         newidx(k) = newidx(k) + (maxIDX - padding);
+         % MicroAdjustment of dF window (may run into indexing problems...)
+         [maxdF, maxIDX] = max(abs(deltaF));
+
+         tmpx = newidx(k) + (maxIDX - padding);
+         if tmpx - padding > 0 && tmpx + padding < length(caveDD.pair(j).descartes)
+            newidx(k) = tmpx; 
+         end
+
+            clear tmpx
 
         % Swap sign if the chirp dF is downwards
         datum(zSample).pair(j).epoch(k).avgDF = caveDD.pair(j).dF(newidx(k)-padding:newidx(k)+padding);
