@@ -7,7 +7,7 @@ clear avgDF avgDistance allZs a ax b bigidxs caveDD didx dFThreshold idx j k new
 
 dFThreshold = 6;
 %distanceThreshold = 10;
-padding = 300; % 200 is default
+padding = 250; % 200 is default
 zz(199).pairs.epochs = [];
 
 [b,a] = butter(3,0.05,'low');
