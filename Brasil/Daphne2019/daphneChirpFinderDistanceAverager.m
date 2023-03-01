@@ -153,5 +153,5 @@ end
 figure(3); clf; xline(padding, 'g', 'LineWidth', 4);
     hold on; plot(meanDf/ll, 'k', 'LineWidth',6); hold off; 
     
-figure(4); clf; xline(200.5, 'g', 'LineWidth', 4)
+figure(4); clf; xline(padding, 'g', 'LineWidth', 4)
     hold on; plot(meanDist/ll, 'k', 'LineWidth',6); hold off;
