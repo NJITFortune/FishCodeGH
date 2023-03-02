@@ -139,9 +139,10 @@ for k=1:length(datum(z).pair)
         meanDist = meanDist + datum(z).pair(k).epoch(j).avgDistance; 
         meanDf = meanDf + datum(z).pair(k).epoch(j).avgDF; 
 
-%        figure(2); subplot(211); hold on; plot(datum(z).pair(k).epoch(j).avgDF - mean(datum(z).pair(k).epoch(j).avgDF))
-        figure(2); subplot(211); hold on; plot(datum(z).pair(k).epoch(j).avgDF)
-        figure(2); subplot(212); hold on; plot(datum(z).pair(k).epoch(j).avgDistance)
+        figure(2); subplot(211); hold on; plot(datum(z).pair(k).epoch(j).avgDF - mean(datum(z).pair(k).epoch(j).avgDF))
+        %figure(2); subplot(211); hold on; plot(datum(z).pair(k).epoch(j).avgDF)
+        figure(2); subplot(212); hold on; plot(datum(z).pair(k).epoch(j).avgDistance - mean(datum(z).pair(k).epoch(j).avgDistance))
+        %figure(2); subplot(212); hold on; plot(datum(z).pair(k).epoch(j).avgDistance)
         ll = ll+1;
         end
     end
