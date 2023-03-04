@@ -5,6 +5,8 @@
 
 clear avgDF avgDistance allZs a ax b bigidxs caveDD didx dFThreshold idx j k newidx numCloseEncounters padding zSample usethese datum
 
+Fs = 4.88;
+
 dFThreshold = 6;
 %distanceThreshold = 10;
 padding = 250; % 200 is default
@@ -20,10 +22,13 @@ allZs = 0;
 
 numCloseEncounters = 0;
 
+
+
 for zSample = [3,4,5,6,7,8,10,11,12,13,14] % For every recording with more than one fish
 %for z = [4]
 
     [caveDD, ~] = dFanalysis(cave(zSample)); % Make the array of pairwise encounters for that recordings
+
 
 for j = 1:length(caveDD.pair) % For each pair in a recording
 
@@ -151,8 +156,14 @@ end
 
 end
 
-figure(3); clf; xline(padding, 'g', 'LineWidth', 4);
-    hold on; plot(meanDf/ll, 'k', 'LineWidth',6); hold off; 
-    
-figure(4); clf; xline(padding, 'g', 'LineWidth', 4)
-    hold on; plot(meanDist/ll, 'k', 'LineWidth',6); hold off;
+tim = 1/Fs:1/Fs:length(meanDf)/Fs;
+
+figure(3); clf; set(gcf,'renderer','Painters')
+    ax(1) = subplot(211); xline(padding/Fs, 'g', 'LineWidth', 4);
+    hold on; plot(tim, meanDf/ll, 'k', 'LineWidth',6); hold off; 
+    ax(2) = subplot(212); xline(padding/Fs, 'g', 'LineWidth', 4)
+    hold on; plot(tim, meanDist/ll, 'k', 'LineWidth',6); hold off;
+
+linkaxes(ax, 'x');
+xlim([0 tim(end)]);
+
