@@ -44,6 +44,7 @@ polarplot(snb, log(1000*(spikeHist / max(spikeHist))), 'ko-', 'LineWidth', 2);
 
 
 f = figure(28); f.Name = ttt;
+set(gcf, 'renderer', 'painters');
 subplot(121); 
 
 normSigCnt = sum(spikeHist) / sum(sigHist);
@@ -51,9 +52,9 @@ normSigCnt = sum(spikeHist) / sum(sigHist);
     firingRatio = spikeHist ./ (sigHist * normSigCnt);
     polarplot([snb snb(1)], [firingRatio firingRatio(1)], 'LineWidth', 2);
     hold on;
-    % polarplot([snb(1), snb(end)], [firingRatio(1), firingRatio(end)], 'k-', 'LineWidth', 2);
 
 % polarhistogram('BinCounts', firingRatio, 'BinEdges', bns);
+% hold on;
 
 rlim([0 2.5]); 
 
@@ -76,3 +77,16 @@ rawaccbns = -3000:300:3000;
         
         text(-3000, tmp(2)/4, num2str(aa - sigaa))
 
+% Quadrent Selectivity Index
+
+Vsi = vv - sigvv;
+Asi = aa - sigaa;
+
+PvPa = (length(find(spikesig1 > 0 & spikesig2 > 0)) / length(spikesig1)) / 0.25;
+PvNa = (length(find(spikesig1 > 0 & spikesig2 < 0)) / length(spikesig1)) / 0.25;
+NvNa = (length(find(spikesig1 < 0 & spikesig2 < 0)) / length(spikesig1)) / 0.25;
+NvPa = (length(find(spikesig1 < 0 & spikesig2 > 0)) / length(spikesig1)) / 0.25;
+
+
+
+fprintf('Vsi=%1.2f, Asi=%1.2f, Q1=%1.2f, Q2=%1.2f, Q3=%1.2f, Q4=%1.2f \n', Vsi, Asi, PvPa, NvPa, NvNa, PvNa);

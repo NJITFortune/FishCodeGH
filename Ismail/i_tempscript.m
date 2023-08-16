@@ -3,7 +3,7 @@
 clf(28);
 %%
 neuron = 3;
-delay = 0.09;
+delay = 0.11;
 %trackType = "All";
 %trackType = "Smooth";
 trackType = "Active";
@@ -18,7 +18,7 @@ spiketimes = curfish.allspikes.times(curfish.allspikes.codes == neuron);
 [eaAmp, eaCat] = i_tim2stim(spiketimes, curfish.error_acc, curfish.time, curfish.tracking, delay);
 
 if trackType == "All"
-    vsout = i_vs(evAmp, eaAmp, curfish.error_vel, curfish.error_acc);
+    vsout = i_vs(evAmp, eaAmp, curfish.error_vel, curfish.error_acc, titletitle);
 end
 if trackType == "Smooth"
     vsout = i_vs(evAmp(evCat == 3), eaAmp(eaCat == 3), curfish.error_vel(curfish.tracking == 3), curfish.error_acc(curfish.tracking == 3), titletitle);
