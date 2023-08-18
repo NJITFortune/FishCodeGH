@@ -1,9 +1,11 @@
 % load /Users/eric/Downloads/NeuroPhys2023/finaldata/Fin_2019_04_14_spikeID_34.mat
 
-clf(28);
+%%
+figure(28);clf(28);
+
 %%
 neuron = 3;
-delay = 0.11;
+delay = -0.1;
 %trackType = "All";
 %trackType = "Smooth";
 trackType = "Active";
