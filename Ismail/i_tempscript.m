@@ -4,7 +4,7 @@
 figure(28);clf(28);
 
 %%
-neuron = 3;
+neuron = 6;
 delay = -0.1;
 %trackType = "All";
 %trackType = "Smooth";

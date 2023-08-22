@@ -74,43 +74,15 @@ function vsout = i_vs(spikesig1, spikesig2, sig1, sig2, figureTitle)
 %         polarplot(snb, log(1000*(spikeHist / max(spikeHist))), 'ko-', 'LineWidth', 2);
 
 % Normalized polar plot and associated histograms    
-    f = figure(28); f.Name = figureTitle;
+%     f = figure(28); f.Name = figureTitle;
     set(gcf, 'renderer', 'painters');
 
-subplot(121); 
+subplot(221); 
 % CHOOSE EITHER A polarplot OR A polarhistogram
 %     polarplot([snb snb(1)], [firingRatio firingRatio(1)], 'LineWidth', 2);
-   polarhistogram('BinCounts', firingRatio, 'BinEdges', bns);
-
-    hold on;
+    polarhistogram('BinCounts', firingRatio, 'BinEdges', bns);
     rlim([0 2.5]); 
 
-% Add 1D histograms
-
-    % For now, we are using a standard set of bins for Vel and Acc
-    rawvelbns = -500:50:500;
-    rawaccbns = -3000:300:3000;
-
-    subplot(222); cla; 
-        histogram(spikesig1, rawvelbns); tmp = ylim;
-        hold on; plot([0 0], tmp, 'r-'); 
-        
-        vv = (length(find(spikesig1 > 0)) - length(find(spikesig1 < 0))) / length(spikesig1);
-        sigvv = (length(find(sig1 > 0)) - length(find(sig1 < 0))) / length(sig1);
-        
-        text(-500, tmp(2)/2, ['VSI = ' num2str(vv - sigvv)]);
-        text(-500, (tmp(2)/4)*3, ['Spike Count = ' num2str(length(spikesig1))]);
-        title('Velocity')
-
-    subplot(224); cla; 
-        histogram(spikesig2, rawaccbns); tmp = ylim;
-        hold on; plot([0 0], tmp, 'r-'); 
-
-        aa = (length(find(spikesig2 > 0)) - length(find(spikesig2 < 0))) / length(spikesig2);
-        sigaa = (length(find(sig2 > 0)) - length(find(sig2 < 0))) / length(sig2);
-        
-        text(-3000, tmp(2)/2, ['ASI = ' num2str(aa - sigaa)])
-        title('Acceleration')
  
 %% Report to the user some values
 
