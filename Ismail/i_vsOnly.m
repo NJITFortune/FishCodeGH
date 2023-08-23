@@ -63,20 +63,19 @@ function vsout = i_vsOnly(spikesig1, spikesig2, sig1, sig2)
     normSigCnt = sum(spikeHist) / sum(sigHist);
     firingRatio = spikeHist ./ (sigHist * normSigCnt);
     
-   polarhistogram('BinCounts', firingRatio, 'BinEdges', bns);
-
+   pp = polarhistogram('BinCounts', firingRatio, 'BinEdges', bns, 'DisplayStyle', 'stairs');
+ 
    rlim([0 2.5]); 
 
-   numspikes = length(spikesig1);
+   vsout.numspikes = length(spikesig1);
 
        VSIvelSpikes = (length(find(spikesig1 > 0)) - length(find(spikesig1 < 0))) / length(spikesig1);
        VSIvelSignal = (length(find(sig1 > 0)) - length(find(sig1 < 0))) / length(sig1);
-   normVSI = (VSIvelSpikes - VSIvelSignal);
+   vsout.normVSI = (VSIvelSpikes - VSIvelSignal);
 
        ASIvelSpikes = (length(find(spikesig2 > 0)) - length(find(spikesig2 < 0))) / length(spikesig2);
        ASIvelSignal = (length(find(sig2 > 0)) - length(find(sig2 < 0))) / length(sig2);
-   normASI = (ASIvelSpikes - ASIvelSignal);
+   vsout.normASI = (ASIvelSpikes - ASIvelSignal);
 
-text(0.2*pi, -0.7*pi, ['N=', num2str(numspikes), ' VSI=', num2str(round(100*normVSI)), ' ASI=', num2str(round(100*normASI))], 'FontSize', 10, 'Color', 'm');
 
 
