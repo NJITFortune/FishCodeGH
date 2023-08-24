@@ -51,13 +51,14 @@ function vsout = i_vsOnly(spikesig1, spikesig2, sig1, sig2)
 %% CALCULATE AND PLOT
 
 % Bins for angles 
-    numBins = 24; % Set the number of bins you want (24 is a good choice)
+    numBins = 12; % Set the number of bins you want (24 is a good choice)
     bns = 0:2*pi/numBins:2*pi; % The bins
     %snb = bns(1:end-1)+pi/numBins; % Plot points in middle of bins
 
 % Get the histograms for both spikes and stimuli using our bins    
     spikeHist = histcounts(vsout.spikeang, bns);
     sigHist = histcounts(vsout.sigang, bns);
+    sigHist(sigHist == 0) = 1;
 
 % Calculate a normalized spike rate by dividing the number of stimulus counts
     normSigCnt = sum(spikeHist) / sum(sigHist);

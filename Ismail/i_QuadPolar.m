@@ -2,14 +2,13 @@
 %figure; set(gcf, 'renderer', 'painters', 'Position', [100 480 1024 768]);
 
 %% Pick your poison
-neuron = 5;
+neuron = 1;
 
 % nn = length(ismail)+1;
 nn = 1;
 
-ismail(nn).fish = 'Hobo';
+ismail(nn).fish = 'Bumpy';
 ismail(nn).neuron = neuron;
-ismail(nn).delay = delay;
 
 spiketimes = curfish.allspikes.times(curfish.allspikes.codes == neuron);
 
@@ -17,6 +16,7 @@ spiketimes = curfish.allspikes.times(curfish.allspikes.codes == neuron);
 figure(1); clf; set(gcf, 'renderer', 'painters', 'Position', [100 480 1024 768]);
 
 delay = 0.1;
+ismail(nn).delay = delay;
     [evAmp, evCat] = i_tim2stim(spiketimes, curfish.fish_vel, curfish.time, curfish.tracking, delay);
     [eaAmp, eaCat] = i_tim2stim(spiketimes, curfish.fish_acc, curfish.time, curfish.tracking, delay);
 
