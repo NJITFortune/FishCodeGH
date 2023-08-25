@@ -1,17 +1,17 @@
+function ismail = i_QuadPolar(curfish, fishname, neuron)
 % load /Users/eric/Downloads/NeuroPhys2023/finaldata/Fin_2019_04_14_spikeID_34.mat
 %figure; set(gcf, 'renderer', 'painters', 'Position', [100 480 1024 768]);
 
 %% Pick your poison
-neuron = 1;
+% neuron = 2;
 
 % nn = length(ismail)+1;
 nn = 1;
 
-ismail(nn).fish = 'Bumpy';
+ismail(nn).fish = fishname;
 ismail(nn).neuron = neuron;
 
 spiketimes = curfish.allspikes.times(curfish.allspikes.codes == neuron);
-
 
 figure(1); clf; set(gcf, 'renderer', 'painters', 'Position', [100 480 1024 768]);
 

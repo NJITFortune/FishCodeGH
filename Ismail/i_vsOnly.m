@@ -70,13 +70,13 @@ function vsout = i_vsOnly(spikesig1, spikesig2, sig1, sig2)
 
    vsout.numspikes = length(spikesig1);
 
-       VSIvelSpikes = (length(find(spikesig1 > 0)) - length(find(spikesig1 < 0))) / length(spikesig1);
-       VSIvelSignal = (length(find(sig1 > 0)) - length(find(sig1 < 0))) / length(sig1);
-   vsout.normVSI = (VSIvelSpikes - VSIvelSignal);
+       vsout.VSIvelSpikes = (length(find(spikesig1 > 0)) - length(find(spikesig1 < 0))) / length(spikesig1);
+       vsout.VSIvelSignal = (length(find(sig1 > 0)) - length(find(sig1 < 0))) / length(sig1);
+   vsout.normVSI = (vsout.VSIvelSpikes - vsout.VSIvelSignal);
 
-       ASIvelSpikes = (length(find(spikesig2 > 0)) - length(find(spikesig2 < 0))) / length(spikesig2);
-       ASIvelSignal = (length(find(sig2 > 0)) - length(find(sig2 < 0))) / length(sig2);
-   vsout.normASI = (ASIvelSpikes - ASIvelSignal);
+       vsout.ASIvelSpikes = (length(find(spikesig2 > 0)) - length(find(spikesig2 < 0))) / length(spikesig2);
+       vsout.ASIvelSignal = (length(find(sig2 > 0)) - length(find(sig2 < 0))) / length(sig2);
+   vsout.normASI = (vsout.ASIvelSpikes - vsout.ASIvelSignal);
 
 
 
