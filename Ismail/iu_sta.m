@@ -27,6 +27,15 @@ tim = 1/Fs:1/Fs:length(sig)/Fs; % Time stamps for the duration of the signal.
 %     end
 % end
 
+if isempty(randspikes)
+    randspikes(1) = 0.027;
+    ISIs = diff(spikes);
+    for k = randperm(length(ISIs))
+        randspikes(end+1) = randspikes(end) + ISIs(k);
+    end
+end
+
+
 %% PARALLEL
 % For every spike get the time "wid" before and after
 % the time of the spike.
@@ -42,7 +51,7 @@ parfor idx = 1:length(spikes)
 end
 
 %% Finish up
-
+    out.datasaver = sta;
     out.MEAN  = nanmean(sta,1); % Calculate the mean (which is the STA)
     out.STD  = nanstd(sta,0,1); % Get the standard deviation for each point.
 
