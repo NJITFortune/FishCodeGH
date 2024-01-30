@@ -53,3 +53,14 @@ figure(2); clf; hold on; set(gcf, 'renderer', 'painters');
     plot(spikes.times(spikes.codes == 3), 0.0375 * ones(1,numSpikes), 'bo', 'MarkerSize', 8);
 
     xlim(spikeSampleTime)
+
+%%
+figure(3); clf; set(gcf, 'renderer', 'painters');
+
+tmpSpikes = spikes.times(spikes.codes == 3);
+subplot(121); hold on; for j=1:100;plot(raw_data.values(nTim > tmpSpikes(j)-0.00001 & nTim < tmpSpikes(j)+0.0081)); end 
+xlim([1 25]); ylim([-0.06 0.1]);
+tmpSpikes = spikes.times(spikes.codes == 4);
+subplot(122); hold on; for j=1:100;plot(raw_data.values(nTim > tmpSpikes(j)-0.0001 & nTim < tmpSpikes(j)+0.0009)); end 
+xlim([1 25]); ylim([-0.06 0.1]);
+
