@@ -1,5 +1,6 @@
 %% Load data
-load ~/Downloads/brown2019_04_12_merged.mat
+%load ~/Downloads/brown2019_04_12_merged.mat
+load /Users/eric/Documents/Ismail2021/brown2019_04_12_merged.mat
 
 %% Figure 1 - show data for 4 clusters
 
