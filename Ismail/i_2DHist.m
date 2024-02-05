@@ -11,7 +11,5 @@ for j=length(velrange):-1:2
     stimbin(j-1,k-1) = length(find(curfish.error_vel > velrange(j-1) & curfish.error_vel < velrange(j) & ...
         curfish.error_acc > accrange(k-1) & curfish.error_acc < accrange(k)) );
 
-
-
     end
 end

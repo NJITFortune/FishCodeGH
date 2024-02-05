@@ -35,7 +35,7 @@ load /Users/eric/NotCloudy/UyanikFinalPutsch/uyanik_neurophys/finaldata/BammBamm
 %%
 clear spiketimes spikeTracking staEV staFA ax
 
-unitNumber = 3q;
+unitNumber = 3;
 winDur = 1.5;
 
 figNum = [1, 2];
