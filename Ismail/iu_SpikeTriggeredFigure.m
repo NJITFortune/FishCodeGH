@@ -1,3 +1,4 @@
+load ~/Documents/uyanik_neurophys/finaldata/Fin_2019_04_14_spikeID_34.mat
 
 % load /Users/eric/NotCloudy/UyanikFinalPutsch/uyanik_neurophys/finaldata/Fin_2019_04_14_spikeID_34.mat 
     % 4 EXCEL 3 OK EV/FA <<<<<<<<<<<<<<<<<<<<
@@ -5,7 +6,7 @@
     % 1,2,3,5,6 NR - Andre bad
 % load /Users/eric/NotCloudy/UyanikFinalPutsch/uyanik_neurophys/finaldata/Ankara_2019_01_31_spikeID_35_p1.mat
     % 3,5, NR - Ankara p1 bad
-load /Users/eric/NotCloudy/UyanikFinalPutsch/uyanik_neurophys/finaldata/BammBamm_2019_04_12_spikeID_123M.mat
+% load /Users/eric/NotCloudy/UyanikFinalPutsch/uyanik_neurophys/finaldata/BammBamm_2019_04_12_spikeID_123M.mat
     % 1,2,3 acc/motor lots of spikes   <<<<<<<<<<<<
 % load /Users/eric/NotCloudy/UyanikFinalPutsch/uyanik_neurophys/finaldata/Bent_2019_02_26_spikeID_2346.mat
     % 2 EV/FA messy good?, 3 active not smooth, 4 responsive, EV/FA medium number  
@@ -47,7 +48,7 @@ spiketimes = curfish.spikes.times(curfish.spikes.codes == unitNumber);
 
 for k=length(spiketimes):-1:1
     % The direction *COULD* have a profound effect - need to test this
-    spikeTracking(k) = curfish.tracking(find(curfish.time < spiketimes(k), 1,"last"));
+    spikeTracking(k) = curfish.tracking(find(curfish.time < spiketimes(k), 1, "last"));
     % spikeTracking(k) = curfish.tracking(find(curfish.time > spiketimes(k), 1,"first"));
 end
 
@@ -122,3 +123,26 @@ figure(27); clf;
 
     linkaxes(axx, 'xy'); ylim([-0.5 0.5])
     
+% Calculate occupancy-corrected DSI values
+
+asError = curfish.error_vel(curfish.tracking == 1 | curfish.tracking == 3);
+    occupASev = (length(find(asError > 0)) - length(find(asError < 0))) / length(asError);
+spError = curfish.error_vel(curfish.tracking == 0 | curfish.tracking == 2);
+    occupSPev = (length(find(spError > 0)) - length(find(spError < 0))) / length(spError);
+asFish = curfish.fish_acc(curfish.tracking == 1 | curfish.tracking == 3);
+    occupASfa = (length(find(asFish > 0)) - length(find(asFish < 0))) / length(asFish);
+spFish = curfish.fish_acc(curfish.tracking == 0 | curfish.tracking == 2);
+    occupSPfa = (length(find(spFish > 0)) - length(find(spFish < 0))) / length(spFish);
+
+
+
+fprintf('Active DSI EV signal: %1.4f \n', occupASev);
+fprintf('Smooth DSI EV signal: %1.4f \n', occupSPev);
+
+fprintf('Active DSI FA signal: %1.4f \n', occupASfa);
+fprintf('Smooth DSI FA signal: %1.4f \n', occupSPfa);
+
+%% 2D plots
+
+
+
