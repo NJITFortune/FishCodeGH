@@ -28,7 +28,7 @@ tim = 1/Fs:1/Fs:length(sig)/Fs; % Time stamps for the duration of the signal.
 % end
 
 if isempty(randspikes)
-    randspikes(1) = 0.027;
+    randspikes(1) = 0.0027;
     ISIs = diff(spikes);
     for k = randperm(length(ISIs))
         randspikes(end+1) = randspikes(end) + ISIs(k);
@@ -51,14 +51,22 @@ parfor idx = 1:length(spikes)
 end
 
 %% Finish up
-    out.datasaver = sta;
+    out.stadata = sta;
     out.MEAN  = nanmean(sta,1); % Calculate the mean (which is the STA)
     out.STD  = nanstd(sta,0,1); % Get the standard deviation for each point.
 
+    out.randdata = sta_rand;
     out.randMEAN  = nanmean(sta_rand,1);
     out.randSTD  = nanstd(sta_rand,0,1);
 
     out.time = -wid:1/Fs:wid; % Give the user a time base for plotting.
+
+% Get the Pvalue for each time bin - when was it different?
+for j=length(out.stadata(1,:)):-1:1 
+    %realdata=out.stadata(:,j); randdata=out.randdata(:,j); 
+    [~, out.Pval(j), ~, ~] = ttest2(out.stadata(:,j),out.randdata(:,j)); 
+end
+
 
 % figure(10); clf
 % hold on;
