@@ -1,5 +1,5 @@
 function vsout = i_vsOnly(spikesig1, spikesig2, sig1, sig2)
-% This generates the polar plot of velocity versus amplitude (or any two signals)
+% This generates the polar plot of velocity versus acceleration (or any two signals)
 % This requires data prepared by i_tim2stim. 
 % In fact, you need to run i_tim2stim twice! (usually velocity and acceleration)
 %

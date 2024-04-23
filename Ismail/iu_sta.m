@@ -8,35 +8,16 @@ function out = iu_sta(spikes, randspikes, sig, Fs, wid)
 
 tim = 1/Fs:1/Fs:length(sig)/Fs; % Time stamps for the duration of the signal.
 
-% %% NON PARALLEL
-% % For every spike (starting at the end) get the time "wid" before and after
-% % the time of the spike.
-% for idx = length(spikes):-1:1
-%     if spikes(idx) > wid && spikes(idx) < tim(end)-wid % Make sure that the window does not go before or after the signal.
-%         temp = interp1(tim, sig, spikes(idx)-wid:1/Fs:spikes(idx)+wid); % Copy the signal 
-%         sta(idx,:) = temp; % Put the signal into a temporary structure
-%     end
-% end
-% 
-% % For every random spike (starting at the end) get the time "wid" before and after
-% % the time of the spike.
-% for idx = length(randspikes):-1:1
-%     if randspikes(idx) > wid && randspikes(idx) < tim(end)-wid % Make sure that the window does not go before or after the signal.
-%         temp = interp1(tim, sig, randspikes(idx)-wid:1/Fs:randspikes(idx)+wid);    
-%         sta_rand(idx,:) = temp;
-%     end
-% end
 
+% Generate one set of random spikes. We should probably do this several times.
 if isempty(randspikes)
-    randspikes(1) = 0.0027;
+    randspikes(1) = 0.0027; % Just a "random" first spike time to get things started.
     ISIs = diff(spikes);
     for k = randperm(length(ISIs))
         randspikes(end+1) = randspikes(end) + ISIs(k);
     end
 end
 
-
-%% PARALLEL
 % For every spike get the time "wid" before and after
 % the time of the spike.
 parfor idx = 1:length(spikes)
@@ -63,7 +44,6 @@ end
 
 % Get the Pvalue for each time bin - when was it different?
 for j=length(out.stadata(1,:)):-1:1 
-    %realdata=out.stadata(:,j); randdata=out.randdata(:,j); 
     [~, out.Pval(j), ~, ~] = ttest2(out.stadata(:,j),out.randdata(:,j)); 
 end
 
