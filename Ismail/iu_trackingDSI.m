@@ -1,4 +1,4 @@
-function [dsiSP, dsiAS] = iu_trackingDSI(spikes, signal, tracking, tim, delt)
+function [dsiSP, dsiAS, cnts] = iu_trackingDSI(spikes, signal, tracking, tim, delt)
 
 AStrax = [];
 SPtrax = [];
@@ -36,5 +36,6 @@ dsiAS = (length(find(AStrax > 0)) - length(find(AStrax < 0))) / ...
 dsiSP = (length(find(SPtrax > 0)) - length(find(SPtrax < 0))) / ...
     (length(find(SPtrax > 0)) + length(find(SPtrax < 0)));
 
-
+cnts.AStrax = AStrax;
+cnts.SPtrax = SPtrax;
 
