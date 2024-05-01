@@ -19,6 +19,7 @@ for k=1:length(Dspiketimes)
     if tracking(curidx) == 0 || tracking(curidx) == 2
         extratimpercent = (Dspiketimes(k) - tim(curidx)) / Sf;
         AStrax(end+1) = signal(curidx) + ((signal(curidx+1) - signal(curidx)) * extratimpercent);
+        astims(end+1) = Dspiketimes(k);
     end
     % Smooth Pursuit
     if tracking(curidx) == 1 || tracking(curidx) == 3
@@ -38,4 +39,4 @@ dsiSP = (length(find(SPtrax > 0)) - length(find(SPtrax < 0))) / ...
 
 cnts.AStrax = AStrax;
 cnts.SPtrax = SPtrax;
-
+cnts.sptimes = Dspiketimes;
