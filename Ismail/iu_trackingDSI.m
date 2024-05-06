@@ -2,6 +2,8 @@ function [dsiSP, dsiAS, cnts] = iu_trackingDSI(spikes, signal, tracking, tim, de
 
 AStrax = [];
 SPtrax = [];
+astims = [];
+sptims = [];
 
 % Sample rate (in seconds) of the stimulus (1/Fs) 
     Sf = tim(2) - tim(1); 
@@ -25,6 +27,7 @@ for k=1:length(Dspiketimes)
     if tracking(curidx) == 1 || tracking(curidx) == 3
         extratimpercent = (Dspiketimes(k) - tim(curidx)) / Sf;
         SPtrax(end+1) = signal(curidx) + ((signal(curidx+1) - signal(curidx)) * extratimpercent);
+        sptims(end+1) = Dspiketimes(k);
     end
 
 end
@@ -39,4 +42,6 @@ dsiSP = (length(find(SPtrax > 0)) - length(find(SPtrax < 0))) / ...
 
 cnts.AStrax = AStrax;
 cnts.SPtrax = SPtrax;
-cnts.sptimes = Dspiketimes;
+cnts.astims = astims - delt;
+cnts.sptims = sptims - delt;
+cnts.delt = delt;

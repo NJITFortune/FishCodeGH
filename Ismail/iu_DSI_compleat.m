@@ -4,11 +4,11 @@
 vthresh = 30; % 30 for vel 
 athresh = 250; % 250 for acc
 
-fishNum = 3;
-spikeCode = 1;
+fishNum = 9;
+spikeCode = 3;
 delt = -0.00;
 
-spikes = curfish(fishNum).spikes.times(curfish(3).spikes.codes == spikeCode);
+spikes = curfish(fishNum).spikes.times(curfish(fishNum).spikes.codes == spikeCode);
 vsignal = curfish(fishNum).error_vel;
 asignal = curfish(fishNum).fish_acc;
 tracking = curfish(fishNum).tracking;
@@ -46,8 +46,8 @@ figure(49); clf;
     subplot(122); plot(slowbincentersV, normSlowV ./ sum(normSlowV)); hold on; plot(slowbincentersV, ASslowbinsV ./ sum(ASslowbinsV));
     ylim([0 0.1]); title('AS V Slow');
 
-SPfastbinsV = histcounts(fastSPspikesV, fastbinedges, 'Normalization', 'count');
-SPslowbinsV = histcounts(slowSPspikesV, slowbinedges, 'Normalization', 'count');
+SPfastbinsV = histcounts(fastSPspikesV, fastbinedgesV, 'Normalization', 'count');
+SPslowbinsV = histcounts(slowSPspikesV, slowbinedgesV, 'Normalization', 'count');
 figure(48); clf; 
     subplot(121); plot(fastbincentersV, normFastV ./ sum(normFastV)); hold on; plot(fastbincentersV, SPfastbinsV ./ sum(SPfastbinsV));
     ylim([0 0.1]); title('SP V Fast');
