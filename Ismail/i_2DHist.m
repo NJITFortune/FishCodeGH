@@ -1,6 +1,8 @@
 
-velrange = -250:10:250; velbins = -245:10:245;
-accrange = -2500:100:2500; accbins = -2450:100:2450;
+% velrange = -100:10:100; velbins = -95:10:95;
+% accrange = -1000:100:1000; accbins = -950:100:950;
+velrange = -100:20:100; velbins = -90:20:90;
+accrange = -1000:200:1000; accbins = -900:200:900;
 
 fishNum = 9;
 spikeCode = 4;
