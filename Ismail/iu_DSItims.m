@@ -1,15 +1,22 @@
 function out = iu_DSItims(curfish, unitNumber)
+% Usage: out = iu_DSItims(curfish, unitNumber)
+%
+delts = -0.50:0.05:0.50; 
 
 %% Get DSIs
 
 spiketimes = curfish.spikes.times(curfish.spikes.codes == unitNumber);
 
-delts = -0.50:0.05:0.50; 
+fprintf('Number of spikes is %i \n', length(spiketimes));
+
+error_vel = curfish.error_vel; error_acc = curfish.error_acc; fish_acc = curfish.fish_acc;
+tracking = curfish.tracking;
+tim = curfish.time;
 
 parfor z = 1:length(delts)
-    [EVSP(z), EVAS(z), ~] = iu_trackingDSI(spiketimes, curfish.error_vel, curfish.tracking, curfish.time, delts(z));
-    [EASP(z), EAAS(z), ~] = iu_trackingDSI(spiketimes, curfish.error_acc, curfish.tracking, curfish.time, delts(z));
-    [FASP(z), FAAS(z), ~] = iu_trackingDSI(spiketimes, curfish.fish_acc, curfish.tracking, curfish.time, delts(z));
+    [EVSP(z), EVAS(z), ~] = iu_trackingDSI(spiketimes, error_vel, tracking, tim, delts(z));
+    [EASP(z), EAAS(z), ~] = iu_trackingDSI(spiketimes, error_acc, tracking, tim, delts(z));
+    [FASP(z), FAAS(z), ~] = iu_trackingDSI(spiketimes, fish_acc, tracking, tim, delts(z));
 end
 
 figure(27); clf; 

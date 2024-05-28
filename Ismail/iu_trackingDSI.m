@@ -1,4 +1,8 @@
 function [dsiSP, dsiAS, cnts] = iu_trackingDSI(spikes, signal, tracking, tim, delt)
+% Usage: [dsiSP, dsiAS, cnts] = iu_trackingDSI(spikes, signal, tracking, tim, delt)
+% This script returns DSI values for SP and AS for whatever you send it (Vel or Acc)
+% This also returns the time-adjusted spike times and adjusted stimulus
+% values. Meant to be used with i_2DHist, iu_getAllstas.
 
 AStrax = [];
 SPtrax = [];
@@ -7,7 +11,6 @@ sptims = [];
 
 % Sample rate (in seconds) of the stimulus (1/Fs) 
     Sf = tim(2) - tim(1); 
-
 
 % Adjust the timing of the spiketimes relative to the time base and trim the ends
 Dspiketimes = spikes + delt; % delt is our time shift

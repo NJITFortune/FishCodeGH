@@ -1,4 +1,12 @@
 % iu_DSIcompleat
+% This plots spike histograms in relation to velocity and accleration
+% Plots are made with slow and fast modes
+% Plots inlcude smooth pursuit (SP) and active sensing (AS)
+
+% Need to reconfigure so that fast and slow are on same plot but marked
+% differently, and need to have both positive and negative deltas on same
+% plot.
+
 
 %% Get fast and slow spike data
 vthresh = 30; % 30 for vel 
@@ -6,7 +14,7 @@ athresh = 250; % 250 for acc
 
 fishNum = 9;
 spikeCode = 3;
-delt = -0.00;
+delt = -0.20;
 
 spikes = curfish(fishNum).spikes.times(curfish(fishNum).spikes.codes == spikeCode);
 vsignal = curfish(fishNum).error_vel;

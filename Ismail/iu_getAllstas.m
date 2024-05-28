@@ -1,4 +1,7 @@
 function [evOUT, faOUT] = iu_getAllstas(curfish, fishNo) 
+% Usage: [evOUT, faOUT] = iu_getAllstas(curfish, fishNo) 
+% This calculates STAs for error vel, error acc, and fish acc for each neuron in a fish.
+% I need to add a delay function.
 
 % load finalIsmaildata2024.mat
 
