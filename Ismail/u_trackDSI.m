@@ -13,6 +13,8 @@ sptims = [];
 
 newsig = u_tim2stim(spikes, signal, tim, delt);
 
+% figure(101); clf; histogram(newsig);
+
 randspikes = u_randspikegen(spikes);
 randsig = u_tim2stim(randspikes, signal, tim, 0);
 

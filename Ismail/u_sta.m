@@ -21,6 +21,7 @@ end
 
 % For every spike get the time "wid" before and after
 % the time of the spike.
+
 parfor idx = 1:length(spikes)
     if spikes(idx) > wid && spikes(idx) < tim(end)-wid % Make sure that the window does not go before or after the signal.
         temp = interp1(tim, sig, spikes(idx)-wid:1/Fs:spikes(idx)+wid); % Copy the signal 

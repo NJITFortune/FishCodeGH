@@ -28,4 +28,4 @@ for j = length(spiketimes):-1:1
 end
 
 % Report to the user how many spikes we have and the mean spike rate.
-fprintf('Spike Count = %i, Duration = %i, Spike Rate = %2.2f \n', length(spiketimes), round(intim(end)), length(spiketimes) / intim(end));
+% fprintf('Spike Count = %i, Duration = %i, Spike Rate = %2.2f \n', length(spiketimes), round(intim(end)), length(spiketimes) / intim(end));
