@@ -23,7 +23,7 @@ for j=numrands:-1:1
     randEA{j} = u_tim2stim(randspikes, curfish(n).error_acc, curfish(n).time, 0);
 end
 
-% Calcuate the baseline 2D histogram
+%% Calcuate the baseline 2D histogram
 
 respbinRAND = u_get2DHist(randEV{1}, randEA{1}, velrange, accrange);
     for j=2:numrands
