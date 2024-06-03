@@ -64,7 +64,7 @@ function vsout = i_vsOnly(spikesig1, spikesig2, sig1, sig2)
     normSigCnt = sum(spikeHist) / sum(sigHist);
     firingRatio = spikeHist ./ (sigHist * normSigCnt);
     
-   pp = polarhistogram('BinCounts', firingRatio, 'BinEdges', bns, 'DisplayStyle', 'stairs');
+   polarhistogram('BinCounts', firingRatio, 'BinEdges', bns, 'DisplayStyle', 'stairs');
  
    rlim([0 2.5]); 
 
