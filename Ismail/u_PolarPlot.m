@@ -88,6 +88,7 @@ rspikesig2 = u_tim2stim(randspikes, sig2, tim, 0);
 
     rnormSigCnt = sum(spikeHist) / sum(rspikeHist);
     rfiringRatio = spikeHist ./ (rspikeHist * rnormSigCnt);
+    rbaselinefiringRatio = rspikeHist ./ (rspikeHist * rnormSigCnt);
     
 % % RAW PLOT (just a sanity check - never to be used)
 %     figure(27); clf; 
@@ -118,8 +119,14 @@ subplot(121);
     rawaccbns = -3000:300:3000;
 
     subplot(222); cla; 
-        histogram(spikesig1, rawvelbns); tmp = ylim;
-        hold on; plot([0 0], tmp, 'r-'); 
+        % histogram(spikesig1, rawvelbns); tmp = ylim;
+        % hold on; plot([0 0], tmp, 'r-'); 
+        sig1hist = histcounts(spikesig1, rawvelbns); 
+        rsig1hist = histcounts(rspikesig1, rawvelbns);
+        bar(rawvelbns(2:end)-25, (sig1hist - rsig1hist) / sum(spikeHist));
+        tmp = ylim;
+        hold on; xline(0, 'r'); 
+        ylim([-0.05 0.05])
         
         vv = (length(find(spikesig1 > 0)) - length(find(spikesig1 < 0))) / length(spikesig1);
         sigvv = (length(find(sig1 > 0)) - length(find(sig1 < 0))) / length(sig1);
@@ -129,8 +136,14 @@ subplot(121);
         title('Velocity')
 
     subplot(224); cla; 
-        histogram(spikesig2, rawaccbns); tmp = ylim;
-        hold on; plot([0 0], tmp, 'r-'); 
+        % histogram(spikesig2, rawaccbns); tmp = ylim;
+        % hold on; plot([0 0], tmp, 'r-'); 
+        sig2hist = histcounts(spikesig2, rawaccbns); 
+        rsig2hist = histcounts(rspikesig2, rawaccbns);
+        bar(rawaccbns(2:end)-150, (sig2hist - rsig2hist) / sum(spikeHist));
+        hold on; plot([0 0], tmp, 'r-');
+        xlim([-3000, 3000])
+        ylim([-0.05 0.05])
 
         aa = (length(find(spikesig2 > 0)) - length(find(spikesig2 < 0))) / length(spikesig2);
         sigaa = (length(find(sig2 > 0)) - length(find(sig2 < 0))) / length(sig2);
@@ -146,6 +159,13 @@ figure(23); clf;
     hold on;
     rlim([0 2.5]); 
 
+figure(24); clf; 
+% CHOOSE EITHER A polarplot OR A polarhistogram
+%     polarplot([snb snb(1)], [firingRatio firingRatio(1)], 'LineWidth', 2);
+   polarhistogram('BinCounts', rbaselinefiringRatio, 'BinEdges', bns);
+
+    hold on;
+    rlim([0 2.5]); 
 %% Report to the user some values
 
 Vsi = vv - sigvv; % Direction selectivity Index
