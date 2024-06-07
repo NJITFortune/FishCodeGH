@@ -1,4 +1,4 @@
-function vsout = u_PolarPlot(spiketimes, sig1, sig2, Fs, delt, figureTitle)
+function vsout = u_PolarPlot(spiketimes, sig1, sig2, tim, delt, rango, figureTitle)
 % Usage: vsout = u_PolarPlot(spiketimes, sig1, sig2, Fs, delt, figureTitle)
 % This generates the polar plot of velocity versus amplitude (or any two signals)
 %
@@ -8,9 +8,16 @@ function vsout = u_PolarPlot(spiketimes, sig1, sig2, Fs, delt, figureTitle)
 % For 2024 - use sig1 as velocity and sig2 as acceleration
 
 %% SPIKES
-tim = 1/Fs:1/Fs:length(sig1)/Fs;
-spikesig1 = u_tim2stim(spiketimes, sig1, tim, delt);
-spikesig2 = u_tim2stim(spiketimes, sig2, tim, delt);
+spikesig1orig = u_tim2stim(spiketimes, sig1, tim, delt);
+spikesig2orig = u_tim2stim(spiketimes, sig2, tim, delt);
+
+if ~isempty(rango)
+    spikesig1 = spikesig1orig(abs(spikesig1orig) > rango(1) & abs(spikesig1orig) < rango(2) & abs(spikesig2orig) > rango(3) & abs(spikesig2orig) < rango(4));
+    spikesig2 = spikesig2orig(abs(spikesig2orig) > rango(3) & abs(spikesig2orig) < rango(4) & abs(spikesig1orig) > rango(1) & abs(spikesig1orig) < rango(2));
+else
+    spikesig1 = spikesig1orig;
+    spikesig2 = spikesig2orig;
+end
 
 % Get lengths for vector for spikes [THIS IS CURRENTLY UNUSED]
     vsout.spikemag = sqrt(spikesig1.^2 + spikesig2.^2);
@@ -131,7 +138,7 @@ subplot(121);
         vv = (length(find(spikesig1 > 0)) - length(find(spikesig1 < 0))) / length(spikesig1);
         sigvv = (length(find(sig1 > 0)) - length(find(sig1 < 0))) / length(sig1);
         
-        text(-500, tmp(2)/2, ['VSI = ' num2str(vv - sigvv)]);
+        text(-500, tmp(2)/2, ['VSI = ' num2str(vv) 'rVSI = ' num2str(sigvv)]);
         text(-500, (tmp(2)/4)*3, ['Spike Count = ' num2str(length(spikesig1))]);
         title('Velocity')
 
@@ -148,7 +155,7 @@ subplot(121);
         aa = (length(find(spikesig2 > 0)) - length(find(spikesig2 < 0))) / length(spikesig2);
         sigaa = (length(find(sig2 > 0)) - length(find(sig2 < 0))) / length(sig2);
         
-        text(-3000, tmp(2)/2, ['ASI = ' num2str(aa - sigaa)])
+        text(-2500, tmp(2)/2, ['ASI = ' num2str(aa) ' rASI == ', num2str(sigaa)])
         title('Acceleration')
  
 figure(23); clf; 

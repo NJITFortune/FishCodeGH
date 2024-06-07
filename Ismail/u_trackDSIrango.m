@@ -9,27 +9,42 @@ function [dsi, cnts] = u_trackDSIrango(spikes, sig1, sig2, tim, delt, rango)
 newsig1 = u_tim2stim(spikes, sig1, tim, delt);
 newsig2 = u_tim2stim(spikes, sig2, tim, delt);
 
-newsig1only = newsig1(abs(newsig1) > rango(1) & abs(newsig1) < rango(2));
-newsig2only = newsig2(abs(newsig2) > rango(3) & abs(newsig2) < rango(4));
+if ~isempty(rango)
+    newsig1only = newsig1(abs(newsig1) > rango(1) & abs(newsig1) < rango(2));
+    newsig2only = newsig2(abs(newsig2) > rango(3) & abs(newsig2) < rango(4));
 
-newsig1comb = newsig1(abs(newsig1) > rango(1) & abs(newsig1) < rango(2) & ...
-    abs(newsig2) > rango(3) & abs(newsig2) < rango(4));
-newsig2comb = newsig2(abs(newsig1) > rango(1) & abs(newsig1) < rango(2) & ...
-    abs(newsig2) > rango(3) & abs(newsig2) < rango(4));
+    newsig1comb = newsig1(abs(newsig1) > rango(1) & abs(newsig1) < rango(2) & ...
+        abs(newsig2) > rango(3) & abs(newsig2) < rango(4));
+    newsig2comb = newsig2(abs(newsig1) > rango(1) & abs(newsig1) < rango(2) & ...
+        abs(newsig2) > rango(3) & abs(newsig2) < rango(4));
+else
+    newsig1only = newsig1;
+    newsig2only = newsig2;
+    newsig1comb = newsig1;
+    newsig2comb = newsig2;
+end
+
 
 % figure(101); clf; histogram(newsig);
 
 randspikes = u_randspikegen(spikes);
-randsig1 = u_tim2stim(randspikes, sig1, tim, 0);
+    randsig1 = u_tim2stim(randspikes, sig1, tim, 0);
+    randsig2 = u_tim2stim(randspikes, sig2, tim, 0);
+
+if ~isempty(rango)
     randsig1only = randsig1(abs(randsig1) > rango(1) & abs(randsig1) < rango(2));
-randsig2 = u_tim2stim(randspikes, sig2, tim, 0);
     randsig2only = randsig2(abs(randsig2) > rango(3) & abs(randsig2) < rango(4));
 
-newRsig1comb = randsig1(abs(randsig1) > rango(1) & abs(randsig1) < rango(2) & ...
-    abs(randsig2) > rango(3) & abs(randsig2) < rango(4));
-newRsig2comb = randsig2(abs(randsig1) > rango(1) & abs(randsig1) < rango(2) & ...
-    abs(randsig2) > rango(3) & abs(randsig2) < rango(4));
-    
+    newRsig1comb = randsig1(abs(randsig1) > rango(1) & abs(randsig1) < rango(2) & ...
+        abs(randsig2) > rango(3) & abs(randsig2) < rango(4));
+    newRsig2comb = randsig2(abs(randsig1) > rango(1) & abs(randsig1) < rango(2) & ...
+        abs(randsig2) > rango(3) & abs(randsig2) < rango(4));
+else
+    randsig1only = randsig1;
+    randsig2only = randsig2;
+    newRsig1comb = randsig1;
+    newRsig2comb = randsig2;
+end
 
 % Calculate raw DSI values
 
