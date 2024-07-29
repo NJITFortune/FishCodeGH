@@ -1,7 +1,7 @@
 figure(28); clf; 
 
-neuron = 1;
-cellunit = 1;
+neuron = 9;
+cellunit = 3;
 
 sensorimotor = 's';
 % sensorimotor = 'm';
