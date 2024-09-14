@@ -3,7 +3,7 @@ function out = u_sta(spikes, randspikes, sig, Fs, wid)
 % spikes are the spike times
 % randspikes are shuffled spike times
 % sig is the signal (e.g. error_vel) of interest. Behavior...
-% Fs is the sample rate (usually 25 for these data, fs = 25
+% Fs is the sample rate (usually 25 for these data, fs = 25)
 % wid is the width of the spike triggered average in seconds (1 or 2 seconds is good)
 
 tim = 1/Fs:1/Fs:length(sig)/Fs; % Time stamps for the duration of the signal.

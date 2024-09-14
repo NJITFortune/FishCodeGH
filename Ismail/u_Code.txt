@@ -1,0 +1,15 @@
+u_DSItimeplot.m
+u_PolarPlot.m
+u_ev2faDSIplots.m
+u_explorer.m
+u_get2DHist.m
+u_randspikegen.m
+	Generates a shuffled set of spike times
+u_sta.m
+	Calculates the STA against behavioral signal (and P-values)
+		depends on u_randspikegen.m
+u_tim2stim.m
+u_trackDSI.m
+u_trackDSIrango.m
+u_velociraptor.m
+	DSI calculated at a number of different delays
