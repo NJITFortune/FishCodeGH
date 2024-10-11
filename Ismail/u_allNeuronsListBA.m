@@ -15,7 +15,7 @@ fishNames{4} = 'Bent';
 fishNames{5} = 'Brown';
 fishNames{6} = 'BrownieOne';
 fishNames{7} = 'BrownieTwo';
-fishNames{8} = 'Bumby';
+fishNames{8} = 'Bumpy';
 fishNames{9} = 'Fin';
 fishNames{10} = 'Goldy';
 fishNames{11} = 'Hobo';
@@ -26,38 +26,38 @@ fishNames{12} = 'Penn';
 clear neuronsAll
 
 % andre_2019_04_10, 1439
-neuronsAll(1,:) = [1, 1, 1439, 10270]; % 
-neuronsAll(2,:) = [1, 2, 1439, 2236]; % 
-neuronsAll(3,:) = [1, 3, 1439, 5557]; % 
-neuronsAll(4,:) = [1, 4, 1439, 1605]; % 
-neuronsAll(5,:) = [1, 5, 1439, 2857]; % 
+neuronsAll(1,:) = [1, 1, 1439, 10270]; % NR*
+neuronsAll(2,:) = [1, 2, 1439, 2236]; % NR
+neuronsAll(3,:) = [1, 3, 1439, 5557]; % NR
+neuronsAll(4,:) = [1, 4, 1439, 1605]; % NR 
+neuronsAll(5,:) = [1, 5, 1439, 2857]; % NR
 neuronsAll(6,:) = [1, 6, 1439, 849]; %
 
 % ankara_2019_01_31, 689
-neuronsAll(7,:) = [2, 1, 689, 6851]; % 
-neuronsAll(8,:) = [2, 2, 689, 8355]; % 
-neuronsAll(9,:) = [2, 3, 689, 1160]; % 
-neuronsAll(10,:) = [2, 4, 689, 14515]; % 
-neuronsAll(11,:) = [2, 5, 689, 7346]; % 
-neuronsAll(12,:) = [2, 6, 689, 18630]; % 
-neuronsAll(13,:) = [2, 7, 689, 661]; % 
-neuronsAll(14,:) = [2, 8, 689, 5033]; % 
+neuronsAll(7,:) = [2, 1, 689, 6851]; % NR*
+neuronsAll(8,:) = [2, 2, 689, 8355]; % NR
+neuronsAll(9,:) = [2, 3, 689, 1160]; % NR
+neuronsAll(10,:) = [2, 4, 689, 14515]; % NR
+neuronsAll(11,:) = [2, 5, 689, 7346]; % NR
+neuronsAll(12,:) = [2, 6, 689, 18630]; % NR
+neuronsAll(13,:) = [2, 7, 689, 661]; % Maybe too few spikes
+neuronsAll(14,:) = [2, 8, 689, 5033]; % NR
 
 % bammbamm_2019_04_12, 809
-neuronsAll(15,:) = [3, 1, 809, 15627]; % 
-neuronsAll(16,:) = [3, 2, 809, 9609]; % 
-neuronsAll(17,:) = [3, 3, 809, 8538]; % 
-neuronsAll(18,:) = [3, 4, 809, 11327]; % 
-neuronsAll(19,:) = [3, 5, 809, 10009]; % 
-neuronsAll(20,:) = [3, 6, 809, 6637]; % 
+neuronsAll(15,:) = [3, 1, 809, 15627]; % PosHi/PosHi More Sensory
+neuronsAll(16,:) = [3, 2, 809, 9609]; % PosHi/NR Velocity neuron
+neuronsAll(17,:) = [3, 3, 809, 8538]; % PosHi/PosHi More Sensory
+neuronsAll(18,:) = [3, 4, 809, 11327]; % NegHi/NegHi More Sensory
+neuronsAll(19,:) = [3, 5, 809, 10009]; % NegHi/NegHi
+neuronsAll(20,:) = [3, 6, 809, 6637]; % NegHi/NegHi
 
 % bent_2019_02_26, 1469
-neuronsAll(21,:) = [4, 1, 1469, 28860]; % 
-neuronsAll(22,:) = [4, 2, 1469, 30154]; % 
-neuronsAll(23,:) = [4, 3, 1469, 9759]; % 
+neuronsAll(21,:) = [4, 1, 1469, 28860]; % NR*
+neuronsAll(22,:) = [4, 2, 1469, 30154]; % WeakPosHi/WeakNegHi
+neuronsAll(23,:) = [4, 3, 1469, 9759]; % PosHi/NegHi
 neuronsAll(24,:) = [4, 4, 1469, 4220]; % 
 neuronsAll(25,:) = [4, 5, 1469, 27233]; % 
-neuronsAll(26,:) = [4, 6, 1469, 7761]; % 
+neuronsAll(26,:) = [4, 6, 1469, 7761]; % PosHi, Sensory? Passive fish?
 
 % brown_2018_09_25, 299
 neuronsAll(27,:) = [5, 1, 299, 3600]; % 
@@ -83,18 +83,18 @@ neuronsAll(41,:) = [7, 3, 389, 277]; %
 neuronsAll(42,:) = [7, 4, 389, 1072]; % 
 
 % bumpy_2019_04_03, 1229
-neuronsAll(43,:) = [8, 1, 1229, 24303]; % 
-neuronsAll(44,:) = [8, 2, 1229, 10599]; % 
-neuronsAll(45,:) = [8, 3, 1229, 8508]; % 
-neuronsAll(46,:) = [8, 4, 1229, 7867]; % 
-neuronsAll(47,:) = [8, 5, 1229, 12816]; % 
-neuronsAll(48,:) = [8, 6, 1229, 18279]; % 
-neuronsAll(49,:) = [8, 7, 1229, 7954]; % 
+neuronsAll(43,:) = [8, 1, 1229, 24303]; % Reanalyze %% Limits %%%
+neuronsAll(44,:) = [8, 2, 1229, 10599]; % Messy Reanalyze
+neuronsAll(45,:) = [8, 3, 1229, 8508]; % Something good, probably
+neuronsAll(46,:) = [8, 4, 1229, 7867]; % Motor 0 delay Reanalyze
+neuronsAll(47,:) = [8, 5, 1229, 12816]; % Pos fast Bias Reanalyze
+neuronsAll(48,:) = [8, 6, 1229, 18279]; % Pos fast Bias Reanalyze
+neuronsAll(49,:) = [8, 7, 1229, 7954]; % Pos Fast Motor Reanalyze
 
 % fin_2019_04_14, 1019
-neuronsAll(50,:) = [9, 2, 1019, 12079]; % 
-neuronsAll(51,:) = [9, 3, 1019, 5172]; % 
-neuronsAll(52,:) = [9, 4, 1019, 31508]; % 
+neuronsAll(50,:) = [9, 2, 1019, 12079]; % NR
+neuronsAll(51,:) = [9, 3, 1019, 5172]; % PosHi/PosHi
+neuronsAll(52,:) = [9, 4, 1019, 31508]; % PosHi/PosHi
 
 % goldy_2019_03_28, 599
 neuronsAll(53,:) = [10, 1, 599, 1412]; % 
@@ -114,16 +114,16 @@ neuronsAll(64,:) = [11, 3, 1019, 503]; %
 neuronsAll(65,:) = [11, 5, 1019, 235]; % 
 
 % penn_2019_04_13, 269
-neuronsAll(66,:) = [12, 1, 269, 4055]; % 
-neuronsAll(67,:) = [12, 2, 269, 366]; % 
-neuronsAll(68,:) = [12, 3, 269, 524]; % 
+neuronsAll(66,:) = [12, 1, 269, 4055]; % NR
+neuronsAll(67,:) = [12, 2, 269, 366]; % NR
+neuronsAll(68,:) = [12, 3, 269, 524]; % NR
 
 % tolstoy_2019_01_29, 569
-neuronsAll(69,:) = [13, 1, 569, 3666]; % 
-neuronsAll(70,:) = [13, 2, 569, 28640]; % 
-neuronsAll(71,:) = [13, 3, 569, 13401]; % 
-neuronsAll(72,:) = [13, 4, 569, 11166]; % 
-neuronsAll(73,:) = [13, 5, 569, 13055]; % 
+neuronsAll(69,:) = [13, 1, 569, 3666]; % NR*
+neuronsAll(70,:) = [13, 2, 569, 28640]; % NR
+neuronsAll(71,:) = [13, 3, 569, 13401]; % NR
+neuronsAll(72,:) = [13, 4, 569, 11166]; % NR
+neuronsAll(73,:) = [13, 5, 569, 13055]; % NR
 
 
 %% Filter

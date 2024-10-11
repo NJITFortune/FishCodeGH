@@ -4,11 +4,6 @@ function [dsi, cnts] = u_trackDSI(spikes, signal, tim, delt)
 % This also returns the time-adjusted spike times and adjusted stimulus
 % values. 
 
-AStrax = [];
-SPtrax = [];
-astims = [];
-sptims = [];
-
 % Get adusted and random spikes
 
 newsig = u_tim2stim(spikes, signal, tim, delt);

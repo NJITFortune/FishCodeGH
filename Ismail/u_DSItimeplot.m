@@ -1,7 +1,16 @@
-function out = u_DSItimeplot(spiketimes, sig, tim)
+function foo = u_DSItimeplot(spiketimes, sig, tim)
 
-out.dels = -0.750:0.025:0.750;
+% foo.dels = -0.750:0.025:0.750; % Original
+foo.dels = -3.00:0.025:3.00;
 
-for j=length(out.dels):-1:1
-    [out.dsi(j), ~] = u_trackDSI(spiketimes, sig, tim, out.dels(j)); 
+parfor j=1:length(foo.dels)
+    [dsi(j), ~] = u_trackDSI(spiketimes, sig, tim, foo.dels(j)); 
+end
+
+
+for j=length(dsi):-1:1
+
+    foo.dsi(j) = dsi(j).spikes;
+    foo.rdsi(j) = dsi(j).randspikes;
+
 end
