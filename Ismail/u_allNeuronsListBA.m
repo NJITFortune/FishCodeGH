@@ -31,16 +31,16 @@ neuronsAll(2,:) = [1, 2, 1439, 2236]; % NR
 neuronsAll(3,:) = [1, 3, 1439, 5557]; % NR
 neuronsAll(4,:) = [1, 4, 1439, 1605]; % NR 
 neuronsAll(5,:) = [1, 5, 1439, 2857]; % NR
-neuronsAll(6,:) = [1, 6, 1439, 849]; %
+neuronsAll(6,:) = [1, 6, 1439, 849]; % TOO FEW SPIKES
 
 % ankara_2019_01_31, 689
 neuronsAll(7,:) = [2, 1, 689, 6851]; % NR*
 neuronsAll(8,:) = [2, 2, 689, 8355]; % NR
 neuronsAll(9,:) = [2, 3, 689, 1160]; % NR
-neuronsAll(10,:) = [2, 4, 689, 14515]; % NR
+neuronsAll(10,:) = [2, 4, 689, 14515]; % Weakest PosSlow
 neuronsAll(11,:) = [2, 5, 689, 7346]; % NR
 neuronsAll(12,:) = [2, 6, 689, 18630]; % NR
-neuronsAll(13,:) = [2, 7, 689, 661]; % Maybe too few spikes
+neuronsAll(13,:) = [2, 7, 689, 661]; % TOO FEW SPIKES
 neuronsAll(14,:) = [2, 8, 689, 5033]; % NR
 
 % bammbamm_2019_04_12, 809
@@ -55,32 +55,32 @@ neuronsAll(20,:) = [3, 6, 809, 6637]; % NegHi/NegHi
 neuronsAll(21,:) = [4, 1, 1469, 28860]; % NR*
 neuronsAll(22,:) = [4, 2, 1469, 30154]; % WeakPosHi/WeakNegHi
 neuronsAll(23,:) = [4, 3, 1469, 9759]; % PosHi/NegHi
-neuronsAll(24,:) = [4, 4, 1469, 4220]; % 
-neuronsAll(25,:) = [4, 5, 1469, 27233]; % 
+neuronsAll(24,:) = [4, 4, 1469, 4220]; % PosHi/Weirdness
+neuronsAll(25,:) = [4, 5, 1469, 27233]; % Weak
 neuronsAll(26,:) = [4, 6, 1469, 7761]; % PosHi, Sensory? Passive fish?
 
-% brown_2018_09_25, 299
-neuronsAll(27,:) = [5, 1, 299, 3600]; % 
-neuronsAll(28,:) = [5, 2, 299, 5271]; % 
+% brown_2018_09_25, 299 - Off by a factor of 10
+neuronsAll(27,:) = [5, 1, 299, 3600]; % NR
+neuronsAll(28,:) = [5, 2, 299, 5271]; % NR
 neuronsAll(29,:) = [5, 3, 299, 1444]; % 
 neuronsAll(30,:) = [5, 4, 299, 1909]; % 
-neuronsAll(31,:) = [5, 5, 299, 807]; % 
+neuronsAll(31,:) = [5, 5, 299, 807]; % TOO FEW SPIKES
 
 % brownie_p1_2019_01_26, 539
-neuronsAll(31,:) = [6, 1, 539, 2777]; % 
-neuronsAll(32,:) = [6, 2, 539, 3501]; % 
-neuronsAll(33,:) = [6, 3, 539, 2433]; % 
-neuronsAll(34,:) = [6, 4, 539, 4106]; % 
-neuronsAll(35,:) = [6, 5, 539, 2937]; % 
+neuronsAll(31,:) = [6, 1, 539, 2777]; % Sensory NegHi
+neuronsAll(32,:) = [6, 2, 539, 3501]; % NR
+neuronsAll(33,:) = [6, 3, 539, 2433]; % Weakest Sensory NegHi
+neuronsAll(34,:) = [6, 4, 539, 4106]; % NR
+neuronsAll(35,:) = [6, 5, 539, 2937]; % Sensory NegHi
 neuronsAll(36,:) = [6, 6, 539, 1334]; % 
-neuronsAll(37,:) = [6, 7, 539, 2597]; % 
-neuronsAll(38,:) = [6, 8, 539, 516]; % 
+neuronsAll(37,:) = [6, 7, 539, 2597]; % Weak Sensory NegHi
+neuronsAll(38,:) = [6, 8, 539, 516]; % TOO FEW SPIKES
 
 % brownie_p2_2019_01_26, 389
-neuronsAll(39,:) = [7, 1, 389, 3847]; % 
-neuronsAll(40,:) = [7, 2, 389, 1055]; % 
-neuronsAll(41,:) = [7, 3, 389, 277]; % 
-neuronsAll(42,:) = [7, 4, 389, 1072]; % 
+neuronsAll(39,:) = [7, 1, 389, 3847]; % Something is going on here
+neuronsAll(40,:) = [7, 2, 389, 1055]; % Messy
+neuronsAll(41,:) = [7, 3, 389, 277]; % TOO FEW SPIKES
+neuronsAll(42,:) = [7, 4, 389, 1072]; % NR
 
 % bumpy_2019_04_03, 1229
 neuronsAll(43,:) = [8, 1, 1229, 24303]; % Reanalyze %% Limits %%%
@@ -98,25 +98,25 @@ neuronsAll(52,:) = [9, 4, 1019, 31508]; % PosHi/PosHi
 
 % goldy_2019_03_28, 599
 neuronsAll(53,:) = [10, 1, 599, 1412]; % 
-neuronsAll(54,:) = [10, 2, 599, 7218]; % 
-neuronsAll(55,:) = [10, 3, 599, 562]; % 
-neuronsAll(56,:) = [10, 4, 599, 2442]; % 
-neuronsAll(57,:) = [10, 5, 599, 2357]; % 
-neuronsAll(58,:) = [10, 6, 599, 958]; % 
+neuronsAll(54,:) = [10, 2, 599, 7218]; % NR
+neuronsAll(55,:) = [10, 3, 599, 562]; % TOO FEW SPIKES
+neuronsAll(56,:) = [10, 4, 599, 2442]; % Slow
+neuronsAll(57,:) = [10, 5, 599, 2357]; % NR
+neuronsAll(58,:) = [10, 6, 599, 958]; % TOO FEW SPIKES
 neuronsAll(59,:) = [10, 7, 599, 1536]; % 
-neuronsAll(60,:) = [10, 8, 599, 5013]; % 
+neuronsAll(60,:) = [10, 8, 599, 5013]; % Slow
 neuronsAll(61,:) = [10, 9, 599, 1249]; % 
 
 % hobo_2019_04_01, 1019
 neuronsAll(62,:) = [11, 1, 1019, 1432]; % 
-neuronsAll(63,:) = [11, 2, 1019, 1617]; % 
+neuronsAll(63,:) = [11, 2, 1019, 1617]; % NegSlow/NegFast
 neuronsAll(64,:) = [11, 3, 1019, 503]; % 
 neuronsAll(65,:) = [11, 5, 1019, 235]; % 
 
 % penn_2019_04_13, 269
-neuronsAll(66,:) = [12, 1, 269, 4055]; % NR
-neuronsAll(67,:) = [12, 2, 269, 366]; % NR
-neuronsAll(68,:) = [12, 3, 269, 524]; % NR
+neuronsAll(66,:) = [12, 1, 269, 4055]; % PosSlow/Pos/Slow
+neuronsAll(67,:) = [12, 2, 269, 366]; % TOO FEW SPIKES
+neuronsAll(68,:) = [12, 3, 269, 524]; % TOO FEW SPIKES
 
 % tolstoy_2019_01_29, 569
 neuronsAll(69,:) = [13, 1, 569, 3666]; % NR*

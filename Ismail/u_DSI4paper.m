@@ -1,5 +1,5 @@
 
-fishNum = 4; unitNum = 6;
+fishNum = 9; unitNum = 3;
 
 spiketimes = curfish(fishNum).spikes.times(curfish(fishNum).spikes.codes == unitNum);
 tim = curfish(fishNum).time;
