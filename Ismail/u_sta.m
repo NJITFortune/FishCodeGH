@@ -8,7 +8,6 @@ function out = u_sta(spikes, randspikes, sig, Fs, wid)
 
 tim = 1/Fs:1/Fs:length(sig)/Fs; % Time stamps for the duration of the signal.
 
-
 % Generate one set of random spikes. We should probably do this several times.
 if isempty(randspikes)
     randspikes = u_randspikegen(spikes);

@@ -59,7 +59,7 @@ neuronsAll(24,:) = [4, 4, 1469, 4220]; % PosHi/Weirdness
 neuronsAll(25,:) = [4, 5, 1469, 27233]; % Weak
 neuronsAll(26,:) = [4, 6, 1469, 7761]; % PosHi, Sensory? Passive fish?
 
-% brown_2018_09_25, 299 - Off by a factor of 10
+% brown_2018_09_25, 299 - TRACKING Off by a factor of 10
 neuronsAll(27,:) = [5, 1, 299, 3600]; % NR
 neuronsAll(28,:) = [5, 2, 299, 5271]; % NR
 neuronsAll(29,:) = [5, 3, 299, 1444]; % 
@@ -110,8 +110,8 @@ neuronsAll(61,:) = [10, 9, 599, 1249]; %
 % hobo_2019_04_01, 1019
 neuronsAll(62,:) = [11, 1, 1019, 1432]; % 
 neuronsAll(63,:) = [11, 2, 1019, 1617]; % NegSlow/NegFast
-neuronsAll(64,:) = [11, 3, 1019, 503]; % 
-neuronsAll(65,:) = [11, 5, 1019, 235]; % 
+neuronsAll(64,:) = [11, 3, 1019, 503]; % TOO FEW SPIKES
+neuronsAll(65,:) = [11, 5, 1019, 235]; % TOO FEW SPIKES
 
 % penn_2019_04_13, 269
 neuronsAll(66,:) = [12, 1, 269, 4055]; % PosSlow/Pos/Slow
