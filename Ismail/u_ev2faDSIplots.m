@@ -20,7 +20,7 @@ tim = curfish(f).time;
     sig = curfish(f).fish_acc; 
     Penn3FA = u_DSItimeplot(spiketimes, sig, tim);
 
-figure(1); clf; subplot(2,2,1); hold on;
+figure(1); clf; subplot(2,3,1); hold on;
 plot([Penn3EV.dels], [Penn3EV.dsi], 'b', 'LineWidth', 3);
 plot([Penn3EA.dels], [Penn3EA.dsi], 'g', 'LineWidth', 3);
 plot([Penn3FA.dels], [Penn3FA.dsi], 'm', 'LineWidth', 3);
@@ -40,7 +40,7 @@ tim = curfish(f).time;
     sig = curfish(f).fish_acc; 
     Penn4FA = u_DSItimeplot(spiketimes, sig, tim);
 
-figure(1); subplot(2,2,2); hold on;
+figure(1); subplot(2,3,2); hold on;
 plot([Penn4EV.dels], [Penn4EV.dsi], 'b', 'LineWidth', 3);
 plot([Penn4EA.dels], [Penn4EA.dsi], 'g', 'LineWidth', 3);
 plot([Penn4FA.dels], [Penn4FA.dsi], 'm', 'LineWidth', 3);
@@ -60,7 +60,7 @@ tim = curfish(f).time;
     sig = curfish(f).fish_acc; 
     f3n1FA = u_DSItimeplot(spiketimes, sig, tim);
 
-figure(2); clf; subplot(2,2,1); hold on;
+figure(1); subplot(2,3,3); hold on;
 plot([f3n1EV.dels], [f3n1EV.dsi], 'b', 'LineWidth', 3);
 plot([f3n1EA.dels], [f3n1EA.dsi], 'g', 'LineWidth', 2);
 plot([f3n1FA.dels], [f3n1FA.dsi], 'm', 'LineWidth', 3);
@@ -79,7 +79,7 @@ tim = curfish(f).time;
     sig = curfish(f).fish_acc; 
     f3n2FA = u_DSItimeplot(spiketimes, sig, tim);
 
-figure(1); subplot(2,2,3); hold on;
+figure(1); subplot(2,3,4); hold on;
 plot([f3n2EV.dels], [f3n2EV.dsi], 'b', 'LineWidth', 3);
 plot([f3n2EA.dels], [f3n2EA.dsi], 'g', 'LineWidth', 3);
 plot([f3n2FA.dels], [f3n2FA.dsi], 'm', 'LineWidth', 3);
@@ -97,12 +97,41 @@ tim = curfish(f).time;
     sig = curfish(f).fish_acc; 
     f3n3FA = u_DSItimeplot(spiketimes, sig, tim);
 
-figure(2); subplot(2,2,2); hold on;
+figure(1); subplot(2,3,5); hold on;
 plot([f3n3EV.dels], [f3n3EV.dsi], 'b', 'LineWidth', 3);
 plot([f3n3EA.dels], [f3n3EA.dsi], 'g', 'LineWidth', 2);
 plot([f3n3FA.dels], [f3n3FA.dsi], 'm', 'LineWidth', 3);
 xline(0); yline(0); ylim([-maxY, maxY]);
 title('Fish 3, neuron 3')
+
+%% Fish 7, neuron 1 • WEAK Centered positive EV to postive FA - delayed relative to iconics - but normal level motor
+f = 7; n = 1;
+spiketimes = curfish(f).spikes.times(curfish(f).spikes.codes == n);
+tim = curfish(f).time;    
+    sig = curfish(f).error_vel; 
+    f7n1EV = u_DSItimeplot(spiketimes, sig, tim);
+    sig = curfish(f).error_acc; 
+    f7n1EA = u_DSItimeplot(spiketimes, sig, tim);
+    sig = curfish(f).fish_acc; 
+    f7n1FA = u_DSItimeplot(spiketimes, sig, tim);
+
+figure(1); subplot(2,3,6); hold on;
+plot([f7n1EV.dels], [f7n1EV.dsi], 'b', 'LineWidth', 3);
+plot([f7n1EA.dels], [f7n1EA.dsi], 'g', 'LineWidth', 2);
+plot([f7n1FA.dels], [f7n1FA.dsi], 'm', 'LineWidth', 3);
+xline(0); yline(0); ylim([-maxY, maxY]);
+title('Fish 7, neuron 1')
+
+%%
+
+figure(2); subplot(2,3,1); plot([Penn3EV.dels], [Penn3EV.dsi] - mean(Penn3EV.rdsi), 'b', 'LineWidth', 3); ylim([-maxY, maxY]);
+figure(2); subplot(2,3,2); plot([Penn4EV.dels], [Penn4EV.dsi] - mean(Penn4EV.rdsi), 'b', 'LineWidth', 3); ylim([-maxY, maxY]);
+figure(2); subplot(2,3,3); plot([f3n1EV.dels], [f3n1EV.dsi] - mean(f3n1EV.rdsi), 'b', 'LineWidth', 3); ylim([-maxY, maxY]);
+figure(2); subplot(2,3,4); plot([f3n2EV.dels], [f3n2EV.dsi] - mean(f3n2EV.rdsi), 'b', 'LineWidth', 3); ylim([-maxY, maxY]);
+figure(2); subplot(2,3,5); plot([f3n3EV.dels], [f3n3EV.dsi] - mean(f3n3EV.rdsi), 'b', 'LineWidth', 3); ylim([-maxY, maxY]);
+figure(2); subplot(2,3,6); plot([f7n1EV.dels], [f7n1EV.dsi] - mean(f7n1EV.rdsi), 'b', 'LineWidth', 3); ylim([-maxY, maxY]);
+
+
 
 %% Fish 4, neuron 6 • Positive EV is convincing, but nothing else?
 f = 4; n = 6;
@@ -122,23 +151,7 @@ plot([f4n6FA.dels], [f4n6FA.dsi], 'm', 'LineWidth', 3);
 xline(0); yline(0); ylim([-maxY, maxY]);
 title('Fish 4, neuron 6')
 
-%% Fish 7, neuron 1 • WEAK Centered positive EV to postive FA - delayed relative to iconics - but normal level motor
-f = 7; n = 1;
-spiketimes = curfish(f).spikes.times(curfish(f).spikes.codes == n);
-tim = curfish(f).time;    
-    sig = curfish(f).error_vel; 
-    f7n1EV = u_DSItimeplot(spiketimes, sig, tim);
-    sig = curfish(f).error_acc; 
-    f7n1EA = u_DSItimeplot(spiketimes, sig, tim);
-    sig = curfish(f).fish_acc; 
-    f7n1FA = u_DSItimeplot(spiketimes, sig, tim);
 
-figure(2); subplot(2,2,3); hold on;
-plot([f7n1EV.dels], [f7n1EV.dsi], 'b', 'LineWidth', 3);
-plot([f7n1EA.dels], [f7n1EA.dsi], 'g', 'LineWidth', 2);
-plot([f7n1FA.dels], [f7n1FA.dsi], 'm', 'LineWidth', 3);
-xline(0); yline(0); ylim([-maxY, maxY]);
-title('Fish 7, neuron 1')
 
 %% Fish 3, neuron 4 • Iconic negative EV to negative FA
 f = 3; n = 4;

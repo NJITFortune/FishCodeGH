@@ -1,6 +1,9 @@
 function [dsi, cnts] = u_trackDSIrange(spikes, signal, sig2, tim, delt, rango)
-% Usage: [dsiSP, dsiAS, cnts] = u_trackDSI(spikes, signal, tim, delt)
+% Usage: [dsi, cnts] = u_trackDSIrange(spikes, signal, sig2, tim, delt, rango)
 % This script returns DSI values for whatever you send it (Vel or Acc)
+% and for a second 'slave' signal.  The difference between u_trackDSI and
+% u_trackDSIrange is the signal range selection function - e.g. velocity
+% range.
 % This also returns the time-adjusted spike times and adjusted stimulus
 % values. 
 
@@ -20,7 +23,7 @@ newsig = u_tim2stim(spikes, signal, tim, delt);
 idx = find(abs(newsig) > rango(1) & abs(newsig) < rango(2));
 newsig = newsig(idx);
 
-fprintf('Filter Spikes count = %i \n', length(idx))
+% fprintf('Filter Spikes count = %i \n', length(idx))
 
 % Generate the random spikes
 
