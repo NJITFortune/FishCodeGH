@@ -16,5 +16,6 @@ for j=length(dsi):-1:1
     foo.dsi(j) = dsi(j).spikes;
     foo.dsi2(j) = dsi(j).spikes2;
     foo.rdsi(j) = dsi(j).randspikes;
+    foo.rdsi2(j) = dsi(j).randspikes2;
 
 end

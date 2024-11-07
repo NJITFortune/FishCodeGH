@@ -33,6 +33,7 @@ randsig = u_tim2stim(randspikes, signal, tim, 0);
 % Generate second signal
 
 newsig2 = u_tim2stim(shiftspikes(idx), sig2, tim, 0);
+randsig2 = u_tim2stim(randspikes, sig2, tim, 0);
 
 % Calculate raw DSI values
 
@@ -42,6 +43,8 @@ dsi.randspikes = (length(find(randsig > 0)) - length(find(randsig < 0))) / ...
     (length(find(randsig > 0)) + length(find(randsig < 0)));
 dsi.spikes2 = (length(find(newsig2 > 0)) - length(find(newsig2 < 0))) / ...
     (length(find(newsig2 > 0)) + length(find(newsig2 < 0)));
+dsi.randspikes2 = (length(find(randsig2 > 0)) - length(find(randsig2 < 0))) / ...
+    (length(find(randsig2 > 0)) + length(find(randsig2 < 0)));
 
 cnts.newsig = newsig;
 cnts.newsig2 = newsig2;

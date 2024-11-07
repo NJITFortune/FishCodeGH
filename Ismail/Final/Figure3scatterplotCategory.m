@@ -15,13 +15,13 @@ faDSI = DSItimeSTA(curfish(f).spikes.times(curfish(f).spikes.codes == n), curfis
 
 % Get max or min causal SENSORY (prior to spike)
 tt = find(evDSI.dels < 0);
-[~, idx] = max(abs(evDSI.dsi(tt) - mean(evDSI.rdsi)));
+[~, idx] = max(abs(evDSI.dsi(tt)));
     EVout(j,:) = [f,n, evDSI.dels(idx), evDSI.dsi(idx) - mean(evDSI.rdsi)];
 
 % Get max or min causal MOTOR (after spike)
 tt = find(faDSI.dels > 0);
 offset = length(find(evDSI.dels <= 0));
-[~, idx] = max(abs(evDSI.dsi(tt) - mean(faDSI.rdsi)));
+[~, idx] = max(abs(evDSI.dsi(tt)));
     FAout(j,:) = [f,n, faDSI.dels(idx+offset), faDSI.dsi(idx+offset) - mean(faDSI.rdsi)];
 
 % As explained in the code for Figure 3, we remove the mean of the shuffled

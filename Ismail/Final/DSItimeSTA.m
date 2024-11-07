@@ -13,16 +13,17 @@ out.dels = -1.00:0.010:1.00;
 
 % Calculate the DSI for each delay. 
 parfor j=1:length(out.dels)
-    dels = -1.00:0.020:1.00; % Make sure these are the same as out.dels above. (Double copy is for the parfor loop)
+    dels = -1.00:0.010:1.00; % Make sure these are the same as out.dels above. (Double copy is for the parfor loop)
     [dsi(j), ~] = DSIcalculator(spiketimes, sig, tim, dels(j)); 
 end
 
 % Put the data into our output structure
-out.dsi = dsi.spikes;
-out.rdsi = dsi.randspikes;
-
+for j = length(dsi):-1:1
+    out.dsi(j) = dsi(j).spikes;
+    out.rdsi(j) = dsi(j).randspikes;
 end
 
+end
 
 function [dsi, cnts] = DSIcalculator(spikes, signal, tim, delt)
 % Usage: [dsi, cnts] = DSIcalculator(spikes, signal, tim, delt)
