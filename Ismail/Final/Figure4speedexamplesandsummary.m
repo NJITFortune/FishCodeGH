@@ -212,3 +212,7 @@ figure(31); clf; hold on;
     title('FA Fast (blue) vs. Slow (magenta) vs. all')
     set(gcf, 'renderer', 'painters')
 
+% Velocity threshold sample for figure
+
+figure(2); clf; plot(curfish(3).time, curfish(3).error_vel, 'k'); hold on; plot(curfish(3).time(slowtt), curfish(3).error_vel(slowtt)); xlim([122 132])
+set(gcf, 'renderer', 'painters')
