@@ -1,7 +1,9 @@
 %% Load data
 %load brown2019_04_14_merged_new2.mat
 %load /Users/eric/Downloads/uyanik_neurophys/raw/brown2019_04_14_merged_new2.mat
-load /Users/eric/NotCloudy/UyanikFinalPutsch/uyanik_neurophys/raw/brown2019_04_14_merged_new2.mat
+%load /Users/eric/NotCloudy/UyanikFinalPutsch/uyanik_neurophys/raw/brown2019_04_14_merged_new2.mat
+%load /Users/eric/Downloads/brown2019_04_14_merged_new2.mat
+load /Users/efortune/Downloads/brown2019_04_14_merged_new2.mat
 %% Prep
 
 spikeSampleTime = [49.76 49.87];
