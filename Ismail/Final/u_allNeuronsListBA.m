@@ -104,13 +104,13 @@ neuronsAll(44,:) = [8, 1, 1229, 24303, 55, 165]; %%% Too late, NR Reanalyze %% L
 neuronsAll(45,:) = [8, 2, 1229, 10599, 55, 165]; % Messy Reanalyze
         % STA flat
 neuronsAll(46,:) = [8, 3, 1229, 8508, 55, 165]; %%%%   NegIcon FAST ONLY   Something good, probably
-        % STA flat - NegNeg case
+        % STA flat - NegNeg case - BARBELL(BlobPLot)
 neuronsAll(47,:) = [8, 4, 1229, 7867, 55, 165]; %%%%   NegIcon FAST ONLY Weak  % Motor 0 delay Reanalyze
-        % STA flat - NegNeg case
+        % STA flat - NegNeg case - BARBELL(BlobPLot)
 neuronsAll(48,:) = [8, 5, 1229, 12816, 55, 165]; %%%%  PosAccel Iconic Weak  % Pos fast Bias Reanalyze
         % STA flat
 neuronsAll(49,:) = [8, 6, 1229, 18279, 55, 165]; %%%%  PosAccel Iconic Weak  % Pos fast Bias Reanalyze
-        % STA flat - PosPos case
+        % STA flat - PosPos case - BARBELL(BlobPLot)
 neuronsAll(50,:) = [8, 7, 1229, 7954, 55, 165]; %%%%%  PosCent Sens   Pos Fast Motor Reanalyze
         % STA flat
 
