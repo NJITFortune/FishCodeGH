@@ -2,6 +2,12 @@
 
 % Plot the individual data first for fun, then average and plot the figure
 % for the paper. Here we have 6 neurons and we only use 5 for the paper.
+% They are 
+% 9, 3; 9, 4
+% 3, 1; 3, 2; 3, 3
+% 7, 1
+% 4, 6
+% 8, 6
 
 maxY = 0.4; % Selectivity Index
 

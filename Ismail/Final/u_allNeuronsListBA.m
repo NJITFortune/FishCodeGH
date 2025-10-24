@@ -48,19 +48,31 @@ neuronsAll(14,:) = [2, 8, 689, 5033, 90, 220]; % NR
 
 % bammbamm_2019_04_12, 809 (100 px EV 525 FA)
 neuronsAll(15,:) = [3, 1, 809, 15627, 100, 525]; %%%% PosCent        PosHi/PosHi More Sensory
+        % STA flat - PosPos case
 neuronsAll(16,:) = [3, 2, 809, 9609, 100, 525]; %%%%% PosIcon        PosHi/NR Velocity neuron
+        % STA flat - PosPos case
 neuronsAll(17,:) = [3, 3, 809, 8538, 100, 525]; %%%%% PosCent        PosHi/PosHi More Sensory
+        % STA flat - PosPos case
 neuronsAll(18,:) = [3, 4, 809, 11327, 100, 525]; %%%% NegIcon/Cent   NegHi/NegHi More Sensory
+        % STA flat - NegNeg case
 neuronsAll(19,:) = [3, 5, 809, 10009, 100, 525]; %%%% NegIcon        NegHi/NegHi
+        % STA flat - NegNeg case
 neuronsAll(20,:) = [3, 6, 809, 6637, 100, 525]; %%%%% NegIcon/Cent   NegHi/NegHi
+        % STA flat - NegNeg case
 
 % bent_2019_02_26, 1469 (75 px EV 260 FA)
 neuronsAll(21,:) = [4, 1, 1469, 28860, 75, 260]; %%% NR!!!!!!!!!!!!
+        % STA flat
 neuronsAll(22,:) = [4, 2, 1469, 30154, 75, 260]; %%% PosSens WEAK  WeakPosHi/WeakNegHi
+        % STA flat
 neuronsAll(23,:) = [4, 3, 1469, 9759, 75, 260]; %%%% PosSens       PosHi/NegHi
+        % STA flat
 neuronsAll(24,:) = [4, 4, 1469, 4220, 75, 260]; %%%% PosSens WEAK  PosHi/Weirdness
+        % STA flat
 neuronsAll(25,:) = [4, 5, 1469, 27233, 75, 260]; %%% NR!!!!!!!!!!!!
+        % STA flat
 neuronsAll(26,:) = [4, 6, 1469, 7761, 75, 260]; %%%% PosSens       PosHi, Sensory? Passive fish?
+        % STA flat - PosPos case
 
 % brown_2018_09_25, 299 - TRACKING Off by a factor of 10 (14 px EV 70 FA)
 neuronsAll(27,:) = [5, 1, 299, 3600, 14, 70]; % NR
@@ -81,18 +93,26 @@ neuronsAll(39,:) = [6, 8, 539, 516, 125, 330]; % TOO FEW SPIKES
 
 % brownie_p2_2019_01_26, 389 (100 px EV 360 FA)
 neuronsAll(40,:) = [7, 1, 389, 3847, 100, 360]; %%%% PosCent   Something is going on here
+        % STA flat - PosPos case
 neuronsAll(41,:) = [7, 2, 389, 1055, 100, 360]; % Messy
 neuronsAll(42,:) = [7, 3, 389, 277, 100, 360]; % TOO FEW SPIKES
 neuronsAll(43,:) = [7, 4, 389, 1072, 100, 360]; % NR
 
 % bumpy_2019_04_03, 1229 (55 px EV 165 FA)
 neuronsAll(44,:) = [8, 1, 1229, 24303, 55, 165]; %%% Too late, NR Reanalyze %% Limits %%%
+        % STA flat
 neuronsAll(45,:) = [8, 2, 1229, 10599, 55, 165]; % Messy Reanalyze
+        % STA flat
 neuronsAll(46,:) = [8, 3, 1229, 8508, 55, 165]; %%%%   NegIcon FAST ONLY   Something good, probably
+        % STA flat - NegNeg case
 neuronsAll(47,:) = [8, 4, 1229, 7867, 55, 165]; %%%%   NegIcon FAST ONLY Weak  % Motor 0 delay Reanalyze
+        % STA flat - NegNeg case
 neuronsAll(48,:) = [8, 5, 1229, 12816, 55, 165]; %%%%  PosAccel Iconic Weak  % Pos fast Bias Reanalyze
+        % STA flat
 neuronsAll(49,:) = [8, 6, 1229, 18279, 55, 165]; %%%%  PosAccel Iconic Weak  % Pos fast Bias Reanalyze
+        % STA flat - PosPos case
 neuronsAll(50,:) = [8, 7, 1229, 7954, 55, 165]; %%%%%  PosCent Sens   Pos Fast Motor Reanalyze
+        % STA flat
 
 % fin_2019_04_14, 1019 (85 px EV 345 FA)
 neuronsAll(51,:) = [9, 2, 1019, 12079, 85, 345]; % NR
@@ -108,6 +128,7 @@ neuronsAll(58,:) = [10, 5, 599, 2357, 35, 160]; % NR
 neuronsAll(59,:) = [10, 6, 599, 958, 35, 160]; % TOO FEW SPIKES
 neuronsAll(60,:) = [10, 7, 599, 1536, 35, 160]; % 
 neuronsAll(61,:) = [10, 8, 599, 5013, 35, 160]; %%%% PosSens   
+        % STA flat
 neuronsAll(62,:) = [10, 9, 599, 1249, 35, 160]; % 
 
 % hobo_2019_04_01, 1019 (45 px EV 150 FA)
@@ -118,6 +139,7 @@ neuronsAll(66,:) = [11, 5, 1019, 235, 45, 150]; % TOO FEW SPIKES
 
 % penn_2019_04_13, 269 (65 px EV 165 FA)
 neuronsAll(67,:) = [12, 1, 269, 4055, 65, 165]; % PosSlow/Pos/Slow
+        % STA flat
 neuronsAll(68,:) = [12, 2, 269, 366, 65, 165]; % TOO FEW SPIKES
 neuronsAll(69,:) = [12, 3, 269, 524, 65, 165]; % TOO FEW SPIKES
 

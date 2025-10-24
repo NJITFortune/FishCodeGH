@@ -4,6 +4,9 @@ maxY = 0.4; % Selectivity Index plot range
 
 % Plot the individual data first for fun, then average and plot the figure
 % for the paper. 
+% The neurons are
+% 3, 4; 3, 5; 3, 6
+% 8, 3; 8, 4
 
 %% Fish 3, neuron 4 • negative EV to negative FA
 f = 3; n = 4;
@@ -95,8 +98,6 @@ figure(3); subplot(2,3,5); hold on;
     plot([f8n4FA.dels], [f8n4FA.dsi], 'm', 'LineWidth', 3);
     xline(0); yline(0); ylim([-maxY, maxY]);
     title('Fish 8, neuron 4')
-
-
 
 %% Take the mean for our 5 Neg EV - Neg FA cases
 

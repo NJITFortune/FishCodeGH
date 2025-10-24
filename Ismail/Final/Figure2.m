@@ -1,7 +1,8 @@
 % Figure 1 • Example STA plots for error velocity and fish acceleration
 
 %% This is our best positive neuron.
-f = 9; n = 4;
+% f = 9; n = 4;
+f = 7; n = 1;
 
 spikes = curfish(f).spikes.times(curfish(f).spikes.codes == n);
 
