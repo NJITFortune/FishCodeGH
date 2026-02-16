@@ -744,7 +744,7 @@ for j = length(fn):-1:1
     outFA(j) = u_sta(curfish(fn(j,1)).spikes.times(curfish(fn(j,1)).spikes.codes == fn(j,2)), [], curfish(fn(j,1)).fish_acc, Fs, wid);
 end
 
-for j=1:length(out)
+for j=1:length(fn)
 
     figure(j+10); clf; 
         subplot(211); hold on; 

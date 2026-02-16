@@ -9,6 +9,7 @@ function out = DSItimeSTA(spiketimes, sig, tim)
 
 % The delays in seconds. Make sure they are the same as within the parfor loop below.
 % Default is -1.00:0.010:1.00. Up to (+/-)3 seconds. Less than 1 second isn't useful for this dataset.
+% Just to repeat - make sure that out.dels and dels are exactly the same. I not good coder.
 out.dels = -1.00:0.010:1.00; 
 
 % Calculate the DSI for each delay. 
@@ -25,12 +26,13 @@ end
 
 end
 
+
+
 function [dsi, cnts] = DSIcalculator(spikes, signal, tim, delt)
 % Usage: [dsi, cnts] = DSIcalculator(spikes, signal, tim, delt)
 % This script returns DSI values for whatever signal that you send it 
 % (typically Vel or Acc).
-% This also returns the time-adjusted spike times and adjusted stimulus
-% values. 
+% This also returns the time-adjusted spike times and adjusted stimulus values. 
 
 % Get adusted and random spikes
 
