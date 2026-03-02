@@ -12,10 +12,16 @@ function out = DSItimeSTA(spiketimes, sig, tim)
 % Just to repeat - make sure that out.dels and dels are exactly the same. I not good coder.
 out.dels = -1.00:0.010:1.00; 
 
+
+% Generate 200 randomized spike sequences.
+for j=4:-1:1
+    randos(:,j) = u_randspikegen(spiketimes);
+end
+
 % Calculate the DSI for each delay. 
 parfor j=1:length(out.dels)
     dels = -1.00:0.010:1.00; % Make sure these are the same as out.dels above. (Double copy is for the parfor loop)
-    [dsi(j), ~] = DSIcalculator(spiketimes, sig, tim, dels(j)); 
+    dsi(j) = DSIcalculator(spiketimes, randos, sig, tim, dels(j)); 
 end
 
 % Put the data into our output structure
@@ -28,28 +34,30 @@ end
 
 
 
-function [dsi, cnts] = DSIcalculator(spikes, signal, tim, delt)
+function dsiStruct = DSIcalculator(spikes, rspikes, signal, tim, delt)
 % Usage: [dsi, cnts] = DSIcalculator(spikes, signal, tim, delt)
 % This script returns DSI values for whatever signal that you send it 
 % (typically Vel or Acc).
 % This also returns the time-adjusted spike times and adjusted stimulus values. 
 
-% Get adusted and random spikes
+% Get adusted signal for each spike and calculate DSI
 
 newsig = u_tim2stim(spikes, signal, tim, delt);
 
-randspikes = u_randspikegen(spikes);
-randsig = u_tim2stim(randspikes, signal, tim, 0);
+% Calculate DSI value for original spikes
 
-% Calculate raw DSI values
-
-dsi.spikes = (length(find(newsig > 0)) - length(find(newsig < 0))) / ...
+dsiStruct.spikes = (length(find(newsig > 0)) - length(find(newsig < 0))) / ...
     (length(find(newsig > 0)) + length(find(newsig < 0)));
-dsi.randspikes = (length(find(randsig > 0)) - length(find(randsig < 0))) / ...
-    (length(find(randsig > 0)) + length(find(randsig < 0)));
 
-cnts.newsig = newsig;
-cnts.randsig = randsig;
-cnts.delt = delt;
+% Calculate average DSI for randomized spikes
+
+%for j=length(rspikes):-1:1
+for j=4:-1:1
+    randsig = u_tim2stim(rspikes(:,j), signal, tim, 0);
+    rdsi(j) = (length(find(randsig > 0)) - length(find(randsig < 0))) / ...
+    (length(find(randsig > 0)) + length(find(randsig < 0)));
+end
+
+dsiStruct.randspikes = mean(rdsi);
 
 end

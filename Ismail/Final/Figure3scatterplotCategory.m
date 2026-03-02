@@ -11,12 +11,14 @@
 % This script depends on DSItimeSTA. Through DSItimeSTA this script also requires
 % u_randspikegen and u_tim2stim.
 %
-% This highlights our 11 favorite neurons.
-% The favorite neurons are (pp) 3,1 3,2 3,2 4,6 9,3 9,4 and (nn) 3,4 3,5 6,1 6,5 12,1
-%
+% This highlights our favorite neurons based on thresholds.
+% The favorite neurons are (pp) 3,1 3,2 3,3 4,6 9,3 9,4 and (nn) 3,4 3,5 6,1 6,5. 
+% [3,6 is good but doesn't match. 6,1 and 6,5 are not great.  12,1 is barely acceptable.]
 
 %% Loop through every neuron included in numIDX. This takes too long. Be patient.
 for j=length(numIDX):-1:1
+
+    sprintf('Working on idx %i', j)
 
     % This gets the fish (f) and neuron (n) indices for each valid neuron.
     f = neuronsAll(numIDX(j),1);
@@ -54,19 +56,19 @@ end
 posposIDX = find(EVout(:,4) > 0.1);
 negnegIDX = find(EVout(:,4) < -0.08);
 
-
 % Scatterplot for normal spike data
 figure(114); clf; hold on;
     set(gcf, 'renderer', 'painters')
 
 plot(EVout(:,4), FAout(:,4), 'o', 'MarkerSize', 8, 'MarkerFaceColor', 'w', 'MarkerEdgeColor', 'b');
+
     % Highlight our 11 best neurons
     plot(EVout(posposIDX,4), FAout(posposIDX,4), '.', 'MarkerSize', 12, 'Color', 'Magenta');
     plot(EVout(negnegIDX,4), FAout(negnegIDX,4), '.', 'MarkerSize', 12, 'Color', 'Cyan');
 
     xline(0); yline(0);
     xlim([-0.4 0.4]); xlabel('error velocity SI')
-    ylim([-0.25 0.25]); ylabel('fish acceleration SI')
+    ylim([-0.3 0.3]); ylabel('fish acceleration SI')
 
 
 % Scatterplot for shuffled spike data
