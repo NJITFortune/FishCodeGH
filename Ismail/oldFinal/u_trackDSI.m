@@ -4,12 +4,6 @@ function [dsi, cnts] = u_trackDSI(spikes, signal, tim, delt)
 % This also returns the time-adjusted spike times and adjusted stimulus
 % values. 
 
-% NEW - adjust the signal to have zero mean
-% A better solution would be to adjust to have the same number of
-% positive and negative values, rather than the mean.
-
-signal = signal - mean(signal);
-
 % Get adusted and random spikes
 
 newsig = u_tim2stim(spikes, signal, tim, delt);
