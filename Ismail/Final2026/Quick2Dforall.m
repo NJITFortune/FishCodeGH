@@ -12,14 +12,16 @@ for j=length(numIDX):-1:1
     f = neuronsAll(numIDX(j),1);
     n = neuronsAll(numIDX(j),2);
 
-    plotEVFAheatmaps(curfish, f, n); drawnow;
 
-foo = DSItimeplotEVFA(curfish(f).spikes.times(curfish(f).spikes.codes == n), curfish(f).error_vel, curfish(f).fish_acc, curfish(f).time);
-        figure; 
-        plot(foo.dels, [foo.evDSI', foo.faDSI'], 'LineWidth', 4); 
-        hold on; 
-        plot([0, 0], [-0.5, 0.5], 'k-'); plot([-1, 1], [0, 0], 'k-');
-        text(-0.9,-0.2, [num2str(f), ', ', num2str(n)]);
-        drawnow;
+    smitaPlot(curfish, f, n); drawnow;
+%     plotEVFAheatmaps(curfish, f, n); drawnow;
+% 
+% foo = DSItimeplotEVFA(curfish(f).spikes.times(curfish(f).spikes.codes == n), curfish(f).error_vel, curfish(f).fish_acc, curfish(f).time);
+%         figure; 
+%         plot(foo.dels, [foo.evDSI', foo.faDSI'], 'LineWidth', 4); 
+%         hold on; 
+%         plot([0, 0], [-0.5, 0.5], 'k-'); plot([-1, 1], [0, 0], 'k-');
+%         text(-0.9,-0.2, [num2str(f), ', ', num2str(n)]);
+%         drawnow;
 
 end
