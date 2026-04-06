@@ -21,5 +21,6 @@ for j=length(dsiEV):-1:1
 
 end
 
-% figure(27); clf; 
-% plot(foo.dels, [foo.evDSI', foo.faDSI']); hold on; plot([0, 0], [-0.5, 0.5], 'k-');
+% plot(foo.dels, [foo.evDSI', foo.faDSI'], 'LineWidth', 4); 
+% hold on; 
+% plot([0, 0], [-0.5, 0.5], 'k-'); plot([-1, 1], [0, 0], 'k-');
