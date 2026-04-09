@@ -14,6 +14,9 @@ for j=length(numIDX):-1:1
 
 
     smitaPlot(curfish, f, n); drawnow;
+    set(gcf, 'renderer', 'painters');
+    fname = sprintf('%sF%dN%d.pdf', fishNames{f}, f, n);
+    print(gcf, fname, '-dpdf', '-bestfit');
 %     plotEVFAheatmaps(curfish, f, n); drawnow;
 % 
 % foo = DSItimeplotEVFA(curfish(f).spikes.times(curfish(f).spikes.codes == n), curfish(f).error_vel, curfish(f).fish_acc, curfish(f).time);

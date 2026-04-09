@@ -1,4 +1,4 @@
-function smitaPlot(curfish, fishNo, neuronNo)
+function smitaPlot(curfish, fishNo, neuronNo, shifty)
 
 %% Look up fish name from dataList
 dataList_NeuronsDurationComments;
@@ -8,7 +8,9 @@ fishName = fishNames{fishNo};
 spiketimes = curfish(fishNo).spikes.times(curfish(fishNo).spikes.codes == neuronNo);
 tim        = curfish(fishNo).time;
 errVel     = curfish(fishNo).error_vel;
+errAcc     = curfish(fishNo).error_acc;
 fishAcc    = curfish(fishNo).fish_acc;
+fishVel    = curfish(fishNo).fish_vel;
 
 %% USER PARAMETERS (shared)
 nbins         = 18;
@@ -16,7 +18,14 @@ errorVelRange = [-600 600];
 fishAccRange  = [-1800 1800];
 smoothSigma   = 1;
 nShuffles     = 200;
-spikeShift    = 0;
+
+if ~isempty(shifty)
+    spikeShift_EV    = 0;
+    spikeShift_FA    = 0;
+else
+    spikeShift_EV = shifty(1);
+    spikeShift_FA = shifty(2);
+end
 
 %% ===============================
 %% ======= FIGURE SETUP ==========
@@ -41,24 +50,36 @@ axDSI = axes('Position', [0.10 0.55 0.83 0.37]);
 dels = -1.00:0.020:1.00;
 
 dsiEV = cell(1, length(dels));
+dsiEA = cell(1, length(dels));
 dsiFA = cell(1, length(dels));
+dsiFV = cell(1, length(dels));
 
 parfor j = 1:length(dels)
     localDels = -1.00:0.020:1.00;
+
     [dsiEV{j}, ~] = trackDSI(spiketimes, errVel,   tim, localDels(j));
+    [dsiEA{j}, ~] = trackDSI(spiketimes, errAcc,   tim, localDels(j));
     [dsiFA{j}, ~] = trackDSI(spiketimes, fishAcc,  tim, localDels(j));
+    [dsiFV{j}, ~] = trackDSI(spiketimes, fishVel,  tim, localDels(j));
 end
 
 evDSI = zeros(1, length(dels));
+eaDSI = zeros(1, length(dels));
 faDSI = zeros(1, length(dels));
+fvDSI = zeros(1, length(dels));
+
 for j = 1:length(dels)
     evDSI(j) = dsiEV{j}.spikes;
+    eaDSI(j) = dsiEA{j}.spikes;
     faDSI(j) = dsiFA{j}.spikes;
+    fvDSI(j) = dsiFV{j}.spikes;
 end
 
 axes(axDSI);
 plot(dels, [evDSI', faDSI'], 'LineWidth', 4);
 hold on;
+plot(dels, [eaDSI', fvDSI'], 'LineStyle', '-.', 'LineWidth', 2);
+
 plot([0 0], [-0.5 0.5], 'k-');
 plot([-1 1], [0 0], 'k-');
 text(-0.9, 0.4, ...
@@ -87,9 +108,8 @@ edgesFA = linspace(fishAccRange(1),  fishAccRange(2),  nbins+1);
 occCounts = histcounts2(vErrVel, vFishAcc, edgesEV, edgesFA);
 occupancy = occCounts * dT;
 
-spikeShift_s = spikeShift / 1000;
-spikesEV = interp1(tim, errVel,  spiketimes - spikeShift_s, 'linear', 'extrap');
-spikesFA = interp1(tim, fishAcc, spiketimes + spikeShift_s, 'linear', 'extrap');
+spikesEV = interp1(tim, errVel,  spiketimes - spikeShift_EV, 'linear', 'extrap');
+spikesFA = interp1(tim, fishAcc, spiketimes + spikeShift_FA, 'linear', 'extrap');
 
 validSpikes = ...
     spikesEV >= errorVelRange(1) & spikesEV <= errorVelRange(2) & ...
@@ -118,8 +138,8 @@ for s = 1:nShuffles
     shiftAmount    = rand * TotalTime;
     shuffledSpikes = mod(spiketimes + shiftAmount - tim(1), TotalTime) + tim(1);
 
-    sw1 = interp1(tim, errVel,  shuffledSpikes - spikeShift_s, 'linear', 'extrap');
-    sw2 = interp1(tim, fishAcc, shuffledSpikes + spikeShift_s, 'linear', 'extrap');
+    sw1 = interp1(tim, errVel,  shuffledSpikes - spikeShift_EV, 'linear', 'extrap');
+    sw2 = interp1(tim, fishAcc, shuffledSpikes + spikeShift_FA, 'linear', 'extrap');
 
     valid = ...
         sw1 >= errorVelRange(1) & sw1 <= errorVelRange(2) & ...
