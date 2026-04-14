@@ -10,8 +10,12 @@ fishAcc = curfish(fishNo).fish_acc;
 
 %% USER PARAMETERS
 nbins         = 18;
-errorVelRange = [-600 600];
-fishAccRange  = [-1800 1800];
+% errorVelRange = [-600 600];       % legacy fixed ranges
+% fishAccRange  = [-1800 1800];
+errorVelRange = prctile(errVel,  [1 99]);   % data-driven ranges
+fishAccRange  = prctile(fishAcc, [1 99]);
+fprintf('errorVelRange: [%.1f, %.1f]    fishAccRange: [%.1f, %.1f]\n', ...
+    errorVelRange(1), errorVelRange(2), fishAccRange(1), fishAccRange(2));
 smoothSigma   = 1;          % Gaussian sigma in bins
 nShuffles     = 200;        % number of shuffles
 spikeShift    = 0;          % ms: sample EV this many ms before spike, FA this many ms after spike
