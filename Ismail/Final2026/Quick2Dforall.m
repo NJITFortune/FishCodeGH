@@ -11,12 +11,14 @@ for j=length(numIDX):-1:1
     % This gets the fish (f) and neuron (n) indices for each valid neuron.
     f = neuronsAll(numIDX(j),1);
     n = neuronsAll(numIDX(j),2);
+    dd = [neuronsAll(numIDX(j),5), neuronsAll(numIDX(j),6)];
 
 
-    smitaPlot(curfish, f, n); drawnow;
+    smitaPlot(curfish, f, n, dd); drawnow;
     set(gcf, 'renderer', 'painters');
     fname = sprintf('%sF%dN%d.pdf', fishNames{f}, f, n);
     print(gcf, fname, '-dpdf', '-bestfit');
+    
 %     plotEVFAheatmaps(curfish, f, n); drawnow;
 % 
 % foo = DSItimeplotEVFA(curfish(f).spikes.times(curfish(f).spikes.codes == n), curfish(f).error_vel, curfish(f).fish_acc, curfish(f).time);

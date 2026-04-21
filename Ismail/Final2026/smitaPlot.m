@@ -1,4 +1,10 @@
 function smitaPlot(curfish, fishNo, neuronNo, shifty)
+% Makes a plot of the time-delays for DSI calculations
+% makes 1-D and 2-D histograms and calculates a map of Z-scores and
+% p-values
+% curfish is the structure from the final dataset ismailCompleatFinal2024.mat
+% fishNo and neuronNo are from dataList_NeuronsDurationComments
+% shifty are the magnitudes of shifts from 0 for sensory (shifty(1)) and motor (shifty(2)) in SECONDS
 
 %% Look up fish name from dataList
 dataList_NeuronsDurationComments;
@@ -14,12 +20,16 @@ fishVel    = curfish(fishNo).fish_vel;
 
 %% USER PARAMETERS (shared)
 nbins         = 18;
-errorVelRange = [-600 600];
-fishAccRange  = [-1800 1800];
+%errorVelRange = [-800 800];       % legacy fixed ranges
+%fishAccRange  = [-1600 1600];
+errorVelRange = prctile(errVel,  [1 99]);   % data-driven ranges
+fishAccRange  = prctile(fishAcc, [1 99]);
+fprintf('errorVelRange: [%.1f, %.1f]    fishAccRange: [%.1f, %.1f]\n', ...
+    errorVelRange(1), errorVelRange(2), fishAccRange(1), fishAccRange(2));
 smoothSigma   = 1;
 nShuffles     = 200;
 
-if ~isempty(shifty)
+if isempty(shifty)
     spikeShift_EV    = 0;
     spikeShift_FA    = 0;
 else
@@ -45,7 +55,7 @@ annotation('textbox', [0 0.95 1 0.05], ...
 %% ======= DSI TIME PLOT =========
 %% ===============================
 
-axDSI = axes('Position', [0.10 0.55 0.83 0.37]);
+axDSI = axes('Position', [0.07 0.55 0.49 0.37]);
 
 dels = -1.00:0.020:1.00;
 
@@ -157,6 +167,25 @@ pMap        = mean(shuffleMaps >= rateMap, 3);
 pMap(occupancySmooth < 1e-6) = NaN;
 
 %% ===============================
+%% ===== 1D MARGINAL PLOTS =======
+%% ===============================
+
+centersEV = (edgesEV(1:end-1) + edgesEV(2:end)) / 2;
+centersFA = (edgesFA(1:end-1) + edgesFA(2:end)) / 2;
+evProfile = nanmean(rateMap, 2);     % average over FA → EV response
+faProfile = nanmean(rateMap, 1)';    % average over EV → FA response
+
+axes('Position', [0.61 0.76 0.32 0.16]);
+bar(centersEV, evProfile, 'FaceColor', [0.3 0.5 0.8]);
+xlabel('Error Velocity'); ylabel('Mean Rate (Hz)');
+title('EV Response');
+
+axes('Position', [0.61 0.56 0.32 0.16]);
+bar(centersFA, faProfile, 'FaceColor', [0.8 0.4 0.3]);
+xlabel('Fish Accel'); ylabel('Mean Rate (Hz)');
+title('FA Response');
+
+%% ===============================
 %% ======= HEATMAP PLOTS =========
 %% ===============================
 
@@ -173,8 +202,8 @@ ev1 = edgesEV(1:end-1);
 fa1 = edgesFA(1:end-1);
 
 % Helper: shared crosshair lines
-crossEV = [-500 500];
-crossFA = [-1500 1500];
+crossEV = errorVelRange;
+crossFA = fishAccRange;
 
 % --- Rate Map ---
 axes('Position', [leftCol topRow colW rowH]);
