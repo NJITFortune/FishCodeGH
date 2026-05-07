@@ -104,12 +104,17 @@ title('DSI vs. Time Delay');
 %% ======= HEATMAP SETUP =========
 %% ===============================
 
-validSamples = ...
-    errVel >= errorVelRange(1) & errVel <= errorVelRange(2) & ...
-    fishAcc >= fishAccRange(1) & fishAcc <= fishAccRange(2);
+% Shift signals for occupancy calculation to match spike sampling lags
+% This ensures that the "opportunity" for a spike is calculated for the same lag
+shiftedEV = interp1(tim, errVel,  tim - spikeShift_EV, 'linear', 'extrap');
+shiftedFA = interp1(tim, fishAcc, tim + spikeShift_FA, 'linear', 'extrap');
 
-vErrVel  = errVel(validSamples);
-vFishAcc = fishAcc(validSamples);
+validSamples = ...
+    shiftedEV >= errorVelRange(1) & shiftedEV <= errorVelRange(2) & ...
+    shiftedFA >= fishAccRange(1)  & shiftedFA <= fishAccRange(2);
+
+vErrVel  = shiftedEV(validSamples);
+vFishAcc = shiftedFA(validSamples);
 dT       = median(diff(tim));
 
 edgesEV = linspace(errorVelRange(1), errorVelRange(2), nbins+1);
@@ -172,8 +177,23 @@ pMap(occupancySmooth < 1e-6) = NaN;
 
 centersEV = (edgesEV(1:end-1) + edgesEV(2:end)) / 2;
 centersFA = (edgesFA(1:end-1) + edgesFA(2:end)) / 2;
-evProfile = nanmean(rateMap, 2);     % average over FA → EV response
-faProfile = nanmean(rateMap, 1)';    % average over EV → FA response
+
+% Calculate independent 1D profiles with their own occupancy correction
+% For EV:
+occEV1D = histcounts(shiftedEV, edgesEV) * dT;
+occEV1DSmooth = imgaussfilt(occEV1D, smoothSigma);
+countEV1D = histcounts(spikesEV, edgesEV); % Use all spikes in range, regardless of FA
+countEV1DSmooth = imgaussfilt(countEV1D, smoothSigma);
+evProfile = countEV1DSmooth(:) ./ occEV1DSmooth(:);
+evProfile(occEV1DSmooth < 1e-6) = NaN;
+
+% For FA:
+occFA1D = histcounts(shiftedFA, edgesFA) * dT;
+occFA1DSmooth = imgaussfilt(occFA1D, smoothSigma);
+countFA1D = histcounts(spikesFA, edgesFA); % Use all spikes in range, regardless of EV
+countFA1DSmooth = imgaussfilt(countFA1D, smoothSigma);
+faProfile = countFA1DSmooth(:) ./ occFA1DSmooth(:);
+faProfile(occFA1DSmooth < 1e-6) = NaN;
 
 axes('Position', [0.61 0.76 0.32 0.16]);
 bar(centersEV, evProfile, 'FaceColor', [0.3 0.5 0.8]);
