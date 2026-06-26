@@ -55,7 +55,8 @@ annotation('textbox', [0 0.95 1 0.05], ...
 %% ======= DSI TIME PLOT =========
 %% ===============================
 
-axDSI = axes('Position', [0.07 0.55 0.49 0.37]);
+axDSI = axes('Position', [0.07 0.70 0.49 0.22]);
+axMI  = axes('Position', [0.07 0.52 0.49 0.16]);
 
 dels = -1.00:0.020:1.00;
 
@@ -63,6 +64,8 @@ dsiEV = cell(1, length(dels));
 dsiEA = cell(1, length(dels));
 dsiFA = cell(1, length(dels));
 dsiFV = cell(1, length(dels));
+miEV  = cell(1, length(dels));
+miFA  = cell(1, length(dels));
 
 parfor j = 1:length(dels)
     localDels = -1.00:0.020:1.00;
@@ -71,18 +74,28 @@ parfor j = 1:length(dels)
     [dsiEA{j}, ~] = trackDSI(spiketimes, errAcc,   tim, localDels(j));
     [dsiFA{j}, ~] = trackDSI(spiketimes, fishAcc,  tim, localDels(j));
     [dsiFV{j}, ~] = trackDSI(spiketimes, fishVel,  tim, localDels(j));
+    [miEV{j},  ~] = trackMI(spiketimes,  errVel,   tim, localDels(j));
+    [miFA{j},  ~] = trackMI(spiketimes,  fishAcc,  tim, localDels(j));
 end
 
 evDSI = zeros(1, length(dels));
 eaDSI = zeros(1, length(dels));
 faDSI = zeros(1, length(dels));
 fvDSI = zeros(1, length(dels));
+evMI  = zeros(1, length(dels));
+faMI  = zeros(1, length(dels));
+evMIr = zeros(1, length(dels));
+faMIr = zeros(1, length(dels));
 
 for j = 1:length(dels)
     evDSI(j) = dsiEV{j}.spikes;
     eaDSI(j) = dsiEA{j}.spikes;
     faDSI(j) = dsiFA{j}.spikes;
     fvDSI(j) = dsiFV{j}.spikes;
+    evMI(j)  = miEV{j}.bpspk;
+    faMI(j)  = miFA{j}.bpspk;
+    evMIr(j) = miEV{j}.rand_bpspk;
+    faMIr(j) = miFA{j}.rand_bpspk;
 end
 
 axes(axDSI);
@@ -99,6 +112,25 @@ legend({'EV DSI', 'FA DSI'}, 'Location', 'best');
 xlabel('Delay (s)');
 ylabel('DSI');
 title('DSI vs. Time Delay');
+
+%% ===============================
+%% ======= MI TIME PLOT ==========
+%% ===============================
+
+axes(axMI);
+h1 = plot(dels, evMI,  'LineWidth', 3); hold on;
+h2 = plot(dels, faMI,  'LineWidth', 3);
+     plot(dels, evMIr, '--', 'Color', h1.Color, 'LineWidth', 1.5);
+     plot(dels, faMIr, '--', 'Color', h2.Color, 'LineWidth', 1.5);
+miYLim = [min([0 evMI faMI evMIr faMIr]) - 0.02, ...
+          max([evMI faMI]) * 1.15 + 0.01];
+plot([0 0], miYLim, 'k-');
+plot([-1 1], [0 0], 'k-');
+ylim(miYLim);
+legend({'EV MI', 'FA MI', 'EV rand', 'FA rand'}, 'Location', 'best', 'FontSize', 9);
+xlabel('Delay (s)');
+ylabel('bits / spike');
+title('Mutual Information vs. Time Delay');
 
 %% ===============================
 %% ======= HEATMAP SETUP =========
@@ -195,12 +227,12 @@ countFA1DSmooth = imgaussfilt(countFA1D, smoothSigma);
 faProfile = countFA1DSmooth(:) ./ occFA1DSmooth(:);
 faProfile(occFA1DSmooth < 1e-6) = NaN;
 
-axes('Position', [0.61 0.76 0.32 0.16]);
+axes('Position', [0.61 0.82 0.32 0.10]);
 bar(centersEV, evProfile, 'FaceColor', [0.3 0.5 0.8]);
 xlabel('Error Velocity'); ylabel('Mean Rate (Hz)');
 title('EV Response');
 
-axes('Position', [0.61 0.56 0.32 0.16]);
+axes('Position', [0.61 0.70 0.32 0.10]);
 bar(centersFA, faProfile, 'FaceColor', [0.8 0.4 0.3]);
 xlabel('Fish Accel'); ylabel('Mean Rate (Hz)');
 title('FA Response');
