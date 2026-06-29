@@ -134,6 +134,17 @@ jsiFA_rand    = mean(jsiFA_shuff, 2);
 jsiEV_randStd = std(jsiEV_shuff, [], 2);
 jsiFA_randStd = std(jsiFA_shuff, [], 2);
 
+%% ---- Significance at the specified lag pair ----------------------------
+% jsiEV_shuff(iEV,:) is the shuffle distribution of jsiFixed: it uses
+% EV shuffled at tauEV and FA shuffled at tauFA, which is exactly the null
+% for the scalar corr(ev_fixed, fa_fixed).
+[~, iEV] = min(abs(dels - tauEV));
+[~, iFA] = min(abs(dels - tauFA));
+shuffDist = jsiEV_shuff(iEV, :)';
+zJSI = (jsiFixed - mean(shuffDist)) / std(shuffDist);
+pJSI = mean(abs(shuffDist) >= abs(jsiFixed));   % two-tailed empirical p
+fprintf('  JSI z = %.2f   p = %.3f  (shuffle n=%d)\n', zJSI, pJSI, nShuffles);
+
 %% ---- FIGURE -------------------------------------------------------------
 colSh  = [0.75 0.75 0.75];
 colPos = [0.85 0.15 0.10];   % red  (compensatory)
@@ -151,14 +162,17 @@ annotation('textbox', [0 0.94 1 0.06], ...
 
 %% Panel 1 — JSI vs EV lag  (FA fixed at tauFA)
 % Plot against -dels so x = 0 is spike time and negative x is EV in the past.
-subplot(2, 2, 1);
+subplot(2, 4, [1 2]);
 shadeRegion(-dels, jsiEV_rand, jsiEV_randStd, colSh);
 hold on;
 plot(-dels, jsiEV_rand, '--', 'Color', colSh*0.55, 'LineWidth', 1.5);
 plot(-dels, jsiEV, 'k-', 'LineWidth', 2.5);
 plot([0 0],    [-1 1], 'k:', 'LineWidth', 0.75);
 plot([-1 0],   [0 0],  'k:', 'LineWidth', 0.75);
-xline(-tauEV, 'r--', 'LineWidth', 1.5, 'Label', sprintf('  fixed %.2f s', tauEV));
+xline(-tauEV, 'r--', 'LineWidth', 1.5);
+plot(-dels(iEV), jsiEV(iEV), 'ro', 'MarkerSize', 9, 'LineWidth', 2, 'MarkerFaceColor', 'w');
+text(-tauEV, jsiEV(iEV), sprintf('  z=%.2f\n  p=%.3f', zJSI, pJSI), ...
+    'FontSize', 9, 'Color', [0.8 0 0], 'VerticalAlignment', 'bottom');
 ylim([-1 1]);
 xlim([-1 0])
 xlabel('Time relative to spike (s)   ← EV precedes spike | spike = 0');
@@ -167,14 +181,17 @@ title(sprintf('JSI vs EV lag   (FA fixed at +%.2f s)', tauFA));
 legend({'shuffle ±1SD', 'shuffle mean', 'data'}, 'Location', 'best', 'FontSize', 8);
 
 %% Panel 2 — JSI vs FA lag  (EV fixed at tauEV)
-subplot(2, 2, 2);
+subplot(2, 4, [3 4]);
 shadeRegion(dels, jsiFA_rand, jsiFA_randStd, colSh);
 hold on;
 plot(dels, jsiFA_rand, '--', 'Color', colSh*0.55, 'LineWidth', 1.5);
 plot(dels, jsiFA, 'k-', 'LineWidth', 2.5);
 plot([0 0],  [-1 1], 'k:', 'LineWidth', 0.75);
 plot([-1 1], [0 0],  'k:', 'LineWidth', 0.75);
-xline(tauFA, 'r--', 'LineWidth', 1.5, 'Label', sprintf('  fixed %.2f s', tauFA));
+xline(tauFA, 'r--', 'LineWidth', 1.5);
+plot(dels(iFA), jsiFA(iFA), 'ro', 'MarkerSize', 9, 'LineWidth', 2, 'MarkerFaceColor', 'w');
+text(tauFA, jsiFA(iFA), sprintf('  z=%.2f\n  p=%.3f', zJSI, pJSI), ...
+    'FontSize', 9, 'Color', [0.8 0 0], 'VerticalAlignment', 'bottom');
 ylim([-1 1]);
 xlim([0 1])
 xlabel('FA lag \tau_{FA} (s)   [spike precedes FA →]');
@@ -183,7 +200,7 @@ title(sprintf('JSI vs FA lag   (EV fixed at %.2f s)', tauEV));
 legend({'shuffle ±1SD', 'shuffle mean', 'data'}, 'Location', 'best', 'FontSize', 8);
 
 %% Panel 3 — 2D JSI map
-subplot(2, 2, 3);
+subplot(2, 4, [5 6]);
 imagesc(-dels2d, dels2d, jsiMap');
 axis xy;
 colormap(gca, bwrmap(256));
@@ -197,24 +214,36 @@ xlabel('Time of EV relative to spike (s)   ← past | spike = 0');
 ylabel('FA lag \tau_{FA} (s)   [spike precedes FA →]');
 title(sprintf('2D JSI map   (+) = compensatory\nscalar JSI at (+) = %.3f', jsiFixed));
 
-%% Panel 4 — Scatter of (EV, FA) at spike times at specified lags
-subplot(2, 2, 4);
+%% Panel 4a — Scatter of (EV, FA) at spike times at specified lags
+subplot(2, 4, 7);
 sameSign = (ev_fixed > 0 & fa_fixed > 0) | (ev_fixed < 0 & fa_fixed < 0);
-scatter(ev_fixed(sameSign),  fa_fixed(sameSign),  20, colPos, 'filled', 'MarkerFaceAlpha', 0.5);
+scatter(ev_fixed(sameSign),  fa_fixed(sameSign),  12, colPos, 'filled', 'MarkerFaceAlpha', 0.5);
 hold on;
-scatter(ev_fixed(~sameSign), fa_fixed(~sameSign), 20, colNeg, 'filled', 'MarkerFaceAlpha', 0.5);
+scatter(ev_fixed(~sameSign), fa_fixed(~sameSign), 12, colNeg, 'filled', 'MarkerFaceAlpha', 0.5);
 plot(xlim, [0 0], 'k-', 'LineWidth', 0.75);
 plot([0 0], ylim, 'k-', 'LineWidth', 0.75);
 b = polyfit(ev_fixed(:), fa_fixed(:), 1);
 xfit = linspace(min(ev_fixed), max(ev_fixed), 50);
 plot(xfit, polyval(b, xfit), 'k-', 'LineWidth', 2);
-xlabel(sprintf('EV at spike time  (lag %.2f s)', tauEV));
-ylabel(sprintf('FA at spike time  (lag %.2f s)', tauFA));
-title(sprintf('EV vs FA at spikes   r = %.3f  (%s)', ...
-    jsiFixed, ternary(jsiFixed > 0, 'compensatory', 'anti-compensatory')));
-legend({sprintf('same sign (%d)', sum(sameSign)), ...
-        sprintf('opp sign  (%d)', sum(~sameSign))}, ...
-    'Location', 'best', 'FontSize', 8);
+xlabel(sprintf('EV  (lag %.2f s)', tauEV));
+ylabel(sprintf('FA  (lag %.2f s)', tauFA));
+title(sprintf('r=%.3f  (%s)', jsiFixed, ternary(jsiFixed > 0, 'comp.', 'anti-comp.')));
+legend({sprintf('+sign (%d)', sum(sameSign)), sprintf('-sign (%d)', sum(~sameSign))}, ...
+    'Location', 'best', 'FontSize', 7);
+
+%% Panel 4b — Shuffle distribution of JSI at specified lag pair
+subplot(2, 4, 8);
+histogram(shuffDist, 30, 'FaceColor', colSh, 'EdgeColor', 'none', 'Normalization', 'probability');
+hold on;
+xline(jsiFixed,         'k-',  'LineWidth', 2.5, ...
+    'Label', sprintf(' JSI=%.3f', jsiFixed), 'LabelVerticalAlignment', 'bottom', 'FontSize', 10);
+xline(mean(shuffDist),  'k--', 'LineWidth', 1.5, 'Label', ' shuff mean');
+xline(-abs(jsiFixed),   'k:',  'LineWidth', 1.5);
+xlabel('JSI  (Pearson r)');
+ylabel('Proportion');
+title(sprintf('Shuffle null at (\\tau_{EV}=%.2f s, \\tau_{FA}=%.2f s)\nz = %.2f     p = %.3f     n_{shuff} = %d', ...
+    tauEV, tauFA, zJSI, pJSI, nShuffles));
+xlim([-1 1]);
 
 %% ---- Output struct ------------------------------------------------------
 out.dels          = dels;
@@ -227,6 +256,9 @@ out.jsiFA_randStd = jsiFA_randStd;
 out.dels2d        = dels2d;
 out.jsiMap        = jsiMap;
 out.jsiFixed      = jsiFixed;
+out.zJSI          = zJSI;
+out.pJSI          = pJSI;
+out.shuffDist     = shuffDist;
 out.evAtSpikes    = ev_fixed;
 out.faAtSpikes    = fa_fixed;
 
